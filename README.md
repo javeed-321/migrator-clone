@@ -40,7 +40,8 @@ CLI flags: `--filter <path>`, `--out <dir>` (default `./output`), `--no-fetch`.
 
 ## The pipeline
 
-Each step is one file, so it can be read or replaced in isolation.
+Each step is one file, so it can be read or replaced in isolation. **[`docs-guides/`](docs-guides/)
+has one guide per step** — what the files do, the decisions inside them, and the traps.
 
 | # | Step | File |
 |---|------|------|
@@ -53,6 +54,13 @@ Each step is one file, so it can be read or replaced in isolation.
 | 7 | Flatten to URLs, partition internal/external/root | [src/nav/iterate.ts](src/nav/iterate.ts), [src/pipeline/site.ts](src/pipeline/site.ts) |
 | 8 | Fetch page bodies, 16 at a time | [src/pipeline/group.ts](src/pipeline/group.ts), [src/pipeline/page.ts](src/pipeline/page.ts) |
 | 9 | Prune failed paths, collapse empty groups | [src/pipeline/site.ts](src/pipeline/site.ts) |
+
+Guides: [01](docs-guides/01-fetch-pages.md) · [02](docs-guides/02-parse-html.md) ·
+[03](docs-guides/03-detect-vendor.md) · [04](docs-guides/04-find-tabs.md) ·
+[05](docs-guides/05-find-sidebar.md) · [06](docs-guides/06-walk-sidebar.md) ·
+[07](docs-guides/07-flatten-and-partition.md) · [08](docs-guides/08-fetch-pool.md) ·
+[09](docs-guides/09-repair-navigation.md) · [10](docs-guides/10-entry-points.md) ·
+[11](docs-guides/11-helpers.md)
 
 Step 6 is the only interesting one. `retrieveNavItems` and `processListItem` are mutually recursive,
 and the branch that decides everything is `findFirstChild(li, 'ul')`: no nested list means a leaf
