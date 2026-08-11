@@ -40,8 +40,47 @@ export function createFilename(
 }
 
 /**
- * Persists the raw HTML for a page. This build stops here — converting the
- * body to MDX is deliberately out of scope.
+ * The YAML block every Documentation.AI page must open with.
+ *
+ * `title` and `description` were lifted out of the body by `scrapePage`, which
+ * is why neither is repeated in the markdown below them.
+ */
+export function formatPageWithFrontmatter(
+  title: string,
+  description: string,
+  markdown: string
+): string {
+  const lines = ["---"];
+  if (title) lines.push(`title: "${title}"`);
+  if (description) lines.push(`description: "${description}"`);
+  lines.push("---", "", markdown);
+  return lines.join("\n");
+}
+
+/** Writes one converted page as `<slug>.mdx` under `outDir`. */
+export function writeMdxPage(
+  outDir: string,
+  slug: string,
+  title: string,
+  description: string,
+  markdown: string
+): string | undefined {
+  const writePath = createFilename(outDir, slug, ".mdx");
+  try {
+    write(writePath, formatPageWithFrontmatter(title, description, markdown));
+    return writePath;
+  } catch (error) {
+    log(`${writePath} could not be written to disk${getErrorMessage(error)}`, "error");
+    return undefined;
+  }
+}
+
+/**
+ * Persists the raw HTML for a page.
+ *
+ * Worth keeping even now that MDX conversion exists: upstream holds the HTML
+ * only as a local variable, so any change to a scraper means refetching the
+ * whole site to test it. With this, you fetch once and iterate offline.
  */
 export function writeRawPage(outDir: string, target: string | URL, html: string): string | undefined {
   const writePath = createFilename(outDir, target);

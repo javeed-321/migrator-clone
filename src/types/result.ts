@@ -9,3 +9,19 @@ export type Result<T> = { success: true; data?: T } | { success: false; message:
 
 /** `[originalUrl, writtenSlug]` — the shape every page-level Result carries. */
 export type PageResultData = [string, string];
+
+/**
+ * One page converted to MDX.
+ *
+ * This rides alongside the `Result` rather than inside it: step 9's repair
+ * passes only ever look at `PageResultData`, and widening that tuple would mean
+ * touching every one of them.
+ */
+export type ScrapedPage = {
+  url: string;
+  /** Path the page is written to, without extension. */
+  slug: string;
+  title: string;
+  description: string;
+  mdx: string;
+};

@@ -1,6 +1,6 @@
-import type { PageResultData, Result } from "../types/result";
+import type { PageResultData, Result, ScrapedPage } from "../types/result";
 import { getErrorMessage } from "../utils/errors";
-import { writeRawPage } from "../utils/file";
+import { writeMdxPage, writeRawPage } from "../utils/file";
 import { intoChunks } from "../utils/intoChunks";
 import { log } from "../utils/log";
 import { fetchPageHtml } from "../utils/network";
@@ -14,6 +14,14 @@ export type PageGroupOptions = {
   rootPaths?: string[];
   /** When set, each fetched page's raw HTML is written under this directory. */
   outDir?: string;
+  /** When set, each converted page is written as `<slug>.mdx` under this directory. */
+  mdxDir?: string;
+};
+
+export type PageGroupResult = {
+  results: Result<PageResultData>[];
+  /** Every page that converted successfully, in completion order. */
+  pages: ScrapedPage[];
 };
 
 /**
@@ -30,8 +38,9 @@ export type PageGroupOptions = {
 export async function scrapePageGroup(
   navGroup: URL[],
   opts: PageGroupOptions = {}
-): Promise<Result<PageResultData>[]> {
+): Promise<PageGroupResult> {
   const allResults: Result<PageResultData>[] = [];
+  const allPages: ScrapedPage[] = [];
   let offset = 0;
 
   try {
@@ -50,7 +59,12 @@ export async function scrapePageGroup(
                 convertStrToTitle(url.pathname.split("/").filter(Boolean).at(-1) ?? url.pathname) ||
                 `external-link-${index}`;
               externalLinkTitle = externalLinkTitle.replace(/\s+/g, "-").toLowerCase();
-              return { success: true as const, data: [url.toString(), externalLinkTitle] as PageResultData };
+              return {
+                result: {
+                  success: true as const,
+                  data: [url.toString(), externalLinkTitle] as PageResultData,
+                },
+              };
             }
 
             // Strip the overview marker before fetching — it is a nav-tree
@@ -62,25 +76,34 @@ export async function scrapePageGroup(
             }
 
             const html = await fetchPageHtml(url);
-            const result = scrapePage(html, url, {
+            const { result, page } = scrapePage(html, url, {
               rootPath: opts.rootPaths ? opts.rootPaths[index] : undefined,
             });
 
             if (result.success && opts.outDir) {
               writeRawPage(opts.outDir, opts.rootPaths?.[index] ?? url, html);
             }
-            return result;
+            if (page && opts.mdxDir) {
+              writeMdxPage(opts.mdxDir, page.slug, page.title, page.description, page.mdx);
+            }
+            return { result, page };
           } catch (error) {
             const errorMessage = getErrorMessage(error);
             return {
-              success: false as const,
-              message: `We encountered an error when scraping ${url}${errorMessage}`,
-              data: [url.toString(), ""] as PageResultData,
+              result: {
+                success: false as const,
+                message: `We encountered an error when scraping ${url}${errorMessage}`,
+                data: [url.toString(), ""] as PageResultData,
+              },
             };
           }
         })
       );
-      allResults.push(...res);
+
+      for (const { result, page } of res) {
+        allResults.push(result);
+        if (page) allPages.push(page);
+      }
     }
   } catch (error) {
     log(
@@ -91,5 +114,5 @@ export async function scrapePageGroup(
     );
   }
 
-  return allResults;
+  return { results: allResults, pages: allPages };
 }

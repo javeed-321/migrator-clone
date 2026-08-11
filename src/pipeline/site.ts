@@ -27,6 +27,8 @@ export type ScrapeSiteOptions = {
   outDir?: string;
   /** Skip step 8 entirely — nav tree only, no page bodies. */
   skipFetch?: boolean;
+  /** When set, every converted page is written as `<slug>.mdx` under this directory. */
+  mdxDir?: string;
 };
 
 function matchesFilter(pathname: string, filter: string): boolean {
@@ -93,14 +95,20 @@ export async function scrapeSite(
     return name;
   });
 
-  // --- Step 8: fetch ------------------------------------------------------
-  const externalResults = await scrapePageGroup(externalLinks, { externalLinks: true });
-  const internalResults = opts.skipFetch
-    ? []
-    : await scrapePageGroup(internalLinks, { outDir: opts.outDir });
-  const rootResults = opts.skipFetch
-    ? []
-    : await scrapePageGroup(rootLinks, { rootPaths, outDir: opts.outDir });
+  // --- Step 8: fetch and convert ------------------------------------------
+  const empty = { results: [], pages: [] };
+  const external = await scrapePageGroup(externalLinks, { externalLinks: true });
+  const internal = opts.skipFetch
+    ? empty
+    : await scrapePageGroup(internalLinks, { outDir: opts.outDir, mdxDir: opts.mdxDir });
+  const rootGroup = opts.skipFetch
+    ? empty
+    : await scrapePageGroup(rootLinks, { rootPaths, outDir: opts.outDir, mdxDir: opts.mdxDir });
+
+  const externalResults = external.results;
+  const internalResults = internal.results;
+  const rootResults = rootGroup.results;
+  const pages = [...internal.pages, ...rootGroup.pages];
 
   // --- Step 9: repair the nav tree ---------------------------------------
   const externalLinkReplaceMap = new Map<string, string>(
@@ -235,6 +243,7 @@ export async function scrapeSite(
       })),
       navigation: navItems as NavigationEntry[],
       tabs: opts.tabs ?? [],
+      pages,
     },
   };
 }

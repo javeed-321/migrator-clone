@@ -59,6 +59,7 @@ export async function scrapeAllSiteTabs(
 
   const navigation: NavigationEntry[] = [];
   const tabs: Tab[] = [];
+  const pages: DiscoveryReport["pages"] = [];
   const discovered: string[] = [];
   const internal: string[] = [];
   const external: string[] = [];
@@ -69,6 +70,7 @@ export async function scrapeAllSiteTabs(
     if (!result.success || !result.data) return;
     navigation.push(...result.data.navigation);
     tabs.push(...result.data.tabs);
+    pages.push(...result.data.pages);
     discovered.push(...result.data.discovered);
     internal.push(...result.data.internal);
     external.push(...result.data.external);
@@ -97,6 +99,7 @@ export async function scrapeAllSiteTabs(
       failed,
       navigation,
       tabs,
+      pages,
     },
   };
 }

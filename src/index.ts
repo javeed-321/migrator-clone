@@ -12,6 +12,8 @@ export type DiscoverOptions = {
   filter?: string;
   outDir?: string;
   skipFetch?: boolean;
+  /** When set, every converted page is written as `<slug>.mdx` under this directory. */
+  mdxDir?: string;
 };
 
 /**

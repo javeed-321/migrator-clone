@@ -1,5 +1,6 @@
 import type { Element } from "hast";
-import { visit } from "unist-util-visit";
+import type { Root as MdastRoot } from "mdast";
+import { EXIT, visit } from "unist-util-visit";
 
 import { convertStrToTitle } from "./strings";
 
@@ -25,6 +26,50 @@ export function findTitle(
   });
 
   return title.trim();
+}
+
+/**
+ * Lifts the first heading out of the page and returns its text.
+ *
+ * Destructive on purpose: the title moves into frontmatter, so leaving it in the
+ * body would print it twice.
+ */
+export function getTitleFromHeading(root: MdastRoot): string {
+  let title = "";
+
+  visit(root, "heading", function (node, index, parent) {
+    title = mdastText(node);
+    if (parent && typeof index === "number") parent.children.splice(index, 1);
+    return EXIT;
+  });
+
+  return escapeQuotes(title);
+}
+
+/**
+ * Same idea for the description: the first paragraph, but only when it is the
+ * very first thing on the page — otherwise it is body copy, not a summary.
+ */
+export function getDescriptionFromRoot(root: MdastRoot): string {
+  const first = root.children[0];
+  if (first?.type !== "paragraph") return "";
+
+  const description = mdastText(first);
+  root.children.shift();
+  return escapeQuotes(description);
+}
+
+/** Concatenated text of any MDAST subtree. */
+function mdastText(node: MdastRoot["children"][number] | MdastRoot): string {
+  let text = "";
+  visit(node, "text", function (textNode) {
+    text += textNode.value;
+  });
+  return text.trim();
+}
+
+function escapeQuotes(value: string): string {
+  return value.replace(/"/g, '\\"');
 }
 
 /** Fallback title when a link has no text: `/api/get-user` -> `Get User`. */

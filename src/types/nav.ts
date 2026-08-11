@@ -1,3 +1,5 @@
+import type { ScrapedPage } from "./result";
+
 /**
  * The nav tree the sidebar walk produces.
  *
@@ -28,6 +30,8 @@ export type DocsConfig = {
 
 /** What a full discovery run hands back to the CLI or the API route. */
 export type DiscoveryReport = {
+  /** Every page converted to MDX. Empty when `skipFetch` is on. */
+  pages: ScrapedPage[];
   site: string;
   vendor: string;
   /** Every URL the sidebar walk produced, before partitioning. */

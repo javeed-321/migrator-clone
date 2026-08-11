@@ -57,6 +57,7 @@ async function main() {
   const result = await discover(url, {
     filter: typeof flags.filter === "string" ? flags.filter : undefined,
     outDir: skipFetch ? undefined : join(outDir, "html"),
+    mdxDir: skipFetch ? undefined : join(outDir, "pages"),
     skipFetch,
   });
 
@@ -65,7 +66,9 @@ async function main() {
     process.exit(1);
   }
 
-  const { docsConfig, ...report } = result.data;
+  // `pages` holds every page's MDX; it is already on disk under `pages/` and
+  // would dwarf the rest of the report.
+  const { docsConfig, pages, ...report } = result.data;
 
   write(join(outDir, "docs.json"), JSON.stringify(docsConfig, undefined, 2));
   write(join(outDir, "discovery-report.json"), JSON.stringify(report, undefined, 2));
@@ -76,6 +79,7 @@ async function main() {
       `${report.root.length} root, ${report.failed.length} failed)`,
     "info"
   );
+  if (pages.length) log(`${pages.length} pages converted to MDX under ${join(outDir, "pages")}`, "success");
   log(FINAL_SUCCESS_MESSAGE, "success");
   process.exit(0);
 }
