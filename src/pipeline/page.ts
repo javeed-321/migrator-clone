@@ -6,10 +6,12 @@ import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { visit, EXIT, CONTINUE } from "unist-util-visit";
 
+import { wrapCardsInColumns } from "../components/Columns";
 import { CONTENT_FAILURE_MSG, MDAST_FAILURE_MSG } from "../constants";
-import { createCallout } from "../mdx/create";
+import { createCallout, createCard, createCodeGroup, createImage } from "../mdx/create";
 import {
   removeBreaks,
+  removeChrome,
   removeClassNames,
   removeHeadingAnchors,
 } from "../mdx/hastClean";
@@ -23,7 +25,7 @@ import {
   removeUpdatedAt,
   spaceListsOut,
 } from "../mdx/mdastClean";
-import { selectiveRehypeRemark } from "../mdx/toMdast";
+import { convertLeftoverComponents, selectiveRehypeRemark } from "../mdx/toMdast";
 import type { PageResultData, Result, ScrapedPage } from "../types/result";
 import { framework } from "../utils/detectFramework";
 import { getErrorMessage } from "../utils/errors";
@@ -84,11 +86,24 @@ function htmlToMdast(content: Element): MdastRoot {
   const contentAsRoot: HastRoot = { type: "root", children: [content] };
 
   return unified()
+    // Strip ReadMe SuperHub page furniture (breadcrumb, pager, feedback widget,
+    // on-page ToC, timestamp) before anything else looks at the tree.
+    .use(removeChrome)
     .use(removeBreaks)
     .use(removeHeadingAnchors)
+    // Component detection — still HAST. Order matters: images and code first,
+    // then cards, then Columns (which needs the Card markers to already exist),
+    // and every scraper must run before removeClassNames strips what it matches.
+    .use(createImage)
+    .use(createCodeGroup)
+    .use(createCard)
+    .use(wrapCardsInColumns)
     .use(createCallout)
     .use(removeClassNames)
     .use(selectiveRehypeRemark)
+    // Nested components (a Card inside Columns) cross the bridge un-converted;
+    // this finishes them on the MDAST side.
+    .use(convertLeftoverComponents)
     .use(removeNestedRoots)
     .use(convertHeaderLinksToText)
     .use(removeEmptyParagraphs)

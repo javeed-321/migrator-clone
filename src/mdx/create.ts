@@ -2,6 +2,9 @@ import type { Root as HastRoot } from "hast";
 import { CONTINUE, SKIP, visit } from "unist-util-visit";
 
 import { readmeScrapeCallout } from "../components/Callout";
+import { readmeScrapeCard } from "../components/Card";
+import { readmeScrapeCodeGroup } from "../components/CodeGroup";
+import { readmeScrapeImage } from "../components/Image";
 import type { ScrapeFunc } from "../types/hast";
 import { framework } from "../utils/detectFramework";
 import { log } from "../utils/log";
@@ -43,4 +46,16 @@ function createComponent(readmeScrapeFunc: ScrapeFunc) {
 
 export function createCallout() {
   return createComponent(readmeScrapeCallout);
+}
+
+export function createImage() {
+  return createComponent(readmeScrapeImage);
+}
+
+export function createCodeGroup() {
+  return createComponent(readmeScrapeCodeGroup);
+}
+
+export function createCard() {
+  return createComponent(readmeScrapeCard);
 }

@@ -54,17 +54,17 @@ describe("scrapePage", () => {
        </blockquote>`
     );
 
-    expect(page?.mdx).toContain('<Callout kind="alert">');
+    expect(page?.mdx).toContain('<Callout kind="warning">');
     expect(page?.mdx).toContain("This overwrites **config**.");
     // The heading is an emoji plus a repeat of the severity — it is dropped.
     expect(page?.mdx).not.toContain("Careful");
   });
 
-  it("maps every ReadMe callout severity", () => {
+  it("maps every ReadMe callout severity to the ucc schema kinds", () => {
     const kinds: [string, string][] = [
-      ["callout_info", "info"],
-      ["callout_default", "info"],
-      ["callout_warn", "alert"],
+      ["callout_info", "note"],
+      ["callout_default", "note"],
+      ["callout_warn", "warning"],
       ["callout_error", "danger"],
       ["callout_okay", "success"],
     ];
@@ -114,6 +114,98 @@ describe("scrapePage", () => {
     // needs something ahead of it.
     const { page } = convert("<p>Intro.</p><p><em> spaced </em>text</p>");
     expect(page?.mdx).toContain("*spaced* text");
+  });
+
+  it("converts a ReadMe figure into a self-closing Image, keeping the remote URL", () => {
+    const { page } = convert(
+      `<h1>T</h1><figure>
+         <span class="img lightbox"><span class="lightbox-inner">
+           <img alt="Schema block" src="https://files.readme.io/abc-schema.gif" width="auto" height="auto">
+         </span></span>
+         <figcaption><p>Schema block</p></figcaption>
+       </figure>`
+    );
+
+    expect(page?.mdx).toContain('<Image');
+    expect(page?.mdx).toContain('src="https://files.readme.io/abc-schema.gif"');
+    expect(page?.mdx).toContain('alt="Schema block"');
+    // width/height were "auto", so they must not appear as attributes.
+    expect(page?.mdx).not.toContain("auto");
+    // Self-closing — no separate closing tag.
+    expect(page?.mdx).not.toContain("</Image>");
+  });
+
+  it("turns a single-tab CodeTabs into a fenced block with its data-lang", () => {
+    const { page } = convert(
+      `<h1>T</h1><div class="CodeTabs">
+         <div class="CodeTabs-toolbar"><button value="json">JSON</button></div>
+         <div class="CodeTabs-inner"><pre><code class="rdmd-code" data-lang="json">const a = 1;</code></pre></div>
+       </div>`
+    );
+
+    expect(page?.mdx).toContain("```json");
+    expect(page?.mdx).toContain("const a = 1;");
+    expect(page?.mdx).not.toContain("<CodeGroup>");
+  });
+
+  it("turns a multi-tab CodeTabs into a CodeGroup of fenced blocks", () => {
+    const { page } = convert(
+      `<h1>T</h1><div class="CodeTabs">
+         <div class="CodeTabs-toolbar">
+           <button value="json">JSON</button><button value="bash">Shell</button>
+         </div>
+         <div class="CodeTabs-inner">
+           <pre><code class="rdmd-code" data-lang="json">{"a":1}</code></pre>
+           <pre><code class="rdmd-code" data-lang="bash">echo hi</code></pre>
+         </div>
+       </div>`
+    );
+
+    expect(page?.mdx).toContain("<CodeGroup>");
+    expect(page?.mdx).toContain("</CodeGroup>");
+    expect(page?.mdx).toContain("```json JSON");
+    expect(page?.mdx).toContain("```bash Shell");
+    expect(page?.mdx).toContain('{"a":1}');
+    expect(page?.mdx).toContain("echo hi");
+  });
+
+  it("wraps consecutive ReadMe cards in Columns", () => {
+    const { page } = convert(
+      `<h1>T</h1><div>
+         <a class="lqc-card" href="https://x.test/docs/a#one"><div class="lqc-tile"><svg></svg><span class="lqc-label">One</span></div></a>
+         <a class="lqc-card" href="https://x.test/docs/a#two"><div class="lqc-tile"><svg></svg><span class="lqc-label">Two</span></div></a>
+       </div>`
+    );
+
+    expect(page?.mdx).toContain('<Columns cols="2">');
+    expect(page?.mdx).toContain('<Card title="One" href="https://x.test/docs/a#one"');
+    expect(page?.mdx).toContain('<Card title="Two" href="https://x.test/docs/a#two"');
+  });
+
+  it("strips ReadMe SuperHub chrome (breadcrumb, pager, feedback, ToC)", () => {
+    const { page } = convert(
+      `<div class="rm-Breadcrumb">GETTING STARTED</div>
+       <h1>Accessing Capillary</h1>
+       <p>Intro.</p>
+       <p>Real body.</p>
+       <div class="UpdatedAt"><p>Updated 5 months ago</p></div>
+       <hr class="NextStepsDivider">
+       <nav class="rm-Pagination"><a href="/docs/introduction">Introduction</a></nav>
+       <div class="rm-PageThumbs PageThumbs">Did this page help you?<span>Yes</span><span>No</span><span>Copy Page</span></div>
+       <section class="content-toc grid-25 rm-Aside"><ul><li><a href="#x">Cluster URLs</a></li></ul></section>`
+    );
+
+    expect(page?.mdx.trim()).toBe("Real body.");
+    for (const leaked of [
+      "GETTING STARTED",
+      "Updated 5 months ago",
+      "Introduction",
+      "Did this page help you?",
+      "Copy Page",
+      "Cluster URLs",
+    ]) {
+      expect(page?.mdx).not.toContain(leaked);
+    }
   });
 
   it("uses rootPath as the slug for a bare-origin page", () => {

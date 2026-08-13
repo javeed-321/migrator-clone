@@ -16,10 +16,14 @@ import { hasClassName } from "../utils/className";
  * node is swapped for one named `Callout` before the bridge runs. `Callout` is
  * in ESCAPED_COMPONENTS, which is what stops `hast-util-to-mdast` flattening it.
  */
+// Documentation.AI's Callout `kind` enum is note | tip | warning | danger |
+// success (see ucc/Callout.json). ReadMe has no neutral "info" tone in that
+// set, so both its grey (`callout_default`) and blue (`callout_info`) boxes map
+// to `note`.
 const KIND_BY_CLASS = new Map<string, string>([
-  ["callout_default", "info"],
-  ["callout_info", "info"],
-  ["callout_warn", "alert"],
+  ["callout_default", "note"],
+  ["callout_info", "note"],
+  ["callout_warn", "warning"],
   ["callout_error", "danger"],
   ["callout_okay", "success"],
 ]);
@@ -34,7 +38,7 @@ export function readmeScrapeCallout(
   const classNames = Array.isArray(node.properties.className)
     ? (node.properties.className as string[])
     : [];
-  const kind = classNames.map((name) => KIND_BY_CLASS.get(name)).find(Boolean) ?? "info";
+  const kind = classNames.map((name) => KIND_BY_CLASS.get(name)).find(Boolean) ?? "note";
 
   // The heading is an emoji plus a repeat of the severity. Documentation.AI
   // callouts have no title slot, so it is dropped — but by identity, not by

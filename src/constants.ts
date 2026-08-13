@@ -30,7 +30,6 @@ export const ESCAPED_COMPONENTS = [
   "CodeGroup",
   "Expandable",
   "ExpandableGroup",
-  "Frame",
   "Image",
   "Step",
   "Steps",
