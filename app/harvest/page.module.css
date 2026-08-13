@@ -1,0 +1,377 @@
+/* The split view needs more room than the 60rem `main` the other pages use. */
+.wide {
+  max-width: 96rem;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--brand);
+}
+
+.num {
+  flex: 0 0 5rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.scope {
+  margin: -0.5rem 0 1.25rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ── inventory table ─────────────────────────────────────────────── */
+
+.tableWrap {
+  overflow-x: auto;
+  max-height: 22rem;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.dim {
+  color: var(--muted);
+}
+
+/* ── page picker ─────────────────────────────────────────────────── */
+
+.pagePicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.pageBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pageBtnActive {
+  border-color: var(--brand);
+  background: var(--panel);
+}
+
+.pageCount {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lenient {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #b45309;
+}
+
+.lenientBanner {
+  border: 1px solid var(--border);
+  border-left: 3px solid #b45309;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ── the split ───────────────────────────────────────────────────── */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pane {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.paneHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.paneHead a {
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.72rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paneHead a:hover {
+  color: var(--brand);
+}
+
+/* ── left: the raw markdown ──────────────────────────────────────── */
+
+.source {
+  max-height: 42rem;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  padding: 0.5rem 0;
+}
+
+.srcLine {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 0.85rem;
+  white-space: pre;
+}
+
+/* The selected block's source lines. This is the link between the two panes. */
+.srcLineLit {
+  background: color-mix(in srgb, var(--brand) 16%, transparent);
+}
+
+.srcNum {
+  flex: 0 0 2.5rem;
+  text-align: right;
+  color: var(--muted);
+  opacity: 0.6;
+  user-select: none;
+}
+
+.srcText {
+  flex: 1 1 auto;
+}
+
+/* ── right: the blocks ───────────────────────────────────────────── */
+
+.blocks {
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem;
+  max-height: 42rem;
+  overflow-y: auto;
+}
+
+.block {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  margin-bottom: 0.45rem;
+  background: var(--bg);
+}
+
+.blockActive {
+  border-color: var(--brand);
+  background: var(--panel);
+}
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.blockName {
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.syntax {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.lines {
+  margin-left: auto;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.status {
+  font-size: 0.63rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+
+.ok {
+  color: var(--ok);
+}
+
+.warn {
+  color: #b45309;
+}
+
+.manual {
+  color: var(--err);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.from {
+  color: var(--muted);
+}
+
+.to {
+  color: var(--brand);
+}
+
+.attrs,
+.snippet {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  word-break: break-word;
+}
+
+.snippet {
+  font-family: inherit;
+}
+
+.note {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.flag {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  color: #b45309;
+}
+
+.inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.35rem;
+}
+
+.pill {
+  font-size: 0.62rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 0.25rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.linkBtn {
+  margin-top: 0.35rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.linkBtn:hover {
+  color: var(--brand);
+}
+
+.json {
+  margin: 0.4rem 0 0;
+  padding: 0.5rem;
+  background: var(--panel);
+  border-radius: 0.35rem;
+  font-size: 0.68rem;
+  max-height: 18rem;
+  overflow: auto;
+}

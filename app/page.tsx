@@ -66,6 +66,12 @@ export default function Home() {
         tree into a nav tree and a URL list. ReadMe sites only.
       </p>
 
+      <p className="sub">
+        Also here: <a href="/fetch-pages-links">Fetch pages &amp; links</a> ·{" "}
+        <a href="/harvest">Harvest source markdown</a> — see each page&apos;s authored markdown next
+        to the components identified in it.
+      </p>
+
       <form onSubmit={onSubmit}>
         <input
           type="text"

@@ -1,8 +1,14 @@
 # mintlify-clone
 
 A port of how [`@mintlify/scraping`](https://www.npmjs.com/package/@mintlify/scraping) discovers
-documentation pages, rebuilt as a Next.js 16 app. **ReadMe sites only**, and it stops at discovery +
-fetch — there is no HTML→MDX conversion.
+documentation pages, rebuilt as a Next.js 16 app. **ReadMe sites only**.
+
+Two stages, and they are independent:
+
+- **discover** — walk the sidebar for the page list and the navigation structure.
+- **harvest** — fetch each page's *authored* markdown and freeze it as a component-annotated
+  intermediate representation, before any conversion happens. See
+  [Harvesting](#harvesting-source-markdown-into-a-component-ir).
 
 ## The idea
 
@@ -28,6 +34,9 @@ npm run discover -- https://docs.capillarytech.com/docs --filter /docs/loyalty-s
 
 # web UI + JSON API
 npm run dev     # http://localhost:3000
+                #   /                    full discovery
+                #   /fetch-pages-links   rebuild the sidebar
+                #   /harvest             source markdown next to the components found in it
 ```
 
 ```bash
@@ -81,6 +90,131 @@ Conflating these is the classic way to get a doubled nav tree:
   <ul class="subpages">…</ul>
 </li>
 ```
+
+## Harvesting source markdown into a component IR
+
+Discovery answers *which pages exist*. Harvesting answers *what is on them* — and it stops one step
+short of converting, on purpose.
+
+```bash
+# whole site, page list from llms.txt
+npm run harvest -- https://docs.capillarytech.com
+
+# a slice, while you iterate
+npm run harvest -- https://docs.capillarytech.com --filter docs/loyalty --limit 25
+
+# one page
+npm run harvest -- https://docs.capillarytech.com/docs/create-a-reward --page
+
+# or take the page list from a discovery run instead of llms.txt
+npm run harvest -- --from-report output/discovery-report.json
+```
+
+Flags: `--out <dir>` (default `./output/harvest`), `--filter <slug-prefix>`, `--limit <n>`,
+`--concurrency <n>` (default 6), `--delay <ms>` (default 300), `--refetch`, `--page`.
+
+### In the browser
+
+`npm run dev` → **[/harvest](http://localhost:3000/harvest)** runs the same stage and shows both
+halves side by side: the **source markdown on the left**, the **blocks identified in it on the
+right**. Selecting a block highlights the exact source lines it came from and scrolls them into view
+— the IR is only worth trusting if you can see the text behind it.
+
+Each block shows its component, its attributes, the `<Source>` → `<Target>` mapping, its status
+(`direct` / `transform` / `drop` / **`manual`**), any gotchas flagged on it, and the raw JSON on
+demand. Above the split are the run stats, the inventory table, and a page picker that marks pages
+which needed the lenient parser.
+
+```bash
+curl -X POST http://localhost:3000/api/harvest \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://docs.capillarytech.com","filter":"docs/loyalty","limit":8}'
+
+# or one page, by its own URL
+curl -X POST http://localhost:3000/api/harvest \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://docs.capillarytech.com/docs/create-a-reward","single":true}'
+```
+
+The route runs the harvest **entirely in memory** — a browser request writes nothing to disk and
+reads no cache. It returns every page's raw markdown alongside its IR (~30 KB a page), so it is
+capped at 40 pages a request, 8 by default. Whole sites are the CLI's job; it caches.
+
+### Why not reuse the HTML path
+
+ReadMe serves the markdown a writer actually typed at **`<page-url>.md`**, and honours
+`Accept: text/markdown` on the plain URL. On `docs/loyalty-promotions` that is 3 KB against 950 KB of
+rendered HTML — and every component is still spelled out as `<Callout theme="info">` rather than
+having to be inferred back out of a `<blockquote class="callout callout_info">`.
+
+So the harvest reads components instead of reconstructing them. Discovery keeps using the HTML,
+because the sidebar only exists there.
+
+### What it writes
+
+```
+output/harvest/
+  raw/<slug>.md        the source, byte for byte — the cache, and the thing to diff a conversion against
+  ir/<slug>.json       the block IR for one page
+  index.json           every page: title, kind, parse mode, per-page component counts
+  inventory.json       the site-wide census
+  inventory.md         the same census, readable
+```
+
+A page is an ordered list of **blocks**. Each one names its component, its attributes, the exact
+source lines it came from, its verbatim `raw` text, and where it lands on Documentation.AI:
+
+```jsonc
+{
+  "i": 3, "kind": "callout", "syntax": "jsx", "component": "Callout",
+  "attrs": { "icon": "📘", "theme": "info" },
+  "lines": [11, 15],
+  "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Before you begin**\n…",
+  "target": { "component": "Callout", "status": "direct", "attrs": { "kind": "info" } }
+}
+```
+
+`target.status` is the only field you have to read: `direct` (rename the tag), `transform` (needs
+restructuring), `drop` (decided — `<br />`, ReadMe's llms.txt preamble), `manual` (**no equivalent
+exists, you decide**). The mapping behind it is one table,
+[src/harvest/mapping.ts](src/harvest/mapping.ts), derived from
+[Components-Information/readme-components-info.md](Components-Information/readme-components-info.md)
+and the Documentation.AI component set. A component missing from it surfaces as `manual` rather than
+being silently dropped.
+
+`inventory.md` is what makes a converter plannable — every construct on the site, how often, on how
+many pages, what it becomes, and a *Flagged for repair* section that pins the known ReadMe gotchas to
+exact block references (`width="smart"`, redundant `className="border"`, missing `alt`, unclosed
+`<br>`, `theme="warning"`).
+
+### Two parsers, on purpose
+
+Tier 1 is the strict MDX parser, which hands back `<Callout>` with its attributes already parsed.
+ReadMe's engine also tolerates a lenient dialect it calls **MDXish** (unclosed `<br>`, string
+`style="…"`), and those pages fail tier 1 — so they fall back to plain GFM, where JSX arrives as raw
+HTML and the tag name is recovered by hand. Markdown ends a raw-HTML run at the first blank line, so
+a `<Table>` would arrive in pieces; `mergeUnclosedJsx` reassembles it, which is what keeps both tiers
+describing the same page the same way.
+
+The tier is recorded per page as `parseMode`. A fallback is a *fact about the page* — its syntax
+needs repairing before Documentation.AI will compile it — not a silent degradation.
+
+### Two page lists, and why both
+
+`llms.txt` lists 1,508 Capillary pages; the sidebar walk finds 889. The walk deliberately skips API
+reference endpoints (upstream generates those from the OpenAPI spec) and `llms.txt` does not. They
+answer different questions, so the walk owns the **navigation structure** and `llms.txt` owns the
+**page list**.
+
+### Batching and rate limits
+
+The fetch pool is 6 wide with a pause between chunks, not the 16 step 8 uses — the markdown endpoint
+starts returning 429 part way through a wider run. 429 and 5xx retry on their own slower schedule and
+honour `Retry-After`; a 404 fails immediately rather than burning retries.
+
+Runs are resumable: a page whose `raw/<slug>.md` is already cached is not refetched (`--refetch`
+overrides), and the census is rebuilt from every IR file on disk, not just the current batch — so
+harvesting a site in slices still yields one whole-site inventory.
 
 ## Vendor selectors
 
@@ -145,6 +279,10 @@ The fetch stage (step 8) was exercised with `--filter`, not across all 1022 page
 ## Tests
 
 ```bash
-npm test        # 14 tests over vendor detection, the sidebar walk, and tab discovery
+npm test        # 48 tests: vendor detection, the sidebar walk, tab discovery, and the harvest IR
 npm run typecheck
 ```
+
+`tests/harvest.test.ts` runs a page shaped like the ones ReadMe serves through the whole IR builder —
+frontmatter split, line offsets, both callout spellings, image gotchas, table extraction, the
+consecutive-fence CodeTabs run — plus an MDXish page that has to take the fallback parser.
