@@ -25,52 +25,8 @@ export const CHUNK_SIZE = 16;
  */
 export const MAX_LIST_PAGES = 25;
 
-/**
- * Tag names that must survive the HAST -> MDAST bridge as MDX components.
- *
- * `hast-util-to-mdast` flattens anything it does not recognise into text, so
- * every component a scraper can emit has to be listed here. This is the only
- * reason `<Callout>` comes out as a component instead of its inner prose.
- */
-export const ESCAPED_COMPONENTS = [
-  "Callout",
-  "Card",
-  "Columns",
-  "CodeGroup",
-  "Expandable",
-  "ExpandableGroup",
-  "Image",
-  "Step",
-  "Steps",
-  "Tab",
-  "Tabs",
-] as const;
-
-export const SUPPORTED_MEDIA_EXTENSIONS = [
-  "png",
-  "jpeg",
-  "jpg",
-  "webp",
-  "avif",
-  "svg",
-  "ico",
-  "jfif",
-  "pjpeg",
-  "pjp",
-  "svgz",
-  "bmp",
-  "gif",
-];
-
 export const SPACES = " ".repeat(13);
 
 export const NAV_FAILURE_MSG = `failed to retrieve nav items from HTML.
 ${SPACES}Could not find the sidebar element. This build only implements ReadMe selectors (nav.rm-Sidebar).`;
 
-export const CONTENT_FAILURE_MSG = `failed to retrieve root content from HTML.
-${SPACES}Could not find article.rm-Article on the page.`;
-
-export const MDAST_FAILURE_MSG = "failed to convert MDAST to an MDX string";
-
-export const FINAL_SUCCESS_MESSAGE =
-  "Discovery complete. Wrote docs.json (navigation) and discovery-report.json.";

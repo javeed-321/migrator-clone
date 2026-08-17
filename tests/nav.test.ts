@@ -1,7 +1,6 @@
 import { describe, expect, it, beforeEach } from "vitest";
 
 import { OVERVIEW_PAGE_SLUG } from "../src/constants";
-import { iterateOverNavItems } from "../src/nav/iterate";
 import { retrieveListNavItems, retrieveListPage } from "../src/nav/list";
 import { retrieveNavItems } from "../src/nav/retrieve";
 import { retrieveRootNavElement } from "../src/nav/root";
@@ -282,21 +281,6 @@ describe("paginated list fallback", () => {
     const hast = htmlToHast(listHtml(post("a", "A")));
     // Deliberately no detectFramework call — vendor stays undefined.
     await expect(retrieveListNavItems(hast, CHANGELOG)).resolves.toEqual([]);
-  });
-});
-
-describe("flattening", () => {
-  beforeEach(resetFramework);
-
-  it("resolves slugs against the origin", () => {
-    const urls = iterateOverNavItems(
-      [{ group: "G", pages: ["docs/a", { group: "H", pages: ["docs/b"] }] }],
-      "https://docs.example.com"
-    );
-    expect(urls.map((u) => u.toString())).toEqual([
-      "https://docs.example.com/docs/a",
-      "https://docs.example.com/docs/b",
-    ]);
   });
 });
 

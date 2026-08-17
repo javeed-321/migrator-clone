@@ -206,20 +206,45 @@
 }
 
 /*
- * The generated documentation.json. Capped in height because a real site runs
- * to ~90KB — it scrolls inside the panel rather than pushing the page down.
+ * The generated documentation.json, as a code block.
+ *
+ * Colours come from `--ink`/`--line`, the tokens `.panel` defines for itself —
+ * not the global `--text`, which is near-white in dark mode and would be
+ * invisible against this panel's hardcoded white background.
+ *
+ * Height is capped because a real site's config runs to ~90KB; it scrolls
+ * inside the block rather than pushing the page down by thousands of lines.
  */
 .json {
-  margin: 0;
-  padding: 0.9rem;
-  max-height: 26rem;
+  margin: 0.9rem;
+  padding: 0.85rem 1rem;
+  max-height: 28rem;
   overflow: auto;
+  background: #f6f8fa;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.72rem;
-  line-height: 1.55;
+  line-height: 1.6;
   tab-size: 2;
   white-space: pre;
-  color: var(--text, inherit);
+  color: var(--ink);
+}
+
+.jsonKey {
+  color: #0550ae;
+}
+
+.jsonStr {
+  color: #0a7c42;
+}
+
+.jsonNum {
+  color: #953800;
+}
+
+.jsonKw {
+  color: #8250df;
 }
 
 .broken {

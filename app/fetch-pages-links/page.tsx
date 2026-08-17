@@ -114,6 +114,43 @@ function Node({
   );
 }
 
+/**
+ * Minimal JSON syntax highlighting.
+ *
+ * One pass over the text picking out strings, numbers and keywords; a string
+ * followed by a colon is a key. Everything between matches is emitted verbatim,
+ * so the output is always the input — nothing is dropped or re-serialised.
+ * Built as React nodes rather than injected HTML.
+ */
+function highlightJson(json: string) {
+  const token = /("(?:\\.|[^"\\])*")(\s*:)?|\b(true|false|null)\b|(-?\d+(?:\.\d+)?)/g;
+  const nodes: React.ReactNode[] = [];
+  let last = 0;
+
+  for (const match of json.matchAll(token)) {
+    const [whole, str, colon, keyword, num] = match;
+    if (match.index > last) nodes.push(json.slice(last, match.index));
+
+    const className = str
+      ? colon
+        ? styles.jsonKey
+        : styles.jsonStr
+      : keyword
+        ? styles.jsonKw
+        : styles.jsonNum;
+    nodes.push(
+      <span key={match.index} className={className}>
+        {str ?? keyword ?? num}
+      </span>
+    );
+    if (colon) nodes.push(colon);
+    last = match.index + whole.length;
+  }
+
+  if (last < json.length) nodes.push(json.slice(last));
+  return nodes;
+}
+
 function Sidebar({
   tab,
   origin,
@@ -145,7 +182,6 @@ function Sidebar({
 export default function FetchPagesLinks() {
   const [url, setUrl] = useState("https://docs.capillarytech.com/docs");
   const [filter, setFilter] = useState("");
-  const [verifyPages, setVerifyPages] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<FetchPagesResponse | null>(null);
@@ -167,7 +203,7 @@ export default function FetchPagesLinks() {
       const res = await fetch("/api/fetch-pages-links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, filter: filter || undefined, verifyPages }),
+        body: JSON.stringify({ url, filter: filter || undefined }),
       });
       const json = (await res.json()) as FetchPagesResponse;
 
@@ -193,6 +229,10 @@ export default function FetchPagesLinks() {
     if (!data) return "";
     return JSON.stringify(buildDocumentationJson(data.tabs, { site: data.site }), null, 2);
   }, [data]);
+
+  // Tokenising ~90KB into thousands of spans is far too expensive to redo on
+  // every keystroke in the URL and filter inputs, so it hangs off `docsJson`.
+  const docsNodes = useMemo(() => highlightJson(docsJson), [docsJson]);
 
   async function copyJson() {
     try {
@@ -242,14 +282,6 @@ export default function FetchPagesLinks() {
           aria-label="Path filter"
           style={{ flex: "0 1 16rem" }}
         />
-        <label className="check">
-          <input
-            type="checkbox"
-            checked={verifyPages}
-            onChange={(e) => setVerifyPages(e.target.checked)}
-          />
-          Verify every page (slower)
-        </label>
         <button type="submit" disabled={loading || !url}>
           {loading ? "Loading…" : "Load pages"}
         </button>
@@ -344,7 +376,9 @@ export default function FetchPagesLinks() {
               </span>
             </div>
 
-            <pre className={styles.json}>{docsJson}</pre>
+            <pre className={styles.json}>
+              <code>{docsNodes}</code>
+            </pre>
 
             <div className={styles.slugLine}>
               Documentation.AI config for all {data.tabs.length} tab

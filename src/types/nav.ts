@@ -1,5 +1,3 @@
-import type { ScrapedPage } from "./result";
-
 /**
  * The nav tree the sidebar walk produces.
  *
@@ -28,19 +26,16 @@ export type DocsConfig = {
   tabs?: Tab[];
 };
 
-/** What a full discovery run hands back to the CLI or the API route. */
+/**
+ * What one tab's walk hands back.
+ *
+ * Navigation only. This project stops at the structure — fetching each page and
+ * converting it is a separate stage, which reads these slugs and requests
+ * `<slug>.md` from ReadMe directly.
+ */
 export type DiscoveryReport = {
-  /** Every page converted to MDX. Empty when `skipFetch` is on. */
-  pages: ScrapedPage[];
   site: string;
   vendor: string;
-  /** Every URL the sidebar walk produced, before partitioning. */
-  discovered: string[];
-  internal: string[];
-  external: string[];
-  root: string[];
-  /** URLs that failed to fetch, already pruned from `navigation`. */
-  failed: { url: string; message: string }[];
   navigation: NavigationEntry[];
   tabs: Tab[];
 };

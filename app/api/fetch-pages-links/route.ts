@@ -60,7 +60,7 @@ function toTabResult(tab: Tab, result: Result<DiscoveryReport>): TabResult {
 }
 
 export async function POST(request: NextRequest) {
-  let body: { url?: string; filter?: string; verifyPages?: boolean };
+  let body: { url?: string; filter?: string };
 
   try {
     body = await request.json();
@@ -75,7 +75,6 @@ export async function POST(request: NextRequest) {
   let urlObj: URL;
   try {
     urlObj = new URL(body.url);
-    console.log(urlObj)
   } catch {
     return Response.json(
       { ok: false, message: `Invalid link: ${body.url} — it must start with http(s)://` },
@@ -84,9 +83,6 @@ export async function POST(request: NextRequest) {
   }
 
   const filter = body.filter || undefined;
-  // Fetching every page body only tells us which pages 404 — off by default so
-  // a preview stays fast.
-  const skipFetch = !body.verifyPages;
 
   function fail(message: string): Response {
     return Response.json({
@@ -125,7 +121,7 @@ export async function POST(request: NextRequest) {
         url: urlObj.pathname,
       };
       scraped = [
-        toTabResult(entryTab, await scrapeSite(html, urlObj, { hast, filter, skipFetch })),
+        toTabResult(entryTab, await scrapeSite(html, urlObj, { hast, filter })),
       ];
     } else {
       // The entry URL might not be reachable from the tab bar; keep it anyway.
@@ -141,7 +137,7 @@ export async function POST(request: NextRequest) {
             const tabHtml = await fetchPageHtml(tabUrl);
             return toTabResult(
               tab,
-              await scrapeSite(tabHtml, tabUrl, { tabs: [tab], filter, skipFetch })
+              await scrapeSite(tabHtml, tabUrl, { tabs: [tab], filter })
             );
           } catch (error) {
             return {

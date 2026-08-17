@@ -15,14 +15,9 @@ const TOOLS = [
     body: "Read a ReadMe docs site and rebuild its sidebar — every tab, its groups and the pages inside them.",
   },
   {
-    href: "/convert",
-    title: "Convert",
-    body: "Turn a fetched page into Documentation.AI MDX.",
-  },
-  {
     href: "/harvest",
     title: "Harvest",
-    body: "Pull raw page content for a set of discovered URLs.",
+    body: "Read each page's authored markdown from `<slug>.md` and show the components found in it.",
   },
 ];
 
