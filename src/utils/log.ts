@@ -33,6 +33,60 @@ export function setLogsEnabled(enabled: boolean): void {
   logsEnabled = enabled;
 }
 
+/** One cell. Objects are inlined rather than pretty-printed — a row is one line. */
+function toCell(value: unknown, max: number): string {
+  const text =
+    value === null || value === undefined
+      ? ""
+      : typeof value === "object"
+        ? JSON.stringify(value)
+        : String(value);
+  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+}
+
+/**
+ * A padded table for an array of flat objects — the shape `retrieveTabLinks`
+ * and the nav walk both produce.
+ *
+ * `console.table` would also work, but it boxes every cell in heavy borders and
+ * prints an index column nobody reads. This keeps the indent the rest of the log
+ * output uses, so the table reads as part of the line above it rather than as a
+ * separate artefact dropped into the stream.
+ *
+ * Columns are inferred from the keys present across all rows, so a row missing a
+ * key still lines up instead of shifting the ones after it.
+ */
+export function logTable(
+  label: string,
+  rows: Record<string, unknown>[],
+  opts: { columns?: string[]; maxWidth?: number } = {}
+): void {
+  if (!logsEnabled) return;
+
+  const maxWidth = opts.maxWidth ?? 60;
+  const keys = opts.columns ?? [...new Set(rows.flatMap((row) => Object.keys(row)))];
+
+  log(`${label} (${rows.length})`, rows.length ? "info" : "warn");
+  if (!rows.length || !keys.length) {
+    console.log(`${activeColors.grey}     (none)${activeColors.default}`);
+    return;
+  }
+
+  const cells = rows.map((row) => keys.map((key) => toCell(row[key], maxWidth)));
+  const widths = keys.map((key, column) =>
+    Math.max(key.length, ...cells.map((row) => row[column]?.length ?? 0))
+  );
+
+  const line = (values: string[]) =>
+    `     ${values.map((value, column) => value.padEnd(widths[column] ?? 0)).join("  ")}`.trimEnd();
+
+  console.log(`${activeColors.grey}${line(keys)}${activeColors.default}`);
+  console.log(
+    `${activeColors.grey}${line(widths.map((width) => "─".repeat(width)))}${activeColors.default}`
+  );
+  for (const row of cells) console.log(line(row));
+}
+
 export function log(message: unknown, status: Status | undefined = undefined): void {
   if (!logsEnabled) return;
 

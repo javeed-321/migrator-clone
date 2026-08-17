@@ -9,8 +9,6 @@ import { intersection } from "../utils/intersection";
  *
  * Matching is tag name + a class-name intersection, per vendor:
  *   readme     -> nav.rm-Sidebar
- *   docusaurus -> nav.menu                  (not implemented here)
- *   gitbook    -> aside#table-of-contents   (not implemented here)
  *
  * If this returns undefined the whole run fails — there is no crawl fallback.
  */

@@ -1,31 +1,9 @@
 import type { Root as HastRoot, Element } from "hast";
 import type { Root as MdastRoot } from "mdast";
-import remarkGfm from "remark-gfm";
-import remarkMdx from "remark-mdx";
-import remarkStringify from "remark-stringify";
-import { unified } from "unified";
 import { visit, EXIT, CONTINUE } from "unist-util-visit";
 
-import { wrapCardsInColumns } from "../components/Columns";
 import { CONTENT_FAILURE_MSG, MDAST_FAILURE_MSG } from "../constants";
-import { createCallout, createCard, createCodeGroup, createImage } from "../mdx/create";
-import {
-  removeBreaks,
-  removeChrome,
-  removeClassNames,
-  removeHeadingAnchors,
-} from "../mdx/hastClean";
-import {
-  convertHeaderLinksToText,
-  formatEmphasis,
-  inlineCodeBlocksInCells,
-  removeBottomMetadata,
-  removeEmptyParagraphs,
-  removeNestedRoots,
-  removeUpdatedAt,
-  spaceListsOut,
-} from "../mdx/mdastClean";
-import { convertLeftoverComponents, selectiveRehypeRemark } from "../mdx/toMdast";
+import { mdastToMdx, runMdxPipeline } from "../mdx/convert";
 import type { PageResultData, Result, ScrapedPage } from "../types/result";
 import { framework } from "../utils/detectFramework";
 import { getErrorMessage } from "../utils/errors";
@@ -64,61 +42,22 @@ export function retrieveRootContent(rootNode: HastRoot): Element | undefined {
 }
 
 /**
- * HTML in, MDX out.
+ * HTML in, MDAST out — the shared chain, given this page's content root.
  *
- * The whole conversion is one `unified()` chain, and the order inside it is the
- * only thing that makes it work:
- *
- *   HAST cleanup    delete browser-only markup while nodes are still HTML
- *   detection       swap ReadMe markup for `<Callout>`-style marker elements
- *   HAST cleanup    strip class/id/style, now that nothing needs to match on it
- *   THE BRIDGE      `selectiveRehypeRemark` — HAST becomes MDAST here
- *   MDAST cleanup   fix up Markdown-level artefacts
- *
- * `.runSync()` calls each registered transformer in order on one tree, so the
- * tree's type changes half way down a chain TypeScript believes is uniform —
- * hence the cast on the result.
+ * The chain itself lives in `mdx/convert` so the playground route runs exactly
+ * the same one. Only the root handling is page-specific.
  */
 function htmlToMdast(content: Element): MdastRoot {
   // Wrapping the article in a fresh root is what drops the rest of the page:
   // <head>, the header, the sidebar and the footer are simply no longer
   // reachable from here.
-  const contentAsRoot: HastRoot = { type: "root", children: [content] };
-
-  return unified()
-    // Strip ReadMe SuperHub page furniture (breadcrumb, pager, feedback widget,
-    // on-page ToC, timestamp) before anything else looks at the tree.
-    .use(removeChrome)
-    .use(removeBreaks)
-    .use(removeHeadingAnchors)
-    // Component detection — still HAST. Order matters: images and code first,
-    // then cards, then Columns (which needs the Card markers to already exist),
-    // and every scraper must run before removeClassNames strips what it matches.
-    .use(createImage)
-    .use(createCodeGroup)
-    .use(createCard)
-    .use(wrapCardsInColumns)
-    .use(createCallout)
-    .use(removeClassNames)
-    .use(selectiveRehypeRemark)
-    // Nested components (a Card inside Columns) cross the bridge un-converted;
-    // this finishes them on the MDAST side.
-    .use(convertLeftoverComponents)
-    .use(removeNestedRoots)
-    .use(convertHeaderLinksToText)
-    .use(removeEmptyParagraphs)
-    .use(spaceListsOut)
-    .use(removeUpdatedAt)
-    .use(removeBottomMetadata)
-    .use(inlineCodeBlocksInCells)
-    .use(formatEmphasis)
-    .runSync(contentAsRoot) as unknown as MdastRoot;
-}
-
-/** MDAST in, MDX text out. `.stringify()` only serialises — it runs no plugins. */
-function mdastToMdx(tree: MdastRoot): string {
-  const result = unified().use(remarkMdx).use(remarkGfm).use(remarkStringify).stringify(tree);
-  return String(result).replace(/\n{3,}/g, "\n\n");
+  //
+  // The article's *own* class is stripped first. Every other container keeps
+  // its presentation now, but this one is the selector we matched the page on
+  // rather than anything an author wrote — left in place it survives the bridge
+  // and wraps every page in a stray `<article className="rm-Article">`.
+  const root: Element = { ...content, properties: {} };
+  return runMdxPipeline({ type: "root", children: [root] });
 }
 
 /**

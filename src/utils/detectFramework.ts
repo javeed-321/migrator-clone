@@ -14,18 +14,18 @@ import { log } from "./log";
  */
 export const framework: Framework = {
   vendor: undefined,
-  version: undefined,
-  unsupportedVendor: undefined,
 };
 
 export function resetFramework(): void {
   framework.vendor = undefined;
-  framework.version = undefined;
-  framework.unsupportedVendor = undefined;
 }
 
 /**
- * Reads `<meta>` / `<link>` tags to identify the docs platform.
+ * Confirms the page is a ReadMe site, by its deploy meta tag.
+ *
+ * ReadMe stamps every page with `<meta name="readme-deploy" content="…">`. That
+ * one tag is the whole check — this build implements ReadMe selectors only, so
+ * there is nothing to dispatch on and no other vendor to look for.
  *
  * Returns `false` instead of calling `process.exit(1)` (which is what upstream
  * does) so the same function is safe to call from a Next.js route handler.
@@ -34,41 +34,9 @@ export function detectFramework(rootHast: Root): boolean {
   resetFramework();
 
   visit(rootHast, "element", function (node) {
-    const { content: rawContent, rel, name, href } = node.properties;
-    const content = (
-      Array.isArray(rawContent) ? rawContent.join(" ") : String(rawContent)
-    ).toLowerCase();
-
-    // GitBook — recognised so we can say why we are bailing, not supported.
-    if (
-      (node.tagName === "link" &&
-        Array.isArray(rel) &&
-        rel.includes("preconnect") &&
-        typeof href === "string" &&
-        href.startsWith("https://api.gitbook.com")) ||
-      (node.tagName === "meta" && name === "generator" && content.includes("gitbook"))
-    ) {
-      framework.unsupportedVendor = "gitbook";
-      return EXIT;
-    }
-
-    if (node.tagName !== "meta" || typeof name !== "string") return CONTINUE;
-
-    switch (name) {
-      case "readme-deploy":
-        framework.vendor = "readme";
-        framework.version = undefined;
-        return EXIT;
-
-      case "generator":
-        if (content.includes("docusaurus")) {
-          framework.unsupportedVendor = "docusaurus";
-          return EXIT;
-        }
-        return CONTINUE;
-    }
-
-    return CONTINUE;
+    if (node.tagName !== "meta" || node.properties.name !== "readme-deploy") return CONTINUE;
+    framework.vendor = "readme";
+    return EXIT;
   });
 
   if (framework.vendor) {
@@ -76,15 +44,14 @@ export function detectFramework(rootHast: Root): boolean {
     return true;
   }
 
-  if (framework.unsupportedVendor) {
-    log(
-      `Detected ${framework.unsupportedVendor}, but this build only implements ReadMe selectors. ` +
-        `Add its cases to nav/root.ts, nav/retrieve.ts and tabs/retrieve.ts to support it.`,
-      "error"
-    );
-    return false;
-  }
-
-  log("Failed to detect documentation vendor — no <meta name=\"readme-deploy\"> found", "error");
+  // Worth being specific: the most likely way to land here is pointing the tool
+  // at a docs site built on something else, and "unsupported vendor" would not
+  // say which tag was looked for or where to add support.
+  log(
+    'Not a ReadMe site — no <meta name="readme-deploy"> in this page\'s HTML. ' +
+      "This build implements ReadMe selectors only; another vendor needs its own cases in " +
+      "nav/root.ts, nav/retrieve.ts, pipeline/page.ts and tabs/retrieve.ts.",
+    "error"
+  );
   return false;
 }

@@ -96,32 +96,75 @@ export function removeHeadingAnchors() {
   };
 }
 
+export interface CleanAttributesOptions {
+  /**
+   * Drop classes that are generated rather than authored — CSS-module names
+   * carrying a build hash, e.g. `SuperHubDoc-article3ArTrEavUTKg`.
+   *
+   * These reference a stylesheet that is not migrating, so they can never
+   * match anything on the target site. Keeping them only adds noise.
+   */
+  dropHashedClassNames?: boolean;
+  /** Keep `class` as a JSX `className`. */
+  keepClassNames?: boolean;
+  /**
+   * Keep `id`. Off by default: ReadMe emits ids that collide once several
+   * pages are concatenated, and duplicate ids are invalid HTML.
+   */
+  keepIds?: boolean;
+  /** Keep inline `style`, converted to a JSX object expression at the bridge. */
+  keepStyles?: boolean;
+}
+
 /**
- * Markdown cannot express a class, an id or a style. Anything left on a node
- * here becomes a JSX attribute on the other side of the bridge.
- *
- * This must run *after* component detection — the scrapers match on class
- * names, so stripping them first would leave nothing to match.
+ * A CSS-module class: a readable prefix followed by a build hash, with no
+ * separator. Matching on "ends in a long mixed-case/digit run" is deliberately
+ * conservative — `rm-Article`, `callout_info` and `language-json` all survive.
  */
-export function removeClassNames() {
+const HASHED_CLASS = /[A-Za-z]-?[A-Za-z0-9_-]*[a-z][A-Z0-9][A-Za-z0-9_-]{6,}$/;
+
+/**
+ * Normalises presentational attributes before the bridge.
+ *
+ * Upstream deletes `className` outright here, on the reasoning that Markdown
+ * cannot express one. That is true of Markdown but not of MDX: anything left on
+ * a node is printed as a JSX attribute on the other side, so inline styles and
+ * classes can be carried across intact. This keeps them and lets
+ * `hastPropsToJsxAttributes` put them into JSX form at the bridge.
+ *
+ * This must still run *after* component detection — the scrapers match on class
+ * names, so stripping anything first would leave nothing to match.
+ */
+export function cleanAttributes(options: CleanAttributesOptions = {}) {
+  const {
+    keepClassNames = true,
+    keepStyles = true,
+    keepIds = false,
+    dropHashedClassNames = true,
+  } = options;
+
   return function (tree: HastRoot): HastRoot {
     visit(tree, "element", function (node) {
-      // `language-bash` is the one class with meaning on the other side: it is
-      // where `hast-util-to-mdast` reads a fenced block's language from. Strip
-      // it and every code block comes out untagged.
       const className = node.properties.className;
-      const languages =
-        (node.tagName === "code" || node.tagName === "pre") && Array.isArray(className)
-          ? (className as string[]).filter((name) => name.startsWith("language-"))
-          : [];
+      const classes = Array.isArray(className) ? (className as string[]) : [];
 
-      if (languages.length) {
-        node.properties.className = languages;
-      } else {
-        delete node.properties.className;
+      // `language-bash` is the one class with meaning to the bridge itself: it
+      // is where `hast-util-to-mdast` reads a fenced block's language from.
+      // Strip it and every code block comes out untagged, so it is kept even
+      // when class names are otherwise switched off.
+      const isCode = node.tagName === "code" || node.tagName === "pre";
+      const languages = isCode ? classes.filter((name) => name.startsWith("language-")) : [];
+
+      let kept = keepClassNames ? classes : languages;
+      if (keepClassNames && dropHashedClassNames) {
+        kept = kept.filter((name) => languages.includes(name) || !HASHED_CLASS.test(name));
       }
-      delete node.properties.style;
-      delete node.properties.id;
+
+      if (kept.length) node.properties.className = kept;
+      else delete node.properties.className;
+
+      if (!keepStyles) delete node.properties.style;
+      if (!keepIds) delete node.properties.id;
     });
     return tree;
   };

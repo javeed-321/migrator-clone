@@ -51,18 +51,18 @@ describe("vendor detection", () => {
     expect(framework.vendor).toBe("readme");
   });
 
-  it("recognises GitBook but reports it as unsupported", () => {
+  it("rejects a docs site built on anything else", () => {
     const hast = htmlToHast(
       '<html><head><meta name="generator" content="GitBook"></head><body></body></html>'
     );
     expect(detectFramework(hast)).toBe(false);
     expect(framework.vendor).toBeUndefined();
-    expect(framework.unsupportedVendor).toBe("gitbook");
   });
 
-  it("fails on an unknown vendor", () => {
+  it("fails when there is no vendor meta at all", () => {
     const hast = htmlToHast("<html><head></head><body></body></html>");
     expect(detectFramework(hast)).toBe(false);
+    expect(framework.vendor).toBeUndefined();
   });
 });
 

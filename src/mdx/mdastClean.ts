@@ -107,6 +107,30 @@ export function inlineCodeBlocksInCells() {
   };
 }
 
+/**
+ * A JSX *flow* element inside a table cell corrupts the table.
+ *
+ * A GFM row is one line, and `mdxJsxFlowElement` serialises across several — so
+ * a preserved `<div style={{…}}>` in a cell splits the row and everything after
+ * the break is parsed as body text instead of a table. The same node as a *text*
+ * element prints on one line and the row survives.
+ *
+ * This is the container equivalent of `inlineCodeBlocksInCells`, and it only
+ * matters now that styled containers are kept rather than unwrapped.
+ */
+export function inlineContainersInCells() {
+  return function (root: MdastRoot): MdastRoot {
+    visit(root, "tableCell", function (cell) {
+      visit(cell as unknown as MdastRoot, "mdxJsxFlowElement", function (node) {
+        (node as { type: string }).type = "mdxJsxTextElement";
+        return CONTINUE;
+      });
+      return CONTINUE;
+    });
+    return root;
+  };
+}
+
 /** `** bold **` is not bold — the padding has to move outside the marker. */
 export function formatEmphasis() {
   return function (root: MdastRoot): MdastRoot {

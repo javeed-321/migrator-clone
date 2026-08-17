@@ -3,12 +3,14 @@ import traverse from "neotraverse";
 
 import { NAV_FAILURE_MSG, OVERVIEW_PAGE_SLUG } from "../constants";
 import { iterateOverNavItems } from "../nav/iterate";
+import { retrieveListNavItems } from "../nav/list";
 import { retrieveNavItems } from "../nav/retrieve";
 import { retrieveRootNavElement } from "../nav/root";
 import type { DiscoveryReport, NavigationEntry, Tab } from "../types/nav";
 import type { PageResultData, Result } from "../types/result";
 import { detectFramework, framework } from "../utils/detectFramework";
 import { logErrorResults } from "../utils/errors";
+import { log } from "../utils/log";
 import { INDEX_NAMES, iterateThroughReservedNames } from "../utils/reservedNames";
 import {
   convertStrToTitle,
@@ -59,10 +61,22 @@ export async function scrapeSite(
 
   // --- Step 5: find the sidebar ------------------------------------------
   const sidebar = retrieveRootNavElement(hast);
-  if (!sidebar) return { success: false, message: `${urlObj.toString()}: ${NAV_FAILURE_MSG}` };
 
   // --- Step 6: walk it into a nav tree -----------------------------------
-  const navItems = retrieveNavItems(sidebar);
+  let navItems: NavigationEntry[];
+
+  if (sidebar) {
+    navItems = retrieveNavItems(sidebar);
+  } else {
+    // No sidebar. Changelog and Discussions are paginated lists rather than
+    // trees, so there is nothing to walk — collect their entry links instead.
+    // Anything that is not a list still fails exactly as it did before.
+    navItems = await retrieveListNavItems(hast, urlObj, { title: opts.tabs?.[0]?.name });
+    if (navItems.length === 0) {
+      return { success: false, message: `${urlObj.toString()}: ${NAV_FAILURE_MSG}` };
+    }
+    log(`No sidebar at ${urlObj.pathname} — built navigation from its paginated list instead.`);
+  }
 
   // --- Step 7: flatten to URLs -------------------------------------------
   const listOfLinks = iterateOverNavItems(navItems, origin);

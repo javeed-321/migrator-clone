@@ -218,22 +218,24 @@ harvesting a site in slices still yields one whole-site inventory.
 
 ## Vendor selectors
 
-Only ReadMe is implemented. To add another vendor, add its cases to the `switch` in
-[src/nav/root.ts](src/nav/root.ts), [src/nav/retrieve.ts](src/nav/retrieve.ts),
-[src/pipeline/page.ts](src/pipeline/page.ts) and [src/tabs/retrieve.ts](src/tabs/retrieve.ts) —
-`detectFramework` already recognises GitBook and Docusaurus and fails with a message pointing there.
+**ReadMe only.** [`detectFramework`](src/utils/detectFramework.ts) looks for exactly one tag —
+`<meta name="readme-deploy">` — and fails on anything else. It does not try to name the platform it
+found; a docs site built on something else is simply "not a ReadMe site".
 
-| | ReadMe | GitBook | Docusaurus |
-|---|---|---|---|
-| detect | `<meta name="readme-deploy">` | `preconnect` to `api.gitbook.com` | `<meta name="generator" content="…docusaurus…">` |
-| sidebar | `nav.rm-Sidebar` | `aside#table-of-contents` | `nav.menu` |
-| tabs | `header.rm-Header` | `nav#sections` | `nav.navbar` |
-| content | `article.rm-Article` | `main` | `article` |
-| headless browser | not needed | required | required |
+| | ReadMe |
+|---|---|
+| detect | `<meta name="readme-deploy">` |
+| sidebar | `nav.rm-Sidebar` |
+| tabs | `header.rm-Header` |
+| content | `article.rm-Article` |
+| headless browser | not needed |
 
-GitBook and Docusaurus render their sidebars client-side and start collapsed, so they need Puppeteer
-plus scripted clicking to expand every node. ReadMe ships the whole sidebar in the initial HTML,
-which is why this build has no browser dependency at all.
+To add a vendor you would need its cases in [src/nav/root.ts](src/nav/root.ts),
+[src/nav/retrieve.ts](src/nav/retrieve.ts), [src/pipeline/page.ts](src/pipeline/page.ts) and
+[src/tabs/retrieve.ts](src/tabs/retrieve.ts), plus a branch here — and, for GitBook or Docusaurus,
+Puppeteer: both render their sidebars client-side and start collapsed, so every node has to be
+clicked open. ReadMe ships the whole sidebar in the initial HTML, which is why this build has no
+browser dependency at all.
 
 ## Deviations from upstream
 

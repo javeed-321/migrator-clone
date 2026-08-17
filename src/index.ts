@@ -82,6 +82,7 @@ export { scrapeAllSiteTabs } from "./pipeline/tabs";
 export { scrapeSite } from "./pipeline/site";
 export { scrapePageGroup } from "./pipeline/group";
 export { retrieveNavItems } from "./nav/retrieve";
+export { retrieveListNavItems, retrieveListPage } from "./nav/list";
 export { retrieveRootNavElement } from "./nav/root";
 export { iterateOverNavItems } from "./nav/iterate";
 export { retrieveTabLinks } from "./tabs/retrieve";

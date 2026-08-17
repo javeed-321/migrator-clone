@@ -17,6 +17,15 @@ export const OVERVIEW_PAGE_SLUG = "/clone_overview";
 export const CHUNK_SIZE = 16;
 
 /**
+ * Safety cap on the paginated-list fallback in `nav/list.ts`.
+ *
+ * ReadMe's own changelog runs to 22 pages, so this leaves headroom without
+ * letting a large Discussions forum turn one tab into hundreds of fetches.
+ * Hitting the cap is logged rather than silently truncated.
+ */
+export const MAX_LIST_PAGES = 25;
+
+/**
  * Tag names that must survive the HAST -> MDAST bridge as MDX components.
  *
  * `hast-util-to-mdast` flattens anything it does not recognise into text, so

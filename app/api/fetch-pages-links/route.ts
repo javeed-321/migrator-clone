@@ -8,7 +8,7 @@ import type { DiscoveryReport, NavigationEntry, Tab } from "@/src/types/nav";
 import type { Result } from "@/src/types/result";
 import { detectFramework, framework } from "@/src/utils/detectFramework";
 import { getErrorMessage } from "@/src/utils/errors";
-import { setLogsEnabled } from "@/src/utils/log";
+import { logTable, setLogsEnabled } from "@/src/utils/log";
 import { fetchPageHtml } from "@/src/utils/network";
 import { getTitleFromLink } from "@/src/utils/title";
 
@@ -92,25 +92,24 @@ export async function POST(request: NextRequest) {
       ok: false,
       message,
       site: urlObj.toString(),
-      vendor: framework.vendor ?? framework.unsupportedVendor ?? "unknown",
+      vendor: framework.vendor ?? "unknown",
       tabs: [],
     } satisfies FetchPagesResponse);
   }
 
-  setLogsEnabled(false);
   try {
     const html = await fetchPageHtml(urlObj);
     const hast = htmlToHast(html);
 
     if (!detectFramework(hast)) {
       return fail(
-        framework.unsupportedVendor
-          ? `Detected ${framework.unsupportedVendor} — this build only implements ReadMe selectors.`
-          : `${urlObj.toString()}: unsupported documentation vendor`
+        `${urlObj.toString()} is not a ReadMe site — no <meta name="readme-deploy"> in its HTML. ` +
+          `This build implements ReadMe selectors only.`
       );
     }
 
     const links = retrieveTabLinks(hast) ?? [];
+    logTable(`Tabs found on ${urlObj.host}`, links, { columns: ["name", "url"] });
 
     // The fan-out below mirrors `scrapeAllSiteTabs` in src/pipeline/tabs.ts,
     // which merges every tab's navigation into one array. Running the loop here
