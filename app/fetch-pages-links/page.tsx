@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import styles from "./page.module.css";
 import type { FetchPagesResponse, TabResult } from "./types";
+import { buildDocumentationJson } from "@/src/output/documentationJson";
 import type { NavigationEntry } from "@/src/types/nav";
 import { convertStrToTitle } from "@/src/utils/strings";
 
@@ -152,6 +153,7 @@ export default function FetchPagesLinks() {
   // Changing this remounts the tree, which resets every group to the new
   // default-open state.
   const [treeKey, setTreeKey] = useState("open-0");
+  const [copied, setCopied] = useState(false);
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -184,6 +186,33 @@ export default function FetchPagesLinks() {
   const tab = data?.tabs[active];
   const origin = data ? new URL(data.site).origin : "";
   const totalPages = data?.tabs.reduce((sum, t) => sum + t.pages, 0) ?? 0;
+
+  // Built here rather than server-side: `TabResult` already carries exactly
+  // what the builder needs, so the API response stays as it is.
+  const docsJson = useMemo(() => {
+    if (!data) return "";
+    return JSON.stringify(buildDocumentationJson(data.tabs, { site: data.site }), null, 2);
+  }, [data]);
+
+  async function copyJson() {
+    try {
+      await navigator.clipboard.writeText(docsJson);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  function downloadJson() {
+    const blob = new Blob([docsJson], { type: "application/json" });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = "documentation.json";
+    link.click();
+    URL.revokeObjectURL(href);
+  }
 
   return (
     <main>
@@ -299,6 +328,28 @@ export default function FetchPagesLinks() {
                   no links: {data.skipped.map((s) => s.name || s.url).join(", ")}
                 </>
               ) : null}
+            </div>
+          </div>
+
+          <div className={styles.panel}>
+            <div className={styles.toolbar}>
+              <span className={styles.toolbarLabel}>documentation.json</span>
+              <span className={styles.toolbarActions}>
+                <button type="button" className={styles.linkBtn} onClick={copyJson}>
+                  {copied ? "Copied ✓" : "Copy"}
+                </button>
+                <button type="button" className={styles.linkBtn} onClick={downloadJson}>
+                  Download
+                </button>
+              </span>
+            </div>
+
+            <pre className={styles.json}>{docsJson}</pre>
+
+            <div className={styles.slugLine}>
+              Documentation.AI config for all {data.tabs.length} tab
+              {data.tabs.length > 1 ? "s" : ""} · {totalPages} pages ·{" "}
+              {new Blob([docsJson]).size.toLocaleString()} bytes
             </div>
           </div>
         </>

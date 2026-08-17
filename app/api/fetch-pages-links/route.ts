@@ -75,6 +75,7 @@ export async function POST(request: NextRequest) {
   let urlObj: URL;
   try {
     urlObj = new URL(body.url);
+    console.log(urlObj)
   } catch {
     return Response.json(
       { ok: false, message: `Invalid link: ${body.url} — it must start with http(s)://` },

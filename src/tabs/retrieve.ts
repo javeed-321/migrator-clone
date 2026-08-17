@@ -2,6 +2,7 @@ import type { Root as HastRoot, Element } from "hast";
 import { visit, EXIT, CONTINUE } from "unist-util-visit";
 
 import type { Tab } from "../types/nav";
+import { hasClassName } from "../utils/className";
 import { framework } from "../utils/detectFramework";
 import { findTitle, getTitleFromLink } from "../utils/title";
 
@@ -21,6 +22,23 @@ import { findTitle, getTitleFromLink } from "../utils/title";
  * links land in the same sweep as real tabs. Upstream keeps them, which costs
  * one guaranteed-404 fetch per run.
  */
+/**
+ * The blocks inside `header.rm-Header` that hold tab links.
+ *
+ * `rm-Header-left` is the one that matters and it used to be missing. ReadMe
+ * renders the tab bar there on every site; some sites *also* render a duplicate
+ * copy inside a `<nav>`, and reading only that duplicate is why Capillary
+ * worked while Flutterwave, Miro, Front, Rollbar and Split silently returned
+ * zero tabs — and were then scraped as single-tab sites. Front lost 100 of its
+ * 173 pages that way, Miro 143 of 337, with no error raised.
+ *
+ * `rm-Header-top` is deliberately absent: it holds the "Jump to Content"
+ * skip-link (`#content`), which is not a tab.
+ *
+ * Duplicates across blocks collapse on the `seen` href set below.
+ */
+const TAB_CONTAINER_CLASSES = ["rm-Header-left", "rm-Header-right", "rm-Header-bottom"];
+
 function isAuthLink(href: string): boolean {
   const path = href.split("?")[0] ?? "";
   return /^\/(login|logout|signup|sign-in|sign-up)\b/.test(path) || href.includes("redirect_uri");
@@ -53,8 +71,7 @@ export function retrieveTabLinks(rootNode: HastRoot): Tab[] | undefined {
     const isTabContainer =
       node.tagName === "nav" ||
       (node.tagName === "div" &&
-        Array.isArray(node.properties.className) &&
-        (node.properties.className as string[]).includes("rm-Header-right"));
+        TAB_CONTAINER_CLASSES.some((className) => hasClassName(node, className)));
 
     if (!isTabContainer) return CONTINUE;
 
