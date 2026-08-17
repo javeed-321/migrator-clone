@@ -13,6 +13,13 @@ export type TabResult = {
   message?: string;
 };
 
+/** A tab that produced no page links and was dropped from `tabs`. */
+export type SkippedTab = {
+  name: string;
+  url: string;
+  reason: string;
+};
+
 export type FetchPagesResponse = {
   ok: boolean;
   message?: string;
@@ -20,4 +27,6 @@ export type FetchPagesResponse = {
   site: string;
   vendor: string;
   tabs: TabResult[];
+  /** Tabs removed for having zero links. Present only when something was dropped. */
+  skipped?: SkippedTab[];
 };

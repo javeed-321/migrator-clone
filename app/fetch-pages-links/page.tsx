@@ -292,6 +292,13 @@ export default function FetchPagesLinks() {
 
             <div className={styles.slugLine}>
               {tab.pages} pages in {tab.groups} groups · tab path <code>{tab.url}</code>
+              {data.skipped?.length ? (
+                <>
+                  {" · "}
+                  {data.skipped.length} tab{data.skipped.length > 1 ? "s" : ""} skipped for having
+                  no links: {data.skipped.map((s) => s.name || s.url).join(", ")}
+                </>
+              ) : null}
             </div>
           </div>
         </>

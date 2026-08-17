@@ -2,6 +2,7 @@ import { describe, expect, it, beforeEach } from "vitest";
 
 import { OVERVIEW_PAGE_SLUG } from "../src/constants";
 import { iterateOverNavItems } from "../src/nav/iterate";
+import { retrieveListNavItems, retrieveListPage } from "../src/nav/list";
 import { retrieveNavItems } from "../src/nav/retrieve";
 import { retrieveRootNavElement } from "../src/nav/root";
 import { htmlToHast } from "../src/pipeline/root";
@@ -153,6 +154,87 @@ describe("nav tree walk", () => {
     );
 
     expect(retrieveNavItems(sidebar!)).toEqual(["docs/a"]);
+  });
+});
+
+describe("paginated list fallback", () => {
+  beforeEach(resetFramework);
+
+  /** The shape ReadMe ships for changelog and discussions: no sidebar at all. */
+  function listHtml(entries: string, pagination = "") {
+    return `<html><head>${READ_ME_META}</head><body>
+      <header class="rm-Header"><nav><a href="/main/changelog">Changelog</a></nav></header>
+      <main class="rm-Changelog" id="content">${entries}${pagination}</main>
+    </body></html>`;
+  }
+
+  const post = (slug: string, title: string) =>
+    `<article class="rm-Changelog-post"><a href="/main/changelog/${slug}"><h1>${title}</h1></a></article>`;
+
+  const CHANGELOG = new URL("https://docs.example.com/main/changelog");
+
+  it("collects entry slugs and reads the page counter", () => {
+    const hast = htmlToHast(
+      listHtml(
+        post("first-post", "First") + post("second-post", "Second"),
+        `<nav class="rm-Pagination"><span>1 of 22</span>
+         <a aria-label="Next Page" href="/main/changelog?page=2&amp;lang=en"></a></nav>`
+      )
+    );
+    detectFramework(hast);
+
+    const page = retrieveListPage(hast, CHANGELOG);
+    expect(page?.slugs).toEqual(["main/changelog/first-post", "main/changelog/second-post"]);
+    expect(page?.totalPages).toBe(22);
+    expect(page?.next?.toString()).toBe("https://docs.example.com/main/changelog?page=2&lang=en");
+  });
+
+  it("does not mistake the pagination link for an entry", () => {
+    const hast = htmlToHast(
+      listHtml(
+        post("only-post", "Only"),
+        `<nav class="rm-Pagination"><a aria-label="Next Page" href="/main/changelog?page=2"></a></nav>`
+      )
+    );
+    detectFramework(hast);
+
+    expect(retrieveListPage(hast, CHANGELOG)?.slugs).toEqual(["main/changelog/only-post"]);
+  });
+
+  it("builds one flat group, named after the tab, for a single-page list", async () => {
+    const hast = htmlToHast(listHtml(post("a", "A") + post("b", "B")));
+    detectFramework(hast);
+
+    // No counter and no next link, so this resolves without touching the network.
+    await expect(retrieveListNavItems(hast, CHANGELOG, { title: "Changelog" })).resolves.toEqual([
+      { group: "Changelog", pages: ["main/changelog/a", "main/changelog/b"] },
+    ]);
+  });
+
+  it("names the group from the path when no tab name is given", async () => {
+    const hast = htmlToHast(listHtml(post("a", "A")));
+    detectFramework(hast);
+
+    const [group] = (await retrieveListNavItems(hast, CHANGELOG)) as unknown as [{ group: string }];
+    expect(group.group).toBe("Changelog");
+  });
+
+  it("returns nothing for a client-rendered list, so the sidebar error still wins", async () => {
+    // ReadMe's Recipes tab: the container is present but the entries are not.
+    const hast = htmlToHast(
+      `<html><head>${READ_ME_META}</head><body><main class="rm-Recipes" id="content"></main></body></html>`
+    );
+    detectFramework(hast);
+
+    await expect(
+      retrieveListNavItems(hast, new URL("https://docs.example.com/main/recipes"))
+    ).resolves.toEqual([]);
+  });
+
+  it("ignores a list page when the vendor is not ReadMe", async () => {
+    const hast = htmlToHast(listHtml(post("a", "A")));
+    // Deliberately no detectFramework call — vendor stays undefined.
+    await expect(retrieveListNavItems(hast, CHANGELOG)).resolves.toEqual([]);
   });
 });
 

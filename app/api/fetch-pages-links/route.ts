@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 
-import type { FetchPagesResponse, TabResult } from "@/app/fetch-pages-links/types";
+import type { FetchPagesResponse, SkippedTab, TabResult } from "@/app/fetch-pages-links/types";
 import { htmlToHast } from "@/src/pipeline/root";
 import { scrapeSite } from "@/src/pipeline/site";
 import { retrieveTabLinks } from "@/src/tabs/retrieve";
@@ -111,27 +111,28 @@ export async function POST(request: NextRequest) {
     const links = retrieveTabLinks(hast) ?? [];
     logTable(`Tabs found on ${urlObj.host}`, links, { columns: ["name", "url"] });
 
-    // The fan-out below mirrors `scrapeAllSiteTabs` in src/pipeline/tabs.ts,
     // which merges every tab's navigation into one array. Running the loop here
     // keeps each tab's tree attributed to the tab it came from.
     const singleTab =
       !links.length || (links.length === 1 && links[0]?.url === urlObj.pathname);
 
-    let tabs: TabResult[];
+    let scraped: TabResult[];
 
     if (singleTab) {
       const entryTab: Tab = links[0] ?? {
         name: getTitleFromLink(urlObj.pathname) || urlObj.hostname,
         url: urlObj.pathname,
       };
-      tabs = [toTabResult(entryTab, await scrapeSite(html, urlObj, { hast, filter, skipFetch }))];
+      scraped = [
+        toTabResult(entryTab, await scrapeSite(html, urlObj, { hast, filter, skipFetch })),
+      ];
     } else {
       // The entry URL might not be reachable from the tab bar; keep it anyway.
       if (!links.find((link) => urlObj.pathname.startsWith(link.url))) {
         links.push({ name: getTitleFromLink(urlObj.pathname), url: urlObj.pathname });
       }
 
-      tabs = await Promise.all(
+      scraped = await Promise.all(
         links.map(async (tab) => {
           const tabUrl = new URL(urlObj.toString());
           tabUrl.pathname = tab.url;
@@ -156,8 +157,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (tabs.every((tab) => !tab.ok)) {
-      return fail(tabs[0]?.message ?? `No tab produced any navigation for ${urlObj.toString()}`);
+    // A tab that still has zero links after the sidebar walk *and* the
+    // paginated-list fallback is not navigation. On ReadMe these are custom
+    // pages (`main.rm-CustomPage`) and client-rendered modules like Recipes.
+    // Checked against docs.capillarytech.com: all 27 links inside its two
+    // 0-link tabs resolve to /docs pages the User Documentation tab already
+    // carries, so dropping them loses no content.
+    const tabs = scraped.filter((tab) => tab.pages > 0);
+    const skipped: SkippedTab[] = scraped
+      .filter((tab) => tab.pages === 0)
+      .map((tab) => ({
+        name: tab.name,
+        url: tab.url,
+        reason: tab.message ?? "no page links found in this tab",
+      }));
+
+    if (tabs.length === 0) {
+      return fail(scraped[0]?.message ?? `No tab produced any navigation for ${urlObj.toString()}`);
     }
 
     return Response.json({
@@ -165,6 +181,7 @@ export async function POST(request: NextRequest) {
       site: urlObj.toString(),
       vendor: framework.vendor ?? "unknown",
       tabs,
+      ...(skipped.length ? { skipped } : {}),
     } satisfies FetchPagesResponse);
   } catch (error) {
     return fail(error instanceof Error ? error.message : "Unknown error");
