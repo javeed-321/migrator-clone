@@ -44,6 +44,26 @@ import { getTitleFromLink } from "../utils/title";
  */
 const LIST_ROOT_CLASSES = ["rm-Changelog", "rm-Discuss", "rm-Recipes"];
 
+/**
+ * Page types that are never navigation, however many links they carry.
+ *
+ * A ReadMe landing page is a configured marketing block, not a document: its
+ * `ssr-props` has no `document` and an empty `sidebar`. Every link on it points
+ * into another tab. Checked across 14 landing pages on 27 ReadMe sites —
+ * Capillary, Lithic, Shopline, Pennylane, Tatum, Gupshup and the rest — and not
+ * one contributed a page of its own. Capillary's even included two 404s.
+ *
+ * Custom pages (`/page/<slug>`) behave the same way: navigation hubs whose
+ * links all resolve to pages another tab already owns.
+ *
+ * Note this class check is a convenience, not the load-bearing guard — five of
+ * those landing pages (Affirm, Miro, Monday, OneTrust, Recurly) render client
+ * side and have no `<main>` at all. The empty-`basePath` guard in
+ * `retrieveListPage` is what actually catches every case, because a landing
+ * page always lives at "/".
+ */
+const NON_LIST_ROOT_CLASSES = ["rm-LandingPage", "rm-CustomPage"];
+
 export type ListPage = {
   /** Entry slugs on this page, in document order, without a leading slash. */
   slugs: string[];
@@ -63,12 +83,20 @@ function ariaLabel(node: Element): string {
  * The element wrapping the list. Falls back to `<main>` so a module this build
  * has not seen still resolves to something narrower than the whole document —
  * scanning the full page would sweep up header and footer links.
+ *
+ * Returns undefined for a page type that is not navigation at all, which is
+ * what stops the `<main>` fallback treating a landing page as a list.
  */
 function findListRoot(rootNode: HastRoot): Element | undefined {
   let byClass: Element | undefined = undefined;
   let main: Element | undefined = undefined;
+  let declined = false;
 
   visit(rootNode, "element", function (node) {
+    if (NON_LIST_ROOT_CLASSES.some((className) => hasClassName(node, className))) {
+      declined = true;
+      return EXIT;
+    }
     if (LIST_ROOT_CLASSES.some((className) => hasClassName(node, className))) {
       byClass = node;
       return EXIT;
@@ -77,6 +105,7 @@ function findListRoot(rootNode: HastRoot): Element | undefined {
     return CONTINUE;
   });
 
+  if (declined) return undefined;
   return byClass ?? main;
 }
 
@@ -127,10 +156,18 @@ function collectEntrySlugs(scope: Element, basePath: string): string[] {
  * the list root, which is exactly what the prefix test needs.
  */
 export function retrieveListPage(rootNode: HastRoot, pageUrl: URL): ListPage | undefined {
+  // A list living at the site root cannot be told apart from "every link on the
+  // page": `removeTrailingSlash("/")` is "", so the prefix test in
+  // `collectEntrySlugs` degenerates to `startsWith("/")` and matches the whole
+  // header, footer and body. ReadMe's landing page is exactly that shape — it
+  // sits at "/" and links into every other tab — so refusing the root is what
+  // keeps a Home tab from swallowing pages the other tabs own.
+  const basePath = removeTrailingSlash(pageUrl.pathname);
+  if (!basePath) return undefined;
+
   const root = findListRoot(rootNode);
   if (!root) return undefined;
 
-  const basePath = removeTrailingSlash(pageUrl.pathname);
   const slugs = collectEntrySlugs(root, basePath);
 
   const pagination = findPagination(rootNode);

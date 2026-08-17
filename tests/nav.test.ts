@@ -219,6 +219,53 @@ describe("paginated list fallback", () => {
     expect(group.group).toBe("Changelog");
   });
 
+  it("refuses a landing page, so its links never become a Home tab", async () => {
+    // ReadMe's landing page sits at "/" and links into every other tab. Left
+    // unchecked the base-path test degenerates to `startsWith("/")` and hoovers
+    // up the lot.
+    const hast = htmlToHast(
+      `<html><head>${READ_ME_META}</head><body>
+         <main class="rm-LandingPage" id="content">
+           <a href="/docs/loyalty-overview">Loyalty</a>
+           <a href="/reference/customer">Customer API</a>
+         </main>
+       </body></html>`
+    );
+    detectFramework(hast);
+
+    await expect(
+      retrieveListNavItems(hast, new URL("https://docs.example.com/"))
+    ).resolves.toEqual([]);
+  });
+
+  it("refuses the site root even when the page looks like a list", async () => {
+    const hast = htmlToHast(
+      listHtml(post("a", "A") + post("b", "B"))
+        .replace('class="rm-Changelog"', 'class="rm-Changelog"')
+    );
+    detectFramework(hast);
+
+    // Same markup that works at /main/changelog returns nothing at "/".
+    await expect(retrieveListNavItems(hast, new URL("https://docs.example.com/"))).resolves.toEqual(
+      []
+    );
+  });
+
+  it("refuses a custom page, whose links all belong to other tabs", async () => {
+    const hast = htmlToHast(
+      `<html><head>${READ_ME_META}</head><body>
+         <main class="SuperHubCustomPage rm-CustomPage" id="content">
+           <a href="/page/developerdocumentation/extra">Extra</a>
+         </main>
+       </body></html>`
+    );
+    detectFramework(hast);
+
+    await expect(
+      retrieveListNavItems(hast, new URL("https://docs.example.com/page/developerdocumentation"))
+    ).resolves.toEqual([]);
+  });
+
   it("returns nothing for a client-rendered list, so the sidebar error still wins", async () => {
     // ReadMe's Recipes tab: the container is present but the entries are not.
     const hast = htmlToHast(
