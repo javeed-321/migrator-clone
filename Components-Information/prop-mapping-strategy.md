@@ -254,15 +254,19 @@ Per node, in this order. Reordering breaks things — the numbered notes say how
 | `Card` children | KEEP | children | **Required on target** → BLOCK when absent |
 | — | never emit | `image`, `cta`, `horizontal` | Target-only |
 
-### 4.9 Columns / Column → Columns / `<div>` `[RM §4.13]` → `[DAI §13]`
+### 4.9 Columns / Column → Columns / Card `[RM §4.13]` → `[DAI §12, §13]`
 
 | ReadMe | Action | Target | Note |
 |---|---|---|---|
 | child count | DERIVE | `cols="n"` | ReadMe has **no `cols` prop** — the count is implicit |
 | `layout="fixed"` / `"1fr"` | DROP | — | Equal widths is what `cols` already gives |
 | `layout="auto"` | DROP | — | Content-sized columns have **no equivalent**; layout becomes uniform |
-| `<Column>` (no props) | TRANSFORM | `<div>` | Required wrapper for non-Card content |
-| `<Card>` children | KEEP | bare inside `<Columns>` | Cards need no `<div>` |
+| `<Column>` (no props) | TRANSFORM | `<Card title href>` | **Never `<div>`** — no raw HTML. `title` from the column's leading heading / bold lead-in, `href` from the link it already carries |
+| `<Card>` children | KEEP | bare inside `<Columns>` | The only legal `<Columns>` child |
+
+**BLOCK, do not improvise**, when a `<Column>` is not card-shaped — it holds a table, a code
+block, a procedure or several paragraphs, or it has no link to supply `href`. Emit the content
+as consecutive headed sections instead and flag the page (plan §2.3).
 
 ### 4.10 Embed → Video / Iframe `[RM §4.6]` → `[DAI §17, §18]`
 
