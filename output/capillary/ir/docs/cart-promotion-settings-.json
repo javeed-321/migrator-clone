@@ -1,0 +1,632 @@
+{
+  "slug": "docs/cart-promotion-settings-",
+  "source": "https://docs.capillarytech.com/docs/cart-promotion-settings-.md",
+  "url": "https://docs.capillarytech.com/docs/cart-promotion-settings-",
+  "title": "Cart Promotion Settings",
+  "description": "",
+  "section": "Create and Manage Cart Promotions",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-14T12:16:40.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 11,
+    "list": 11,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Cart Promotion Settings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Cart Promotion Settings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The following steps guide you through the high-level configuration of the Cart Promotions engine, including evaluation sequences, stacking logic, ranking priorities, and rounding rules.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following steps guide you through the high-level configuration of the Cart Promotions engine, including evaluation sequences, stacking logic, ranking priorities, and rounding rules.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Step 1: Setting the evaluation mechanism",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 1: Setting the evaluation mechanism",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Define the primary sequence the engine follows to calculate discounts. This determines whether the system prioritizes individual items or the total cart subtotal.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Define the primary sequence the engine follows to calculate discounts. This determines whether the system prioritizes individual items or the total cart subtotal.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        16
+      ],
+      "raw": "1. Navigate to **Settings > Cart Promotion**.\n2. Under **Evaluation Mechanism**, select one of the following sequences:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to Settings > Cart Promotion.Under Evaluation Mechanism, select one of the following sequences:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        21
+      ],
+      "raw": "* **Lineitem then cart:** Promotions apply to individual items first. The cart-level discount is then calculated based on the new reduced subtotal.\n  * Example: For **Shoes ($100) + Towel ($20)**, a 10% item promo reduces shoes to $90. The subtotal becomes $110. A subsequent \"10% off > $99\" cart promo applies to $110.\n* **Cart or lineitem with cart first:** Cart-level promotions take priority. Individual item promotions are only applied if no cart-level offers are valid.\n  * Example: For **Shoes ($100) + Towel ($20)**, the total is $120. A \"10% off > $99\" cart promo applies immediately ($108). The system then **skips** all item-level discounts.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Lineitem then cart: Promotions apply to individual items first. The cart-level discount is then calculated based on the new reduced subtotal.Example: For Shoes ($100) + Towel ($20), a 10% item promo reduces shoes to $90. The subtotal becomes $110. A subsequent \"10% off > $99\" cart promo applies to $110.Cart or lineitem with cart first: Cart-level promotions take priority. Individual item promotions are only applied if no cart-level offers are valid.Example: For Shoes ($100) + Towel ($20), the total is $120. A \"10% off > $99\" cart promo applies immediately ($108). The system then skips all item-level discounts.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# Step 2: Managing multiple promotions for single lineitems",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 2: Managing multiple promotions for single lineitems",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "This setting allows different promotions to target different quantities of the same product SKU within a single cart.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This setting allows different promotions to target different quantities of the same product SKU within a single cart.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "1. Toggle **Multiple promotion for single lineitem** to **Enabled**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Toggle Multiple promotion for single lineitem to Enabled.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "### A. Exclude products",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "A. Exclude products",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "Toggle **Exclude below products** to protect specific items from quantity-splitting logic.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Toggle Exclude below products to protect specific items from quantity-splitting logic.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        33,
+        34
+      ],
+      "raw": "* **Based on product attribute:** Filter by metadata like \"Category\" or \"Brand.\"\n* **Upload SKUs:** Bulk-upload a CSV (Max 5MB) of specific SKUs to be excluded.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Based on product attribute: Filter by metadata like \"Category\" or \"Brand.\"Upload SKUs: Bulk-upload a CSV (Max 5MB) of specific SKUs to be excluded.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "### B. Multiple promotion on single quantity (stacking)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "B. Multiple promotion on single quantity (stacking)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "Toggle **Stacking** to allow multiple discounts to layer on a **single unit** of a product.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Toggle Stacking to allow multiple discounts to layer on a single unit of a product.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        40,
+        41
+      ],
+      "raw": "* **Maximum promotions:** Select **No limit** or enter a **Custom limit**.\n* **Calculation Base:** Choose **Gross** (original price) or **Net** (price after previous discounts/taxes).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Maximum promotions: Select No limit or enter a Custom limit.Calculation Base: Choose Gross (original price) or Net (price after previous discounts/taxes).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "### C. Product-level restrictions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "C. Product-level restrictions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "Toggle **Multiple promotion defined at product level** to restrict stacking logic to a specific scope.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Toggle Multiple promotion defined at product level to restrict stacking logic to a specific scope.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        47,
+        48
+      ],
+      "raw": "* **Select product:** Apply logic to **All** inventory or **Specific Products**.\n* **Inclusion/Exclusion:** Refine the scope using attributes or SKU uploads.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select product: Apply logic to All inventory or Specific Products.Inclusion/Exclusion: Refine the scope using attributes or SKU uploads.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "# Step 3: Configuring multiple promotions at cart level",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 3: Configuring multiple promotions at cart level",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "This allows customers to \"stack\" multiple global, order-wide offers (for example, combining \"Free Shipping\" with a \"10% Discount\").",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This allows customers to \"stack\" multiple global, order-wide offers (for example, combining \"Free Shipping\" with a \"10% Discount\").",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        54,
+        58
+      ],
+      "raw": "1. Toggle **Multiple promotion for cart level** to **Enabled**.\n2. **Maximum number of promotion:** Set a numerical cap or select **No limit**.\n3. **Calculate percentage discount on:**\n   * **Gross:** Calculated on the original subtotal before any charges.\n   * **Net:** Calculated on the subtotal remaining after line-item discounts are applied.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Toggle Multiple promotion for cart level to Enabled.Maximum number of promotion: Set a numerical cap or select No limit.Calculate percentage discount on:Gross: Calculated on the original subtotal before any charges.Net: Calculated on the subtotal remaining after line-item discounts are applied.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "# Step 4: Establishing promotion ranking order",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 4: Establishing promotion ranking order",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "When multiple promotions are eligible, the ranking order determines which offers are applied first and which take priority in conflicts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When multiple promotions are eligible, the ranking order determines which offers are applied first and which take priority in conflicts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        64,
+        65
+      ],
+      "raw": "1. Locate the **Promotion Ranking Order** section.\n2. Use **drag-and-drop** to reorder the following elements (top is highest priority):",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Locate the Promotion Ranking Order section.Use drag-and-drop to reorder the following elements (top is highest priority):",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        67,
+        73
+      ],
+      "raw": "* **POS promotion**: Standard offers available to all customers that apply automatically based on cart contents.\n* **Earning promotion**: Offers issued to a customer only after they complete a specific milestone or activity.\n* **Loyalty promotion**: Offers designed to target specific customer groups automatically based on their purchase history or tier status.\n* **Reward**: Benefit-based offers redeemed by the customer using loyalty points from the Rewards Catalog.\n* **Code linked:** Promotions triggered by the manual entry of a specific promo code at checkout.\n  Earliest expiry: Prioritizes the offer that is scheduled to end the soonest.\n* **Maximum discount**: Automatically chooses the offer that saves the customer the most money.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "POS promotion: Standard offers available to all customers that apply automatically based on cart contents.Earning promotion: Offers issued to a customer only after they complete a specific milestone or activity.Loyalty promotion: Offers designed to target specific customer groups automatically based on their purchase history or tier status.Reward: Benefit-based offers redeemed by the customer using loyalty points from the Rewards Catalog.Code linked: Promotions triggered by the manual entry of a specific promo code at checkout.\nEarliest expiry: Prioritizes the offer that is scheduled to end the soonest.Maximum discount: Automatically chooses the offer that saves the customer the most money.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "# Step 5: Defining discount rounding logic",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 5: Defining discount rounding logic",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "Control how the system handles decimal values when a discount results in a non-whole number.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Control how the system handles decimal values when a discount results in a non-whole number.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        79,
+        83
+      ],
+      "raw": "1. Under **Rounding Option**, select the required mathematical logic:\n   * **UP / DOWN:** Rounds away from or toward zero.\n   * **CEILING / FLOOR:** Rounds toward positive or negative infinity.\n   * **HALF UP / DOWN / EVEN:** Standard rounding to the nearest value with specific logic for .5 cases.\n2. In the **Decimal Precision** box, enter the number of digits to retain (for example, \"2\" for $10.55).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Under Rounding Option, select the required mathematical logic:UP / DOWN: Rounds away from or toward zero.CEILING / FLOOR: Rounds toward positive or negative infinity.HALF UP / DOWN / EVEN: Standard rounding to the nearest value with specific logic for .5 cases.In the Decimal Precision box, enter the number of digits to retain (for example, \"2\" for $10.55).",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "# Step 6: Creating custom metadata fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step 6: Creating custom metadata fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "Add internal tracking parameters that will appear during the promotion creation process for reporting purposes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Add internal tracking parameters that will appear during the promotion creation process for reporting purposes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        89,
+        92
+      ],
+      "raw": "1. Navigate to the **Custom Fields** section.\n2. Select **Create New Field**.\n3. Enter the field name (for example, \"Department ID\" or \"Vendor Name\").\n4. Select **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Custom Fields section.Select Create New Field.Enter the field name (for example, \"Department ID\" or \"Vendor Name\").Select Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        94,
+        96
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  Once created, these fields appear in Step 6 (Additional Information) of the standard cart promotion creation flow.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Once created, these fields appear in Step 6 (Additional Information) of the standard cart promotion creation flow.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 32,
+          "lines": [
+            95,
+            95
+          ],
+          "raw": "  Once created, these fields appear in Step 6 (Additional Information) of the standard cart promotion creation flow.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Once created, these fields appear in Step 6 (Additional Information) of the standard cart promotion creation flow.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    }
+  ]
+}

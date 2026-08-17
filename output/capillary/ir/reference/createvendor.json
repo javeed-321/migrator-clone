@@ -1,0 +1,776 @@
+{
+  "slug": "reference/createvendor",
+  "source": "https://docs.capillarytech.com/reference/createvendor.md",
+  "url": "https://docs.capillarytech.com/reference/createvendor",
+  "title": "Createvendor",
+  "description": "",
+  "section": "Vendor Management & Redemption",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 1,
+    "Callout": 1,
+    "code": 2,
+    "list": 1,
+    "Table": 4,
+    "CodeTabs": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create a Vendor",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create a Vendor",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "A vendor is an external third-party brand that you can use to fulfil your rewards. This API allows you to define vendor details, add images and videos, and display them in your reward catalogue.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A vendor is an external third-party brand that you can use to fulfil your rewards. This API allows you to define vendor details, add images and videos, and display them in your reward catalogue.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "> 👍 Note\n>\n> For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        54
+      ],
+      "raw": "```curl Sample request\ncurl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkazMjU2YQ==' \\\n--header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \\\n--data-raw '{\n    **** Mandatory Parameters ****\n    \"name\": \"UAT Vendor 21\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    ***** Non Mandatory Parameters *****\n     \"code\": \"uatVendor21\",\n     \"isEncryptionRequired\": false,\n     \"vendorDetails\": {\n         \"key\": \"client\",\n         \"value\": \"tomswayer@capillarytech.com\"\n     },\n     \"images\": [\n         {\n             \"name\": \"imageName001\",\n             \"altText\": null,\n             \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n             \"isExternal\": true\n         }\n     ],\n     \"videos\": [\n         {\n             \"name\": \"videoName001\",\n             \"altText\": null,\n             \"url\": \"https://www.pexels.com/download/video/5538262/\",\n             \"isExternal\": true\n         }\n     ],\n     \"rank\": 6,\n     \"description\": \"6 Vendor for UAT\"\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": "Sample request",
+        "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkazMjU2YQ==' \\\n--header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \\\n--data-raw '{\n    **** Mandatory Parameters ****\n    \"name\": \"UAT Vendor 21\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    ***** Non Mandatory Parameters *****\n     \"code\": \"uatVendor21\",\n     \"isEncryptionRequired\": false,\n     \"vendorDetails\": {\n         \"key\": \"client\",\n         \"value\": \"tomswayer@capillarytech.com\"\n     },\n     \"images\": [\n         {\n             \"name\": \"imageName001\",\n             \"altText\": null,\n             \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n             \"isExternal\": true\n         }\n     ],\n     \"videos\": [\n         {\n             \"name\": \"videoName001\",\n             \"altText\": null,\n             \"url\": \"https://www.pexels.com/download/video/5538262/\",\n             \"isExternal\": true\n         }\n     ],\n     \"rank\": 6,\n     \"description\": \"6 Vendor for UAT\"\n}'"
+      },
+      "text": "Sample request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        58,
+        59
+      ],
+      "raw": "* [ ] Authentication: Basic/OAuth authentication\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic/OAuth authenticationDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        63,
+        69
+      ],
+      "raw": "|               |                                             |\n| :------------ | :------------------------------------------ |\n| URI           | /api\\_gateway/rewards/core/v1/vendor/create |\n| HTTP method   | POST                                        |\n| Pagination    | NA                                          |\n| Rate limit    | NA                                          |\n| Batch support | NA                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/api_gateway/rewards/core/v1/vendor/create"
+          ],
+          [
+            "HTTP method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "NA"
+          ],
+          [
+            "Rate limit",
+            "NA"
+          ],
+          [
+            "Batch support",
+            "NA"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "# Request body",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        73,
+        140
+      ],
+      "raw": "```json Create a vendor\n{\n \"name\": \"vendor002\",\n \"code\": \"vendor002\",\n \"brandId\": 61,\n \"enabled\": true,\n  \"type\" : \"REWARDS\",\n  \"isEncryptionRequired\" : false, \n  \"vendorDetails\" : {\n    \"key\" : \"Email\", \n    \"value\": \"tom.sawyer@capillarytech.com\"\n  }\n\n\n}\n```\n```json Create a vendor with internal image / video\n{\n    \"name\": \"DocVendor2\",\n    \"code\": \"Doc002\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    \"images\": [\n        {\n            \"name\": \"imageName001\",\n            \"altText\": null,\n            \"id\": \"Img1\",\n            \"isExternal\": false\n        }\n    ],\n    \"videos\": [\n        {\n            \"name\": \"videoName001\",\n            \"altText\": null,\n            \"id\": \"Vid1\",\n            \"isExternal\": false\n        }\n     ],\n    \"rank\": 1,\n    \"description\": \"The top priority vendor\"\n}\n```\n```json Create a vendor with external image / video\n{\n    \"name\": \"DocVendor3\",\n    \"code\": \"Doc003\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    \"images\": [\n        {\n            \"name\": \"imageName001\",\n            \"altText\": null,\n            \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\",\n            \"isExternal\": true\n        }\n    ],\n    \"videos\": [\n        {\n            \"name\": \"videoName001\",\n            \"altText\": null,\n            \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\",\n            \"isExternal\": true\n        }\n    ],\n    \"rank\": 1,\n    \"description\": \"The top priority vendor\"\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Create a vendor",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Create a vendor",
+          "code": "{\n \"name\": \"vendor002\",\n \"code\": \"vendor002\",\n \"brandId\": 61,\n \"enabled\": true,\n  \"type\" : \"REWARDS\",\n  \"isEncryptionRequired\" : false, \n  \"vendorDetails\" : {\n    \"key\" : \"Email\", \n    \"value\": \"tom.sawyer@capillarytech.com\"\n  }\n\n\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Create a vendor with internal image / video",
+          "code": "{\n    \"name\": \"DocVendor2\",\n    \"code\": \"Doc002\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    \"images\": [\n        {\n            \"name\": \"imageName001\",\n            \"altText\": null,\n            \"id\": \"Img1\",\n            \"isExternal\": false\n        }\n    ],\n    \"videos\": [\n        {\n            \"name\": \"videoName001\",\n            \"altText\": null,\n            \"id\": \"Vid1\",\n            \"isExternal\": false\n        }\n     ],\n    \"rank\": 1,\n    \"description\": \"The top priority vendor\"\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Create a vendor with external image / video",
+          "code": "{\n    \"name\": \"DocVendor3\",\n    \"code\": \"Doc003\",\n    \"brandId\": 61,\n    \"type\": \"REWARDS\",\n    \"images\": [\n        {\n            \"name\": \"imageName001\",\n            \"altText\": null,\n            \"url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6RFSqYEgenJSDc0Wo_eoEKzxd0iXvTOO-LQ&s\",\n            \"isExternal\": true\n        }\n    ],\n    \"videos\": [\n        {\n            \"name\": \"videoName001\",\n            \"altText\": null,\n            \"url\": \"https://videos.pexels.com/video-files/6265096/6265096-uhd_1440_2560_30fps.mp4\",\n            \"isExternal\": true\n        }\n    ],\n    \"rank\": 1,\n    \"description\": \"The top priority vendor\"\n}"
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        144,
+        166
+      ],
+      "raw": "| Parameter (Parameters marked with \\* are mandatory) | Data Type | Description                                                                                                                                                                                                                                                                                        |\n| :-------------------------------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **`name*`**                                         | String    | A unique name for the vendor, with a maximum character limit of 255.                                                                                                                                                                                                                               |\n| `code`                                              | String    | A unique identification code for the vendor. If null or not provided, a random, unique code is assigned. The maximum character limit is 255.                                                                                                                                                       |\n| **`brandId*`**                                      | Integer   | The unique brand ID of the organization. This value must be greater than 0.                                                                                                                                                                                                                        |\n| **`type*`**                                         | Enum      | The type of vendor. Supported value: `REWARDS` `POINTS`.                                                                                                                                                                                                                                           |\n| `images`                                            | Object    | An object containing details of images associated with the vendor. You can add up to 5 images, and any image format is supported.                                                                                                                                                                  |\n| -**`name`**                                         | String    | A unique name identifier for the image.                                                                                                                                                                                                                                                            |\n| -`altText`                                          | String    | A descriptive text that conveys the meaning and context of the image.                                                                                                                                                                                                                              |\n| `- id`                                              | String    | A unique ID generated when an image is created, which is the `file_handle` for the associated image in the Capillary system. This parameter is required if `isExternal` is `false`. To add an image to the file service location, raise a ticket to the support team.                              |\n| `- url`                                             | String    | A direct link to the image. This parameter is required if `isExternal` is `true`.                                                                                                                                                                                                                  |\n| `- isExternal`                                      | Boolean   | Indicates if the image is from an external source.                                                                                                                                                                                                                                                 |\n| `videos`                                            | Object    | An object containing details of videos associated with the vendor. You can add up to 2 videos.                                                                                                                                                                                                     |\n| -**`name`**                                         | String    | A unique name identifier for the video.                                                                                                                                                                                                                                                            |\n| -`altText`                                          | String    | A descriptive text that conveys the meaning and context of the video.                                                                                                                                                                                                                              |\n| `- id`                                              | String    | A unique ID generated when a video is created, which is the `file_handle` for the associated video in the Capillary system. This parameter is required if `isExternal` is `false`. To add a video to the file service location, raise a ticket to the support team. Any video format is supported. |\n| `- url`                                             | String    | A direct link to the video. This parameter is required if `isExternal` is `true`.                                                                                                                                                                                                                  |\n| `- isExternal`                                      | Boolean   | Indicates if the video is from an external source.                                                                                                                                                                                                                                                 |\n| `rank`                                              | Integer   | Assign a rank to the vendor. This can be used for ordering and prioritizing. This value must be greater than 0.                                                                                                                                                                                    |\n| `description`                                       | String    | A description for the vendor, with a maximum character limit of 1034.                                                                                                                                                                                                                              |\n| vendorDetails                                       | Object    | An object containing key-value pairs for additional vendor-specific details. You can use this to add any additional information related to the vendor.                                                                                                                                             |\n| -`key`                                              | String    | The key for the vendor detail, which can represent various attributes (e.g., \"Vendor Email\").                                                                                                                                                                                                      |\n| -`value`                                            | String    | The value associated with the key in vendorDetails.                                                                                                                                                                                                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter (Parameters marked with * are mandatory)",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "name*",
+            "String",
+            "A unique name for the vendor, with a maximum character limit of 255."
+          ],
+          [
+            "code",
+            "String",
+            "A unique identification code for the vendor. If null or not provided, a random, unique code is assigned. The maximum character limit is 255."
+          ],
+          [
+            "brandId*",
+            "Integer",
+            "The unique brand ID of the organization. This value must be greater than 0."
+          ],
+          [
+            "type*",
+            "Enum",
+            "The type of vendor. Supported value: REWARDS POINTS."
+          ],
+          [
+            "images",
+            "Object",
+            "An object containing details of images associated with the vendor. You can add up to 5 images, and any image format is supported."
+          ],
+          [
+            "-name",
+            "String",
+            "A unique name identifier for the image."
+          ],
+          [
+            "-altText",
+            "String",
+            "A descriptive text that conveys the meaning and context of the image."
+          ],
+          [
+            "- id",
+            "String",
+            "A unique ID generated when an image is created, which is the file_handle for the associated image in the Capillary system. This parameter is required if isExternal is false. To add an image to the file service location, raise a ticket to the support team."
+          ],
+          [
+            "- url",
+            "String",
+            "A direct link to the image. This parameter is required if isExternal is true."
+          ],
+          [
+            "- isExternal",
+            "Boolean",
+            "Indicates if the image is from an external source."
+          ],
+          [
+            "videos",
+            "Object",
+            "An object containing details of videos associated with the vendor. You can add up to 2 videos."
+          ],
+          [
+            "-name",
+            "String",
+            "A unique name identifier for the video."
+          ],
+          [
+            "-altText",
+            "String",
+            "A descriptive text that conveys the meaning and context of the video."
+          ],
+          [
+            "- id",
+            "String",
+            "A unique ID generated when a video is created, which is the file_handle for the associated video in the Capillary system. This parameter is required if isExternal is false. To add a video to the file service location, raise a ticket to the support team. Any video format is supported."
+          ],
+          [
+            "- url",
+            "String",
+            "A direct link to the video. This parameter is required if isExternal is true."
+          ],
+          [
+            "- isExternal",
+            "Boolean",
+            "Indicates if the video is from an external source."
+          ],
+          [
+            "rank",
+            "Integer",
+            "Assign a rank to the vendor. This can be used for ordering and prioritizing. This value must be greater than 0."
+          ],
+          [
+            "description",
+            "String",
+            "A description for the vendor, with a maximum character limit of 1034."
+          ],
+          [
+            "vendorDetails",
+            "Object",
+            "An object containing key-value pairs for additional vendor-specific details. You can use this to add any additional information related to the vendor."
+          ],
+          [
+            "-key",
+            "String",
+            "The key for the vendor detail, which can represent various attributes (e.g., \"Vendor Email\")."
+          ],
+          [
+            "-value",
+            "String",
+            "The value associated with the key in vendorDetails."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "# Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        170,
+        256
+      ],
+      "raw": "```json Sample response\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 5002,\n        \"message\": \"Vendor created successfully\"\n    },\n    \"vendor\": {\n        \"id\": 674,\n        \"name\": \"UAT Vendor 21\",\n        \"brandId\": 61,\n        \"enabled\": true,\n        \"isEncryptionRequired\": false,\n        \"vendorTypes\": null,\n        \"vendorDetails\": {\n            \"value\": \"********************************************************************************\",\n            \"key\": \"************************************************\"\n        },\n        \"type\": \"REWARDS\",\n        \"createdBy\": 75197372,\n        \"lastUpdatedBy\": 75197372,\n        \"createdOn\": 1764149511000,\n        \"lastUpdatedOn\": 1764149511000,\n        \"createdOnDateTime\": \"2025-11-26T09:31:51Z\",\n        \"lastUpdatedOnDateTime\": \"2025-11-26T09:31:51Z\",\n        \"rank\": 6,\n        \"code\": \"uatVendor21\",\n        \"description\": \"6 Vendor for UAT\",\n        \"images\": [\n            {\n                \"name\": \"imageName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n                \"isExternal\": true\n            }\n        ],\n        \"videos\": [\n            {\n                \"name\": \"videoName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://www.pexels.com/download/video/5538262/\",\n                \"isExternal\": true\n            }\n        ],\n        \"encryptionRequired\": false\n    }\n}\n```\n```json Wrong type value\n{\n  \"status\": {\n    \"success\": false,\n    \"code\": 400,\n    \"message\": \"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\"REWARD\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\"\n  }\n}\n```\n```json Rank value is 0\n{\n  \"status\": {\n    \"success\": false,\n    \"code\": 400,\n    \"message\": \"rank must be greater than zero\"\n  }\n}\n```\n```json Invalid brandId\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3004,\n        \"message\": \"Brand not found\"\n    }\n}\n```\n```json Vendor already exists\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 5007,\n        \"message\": \"Vendor already exists\"\n    },\n    \"vendor\": null\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Sample response",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 5002,\n        \"message\": \"Vendor created successfully\"\n    },\n    \"vendor\": {\n        \"id\": 674,\n        \"name\": \"UAT Vendor 21\",\n        \"brandId\": 61,\n        \"enabled\": true,\n        \"isEncryptionRequired\": false,\n        \"vendorTypes\": null,\n        \"vendorDetails\": {\n            \"value\": \"********************************************************************************\",\n            \"key\": \"************************************************\"\n        },\n        \"type\": \"REWARDS\",\n        \"createdBy\": 75197372,\n        \"lastUpdatedBy\": 75197372,\n        \"createdOn\": 1764149511000,\n        \"lastUpdatedOn\": 1764149511000,\n        \"createdOnDateTime\": \"2025-11-26T09:31:51Z\",\n        \"lastUpdatedOnDateTime\": \"2025-11-26T09:31:51Z\",\n        \"rank\": 6,\n        \"code\": \"uatVendor21\",\n        \"description\": \"6 Vendor for UAT\",\n        \"images\": [\n            {\n                \"name\": \"imageName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n                \"isExternal\": true\n            }\n        ],\n        \"videos\": [\n            {\n                \"name\": \"videoName001\",\n                \"altText\": null,\n                \"id\": null,\n                \"url\": \"https://www.pexels.com/download/video/5538262/\",\n                \"isExternal\": true\n            }\n        ],\n        \"encryptionRequired\": false\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Wrong type value",
+          "code": "{\n  \"status\": {\n    \"success\": false,\n    \"code\": 400,\n    \"message\": \"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\"REWARD\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\"\n  }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Rank value is 0",
+          "code": "{\n  \"status\": {\n    \"success\": false,\n    \"code\": 400,\n    \"message\": \"rank must be greater than zero\"\n  }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Invalid brandId",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3004,\n        \"message\": \"Brand not found\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Vendor already exists",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 5007,\n        \"message\": \"Vendor already exists\"\n    },\n    \"vendor\": null\n}"
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        258,
+        258
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        260,
+        286
+      ],
+      "raw": "| Parameter                | Description                                                                                                                                                                                          |\n| :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **`status`**             | Object containing details about the status of the request.                                                                                                                                           |\n| `- success`              | Indicates whether the request was successful. `true`: Request was successful. `false`: Request was unsuccessful.                                                                                     |\n| `- code`                 | The status code of the request.                                                                                                                                                                      |\n| `- message`              | The status message of the request.                                                                                                                                                                   |\n| **`vendor`**             | Object containing details on the vendor that is created.                                                                                                                                             |\n| `- id`                   | The unique ID generated for the vendor upon successful creation.                                                                                                                                     |\n| `- name`                 | The unique name of the vendor.                                                                                                                                                                       |\n| `- brandId`              | The unique brand ID of the organization.                                                                                                                                                             |\n| `- enabled`              | Indicates if the vendor is currently enabled or disabled. `true`: Vendor is enabled. `false`: Vendor is disabled.                                                                                    |\n| `- isEncryptionRequired` | Indicates if the vendor requires encryption. `true`: Vendor requires encryption. `false`: Vendor does not require encryption.                                                                        |\n| `- vendorTypes`          | The type of vendor. These are specialized vendor types for which Capillary has implemented customized solutions to handle reward issuance. Supported types: `LINKAJA`/`AIRSPRING`/`OVO`/`BONUSLINK`. |\n| `- vendorDetails`        | An object containing additional details on the vendor, if any.                                                                                                                                       |\n| `- type`                 | The type of vendor. Possible value: `REWARDS`.                                                                                                                                                       |\n| `- rank`                 | The rank assigned to the vendor. This can be used for ordering and prioritizing.                                                                                                                     |\n| `- code`                 | The unique identification code of the vendor.                                                                                                                                                        |\n| `- description`          | The description for the vendor.                                                                                                                                                                      |\n| `- images`               | An object containing details on the images for the vendor, if any.                                                                                                                                   |\n| `- videos`               | An object containing details on the videos for the vendor, if any.                                                                                                                                   |\n| `- encryptionRequired`   | Indicates if encryption is required for transactions with the vendor. `true`: Vendor requires encryption. `false`: Vendor does not require encryption.                                               |\n| `lastUpdatedOn`          | Indicates the timestamp when the vendor redemption was updated. The timestamp is in Epoch time format.                                                                                               |\n| `lastUpdatedBy`          | The till ID of the user who last updated the vendor redemption record.                                                                                                                               |\n| `createdBy`              | The till ID of the user who created the vendor redemption.                                                                                                                                           |\n| `createdOn`              | Indicates the timestamp when the vendor redemption was created. The timestamp is in Epoch time format.                                                                                               |\n| `createdOnDateTime`      | Indicates the date and time when the vendor redemption was created, formatted in ISO 8601.                                                                                                           |\n| `lastUpdatedOnDateTime`  | Indicates the date and time when the vendor redemption was updated, formatted in ISO 8601.                                                                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description"
+        ],
+        "rows": [
+          [
+            "status",
+            "Object containing details about the status of the request."
+          ],
+          [
+            "- success",
+            "Indicates whether the request was successful. true: Request was successful. false: Request was unsuccessful."
+          ],
+          [
+            "- code",
+            "The status code of the request."
+          ],
+          [
+            "- message",
+            "The status message of the request."
+          ],
+          [
+            "vendor",
+            "Object containing details on the vendor that is created."
+          ],
+          [
+            "- id",
+            "The unique ID generated for the vendor upon successful creation."
+          ],
+          [
+            "- name",
+            "The unique name of the vendor."
+          ],
+          [
+            "- brandId",
+            "The unique brand ID of the organization."
+          ],
+          [
+            "- enabled",
+            "Indicates if the vendor is currently enabled or disabled. true: Vendor is enabled. false: Vendor is disabled."
+          ],
+          [
+            "- isEncryptionRequired",
+            "Indicates if the vendor requires encryption. true: Vendor requires encryption. false: Vendor does not require encryption."
+          ],
+          [
+            "- vendorTypes",
+            "The type of vendor. These are specialized vendor types for which Capillary has implemented customized solutions to handle reward issuance. Supported types: LINKAJA/AIRSPRING/OVO/BONUSLINK."
+          ],
+          [
+            "- vendorDetails",
+            "An object containing additional details on the vendor, if any."
+          ],
+          [
+            "- type",
+            "The type of vendor. Possible value: REWARDS."
+          ],
+          [
+            "- rank",
+            "The rank assigned to the vendor. This can be used for ordering and prioritizing."
+          ],
+          [
+            "- code",
+            "The unique identification code of the vendor."
+          ],
+          [
+            "- description",
+            "The description for the vendor."
+          ],
+          [
+            "- images",
+            "An object containing details on the images for the vendor, if any."
+          ],
+          [
+            "- videos",
+            "An object containing details on the videos for the vendor, if any."
+          ],
+          [
+            "- encryptionRequired",
+            "Indicates if encryption is required for transactions with the vendor. true: Vendor requires encryption. false: Vendor does not require encryption."
+          ],
+          [
+            "lastUpdatedOn",
+            "Indicates the timestamp when the vendor redemption was updated. The timestamp is in Epoch time format."
+          ],
+          [
+            "lastUpdatedBy",
+            "The till ID of the user who last updated the vendor redemption record."
+          ],
+          [
+            "createdBy",
+            "The till ID of the user who created the vendor redemption."
+          ],
+          [
+            "createdOn",
+            "Indicates the timestamp when the vendor redemption was created. The timestamp is in Epoch time format."
+          ],
+          [
+            "createdOnDateTime",
+            "Indicates the date and time when the vendor redemption was created, formatted in ISO 8601."
+          ],
+          [
+            "lastUpdatedOnDateTime",
+            "Indicates the date and time when the vendor redemption was updated, formatted in ISO 8601."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        288,
+        288
+      ],
+      "raw": "# API error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        290,
+        295
+      ],
+      "raw": "| Code | Description                                                                                                                                                          | Reason                                    |\n| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- |\n| 5007 | Vendor already exists                                                                                                                                                | Vendor with the same name already exists. |\n| 3004 | Brand not found                                                                                                                                                      | `brandId` provided is invalid.            |\n| 400  | Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \"REWARD\": value not one of declared Enum instance names: \\[POINTS, REWARDS] | `type` is invalid.                        |\n| 400  | rank must be greater than zero                                                                                                                                       | Value for `rank` provided is 0.           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description",
+          "Reason"
+        ],
+        "rows": [
+          [
+            "5007",
+            "Vendor already exists",
+            "Vendor with the same name already exists."
+          ],
+          [
+            "3004",
+            "Brand not found",
+            "brandId provided is invalid."
+          ],
+          [
+            "400",
+            "Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \"REWARD\": value not one of declared Enum instance names: [POINTS, REWARDS]",
+            "type is invalid."
+          ],
+          [
+            "400",
+            "rank must be greater than zero",
+            "Value for rank provided is 0."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        297,
+        297
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        299,
+        746
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/vendor/create\": {\n      \"post\": {\n        \"summary\": \"Create a Vendor\",\n        \"description\": \"\",\n        \"operationId\": \"createvendor\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"name\",\n                  \"brandId\",\n                  \"type\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique name identifier for the video.\"\n                  },\n                  \"code\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identification code for the vendor. In case the code is null or not provided, a random, unique code is assigned to the vendor. Maximum character limit is 255.\"\n                  },\n                  \"brandId\": {\n                    \"type\": \"integer\",\n                    \"description\": \"Unique brand ID of the organisation.\",\n                    \"format\": \"int32\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of vendor.\",\n                    \"default\": \"REWARDS\",\n                    \"enum\": [\n                      \"REWARDS\"\n                    ]\n                  },\n                  \"images\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing details of images associated with the vendor. You can add up to 5 images for a vendor.\"\n                  },\n                  \"altText\": {\n                    \"type\": \"string\",\n                    \"description\": \"Brief text description of the video.\"\n                  },\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique ID that is generated when a video is created. This ID is the file_handle for the associated video in the Capillary system. If isExternal is false, then this parameter is required. To add a video, raise a ticket to the support team.\"\n                  },\n                  \"url\": {\n                    \"type\": \"string\",\n                    \"description\": \"Direct link to the video. If isExternal is true, then this parameter is required.\"\n                  },\n                  \"isExternal\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Indicate if the video is from an external source.\"\n                  },\n                  \"videos\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing details of videos associated with the vendor. You can add up to 2 videos for a vendor.\"\n                  },\n                  \"rank\": {\n                    \"type\": \"integer\",\n                    \"description\": \"Assign a rank to the vendor. This can be used for ordering and prioritizing.\",\n                    \"format\": \"int32\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"Description for the vendor. Maximum character limit is 1034.\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Invalid brandId\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3004,\\n        \\\"message\\\": \\\"Brand not found\\\"\\n    }\\n}\"\n                  },\n                  \"Vendor already exists\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 5007,\\n        \\\"message\\\": \\\"Vendor already exists\\\"\\n    },\\n    \\\"vendor\\\": null\\n}\"\n                  },\n                  \"Sample response \": {\n                    \"value\": {\n                      \"status\": {\n                        \"success\": true,\n                        \"code\": 5002,\n                        \"message\": \"Vendor created successfully\"\n                      },\n                      \"vendor\": {\n                        \"id\": 674,\n                        \"name\": \"UAT Vendor 21\",\n                        \"brandId\": 61,\n                        \"enabled\": true,\n                        \"isEncryptionRequired\": false,\n                        \"vendorTypes\": null,\n                        \"vendorDetails\": {\n                          \"value\": \"********************************************************************************\",\n                          \"key\": \"************************************************\"\n                        },\n                        \"type\": \"REWARDS\",\n                        \"createdBy\": 75197372,\n                        \"lastUpdatedBy\": 75197372,\n                        \"createdOn\": 1764149511000,\n                        \"lastUpdatedOn\": 1764149511000,\n                        \"createdOnDateTime\": \"2025-11-26T09:31:51Z\",\n                        \"lastUpdatedOnDateTime\": \"2025-11-26T09:31:51Z\",\n                        \"rank\": 6,\n                        \"code\": \"uatVendor21\",\n                        \"description\": \"6 Vendor for UAT\",\n                        \"images\": [\n                          {\n                            \"name\": \"imageName001\",\n                            \"altText\": null,\n                            \"id\": null,\n                            \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n                            \"isExternal\": true\n                          }\n                        ],\n                        \"videos\": [\n                          {\n                            \"name\": \"videoName001\",\n                            \"altText\": null,\n                            \"id\": null,\n                            \"url\": \"https://www.pexels.com/download/video/5538262/\",\n                            \"isExternal\": true\n                          }\n                        ],\n                        \"encryptionRequired\": false\n                      }\n                    },\n                    \"summary\": \"Sample response \"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Vendor Created\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 5002,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Vendor created successfully\"\n                            }\n                          }\n                        },\n                        \"vendor\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"id\": {\n                              \"type\": \"integer\",\n                              \"example\": 153,\n                              \"default\": 0\n                            },\n                            \"name\": {\n                              \"type\": \"string\",\n                              \"example\": \"vendor002\"\n                            },\n                            \"brandId\": {\n                              \"type\": \"integer\",\n                              \"example\": 61,\n                              \"default\": 0\n                            },\n                            \"enabled\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"isEncryptionRequired\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"vendorTypes\": {},\n                            \"vendorDetails\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"value\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"********************************************************************************\"\n                                },\n                                \"key\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"************************************************\"\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"example\": \"REWARDS\"\n                            },\n                            \"createdBy\": {\n                              \"type\": \"integer\",\n                              \"example\": 75161973,\n                              \"default\": 0\n                            },\n                            \"lastUpdatedBy\": {\n                              \"type\": \"integer\",\n                              \"example\": 75161973,\n                              \"default\": 0\n                            },\n                            \"createdOn\": {\n                              \"type\": \"integer\",\n                              \"example\": 1749708111000,\n                              \"default\": 0\n                            },\n                            \"lastUpdatedOn\": {\n                              \"type\": \"integer\",\n                              \"example\": 1749708111000,\n                              \"default\": 0\n                            },\n                            \"createdOnDateTime\": {\n                              \"type\": \"string\",\n                              \"example\": \"2025-06-12T06:01:51Z\"\n                            },\n                            \"lastUpdatedOnDateTime\": {\n                              \"type\": \"string\",\n                              \"example\": \"2025-06-12T06:01:51Z\"\n                            },\n                            \"rank\": {},\n                            \"code\": {\n                              \"type\": \"string\",\n                              \"example\": \"vendor002\"\n                            },\n                            \"description\": {},\n                            \"images\": {\n                              \"type\": \"array\"\n                            },\n                            \"videos\": {\n                              \"type\": \"array\"\n                            },\n                            \"encryptionRequired\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Invalid brandId\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3004,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Brand not found\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Vendor already exists\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 5007,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Vendor already exists\"\n                            }\n                          }\n                        },\n                        \"vendor\": {}\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Wrong type value\": {\n                    \"value\": \"{\\n  \\\"status\\\": {\\n    \\\"success\\\": false,\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\\\\\"REWARD\\\\\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\\\"\\n  }\\n}\"\n                  },\n                  \"Rank value is 0\": {\n                    \"value\": \"{\\n  \\\"status\\\": {\\n    \\\"success\\\": false,\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"rank must be greater than zero\\\"\\n  }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Wrong type value\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\"REWARD\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Rank value is 0\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"rank must be greater than zero\"\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"shell\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \\\\\\n--header 'Accept: application/json' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic bWFkazMjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \\\\\\n--data-raw '{\\n    **** Mandatory Parameters ****\\n    \\\"name\\\": \\\"UAT Vendor 21\\\",\\n    \\\"brandId\\\": 61,\\n    \\\"type\\\": \\\"REWARDS\\\",\\n    ***** Non Mandatory Parameters *****\\n     \\\"code\\\": \\\"uatVendor21\\\",\\n     \\\"isEncryptionRequired\\\": false,\\n     \\\"vendorDetails\\\": {\\n         \\\"key\\\": \\\"client\\\",\\n         \\\"value\\\": \\\"tomswayer@capillarytech.com\\\"\\n     },\\n     \\\"images\\\": [\\n         {\\n             \\\"name\\\": \\\"imageName001\\\",\\n             \\\"altText\\\": null,\\n             \\\"url\\\": \\\"https://picsum.photos/seed/picsum/200/300\\\",\\n             \\\"isExternal\\\": true\\n         }\\n     ],\\n     \\\"videos\\\": [\\n         {\\n             \\\"name\\\": \\\"videoName001\\\",\\n             \\\"altText\\\": null,\\n             \\\"url\\\": \\\"https://www.pexels.com/download/video/5538262/\\\",\\n             \\\"isExternal\\\": true\\n         }\\n     ],\\n     \\\"rank\\\": 6,\\n     \\\"description\\\": \\\"6 Vendor for UAT\\\"\\n}'\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/vendor/create\": {\n      \"post\": {\n        \"summary\": \"Create a Vendor\",\n        \"description\": \"\",\n        \"operationId\": \"createvendor\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"name\",\n                  \"brandId\",\n                  \"type\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique name identifier for the video.\"\n                  },\n                  \"code\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identification code for the vendor. In case the code is null or not provided, a random, unique code is assigned to the vendor. Maximum character limit is 255.\"\n                  },\n                  \"brandId\": {\n                    \"type\": \"integer\",\n                    \"description\": \"Unique brand ID of the organisation.\",\n                    \"format\": \"int32\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of vendor.\",\n                    \"default\": \"REWARDS\",\n                    \"enum\": [\n                      \"REWARDS\"\n                    ]\n                  },\n                  \"images\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing details of images associated with the vendor. You can add up to 5 images for a vendor.\"\n                  },\n                  \"altText\": {\n                    \"type\": \"string\",\n                    \"description\": \"Brief text description of the video.\"\n                  },\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique ID that is generated when a video is created. This ID is the file_handle for the associated video in the Capillary system. If isExternal is false, then this parameter is required. To add a video, raise a ticket to the support team.\"\n                  },\n                  \"url\": {\n                    \"type\": \"string\",\n                    \"description\": \"Direct link to the video. If isExternal is true, then this parameter is required.\"\n                  },\n                  \"isExternal\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Indicate if the video is from an external source.\"\n                  },\n                  \"videos\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing details of videos associated with the vendor. You can add up to 2 videos for a vendor.\"\n                  },\n                  \"rank\": {\n                    \"type\": \"integer\",\n                    \"description\": \"Assign a rank to the vendor. This can be used for ordering and prioritizing.\",\n                    \"format\": \"int32\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"Description for the vendor. Maximum character limit is 1034.\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Invalid brandId\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3004,\\n        \\\"message\\\": \\\"Brand not found\\\"\\n    }\\n}\"\n                  },\n                  \"Vendor already exists\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 5007,\\n        \\\"message\\\": \\\"Vendor already exists\\\"\\n    },\\n    \\\"vendor\\\": null\\n}\"\n                  },\n                  \"Sample response \": {\n                    \"value\": {\n                      \"status\": {\n                        \"success\": true,\n                        \"code\": 5002,\n                        \"message\": \"Vendor created successfully\"\n                      },\n                      \"vendor\": {\n                        \"id\": 674,\n                        \"name\": \"UAT Vendor 21\",\n                        \"brandId\": 61,\n                        \"enabled\": true,\n                        \"isEncryptionRequired\": false,\n                        \"vendorTypes\": null,\n                        \"vendorDetails\": {\n                          \"value\": \"********************************************************************************\",\n                          \"key\": \"************************************************\"\n                        },\n                        \"type\": \"REWARDS\",\n                        \"createdBy\": 75197372,\n                        \"lastUpdatedBy\": 75197372,\n                        \"createdOn\": 1764149511000,\n                        \"lastUpdatedOn\": 1764149511000,\n                        \"createdOnDateTime\": \"2025-11-26T09:31:51Z\",\n                        \"lastUpdatedOnDateTime\": \"2025-11-26T09:31:51Z\",\n                        \"rank\": 6,\n                        \"code\": \"uatVendor21\",\n                        \"description\": \"6 Vendor for UAT\",\n                        \"images\": [\n                          {\n                            \"name\": \"imageName001\",\n                            \"altText\": null,\n                            \"id\": null,\n                            \"url\": \"https://picsum.photos/seed/picsum/200/300\",\n                            \"isExternal\": true\n                          }\n                        ],\n                        \"videos\": [\n                          {\n                            \"name\": \"videoName001\",\n                            \"altText\": null,\n                            \"id\": null,\n                            \"url\": \"https://www.pexels.com/download/video/5538262/\",\n                            \"isExternal\": true\n                          }\n                        ],\n                        \"encryptionRequired\": false\n                      }\n                    },\n                    \"summary\": \"Sample response \"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Vendor Created\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 5002,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Vendor created successfully\"\n                            }\n                          }\n                        },\n                        \"vendor\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"id\": {\n                              \"type\": \"integer\",\n                              \"example\": 153,\n                              \"default\": 0\n                            },\n                            \"name\": {\n                              \"type\": \"string\",\n                              \"example\": \"vendor002\"\n                            },\n                            \"brandId\": {\n                              \"type\": \"integer\",\n                              \"example\": 61,\n                              \"default\": 0\n                            },\n                            \"enabled\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"isEncryptionRequired\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"vendorTypes\": {},\n                            \"vendorDetails\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"value\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"********************************************************************************\"\n                                },\n                                \"key\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"************************************************\"\n                                }\n                              }\n                            },\n                            \"type\": {\n                              \"type\": \"string\",\n                              \"example\": \"REWARDS\"\n                            },\n                            \"createdBy\": {\n                              \"type\": \"integer\",\n                              \"example\": 75161973,\n                              \"default\": 0\n                            },\n                            \"lastUpdatedBy\": {\n                              \"type\": \"integer\",\n                              \"example\": 75161973,\n                              \"default\": 0\n                            },\n                            \"createdOn\": {\n                              \"type\": \"integer\",\n                              \"example\": 1749708111000,\n                              \"default\": 0\n                            },\n                            \"lastUpdatedOn\": {\n                              \"type\": \"integer\",\n                              \"example\": 1749708111000,\n                              \"default\": 0\n                            },\n                            \"createdOnDateTime\": {\n                              \"type\": \"string\",\n                              \"example\": \"2025-06-12T06:01:51Z\"\n                            },\n                            \"lastUpdatedOnDateTime\": {\n                              \"type\": \"string\",\n                              \"example\": \"2025-06-12T06:01:51Z\"\n                            },\n                            \"rank\": {},\n                            \"code\": {\n                              \"type\": \"string\",\n                              \"example\": \"vendor002\"\n                            },\n                            \"description\": {},\n                            \"images\": {\n                              \"type\": \"array\"\n                            },\n                            \"videos\": {\n                              \"type\": \"array\"\n                            },\n                            \"encryptionRequired\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Invalid brandId\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3004,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Brand not found\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Vendor already exists\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 5007,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Vendor already exists\"\n                            }\n                          }\n                        },\n                        \"vendor\": {}\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Wrong type value\": {\n                    \"value\": \"{\\n  \\\"status\\\": {\\n    \\\"success\\\": false,\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\\\\\"REWARD\\\\\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\\\"\\n  }\\n}\"\n                  },\n                  \"Rank value is 0\": {\n                    \"value\": \"{\\n  \\\"status\\\": {\\n    \\\"success\\\": false,\\n    \\\"code\\\": 400,\\n    \\\"message\\\": \\\"rank must be greater than zero\\\"\\n  }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Wrong type value\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Cannot deserialize value of type com.capillary.solutions.rewards.domain.Type from String \\\"REWARD\\\": value not one of declared Enum instance names: [POINTS, REWARDS]\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Rank value is 0\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"rank must be greater than zero\"\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"shell\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/vendor/create' \\\\\\n--header 'Accept: application/json' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic bWFkazMjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=Py8WqEd9NprkMUBFFM4pQWQmNSGjgEDnhOp1DoQoMYw-1739777165991-0.0.1.1-604800000; _cfuvid=hGW.4aR53plH6yD91V3qiTbpaQWs45tjwDu8W8WQ7Vk-1741007297422-0.0.1.1-604800000; _cfuvid=S.PxCyUf9ekxOmHL60DVO0Ymatc.u9ycHzTlvzKnNWU-1749708111484-0.0.1.1-604800000; _cfuvid=stmchZP5cYeASZ3aC8978_EVFvzLYHohP0B8gh_FBvM-1764149511799-0.0.1.1-604800000' \\\\\\n--data-raw '{\\n    **** Mandatory Parameters ****\\n    \\\"name\\\": \\\"UAT Vendor 21\\\",\\n    \\\"brandId\\\": 61,\\n    \\\"type\\\": \\\"REWARDS\\\",\\n    ***** Non Mandatory Parameters *****\\n     \\\"code\\\": \\\"uatVendor21\\\",\\n     \\\"isEncryptionRequired\\\": false,\\n     \\\"vendorDetails\\\": {\\n         \\\"key\\\": \\\"client\\\",\\n         \\\"value\\\": \\\"tomswayer@capillarytech.com\\\"\\n     },\\n     \\\"images\\\": [\\n         {\\n             \\\"name\\\": \\\"imageName001\\\",\\n             \\\"altText\\\": null,\\n             \\\"url\\\": \\\"https://picsum.photos/seed/picsum/200/300\\\",\\n             \\\"isExternal\\\": true\\n         }\\n     ],\\n     \\\"videos\\\": [\\n         {\\n             \\\"name\\\": \\\"videoName001\\\",\\n             \\\"altText\\\": null,\\n             \\\"url\\\": \\\"https://www.pexels.com/download/video/5538262/\\\",\\n             \\\"isExternal\\\": true\\n         }\\n     ],\\n     \\\"rank\\\": 6,\\n     \\\"description\\\": \\\"6 Vendor for UAT\\\"\\n}'\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

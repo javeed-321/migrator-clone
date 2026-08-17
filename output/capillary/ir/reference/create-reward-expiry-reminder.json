@@ -1,0 +1,594 @@
+{
+  "slug": "reference/create-reward-expiry-reminder",
+  "source": "https://docs.capillarytech.com/reference/create-reward-expiry-reminder.md",
+  "url": "https://docs.capillarytech.com/reference/create-reward-expiry-reminder",
+  "title": "Create Reward Expiry Reminder",
+  "description": "",
+  "section": "Reward Expiry Reminders",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 3,
+    "list": 2,
+    "Callout": 1,
+    "Table": 4,
+    "code": 2,
+    "CodeTabs": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create Reward Expiry Reminder",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create Reward Expiry Reminder",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API is designed to create a reward expiry reminder, notifying users when their rewards are nearing expiration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API is designed to create a reward expiry reminder, notifying users when their rewards are nearing expiration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Use Cases:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use Cases:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        14
+      ],
+      "raw": "1. Reward Expiration Notification : When a reward expires, notify the user via push notification, email, or SMS.\n2. Sweepstakes Expiration Notification and Winner Finalization : When a sweepstake expires, notify who entered, and trigger a Databricks notebook to finalize the winner.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Reward Expiration Notification : When a reward expires, notify the user via push notification, email, or SMS.Sweepstakes Expiration Notification and Winner Finalization : When a sweepstake expires, notify who entered, and trigger a Databricks notebook to finalize the winner.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        19
+      ],
+      "raw": "> 👍 Note\n>\n> * For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).\n> * This an org Level config and this feature this feature is disabled by default",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and step-by-step guide on making your first API call in Make your first API call.This an org Level config and this feature this feature is disabled by default",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        25
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication\n* [ ] Default access group\n* [ ] This is an organization-level configuration, and the feature is disabled by default. To enable it, use this [API](https://docs.capillarytech.com/reference/org-level-config) with the key **CONF\\_SEND\\_REWARD\\_EXPIRY\\_NOTIFICATION\\_ENABLED** set to true or false. You can also configure the notification timing using the key **CONF\\_SEND\\_EXPIRY\\_NOTIFICATION\\_FOR\\_REWARD\\_TIME** with the value in HH:MM format.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authenticationDefault access groupThis is an organization-level configuration, and the feature is disabled by default. To enable it, use this API with the key CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED set to true or false. You can also configure the notification timing using the key CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME with the value in HH:MM format.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/org-level-config",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        35
+      ],
+      "raw": "|                        |                                                     |\n| :--------------------- | :-------------------------------------------------- |\n| URI                    | /api\\_gateway/rewards/core/v1/reward/expiryReminder |\n| HTTP Method            | POST                                                |\n| Pagination             | No                                                  |\n| Batch support          | No                                                  |\n| Rate limit information | None                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/api_gateway/rewards/core/v1/reward/expiryReminder"
+          ],
+          [
+            "HTTP Method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "No"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        43,
+        46
+      ],
+      "raw": "| Parameter Name | Data Type | Description                                                                                                                                                                                                                                                                           |\n| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| duration\\*     | Integer   | The duration specifies how many days in advance the reward expiry reminder will be sent before the reward expires. This does not have any default value set and is mandatory.                                                                                                         |\n| timing         | timestamp | This defines the specific time when the reminder will be sent. The time should be provided in 24-hour format (HH:MM) and represents the the org's cluster (server) time. If no time is specified, the reminder will automatically be set for 16:00 server time for the org's cluster. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "duration*",
+            "Integer",
+            "The duration specifies how many days in advance the reward expiry reminder will be sent before the reward expires. This does not have any default value set and is mandatory."
+          ],
+          [
+            "timing",
+            "timestamp",
+            "This defines the specific time when the reminder will be sent. The time should be provided in 24-hour format (HH:MM) and represents the the org's cluster (server) time. If no time is specified, the reminder will automatically be set for 16:00 server time for the org's cluster."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        48,
+        53
+      ],
+      "raw": "```json Request\n{\n    \"duration\": 32,\n    \"timing\": \"18:00\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Request",
+        "code": "{\n    \"duration\": 32,\n    \"timing\": \"18:00\"\n}"
+      },
+      "text": "Request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        57,
+        73
+      ],
+      "raw": "| Parameter Name        | Description                                                                                                                                       |\n| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |\n| success               | Indicates if the request was successful.                                                                                                          |\n| code                  | Response status code.                                                                                                                             |\n| message               | Message describing the status of the response.                                                                                                    |\n| id                    | Unique identifier for the reward expiry reminder.                                                                                                 |\n| orgId                 | Identifier for the organization associated with the reminder.                                                                                     |\n| duration              | Duration before the expiry to send a reminder.                                                                                                    |\n| durationType          | Type of duration.                                                                                                                                 |\n| cronTaskId            | This is the unique database ID for each cron setup, which includes specific timing, modules, and other relevant settings. This is a backend term. |\n| timing                | Time at which the reminder will be triggered (in HH:MM format).                                                                                   |\n| isActive              | Indicates whether the reminder is currently active.                                                                                               |\n| createdOn             | Timestamp of when the reminder was created in epoch timestamp                                                                                     |\n| createdBy             | Identifier of the user who created the reminder.                                                                                                  |\n| createdOnDateTime     | Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                     |\n| lastUpdatedBy         | Identifier of the user who last updated the reminder.                                                                                             |\n| lastUpdatedOnDateTime | Last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "success",
+            "Indicates if the request was successful."
+          ],
+          [
+            "code",
+            "Response status code."
+          ],
+          [
+            "message",
+            "Message describing the status of the response."
+          ],
+          [
+            "id",
+            "Unique identifier for the reward expiry reminder."
+          ],
+          [
+            "orgId",
+            "Identifier for the organization associated with the reminder."
+          ],
+          [
+            "duration",
+            "Duration before the expiry to send a reminder."
+          ],
+          [
+            "durationType",
+            "Type of duration."
+          ],
+          [
+            "cronTaskId",
+            "This is the unique database ID for each cron setup, which includes specific timing, modules, and other relevant settings. This is a backend term."
+          ],
+          [
+            "timing",
+            "Time at which the reminder will be triggered (in HH:MM format)."
+          ],
+          [
+            "isActive",
+            "Indicates whether the reminder is currently active."
+          ],
+          [
+            "createdOn",
+            "Timestamp of when the reminder was created in epoch timestamp"
+          ],
+          [
+            "createdBy",
+            "Identifier of the user who created the reminder."
+          ],
+          [
+            "createdOnDateTime",
+            "Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ],
+          [
+            "lastUpdatedBy",
+            "Identifier of the user who last updated the reminder."
+          ],
+          [
+            "lastUpdatedOnDateTime",
+            "Last updated date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        75,
+        107
+      ],
+      "raw": "```json 200- Response\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 12038,\n        \"message\": \"Reward expiry reminder created\"\n    },\n    \"rewardExpiryReminder\": {\n        \"id\": 35,\n        \"orgId\": 100737,\n        \"duration\": 32,\n        \"durationType\": \"DAYS\",\n        \"cronTaskId\": 605381,\n        \"timing\": \"18:00\",\n        \"isActive\": true,\n        \"createdOn\": 1742186349783,\n        \"createdOnDateTime\": \"2025-03-17T04:39:09Z\",\n        \"lastUpdatedOn\": 1742186349783,\n        \"lastUpdatedOnDateTime\": \"2025-03-17T04:39:09Z\",\n        \"createdBy\": 75155282,\n        \"lastUpdatedBy\": 75155282\n    }\n}\n```\n```json 400- No duration is passed.\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Duration is mandatory\"\n    }\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "200- Response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "200- Response",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 12038,\n        \"message\": \"Reward expiry reminder created\"\n    },\n    \"rewardExpiryReminder\": {\n        \"id\": 35,\n        \"orgId\": 100737,\n        \"duration\": 32,\n        \"durationType\": \"DAYS\",\n        \"cronTaskId\": 605381,\n        \"timing\": \"18:00\",\n        \"isActive\": true,\n        \"createdOn\": 1742186349783,\n        \"createdOnDateTime\": \"2025-03-17T04:39:09Z\",\n        \"lastUpdatedOn\": 1742186349783,\n        \"lastUpdatedOnDateTime\": \"2025-03-17T04:39:09Z\",\n        \"createdBy\": 75155282,\n        \"lastUpdatedBy\": 75155282\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400- No duration is passed.",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Duration is mandatory\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "# API-specific error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API-specific error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        111,
+        113
+      ],
+      "raw": "| Error code | Description           |\n| :--------- | :-------------------- |\n| 400        | Duration is mandatory |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "400",
+            "Duration is mandatory"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        117,
+        324
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/expiryReminder\": {\n      \"post\": {\n        \"summary\": \"Create Reward Expiry Reminder\",\n        \"description\": \"\",\n        \"operationId\": \"create-reward-expiry-reminder\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 12038,\\n        \\\"message\\\": \\\"Reward expiry reminder created\\\"\\n    },\\n    \\\"rewardExpiryReminder\\\": {\\n        \\\"id\\\": 35,\\n        \\\"orgId\\\": 100737,\\n        \\\"duration\\\": 32,\\n        \\\"durationType\\\": \\\"DAYS\\\",\\n        \\\"cronTaskId\\\": 605381,\\n        \\\"timing\\\": \\\"18:00\\\",\\n        \\\"isActive\\\": true,\\n        \\\"createdOn\\\": 1742186349783,\\n        \\\"createdOnDateTime\\\": \\\"2025-03-17T04:39:09Z\\\",\\n        \\\"lastUpdatedOn\\\": 1742186349783,\\n        \\\"lastUpdatedOnDateTime\\\": \\\"2025-03-17T04:39:09Z\\\",\\n        \\\"createdBy\\\": 75155282,\\n        \\\"lastUpdatedBy\\\": 75155282\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"status\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"success\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"code\": {\n                          \"type\": \"integer\",\n                          \"example\": 12038,\n                          \"default\": 0\n                        },\n                        \"message\": {\n                          \"type\": \"string\",\n                          \"example\": \"Reward expiry reminder created\"\n                        }\n                      }\n                    },\n                    \"rewardExpiryReminder\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 35,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100737,\n                          \"default\": 0\n                        },\n                        \"duration\": {\n                          \"type\": \"integer\",\n                          \"example\": 32,\n                          \"default\": 0\n                        },\n                        \"durationType\": {\n                          \"type\": \"string\",\n                          \"example\": \"DAYS\"\n                        },\n                        \"cronTaskId\": {\n                          \"type\": \"integer\",\n                          \"example\": 605381,\n                          \"default\": 0\n                        },\n                        \"timing\": {\n                          \"type\": \"string\",\n                          \"example\": \"18:00\"\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"createdOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1742186349783,\n                          \"default\": 0\n                        },\n                        \"createdOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-17T04:39:09Z\"\n                        },\n                        \"lastUpdatedOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1742186349783,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-17T04:39:09Z\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75155282,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75155282,\n                          \"default\": 0\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 400,\\n        \\\"message\\\": \\\"Duration is mandatory\\\"\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"status\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"success\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"code\": {\n                          \"type\": \"integer\",\n                          \"example\": 400,\n                          \"default\": 0\n                        },\n                        \"message\": {\n                          \"type\": \"string\",\n                          \"example\": \"Duration is mandatory\"\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic aWFtc2hpblahblahjI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \\\\\\n--header 'user-agent: pyapps_auto_2024-05-25-12-47-39' \\\\\\n--header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"duration\\\": 32,\\n    \\\"timing\\\": \\\"18:00\\\"\\n}'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/expiryReminder\": {\n      \"post\": {\n        \"summary\": \"Create Reward Expiry Reminder\",\n        \"description\": \"\",\n        \"operationId\": \"create-reward-expiry-reminder\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 12038,\\n        \\\"message\\\": \\\"Reward expiry reminder created\\\"\\n    },\\n    \\\"rewardExpiryReminder\\\": {\\n        \\\"id\\\": 35,\\n        \\\"orgId\\\": 100737,\\n        \\\"duration\\\": 32,\\n        \\\"durationType\\\": \\\"DAYS\\\",\\n        \\\"cronTaskId\\\": 605381,\\n        \\\"timing\\\": \\\"18:00\\\",\\n        \\\"isActive\\\": true,\\n        \\\"createdOn\\\": 1742186349783,\\n        \\\"createdOnDateTime\\\": \\\"2025-03-17T04:39:09Z\\\",\\n        \\\"lastUpdatedOn\\\": 1742186349783,\\n        \\\"lastUpdatedOnDateTime\\\": \\\"2025-03-17T04:39:09Z\\\",\\n        \\\"createdBy\\\": 75155282,\\n        \\\"lastUpdatedBy\\\": 75155282\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"status\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"success\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"code\": {\n                          \"type\": \"integer\",\n                          \"example\": 12038,\n                          \"default\": 0\n                        },\n                        \"message\": {\n                          \"type\": \"string\",\n                          \"example\": \"Reward expiry reminder created\"\n                        }\n                      }\n                    },\n                    \"rewardExpiryReminder\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 35,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100737,\n                          \"default\": 0\n                        },\n                        \"duration\": {\n                          \"type\": \"integer\",\n                          \"example\": 32,\n                          \"default\": 0\n                        },\n                        \"durationType\": {\n                          \"type\": \"string\",\n                          \"example\": \"DAYS\"\n                        },\n                        \"cronTaskId\": {\n                          \"type\": \"integer\",\n                          \"example\": 605381,\n                          \"default\": 0\n                        },\n                        \"timing\": {\n                          \"type\": \"string\",\n                          \"example\": \"18:00\"\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"createdOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1742186349783,\n                          \"default\": 0\n                        },\n                        \"createdOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-17T04:39:09Z\"\n                        },\n                        \"lastUpdatedOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1742186349783,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-17T04:39:09Z\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75155282,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75155282,\n                          \"default\": 0\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 400,\\n        \\\"message\\\": \\\"Duration is mandatory\\\"\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"status\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"success\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"code\": {\n                          \"type\": \"integer\",\n                          \"example\": 400,\n                          \"default\": 0\n                        },\n                        \"message\": {\n                          \"type\": \"string\",\n                          \"example\": \"Duration is mandatory\"\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/expiryReminder' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic aWFtc2hpblahblahjI3YjJlODM4ZjhlMzRkNWI1YTI5MWY=' \\\\\\n--header 'user-agent: pyapps_auto_2024-05-25-12-47-39' \\\\\\n--header 'Cookie: _cfuvid=EdYU22mJWP1xzoxt74hggY7PKdhUOcIzYPQlaq4bOyU-1727677397251-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"duration\\\": 32,\\n    \\\"timing\\\": \\\"18:00\\\"\\n}'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

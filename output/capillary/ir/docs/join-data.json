@@ -1,0 +1,317 @@
+{
+  "slug": "docs/join-data",
+  "source": "https://docs.capillarytech.com/docs/join-data.md",
+  "url": "https://docs.capillarytech.com/docs/join-data",
+  "title": "Join Data",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-26T10:22:22.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 7,
+    "Callout": 2,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Join Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Join Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configuration reference for the Join Data block — merges two CSV files into one based on matching column values.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration reference for the Join Data block — merges two CSV files into one based on matching column values.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "<Callout icon=\"❗️\">\n  This block currently doesn't exist.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "This block currently doesn't exist.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 3,
+          "lines": [
+            12,
+            12
+          ],
+          "raw": "  This block currently doesn't exist.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This block currently doesn't exist.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The Join Data block merges two CSV files into one based on matching column values. It is used in templates that receive data across multiple files — for example, merging a bill-level file with a line-item file before posting the combined data to the transaction API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Join Data block merges two CSV files into one based on matching column values. It is used in templates that receive data across multiple files — for example, merging a bill-level file with a line-item file before posting the combined data to the transaction API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Block type:** `JoinProcessor`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Block type: JoinProcessor",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Joins two CSV files using one of four join strategies: Inner Join, Left Outer Join, Right Outer Join, or Outer Join.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Joins two CSV files using one of four join strategies: Inner Join, Left Outer Join, Right Outer Join, or Outer Join.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        30
+      ],
+      "raw": "| Field                         | Description                                                                            |\n| :---------------------------- | :------------------------------------------------------------------------------------- |\n| File One Merge Headers \\*     | Comma-separated column names from File 1 to use as join keys                           |\n| File Two Merge Headers \\*     | Comma-separated column names from File 2 to use as join keys                           |\n| Join Type \\*                  | Join strategy: `INNER_JOIN`, `LEFT_OUTER_JOIN`, `RIGHT_OUTER_JOIN`, or `OUTER_JOIN`    |\n| Merge Based on Common Name \\* | Enable to match files by a common filename fragment. Strongly recommended for accuracy |\n| Alphabetical Sort             | Sort files alphabetically before merging. Recommended for correct multi-file ordering  |\n| Output File Delimiter         | Delimiter used in the merged output file (e.g., comma, pipe)                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "File One Merge Headers *",
+            "Comma-separated column names from File 1 to use as join keys"
+          ],
+          [
+            "File Two Merge Headers *",
+            "Comma-separated column names from File 2 to use as join keys"
+          ],
+          [
+            "Join Type *",
+            "Join strategy: INNER_JOIN, LEFT_OUTER_JOIN, RIGHT_OUTER_JOIN, or OUTER_JOIN"
+          ],
+          [
+            "Merge Based on Common Name *",
+            "Enable to match files by a common filename fragment. Strongly recommended for accuracy"
+          ],
+          [
+            "Alphabetical Sort",
+            "Sort files alphabetically before merging. Recommended for correct multi-file ordering"
+          ],
+          [
+            "Output File Delimiter",
+            "Delimiter used in the merged output file (e.g., comma, pipe)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        34,
+        38
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  It is strongly recommended to enable both **Merge Based on Common Name** and **Alphabetical Sort** when using the Join Data block, as these settings ensure files are matched and sequenced correctly.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteIt is strongly recommended to enable both Merge Based on Common Name and Alphabetical Sort when using the Join Data block, as these settings ensure files are matched and sequenced correctly.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 11,
+          "lines": [
+            35,
+            35
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 12,
+          "lines": [
+            37,
+            37
+          ],
+          "raw": "  It is strongly recommended to enable both **Merge Based on Common Name** and **Alphabetical Sort** when using the Join Data block, as these settings ensure files are matched and sequenced correctly.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "It is strongly recommended to enable both Merge Based on Common Name and Alphabetical Sort when using the Join Data block, as these settings ensure files are matched and sequenced correctly.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    }
+  ]
+}

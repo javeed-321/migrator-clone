@@ -1,0 +1,502 @@
+{
+  "slug": "docs/json-schema-block",
+  "source": "https://docs.capillarytech.com/docs/json-schema-block.md",
+  "url": "https://docs.capillarytech.com/docs/json-schema-block",
+  "title": "Json Schema Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 13,
+    "list": 3,
+    "code": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Schema Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Schema Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Schema block in a dataflow allows you to define a JSON schema using JavaScript code. It outlines the rules, header details, and data type requirements for the expected request payload. Once a request is received, the input data is validated against this schema using the [Ajv JSON schema validator](https://ajv.js.org/) on the backend. If validation is successful, the dataflow proceeds with the specified actions; if validation fails, the flow follows the failure path, where you can specify appropriate error codes and messages.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Schema block in a dataflow allows you to define a JSON schema using JavaScript code. It outlines the rules, header details, and data type requirements for the expected request payload. Once a request is received, the input data is validated against this schema using the Ajv JSON schema validator on the backend. If validation is successful, the dataflow proceeds with the specified actions; if validation fails, the flow follows the failure path, where you can specify appropriate error codes and messages.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Standard and custom definitions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Standard and custom definitions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "You can either use the **standard definitions** which include predefined keywords (for example, `isNotEmpty` can be used to ensure that an input string is not empty and contains data) or define custom validation rules as per your specific requirements.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can either use the standard definitions which include predefined keywords (for example, isNotEmpty can be used to ensure that an input string is not empty and contains data) or define custom validation rules as per your specific requirements.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The custom validation rules are added to the schema by including them in the `definitions` array within the schema object. The `definitions` array is a standard JSON Schema feature that allows you to define reusable components or rules.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The custom validation rules are added to the schema by including them in the definitions array within the schema object. The definitions array is a standard JSON Schema feature that allows you to define reusable components or rules.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "You can also combine your schema's custom and standard definitions to create validation rules suited to your application's needs. Predefined definitions allow you to apply common validation patterns, while custom definitions provide the flexibility to handle specific requirements.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can also combine your schema's custom and standard definitions to create validation rules suited to your application's needs. Predefined definitions allow you to apply common validation patterns, while custom definitions provide the flexibility to handle specific requirements.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "The common keywords used as part of standard definitions are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The common keywords used as part of standard definitions are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        27
+      ],
+      "raw": "* `isNotEmpty` - Validates that the input string contains non-whitespace characters, meaning it isn't blank or filled with spaces. The keyword `isNotEmpty` ensures that the input string field contains data and is not left blank or filled with only spaces.\n\n* `dateWithTz`: Validates that a given date string in the input follows a specific format, such as \"YYYY-MM-DD,\" and ensures it includes time zone information. The `dateWithTz` keyword ensures the date input is formatted in a specified format and includes the relevant time zone. This avoids discrepancies caused by time zone differences.\n\n* `phoneValidation`: Validates and formats a phone number in the input to a standard format. The keyword `phoneValidation` ensures phone numbers are valid and follow a standardised format.\n\n* `removeSpecialChar`: Removes special characters from a string in the input, leaving only alphanumeric characters and spaces. The `removeSpecialChar` keyword ensures a string field includes only alphanumeric characters. It removes special characters from the string.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "isNotEmpty - Validates that the input string contains non-whitespace characters, meaning it isn't blank or filled with spaces. The keyword isNotEmpty ensures that the input string field contains data and is not left blank or filled with only spaces.dateWithTz: Validates that a given date string in the input follows a specific format, such as \"YYYY-MM-DD,\" and ensures it includes time zone information. The dateWithTz keyword ensures the date input is formatted in a specified format and includes the relevant time zone. This avoids discrepancies caused by time zone differences.phoneValidation: Validates and formats a phone number in the input to a standard format. The keyword phoneValidation ensures phone numbers are valid and follow a standardised format.removeSpecialChar: Removes special characters from a string in the input, leaving only alphanumeric characters and spaces. The removeSpecialChar keyword ensures a string field includes only alphanumeric characters. It removes special characters from the string.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "You are creating a dataflow for an airline brand that awards loyalty points to customers. Before executing APIs to analyze transaction and customer data, you need to validate the incoming request payload against the following criteria:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You are creating a dataflow for an airline brand that awards loyalty points to customers. Before executing APIs to analyze transaction and customer data, you need to validate the incoming request payload against the following criteria:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        35,
+        46
+      ],
+      "raw": "1. **Object Structure**:\n   * The overall input must be an `object`.\n   * This object must include a property named `queryParams`.\n2. **Presence of Required Properties in`queryParams`** :\n   * The `queryParams` object must contain the following properties:\n     * `FFN`\n     * `Fname`\n     * `lname`\n3. **Data Type and Content of Each Property**:\n   * `FFN`: Must be a `string` with at least 1 character.\n   * `Fname`: Must be a `string` with at least 1 character.\n   * `lname`: Must be a `string` with at least 1 character.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Object Structure:The overall input must be an object.This object must include a property named queryParams.Presence of Required Properties inqueryParams :The queryParams object must contain the following properties:FFNFnamelnameData Type and Content of Each Property:FFN: Must be a string with at least 1 character.Fname: Must be a string with at least 1 character.lname: Must be a string with at least 1 character.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "You can add a Schema block after the [Trigger block](https://docs.capillarytech.com/docs/trigger) to enforce these validation rules. In the Schema block, define the validation rules and specify custom error messages for cases where the payload does not meet the defined criteria.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can add a Schema block after the Trigger block to enforce these validation rules. In the Schema block, define the validation rules and specify custom error messages for cases where the payload does not meet the defined criteria.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/trigger",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "## Example script for schema validation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example script for schema validation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "Below is an example of the script you can use in the **Schema block** to validate the incoming request payload. This script uses standard definitions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is an example of the script you can use in the Schema block to validate the incoming request payload. This script uses standard definitions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        56,
+        109
+      ],
+      "raw": "```json\nconst schema = {\n  definitions : [],\n  spec:{\n    type : \"object\",\n    \"properties\": {\n      \"queryParams\" :{\n        type: 'object',\n        properties: {\n          FFN: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"FFN must not be empty\"\n            }\n          },\n          Fname: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"Fname must not be empty\"\n            }\n          },\n          lname: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"lname must not be empty\"\n            }\n          }\n        },\n        required: ['FFN', 'Fname', 'lname'],\n        errorMessage: {\n          required: {\n            FFN: \"FFN is missing\",\n            Fname: \"Fname is missing\",\n            lname: \"lname is missing\"\n          }\n        }\n      }\n    },\n    required: ['queryParams'],\n    errorMessage: {\n      required: {\n        queryParams: \"queryParams are missing\"\n      }\n    }\n  }\n};\n\n\nexport {schema as default};\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "const schema = {\n  definitions : [],\n  spec:{\n    type : \"object\",\n    \"properties\": {\n      \"queryParams\" :{\n        type: 'object',\n        properties: {\n          FFN: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"FFN must not be empty\"\n            }\n          },\n          Fname: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"Fname must not be empty\"\n            }\n          },\n          lname: {\n            type: 'string',\n            minLength: 1,\n            \"errorMessage\": {\n              minLength: \"lname must not be empty\"\n            }\n          }\n        },\n        required: ['FFN', 'Fname', 'lname'],\n        errorMessage: {\n          required: {\n            FFN: \"FFN is missing\",\n            Fname: \"Fname is missing\",\n            lname: \"lname is missing\"\n          }\n        }\n      }\n    },\n    required: ['queryParams'],\n    errorMessage: {\n      required: {\n        queryParams: \"queryParams are missing\"\n      }\n    }\n  }\n};\n\n\nexport {schema as default};\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "## Example with custom error messages",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example with custom error messages",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "This schema validates several attributes in the body of the incoming request, including type, minimum items, and maximum items. Each attribute is paired with a custom error message.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This schema validates several attributes in the body of the incoming request, including type, minimum items, and maximum items. Each attribute is paired with a custom error message.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        115,
+        354
+      ],
+      "raw": "```json\nconst schema = {\n  definitions : [],\n  spec:{\n    type : \"object\",\n    \"properties\": {\n      \"body\" :{\n        \"type\": \"array\", \"minItems\": 1, \"maxItems\": 10,\n        \"errorMessage\": {\n          type: \"The payload must be an array\",\n          minItems: \"The payload must contain atleast one item\",\n          maxItems: \"The payload cannot contain more than 10 items\"\n        },\n        \"items\": {\n          type: 'object',\n          properties: {\n            identifierType: {\n              type: 'string',\n              transform: ['toLowerCase'],\n              enum: ['externalid'],\n              errorMessage: {\n                enum: \"The identifierType property must be 'externalId'\"\n              }\n            },\n            identifierValue: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"identifierValue must not be empty\"\n              }\n            },\n            source: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"source must not be empty\"\n              }\n            },\n            type: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"type must not be empty\"\n              }\n            },\n            billNumber: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"billNumber must not be empty\"\n              }\n            },\n            billingDate: {\n              minLength: 1,\n              format: \"date-time\",\n              \"errorMessage\": {\n                minLength: \"billingDate must not be empty\",\n                format: \"billingDate must be in ISO 8601 format\"\n              }\n            },\n            billAmount: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"billAmount must not be empty\"\n              }\n            },\n            extendedFields: {\n              type: 'object',\n              properties: {\n                  booking_first_name: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_first_name must not be empty\"\n                    }\n                  },\n                  flight_status: {\n                    type: 'string',\n                    transform: ['trim', 'toLowerCase'],\n                    enum : ['flown'],\n                    \"errorMessage\": {\n                      enum: \"flight_status must be 'flown'\"\n                    }\n                  },\n                  pnr_status: {\n                    type: 'string',\n                    transform: ['trim', 'toLowerCase'],\n                    not : {\n                      enum: ['utilized'],\n                    },\n                    minLength: 1,\n                    \"errorMessage\": {\n                      not: \"pnr_status cannot be 'utilized'\",\n                      minLength: \"pnr_status must not be empty\"\n                    }\n                  },\n                  booking_last_name: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_last_name must not be empty\"\n                    }\n                  },\n                  boarding_status: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"boarding_status must not be empty\"\n                    }\n                  },\n                  booking_date: {\n                    type: 'string',\n                    format: \"date\",\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_date must not be empty\",\n                      format: \"booking_date format must be yyyy-mm-dd\"\n                    }\n                  },\n                  pnr_number: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"pnr_number must not be empty\"\n                    }\n                  },\n                  flight_number: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"flight_number must not be empty\"\n                    }\n                  },\n                  departure_date: {\n                    type: 'string',\n                    format: \"date\",\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"departure_date must not be empty\",\n                      format: \"departure_date format must be yyyy-mm-dd\"\n                    }\n                  },\n                  airline_code: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"airline_code must not be empty\"\n                    }\n                  }\n              },required: ['booking_first_name', 'booking_last_name', 'flight_status', 'pnr_status', 'booking_date', 'pnr_number', 'boarding_status', 'flight_number', 'departure_date', 'airline_code'],\n              errorMessage: {\n                required: {\n                  booking_first_name: \"booking_first_name extendedField is missing\",\n                  booking_last_name: \"booking_last_name extendedField is missing\",\n                  flight_status: \"flight_status extendedField is missing\",\n                  pnr_status: \"pnr_status extendedField is missing\",\n                  booking_date: \"booking_date extendedField is missing\",\n                  boarding_status: \"boarding_status extendedField is missing\",\n                  pnr_number: \"pnr_number extendedField is missing\",\n                  flight_number: \"flight_number extendedField is missing\",\n                  departure_date: \"departure_date extendedField is missing\",\n                  airline_code : \"airline_code extendedField is missing\"\n                }\n              }\n            },\n            customFields: {\n              type: 'object',\n              properties: {\n                  origin: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"origin must not be empty\"\n                    }\n                  },\n                  destination: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"destination must not be empty\"\n                    }\n                  }\n              },required: ['origin', 'destination'],\n              errorMessage: {\n                required: {\n                  origin: \"origin customField is missing\",\n                  destination: \"destination customField is missing\"\n                }\n              }\n            },\n            lineItemsV2: {\n              type: 'array',\n              minItems: 1,\n              items: {\n                type: 'object',\n                properties: {\n                  itemCode: {\n                    type: 'string',\n                    minLength: 1,\n                    errorMessage: {\n                      minLength: \"itemCode must not be empty\"\n                    }\n                  },\n                  amount: {\n                    type: 'number',\n                    minLength: 1,\n                    errorMessage: {\n                      minLength: \"amount must not be empty\"\n                    }\n                  }\n                },\n                required: ['itemCode', 'amount'],\n                errorMessage: {\n                  required: {\n                    itemCode: \"itemCode is missing\",\n                    amount: \"amount is missing\"\n                  }\n                }\n              }\n            }\n          },\n          required: ['identifierType', 'identifierValue', 'source', 'type', 'billNumber', 'billingDate', 'billAmount', 'extendedFields', 'customFields', 'lineItemsV2'],\n          errorMessage: {\n            required: {\n              identifierType: \"identifierType is missing\",\n              identifierValue: \"identifierValue is missing\",\n              source: \"source is missing\",\n              type: \"type is missing\",\n              billNumber: \"billNumber is missing\",\n              billingDate: \"billingDate is missing\",\n              billAmount: \"billAmount is missing\",\n              extendedFields : \"extendedFields are missing\",\n              customFields : \"customFields are missing\",\n              lineItemsV2 : \"lineItemsV2 are missing\"\n            }\n          }\n        }\n      }\n    }\n  }\n};\n\nexport {schema as default};\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "const schema = {\n  definitions : [],\n  spec:{\n    type : \"object\",\n    \"properties\": {\n      \"body\" :{\n        \"type\": \"array\", \"minItems\": 1, \"maxItems\": 10,\n        \"errorMessage\": {\n          type: \"The payload must be an array\",\n          minItems: \"The payload must contain atleast one item\",\n          maxItems: \"The payload cannot contain more than 10 items\"\n        },\n        \"items\": {\n          type: 'object',\n          properties: {\n            identifierType: {\n              type: 'string',\n              transform: ['toLowerCase'],\n              enum: ['externalid'],\n              errorMessage: {\n                enum: \"The identifierType property must be 'externalId'\"\n              }\n            },\n            identifierValue: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"identifierValue must not be empty\"\n              }\n            },\n            source: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"source must not be empty\"\n              }\n            },\n            type: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"type must not be empty\"\n              }\n            },\n            billNumber: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"billNumber must not be empty\"\n              }\n            },\n            billingDate: {\n              minLength: 1,\n              format: \"date-time\",\n              \"errorMessage\": {\n                minLength: \"billingDate must not be empty\",\n                format: \"billingDate must be in ISO 8601 format\"\n              }\n            },\n            billAmount: {\n              minLength: 1,\n              \"errorMessage\": {\n                minLength: \"billAmount must not be empty\"\n              }\n            },\n            extendedFields: {\n              type: 'object',\n              properties: {\n                  booking_first_name: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_first_name must not be empty\"\n                    }\n                  },\n                  flight_status: {\n                    type: 'string',\n                    transform: ['trim', 'toLowerCase'],\n                    enum : ['flown'],\n                    \"errorMessage\": {\n                      enum: \"flight_status must be 'flown'\"\n                    }\n                  },\n                  pnr_status: {\n                    type: 'string',\n                    transform: ['trim', 'toLowerCase'],\n                    not : {\n                      enum: ['utilized'],\n                    },\n                    minLength: 1,\n                    \"errorMessage\": {\n                      not: \"pnr_status cannot be 'utilized'\",\n                      minLength: \"pnr_status must not be empty\"\n                    }\n                  },\n                  booking_last_name: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_last_name must not be empty\"\n                    }\n                  },\n                  boarding_status: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"boarding_status must not be empty\"\n                    }\n                  },\n                  booking_date: {\n                    type: 'string',\n                    format: \"date\",\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"booking_date must not be empty\",\n                      format: \"booking_date format must be yyyy-mm-dd\"\n                    }\n                  },\n                  pnr_number: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"pnr_number must not be empty\"\n                    }\n                  },\n                  flight_number: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"flight_number must not be empty\"\n                    }\n                  },\n                  departure_date: {\n                    type: 'string',\n                    format: \"date\",\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"departure_date must not be empty\",\n                      format: \"departure_date format must be yyyy-mm-dd\"\n                    }\n                  },\n                  airline_code: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"airline_code must not be empty\"\n                    }\n                  }\n              },required: ['booking_first_name', 'booking_last_name', 'flight_status', 'pnr_status', 'booking_date', 'pnr_number', 'boarding_status', 'flight_number', 'departure_date', 'airline_code'],\n              errorMessage: {\n                required: {\n                  booking_first_name: \"booking_first_name extendedField is missing\",\n                  booking_last_name: \"booking_last_name extendedField is missing\",\n                  flight_status: \"flight_status extendedField is missing\",\n                  pnr_status: \"pnr_status extendedField is missing\",\n                  booking_date: \"booking_date extendedField is missing\",\n                  boarding_status: \"boarding_status extendedField is missing\",\n                  pnr_number: \"pnr_number extendedField is missing\",\n                  flight_number: \"flight_number extendedField is missing\",\n                  departure_date: \"departure_date extendedField is missing\",\n                  airline_code : \"airline_code extendedField is missing\"\n                }\n              }\n            },\n            customFields: {\n              type: 'object',\n              properties: {\n                  origin: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"origin must not be empty\"\n                    }\n                  },\n                  destination: {\n                    type: 'string',\n                    minLength: 1,\n                    \"errorMessage\": {\n                      minLength: \"destination must not be empty\"\n                    }\n                  }\n              },required: ['origin', 'destination'],\n              errorMessage: {\n                required: {\n                  origin: \"origin customField is missing\",\n                  destination: \"destination customField is missing\"\n                }\n              }\n            },\n            lineItemsV2: {\n              type: 'array',\n              minItems: 1,\n              items: {\n                type: 'object',\n                properties: {\n                  itemCode: {\n                    type: 'string',\n                    minLength: 1,\n                    errorMessage: {\n                      minLength: \"itemCode must not be empty\"\n                    }\n                  },\n                  amount: {\n                    type: 'number',\n                    minLength: 1,\n                    errorMessage: {\n                      minLength: \"amount must not be empty\"\n                    }\n                  }\n                },\n                required: ['itemCode', 'amount'],\n                errorMessage: {\n                  required: {\n                    itemCode: \"itemCode is missing\",\n                    amount: \"amount is missing\"\n                  }\n                }\n              }\n            }\n          },\n          required: ['identifierType', 'identifierValue', 'source', 'type', 'billNumber', 'billingDate', 'billAmount', 'extendedFields', 'customFields', 'lineItemsV2'],\n          errorMessage: {\n            required: {\n              identifierType: \"identifierType is missing\",\n              identifierValue: \"identifierValue is missing\",\n              source: \"source is missing\",\n              type: \"type is missing\",\n              billNumber: \"billNumber is missing\",\n              billingDate: \"billingDate is missing\",\n              billAmount: \"billAmount is missing\",\n              extendedFields : \"extendedFields are missing\",\n              customFields : \"customFields are missing\",\n              lineItemsV2 : \"lineItemsV2 are missing\"\n            }\n          }\n        }\n      }\n    }\n  }\n};\n\nexport {schema as default};"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        356,
+        356
+      ],
+      "raw": "Refer to this example [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/daec5cfa-be66-4d5d-b021-c2f45c3aa322/version/9204edc5-0386-4326-9ef8-9988fe690b64?ruleType=org) to understand how it is configured for a use case. Make sure that you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow to understand how it is configured for a use case. Make sure that you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 356
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        358,
+        358
+      ],
+      "raw": "# Configuring Schema block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Schema block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        360,
+        360
+      ],
+      "raw": "When you create a dataflow, the Schema block is created automatically along with the Trigger block. To configure the Schema block, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you create a dataflow, the Schema block is created automatically along with the Trigger block. To configure the Schema block, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        362,
+        367
+      ],
+      "raw": "1. From the dataflow canvas, hover on the **Schema** block and click the edit icon.\n2. In the **Block name** section, enter the block name.\\\n   **Note**: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n3. In the **Script** section, write a script to validate the input parameter.\n4. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n5. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, hover on the Schema block and click the edit icon.In the Block name section, enter the block name.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Script section, write a script to validate the input parameter.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 366
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 366
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 366
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        369,
+        369
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring Schema Block\" border={true} caption=\"Configuring Schema Block\" src=\"https://files.readme.io/f3e6189e4386467c63c97625cd6babab3500da90d0a41f703ad26a91aa440c52-13.02.2025_19.22.52_REC_configuring_schema.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring Schema Block",
+        "border": "{true}",
+        "caption": "Configuring Schema Block",
+        "src": "https://files.readme.io/f3e6189e4386467c63c97625cd6babab3500da90d0a41f703ad26a91aa440c52-13.02.2025_19.22.52_REC_configuring_schema.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": []
+    }
+  ]
+}

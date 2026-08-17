@@ -1,0 +1,1785 @@
+{
+  "slug": "docs/return-after-redemption-scenarios",
+  "source": "https://docs.capillarytech.com/docs/return-after-redemption-scenarios.md",
+  "url": "https://docs.capillarytech.com/docs/return-after-redemption-scenarios",
+  "title": "Return After Redemption Scenarios",
+  "description": "",
+  "section": "Use case based schema explain",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "list": 9,
+    "Table": 16,
+    "paragraph": 8
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Return after redemption scenarios",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Return after redemption scenarios",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Awarded and Deduction example entries",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Awarded and Deduction example entries",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "* We maintain all the points awarded in PA tables(warehouse.points\\_awarded, warehouse.points\\_awarded\\_lineitems) and all deductions in warehouse.points\\_deductions table. When any award happens entries go to PA tables. When any deductions(expiry, redemption, return) happens entries go to the PD table and we update the PA tables. PD tables entries will reference PA tables. Lets understand this with an example:\n* Award 100 points on 2 lineItems. Entries will go to points\\_awarded\\_lineitems table. There are other columns but we are ignoring those columns for now.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "We maintain all the points awarded in PA tables(warehouse.points_awarded, warehouse.points_awarded_lineitems) and all deductions in warehouse.points_deductions table. When any award happens entries go to PA tables. When any deductions(expiry, redemption, return) happens entries go to the PD table and we update the PA tables. PD tables entries will reference PA tables. Lets understand this with an example:Award 100 points on 2 lineItems. Entries will go to points_awarded_lineitems table. There are other columns but we are ignoring those columns for now.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        17
+      ],
+      "raw": "| id   | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | line\\_item\\_id | event\\_log\\_id |\n| ---- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------------- | -------------- |\n| PAL1 | 100     | 101         | 40.000        | 0               | 0               | 0              |              | L1             |                |\n| PAL2 | 100     | 101         | 60.000        | 0               | 0               | 0              |              | L2             |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "line_item_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PAL1",
+            "100",
+            "101",
+            "40.000",
+            "0",
+            "0",
+            "0",
+            "",
+            "L1",
+            ""
+          ],
+          [
+            "PAL2",
+            "100",
+            "101",
+            "60.000",
+            "0",
+            "0",
+            "0",
+            "",
+            "L2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "* Any deduction will make an entry in the PD table. Let's assume we do a redemption for 30 points and those 50 points and those 50 points come from PAL1(40 points) and PAL2(10 points). So the table will look like this.\\\n  deduction\\_summary\\_id -> warehouse.points\\_redemption\\_summary (this value can be -1 in case of expiry and returns)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Any deduction will make an entry in the PD table. Let's assume we do a redemption for 30 points and those 50 points and those 50 points come from PAL1(40 points) and PAL2(10 points). So the table will look like this.deduction_summary_id -> warehouse.points_redemption_summary (this value can be -1 in case of expiry and returns)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        25
+      ],
+      "raw": "| id  | org\\_id | program\\_id | points\\_deducted | deduction\\_type | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| --- | ------- | ----------- | ---------------- | --------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1 | 100     | 101         | 40.000           | REDEEMED        | PRS1                   | PA1         | PAL           |              |                |\n| PD2 | 100     | 101         | 10.000           | REDEEMED        | PRS1                   | PA2         | PAL           |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "40.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PAL",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PAL",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        30
+      ],
+      "raw": "| id   | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | line\\_item\\_id | event\\_log\\_id |\n| ---- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------------- | -------------- |\n| PAL1 | 100     | 101         | 40.000        | 40.000          | 0               | 0              |              | L1             |                |\n| PAL2 | 100     | 101         | 60.000        | 10.000          | 0               | 0              |              | L2             |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "line_item_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PAL1",
+            "100",
+            "101",
+            "40.000",
+            "40.000",
+            "0",
+            "0",
+            "",
+            "L1",
+            ""
+          ],
+          [
+            "PAL2",
+            "100",
+            "101",
+            "60.000",
+            "10.000",
+            "0",
+            "0",
+            "",
+            "L2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "* Now PAL2 have 50 points remaining on it and expiry runs expiry will make one more entry in PD table",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Now PAL2 have 50 points remaining on it and expiry runs expiry will make one more entry in PD table",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        34,
+        38
+      ],
+      "raw": "| id  | org\\_id | program\\_id | points\\_deducted | deduction\\_type | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| --- | ------- | ----------- | ---------------- | --------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1 | 100     | 101         | 40.000           | REDEEMED        | PRS1                   | PA1         | PAL           |              |                |\n| PD2 | 100     | 101         | 10.000           | REDEEMED        | PRS1                   | PA2         | PAL           |              |                |\n| PD3 | 100     | 101         | 50.000           | EXPIRED         | PRS1                   | PA2         | PAL           |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "40.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PAL",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PAL",
+            "",
+            ""
+          ],
+          [
+            "PD3",
+            "100",
+            "101",
+            "50.000",
+            "EXPIRED",
+            "PRS1",
+            "PA2",
+            "PAL",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        40,
+        43
+      ],
+      "raw": "| id   | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | line\\_item\\_id | event\\_log\\_id |\n| ---- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------------- | -------------- |\n| PAL1 | 100     | 101         | 40.000        | 40.000          | 0               | 0              |              | L1             |                |\n| PAL2 | 100     | 101         | 60.000        | 10.000          | 0               | 50.00          |              | L2             |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "line_item_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PAL1",
+            "100",
+            "101",
+            "40.000",
+            "40.000",
+            "0",
+            "0",
+            "",
+            "L1",
+            ""
+          ],
+          [
+            "PAL2",
+            "100",
+            "101",
+            "60.000",
+            "10.000",
+            "0",
+            "50.00",
+            "",
+            "L2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "Do note that the effective value of any PA entry never goes negative. Because we don't deduct more points than what is available there.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Do note that the effective value of any PA entry never goes negative. Because we don't deduct more points than what is available there.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "# Return After Redemption scenario:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Return After Redemption scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "Effective Value on a PA entry = points\\_value - redeemed\\_value - expired\\_value - returned\\_value",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Effective Value on a PA entry = points_value - redeemed_value - expired_value - returned_value",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "### Move points when other PA entry has some available points",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Move points when other PA entry has some available points",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "When we redeem points, the effective value on any PA entry decreases. When we make a return we are decreasing the effective points in that case as well. In that scenario, effective value might go negative. In those scenarios we try to move redeemed\\_value from one PA entry to another PA entry. Moving redeemed value here means that we un-redeem from one PA entry and redeem from another PA entry.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When we redeem points, the effective value on any PA entry decreases. When we make a return we are decreasing the effective points in that case as well. In that scenario, effective value might go negative. In those scenarios we try to move redeemed_value from one PA entry to another PA entry. Moving redeemed value here means that we un-redeem from one PA entry and redeem from another PA entry.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        55,
+        56
+      ],
+      "raw": "Example:\\\nFor simplicity, let's assume that we are earning points on the bill (warehouse.points\\_awarded table).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:For simplicity, let's assume that we are earning points on the bill (warehouse.points_awarded table).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        58,
+        59
+      ],
+      "raw": "1. A customer makes first Transaction T1 and earns 100 points (balance is 100 points)\n2. Customer makes T2 and he gets 150 points (balance is 250 points)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A customer makes first Transaction T1 and earns 100 points (balance is 100 points)Customer makes T2 and he gets 150 points (balance is 250 points)",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        61,
+        64
+      ],
+      "raw": "| id  | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | event\\_log\\_id |\n| --- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | -------------- |\n| PA1 | 100     | 101         | 100.000       | 0               | 0               | 0              |              | BILL-1   |                |\n| PA2 | 100     | 101         | 150.000       | 0               | 0               | 0              |              | BILL-2   |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PA1",
+            "100",
+            "101",
+            "100.000",
+            "0",
+            "0",
+            "0",
+            "",
+            "BILL-1",
+            ""
+          ],
+          [
+            "PA2",
+            "100",
+            "101",
+            "150.000",
+            "0",
+            "0",
+            "0",
+            "",
+            "BILL-2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "3. Customer redeems 110 points, let's assume that PA1(100 points)  + PA2(10 points) are consumed, entries will look like this. Points balance is 250-110 = 140",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer redeems 110 points, let's assume that PA1(100 points)  + PA2(10 points) are consumed, entries will look like this. Points balance is 250-110 = 140",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        68,
+        71
+      ],
+      "raw": "| id(PA) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | event\\_log\\_id |\n| ------ | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | -------------- |\n| PA1    | 100     | 101         | 100.000       | 100.00          | 0               | 0              |              | BILL-1   |                |\n| PA2    | 100     | 101         | 150.000       | 10.00           | 0               | 0              |              | BILL-2   |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PA)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PA1",
+            "100",
+            "101",
+            "100.000",
+            "100.00",
+            "0",
+            "0",
+            "",
+            "BILL-1",
+            ""
+          ],
+          [
+            "PA2",
+            "100",
+            "101",
+            "150.000",
+            "10.00",
+            "0",
+            "0",
+            "",
+            "BILL-2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        73,
+        76
+      ],
+      "raw": "| id(PD) | org\\_id | program\\_id | points\\_deducted | deduction\\_type | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| ------ | ------- | ----------- | ---------------- | --------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1    | 100     | 101         | 100.000          | REDEEMED        | PRS1                   | PA1         | PA            |              |                |\n| PD2    | 100     | 101         | 10.000           | REDEEMED        | PRS1                   | PA2         | PA            |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PD)",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "100.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "4. Now the customer returns Bill-1, this is the scenario of return after redemption. As you can see here, we have to move some points from PA1 to PA2. The reason is that PA1 is getting returned here fully. After return effective points become -100 on PA1. So to make effective points 0, we have to move redeemed\\_value from PA1 to some other place. As points are available on PA2, we move those points to PA2. We created PD4 and PD5 in this scenario. PD4 is a REDEEM\\_REVERTED entry. This entry is opposite to PD1. PD1 and PD4 suggest that PA1 effective redeemed\\_value is zero. PD3 is the RETURN deduction type and suggests that we have returned values as 100. PA1 effective values is ZERO as we have REDEEMED and REDEEM\\_REVERTED entry and one return entry for this. Balance is 140-100 = 40 points",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Now the customer returns Bill-1, this is the scenario of return after redemption. As you can see here, we have to move some points from PA1 to PA2. The reason is that PA1 is getting returned here fully. After return effective points become -100 on PA1. So to make effective points 0, we have to move redeemed_value from PA1 to some other place. As points are available on PA2, we move those points to PA2. We created PD4 and PD5 in this scenario. PD4 is a REDEEM_REVERTED entry. This entry is opposite to PD1. PD1 and PD4 suggest that PA1 effective redeemed_value is zero. PD3 is the RETURN deduction type and suggests that we have returned values as 100. PA1 effective values is ZERO as we have REDEEMED and REDEEM_REVERTED entry and one return entry for this. Balance is 140-100 = 40 points",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        80,
+        83
+      ],
+      "raw": "| id(PA) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | event\\_log\\_id |\n| ------ | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | -------------- |\n| PA1    | 100     | 101         | 100.000       | 0.00            | 100.00          | 0              |              | BILL-1   |                |\n| PA2    | 100     | 101         | 150.000       | 110.00          | 0               | 0              |              | BILL-2   |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PA)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PA1",
+            "100",
+            "101",
+            "100.000",
+            "0.00",
+            "100.00",
+            "0",
+            "",
+            "BILL-1",
+            ""
+          ],
+          [
+            "PA2",
+            "100",
+            "101",
+            "150.000",
+            "110.00",
+            "0",
+            "0",
+            "",
+            "BILL-2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        85,
+        91
+      ],
+      "raw": "| id(PD) | org\\_id | program\\_id | points\\_deducted | deduction\\_type  | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| ------ | ------- | ----------- | ---------------- | ---------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1    | 100     | 101         | 100.000          | REDEEMED         | PRS1                   | PA1         | PA            |              |                |\n| PD2    | 100     | 101         | 10.000           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |\n| PD3    | 100     | 101         | 100.00           | RETURN           | -1                     | PA1         | PA            |              |                |\n| PD4    | 100     | 101         | 100.00           | REDEEM\\_REVERTED | PRS1                   | PA1         | PA            |              |                |\n| PD5    | 100     | 101         | 100.00           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PD)",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "100.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD3",
+            "100",
+            "101",
+            "100.00",
+            "RETURN",
+            "-1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD4",
+            "100",
+            "101",
+            "100.00",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD5",
+            "100",
+            "101",
+            "100.00",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "### PABP negative scenario because of return after redemption",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "PABP negative scenario because of return after redemption",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        95,
+        97
+      ],
+      "raw": "* We will continue with the same example, As we can see here PA1 is fully consumed after return. PA2 has 40 points available. Balance is 40 points. Now let's assume the customer returns Bill-2 as well. So we will have to return 150 points from the customer balance. Balance becomes 40-150 = 110 points. This is clearly saying that the customer never earned points because he returned all the bills he made but he redeemed 110 points.\n\n* PA2 effective points are becoming -110 here. This means that we have to move the redeemed points from PA2 entry as well. But we don't have any other entry available where we can move these points. This is where the PABP negative entry will come into picture. We will un-redeem points from PA2. We will create an entry is points\\_awarded\\_bill\\_promotions (PABP) entry. It's points value is 0 but there will be redeemed\\_value on this entry. This PABP entry's effective value is negative, which we never allow to happen for the original entries in our system. But PABP negative entry is kind of exception and keep our tree balanced. The tables will look like this.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "We will continue with the same example, As we can see here PA1 is fully consumed after return. PA2 has 40 points available. Balance is 40 points. Now let's assume the customer returns Bill-2 as well. So we will have to return 150 points from the customer balance. Balance becomes 40-150 = 110 points. This is clearly saying that the customer never earned points because he returned all the bills he made but he redeemed 110 points.PA2 effective points are becoming -110 here. This means that we have to move the redeemed points from PA2 entry as well. But we don't have any other entry available where we can move these points. This is where the PABP negative entry will come into picture. We will un-redeem points from PA2. We will create an entry is points_awarded_bill_promotions (PABP) entry. It's points value is 0 but there will be redeemed_value on this entry. This PABP entry's effective value is negative, which we never allow to happen for the original entries in our system. But PABP negative entry is kind of exception and keep our tree balanced. The tables will look like this.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        99,
+        102
+      ],
+      "raw": "| id(PA) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | event\\_log\\_id |\n| ------ | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | -------------- |\n| PA1    | 100     | 101         | 100.000       | 0.00            | 100.00          | 0              |              | BILL-1   |                |\n| PA2    | 100     | 101         | 150.000       | 0.00            | 150             | 0              |              | BILL-2   |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PA)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PA1",
+            "100",
+            "101",
+            "100.000",
+            "0.00",
+            "100.00",
+            "0",
+            "",
+            "BILL-1",
+            ""
+          ],
+          [
+            "PA2",
+            "100",
+            "101",
+            "150.000",
+            "0.00",
+            "150",
+            "0",
+            "",
+            "BILL-2",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        104,
+        106
+      ],
+      "raw": "| id(PABP) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | promotion\\_id                     |\n| -------- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | --------------------------------- |\n| PABP1    | 100     | 101         | 0.00          | 110.00          | 0               | 0              |              | BILL-1   | return\\_promotion<br />(internal) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PABP)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "promotion_id"
+        ],
+        "rows": [
+          [
+            "PABP1",
+            "100",
+            "101",
+            "0.00",
+            "110.00",
+            "0",
+            "0",
+            "",
+            "BILL-1",
+            "return_promotion(internal)"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        108,
+        117
+      ],
+      "raw": "| id(PD) | org\\_id | program\\_id | points\\_deducted | deduction\\_type  | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| ------ | ------- | ----------- | ---------------- | ---------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1    | 100     | 101         | 100.000          | REDEEMED         | PRS1                   | PA1         | PA            |              |                |\n| PD2    | 100     | 101         | 10.000           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |\n| PD3    | 100     | 101         | 100.00           | RETURN           | -1                     | PA1         | PA            |              |                |\n| PD4    | 100     | 101         | 100.00           | REDEEM\\_REVERTED | PRS1                   | PA1         | PA            |              |                |\n| PD5    | 100     | 101         | 100.00           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |\n| PD6    | 100     | 101         | 150              | RETURN           | -1                     | PA2         | PA            |              |                |\n| PD7    | 100     | 101         | 110              | REDEEM\\_REVERTED | PRS1                   | PA2         | PA            |              |                |\n| PD8    | 100     | 101         | 110              | REDEEM           | PRS1                   | PABP(-ve)   | PABP          |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PD)",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "100.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD3",
+            "100",
+            "101",
+            "100.00",
+            "RETURN",
+            "-1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD4",
+            "100",
+            "101",
+            "100.00",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD5",
+            "100",
+            "101",
+            "100.00",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD6",
+            "100",
+            "101",
+            "150",
+            "RETURN",
+            "-1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD7",
+            "100",
+            "101",
+            "110",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD8",
+            "100",
+            "101",
+            "110",
+            "REDEEM",
+            "PRS1",
+            "PABP(-ve)",
+            "PABP",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "### PABP negative adjustment after PABP negative is created",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "PABP negative adjustment after PABP negative is created",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        121,
+        122
+      ],
+      "raw": "* Now we have understood the concept of PABP negative. But what happens to this entry in the future. Now, As we have balance is -100. If the customer does not earn any points in the future. This remains the state. But if the customer earns more points. Customer's balance will become positive.\n* For example if the customer earns 500 more points then balance becomes -110 + 500 = 390. So PA entry will look like this",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Now we have understood the concept of PABP negative. But what happens to this entry in the future. Now, As we have balance is -100. If the customer does not earn any points in the future. This remains the state. But if the customer earns more points. Customer's balance will become positive.For example if the customer earns 500 more points then balance becomes -110 + 500 = 390. So PA entry will look like this",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        124,
+        128
+      ],
+      "raw": "| id(PA) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | event\\_log\\_id |\n| ------ | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | -------------- |\n| PA1    | 100     | 101         | 100.000       | 0.00            | 100.00          | 0              |              | BILL-1   |                |\n| PA2    | 100     | 101         | 150.000       | 0.00            | 150             | 0              |              | BILL-2   |                |\n| PA3    | 100     | 101         | 500           | 0.00            | 0.00            | 0              |              | BILL-3   |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PA)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PA1",
+            "100",
+            "101",
+            "100.000",
+            "0.00",
+            "100.00",
+            "0",
+            "",
+            "BILL-1",
+            ""
+          ],
+          [
+            "PA2",
+            "100",
+            "101",
+            "150.000",
+            "0.00",
+            "150",
+            "0",
+            "",
+            "BILL-2",
+            ""
+          ],
+          [
+            "PA3",
+            "100",
+            "101",
+            "500",
+            "0.00",
+            "0.00",
+            "0",
+            "",
+            "BILL-3",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        130,
+        132
+      ],
+      "raw": "| id(PABP) | org\\_id | program\\_id | points\\_value | redeemed\\_value | returned\\_value | expired\\_value | expiry\\_date | bill\\_id | promotion\\_id                     |\n| -------- | ------- | ----------- | ------------- | --------------- | --------------- | -------------- | ------------ | -------- | --------------------------------- |\n| PABP1    | 100     | 101         | 0.00          | 0               | 0               | 0              |              | BILL-1   | return\\_promotion<br />(internal) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PABP)",
+          "org_id",
+          "program_id",
+          "points_value",
+          "redeemed_value",
+          "returned_value",
+          "expired_value",
+          "expiry_date",
+          "bill_id",
+          "promotion_id"
+        ],
+        "rows": [
+          [
+            "PABP1",
+            "100",
+            "101",
+            "0.00",
+            "0",
+            "0",
+            "0",
+            "",
+            "BILL-1",
+            "return_promotion(internal)"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 132
+        }
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "Now PABP1's effective value is zero and it's not an exceptional entry any more. PD will look like this.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Now PABP1's effective value is zero and it's not an exceptional entry any more. PD will look like this.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        136,
+        147
+      ],
+      "raw": "| id(PD) | org\\_id | program\\_id | points\\_deducted | deduction\\_type  | deduction\\_summary\\_id | PA\\_ref\\_id | PA\\_ref\\_type | deducted\\_on | event\\_log\\_id |\n| ------ | ------- | ----------- | ---------------- | ---------------- | ---------------------- | ----------- | ------------- | ------------ | -------------- |\n| PD1    | 100     | 101         | 100.000          | REDEEMED         | PRS1                   | PA1         | PA            |              |                |\n| PD2    | 100     | 101         | 10.000           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |\n| PD3    | 100     | 101         | 100.00           | RETURN           | -1                     | PA1         | PA            |              |                |\n| PD4    | 100     | 101         | 100.00           | REDEEM\\_REVERTED | PRS1                   | PA1         | PA            |              |                |\n| PD5    | 100     | 101         | 100.00           | REDEEMED         | PRS1                   | PA2         | PA            |              |                |\n| PD6    | 100     | 101         | 150.00           | RETURN           | -1                     | PA2         | PA            |              |                |\n| PD7    | 100     | 101         | 110.00           | REDEEM\\_REVERTED | PRS1                   | PA2         | PA            |              |                |\n| PD8    | 100     | 101         | 110.00           | REDEEM           | PRS1                   | PABP(-ve)   | PABP          |              |                |\n| PD9    | 100     | 101         | 110.00           | REDEEM\\_REVERTED | PRS1                   | PABP(-ve)   | PABP          |              |                |\n| PD10   | 100     | 101         | 110.00           | REDEEM           | PRS1                   | PABP(-ve)   | PABP          |              |                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "id(PD)",
+          "org_id",
+          "program_id",
+          "points_deducted",
+          "deduction_type",
+          "deduction_summary_id",
+          "PA_ref_id",
+          "PA_ref_type",
+          "deducted_on",
+          "event_log_id"
+        ],
+        "rows": [
+          [
+            "PD1",
+            "100",
+            "101",
+            "100.000",
+            "REDEEMED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD2",
+            "100",
+            "101",
+            "10.000",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD3",
+            "100",
+            "101",
+            "100.00",
+            "RETURN",
+            "-1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD4",
+            "100",
+            "101",
+            "100.00",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PA1",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD5",
+            "100",
+            "101",
+            "100.00",
+            "REDEEMED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD6",
+            "100",
+            "101",
+            "150.00",
+            "RETURN",
+            "-1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD7",
+            "100",
+            "101",
+            "110.00",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PA2",
+            "PA",
+            "",
+            ""
+          ],
+          [
+            "PD8",
+            "100",
+            "101",
+            "110.00",
+            "REDEEM",
+            "PRS1",
+            "PABP(-ve)",
+            "PABP",
+            "",
+            ""
+          ],
+          [
+            "PD9",
+            "100",
+            "101",
+            "110.00",
+            "REDEEM_REVERTED",
+            "PRS1",
+            "PABP(-ve)",
+            "PABP",
+            "",
+            ""
+          ],
+          [
+            "PD10",
+            "100",
+            "101",
+            "110.00",
+            "REDEEM",
+            "PRS1",
+            "PABP(-ve)",
+            "PABP",
+            "",
+            ""
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "When this adjustment is done in the flow:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When this adjustment is done in the flow:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        151,
+        153
+      ],
+      "raw": "* As of now this adjustment of points happens when the points expire, in points enquiry we check if any PABP negative entry is present or not.\n* If there is any PABP negative entry present, we adjust it first and remaining points are expires. It's quite possible points to expire are less than or equal to PABP negative entry redeemed value, in that case we make the adjustment but we don't expire anything.\n* If points to expire are more, we adjust all PABP negative entries and remaining points are expired. There can be more than one PABP negative present for a customer.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "As of now this adjustment of points happens when the points expire, in points enquiry we check if any PABP negative entry is present or not.If there is any PABP negative entry present, we adjust it first and remaining points are expires. It's quite possible points to expire are less than or equal to PABP negative entry redeemed value, in that case we make the adjustment but we don't expire anything.If points to expire are more, we adjust all PABP negative entries and remaining points are expired. There can be more than one PABP negative present for a customer.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        155,
+        156
+      ],
+      "raw": "**Note**:\\\nThis adjustment can be done when the customer is earning points. For example we have our balance as -110. So at this moment we know that PABP negative entry is present for sure. If a customer earns some points at this moment, then we know that we can make adjustments. As of now in the code flow we are not doing it. We are making adjustments only at the time of points expiry. But that's one more way to handle it, why to wait for points to expire to make the adjustments. This might change in future, we might start making PABP negative adjustments at the time of PA3 earning, when the customer's balance was negative and customer balance increased by some value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:This adjustment can be done when the customer is earning points. For example we have our balance as -110. So at this moment we know that PABP negative entry is present for sure. If a customer earns some points at this moment, then we know that we can make adjustments. As of now in the code flow we are not doing it. We are making adjustments only at the time of points expiry. But that's one more way to handle it, why to wait for points to expire to make the adjustments. This might change in future, we might start making PABP negative adjustments at the time of PA3 earning, when the customer's balance was negative and customer balance increased by some value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        158,
+        163
+      ],
+      "raw": "**Important terms:**\\\nPA - Points Awarded\nPAL - Points Awarded Line Items\nPALP-Points Awarded Line Item Promotion\nPABP -Points Awarded Bill Promotion\nPD -Points Deducted",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important terms:PA - Points Awarded\nPAL - Points Awarded Line Items\nPALP-Points Awarded Line Item Promotion\nPABP -Points Awarded Bill Promotion\nPD -Points Deducted",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

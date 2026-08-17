@@ -1,0 +1,503 @@
+{
+  "slug": "docs/copy-of-consuming-event-notifications",
+  "source": "https://docs.capillarytech.com/docs/copy-of-consuming-event-notifications.md",
+  "url": "https://docs.capillarytech.com/docs/copy-of-consuming-event-notifications",
+  "title": "Copy Of Consuming Event Notifications",
+  "description": "",
+  "section": "Event notification",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-22T10:45:28.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 15,
+    "blockquote": 1,
+    "list": 1,
+    "code": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Event Delivery and Reliability",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Event Delivery and Reliability",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Event delivery time",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Event delivery time",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Capillary delivers event notifications in near real time. 95% of events are published for delivery within about 2 to 3 minutes of being generated, at a sustained load of up to 50,000 requests per minute (RPM).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary delivers event notifications in near real time. 95% of events are published for delivery within about 2 to 3 minutes of being generated, at a sustained load of up to 50,000 requests per minute (RPM).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "After Capillary publishes an event, the total delivery time to the downstream application depends on how quickly your webhook accepts and responds to the request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After Capillary publishes an event, the total delivery time to the downstream application depends on how quickly your webhook accepts and responds to the request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "> **Note:** This delivery time covers Capillary's processing only. End-to-end delivery time also depends on your webhook's responsiveness.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: This delivery time covers Capillary's processing only. End-to-end delivery time also depends on your webhook's responsiveness.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# Handling event notification failures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling event notification failures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "An event notification fails whenever the event notifications do not get delivered to the Webhook. To make sure that the event notifications are delivered to the Webhook’s configured URL, Capillary analyses these failures and executes the retries accordingly.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An event notification fails whenever the event notifications do not get delivered to the Webhook. To make sure that the event notifications are delivered to the Webhook’s configured URL, Capillary analyses these failures and executes the retries accordingly.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "The failures are classified into two categories:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The failures are classified into two categories:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        24
+      ],
+      "raw": "1. Non-Retriable\n2. Retriable.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Non-RetriableRetriable.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Non-retriable failures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Non-retriable failures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Non-Retriable failures include issues such as `400 Bad Request errors`, which are unrecoverable, regardless of the number of retry attempts made. As a result, these events are permanently marked as failures and are not subject to further retry.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Non-Retriable failures include issues such as 400 Bad Request errors, which are unrecoverable, regardless of the number of retry attempts made. As a result, these events are permanently marked as failures and are not subject to further retry.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "## Retriable failures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Retriable failures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "Retriable failures, such as `429 Too Many Request errors`, are not specific to individual events but rather are based on the overall load or traffic of requests being sent to the system.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Retriable failures, such as 429 Too Many Request errors, are not specific to individual events but rather are based on the overall load or traffic of requests being sent to the system.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "When there are retrievable failures, the system uses a retry mechanism instead of continuously checking for new events. This mechanism involves resending the same event that encountered the failure for processing. This approach gives the system a chance to recover from Retriable failures caused by high request loads without overloading it with repeated requests",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When there are retrievable failures, the system uses a retry mechanism instead of continuously checking for new events. This mechanism involves resending the same event that encountered the failure for processing. This approach gives the system a chance to recover from Retriable failures caused by high request loads without overloading it with repeated requests",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "The retry strategy used includes exponential backoff. Exponential backoff is a delay strategy where the system waits for extended periods before attempting to resend the event. This helps prevent overwhelming the system with repeated requests.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The retry strategy used includes exponential backoff. Exponential backoff is a delay strategy where the system waits for extended periods before attempting to resend the event. This helps prevent overwhelming the system with repeated requests.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "This retry strategy continues for at least 7 days. During this time, the system keeps attempting to process the failed event. If it still cannot process, after this duration, it moves on to the next event in the processing queue.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This retry strategy continues for at least 7 days. During this time, the system keeps attempting to process the failed event. If it still cannot process, after this duration, it moves on to the next event in the processing queue.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "You can access detailed event information, including its current status, statistics, and detailed error messages in the event of a failure, through the event's log API endpoint, using the unique requestId associated with that particular event. For more information, refer to the documentation [Tracking Request](https://docs.capillarytech.com/reference/apioverview#tracking-request).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can access detailed event information, including its current status, statistics, and detailed error messages in the event of a failure, through the event's log API endpoint, using the unique requestId associated with that particular event. For more information, refer to the documentation Tracking Request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview#tracking-request",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "## Idempotency Check",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Idempotency Check",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "A timed-out event is an event that is received by the server, but a successful response is not sent back to Capillary. The event is again sent to the Webhook URL. Hence, Hence, the integration backend or server should be able to handle the same event multiple times.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A timed-out event is an event that is received by the server, but a successful response is not sent back to Capillary. The event is again sent to the Webhook URL. Hence, Hence, the integration backend or server should be able to handle the same event multiple times.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "A duplicate event can be identified by the “eventId” parameter in the event payload:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A duplicate event can be identified by the “eventId” parameter in the event payload:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        48,
+        57
+      ],
+      "raw": "```json\n{\n\"eventName\": “customerAdded”,\n\"eventId\": “GSjhsJ87484SdghD4747”,\n“orgId”: 1655\n“refId”: “1655_684494987”,\n“apiRequestId”: “sdjsj78378d3287”,\n\"createdAt\": 156474848484,\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n\"eventName\": “customerAdded”,\n\"eventId\": “GSjhsJ87484SdghD4747”,\n“orgId”: 1655\n“refId”: “1655_684494987”,\n“apiRequestId”: “sdjsj78378d3287”,\n\"createdAt\": 156474848484,\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        59,
+        61
+      ],
+      "raw": "> 📘\n>\n> If there is a duplicate eventId, the event should be ignored.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "If there is a duplicate eventId, the event should be ignored.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "## Data Enrichment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Data Enrichment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "Event payload contains short and optimal information. It does not contain complete information about its entities. For example, a transaction event contains identifiers and basic transaction information but does not contain other information such as custom fields, extended fields, or line item level information. To get complete information about an entity, you need to use the respective APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Event payload contains short and optimal information. It does not contain complete information about its entities. For example, a transaction event contains identifiers and basic transaction information but does not contain other information such as custom fields, extended fields, or line item level information. To get complete information about an entity, you need to use the respective APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "Refer to Event Payload to view the list of events and fields that are sent in the event notification.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to Event Payload to view the list of events and fields that are sent in the event notification.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "## Change Data Capture",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Change Data Capture",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "Update events such as customerUpdated, and transactionUpdated only notify that some update has occurred in the associated entities, but not contain information about the change in the entities. To identify the exact change, the integration service needs to call the respective APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Update events such as customerUpdated, and transactionUpdated only notify that some update has occurred in the associated entities, but not contain information about the change in the entities. To identify the exact change, the integration service needs to call the respective APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

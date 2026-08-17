@@ -1,0 +1,960 @@
+{
+  "slug": "docs/configuring-user-group-points",
+  "source": "https://docs.capillarytech.com/docs/configuring-user-group-points.md",
+  "url": "https://docs.capillarytech.com/docs/configuring-user-group-points",
+  "title": "Configuring User Group Points",
+  "description": "",
+  "section": "User Group Loyalty",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-02T06:38:52.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 23,
+    "list": 8,
+    "code": 3,
+    "Image": 4,
+    "br": 2,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Points Contribution and Deduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Points Contribution and Deduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configure earning, allocation, expiry, and redemption rules for a group wallet.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure earning, allocation, expiry, and redemption rules for a group wallet.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This page covers how to configure earning, allocation, expiry, and redemption rules for a group wallet in Loyalty+. For an explanation of how group points work conceptually, see the [introduction](./index.md) section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page covers how to configure earning, allocation, expiry, and redemption rules for a group wallet in Loyalty+. For an explanation of how group points work conceptually, see the introduction section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Configuring earning and allocation rules",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring earning and allocation rules",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "By default, a transaction issues points both to the member's individual wallet and their associated group's wallet. To direct points to just the group wallet instead, configure a mutually exclusive workflow in Loyalty+. This ensures a single transaction credits either the group wallet or the personal wallet, but not both.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, a transaction issues points both to the member's individual wallet and their associated group's wallet. To direct points to just the group wallet instead, configure a mutually exclusive workflow in Loyalty+. This ensures a single transaction credits either the group wallet or the personal wallet, but not both.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Before you begin, confirm the following prerequisites are in place:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before you begin, confirm the following prerequisites are in place:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        23
+      ],
+      "raw": "* User group loyalty is enabled for your organization.\n* A transaction-level extended field exists (for example, `member_card_swiped`) with values `Yes` and `No`.\n* Your POS or API integration passes this extended field in the `AddTransaction` payload: `Yes` for a group transaction, `No` or null for a standard individual transaction.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User group loyalty is enabled for your organization.A transaction-level extended field exists (for example, member_card_swiped) with values Yes and No.Your POS or API integration passes this extended field in the AddTransaction payload: Yes for a group transaction, No or null for a standard individual transaction.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "To configure the workflow:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the workflow:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        30
+      ],
+      "raw": "1. Go to **Loyalty+ > Programs** and select your program.\n2. Select **Edit Program**, then open the **Workflows** tab.\n3. Create a new workflow condition triggered by the **TransactionAdd** customer activity, or edit an existing one.\n4. In the **Expressions** box, add the following condition for individual transactions:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Go to Loyalty+ > Programs and select your program.Select Edit Program, then open the Workflows tab.Create a new workflow condition triggered by the TransactionAdd customer activity, or edit an existing one.In the Expressions box, add the following condition for individual transactions:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        32,
+        34
+      ],
+      "raw": "```\ncurrentTxn.extField_membership_card_swiped==\"No\" || currentTxn.extField_membership_card_swiped.isNull( )\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "currentTxn.extField_membership_card_swiped==\"No\" || currentTxn.extField_membership_card_swiped.isNull( )"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "In the above expression example, `membership_card_swiped` is the extended field enabled for identifying user group related transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the above expression example, membership_card_swiped is the extended field enabled for identifying user group related transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/45d79ebdcbec19f48693a109c5e97c0bb690446fbc04c732ed7dad6848425172-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/45d79ebdcbec19f48693a109c5e97c0bb690446fbc04c732ed7dad6848425172-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "5. Add a **Transaction points allocation** action and set  **User entity** to **Individual**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add a Transaction points allocation action and set  User entity to Individual.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/0cee93fde0448e9c4144bc02cf62d40a1635f6db24b500879944e44cd5a932bc-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/0cee93fde0448e9c4144bc02cf62d40a1635f6db24b500879944e44cd5a932bc-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        46,
+        48
+      ],
+      "raw": "6. Create a second condition, also triggered by **TransactionAdd**.\n\n7. In the **Expressions** box, add the following condition for group transactions:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create a second condition, also triggered by TransactionAdd.In the Expressions box, add the following condition for group transactions:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        50,
+        52
+      ],
+      "raw": "```\ncurrentTxn.extField_membership_card_swiped==\"Yes\"\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "currentTxn.extField_membership_card_swiped==\"Yes\""
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "In the above expression example, `membership_card_swiped` is the extended field enabled for identifying user group related transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the above expression example, membership_card_swiped is the extended field enabled for identifying user group related transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/b3eb887a5c4e46acd324fabae369cb555fdc5af1cd16750c4fd71a2e86f79ee3-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/b3eb887a5c4e46acd324fabae369cb555fdc5af1cd16750c4fd71a2e86f79ee3-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "7. Add a **Transaction points allocation** action and set  **User entity** to **User Group**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add a Transaction points allocation action and set  User entity to User Group.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/8f5965039b08a1f04027a030c836305f3b5ba51ab8c3a0f842b31096b43a8191-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/8f5965039b08a1f04027a030c836305f3b5ba51ab8c3a0f842b31096b43a8191-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "8. Select **Save and Continue**, then **Publish changes** to activate the workflow.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select Save and Continue, then Publish changes to activate the workflow.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "Once earning rules are in place, configure expiry conditions to control how long group points remain valid.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once earning rules are in place, configure expiry conditions to control how long group points remain valid.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "# Configuring currency expiry",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring currency expiry",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "Point expiry for group wallets can follow the same rules as individual expiry or use a separate configuration, depending on your program's needs. Both approaches are configured under the action in the **Workflows** section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Point expiry for group wallets can follow the same rules as individual expiry or use a separate configuration, depending on your program's needs. Both approaches are configured under the action in the Workflows section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "For fleet programs, enabling `FLEET_GROUP_LOYALTY_ENABLED` and setting the `FLEET_ENTITY_TYPE` parameter activates expiry logic for fleet group users. This applies to all group loyalty programs using the fleet construct.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For fleet programs, enabling FLEET_GROUP_LOYALTY_ENABLED and setting the FLEET_ENTITY_TYPE parameter activates expiry logic for fleet group users. This applies to all group loyalty programs using the fleet construct.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "For details on configuring expiry conditions in workflows, refer to the [Expiry Conditions](https://docs.capillarytech.com/docs/points#expiry-conditions) documentation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For details on configuring expiry conditions in workflows, refer to the Expiry Conditions documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points#expiry-conditions",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "With expiry defined, configure redemption rules to control how and when members can spend group points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With expiry defined, configure redemption rules to control how and when members can spend group points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "# Configuring redemption rules",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring redemption rules",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "To enable point redemption at the group level in a Multi-Loyalty Program (MLP) environment, the `ENABLE_GROUP_PROGRAMS_REDEMPTION` flag must be active for your organisation. Without this flag, redemption API calls at the group level will fail regardless of member permissions. To enable this, raise a JIRA ticket to the Capillary product support team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable point redemption at the group level in a Multi-Loyalty Program (MLP) environment, the ENABLE_GROUP_PROGRAMS_REDEMPTION flag must be active for your organisation. Without this flag, redemption API calls at the group level will fail regardless of member permissions. To enable this, raise a JIRA ticket to the Capillary product support team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "If your organisation uses a single loyalty program (not MLP), this flag is not be required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If your organisation uses a single loyalty program (not MLP), this flag is not be required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "Redemption permissions are controlled at the member level:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Redemption permissions are controlled at the member level:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        84,
+        86
+      ],
+      "raw": "* Primary members can always redeem from the shared wallet.\n* Secondary members can redeem only if the `allow_points_redemption` [permission](https://docs.capillarytech.com/docs/creating-and-managing-groups#assigning-permissions-to-a-member) is granted at join time.\n* To restrict a member from redeeming, pass `block_points_redemption` in as the [permission](https://docs.capillarytech.com/docs/creating-and-managing-groups#assigning-permissions-to-a-member)  when adding them to the group.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Primary members can always redeem from the shared wallet.Secondary members can redeem only if the allow_points_redemption permission is granted at join time.To restrict a member from redeeming, pass block_points_redemption in as the permission  when adding them to the group.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/creating-and-managing-groups#assigning-permissions-to-a-member",
+          "line": 85
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/creating-and-managing-groups#assigning-permissions-to-a-member",
+          "line": 86
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "In environments with multiple programs, you can also track group points separately per program.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In environments with multiple programs, you can also track group points separately per program.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "# Tracking points per program",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Tracking points per program",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "In a Multi-Loyalty Program (MLP) environment, you can configure the system to calculate and track group points separately per program rather than as a single combined total. When enabled, each program maintains its own independent points balance for the group.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In a Multi-Loyalty Program (MLP) environment, you can configure the system to calculate and track group points separately per program rather than as a single combined total. When enabled, each program maintains its own independent points balance for the group.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "**Example:** A group has members enrolled in Program A and Program B. Points earned via Program A transactions are tracked in the Program A group wallet, and points from Program B go into the Program B wallet. Redemptions draw from the respective program wallet, not a combined pool.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: A group has members enrolled in Program A and Program B. Points earned via Program A transactions are tracked in the Program A group wallet, and points from Program B go into the Program B wallet. Redemptions draw from the respective program wallet, not a combined pool.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "Enable the `CONF_ENABLE_GROUP_POINTS_BY_PROGRAM` flag by raising a JIRA ticket to the Capillary product support team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Enable the CONF_ENABLE_GROUP_POINTS_BY_PROGRAM flag by raising a JIRA ticket to the Capillary product support team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "Beyond earning and redemption, points can also be moved manually between individual accounts and group wallets.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Beyond earning and redemption, points can also be moved manually between individual accounts and group wallets.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "# Transferring points",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transferring points",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "Points can be transferred between individual accounts and group wallets using the [Transfer Group Points API](https://docs.capillarytech.com/reference/transfer-group-points) (`POST /v2/points/userGroup2/transfer`). The following transfer directions are supported:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Points can be transferred between individual accounts and group wallets using the Transfer Group Points API (POST /v2/points/userGroup2/transfer). The following transfer directions are supported:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/transfer-group-points",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        104,
+        106
+      ],
+      "raw": "* Individual to Group\n* Group to Individual\n* Group to Group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Individual to GroupGroup to IndividualGroup to Group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "To target a group wallet as the destination, set `\"type\": \"USERGROUP2\"` in the `toEntity` object. Without this, the transfer defaults to an individual account.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To target a group wallet as the destination, set \"type\": \"USERGROUP2\" in the toEntity object. Without this, the transfer defaults to an individual account.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "**Example request (individual to group):**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request (individual to group):",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        112,
+        134
+      ],
+      "raw": "```json\n{\n  \"pointsTobeTransferred\": 100,\n  \"programId\": 973,\n  \"notes\": \"Transferring points to group wallet\",\n  \"transferredBy\": {\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"565345942\",\n    \"source\": \"INSTORE\"\n  },\n  \"toEntity\": {\n    \"type\": \"USERGROUP2\",\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"3847940\",\n    \"source\": \"INSTORE\"\n  },\n  \"fromEntity\": {\n    \"type\": \"CUSTOMER\",\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"565345942\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"pointsTobeTransferred\": 100,\n  \"programId\": 973,\n  \"notes\": \"Transferring points to group wallet\",\n  \"transferredBy\": {\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"565345942\",\n    \"source\": \"INSTORE\"\n  },\n  \"toEntity\": {\n    \"type\": \"USERGROUP2\",\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"3847940\",\n    \"source\": \"INSTORE\"\n  },\n  \"fromEntity\": {\n    \"type\": \"CUSTOMER\",\n    \"identifierType\": \"id\",\n    \"identifierValue\": \"565345942\"\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        136,
+        139
+      ],
+      "raw": "> 📘 **Notes:**\n>\n> * Points aren't transferred automatically when members move between groups. Handle point transfers separately before initiating any member transfer.\n> * The `transferredBy` field must identify the same customer as `fromEntity`. You cannot initiate a transfer on behalf of another member.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Notes:Points aren't transferred automatically when members move between groups. Handle point transfers separately before initiating any member transfer.The transferredBy field must identify the same customer as fromEntity. You cannot initiate a transfer on behalf of another member.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        141,
+        141
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 141
+        }
+      ]
+    }
+  ]
+}

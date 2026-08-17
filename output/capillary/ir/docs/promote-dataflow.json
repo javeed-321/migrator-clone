@@ -1,0 +1,1543 @@
+{
+  "slug": "docs/promote-dataflow",
+  "source": "https://docs.capillarytech.com/docs/promote-dataflow.md",
+  "url": "https://docs.capillarytech.com/docs/promote-dataflow",
+  "title": "Promote Dataflow",
+  "description": "",
+  "section": "Manage Dataflow",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-18T13:25:07.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 21,
+    "paragraph": 25,
+    "Callout": 4,
+    "Table": 7,
+    "list": 10,
+    "Image": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Promoting Dataflows Across Organizations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Promoting Dataflows Across Organizations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Copy approved dataflows from one organization to another",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Copy approved dataflows from one organization to another",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The Promote feature in Neo allows you to push an approved or live dataflow from one organization to another within the same cluster. Unlike the copy-paste feature in aiRA Coder, Promote is built for controlled deployment; it checks permissions in both the source and target organizations, enforces organization type hierarchy, and transfers the complete dataflow configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Promote feature in Neo allows you to push an approved or live dataflow from one organization to another within the same cluster. Unlike the copy-paste feature in aiRA Coder, Promote is built for controlled deployment; it checks permissions in both the source and target organizations, enforces organization type hierarchy, and transfers the complete dataflow configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use Promote when you want to move an approved, production-ready dataflow to one or more target organizations so that teams in those organizations can use or build on it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use Promote when you want to move an approved, production-ready dataflow to one or more target organizations so that teams in those organizations can use or build on it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Currently, the Promote feature cannot be used for a dataflow that includes a [block from the library](https://docs.capillarytech.com/docs/block-libraries).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Currently, the Promote feature cannot be used for a dataflow that includes a block from the library.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        21
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  The current release supports single dataflow promotion within the same cluster.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteThe current release supports single dataflow promotion within the same cluster.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 6,
+          "lines": [
+            18,
+            18
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 7,
+          "lines": [
+            20,
+            20
+          ],
+          "raw": "  The current release supports single dataflow promotion within the same cluster.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "The current release supports single dataflow promotion within the same cluster.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# Promote vs. copy-paste",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Promote vs. copy-paste",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Both Promote and Copy-Paste (via aiRA Coder) allow you to move dataflow logic across organizations. The table below describes how they differ.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Both Promote and Copy-Paste (via aiRA Coder) allow you to move dataflow logic across organizations. The table below describes how they differ.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        36
+      ],
+      "raw": "| Aspect                   | Copy-Paste (aiRA Coder)                                               | Promote                                                                                                                     |\n| ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |\n| Access method            | Natural language prompts in aiRA Coder                                | *Promote* option on the dataflow version page                                                                               |\n| What is transferred      | Block structure only; Trigger block and tags are excluded             | Complete dataflow; block structure, configurations, method, URL, and API request block headers                              |\n| Eligible source versions | Any saved version                                                     | Approved and Live versions only                                                                                             |\n| Target dataflow state    | Draft                                                                 | Approved. A Draft version is also created automatically for further editing.                                                |\n| Validations              | Minimal                                                               | Validates organization registration, organization type hierarchy, module access, and user permissions in both organizations |\n| Target destination       | Any dataflow canvas in the target organization                        | A custom application in the target organization                                                                             |\n| Governance               | No hierarchy restrictions                                             | Enforces organization type promotion hierarchy                                                                              |\n| Primary use case         | Moving logic during development; quick transfers across organizations | Propagating approved dataflows across environments in a controlled manner                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Aspect",
+          "Copy-Paste (aiRA Coder)",
+          "Promote"
+        ],
+        "rows": [
+          [
+            "Access method",
+            "Natural language prompts in aiRA Coder",
+            "Promote option on the dataflow version page"
+          ],
+          [
+            "What is transferred",
+            "Block structure only; Trigger block and tags are excluded",
+            "Complete dataflow; block structure, configurations, method, URL, and API request block headers"
+          ],
+          [
+            "Eligible source versions",
+            "Any saved version",
+            "Approved and Live versions only"
+          ],
+          [
+            "Target dataflow state",
+            "Draft",
+            "Approved. A Draft version is also created automatically for further editing."
+          ],
+          [
+            "Validations",
+            "Minimal",
+            "Validates organization registration, organization type hierarchy, module access, and user permissions in both organizations"
+          ],
+          [
+            "Target destination",
+            "Any dataflow canvas in the target organization",
+            "A custom application in the target organization"
+          ],
+          [
+            "Governance",
+            "No hierarchy restrictions",
+            "Enforces organization type promotion hierarchy"
+          ],
+          [
+            "Primary use case",
+            "Moving logic during development; quick transfers across organizations",
+            "Propagating approved dataflows across environments in a controlled manner"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "# Key concepts",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Key concepts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "## Organization type",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Organization type",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "Every organization using the Promote feature must be Neo-enabled and assigned an organization type. The organization type defines the organization's role in the deployment pipeline.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Every organization using the Promote feature must be Neo-enabled and assigned an organization type. The organization type defines the organization's role in the deployment pipeline.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        44,
+        50
+      ],
+      "raw": "| Organization type | Description                            |\n| ----------------- | -------------------------------------- |\n| Dev               | Development environment                |\n| SIT               | System Integration Testing environment |\n| UAT               | User Acceptance Testing environment    |\n| Automation        | Automated testing environment          |\n| Prod              | Production environment                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Organization type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Dev",
+            "Development environment"
+          ],
+          [
+            "SIT",
+            "System Integration Testing environment"
+          ],
+          [
+            "UAT",
+            "User Acceptance Testing environment"
+          ],
+          [
+            "Automation",
+            "Automated testing environment"
+          ],
+          [
+            "Prod",
+            "Production environment"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "## Organization type hierarchy",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Organization type hierarchy",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "The organization type hierarchy controls which organization types can promote to which target organization types. This prevents untested dataflows from being pushed directly to production.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The organization type hierarchy controls which organization types can promote to which target organization types. This prevents untested dataflows from being pushed directly to production.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        56,
+        62
+      ],
+      "raw": "| Source organization type | Can promote to        |\n| ------------------------ | --------------------- |\n| Dev                      | DEV, UAT, SIT         |\n| SIT                      | SIT, PROD, AUTOMATION |\n| UAT                      | UAT, PROD, AUTOMATION |\n| AUTOMATION               | None                  |\n| Prod                     | None                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Source organization type",
+          "Can promote to"
+        ],
+        "rows": [
+          [
+            "Dev",
+            "DEV, UAT, SIT"
+          ],
+          [
+            "SIT",
+            "SIT, PROD, AUTOMATION"
+          ],
+          [
+            "UAT",
+            "UAT, PROD, AUTOMATION"
+          ],
+          [
+            "AUTOMATION",
+            "None"
+          ],
+          [
+            "Prod",
+            "None"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        64,
+        68
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  Downward promotion, for example, Prod to UAT is not permitted and you cannot skip organization types in the hierarchy.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteDownward promotion, for example, Prod to UAT is not permitted and you cannot skip organization types in the hierarchy.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 19,
+          "lines": [
+            65,
+            65
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 20,
+          "lines": [
+            67,
+            67
+          ],
+          "raw": "  Downward promotion, for example, Prod to UAT is not permitted and you cannot skip organization types in the hierarchy.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Downward promotion, for example, Prod to UAT is not permitted and you cannot skip organization types in the hierarchy.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "## Organization mapping",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Organization mapping",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "An organization mapping defines a directional relationship between a source organization and one or more target organizations. You must set up organization mappings before you can use the Promote feature.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An organization mapping defines a directional relationship between a source organization and one or more target organizations. You must set up organization mappings before you can use the Promote feature.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "## Relationship types",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Relationship types",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "When you add an organization mapping, you select a relationship type that describes how the source and target organizations are related.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you add an organization mapping, you select a relationship type that describes how the source and target organizations are related.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        78,
+        81
+      ],
+      "raw": "| Relationship Type | When to Use                                                                                                                                                                                            |\n| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Sibling**       | This relationship term is Neo-specific. Use when both organizations are at the same level in the hierarchy, for example, two Prod organizations or two UAT organizations that need to share dataflows. |\n| **Default**       | Use as a general-purpose relationship type.                                                                                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Relationship Type",
+          "When to Use"
+        ],
+        "rows": [
+          [
+            "Sibling",
+            "This relationship term is Neo-specific. Use when both organizations are at the same level in the hierarchy, for example, two Prod organizations or two UAT organizations that need to share dataflows."
+          ],
+          [
+            "Default",
+            "Use as a general-purpose relationship type."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        83,
+        87
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  All organization mappings are unidirectional in the UI. You define the relationship from the source organization's perspective.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteAll organization mappings are unidirectional in the UI. You define the relationship from the source organization's perspective.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 27,
+          "lines": [
+            84,
+            84
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 28,
+          "lines": [
+            86,
+            86
+          ],
+          "raw": "  All organization mappings are unidirectional in the UI. You define the relationship from the source organization's perspective.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "All organization mappings are unidirectional in the UI. You define the relationship from the source organization's perspective.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "Before you use the Promote feature, complete the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before you use the Promote feature, complete the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        93,
+        98
+      ],
+      "raw": "1. Neo must be enabled on both the source and target organizations.\n2. The source organization must be registered on the **Organization mappings** page with an assigned organization type.\n3. The target organization must also be registered on its own **Organization mappings** page.\n4. An organization mapping must exist from the source organization to the target organization.\n5. A custom application must exist in the target organization. You cannot promote to the Default or Middleware application.\n6. The user must have the **Neo Promote** permission set in both the source and the target organization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Neo must be enabled on both the source and target organizations.The source organization must be registered on the Organization mappings page with an assigned organization type.The target organization must also be registered on its own Organization mappings page.An organization mapping must exist from the source organization to the target organization.A custom application must exist in the target organization. You cannot promote to the Default or Middleware application.The user must have the Neo Promote permission set in both the source and the target organization.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "# Registering your organization and adding organization mappings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Registering your organization and adding organization mappings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "## Step 1: Navigate to the organization mappings page",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 1: Navigate to the organization mappings page",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        104,
+        106
+      ],
+      "raw": "1. Open the Neo extension portal: `{host url}/extensions/neo/ui`.\n2. Select your organization.\n3. Using the burger icon, navigate to the **Org Mapping** page.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the Neo extension portal: {host url}/extensions/neo/ui.Select your organization.Using the burger icon, navigate to the Org Mapping page.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/07928d35c8684d42279a573779ef28b800e5c6d93b44b9bae8a8fd838f56023d-Org_mapping.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/07928d35c8684d42279a573779ef28b800e5c6d93b44b9bae8a8fd838f56023d-Org_mapping.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "The **Organization Mapping Management** page opens.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Organization Mapping Management page opens.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "## Step 2: Register your organization",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 2: Register your organization",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        114,
+        117
+      ],
+      "raw": "1. Navigate to the **Current Organization** tab on the **Organization Mapping Management** page.\n2. From the **Organization Type** dropdown, select the type that applies to your organization.\\\n   Available options are Dev, SIT, UAT, Automation, Demo, and Prod.\n3. Click **Register Organization Mapping**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Current Organization tab on the Organization Mapping Management page.From the Organization Type dropdown, select the type that applies to your organization.Available options are Dev, SIT, UAT, Automation, Demo, and Prod.Click Register Organization Mapping.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/9d56a0ebbc00e444da07dbf26665379ef545691395dffce7df98d0c1ada7bc0e-register-organization.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/9d56a0ebbc00e444da07dbf26665379ef545691395dffce7df98d0c1ada7bc0e-register-organization.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "The organization is registered with Neo and assigned the selected organization type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The organization is registered with Neo and assigned the selected organization type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        123,
+        127
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  An organization with Neo enabled must still be explicitly registered on this page. Until it is registered, Neo does not recognize the organization for promotion, and you see an error when you attempt to add a mapping that includes it.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteAn organization with Neo enabled must still be explicitly registered on this page. Until it is registered, Neo does not recognize the organization for promotion, and you see an error when you attempt to add a mapping that includes it.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 42,
+          "lines": [
+            124,
+            124
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 43,
+          "lines": [
+            126,
+            126
+          ],
+          "raw": "  An organization with Neo enabled must still be explicitly registered on this page. Until it is registered, Neo does not recognize the organization for promotion, and you see an error when you attempt to add a mapping that includes it.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "An organization with Neo enabled must still be explicitly registered on this page. Until it is registered, Neo does not recognize the organization for promotion, and you see an error when you attempt to add a mapping that includes it.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "## Step 3: Add a related organization mapping",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 3: Add a related organization mapping",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        131,
+        148
+      ],
+      "raw": "1. Navigate to the **Related Organizations** tab on the **Organization Mapping Management** page.\n\n2. Click **Add Relation**.\\\n   **Add Related Organization** modal opens.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/582cadfb97da91c7dbd8bb114bce0af949092750c49fd02e2e1752dc84ab3b25-add_relation.png\" className=\"border\" />\n\n3. Select the **Target Organization** from the drop-down.\n   **Note**: If the target organization is not yet registered with Neo or does not have Neo enabled, an error appears. Register the target organization first before adding the mapping.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/bf48fe5b71589daa29147d44061315480a0869bc7357b9ff956de8cc6aa9c5eb-org.png\" className=\"border\" />\n\n4. Select the **Relation Type** from the drop-down.\\\n   The available options are Sibling and Default.\n\n5. Click **Add Relation**.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/cbe67bd3872639eb2bd48fa3e910ad3b26a197babafb1d7f670b387a4885b704-add_relation_final.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Related Organizations tab on the Organization Mapping Management page.Click Add Relation.Add Related Organization modal opens.Select the Target Organization from the drop-down.\nNote: If the target organization is not yet registered with Neo or does not have Neo enabled, an error appears. Register the target organization first before adding the mapping.Select the Relation Type from the drop-down.The available options are Sibling and Default.Click Add Relation.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "The mapping is added. Repeat this step for each additional organization you want to promote to.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The mapping is added. Repeat this step for each additional organization you want to promote to.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "# Promoting a dataflow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Promoting a dataflow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "You can promote a dataflow when the version is in Approved or Live status, the source and target organizations are mapped, a custom application exists in the target organization, and the user has the `Neo Promote` permission in both organizations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can promote a dataflow when the version is in Approved or Live status, the source and target organizations are mapped, a custom application exists in the target organization, and the user has the Neo Promote permission in both organizations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "## Steps to promote a dataflow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Steps to promote a dataflow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        158,
+        180
+      ],
+      "raw": "1. Navigate to the Dataflow Version page of the dataflow that you want to promote.\n\n2. Open an **Approved** or **Live** version of the dataflow.\n\n3. Click on the Promote dataflow icon.\\\n   The **Promote Dataflow** modal opens.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/c1e43416c03500c568f66666a2f6354e38af5628cfc47bc880fb42f411ca9a94-promote_workflow_horizontal.png\" className=\"border\" />\n\n4. From the **Target Organization** dropdown, select the target organization.\\\n   **Note**: Only organizations that are mapped to the current organization and are of a promotable organization type appear in the list.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/3411bacda885ee0b47c00a3093cfef6ca57e73b2ec7f14cf85ca9b738e7e4016-promote_target_org_dropdown.png\" className=\"border\" />\n\n5. From the **Target Application** dropdown, select the custom application in the target organization where you want to promote the dataflow.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/86c8fd5bfab316530619719a86a87ed0635343f5d58fa3a4da048a2d990c6cbe-target_application.png\" className=\"border\" />\n\n   **Note**: If no custom applications exist in the target organization, this field is empty, and an informational message appears. Create a custom application in the target organization before retrying.\n\n6. Click **Promote**.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/0ba644238f100a76c37d5557f8393387f7341cf44122dd31efdefbd76ffcbf70-promote_highlighted.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Dataflow Version page of the dataflow that you want to promote.Open an Approved or Live version of the dataflow.Click on the Promote dataflow icon.The Promote Dataflow modal opens.From the Target Organization dropdown, select the target organization.Note: Only organizations that are mapped to the current organization and are of a promotable organization type appear in the list.From the Target Application dropdown, select the custom application in the target organization where you want to promote the dataflow.Note: If no custom applications exist in the target organization, this field is empty, and an informational message appears. Create a custom application in the target organization before retrying.Click Promote.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "Neo validates the promotion request before proceeding. Validations include:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Neo validates the promotion request before proceeding. Validations include:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        184,
+        187
+      ],
+      "raw": "* The target organization is registered and Neo-enabled.\n* The organization type hierarchy permits the promotion.\n* The target organization has access to the required module.\n* The user has the Neo Promote permission in both organizations.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The target organization is registered and Neo-enabled.The organization type hierarchy permits the promotion.The target organization has access to the required module.The user has the Neo Promote permission in both organizations.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "If all validations pass, the dataflow is promoted. If any validation fails, an error message is displayed describing the issue.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If all validations pass, the dataflow is promoted. If any validation fails, an error message is displayed describing the issue.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "# What happens after promotion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "What happens after promotion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        193,
+        199
+      ],
+      "raw": "* An **Approved version** of the dataflow is created in the target organization, under the selected custom application.\n* A **Draft version** is also created automatically, so the team in the target organization can make further modifications.\n* The promoted dataflow retains the same trigger URL, HTTP method, block structure, block configurations, and headers from the source.\n* The promotion is recorded in the dataflow history, showing the source organization, target organization, and whether the promotion succeeded or failed.\n* The promote icon on the dataflow canvas turns yellow to indicate that the dataflow has been promoted.\n\n  <Image align=\"center\" border={true} src=\"https://files.readme.io/0abc817da29ddc356d8c5c6fe1c765574301982b1e7e563e1ce02c1e1d942274-Screenshot_2026-03-18_at_3.34.11_PM.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "An Approved version of the dataflow is created in the target organization, under the selected custom application.A Draft version is also created automatically, so the team in the target organization can make further modifications.The promoted dataflow retains the same trigger URL, HTTP method, block structure, block configurations, and headers from the source.The promotion is recorded in the dataflow history, showing the source organization, target organization, and whether the promotion succeeded or failed.The promote icon on the dataflow canvas turns yellow to indicate that the dataflow has been promoted.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        201,
+        201
+      ],
+      "raw": "# Promotion uniqueness rules",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Promotion uniqueness rules",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "Neo uses the combination of trigger URL and HTTP method to determine how a promoted dataflow maps to an existing dataflow in the target organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Neo uses the combination of trigger URL and HTTP method to determine how a promoted dataflow maps to an existing dataflow in the target organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        205,
+        208
+      ],
+      "raw": "* If the target organization already contains a dataflow with the same trigger URL and HTTP method, Neo automatically routes the promotion to the application that already contains that dataflow. You cannot select a different application in this case.\n* If the trigger URL and method combination is new to the target organization, you can select any custom application as the destination.\n* You cannot promote the same version to the same target organization more than once. If a new version is approved, you can promote it again.\n* If the trigger URL changes between versions, Neo treats the promoted dataflow as a new dataflow and creates it separately. Promotion history is not tracked across such URL changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the target organization already contains a dataflow with the same trigger URL and HTTP method, Neo automatically routes the promotion to the application that already contains that dataflow. You cannot select a different application in this case.If the trigger URL and method combination is new to the target organization, you can select any custom application as the destination.You cannot promote the same version to the same target organization more than once. If a new version is approved, you can promote it again.If the trigger URL changes between versions, Neo treats the promoted dataflow as a new dataflow and creates it separately. Promotion history is not tracked across such URL changes.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "# Promoting multiple times",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Promoting multiple times",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        212,
+        214
+      ],
+      "raw": "* A single approved version can be promoted to multiple target organizations, one at a time.\n* The same version cannot be promoted to the same organization twice.\n* After a new version is approved, it can be promoted to any organization — including organizations that received a previous version.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A single approved version can be promoted to multiple target organizations, one at a time.The same version cannot be promoted to the same organization twice.After a new version is approved, it can be promoted to any organization — including organizations that received a previous version.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "# What is transferred during promotion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "What is transferred during promotion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        218,
+        222
+      ],
+      "raw": "| Element                       | Transferred? |\n| ----------------------------- | ------------ |\n| Block configurations          | ✅ Yes        |\n| Headers in API Request blocks | ✅ Yes        |\n| Tags                          | ❌ No         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Element",
+          "Transferred?"
+        ],
+        "rows": [
+          [
+            "Block configurations",
+            "✅ Yes"
+          ],
+          [
+            "Headers in API Request blocks",
+            "✅ Yes"
+          ],
+          [
+            "Tags",
+            "❌ No"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "# Eligible dataflows for promotion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Eligible dataflows for promotion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        226,
+        232
+      ],
+      "raw": "| Dataflow State    | Eligible for Promotion? |\n| ----------------- | ----------------------- |\n| Approved          | ✅ Yes                   |\n| Live              | ✅ Yes                   |\n| Draft             | ❌ No                    |\n| Awaiting approval | ❌ No                    |\n| Rejected          | ❌ No                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dataflow State",
+          "Eligible for Promotion?"
+        ],
+        "rows": [
+          [
+            "Approved",
+            "✅ Yes"
+          ],
+          [
+            "Live",
+            "✅ Yes"
+          ],
+          [
+            "Draft",
+            "❌ No"
+          ],
+          [
+            "Awaiting approval",
+            "❌ No"
+          ],
+          [
+            "Rejected",
+            "❌ No"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "# Supported targets",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Supported targets",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        236,
+        242
+      ],
+      "raw": "| Target                                            | Supported? |\n| ------------------------------------------------- | ---------- |\n| Another organization in the same cluster          | ✅ Yes      |\n| Organization of the same type, example UAT to UAT | ✅ Yes      |\n| Custom application in the target organization     | ✅ Yes      |\n| Default application in the target organization    | ❌ No       |\n| Middleware application in the target organization | ❌ No       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Target",
+          "Supported?"
+        ],
+        "rows": [
+          [
+            "Another organization in the same cluster",
+            "✅ Yes"
+          ],
+          [
+            "Organization of the same type, example UAT to UAT",
+            "✅ Yes"
+          ],
+          [
+            "Custom application in the target organization",
+            "✅ Yes"
+          ],
+          [
+            "Default application in the target organization",
+            "❌ No"
+          ],
+          [
+            "Middleware application in the target organization",
+            "❌ No"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "# FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        246,
+        280
+      ],
+      "raw": "1. **Can I promote from SIT to Dev?**\n\n   No. The hierarchy only allows upward promotion (Dev → SIT → UAT → Prod). Downward promotion is not permitted. Also,\n\n2. **What happens if the target organization has no custom applications?**\n\n   The promotion does not proceed. You must create a custom application in the target organization before retrying.\n\n3. **Can I promote to the Default application?**\n\n   No. Neo requires that you promote to a custom application. This is enforced to encourage organized grouping of dataflows within applications.\n\n4. **Is the Promote feature the same as copy-paste in aiRA Coder?**\n\n   No. See [Promote vs. Copy-Paste](#promote-vs-copy-paste) for a detailed comparison.\n\n5. **Can two organizations of the same type promote to each other?**\n\n   Yes. For example, two UAT organizations or two Prod organizations can promote dataflows to each other using a Sibling relationship.\n\n6. **Does a promoted dataflow go live automatically?**\n\n   No. An approved version and a draft version are created in the target organization. The team in the target organization must review and make the dataflow live manually.\n\n7. **What permissions does a user need to promote a dataflow?**\n\n   The user must have the **Neo Promote** permission set assigned in both the source and the target organization.\n\n8. **Can I promote global dataflows?**\n\n   Yes, global dataflows are eligible for promotion provided Neo is enabled and the organization is registered.\n\n9. **Can I promote a dataflow from one production organization to another?**\n\n   No, you cannot promote dataflows from production organizations to any other organization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Can I promote from SIT to Dev?No. The hierarchy only allows upward promotion (Dev → SIT → UAT → Prod). Downward promotion is not permitted. Also,What happens if the target organization has no custom applications?The promotion does not proceed. You must create a custom application in the target organization before retrying.Can I promote to the Default application?No. Neo requires that you promote to a custom application. This is enforced to encourage organized grouping of dataflows within applications.Is the Promote feature the same as copy-paste in aiRA Coder?No. See Promote vs. Copy-Paste for a detailed comparison.Can two organizations of the same type promote to each other?Yes. For example, two UAT organizations or two Prod organizations can promote dataflows to each other using a Sibling relationship.Does a promoted dataflow go live automatically?No. An approved version and a draft version are created in the target organization. The team in the target organization must review and make the dataflow live manually.What permissions does a user need to promote a dataflow?The user must have the Neo Promote permission set assigned in both the source and the target organization.Can I promote global dataflows?Yes, global dataflows are eligible for promotion provided Neo is enabled and the organization is registered.Can I promote a dataflow from one production organization to another?No, you cannot promote dataflows from production organizations to any other organization.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        282,
+        282
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 282
+        }
+      ]
+    }
+  ]
+}

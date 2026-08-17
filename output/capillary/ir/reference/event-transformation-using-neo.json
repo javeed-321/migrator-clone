@@ -1,0 +1,585 @@
+{
+  "slug": "reference/event-transformation-using-neo",
+  "source": "https://docs.capillarytech.com/reference/event-transformation-using-neo.md",
+  "url": "https://docs.capillarytech.com/reference/event-transformation-using-neo",
+  "title": "Event Transformation Using Neo",
+  "description": "",
+  "section": "Event Transformation for Cortex Search",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 13,
+    "paragraph": 7,
+    "list": 1,
+    "Callout": 1,
+    "code": 6,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Event Transformation for Cortex Search",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Event Transformation for Cortex Search",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Neo Event Transformation is a service that takes complex customer and transaction events and turns them into a simple, consistent format. This optimizes the event for search indexing. By removing extra layers and standardizing fields, it makes the data easy to search and analyse.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Neo Event Transformation is a service that takes complex customer and transaction events and turns them into a simple, consistent format. This optimizes the event for search indexing. By removing extra layers and standardizing fields, it makes the data easy to search and analyse.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**Custom Event Transformation**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Custom Event Transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "You can also define custom transformations for customer and transaction events. For example, if you want to remove the country code from mobile numbers so users can search without it, you can configure an event transformation using Neo that removes the prefix before the data is indexed. Once you publish and enable this custom logic, any search using just the local mobile number will return the correct results.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can also define custom transformations for customer and transaction events. For example, if you want to remove the country code from mobile numbers so users can search without it, you can configure an event transformation using Neo that removes the prefix before the data is indexed. Once you publish and enable this custom logic, any search using just the local mobile number will return the correct results.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Default Event Transformation Behaviour",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Default Event Transformation Behaviour",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "If no custom logic is configured, the Cortex Search framework applies  [Global dataflows](https://docs.capillarytech.com/docs/dataflows#dataflows-in-neo) created on Neo for events related to **[Customer](https://eu.intouch.capillarytech.com/extensions/neo/ui/2a793a1f-7367-4219-a74b-dc0d7e3d1c0c/version/list?ruleType=global)** and **[Transaction](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/7739b794-6be1-437d-a53b-6b5a2bf6d0d3/version/37d52c3f-77a0-4ef9-8402-bdea2858fef1?ruleType=global)** entities. This default transformation extracts relevant fields, restructures custom and extended attributes into searchable formats, and standardises identifiers and other commonly used attributes. This ensures that incoming events are consistently formatted and optimised for indexing in Cortex Search. These are applied automatically unless you override them.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If no custom logic is configured, the Cortex Search framework applies  Global dataflows created on Neo for events related to Customer and Transaction entities. This default transformation extracts relevant fields, restructures custom and extended attributes into searchable formats, and standardises identifiers and other commonly used attributes. This ensures that incoming events are consistently formatted and optimised for indexing in Cortex Search. These are applied automatically unless you override them.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows#dataflows-in-neo",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Customising Event Transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Customising Event Transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "You can configure a custom event transformation if the default transformation doesn’t meet your organisation’s requirements. This allows you to define how event data should be modified before being indexed in Cortex Search.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can configure a custom event transformation if the default transformation doesn’t meet your organisation’s requirements. This allows you to define how event data should be modified before being indexed in Cortex Search.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "To implement a custom transformation, you can [create a new event transformation dataflow](https://docs.capillarytech.com/docs/composing-a-neo_dataflow) in Neo for your organisation. The global dataflows available for both Customer and Transaction events can be used as a starting point. Copy the `Event Router` script from the relevant global dataflow, modify it to suit your needs, and publish your new dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To implement a custom transformation, you can create a new event transformation dataflow in Neo for your organisation. The global dataflows available for both Customer and Transaction events can be used as a starting point. Copy the Event Router script from the relevant global dataflow, modify it to suit your needs, and publish your new dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/composing-a-neo_dataflow",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Once published and [enabled](https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search) for your organisation, this custom logic will override the global transformation for that entity type and will be applied to new search criteria that you create.  You can [disable ](https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search)the custom config using the API and can also apply other custom logic as per your requirement. Only one active custom configuration can exist for a given entity type within an organisation at any time.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once published and enabled for your organisation, this custom logic will override the global transformation for that entity type and will be applied to new search criteria that you create.  You can disable the custom config using the API and can also apply other custom logic as per your requirement. Only one active custom configuration can exist for a given entity type within an organisation at any time.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search",
+          "line": 25
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "### Benefits",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Benefits",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        33
+      ],
+      "raw": "* **Organization-Specific Transformations:** Configure transformations tailored to your organization's needs\n* **Per-Entity Type Configuration:** Set different transformation endpoints for customers, transactions, and other entity types\n* **Flexible Deployment:** Use either organization-specific or global default transformations\n* **Easy Management:** Simple API for creating, updating, and managing transformation configurations\n* **Enhanced Transformation Capabilities:** Support for complex business logic that goes beyond simple mapping",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Organization-Specific Transformations: Configure transformations tailored to your organization's needsPer-Entity Type Configuration: Set different transformation endpoints for customers, transactions, and other entity typesFlexible Deployment: Use either organization-specific or global default transformationsEasy Management: Simple API for creating, updating, and managing transformation configurationsEnhanced Transformation Capabilities: Support for complex business logic that goes beyond simple mapping",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        37
+      ],
+      "raw": "> 👍 Note\n>\n> Ensure your custom transformation endpoint includes proper error handling and returns descriptive error messages when transformations fail.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteEnsure your custom transformation endpoint includes proper error handling and returns descriptive error messages when transformations fail.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "# Examples for Custom Transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Examples for Custom Transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "## Transaction Events Example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Events Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "### **Configuration**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        45,
+        52
+      ],
+      "raw": "```json\n{\n  \"orgId\": 15511,\n  \"entityType\": \"TRANSACTION\",\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"orgId\": 15511,\n  \"entityType\": \"TRANSACTION\",\n  \"transformEndpoint\": \"/transform/transaction/custom\",\n  \"active\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "### **Input Event**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Input Event",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        56,
+        117
+      ],
+      "raw": "```json\n{\n  \"eventId\": \"756748cd-54a5-41ab-ac7e-ecc47b34e1df\",\n  \"eventType\": \"15511_transactionAdded\",\n  \"consumerGroupId\": \"\",\n  \"actionType\": \"START\",\n  \"timeStamp\": 1683543603022,\n  \"attributes\": {\n    \"eventName\": \"transactionAdded\",\n    \"data\": {\n      \"amount\": 200,\n      \"billNumber\": \"2023-05-12_44\",\n      \"enteredAt\": 1684836269988,\n      \"billDate\": 1684836269988,\n      \"transactionId\": 2149289332,\n      \"deliveryStatus\": \"SHIPPED\",\n      \"billType\": \"REGULAR\",\n      \"lineItemCount\": 2,\n      \"discount\": 10,\n      \"grossAmount\": 110,\n      \"enteredBy\": {\n        \"id\": 15071481,\n        \"till\": {\n          \"code\": \"cm.1\",\n          \"name\": \"cm.1\"\n        },\n        \"store\": {\n          \"code\": \"mergestore1\",\n          \"name\": \"MERGE FRONT ONE\",\n          \"externalId\": \"aS123\",\n          \"externalId1\": \"Q123\",\n          \"externalId2\": \"ASDA123\"\n        }\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 424872520,\n        \"loyaltyType\": \"loyalty\",\n        \"instore\": {\n          \"mobile\": \"919755252060\",\n          \"email\": \"tomholland@gmail.com\"\n        }\n      },\n      \"customFields\": [\n        {\n          \"key\": \"field2\",\n          \"value\": \"10\"\n        }\n      ],\n      \"extendedFields\": [\n        {\n          \"key\": \"field4\",\n          \"value\": \"25.24\"\n        }\n      ]\n    },\n    \"orgId\": 15511,\n    \"refId\": \"15511_2149289332\",\n    \"apiRequestId\": \"7d408f9c7531f28ef7298a5668eacdd6\",\n    \"createdAt\": 1684836270214\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"eventId\": \"756748cd-54a5-41ab-ac7e-ecc47b34e1df\",\n  \"eventType\": \"15511_transactionAdded\",\n  \"consumerGroupId\": \"\",\n  \"actionType\": \"START\",\n  \"timeStamp\": 1683543603022,\n  \"attributes\": {\n    \"eventName\": \"transactionAdded\",\n    \"data\": {\n      \"amount\": 200,\n      \"billNumber\": \"2023-05-12_44\",\n      \"enteredAt\": 1684836269988,\n      \"billDate\": 1684836269988,\n      \"transactionId\": 2149289332,\n      \"deliveryStatus\": \"SHIPPED\",\n      \"billType\": \"REGULAR\",\n      \"lineItemCount\": 2,\n      \"discount\": 10,\n      \"grossAmount\": 110,\n      \"enteredBy\": {\n        \"id\": 15071481,\n        \"till\": {\n          \"code\": \"cm.1\",\n          \"name\": \"cm.1\"\n        },\n        \"store\": {\n          \"code\": \"mergestore1\",\n          \"name\": \"MERGE FRONT ONE\",\n          \"externalId\": \"aS123\",\n          \"externalId1\": \"Q123\",\n          \"externalId2\": \"ASDA123\"\n        }\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 424872520,\n        \"loyaltyType\": \"loyalty\",\n        \"instore\": {\n          \"mobile\": \"919755252060\",\n          \"email\": \"tomholland@gmail.com\"\n        }\n      },\n      \"customFields\": [\n        {\n          \"key\": \"field2\",\n          \"value\": \"10\"\n        }\n      ],\n      \"extendedFields\": [\n        {\n          \"key\": \"field4\",\n          \"value\": \"25.24\"\n        }\n      ]\n    },\n    \"orgId\": 15511,\n    \"refId\": \"15511_2149289332\",\n    \"apiRequestId\": \"7d408f9c7531f28ef7298a5668eacdd6\",\n    \"createdAt\": 1684836270214\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "### **Transformed Output**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Transformed Output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        121,
+        158
+      ],
+      "raw": "```json\n{\n  \"eventName\": \"transactionAdded\",\n  \"amount\": 200,\n  \"billnumber\": \"2023-05-12_44\",\n  \"enteredAt\": 1684836269988,\n  \"billdate\": 1684836269988,\n  \"entityId\": 2149289332,\n  \"deliveryStatus\": \"SHIPPED\",\n  \"entityReference\": \"REGULAR\",\n  \"entityreference\": \"REGULAR\",\n  \"lineItemCount\": 2,\n  \"discount\": 10,\n  \"grossAmount\": 110,\n  \"additionalfields\": {\n    \"storecode\": \"mergestore1\",\n    \"storename\": \"MERGE FRONT ONE\"\n  },\n  \"customerIdentifiers\": {\n    \"customerId\": 424872520,\n    \"loyaltyType\": \"loyalty\",\n    \"instore\": {\n      \"mobile\": \"919755252060\",\n      \"email\": \"tomholland@gmail.com\"\n    }\n  },\n  \"customfields\": {\n    \"field2\": \"10\"\n  },\n  \"extendedfields\": {\n    \"field4\": \"25.24\"\n  },\n  \"orgId\": 15511,\n  \"refId\": \"15511_2149289332\",\n  \"apiRequestId\": \"7d408f9c7531f28ef7298a5668eacdd6\",\n  \"createdOn\": 1684836270214\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"eventName\": \"transactionAdded\",\n  \"amount\": 200,\n  \"billnumber\": \"2023-05-12_44\",\n  \"enteredAt\": 1684836269988,\n  \"billdate\": 1684836269988,\n  \"entityId\": 2149289332,\n  \"deliveryStatus\": \"SHIPPED\",\n  \"entityReference\": \"REGULAR\",\n  \"entityreference\": \"REGULAR\",\n  \"lineItemCount\": 2,\n  \"discount\": 10,\n  \"grossAmount\": 110,\n  \"additionalfields\": {\n    \"storecode\": \"mergestore1\",\n    \"storename\": \"MERGE FRONT ONE\"\n  },\n  \"customerIdentifiers\": {\n    \"customerId\": 424872520,\n    \"loyaltyType\": \"loyalty\",\n    \"instore\": {\n      \"mobile\": \"919755252060\",\n      \"email\": \"tomholland@gmail.com\"\n    }\n  },\n  \"customfields\": {\n    \"field2\": \"10\"\n  },\n  \"extendedfields\": {\n    \"field4\": \"25.24\"\n  },\n  \"orgId\": 15511,\n  \"refId\": \"15511_2149289332\",\n  \"apiRequestId\": \"7d408f9c7531f28ef7298a5668eacdd6\",\n  \"createdOn\": 1684836270214\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "## Customer Events Example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Customer Events Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "### **Configuration**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        166,
+        173
+      ],
+      "raw": "```json\n{\n  \"orgId\": 150698,\n  \"entityType\": \"CUSTOMER\",\n  \"transformEndpoint\": \"/cortex/transform/customer\",\n  \"active\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"orgId\": 150698,\n  \"entityType\": \"CUSTOMER\",\n  \"transformEndpoint\": \"/cortex/transform/customer\",\n  \"active\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "### Input Event",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Input Event",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        177,
+        233
+      ],
+      "raw": "```json\n{\n    \"eventId\": \"81b1f0ce-8119-4826-9cca-610bd31d4038\",\n    \"eventType\": \"150698_customerAdded\",\n    \"consumerGroupId\": null,\n    \"actionType\": \"START\",\n    \"timeStamp\": 1683874799984,\n    \"attributes\": {\n        \"createdAt\": 1683874799971,\n        \"data\": {\n            \"loyaltyType\": \"LOYALTY\",\n            \"source\": \"instore\",\n            \"firstName\": \"ROSMA\",\n            \"lastName\": \"DEW I\",\n            \"enteredAt\": 1683883798000,\n            \"enteredBy\": {\n                \"id\": 200320889,\n                \"till\": {\n                    \"code\": \"kanmo.idn.mothercare.rpm\",\n                    \"name\": \"kanmo.idn.mothercare.rpm\"\n                },\n                \"store\": {\n                    \"code\": \"kanmo.idn.mother care.rpm\",\n                    \"name\": \"Mothercare RSIA Paramount Makassar\",\n                    \"externalId\": \"MOTHERCARERPM\",\n                    \"externalId1\": \"\",\n                    \"externalId2\": \"\"\n                }\n            },\n            \"customerIdentifiers\": {\n                \"customerId\": 164875382,\n                \"instore\": {\n                    \"mobile\": \"6282396092287\",\n                    \"email\": \"tomneo@gmail.com\",\n                    \"externalId\": \"226682932023\"\n                }\n            },\n            \"customFields\": [\n                {\n                    \"key\": \"MembershipLevel\",\n                    \"value\": \"Gold\"\n                }\n            ],\n            \"extendedFields\": [\n                {\n                    \"key\": \"PreferredLanguage\",\n                    \"value\": \"English\"\n                }\n            ]\n        },\n        \"eventName\": \"customerAdded\",\n        \"refId\": \"150698_164875382\",\n        \"apiRequestId\": \"0c52fc98594959bf0d577218bf565798\",\n        \"orgId\": 150698\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"eventId\": \"81b1f0ce-8119-4826-9cca-610bd31d4038\",\n    \"eventType\": \"150698_customerAdded\",\n    \"consumerGroupId\": null,\n    \"actionType\": \"START\",\n    \"timeStamp\": 1683874799984,\n    \"attributes\": {\n        \"createdAt\": 1683874799971,\n        \"data\": {\n            \"loyaltyType\": \"LOYALTY\",\n            \"source\": \"instore\",\n            \"firstName\": \"ROSMA\",\n            \"lastName\": \"DEW I\",\n            \"enteredAt\": 1683883798000,\n            \"enteredBy\": {\n                \"id\": 200320889,\n                \"till\": {\n                    \"code\": \"kanmo.idn.mothercare.rpm\",\n                    \"name\": \"kanmo.idn.mothercare.rpm\"\n                },\n                \"store\": {\n                    \"code\": \"kanmo.idn.mother care.rpm\",\n                    \"name\": \"Mothercare RSIA Paramount Makassar\",\n                    \"externalId\": \"MOTHERCARERPM\",\n                    \"externalId1\": \"\",\n                    \"externalId2\": \"\"\n                }\n            },\n            \"customerIdentifiers\": {\n                \"customerId\": 164875382,\n                \"instore\": {\n                    \"mobile\": \"6282396092287\",\n                    \"email\": \"tomneo@gmail.com\",\n                    \"externalId\": \"226682932023\"\n                }\n            },\n            \"customFields\": [\n                {\n                    \"key\": \"MembershipLevel\",\n                    \"value\": \"Gold\"\n                }\n            ],\n            \"extendedFields\": [\n                {\n                    \"key\": \"PreferredLanguage\",\n                    \"value\": \"English\"\n                }\n            ]\n        },\n        \"eventName\": \"customerAdded\",\n        \"refId\": \"150698_164875382\",\n        \"apiRequestId\": \"0c52fc98594959bf0d577218bf565798\",\n        \"orgId\": 150698\n    }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        235,
+        235
+      ],
+      "raw": "### Transformed Output",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Transformed Output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        237,
+        269
+      ],
+      "raw": "```json\n{\n    \"createdOn\": 1683874799971,\n    \"loyaltyType\": \"LOYALTY\",\n    \"source\": \"instore\",\n    \"firstname\": \"ROSMA\",\n    \"lastname\": \"DEW I\",\n    \"enteredAt\": 1683883798000,\n    \"additionalfields\": {\n        \"storecode\": \"kanmo.idn.mother care.rpm\"\n    },\n    \"customfields\": {\n        \"membershiplevel\": \"Gold\"\n    },\n    \"extendedfields\": {\n        \"preferredlanguage\": \"English\"\n    },\n    \"entityId\": 164875382,\n    \"instore\": {\n        \"mobile\": \"6282396092287\",\n        \"email\": \"tomneo@gmail.com\",\n        \"externalId\": \"226682932023\"\n    },\n    \"web_engage\": {},\n    \"wechat\": {},\n    \"entityReference\": \"instore_\",\n    \"fullname\": \"ROSMA DEW I\",\n    \"eventName\": \"customerAdded\",\n    \"refId\": \"150698_164875382\",\n    \"apiRequestId\": \"0c52fc98594959bf0d577218bf565798\",\n    \"orgId\": 150698\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"createdOn\": 1683874799971,\n    \"loyaltyType\": \"LOYALTY\",\n    \"source\": \"instore\",\n    \"firstname\": \"ROSMA\",\n    \"lastname\": \"DEW I\",\n    \"enteredAt\": 1683883798000,\n    \"additionalfields\": {\n        \"storecode\": \"kanmo.idn.mother care.rpm\"\n    },\n    \"customfields\": {\n        \"membershiplevel\": \"Gold\"\n    },\n    \"extendedfields\": {\n        \"preferredlanguage\": \"English\"\n    },\n    \"entityId\": 164875382,\n    \"instore\": {\n        \"mobile\": \"6282396092287\",\n        \"email\": \"tomneo@gmail.com\",\n        \"externalId\": \"226682932023\"\n    },\n    \"web_engage\": {},\n    \"wechat\": {},\n    \"entityReference\": \"instore_\",\n    \"fullname\": \"ROSMA DEW I\",\n    \"eventName\": \"customerAdded\",\n    \"refId\": \"150698_164875382\",\n    \"apiRequestId\": \"0c52fc98594959bf0d577218bf565798\",\n    \"orgId\": 150698\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

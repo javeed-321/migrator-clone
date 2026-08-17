@@ -1,0 +1,410 @@
+{
+  "slug": "docs/kafka-implementation-in-neo",
+  "source": "https://docs.capillarytech.com/docs/kafka-implementation-in-neo.md",
+  "url": "https://docs.capillarytech.com/docs/kafka-implementation-in-neo",
+  "title": "Kafka Implementation In Neo",
+  "description": "",
+  "section": "Use Cases",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-08-17T09:31:22.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 8,
+    "list": 2,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Asynchronous High-Volume Data Processing for Loyalty Point Allocation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Asynchronous High-Volume Data Processing for Loyalty Point Allocation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "You can create a Neo dataflow with a Kafka block to handle bulk data processing asynchronously.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can create a Neo dataflow with a Kafka block to handle bulk data processing asynchronously.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Asynchronous processing allows the system to handle tasks without blocking or delaying others while waiting for results. It enables multiple tasks to run in parallel or process them sequentially as they arrive.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Asynchronous processing allows the system to handle tasks without blocking or delaying others while waiting for results. It enables multiple tasks to run in parallel or process them sequentially as they arrive.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Requirement",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "An airline brand uses a Passenger Service System (PSS) to send post-flight passenger details to the Capillary system. This data is sent in bulk every hour, reaching up to 1,000 requests per minute. Due to the large volume of data, real-time processing isn’t feasible. The system needs a way to process bulk data asynchronously, validate it, and allocate loyalty points to eligible passengers using Capillary's transaction APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An airline brand uses a Passenger Service System (PSS) to send post-flight passenger details to the Capillary system. This data is sent in bulk every hour, reaching up to 1,000 requests per minute. Due to the large volume of data, real-time processing isn’t feasible. The system needs a way to process bulk data asynchronously, validate it, and allocate loyalty points to eligible passengers using Capillary's transaction APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To address the challenge of processing high-volume post-flight passenger data asynchronously and allocating loyalty points, the following solution is in place:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To address the challenge of processing high-volume post-flight passenger data asynchronously and allocating loyalty points, the following solution is in place:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "### Step one - Create a Neo dataflow to post data into a Kafka topic",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step one - Create a Neo dataflow to post data into a Kafka topic",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Create a [Neo dataflow with a Kafka block](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/c5e214c9-7b3c-4dbe-a7c4-49e4d02dc45e/version/8cd821ec-a2ef-4d87-9562-36261ecb0708?ruleType=org) to receive post-flight data from the PSS.  To access the dataflow, ensure you have access to the DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a Neo dataflow with a Kafka block to receive post-flight data from the PSS.  To access the dataflow, ensure you have access to the DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "This dataflow pushes incoming passenger data into a Kafka topic. In this setup, the Neo dataflow acts as the [Kafka producer](https://docs.capillarytech.com/docs/neo-kafka-block), pushing the PSS data into the Kafka topic.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This dataflow pushes incoming passenger data into a Kafka topic. In this setup, the Neo dataflow acts as the Kafka producer, pushing the PSS data into the Kafka topic.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-kafka-block",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "### Step two - Create a Neo dataflow to validate and transform data to invoke the Add Transaction API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step two - Create a Neo dataflow to validate and transform data to invoke the Add Transaction API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "Create a [Neo dataflow to validate](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/daec5cfa-be66-4d5d-b021-c2f45c3aa322/version/9204edc5-0386-4326-9ef8-9988fe690b64?ruleType=org) the input and transform it into the required payload for calling the Add Transaction API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a Neo dataflow to validate the input and transform it into the required payload for calling the Add Transaction API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "### Step three - Use a Connect+ template to pull data from the Kafka topic and invoke the Neo dataflow for validation and transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step three - Use a Connect+ template to pull data from the Kafka topic and invoke the Neo dataflow for validation and transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "Use the Connect+ template, Ingest Kafka Stream in API, to pull data from a Kafka topic, validate and process it, and allocate loyalty points. The template consists of the following blocks:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the Connect+ template, Ingest Kafka Stream in API, to pull data from a Kafka topic, validate and process it, and allocate loyalty points. The template consists of the following blocks:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "1. **Connect-to-source-kafka**: Connects to the Kafka brokers and pulls data from the configured topic.\n2. **neo-Transformer**: Invokes a Neo dataflow created in step two to validate the input and transform it into the required payload for calling the Add Transaction API.\n3. **Connect-to-destination**: Sends the transformed data to the Add Transaction API to allocate loyalty points.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Connect-to-source-kafka: Connects to the Kafka brokers and pulls data from the configured topic.neo-Transformer: Invokes a Neo dataflow created in step two to validate the input and transform it into the required payload for calling the Add Transaction API.Connect-to-destination: Sends the transformed data to the Add Transaction API to allocate loyalty points.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# Troubleshooting",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Troubleshooting",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        43,
+        46
+      ],
+      "raw": "| Error                       | Description                                                                    |\n| :-------------------------- | :----------------------------------------------------------------------------- |\n| Header Validation issues    | Ensure the headers are not missing, empty and in the correct format.           |\n| Data pushing to Kafka fails | Ensure the Kafka block is properly configured with the required key and value. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Header Validation issues",
+            "Ensure the headers are not missing, empty and in the correct format."
+          ],
+          [
+            "Data pushing to Kafka fails",
+            "Ensure the Kafka block is properly configured with the required key and value."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "# FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        50,
+        57
+      ],
+      "raw": "1. What is Kafka used for in this Neo dataflow?\\\n   Answer: Kafka handles bulk data processing asynchronously by enabling message publishing and consumption between Neo dataflows and Connect+.\n2. Why is Kafka suitable for bulk processing scenarios?\\\n   Answer: Kafka also supports asynchronous processing, making it ideal for scenarios where real-time processing is not feasible.\n3. What happens if the Kafka block configuration is incorrect?\\\n   Answer: If the Kafka block configuration is incorrect, messages fail to publish or get sent to the wrong topic.\n4. What should I include in the Kafka message key and value?\\\n   Answer: The key includes a unique identifier for the event within the topic, and the value contains the information to send to Kafka.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "What is Kafka used for in this Neo dataflow?Answer: Kafka handles bulk data processing asynchronously by enabling message publishing and consumption between Neo dataflows and Connect+.Why is Kafka suitable for bulk processing scenarios?Answer: Kafka also supports asynchronous processing, making it ideal for scenarios where real-time processing is not feasible.What happens if the Kafka block configuration is incorrect?Answer: If the Kafka block configuration is incorrect, messages fail to publish or get sent to the wrong topic.What should I include in the Kafka message key and value?Answer: The key includes a unique identifier for the event within the topic, and the value contains the information to send to Kafka.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

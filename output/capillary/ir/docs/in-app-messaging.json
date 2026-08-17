@@ -1,0 +1,874 @@
+{
+  "slug": "docs/in-app-messaging",
+  "source": "https://docs.capillarytech.com/docs/in-app-messaging.md",
+  "url": "https://docs.capillarytech.com/docs/in-app-messaging",
+  "title": "In App Messaging",
+  "description": "",
+  "section": "Android SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-25T09:19:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 14,
+    "list": 2,
+    "CodeTabs": 4,
+    "code": 2,
+    "Table": 2,
+    "Image": 6,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure In-app Messaging",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure In-app Messaging",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you with information on IN-app messaging feature.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you with information on IN-app messaging feature.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This feature empowers you to proactively engage users within your app by displaying targeted messages at specific contextually relevant moments. These timely interventions can prove highly effective in providing valuable information, promoting cross-selling and up-selling opportunities, and ultimately driving desired user actions on targeted screens or based on pre-defined app interactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This feature empowers you to proactively engage users within your app by displaying targeted messages at specific contextually relevant moments. These timely interventions can prove highly effective in providing valuable information, promoting cross-selling and up-selling opportunities, and ultimately driving desired user actions on targeted screens or based on pre-defined app interactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The feature is available from Capillary SDK 1.4.0.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The feature is available from Capillary SDK 1.4.0.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Installing using catalog",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Installing using catalog",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "The recommended approach for integration is through a Version Catalog. For more information, refer to the documentation [Installing with version catalog](https://docs.capillarytech.com/docs/installing-sdk#/installing-with-version-catalog). After you configure the catalog, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The recommended approach for integration is through a Version Catalog. For more information, refer to the documentation Installing with version catalog. After you configure the catalog, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/installing-sdk#/installing-with-version-catalog",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "1. Add the dependency in the `app/build.gradle` file as shown below:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add the dependency in the app/build.gradle file as shown below:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        32
+      ],
+      "raw": "```kotlin\ndependencies {\n    // ...\n    implementation(\"hydra.inapp\")\n}\n```\n```groovy\ndependencies {\n…\n implementation(\"hydra.inapp\")\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "dependencies {\n    // ...\n    implementation(\"hydra.inapp\")\n}"
+        },
+        {
+          "lang": "groovy",
+          "title": null,
+          "code": "dependencies {\n…\n implementation(\"hydra.inapp\")\n}"
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "## Installing using Artifact",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Installing using Artifact",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "To install in-app messaging, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To install in-app messaging, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "1. Add the dependency in the `app/build.gradle` file as shown below:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add the dependency in the app/build.gradle file as shown below:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        40,
+        51
+      ],
+      "raw": "```kotlin\ndependencies {\n    // ...\n    implementation(\"com.capillary:hydra-inapp:x.x.x\")\n}\n```\n```groovy\ndependencies {\n…\n implementation(\"com.capillary:hydra-inapp:x.x.x\")\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "dependencies {\n    // ...\n    implementation(\"com.capillary:hydra-inapp:x.x.x\")\n}"
+        },
+        {
+          "lang": "groovy",
+          "title": null,
+          "code": "dependencies {\n…\n implementation(\"com.capillary:hydra-inapp:x.x.x\")\n}"
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "## Integration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Integration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "Hydra SDK leverages a push notification mechanism to deliver in-app messages. For this functionality to work seamlessly, your app needs to have already integrated Hydra's push notification module.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Hydra SDK leverages a push notification mechanism to deliver in-app messages. For this functionality to work seamlessly, your app needs to have already integrated Hydra's push notification module.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "## In-app configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "In-app configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "The Capillary SDK allows your app to specify a fallback image to display in case the image included in a notification payload fails to download. This ensures a consistent user experience even if unexpected network issues or server errors occur.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Capillary SDK allows your app to specify a fallback image to display in case the image included in a notification payload fails to download. This ensures a consistent user experience even if unexpected network issues or server errors occur.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        61,
+        63
+      ],
+      "raw": "```kotlin\nInAppConfig(@DrawableRes val defaultImage: Int)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "kotlin",
+        "title": null,
+        "code": "InAppConfig(@DrawableRes val defaultImage: Int)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        65,
+        67
+      ],
+      "raw": "| Parameter    | Description                       | Type | Mandatory/Optional |\n| :----------- | :-------------------------------- | :--- | :----------------- |\n| defaultImage | Resource ID of fallback drawable. | Int  | Mandatory          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description",
+          "Type",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "defaultImage",
+            "Resource ID of fallback drawable.",
+            "Int",
+            "Mandatory"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "## TriggerInApp on launch",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "TriggerInApp on launch",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "This API is designed for Flutter apps where activity callbacks (e.g., onResume) may be lost due to late initialisation of the Hydra SDK. Use it to manually trigger in-app messages after the SDK initialises.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API is designed for Flutter apps where activity callbacks (e.g., onResume) may be lost due to late initialisation of the Hydra SDK. Use it to manually trigger in-app messages after the SDK initialises.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        73,
+        75
+      ],
+      "raw": "```\ntriggerInAppOnLaunch(currentActivity: Activity)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "triggerInAppOnLaunch(currentActivity: Activity)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        77,
+        79
+      ],
+      "raw": "| Parameter (parameters marked with \\* are mandatory) | Type     | Description                                                   |\n| :-------------------------------------------------- | :------- | :------------------------------------------------------------ |\n| currentActivity\\*                                   | Activity | Activity of the screen on which in-app message is to be shown |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter (parameters marked with * are mandatory)",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "currentActivity*",
+            "Activity",
+            "Activity of the screen on which in-app message is to be shown"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "## In-app supported layouts",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "In-app supported layouts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "<Image align=\"center\" alt=\"Header\" border={true} caption=\"Header\" src=\"https://files.readme.io/a6db3a0-header1.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Header",
+        "border": "{true}",
+        "caption": "Header",
+        "src": "https://files.readme.io/a6db3a0-header1.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "<Image align=\"center\" alt=\"Header\" border={true} caption=\"Header\" src=\"https://files.readme.io/c5c4791-header2.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Header",
+        "border": "{true}",
+        "caption": "Header",
+        "src": "https://files.readme.io/c5c4791-header2.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "<Image align=\"center\" alt=\"Footer\" border={true} caption=\"Footer\" src=\"https://files.readme.io/24195a7-footer1.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Footer",
+        "border": "{true}",
+        "caption": "Footer",
+        "src": "https://files.readme.io/24195a7-footer1.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "<Image align=\"center\" alt=\"Footer\" border={true} caption=\"Footer\" src=\"https://files.readme.io/1078465-footer2.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Footer",
+        "border": "{true}",
+        "caption": "Footer",
+        "src": "https://files.readme.io/1078465-footer2.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "<Image align=\"center\" alt=\"Popup\" border={true} caption=\"Popup\" src=\"https://files.readme.io/af4f0fb-popup.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Popup",
+        "border": "{true}",
+        "caption": "Popup",
+        "src": "https://files.readme.io/af4f0fb-popup.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "<Image align=\"center\" alt=\"Interstitial\" border={true} caption=\"Interstitial\" src=\"https://files.readme.io/be72450-inters.png\" width=\"20% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Interstitial",
+        "border": "{true}",
+        "caption": "Interstitial",
+        "src": "https://files.readme.io/be72450-inters.png",
+        "width": "20% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "## In-app message listeners",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "In-app message listeners",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "To receive callbacks for in-app messages, listeners should be added in the *onCreate()* of the Application class. Hydra offers the following listeners to hook into:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To receive callbacks for in-app messages, listeners should be added in the onCreate() of the Application class. Hydra offers the following listeners to hook into:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        99,
+        101
+      ],
+      "raw": "\\*\\*\\\nInApp Message Callback\\*\\*\nApplication has to register a  `InAppMessageListener` to receive in-app message Callbacks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "**InApp Message Callback**\nApplication has to register a  InAppMessageListener to receive in-app message Callbacks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "> 📘 It is mandatory to add this listener once the hydra SDK is initialized to avail custom action for message click.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "It is mandatory to add this listener once the hydra SDK is initialized to avail custom action for message click.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "To get the inapp callback implement the OnMessageClickListener and register for the callback using HydraInAppUIHelper.getInstance().registerOnMessageClickListener",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To get the inapp callback implement the OnMessageClickListener and register for the callback using HydraInAppUIHelper.getInstance().registerOnMessageClickListener",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "**Example:** User implementing `OnMessageClickListener` to receive the in-app message callback from the Hydra Sdk.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: User implementing OnMessageClickListener to receive the in-app message callback from the Hydra Sdk.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        109,
+        123
+      ],
+      "raw": "```kotlin\nclass ApplicationInAppMessageClickListener : OnMessageClickListener {\n  override fun onMessageClick(context: Context, cta: CTA): Boolean {\n       return super.onMessageClick(context, cta)\n   }\n}\n```\n```java\npublic class ApplicationInAppMessageClickListener implements OnMessageClickListener {\n    @Override\n    public boolean onMessageClick(Context context, CTA cta) {\n        return super.onMessageClick(context, cta);\n    }\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "class ApplicationInAppMessageClickListener : OnMessageClickListener {\n  override fun onMessageClick(context: Context, cta: CTA): Boolean {\n       return super.onMessageClick(context, cta)\n   }\n}"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public class ApplicationInAppMessageClickListener implements OnMessageClickListener {\n    @Override\n    public boolean onMessageClick(Context context, CTA cta) {\n        return super.onMessageClick(context, cta);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "Register the above callback in the onCreate of your application class after initialization of HydraApi",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Register the above callback in the onCreate of your application class after initialization of HydraApi",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "In the above callback method, “onMessageClick” returns Boolean to which application can return either true or false. If the function returns false, the action will be taken by the SDK and if returned true then custom action can be taken by the client app.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the above callback method, “onMessageClick” returns Boolean to which application can return either true or false. If the function returns false, the action will be taken by the SDK and if returned true then custom action can be taken by the client app.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        129,
+        136
+      ],
+      "raw": "```kotlin\nHydraInAppUIHelper.getInstance()\n   .registerOnMessageClickListener(ApplicationInAppMessageClickListener())\n```\n```java\nHydraInAppUIHelper.getInstance()\n   .registerOnMessageClickListener(new ApplicationInAppMessageClickListener());\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "HydraInAppUIHelper.getInstance()\n   .registerOnMessageClickListener(ApplicationInAppMessageClickListener())"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "HydraInAppUIHelper.getInstance()\n   .registerOnMessageClickListener(new ApplicationInAppMessageClickListener());"
+        }
+      ]
+    }
+  ]
+}

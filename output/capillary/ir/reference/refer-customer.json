@@ -1,0 +1,706 @@
+{
+  "slug": "reference/refer-customer",
+  "source": "https://docs.capillarytech.com/reference/refer-customer.md",
+  "url": "https://docs.capillarytech.com/reference/refer-customer",
+  "title": "Refer Customer",
+  "description": "",
+  "section": "Referral",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 2,
+    "Table": 6,
+    "list": 1,
+    "code": 2,
+    "CodeTabs": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Refer Customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Refer Customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API allows you to refer someone with the referral code of a specific campaign to a customer (auto-generated referral code).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API allows you to refer someone with the referral code of a specific campaign to a customer (auto-generated referral code).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "It is important to understand the following terminologies that you may come across while using the customer/APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "It is important to understand the following terminologies that you may come across while using the customer/APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        19
+      ],
+      "raw": "|                |                                                                                                                                                                                                                                              |\n| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| referral\\_code | Unique code generated for the referrer for a specific campaign. Each referral campaign generates a unique code for each customer.                                                                                                            |\n| invitee        | A person who was invited by the referrer.                                                                                                                                                                                                    |\n| referees       | Customers from the invitee list who turned up to the stores and made either transactions or registration                                                                                                                                     |\n| incentives     | Rewards received by the referral for successful referees of the campaign. Currently, only coupons are issued as incentives.                                                                                                                  |\n| scope          | The channel through which the referral was made. Currently, the referrals are supported only through email and mobile numbers. Scopes are used as name-value pairs, the value could be referees, invitees, or incentives as per the context. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "referral_code",
+            "Unique code generated for the referrer for a specific campaign. Each referral campaign generates a unique code for each customer."
+          ],
+          [
+            "invitee",
+            "A person who was invited by the referrer."
+          ],
+          [
+            "referees",
+            "Customers from the invitee list who turned up to the stores and made either transactions or registration"
+          ],
+          [
+            "incentives",
+            "Rewards received by the referral for successful referees of the campaign. Currently, only coupons are issued as incentives."
+          ],
+          [
+            "scope",
+            "The channel through which the referral was made. Currently, the referrals are supported only through email and mobile numbers. Scopes are used as name-value pairs, the value could be referees, invitees, or incentives as per the context."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        23,
+        24
+      ],
+      "raw": "* [ ] Authentication: Basic/OAuth authentication\n* [ ] Default access group.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic/OAuth authenticationDefault access group.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "# Query Params",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Query Params",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        28,
+        30
+      ],
+      "raw": "| Field        | Data Type | Description                                |\n| :----------- | :-------- | :----------------------------------------- |\n| mobile/email | string    | Mobile number or email ID of the customer. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "mobile/email",
+            "string",
+            "Mobile number or email ID of the customer."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        34,
+        39
+      ],
+      "raw": "| URI               | v1.1/customer/referrals |\n| :---------------- | :---------------------- |\n| **HTTP method**   | **POST**                |\n| **Pagination**    | **NA**                  |\n| **Rate limit**    | **NA**                  |\n| **Batch support** | **NA**                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "URI",
+          "v1.1/customer/referrals"
+        ],
+        "rows": [
+          [
+            "HTTP method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "NA"
+          ],
+          [
+            "Rate limit",
+            "NA"
+          ],
+          [
+            "Batch support",
+            "NA"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "## Request Parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Request Parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        45,
+        56
+      ],
+      "raw": "| **Parameter**          | **Data Type** | **Description**                                                                                                                                                                |\n| ---------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **customer**           | Array         | An array of customer details.                                                                                                                                                  |\n| \\**- mobile* \\*\\*      | String        | Mobile number of the customer who is referring.                                                                                                                                |\n| **- referrals**        | Object        | An object containing referral information.                                                                                                                                     |\n| **-- campaign\\_token** | String        | The token of the referral campaign to which you are referring. You can get this token from the campaign home page under the referral campaign name.                            |\n| \\**--- type* \\*\\*      | String        | Type of referral. Supported values: MOBILE and EMAIL.                                                                                                                          |\n| **- referral**         | Array         | An array of referral objects that contains the details of the individual to whom you are referring (invitee).                                                                  |\n| \\**id* \\*\\*            | String        | User ID of the individual if any. Else, you can leave this field empty.                                                                                                        |\n| \\**invited\\_on* \\*\\*   | String        | A timestamp in ISO 8601 format indicating when the referral was invited along with the referral code. For example, 20240910T16:35:52.pV7BF, where  pV7BF is the referral code. |\n| **name**               | String        | Name of the invitee                                                                                                                                                            |\n| \\**identifier* \\*\\*    | String        | Identifier (e.g., mobile number) of the invitee.                                                                                                                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "customer",
+            "Array",
+            "An array of customer details."
+          ],
+          [
+            "*- mobile **",
+            "String",
+            "Mobile number of the customer who is referring."
+          ],
+          [
+            "- referrals",
+            "Object",
+            "An object containing referral information."
+          ],
+          [
+            "-- campaign_token",
+            "String",
+            "The token of the referral campaign to which you are referring. You can get this token from the campaign home page under the referral campaign name."
+          ],
+          [
+            "*--- type **",
+            "String",
+            "Type of referral. Supported values: MOBILE and EMAIL."
+          ],
+          [
+            "- referral",
+            "Array",
+            "An array of referral objects that contains the details of the individual to whom you are referring (invitee)."
+          ],
+          [
+            "*id **",
+            "String",
+            "User ID of the individual if any. Else, you can leave this field empty."
+          ],
+          [
+            "*invited_on **",
+            "String",
+            "A timestamp in ISO 8601 format indicating when the referral was invited along with the referral code. For example, 20240910T16:35:52.pV7BF, where  pV7BF is the referral code."
+          ],
+          [
+            "name",
+            "String",
+            "Name of the invitee"
+          ],
+          [
+            "*identifier **",
+            "String",
+            "Identifier (e.g., mobile number) of the invitee."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        58,
+        82
+      ],
+      "raw": "```json\n{\n    \"root\": {\n        \"customer\": [\n            {\n                \"mobile\": \"7999836466\",\n                \"referrals\": {\n                    \"campaign_token\": \"J0H7Q\",\n                    \"referral_type\": {\n                        \"type\": \"MOBILE\",\n                        \"referral\": [\n                            {\n                                \"id\": \"\",\n                                \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                \"name\": \"Shikhar\",\n                                \"identifier\": \"7999836416\"\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"root\": {\n        \"customer\": [\n            {\n                \"mobile\": \"7999836466\",\n                \"referrals\": {\n                    \"campaign_token\": \"J0H7Q\",\n                    \"referral_type\": {\n                        \"type\": \"MOBILE\",\n                        \"referral\": [\n                            {\n                                \"id\": \"\",\n                                \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                \"name\": \"Shikhar\",\n                                \"identifier\": \"7999836416\"\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "## Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        86,
+        113
+      ],
+      "raw": "| **Parameters**     | **Description**                                          |\n| ------------------ | -------------------------------------------------------- |\n| **status**         | Contains the status of the response.                     |\n| **success**        | Indicates if the request was successful.                 |\n| **code**           | The HTTP status code.                                    |\n| **message**        | A message providing additional details about the status. |\n| **customers**      | Contains customer details.                               |\n| **customer**       | List of customer objects.                                |\n| **email**          | The email of the customer.                               |\n| **mobile**         | The mobile number of the customer.                       |\n| **external\\_id**   | External identifier for the customer.                    |\n| **firstname**      | The first name of the customer.                          |\n| **lastname**       | The last name of the customer.                           |\n| **referrals**      | Contains referral information.                           |\n| **referral\\_type** | List of referral types.                                  |\n| **type**           | The type of referral ((`MOBILE`) or (`EMAIL`)).          |\n| **referral**       | List of referral details.                                |\n| **id**             | Identifier for the referral.                             |\n| **name**           | Name associated with the referral.                       |\n| **identifier**     | Identifier for the invited referral.                     |\n| **invited\\_on**    | Timestamp of when the referral was invited.              |\n| **status**         | Status of the referral.                                  |\n| **code**           | Status code of the referral.                             |\n| **message**        | Message about the referral status.                       |\n| **item\\_status**   | Contains the item status of the customer.                |\n| **success**        | Indicates if the item operation was successful.          |\n| **code**           | Status code of the item operation.                       |\n| **message**        | Message regarding the item operation status.             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameters",
+          "Description"
+        ],
+        "rows": [
+          [
+            "status",
+            "Contains the status of the response."
+          ],
+          [
+            "success",
+            "Indicates if the request was successful."
+          ],
+          [
+            "code",
+            "The HTTP status code."
+          ],
+          [
+            "message",
+            "A message providing additional details about the status."
+          ],
+          [
+            "customers",
+            "Contains customer details."
+          ],
+          [
+            "customer",
+            "List of customer objects."
+          ],
+          [
+            "email",
+            "The email of the customer."
+          ],
+          [
+            "mobile",
+            "The mobile number of the customer."
+          ],
+          [
+            "external_id",
+            "External identifier for the customer."
+          ],
+          [
+            "firstname",
+            "The first name of the customer."
+          ],
+          [
+            "lastname",
+            "The last name of the customer."
+          ],
+          [
+            "referrals",
+            "Contains referral information."
+          ],
+          [
+            "referral_type",
+            "List of referral types."
+          ],
+          [
+            "type",
+            "The type of referral ((MOBILE) or (EMAIL))."
+          ],
+          [
+            "referral",
+            "List of referral details."
+          ],
+          [
+            "id",
+            "Identifier for the referral."
+          ],
+          [
+            "name",
+            "Name associated with the referral."
+          ],
+          [
+            "identifier",
+            "Identifier for the invited referral."
+          ],
+          [
+            "invited_on",
+            "Timestamp of when the referral was invited."
+          ],
+          [
+            "status",
+            "Status of the referral."
+          ],
+          [
+            "code",
+            "Status code of the referral."
+          ],
+          [
+            "message",
+            "Message about the referral status."
+          ],
+          [
+            "item_status",
+            "Contains the item status of the customer."
+          ],
+          [
+            "success",
+            "Indicates if the item operation was successful."
+          ],
+          [
+            "code",
+            "Status code of the item operation."
+          ],
+          [
+            "message",
+            "Message regarding the item operation status."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        115,
+        209
+      ],
+      "raw": "```json\n{\n    \"response\": {\n        \"status\": {\n            \"success\": \"true\",\n            \"code\": 200,\n            \"message\": \"SUCCESS\"\n        },\n        \"customers\": {\n            \"customer\": [\n                {\n                    \"email\": null,\n                    \"mobile\": \"917999836466\",\n                    \"external_id\": null,\n                    \"firstname\": \"shikar\",\n                    \"lastname\": \"\",\n                    \"referrals\": {\n                        \"referral_type\": [\n                            {\n                                \"type\": \"MOBILE\",\n                                \"referral\": [\n                                    {\n                                        \"id\": \"\",\n                                        \"name\": \"Shikhar\",\n                                        \"identifier\": \"7999836416\",\n                                        \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                        \"status\": {\n                                            \"success\": \"true\",\n                                            \"code\": 1000,\n                                            \"message\": \"Refer was successful\"\n                                        }\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    \"item_status\": {\n                        \"success\": \"true\",\n                        \"code\": 1000,\n                        \"message\": \"Referrals are invited successfully\"\n                    }\n                }\n            ]\n        }\n    }\n}\n\n```\n```json Failure: Invalid Identifier for the type\n{\n    \"response\": {\n        \"status\": {\n            \"success\": \"true\",\n            \"code\": 200,\n            \"message\": \"SUCCESS\"\n        },\n        \"customers\": {\n            \"customer\": [\n                {\n                    \"email\": null,\n                    \"mobile\": \"917999836466\",\n                    \"external_id\": null,\n                    \"firstname\": \"shikar\",\n                    \"lastname\": \"\",\n                    \"referrals\": {\n                        \"referral_type\": [\n                            {\n                                \"type\": \"MOBILE\",\n                                \"referral\": [\n                                    {\n                                        \"id\": \"\",\n                                        \"name\": \"Shikhar\",\n                                        \"identifier\": \"79998364\",\n                                        \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                        \"status\": {\n                                            \"success\": \"false\",\n                                            \"code\": 1701,\n                                            \"message\": \"Invalid Identifier for the type\"\n                                        }\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    \"item_status\": {\n                        \"success\": \"true\",\n                        \"code\": 1000,\n                        \"message\": \"Referrals are invited successfully\"\n                    }\n                }\n            ]\n        }\n    }\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": null,
+          "code": "{\n    \"response\": {\n        \"status\": {\n            \"success\": \"true\",\n            \"code\": 200,\n            \"message\": \"SUCCESS\"\n        },\n        \"customers\": {\n            \"customer\": [\n                {\n                    \"email\": null,\n                    \"mobile\": \"917999836466\",\n                    \"external_id\": null,\n                    \"firstname\": \"shikar\",\n                    \"lastname\": \"\",\n                    \"referrals\": {\n                        \"referral_type\": [\n                            {\n                                \"type\": \"MOBILE\",\n                                \"referral\": [\n                                    {\n                                        \"id\": \"\",\n                                        \"name\": \"Shikhar\",\n                                        \"identifier\": \"7999836416\",\n                                        \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                        \"status\": {\n                                            \"success\": \"true\",\n                                            \"code\": 1000,\n                                            \"message\": \"Refer was successful\"\n                                        }\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    \"item_status\": {\n                        \"success\": \"true\",\n                        \"code\": 1000,\n                        \"message\": \"Referrals are invited successfully\"\n                    }\n                }\n            ]\n        }\n    }\n}\n"
+        },
+        {
+          "lang": "json",
+          "title": "Failure: Invalid Identifier for the type",
+          "code": "{\n    \"response\": {\n        \"status\": {\n            \"success\": \"true\",\n            \"code\": 200,\n            \"message\": \"SUCCESS\"\n        },\n        \"customers\": {\n            \"customer\": [\n                {\n                    \"email\": null,\n                    \"mobile\": \"917999836466\",\n                    \"external_id\": null,\n                    \"firstname\": \"shikar\",\n                    \"lastname\": \"\",\n                    \"referrals\": {\n                        \"referral_type\": [\n                            {\n                                \"type\": \"MOBILE\",\n                                \"referral\": [\n                                    {\n                                        \"id\": \"\",\n                                        \"name\": \"Shikhar\",\n                                        \"identifier\": \"79998364\",\n                                        \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                        \"status\": {\n                                            \"success\": \"false\",\n                                            \"code\": 1701,\n                                            \"message\": \"Invalid Identifier for the type\"\n                                        }\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    \"item_status\": {\n                        \"success\": \"true\",\n                        \"code\": 1000,\n                        \"message\": \"Referrals are invited successfully\"\n                    }\n                }\n            ]\n        }\n    }\n}"
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        211,
+        211
+      ],
+      "raw": "## API error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "API error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        213,
+        217
+      ],
+      "raw": "| **Code** | **Description**                             |\n| -------- | ------------------------------------------- |\n| 1012     | Cannot find a customer for provided mobile. |\n| 1206     | Referral type is not supported.             |\n| 1701     | Invalid Identifier for the type.            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "1012",
+            "Cannot find a customer for provided mobile."
+          ],
+          [
+            "1206",
+            "Referral type is not supported."
+          ],
+          [
+            "1701",
+            "Invalid Identifier for the type."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        219,
+        219
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        221,
+        534
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"customer-v11\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v1.1\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/customer/referrals\": {\n      \"post\": {\n        \"summary\": \"Refer Customer\",\n        \"description\": \"\",\n        \"operationId\": \"refer-customer\",\n        \"parameters\": [\n          {\n            \"name\": \"mobile\",\n            \"in\": \"query\",\n            \"description\": \"Mobile number of the customer. Support values are mobile and email.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"mobile\",\n                  \"type\",\n                  \"id\",\n                  \"invited_on\",\n                  \"identifier\"\n                ],\n                \"properties\": {\n                  \"customer\": {\n                    \"type\": \"array\",\n                    \"description\": \"Array of customer details.\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"mobile\": {\n                    \"type\": \"string\",\n                    \"description\": \"Mobile number of the customer\"\n                  },\n                  \"referrals\": {\n                    \"type\": \"object\",\n                    \"description\": \"Object containing referral information.\",\n                    \"properties\": {}\n                  },\n                  \"campaign_token\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique token for the referral campaign.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of referral Supported values: MOBILE and EMAIL.\"\n                  },\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identifier for the referral.\"\n                  },\n                  \"invited_on\": {\n                    \"type\": \"string\",\n                    \"description\": \"Timestamp indicating when the referral was invited.\"\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Name of the referred individual.\"\n                  },\n                  \"identifier\": {\n                    \"type\": \"string\",\n                    \"description\": \"Identifier (e.g., mobile number) of the referred individual.\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"Sample POST Request\": {\n                  \"value\": {\n                    \"root\": {\n                      \"customer\": [\n                        {\n                          \"mobile\": \"7999836466\",\n                          \"referrals\": {\n                            \"campaign_token\": \"J0H7Q\",\n                            \"referral_type\": {\n                              \"type\": \"MOBILE\",\n                              \"referral\": [\n                                {\n                                  \"id\": \"\",\n                                  \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                  \"name\": \"Shikhar\",\n                                  \"identifier\": \"7999836416\"\n                                }\n                              ]\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample Response\": {\n                    \"value\": \"{\\n    \\\"response\\\": {\\n        \\\"status\\\": {\\n            \\\"success\\\": \\\"true\\\",\\n            \\\"code\\\": 200,\\n            \\\"message\\\": \\\"SUCCESS\\\"\\n        },\\n        \\\"customers\\\": {\\n            \\\"customer\\\": [\\n                {\\n                    \\\"email\\\": null,\\n                    \\\"mobile\\\": \\\"917999836466\\\",\\n                    \\\"external_id\\\": null,\\n                    \\\"firstname\\\": \\\"shikar\\\",\\n                    \\\"lastname\\\": \\\"\\\",\\n                    \\\"referrals\\\": {\\n                        \\\"referral_type\\\": [\\n                            {\\n                                \\\"type\\\": \\\"MOBILE\\\",\\n                                \\\"referral\\\": [\\n                                    {\\n                                        \\\"id\\\": \\\"\\\",\\n                                        \\\"name\\\": \\\"Shikhar\\\",\\n                                        \\\"identifier\\\": \\\"7999836416\\\",\\n                                        \\\"invited_on\\\": \\\"20240910T16:35:52.pV7BF\\\",\\n                                        \\\"status\\\": {\\n                                            \\\"success\\\": \\\"true\\\",\\n                                            \\\"code\\\": 1000,\\n                                            \\\"message\\\": \\\"Refer was successful\\\"\\n                                        }\\n                                    }\\n                                ]\\n                            }\\n                        ]\\n                    },\\n                    \\\"item_status\\\": {\\n                        \\\"success\\\": \\\"true\\\",\\n                        \\\"code\\\": 1000,\\n                        \\\"message\\\": \\\"Referrals are invited successfully\\\"\\n                    }\\n                }\\n            ]\\n        }\\n    }\\n}\\n\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"response\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"string\",\n                              \"example\": \"true\"\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"SUCCESS\"\n                            }\n                          }\n                        },\n                        \"customers\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"customer\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"email\": {},\n                                  \"mobile\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"917999836466\"\n                                  },\n                                  \"external_id\": {},\n                                  \"firstname\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"shikar\"\n                                  },\n                                  \"lastname\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"referrals\": {\n                                    \"type\": \"object\",\n                                    \"properties\": {\n                                      \"referral_type\": {\n                                        \"type\": \"array\",\n                                        \"items\": {\n                                          \"type\": \"object\",\n                                          \"properties\": {\n                                            \"type\": {\n                                              \"type\": \"string\",\n                                              \"example\": \"MOBILE\"\n                                            },\n                                            \"referral\": {\n                                              \"type\": \"array\",\n                                              \"items\": {\n                                                \"type\": \"object\",\n                                                \"properties\": {\n                                                  \"id\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"\"\n                                                  },\n                                                  \"name\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"Shikhar\"\n                                                  },\n                                                  \"identifier\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"7999836416\"\n                                                  },\n                                                  \"invited_on\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"20240910T16:35:52.pV7BF\"\n                                                  },\n                                                  \"status\": {\n                                                    \"type\": \"object\",\n                                                    \"properties\": {\n                                                      \"success\": {\n                                                        \"type\": \"string\",\n                                                        \"example\": \"true\"\n                                                      },\n                                                      \"code\": {\n                                                        \"type\": \"integer\",\n                                                        \"example\": 1000,\n                                                        \"default\": 0\n                                                      },\n                                                      \"message\": {\n                                                        \"type\": \"string\",\n                                                        \"example\": \"Refer was successful\"\n                                                      }\n                                                    }\n                                                  }\n                                                }\n                                              }\n                                            }\n                                          }\n                                        }\n                                      }\n                                    }\n                                  },\n                                  \"item_status\": {\n                                    \"type\": \"object\",\n                                    \"properties\": {\n                                      \"success\": {\n                                        \"type\": \"string\",\n                                        \"example\": \"true\"\n                                      },\n                                      \"code\": {\n                                        \"type\": \"integer\",\n                                        \"example\": 1000,\n                                        \"default\": 0\n                                      },\n                                      \"message\": {\n                                        \"type\": \"string\",\n                                        \"example\": \"Referrals are invited successfully\"\n                                      }\n                                    }\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"customer-v11\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v1.1\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/customer/referrals\": {\n      \"post\": {\n        \"summary\": \"Refer Customer\",\n        \"description\": \"\",\n        \"operationId\": \"refer-customer\",\n        \"parameters\": [\n          {\n            \"name\": \"mobile\",\n            \"in\": \"query\",\n            \"description\": \"Mobile number of the customer. Support values are mobile and email.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"mobile\",\n                  \"type\",\n                  \"id\",\n                  \"invited_on\",\n                  \"identifier\"\n                ],\n                \"properties\": {\n                  \"customer\": {\n                    \"type\": \"array\",\n                    \"description\": \"Array of customer details.\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  },\n                  \"mobile\": {\n                    \"type\": \"string\",\n                    \"description\": \"Mobile number of the customer\"\n                  },\n                  \"referrals\": {\n                    \"type\": \"object\",\n                    \"description\": \"Object containing referral information.\",\n                    \"properties\": {}\n                  },\n                  \"campaign_token\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique token for the referral campaign.\"\n                  },\n                  \"type\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of referral Supported values: MOBILE and EMAIL.\"\n                  },\n                  \"id\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identifier for the referral.\"\n                  },\n                  \"invited_on\": {\n                    \"type\": \"string\",\n                    \"description\": \"Timestamp indicating when the referral was invited.\"\n                  },\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Name of the referred individual.\"\n                  },\n                  \"identifier\": {\n                    \"type\": \"string\",\n                    \"description\": \"Identifier (e.g., mobile number) of the referred individual.\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"Sample POST Request\": {\n                  \"value\": {\n                    \"root\": {\n                      \"customer\": [\n                        {\n                          \"mobile\": \"7999836466\",\n                          \"referrals\": {\n                            \"campaign_token\": \"J0H7Q\",\n                            \"referral_type\": {\n                              \"type\": \"MOBILE\",\n                              \"referral\": [\n                                {\n                                  \"id\": \"\",\n                                  \"invited_on\": \"20240910T16:35:52.pV7BF\",\n                                  \"name\": \"Shikhar\",\n                                  \"identifier\": \"7999836416\"\n                                }\n                              ]\n                            }\n                          }\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample Response\": {\n                    \"value\": \"{\\n    \\\"response\\\": {\\n        \\\"status\\\": {\\n            \\\"success\\\": \\\"true\\\",\\n            \\\"code\\\": 200,\\n            \\\"message\\\": \\\"SUCCESS\\\"\\n        },\\n        \\\"customers\\\": {\\n            \\\"customer\\\": [\\n                {\\n                    \\\"email\\\": null,\\n                    \\\"mobile\\\": \\\"917999836466\\\",\\n                    \\\"external_id\\\": null,\\n                    \\\"firstname\\\": \\\"shikar\\\",\\n                    \\\"lastname\\\": \\\"\\\",\\n                    \\\"referrals\\\": {\\n                        \\\"referral_type\\\": [\\n                            {\\n                                \\\"type\\\": \\\"MOBILE\\\",\\n                                \\\"referral\\\": [\\n                                    {\\n                                        \\\"id\\\": \\\"\\\",\\n                                        \\\"name\\\": \\\"Shikhar\\\",\\n                                        \\\"identifier\\\": \\\"7999836416\\\",\\n                                        \\\"invited_on\\\": \\\"20240910T16:35:52.pV7BF\\\",\\n                                        \\\"status\\\": {\\n                                            \\\"success\\\": \\\"true\\\",\\n                                            \\\"code\\\": 1000,\\n                                            \\\"message\\\": \\\"Refer was successful\\\"\\n                                        }\\n                                    }\\n                                ]\\n                            }\\n                        ]\\n                    },\\n                    \\\"item_status\\\": {\\n                        \\\"success\\\": \\\"true\\\",\\n                        \\\"code\\\": 1000,\\n                        \\\"message\\\": \\\"Referrals are invited successfully\\\"\\n                    }\\n                }\\n            ]\\n        }\\n    }\\n}\\n\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"response\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"string\",\n                              \"example\": \"true\"\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"SUCCESS\"\n                            }\n                          }\n                        },\n                        \"customers\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"customer\": {\n                              \"type\": \"array\",\n                              \"items\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"email\": {},\n                                  \"mobile\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"917999836466\"\n                                  },\n                                  \"external_id\": {},\n                                  \"firstname\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"shikar\"\n                                  },\n                                  \"lastname\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"referrals\": {\n                                    \"type\": \"object\",\n                                    \"properties\": {\n                                      \"referral_type\": {\n                                        \"type\": \"array\",\n                                        \"items\": {\n                                          \"type\": \"object\",\n                                          \"properties\": {\n                                            \"type\": {\n                                              \"type\": \"string\",\n                                              \"example\": \"MOBILE\"\n                                            },\n                                            \"referral\": {\n                                              \"type\": \"array\",\n                                              \"items\": {\n                                                \"type\": \"object\",\n                                                \"properties\": {\n                                                  \"id\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"\"\n                                                  },\n                                                  \"name\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"Shikhar\"\n                                                  },\n                                                  \"identifier\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"7999836416\"\n                                                  },\n                                                  \"invited_on\": {\n                                                    \"type\": \"string\",\n                                                    \"example\": \"20240910T16:35:52.pV7BF\"\n                                                  },\n                                                  \"status\": {\n                                                    \"type\": \"object\",\n                                                    \"properties\": {\n                                                      \"success\": {\n                                                        \"type\": \"string\",\n                                                        \"example\": \"true\"\n                                                      },\n                                                      \"code\": {\n                                                        \"type\": \"integer\",\n                                                        \"example\": 1000,\n                                                        \"default\": 0\n                                                      },\n                                                      \"message\": {\n                                                        \"type\": \"string\",\n                                                        \"example\": \"Refer was successful\"\n                                                      }\n                                                    }\n                                                  }\n                                                }\n                                              }\n                                            }\n                                          }\n                                        }\n                                      }\n                                    }\n                                  },\n                                  \"item_status\": {\n                                    \"type\": \"object\",\n                                    \"properties\": {\n                                      \"success\": {\n                                        \"type\": \"string\",\n                                        \"example\": \"true\"\n                                      },\n                                      \"code\": {\n                                        \"type\": \"integer\",\n                                        \"example\": 1000,\n                                        \"default\": 0\n                                      },\n                                      \"message\": {\n                                        \"type\": \"string\",\n                                        \"example\": \"Referrals are invited successfully\"\n                                      }\n                                    }\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

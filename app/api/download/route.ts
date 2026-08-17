@@ -1,24 +1,24 @@
 import type { NextRequest } from "next/server";
 
-import type { HarvestResponse } from "@/app/harvest/types";
-import { fetchLlmsTxt, slugFromUrl, toMarkdownUrl, toPageUrl } from "@/src/harvest/fetch";
-import { harvest } from "@/src/harvest/run";
-import type { PageRef } from "@/src/harvest/types";
+import type { DownloadResponse } from "@/app/download/types";
+import { fetchLlmsTxt, slugFromUrl, toMarkdownUrl, toPageUrl } from "@/src/download/fetch";
+import { download } from "@/src/download/run";
+import type { PageRef } from "@/src/download/types";
 import { getErrorMessage } from "@/src/utils/errors";
 import { setLogsEnabled } from "@/src/utils/log";
 
-// `harvest` uses node:fs and a module-level singleton — no edge runtime.
+// `download` uses node:fs and a module-level singleton — no edge runtime.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 /**
- * How many pages one request may harvest.
+ * How many pages one request may download.
  *
  * The response carries every page's raw markdown *and* its full block IR so the
  * UI can show both halves side by side, which is roughly 30 KB a page. A browser
  * asking for a look at what is on a site does not need 1,500 of them — that is
- * what `npm run harvest` is for, and it caches to disk besides.
+ * what `npm run download` is for, and it caches to disk besides.
  */
 const MAX_PAGES = 40;
 const DEFAULT_PAGES = 8;
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
   const limit = Math.min(Math.max(1, Number(body.limit) || DEFAULT_PAGES), MAX_PAGES);
 
   function fail(message: string): Response {
-    return Response.json({ ok: false, message } satisfies HarvestResponse);
+    return Response.json({ ok: false, message } satisfies DownloadResponse);
   }
 
   setLogsEnabled(false);
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       return fail(`No page slug starts with "${filter}" — ${refs.length} pages were listed.`);
     }
 
-    const report = await harvest(refs, {
+    const report = await download(refs, {
       // No outDir: nothing is cached or written. A browser request should not
       // leave files in the repo.
       filter,
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!report.pages.length) {
-      return fail(report.failed[0]?.message ?? `Nothing could be harvested from ${urlObj.toString()}`);
+      return fail(report.failed[0]?.message ?? `Nothing could be downloaded from ${urlObj.toString()}`);
     }
 
     return Response.json({
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
       raw: report.raw ?? {},
       failed: report.failed,
       inventory: report.inventory,
-    } satisfies HarvestResponse);
+    } satisfies DownloadResponse);
   } catch (error) {
     return fail(getErrorMessage(error).replace(/^:\s*/, "") || "Unknown error");
   } finally {

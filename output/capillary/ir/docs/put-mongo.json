@@ -1,0 +1,754 @@
+{
+  "slug": "docs/put-mongo",
+  "source": "https://docs.capillarytech.com/docs/put-mongo.md",
+  "url": "https://docs.capillarytech.com/docs/put-mongo",
+  "title": "Put Mongo",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 20,
+    "list": 4,
+    "Image": 2,
+    "Table": 1,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# PUT Mongo Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "PUT Mongo Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Put block lets you perform data operations such as INSERT, UPDATE, or UPSERT directly to the database based on a specified query and query key. This block is essential for modifying or adding new data entries within MongoDB during dataflow execution in Neo UI.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Put block lets you perform data operations such as INSERT, UPDATE, or UPSERT directly to the database based on a specified query and query key. This block is essential for modifying or adding new data entries within MongoDB during dataflow execution in Neo UI.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**Note:** You cannot delete any data entries from the MongoDB. This avoids unintentional deletion of that data. If you want to delete, you update the data entry and change the status to Inactive or Close. You can achieve this by using the [upsert command](https://docs.capillarytech.com/docs/bulk-upsert-mongo).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: You cannot delete any data entries from the MongoDB. This avoids unintentional deletion of that data. If you want to delete, you update the data entry and change the status to Inactive or Close. You can achieve this by using the upsert command.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/bulk-upsert-mongo",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "An airline brand allows customers to redeem loyalty points to book flight tickets for their dependants. However, before redeeming points, the dependants must be added as nominees. The system stores nominee details in a separate MongoDB table, with a maximum limit of five nominees per customer. The system must allow customers to add nominees while ensuring the limit is not exceeded.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An airline brand allows customers to redeem loyalty points to book flight tickets for their dependants. However, before redeeming points, the dependants must be added as nominees. The system stores nominee details in a separate MongoDB table, with a maximum limit of five nominees per customer. The system must allow customers to add nominees while ensuring the limit is not exceeded.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To add nominees, create a dataflow that inserts information into the MongoDB table. Use a **PutMongo** block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add nominees, create a dataflow that inserts information into the MongoDB table. Use a PutMongo block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "Refer to this example [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/95200b0d-e270-496a-a203-01cd2f33bc9f/version/d2b9f02b-9a56-4b01-baae-28b870b667f2?ruleType=org)  to understand how it is configured for the given use case. Make sure that you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow  to understand how it is configured for the given use case. Make sure that you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "In this dataflow, the **GET Mongo** block initially fetches the available nominees. Subsequently, the **PUT Mongo** block is utilized to update the nominee. If the number of nominees is fewer than the maximum limit of five, the system permits the addition of a nominee.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this dataflow, the GET Mongo block initially fetches the available nominees. Subsequently, the PUT Mongo block is utilized to update the nominee. If the number of nominees is fewer than the maximum limit of five, the system permits the addition of a nominee.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Configuring the Put Mongo block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the Put Mongo block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "To configure the Put Mongo block,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Put Mongo block,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        41
+      ],
+      "raw": "1. From the dataflow canvas, click on the node and select the **PUT Mongo** block.\n2. In the **Block name** field, enter the block name.\n   **Note:** Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n3. In the **Collection Name** field, enter the name of the MongoDB collection you want to query.\n4. In the **Mode** field, choose the mode. The available modes are Insert, Update, and Upsert.\n5. In the **Query** field, enter the data you want to inject into MongoDB using JavaScript. You can also use [EJSON format](https://docs.capillarytech.com/docs/put-mongo#/extended-json-ejson) for complex data types.\n6. (Optional) In the **Query Key** field, specify the key used to perform the update. The key identifies the specific record in the database that needs to be updated. You can also use [EJSON format](https://docs.capillarytech.com/docs/put-mongo#/extended-json-ejson) for complex data types.\n7. (Optional) In the **Options** field, specify any additional options for the query. These options modify query behavior and how results are returned.\n   **Note**: For information on available options, refer to the [MongoDB documentation on options](https://www.mongodb.com/docs/manual/reference/method/db.collection.update/).\n8. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions),[ cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n9. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the node and select the PUT Mongo block.In the Block name field, enter the block name.\nNote: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Collection Name field, enter the name of the MongoDB collection you want to query.In the Mode field, choose the mode. The available modes are Insert, Update, and Upsert.In the Query field, enter the data you want to inject into MongoDB using JavaScript. You can also use EJSON format for complex data types.(Optional) In the Query Key field, specify the key used to perform the update. The key identifies the specific record in the database that needs to be updated. You can also use EJSON format for complex data types.(Optional) In the Options field, specify any additional options for the query. These options modify query behavior and how results are returned.\nNote: For information on available options, refer to the MongoDB documentation on options.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/put-mongo#/extended-json-ejson",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/put-mongo#/extended-json-ejson",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring the Put Mongo block\" border={true} caption=\"Configuring the Put Mongo block\" src=\"https://files.readme.io/45fa9390ba92b582424645f3f644b94cc6249ed0a260e54d0dfc74ab63e46acc-17.02.2025_10.42.29_REC_Configuring_PUT_Mongo.gif\" width=\"85% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring the Put Mongo block",
+        "border": "{true}",
+        "caption": "Configuring the Put Mongo block",
+        "src": "https://files.readme.io/45fa9390ba92b582424645f3f644b94cc6249ed0a260e54d0dfc74ab63e46acc-17.02.2025_10.42.29_REC_Configuring_PUT_Mongo.gif",
+        "width": "85% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "# Extended JSON (EJSON)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Extended JSON (EJSON)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "Extended JSON (EJSON) is a JSON-based format that adds support for data types not natively handled by standard JSON. It is designed to represent complex types such as dates, 64-bit integers, or binary data without losing their original meaning. This avoids ambiguity, prevents data loss, and ensures values are interpreted consistently across systems.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Extended JSON (EJSON) is a JSON-based format that adds support for data types not natively handled by standard JSON. It is designed to represent complex types such as dates, 64-bit integers, or binary data without losing their original meaning. This avoids ambiguity, prevents data loss, and ensures values are interpreted consistently across systems.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "EJSON is supported in both PUT and GET MongoDB blocks without requiring any additional libraries.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "EJSON is supported in both PUT and GET MongoDB blocks without requiring any additional libraries.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "## Key features of EJSON",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Key features of EJSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        53,
+        59
+      ],
+      "raw": "* **Type preservation:** EJSON retains original types, such as dates, 64-bit integers, object ID, and binary data.\n\n* **JSON-compatible**: EJSON uses standard JSON text, ensuring JSON compatibility.\n\n* **Explicit encoding**: EJSON represents extended types as objects with keys prefixed by $ through explicit encoding. For example: \"$date\", “$oid”\n\n* **Interoperability**: EJSON ensures consistent interpretation of data across different systems and applications.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Type preservation: EJSON retains original types, such as dates, 64-bit integers, object ID, and binary data.JSON-compatible: EJSON uses standard JSON text, ensuring JSON compatibility.Explicit encoding: EJSON represents extended types as objects with keys prefixed by $ through explicit encoding. For example: \"$date\", “$oid”Interoperability: EJSON ensures consistent interpretation of data across different systems and applications.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "**EJSON vs JSON**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "EJSON vs JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        63,
+        70
+      ],
+      "raw": "| Aspect               | JSON                                                       | EJSON                                                                  |\n| -------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------- |\n| Supported data types | Strings, numbers, booleans, arrays, objects, `null`        | All JSON types plus extended types like dates, int64, binary, ObjectId |\n| Type fidelity        | Loses distinction. For example: date vs. string vs. number | Preserves original type with explicit notation                         |\n| Date representation  | ISO 8601 string (`\"2025-08-29T12:00:00Z\"`) or timestamp    | `{\"$date\": \"2025-08-29T12:00:00Z\"}`                                    |\n| 64-bit integers      | Stored as a number and may lose precision                  | `{\"$numberLong\": \"1756468800000\"}`                                     |\n| Binary data          | Stored as a base64 string                                  | `{\"$binary\": {\"base64\": \"...\", \"subType\": \"00\"}}`                      |\n| Compatibility        | Widely supported across systems                            | Designed for MongoDB and tools that support extended types             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Aspect",
+          "JSON",
+          "EJSON"
+        ],
+        "rows": [
+          [
+            "Supported data types",
+            "Strings, numbers, booleans, arrays, objects, null",
+            "All JSON types plus extended types like dates, int64, binary, ObjectId"
+          ],
+          [
+            "Type fidelity",
+            "Loses distinction. For example: date vs. string vs. number",
+            "Preserves original type with explicit notation"
+          ],
+          [
+            "Date representation",
+            "ISO 8601 string (\"2025-08-29T12:00:00Z\") or timestamp",
+            "{\"$date\": \"2025-08-29T12:00:00Z\"}"
+          ],
+          [
+            "64-bit integers",
+            "Stored as a number and may lose precision",
+            "{\"$numberLong\": \"1756468800000\"}"
+          ],
+          [
+            "Binary data",
+            "Stored as a base64 string",
+            "{\"$binary\": {\"base64\": \"...\", \"subType\": \"00\"}}"
+          ],
+          [
+            "Compatibility",
+            "Widely supported across systems",
+            "Designed for MongoDB and tools that support extended types"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "For more details on EJSON, refer to the documentation for [EJSON on MongoDB](https://www.mongodb.com/docs/manual/reference/mongodb-extended-json/)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For more details on EJSON, refer to the documentation for EJSON on MongoDB",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "## Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "### Problem",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Problem",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "In a loyalty program, customer transactions are stored in MongoDB. Standard JSON cannot represent certain data types, such as dates or unique identifiers. For example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In a loyalty program, customer transactions are stored in MongoDB. Standard JSON cannot represent certain data types, such as dates or unique identifiers. For example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        80,
+        82
+      ],
+      "raw": "* If a transaction date is stored as a plain string (`\"2025-08-29T12:00:00Z\"`), the system cannot reliably distinguish it from any other string.\n\n* If a transaction identifier is stored as a simple string, it loses the uniqueness and type safety that MongoDB’s `ObjectID` provides.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If a transaction date is stored as a plain string (\"2025-08-29T12:00:00Z\"), the system cannot reliably distinguish it from any other string.If a transaction identifier is stored as a simple string, it loses the uniqueness and type safety that MongoDB’s ObjectID provides.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "This ambiguity creates challenges in querying, sorting, and linking records.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This ambiguity creates challenges in querying, sorting, and linking records.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "### Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "Use EJSON in MongoDB blocks within Neo dataflows.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use EJSON in MongoDB blocks within Neo dataflows.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "A transaction record in EJSON format:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A transaction record in EJSON format:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        94,
+        101
+      ],
+      "raw": "```json\n{\n  \"transactionId\": { \"$oid\": \"64fa1b9c5e7c3f001234abcd\" },\n  \"customerId\": { \"$oid\": \"64fa1b9c5e7c3f001234abce\" },\n  \"amount\": 250,\n  \"transactionDate\": { \"$date\": \"2025-08-29T12:00:00Z\" }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"transactionId\": { \"$oid\": \"64fa1b9c5e7c3f001234abcd\" },\n  \"customerId\": { \"$oid\": \"64fa1b9c5e7c3f001234abce\" },\n  \"amount\": 250,\n  \"transactionDate\": { \"$date\": \"2025-08-29T12:00:00Z\" }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "With this format, MongoDB can:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With this format, MongoDB can:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        105,
+        106
+      ],
+      "raw": "* Recognize `transactionDate` as an actual date for queries and sorting.\n* Ensure that both `transactionId` and `customerId` are unique `ObjectID` values.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Recognize transactionDate as an actual date for queries and sorting.Ensure that both transactionId and customerId are unique ObjectID values.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "Refer to the screenshot below to understand the use of EJSON in the PUT MongoDB block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to the screenshot below to understand the use of EJSON in the PUT MongoDB block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"55% \" src=\"https://files.readme.io/3b5a3fae020648a91a0204a93c8433d402814c383885033693eb76348bb37ea9-Screenshot_2025-09-03_at_11.20.27_AM.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "55% ",
+        "src": "https://files.readme.io/3b5a3fae020648a91a0204a93c8433d402814c383885033693eb76348bb37ea9-Screenshot_2025-09-03_at_11.20.27_AM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+---
+updatedAt: 2026-07-28T05:49:57.000Z
+---
+
+Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.
+
+# Locations
+
+Create and manage your organization's  business location, geographic grouping, business grouping, and point of transaction from a single self-serve Locations page.
+
+**Locations** represent the physical structure of your business. They help you organize where your business operates, from high-level business groupings down to individual stores and checkout points.
+
+By organizing your locations into a structured hierarchy, you can manage your business more consistently as it grows. Instead of maintaining disconnected lists of stores or regions, Locations provide a single, standardized view of your business structure.
+
+For example, a retail brand with stores across multiple cities might organize its business by region, group stores by business line, manage individual stores, and track the checkout terminals within each store.
+
+To represent this hierarchy, Locations are organized into four entities:
+
+* A geographical grouping of stores (for example, North India or Bangalore East) is referred to as a **Zone**.
+* A grouping of stores by business line or brand (for example, Fashion or Electronics) is referred to as a **Concept**.
+* A business location or channel (online/physical) where customer transactions are recorded is referred to as a **Store**.
+* A checkout or POS terminal within a store where transactions are processed is referred to as a **Till**.
+
+**Zone, Concept, Store, and Till are Capillary's default names for these four levels.** If your organization uses different terminology internally, you can rename any of them, for example, calling a **Store** an "Outlet," or a **Zone** a "Region" without changing how the entity works underneath. See [Renaming location terms](#renaming-location-terms-display-names) below.
+
+<Callout icon="📘" theme="info">
+  ### Notes
+
+  - Locations manage the same hierarchy described in the [Setup Store hierarchy](https://docs.capillarytech.com/docs/store-hierarchy). If your organization already has Concepts, Zones, Stores, and Tills configured in the old flow, they appear automatically here as well.
+  - Permanently deleting a Store, Zone, Concept, or Till is not supported.
+</Callout>
+
+***
+
+## Creating a business location (stores)
+
+To create a store, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Stores**.
+2. Select **New store**.
+3. Fill in the store details:
+
+| Field           | Required / Optional | Description                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**        | Required            | The name of the store, shown wherever the store appears across the platform. <br /><br />**Note:&#x20;**&#x4E;ame only contains letters, numbers, underscores, and spaces                                                                                                                                                                                                                                                                    |
+| **Code**        | Required            | A unique code that identifies the store.<br /><br />**Note:** Code must start with a lowercase letter or digit, and may only contain lowercase letters, digits, `.`, `_`, or `-`, up to 50 characters. It can't be changed once the store is created.                                                                                                                                                                                        |
+| **External ID** | Optional            | A code that already identifies this store in another system your brand uses, such as SAP (Systems, Applications, and Products in Data Processing) or an inventory system. Enter it here so Capillary can match that system's records to this store. If the store is tracked under different IDs in more than one external system, select **+ External ID** to add each one.<br /><br />**Note:&#x20;**&#x59;ou can add up to 5 External IDs. |
+| **Description** | Optional            | Free-text notes about the store.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Labels**      | Optional            | Labels are tags you attach to a store to group or filter it later, for example, marking it "Flagship" or "Pop-up." Adding one here attaches an existing Label to the store; select **+ New label** to create one on the spot if it doesn't exist yet. There's no limit on how many Labels you can add.                                                                                                                                       |
+| **Admin**       | Optional            | Marks the store as an admin store, which can manage other stores in the hierarchy.                                                                                                                                                                                                                                                                                                                                                           |
+| **Zone**        | Optional            | Places the store under a geographical Zone.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Concept**     | Optional            | Places the store under a business-line Concept.                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Timezone**    | Required            | The store's own timezone. It's pre-filled from the parent Zone if one is set, but you can override it.                                                                                                                                                                                                                                                                                                                                       |
+| **Language**    | Optional            | The store's own display language. Pre-filled from the parent Zone if one is set, but you can override it.                                                                                                                                                                                                                                                                                                                                    |
+| **Currency**    | Optional            | The store's own currency. Pre-filled from the parent Zone if one is set, but you can override it.                                                                                                                                                                                                                                                                                                                                            |
+
+4. (Optional) Select **Details** to add more information about the store. The table below shows the additional details you can add.&#x20;
+   | Field                 | What it's for                                                                                                                                  |
+   | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Store email**       | A contact email address for the store.                                                                                                         |
+   | **Store number**      | A contact phone number for the store.                                                                                                          |
+   | **Store landline**    | A landline number for the store.                                                                                                               |
+   | **Latitude**          | The store's geographic latitude, used to pin its exact location on a map.                                                                      |
+   | **Longitude**         | The store's geographic longitude, used to pin its exact location on a map.                                                                     |
+   | **Custom attributes** | Attach any of your org's pre-configured custom fields to this store, each with its own value. Select **+ Add attribute** to add more than one. |
+5. Select **Add Store**.
+
+   **Note:** Timezone, Language, and Currency set here are the store's own locale. They don't have to match your organization's defaults.
+
+<Image src="https://files.readme.io/b50185fabdc615fa70e228f06110f3bd80f84f8df968ad43a54bf420d80dbeb9-store_ui_1.gif" border={true} />
+
+### Viewing and editing a business location (stores)
+
+To view or edit a store, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Stores**.
+2. On the Stores listing page, review each store's **Name** and **Code**, **External ID**, **Status** (Active or Deactivated), **Labels**, **Parent zone**, **Parent concept**, and when it was last updated. Select the **Name/Code** column header to sort stores alphabetically. Use the **search&#x20;**&#x62;ar to find a specific store, or the **Status** filter to show only **Active** or **Deactivated** stores.
+3. Select a store to open its detail page, which displays all the information you configured when you created it.
+4. Select **Edit** to change any field except **Code**, then select **Save**. Your changes appear on the list right away.
+
+<Image src="https://files.readme.io/58b6151854bdc6e426617027c34acda5f9b614614e5baa83ccba6c5d30ca0ad7-store_listing_page.gif" border={true} />
+
+### Deactivating a business location (stores)
+
+To deactivate a store, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Stores**.
+2. Locate the store you want to deactivate, select the **three-dot menu**, and then select **Deactivate**.
+3. In the confirmation dialog box, select **Yes, deactivate**.
+
+The store is deactivated and appears in the Stores listing with the **Deactivated** status.
+
+<Image src="https://files.readme.io/f7ff405ca0861939686e43e6b44e17f1d99dd833a44c182241eee86a42850479-deactivating_store.gif" border={true} />
+
+### Activating a business location (stores)
+
+To activate a deactivated store, follow these steps:
+
+1. On the **Stores** listing page, go to the **Status** filter and select **Deactivated**. This displays only the deactivated stores.
+2. Locate the store you want to activate, select the **three-dot menu**, and then select **Activate**.
+3. In the confirmation dialog box, select **Yes, activate**.
+
+The store is activated and appears in the Stores listing with the **Activated** status.
+
+<Image src="https://files.readme.io/77ab44ff0aa1770b1c419224dc96c9af09b856010c7ca62d5fb487795f42b99f-Activating_a_store.gif" border={true} />
+
+### Bulk-uploading business location (stores)
+
+To add many stores at once, follow these steps:
+
+1. Select the (**⋯)** menu next to **New store**, then select **Bulk upload stores**.
+2. Download the sample CSV.
+3. Fill in the mandatory columns without changing the headers or column order.
+4. Upload the file. You can add up to 500 stores in a single file.
+
+## Creating a geographic grouping (zones)
+
+To create a zone, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Zones**.
+2. Select **New zone**.
+3. Enter a **Name** and **Code**. <br />**Note:** The **Name** can contain only letters, numbers, underscores (`_`), and spaces. The **Code** must start with a lowercase letter or digit and can contain only lowercase letters, digits, periods (`.`), underscores (`_`), or hyphens (`-`), up to 50 characters. The code cannot be changed after the zone is created.
+4. (Optional) Enter an **External ID** and **Description**. <br />**Note:** You can add up to 5 External IDs.
+5. Under **Hierarchy**, select a **Parent zone** to nest the zone under an existing zone. Leave this field blank to map the zone directly to your organization.
+6. Under **Locale**, set the zone's Timezone (required), Language (required), and Currency. If you select a Parent zone, Timezone, Language, and Currency are pre-filled from it, but you can override them.
+7. (Optional) Under **Details**, select **+ Add attribute** to add a pre-configured custom field to the zone and enter its value. If the required field is not available, see <Anchor target="_blank" href="https://docs.capillarytech.com/docs/entity-management-custom-fields">Configuring custom fields</Anchor>.
+8. Select **Add zone**.
+
+**Note:** Your organization is limited to a maximum of 30 zones. If you have reached this limit, deactivate a zone you no longer need or raise a Jira ticket with the Product Support team to request a higher limit.
+
+<Image src="https://files.readme.io/d710ea89557a08bb3c47f0e1f97ebaf8b0facdef5e7b618b1ba43810b0975e52-create_zone.gif" border={true} />
+
+### Viewing and editing a geographic grouping (zones)
+
+To view or edit a zone, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Zones**.
+2. On the Zones listing page, review each zone's **Name** and **Code**, **External ID**, **Status**, and when it was last updated. Select the **Name/Code** column header to sort zones alphabetically. Use the **search&#x20;**&#x62;ar to find a specific zone, or the **Status** filter to show only **Active** or **Deactivated** zones.
+3. Select a zone to open its detail page, which displays all the information you configured when you created it.
+4. Select **Edit** to change any field, then **Save**. Your changes appear on the list right away.
+
+<Image src="https://files.readme.io/51d31eb0da55432dd0eced2372811909f99b8e68248fa5ee6b2f09ddcfc8c6f7-viewing_and_editing_zone.gif" border={true} />
+
+### Deactivating a geographic grouping (zones)
+
+To deactivate a zone, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Zones**.
+2. Locate the zone you want to deactivate, select the **three-dot menu**, and then select **Deactivate**.
+3. In the confirmation dialog box, select **Yes, deactivate**.
+
+The zone is deactivated and appears in the **Zones** listing with the **Deactivated** status.
+
+<Image src="https://files.readme.io/c7d22c19e0d267772021d9ec5a2ac95547349fe2de2eef5c8fc384ef8780f8e2-decativate_zone.gif" border={true} />
+
+### Activating a geographic grouping (zones)
+
+To activate a deactivated zone, follow these steps:
+
+1. On the **Zones** listing page, go to the **Status** filter and select **Deactivated**. This displays only the deactivated zones.
+2. Locate the zone you want to activate, select the **three-dot menu**, and then select **Activate**.
+3. In the confirmation dialog box, select **Yes, activate**.
+
+The zone is activated and appears in the **Zones** listing with the **Activated** status.
+
+<Image src="https://files.readme.io/4d5133759a133c7ccf68f78f127ebaafcdfd3a0066a02aefb18aa92619e32bc5-activating_a_zone.gif" border={true} />
+
+### Bulk-uploading geographic grouping (zones)
+
+To add many zones at once, follow these steps:
+
+1. Select the (**⋯)** menu next to **New zone**, then select **Bulk upload zones**.
+2. Download the sample CSV.
+3. Fill in the mandatory columns (**name**, **code**, **description**, and pipe-separated **externalId** for multiple IDs) without changing the headers or column order.
+4. Upload the file.
+
+## Creating a business grouping (concepts)
+
+To create a concept, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Concepts**.
+2. Select **New concept**.
+3. Enter a **Name** and **Code**, and optionally a **Description**.<br />**Note:** The **Name** can contain only letters, numbers, underscores (`_`), and spaces. The **Code** must start with a lowercase letter or digit and can contain only lowercase letters, digits, periods (`.`), underscores (`_`), or hyphens (`-`), up to 50 characters. The code cannot be changed after the concept is created.
+4. (Optional) Select **Make this an Organization Unit** to mark this Concept as an <Anchor target="_blank" href="doc:organisation-units-ou">Organization Unit (OU)</Anchor>
+
+   **Note:** You can turn **Make this an Organization Unit** on or off later from the Concept's **Edit** screen.
+5. (Optional) Select **+ external ID** to add more than one External ID.
+6. Under **Hierarchy**, select a **Parent concept** to nest it under an existing concept. Leave it blank to map the concept directly to your organization.
+7. Under **Locale**, select a **Timezone**, **Language**, and **Currency**. All three are required. If you selected a Parent concept, these are pre-filled from its locale, but you can still override them.
+8. Select **Add Concept**.
+
+<Image src="https://files.readme.io/4fac2545e4fb25583c33fd5d6b3bc4eb4c72cf38c7138a38d7a94e096e6be61e-create_concepts.gif" border={true} />
+
+### Viewing and editing a business grouping (concepts)
+
+To view or edit a concept, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Concepts**.
+2. On the **Concepts** listing page, review each zone's **Name** and **Code**, **External ID**, **Status**, **Type** and when it was last updated. Select the **Name/Code** column header to sort concepts alphabetically. Use the **search&#x20;**&#x62;ar to find a specific concepts, or the **Status** filter to show only **Active** or **Deactivated** concepts. Use the **Type** filter (All, **Organization unit**, or **Regular concept**) to see which Concepts are enabled as OUs.
+3. Select a concept to open its detail page, which displays all the information you configured when you created it.
+4. Select **Edit** to change any field, then **Save**. Your changes appear on the list right away.
+
+**Note:** Bulk-uploading Concepts isn't available yet; create and edit them one at a time.
+
+<Image src="https://files.readme.io/ccb49dfae207340202d0d6dea3eddfe7c8408da9a79a31015ae5e73088cab825-viewing_and_editing_a_concept.gif" border={true} />
+
+### Deactivating a business grouping (concepts)
+
+To deactivate a concept, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Concepts**.
+2. Locate the concept you want to deactivate, select the **three-dot menu**, and then select **Deactivate**.
+3. In the confirmation dialog box, select **Yes, deactivate**.
+
+The concept is deactivated and appears in the **Concepts** listing with the **Deactivated** status.
+
+<Image src="https://files.readme.io/503db7a8b52f349ef47f74d7af3d36cf388399b499112fd3a4360495396b4681-Deactivating_concepts.gif" border={true} />
+
+### Activating a business grouping (concepts)
+
+To activate a deactivated concept, follow these steps:
+
+1. On the **Concepts** listing page, go to the **Status** filter and select **Deactivated**. This displays only the deactivated concepts.
+2. Locate the concept you want to activate, select the **three-dot menu**, and then select **Activate**.
+3. In the confirmation dialog box, select **Yes, activate**.
+
+The concept is activated and appears in the **Concepts** listing with the **Activated** status.
+
+<Image src="https://files.readme.io/f9e4d33679230ceaaa594afddeebc11b6acd59e4f38838b517e00ceaa832fbee-Activating_concepts.gif" border={true} />
+
+## Creating a point of transaction (tills)
+
+To create a till, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Tills**.
+2. Select **New till**.
+3. Enter a **Name** and **Code**.<br />**Note:** The **Name** can contain only letters, numbers, underscores (`_`), and spaces. The **Code** must start with a lowercase letter or digit and can contain only lowercase letters, digits, periods (`.`), underscores (`_`), or hyphens (`-`), up to 50 characters. The code cannot be changed after the till is created.
+4. (Optional) Enter an **External ID** and **Description**. <br />**Note:** You can add up to 5 External IDs.
+5. Select **Admin** if this is a test till rather than a live one.
+6. Under **Hierarchy**, select the parent **Store**. Every Till belongs to exactly one Store.
+7. Select **Add Till**.
+
+<Image src="https://files.readme.io/aaba459ecf7692be68ea414826afacceeb8d4f46c2d73a801d7e1aad5fd7adc9-creating_till.gif" border={true} />
+
+### Viewing and editing a point of transaction (tills)
+
+To view or edit a till, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Tills**.
+2. On the **tills** listing page, review each zone's **Name** and **Code**, **External ID**, **Status**, **Admin,** and when it was last updated. Select the **Name/Code** column header to sort tills alphabetically. Use the **search&#x20;**&#x62;ar to find a specific tills, or the **Status** filter to show only **Active** or **Deactivated** tills. Use the **Admin** filter to display tills that are marked as admins or not marked as admins.
+3. Select a till to open its detail page, which displays all the information you configured when you created it.
+4. Select **Edit** to change any field, then **Save**. Your changes appear on the list right away.
+
+   **Note:** Bulk-uploading Tills is not supported; create and edit them one at a time.
+
+<Image src="https://files.readme.io/bdeefaa3d03690df3dfb02fd4dc575b7725ed3b372c021b93bed5c4f2d660405-viewing_nad_editing_till.gif" border={true} />
+
+### Deactivating a point of transaction (tills)
+
+To deactivate a till, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Tills**.
+2. Locate the till you want to deactivate, select the **three-dot menu**, and then select **Deactivate**.
+3. In the confirmation dialog box, select **Yes, deactivate**.
+
+The till is deactivated and appears in the **Tills** listing with the **Deactivated** status.
+
+<Image src="https://files.readme.io/89491745f7050ba0c918e68351fc37940e60d0e0d5b2652b5630856f29918094-decartivating_till.gif" border={true} />
+
+### Activating a point of transaction (tills)
+
+To activate a deactivated till, follow these steps:
+
+1. On the **Tills** listing page, go to the **Status** filter and select **Deactivated**. This displays only the deactivated tills.
+2. Locate the till you want to activate, select the **three-dot menu**, and then select **Activate**.
+3. In the confirmation dialog box, select **Yes, activate**.
+
+The till is activated and appears in the **Tills** listing with the **Activated** status.
+
+<Image src="https://files.readme.io/e123e0801ea56b4d11d51121312e4c62c8cbb0391f8a0feeb2568d629517bd4e-activating_till.gif" border={true} />
+
+## Creating a label
+
+Labels let you tag Stores and other entities, for filtering and reporting.
+
+To create a label, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Labels**.
+2. Select **Create Label**.
+3. Enter an **External ID** and **Label Name** (both required), and an optional **Description**.
+4. Set an **Expiry Configuration**:
+
+   | Option                         | Behavior                                                   |
+   | ------------------------------ | ---------------------------------------------------------- |
+   | Never Expire                   | The label stays on the entity indefinitely.                |
+   | Expire on a fixed date         | You choose a specific calendar date.                       |
+   | Expire after X days            | The label expires a set number of days after it's applied. |
+   | Expire at end of current month | The label expires on the last day of the current month.    |
+   | Expire at end of current year  | The label expires on the last day of the current year.     |
+   | Expire at end of next year     | The label expires on the last day of next year.            |
+5. Select **Add Label**.
+
+**Note:** Bulk-uploading labels is not supported; create and edit them one at a time.
+
+<Image src="https://files.readme.io/86f3ed84405f70c51391c3873f72a098581006fc9c96ec5b1b5bb01a509a1483-label_product_view_edit.gif" border={true} />
+
+### Viewing and editing a label
+
+To view or edit a label, follow these steps:
+
+1. Go to **Entities** > **Locations** > **Labels**.
+2. On the Labels list, review each label's **Name**, **Status**, **External ID**, **Expiry configuration**, and **Last updated** details. Select the **Name** column header to sort labels alphabetically. Use **Search by label name and IDs** to find a specific label.
+3. Select a label to open its detail page. Review the label details, including the **Label ID**, **External ID**, **Name**, **Status**, **Description**, and **Expiry configuration**.
+4. (Optional) Select **Edit** to update the label details. You can edit the **External ID**, **Label name**, **Description**, and **Expiry configuration**. The **Label ID** cannot be edited. Select **Save Label**.
+
+   The changes are saved for that label.  Use the **Status** filter above the list to switch between active and deactivated labels.
+
+<Image src="https://files.readme.io/580243932f36d62ec064112f5061f9ca04ba9002ea2309572bbc598f6e257645-view_and_edit_labels.gif" border={true} />
+
+### Deactivating a label
+
+To deactivate a label, follow these steps:
+
+1. Go to **Entities** > **Labels**.
+2. Locate the label you want to deactivate, select the **three-dot menu**, and then select **Deactivate**.
+3. In the confirmation dialog box, select **Yes, deactivate**.
+
+The label is deactivated and appears in the **Labels** listing with the **Deactivated** status.
+
+<Image src="https://files.readme.io/e2e34269941774bfa56298525f198d3942406bea6f3158d61fe445fa274055a4-deactivating_label.gif" border={true} />
+
+### Activating a label
+
+To activate a deactivated label, follow these steps:
+
+1. On the **Labels** listing page, go to the **Status** filter and select **Deactivated**. This displays only the deactivated labels.
+2. Locate the label you want to activate, select the **three-dot menu**, and then select **Activate**.
+3. In the confirmation dialog box, select **Yes, activate**.
+
+The label is activated and appears in the **Labels** listing with the **Activated** status.
+
+## Grouping locations dynamically (collections)
+
+Collections are rule-based groups of locations that refresh on a schedule, instead of a static list you maintain by hand.
+
+1. Go to **Entities** > **Locations** > **Collections**.
+
+2. Select **Create collection**.
+
+3. Enter a **Collection name** and optional **External ID** and **Description**.
+
+4. Choose a **Refresh frequency** for how often membership recalculates.
+
+5. Under **Membership criteria**, add one or more condition blocks (attribute, operator, value). Choose **AND** or **OR** to control how conditions combine within a block and across blocks.
+
+6. Select **Save collection**.
+
+## Renaming location terms (display names)
+
+If your org uses different terminology internally, rename Store, Zone, Concepts, and Tills without changing how they work. Follow the steps below to rename display names:&#x20;
+
+1. From any tab on the Locations page, select **Display names**.
+2. Enter your preferred name for each level.
+3. Select **Save names**.
+
+These names appear across the platform wherever that entity is shown.
+
+<Image src="https://files.readme.io/a358c5fef02150a96783b4c6189d69357c2684c9b86ce3fbee5d8e12eb136be0-displaynemaes.gif" border={true} />
+
+<br />
+
+<br />

@@ -1,0 +1,349 @@
+{
+  "slug": "docs/redemption-custom-field",
+  "source": "https://docs.capillarytech.com/docs/redemption-custom-field.md",
+  "url": "https://docs.capillarytech.com/docs/redemption-custom-field",
+  "title": "Redemption Custom Field",
+  "description": "",
+  "section": "Loyalty+ Reporting",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:04:18.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `*` (U+002A) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 9,
+    "code": 3,
+    "Image": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Points Redemption Custom Fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Redemption Custom Fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "QUERIES FOR POINTS REDEMPTION CUSTOM FIELD",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "QUERIES FOR POINTS REDEMPTION CUSTOM FIELD",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**Table Name:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Table Name:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        17
+      ],
+      "raw": "```\nuser_management__loyalty_redemptions\nuser_management__custom_fields_data\nuser_management__custom_fields\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "user_management__loyalty_redemptions\nuser_management__custom_fields_data\nuser_management__custom_fields"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Note** Coupon redemption custom fields are stored in the `user_management.custom_fields_data` table under the `VOUCHER_REDEMPTION` scope, with associatedId set to the corresponding `redemptionId`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note Coupon redemption custom fields are stored in the user_management.custom_fields_data table under the VOUCHER_REDEMPTION scope, with associatedId set to the corresponding redemptionId.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "## **All Points redemption custom fields**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "All Points redemption custom fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "Exporting all points redemption custom fields data for Org ID and for a given time period.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Exporting all points redemption custom fields data for Org ID and for a given time period.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "To find all custom field data of points redemptions in a time period. <**replace org\\_id and date** according to the requirement in the where clause>",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To find all custom field data of points redemptions in a time period. <replace org_id and date according to the requirement in the where clause>",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        32
+      ],
+      "raw": "```sql\nselect lr.org_id, lr.user_id, lr.bill_number, from_unixtime(lr.`date`/1000,'yyyy-MM-dd') as redemption_date, cf.name as custom_field_name, cfd.value as custom_field_value from source_delta.user_management__loyalty_redemptions lr \njoin source_delta.user_management__custom_fields_data cfd on lr.org_id=cfd.org_id and lr.id=cfd.assoc_id \njoin source_delta.user_management__custom_fields cf on cfd.cf_id=cf.id and cfd.org_id=cf.org_id\nwhere lr.org_id=313 and lr.`date` between to_unix_timestamp('2022-01-01', 'yyyy-MM-dd')*1000 and to_unix_timestamp('2022-12-31', 'yyyy-MM-dd')*1000\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "sql",
+        "title": null,
+        "code": "select lr.org_id, lr.user_id, lr.bill_number, from_unixtime(lr.`date`/1000,'yyyy-MM-dd') as redemption_date, cf.name as custom_field_name, cfd.value as custom_field_value from source_delta.user_management__loyalty_redemptions lr \njoin source_delta.user_management__custom_fields_data cfd on lr.org_id=cfd.org_id and lr.id=cfd.assoc_id \njoin source_delta.user_management__custom_fields cf on cfd.cf_id=cf.id and cfd.org_id=cf.org_id\nwhere lr.org_id=313 and lr.`date` between to_unix_timestamp('2022-01-01', 'yyyy-MM-dd')*1000 and to_unix_timestamp('2022-12-31', 'yyyy-MM-dd')*1000"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "Please refer to the image below for your reference:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Please refer to the image below for your reference:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/9799ccb-image_8.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/9799ccb-image_8.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "## **Particular points redemption custom field**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Particular points redemption custom field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "Exporting points redemption custom field data of a particular custom field for  Org ID and a given time period.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Exporting points redemption custom field data of a particular custom field for  Org ID and a given time period.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "To find the value of a particular custom field data of points redemptions in a time period. <**replace org\\_id, custom\\_field name, and date** according to the requirement in the where clause>",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To find the value of a particular custom field data of points redemptions in a time period. <replace org_id, custom_field name, and date according to the requirement in the where clause>",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        44,
+        49
+      ],
+      "raw": "```sql\nselect lr.user_id, lr.bill_number, lr.points_redeemed, from_unixtime(lr.`date`/1000,'yyyy-MM-dd') as redemption_date, cf.name as custom_field_name, cfd.value as custom_field_value from source_delta.user_management__loyalty_redemptions lr \njoin source_delta.user_management__custom_fields_data cfd on lr.org_id=cfd.org_id and lr.id=cfd.assoc_id \njoin source_delta.user_management__custom_fields cf on cfd.cf_id=cf.id and cfd.org_id=cf.org_id\nwhere lr.org_id=313 and cf.name='birthday' and lr.`date` between to_unix_timestamp('2022-01-01', 'yyyy-MM-dd')*1000 and to_unix_timestamp('2022-12-31', 'yyyy-MM-dd')*1000\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "sql",
+        "title": null,
+        "code": "select lr.user_id, lr.bill_number, lr.points_redeemed, from_unixtime(lr.`date`/1000,'yyyy-MM-dd') as redemption_date, cf.name as custom_field_name, cfd.value as custom_field_value from source_delta.user_management__loyalty_redemptions lr \njoin source_delta.user_management__custom_fields_data cfd on lr.org_id=cfd.org_id and lr.id=cfd.assoc_id \njoin source_delta.user_management__custom_fields cf on cfd.cf_id=cf.id and cfd.org_id=cf.org_id\nwhere lr.org_id=313 and cf.name='birthday' and lr.`date` between to_unix_timestamp('2022-01-01', 'yyyy-MM-dd')*1000 and to_unix_timestamp('2022-12-31', 'yyyy-MM-dd')*1000"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "Please refer to the image below for your reference",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Please refer to the image below for your reference",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/5aa505f-image_7.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/5aa505f-image_7.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

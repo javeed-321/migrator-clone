@@ -1,0 +1,306 @@
+{
+  "slug": "docs/preventing-fraudulent-redemptions",
+  "source": "https://docs.capillarytech.com/docs/preventing-fraudulent-redemptions.md",
+  "url": "https://docs.capillarytech.com/docs/preventing-fraudulent-redemptions",
+  "title": "Preventing Fraudulent Redemptions",
+  "description": "",
+  "section": "Create and Manage Cart Promotions",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-14T12:16:55.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 7,
+    "list": 3,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Preventing Fraudulent Redemptions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Preventing Fraudulent Redemptions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "In real-world retail environments, a small delay exists between a cashier applying a discount and the system officially recording it as \"redeemed.\" This delay can create a loophole where a customer might try to use the same promotion across two different checkout counters simultaneously.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In real-world retail environments, a small delay exists between a cashier applying a discount and the system officially recording it as \"redeemed.\" This delay can create a loophole where a customer might try to use the same promotion across two different checkout counters simultaneously.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "To close this loophole, Capillary uses an internal **Cart Locking** mechanism.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To close this loophole, Capillary uses an internal Cart Locking mechanism.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "### 1. The transaction flow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "1. The transaction flow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Understanding the sequence of events helps clarify why \"Locking\" is necessary:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Understanding the sequence of events helps clarify why \"Locking\" is necessary:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        19
+      ],
+      "raw": "1. **Evaluation:** The cashier adds items and calls the system to see which offers are available. The system returns the offers but has **not** yet officially redeemed them.\n2. **Application:** The cashier applies the offer and the customer receives the benefit on their bill. Because the benefit is already given, the system cannot \"reject\" the redemption later without causing a conflict at the register.\n3. **Completion:** The transaction is sent to Capillary via the transactionAdd API. Only at this point are the redemption KPIs (limits) updated permanently.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Evaluation: The cashier adds items and calls the system to see which offers are available. The system returns the offers but has not yet officially redeemed them.Application: The cashier applies the offer and the customer receives the benefit on their bill. Because the benefit is already given, the system cannot \"reject\" the redemption later without causing a conflict at the register.Completion: The transaction is sent to Capillary via the transactionAdd API. Only at this point are the redemption KPIs (limits) updated permanently.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "**The Loophole:** If a second transaction is started between Step 2 and Step 3, the system might not yet know the limit has been reached, potentially allowing a customer to exceed their allowed redemptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Loophole: If a second transaction is started between Step 2 and Step 3, the system might not yet know the limit has been reached, potentially allowing a customer to exceed their allowed redemptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "### 2. How cart locking works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "2. How cart locking works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "To prevent abuse, the system triggers an internal \"lock\" as soon as a promotion is applied.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To prevent abuse, the system triggers an internal \"lock\" as soon as a promotion is applied.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        29
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  This feature is **automatically enabled**. You do not need to turn it on manually.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "This feature is automatically enabled. You do not need to turn it on manually.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 10,
+          "lines": [
+            28,
+            28
+          ],
+          "raw": "  This feature is **automatically enabled**. You do not need to turn it on manually.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This feature is automatically enabled. You do not need to turn it on manually.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        35
+      ],
+      "raw": "* **Transient KPIs:** When a promotion is applied to a unique **Cart Identifier**, the system creates \"temporary\" records of that redemption. These temporary records block the promotion from being used by other carts for that same customer.\n* **Unique Identifiers:** Every evaluate or getOffers call from the POS during a single transaction must use the same unique Cart Identifier to maintain the lock.\n* **Permanent vs. Released:**\n  * **Success:** Once the transaction completes, the temporary lock becomes a permanent redemption record.\n  * **Failure/Timeout:** If a transaction is cancelled or times out, the lock is released so the customer can use the offer again.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transient KPIs: When a promotion is applied to a unique Cart Identifier, the system creates \"temporary\" records of that redemption. These temporary records block the promotion from being used by other carts for that same customer.Unique Identifiers: Every evaluate or getOffers call from the POS during a single transaction must use the same unique Cart Identifier to maintain the lock.Permanent vs. Released:Success: Once the transaction completes, the temporary lock becomes a permanent redemption record.Failure/Timeout: If a transaction is cancelled or times out, the lock is released so the customer can use the offer again.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "### 3. The customer and cashier experience",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "3. The customer and cashier experience",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "Here is how this technical process looks in practice:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Here is how this technical process looks in practice:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        41,
+        49
+      ],
+      "raw": "1. **Scanning:** As the cashier scans items and requests offers, the system **temporarily locks** the promotion and updates the KPI tracker.\n2. **Prevention:** If the system detects an attempt to re-apply an already locked offer (for a different cart), it blocks the action:\n   * **Discounts:** Fail at the promotionId level.\n   * **Vouchers:** Fail at the earnId level.\n3. **Visibility:** If a customer checks their mobile app or asks the store staff while a transaction is mid-way, the offer will show as **\"Locked.\"**\n4. **Resolution:** If a transaction is delayed or stuck, the customer has three options:\n   * **Wait** for the current transaction to finish.\n   * **Contact Support** to manually investigate the transaction state.\n   * **Auto-Unlock:** The system will automatically release the lock after **24 hours** if no final confirmation is received.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Scanning: As the cashier scans items and requests offers, the system temporarily locks the promotion and updates the KPI tracker.Prevention: If the system detects an attempt to re-apply an already locked offer (for a different cart), it blocks the action:Discounts: Fail at the promotionId level.Vouchers: Fail at the earnId level.Visibility: If a customer checks their mobile app or asks the store staff while a transaction is mid-way, the offer will show as \"Locked.\"Resolution: If a transaction is delayed or stuck, the customer has three options:Wait for the current transaction to finish.Contact Support to manually investigate the transaction state.Auto-Unlock: The system will automatically release the lock after 24 hours if no final confirmation is received.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,841 @@
+{
+  "slug": "reference/create-points-restriction",
+  "source": "https://docs.capillarytech.com/reference/create-points-restriction.md",
+  "url": "https://docs.capillarytech.com/reference/create-points-restriction",
+  "title": "Create Points Restriction",
+  "description": "",
+  "section": "Points Restrictions",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 3,
+    "Callout": 1,
+    "CodeTabs": 3,
+    "list": 1,
+    "Table": 4,
+    "br": 1,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Points Restrictions - Create points restriction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Restrictions - Create points restriction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API allows the brand to restrict the customer to the number of points they burn/redeem in the rewards catalog.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API allows the brand to restrict the customer to the number of points they burn/redeem in the rewards catalog.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This helps brands control the customer’s activity on the rewards catalog and instead use these points while making transactions, eventually bringing more business to the brands.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This helps brands control the customer’s activity on the rewards catalog and instead use these points while making transactions, eventually bringing more business to the brands.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "For example: A brand wants to limit the number of points that a customer can redeem in the rewards catalog to 100 points in a week to purchase Intouch rewards. Using the points restriction API, the brand can limit the number of points redeemed by the customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example: A brand wants to limit the number of points that a customer can redeem in the rewards catalog to 100 points in a week to purchase Intouch rewards. Using the points restriction API, the brand can limit the number of points redeemed by the customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        20
+      ],
+      "raw": "> 👍 Note\n>\n> For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .\n>\n> * An org can have a limit of 50 restrictions that can be created.\n> * For specific KPI, you can set a  maximum of 15 active restrictions.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .An org can have a limit of 50 restrictions that can be created.For specific KPI, you can set a  maximum of 15 active restrictions.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "# Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        200
+      ],
+      "raw": "```curl Sample request\ncurl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcmU2YQ==' \\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000' \\\n--data '[\n  {\n    \"kpi\": \"POINTS\",\n    \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n    \"frequencyType\": \"DAILY\",\n    \"intervalValue\": 1,\n    \"constraintLimitValue\": 15,\n    \"isActive\": true,\n    \"redemptionType\": \"INTOUCH_REWARD\"  \n  }\n]'\n```\n```json Org level constraint\n[\n    {   \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"MONTHLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 100,\n        \"isActive\" : true,\n        \"redemptionType\": \"NULL\"\n    }\n]\n```\n```json Org level points constraint\n[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Org level points constraint- Content type\n[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Multiple points constraint\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true,\n        \"redemptionType\": \"VOUCHER\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"CHARITY\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"GAMES\"\n    }\n\n]\n```\n```json Creation of points constraint that already exists\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"MILES\"\n    }\n\n]\n\n```\n```json Points restriction on supplementary program\n[\n    {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"supplementaryProgramId\":\"27001187\",\n        \"isActive\": true,\n        \"intervalValue\": 90000\n    }\n]\n```\n```json Points restriction on customer segments\n  [  {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"segmentId\":\"6136\",\n        \"partitionId\":\"2676\",\n        \"isActive\": true,\n        \"intervalValue\": 100\n    }\n]\n```\n```json Points Restriction on Customer Loyalty Program\n[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"programId\" : 469,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```\n```json Points Restriction on Customer Label\n[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LABEL\",\n        \"label\":\"Fashion\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```\n```json Points Restriction on Customer Tier\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_TIER\",\n        \"tierId\" : 1,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample request",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ],
+      "tabs": [
+        {
+          "lang": "curl",
+          "title": "Sample request",
+          "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcmU2YQ==' \\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000' \\\n--data '[\n  {\n    \"kpi\": \"POINTS\",\n    \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n    \"frequencyType\": \"DAILY\",\n    \"intervalValue\": 1,\n    \"constraintLimitValue\": 15,\n    \"isActive\": true,\n    \"redemptionType\": \"INTOUCH_REWARD\"  \n  }\n]'"
+        },
+        {
+          "lang": "json",
+          "title": "Org level constraint",
+          "code": "[\n    {   \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"MONTHLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 100,\n        \"isActive\" : true,\n        \"redemptionType\": \"NULL\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Org level points constraint",
+          "code": "[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Org level points constraint- Content type",
+          "code": "[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Multiple points constraint",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true,\n        \"redemptionType\": \"VOUCHER\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"CHARITY\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"GAMES\"\n    }\n\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Creation of points constraint that already exists",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"MILES\"\n    }\n\n]\n"
+        },
+        {
+          "lang": "json",
+          "title": "Points restriction on supplementary program",
+          "code": "[\n    {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"supplementaryProgramId\":\"27001187\",\n        \"isActive\": true,\n        \"intervalValue\": 90000\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points restriction on customer segments",
+          "code": "  [  {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"segmentId\":\"6136\",\n        \"partitionId\":\"2676\",\n        \"isActive\": true,\n        \"intervalValue\": 100\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Loyalty Program",
+          "code": "[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"programId\" : 469,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Label",
+          "code": "[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LABEL\",\n        \"label\":\"Fashion\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Tier",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_TIER\",\n        \"tierId\" : 1,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        204,
+        205
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authenticationDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        209,
+        215
+      ],
+      "raw": "|                        |                                                |\n| :--------------------- | :--------------------------------------------- |\n| URI                    | api\\_gateway/rewards/core/v1/brand/constraints |\n| HTTP Method            | POST                                           |\n| Pagination             | No                                             |\n| Batch support          | No                                             |\n| Rate limit information | None                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "api_gateway/rewards/core/v1/brand/constraints"
+          ],
+          [
+            "HTTP Method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "No"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        217,
+        217
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        219,
+        374
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Parameter\n      </th>\n\n      <th>\n        Data Type\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **`kpi*`**\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`constraintLevel*`**\n      </td>\n\n      <td>\n        Enum\n      </td>\n\n      <td>\n        The level at which restrictions are defined by the organization and applied.\n\n        Supported values:\n\n        * `CUSTOMER_SEGMENT`: Apply restrictions on a customer segment by passing `segmentId` and `partitionId`. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.)\n        * `CUSTOMER_TIER`: Apply restrictions based on customer tier by passing the `tierId`.\n        * `CUSTOMER_LOYALTY_PROGRAM`: Apply restrictions to a specific loyalty program by passing the `programId`.\n        * `CUSTOMER_REDEMPTION_TYPE`: Apply restrictions to redeemable vouchers by passing the `redemptionType`.\n        * `CUSTOMER_SUPPL_PROGRAM`: Apply restrictions to a supplementary program by passing the `supplementaryProgramId`.\n        * `CUSTOMER_LABEL`: Apply restrictions based on a customer `Label`.\n        * `CUSTOMER`: Use `CUSTOMER` to apply a restriction at the individual customer level.\n        * Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` `frequencyType`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `tierId`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        Unique identifier for the tier . It is mandatory to provide a valid `tierId` when `CUSTOMER_TIER` is used as the `constraintLevel`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `programId`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        Unique identifier for the program . It is mandatory to provide a valid `programId` when `CUSTOMER_LOYALTY_PROGRAM` is used as the `constraintLevel`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`frequencyType*`**\n      </td>\n\n      <td>\n        Enum\n      </td>\n\n      <td>\n        The frequency at which the constraint is applied. Supported values: `DAILY`, `WEEKLY`, `MONTHLY`. Points redemption is only applicable to fixed window restrictions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`intervalValue*`**\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        The interval at which the frequency is applied.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`constraintLimitValue*`**\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        The limit value for the constraint.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`isActive*`**\n      </td>\n\n      <td>\n        Boolean\n      </td>\n\n      <td>\n        The status of the constraint, indicating whether it's active (`true`) or not (`false`).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`redemptionType*`**\n      </td>\n\n      <td>\n        ENUM\n      </td>\n\n      <td>\n        The type of InTouch reward. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "kpi*",
+            "String",
+            "The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: POINTS."
+          ],
+          [
+            "constraintLevel*",
+            "Enum",
+            "The level at which restrictions are defined by the organization and applied.Supported values:CUSTOMER_SEGMENT: Apply restrictions on a customer segment by passing segmentId and partitionId. (Note: These IDs are not currently available in the Insights+ UI; you'll need to create a Jira ticket to obtain them.)CUSTOMER_TIER: Apply restrictions based on customer tier by passing the tierId.CUSTOMER_LOYALTY_PROGRAM: Apply restrictions to a specific loyalty program by passing the programId.CUSTOMER_REDEMPTION_TYPE: Apply restrictions to redeemable vouchers by passing the redemptionType.CUSTOMER_SUPPL_PROGRAM: Apply restrictions to a supplementary program by passing the supplementaryProgramId.CUSTOMER_LABEL: Apply restrictions based on a customer Label.CUSTOMER: Use CUSTOMER to apply a restriction at the individual customer level.Only one combination of Constraint_Level and KPI is allowed with DAILY, WEEKLY, or MONTHLY frequencyType."
+          ],
+          [
+            "tierId",
+            "String",
+            "Unique identifier for the tier . It is mandatory to provide a valid tierId when CUSTOMER_TIER is used as the constraintLevel."
+          ],
+          [
+            "programId",
+            "String",
+            "Unique identifier for the program . It is mandatory to provide a valid programId when CUSTOMER_LOYALTY_PROGRAM is used as the constraintLevel"
+          ],
+          [
+            "frequencyType*",
+            "Enum",
+            "The frequency at which the constraint is applied. Supported values: DAILY, WEEKLY, MONTHLY. Points redemption is only applicable to fixed window restrictions."
+          ],
+          [
+            "intervalValue*",
+            "Integer",
+            "The interval at which the frequency is applied."
+          ],
+          [
+            "constraintLimitValue*",
+            "Integer",
+            "The limit value for the constraint."
+          ],
+          [
+            "isActive*",
+            "Boolean",
+            "The status of the constraint, indicating whether it's active (true) or not (false)."
+          ],
+          [
+            "redemptionType*",
+            "ENUM",
+            "The type of InTouch reward. Supported values: GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        376,
+        376
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 376
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        378,
+        536
+      ],
+      "raw": "```json Org level constraint\n[\n    {   \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"MONTHLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 100,\n        \"isActive\" : true,\n        \"redemptionType\": \"NULL\"\n    }\n]\n```\n```json Org level points constraint\n[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Org level points constraint- Content type\n[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Multiple points constraint\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true,\n        \"redemptionType\": \"VOUCHER\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"CHARITY\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"GAMES\"\n    }\n\n]\n```\n```json Creation of points constraint that already exists\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"MILES\"\n    }\n\n]\n\n```\n```json Points restriction on supplementary program\n[\n    {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"supplementaryProgramId\":\"27001187\",\n        \"isActive\": true,\n        \"intervalValue\": 90000\n    }\n]\n```\n```json Points restriction on customer segments\n  [  {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"segmentId\":\"6136\",\n        \"partitionId\":\"2676\",\n        \"isActive\": true,\n        \"intervalValue\": 100\n    }\n]\n```\n```json Points Restriction on Customer Loyalty Program\n[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"programId\" : 469,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```\n```json Points Restriction on Customer Label\n[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LABEL\",\n        \"label\":\"Fashion\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```\n```json Points Restriction on Customer Tier\n[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_TIER\",\n        \"tierId\" : 1,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Org level constraint",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Org level constraint",
+          "code": "[\n    {   \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"MONTHLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 100,\n        \"isActive\" : true,\n        \"redemptionType\": \"NULL\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Org level points constraint",
+          "code": "[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Org level points constraint- Content type",
+          "code": "[\n    {\n        \"orgId\": 51544,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Multiple points constraint",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true,\n        \"redemptionType\": \"VOUCHER\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"CHARITY\"\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"GAMES\"\n    }\n\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Creation of points constraint that already exists",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    },\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\" : \"WEEKLY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 10,\n        \"isActive\" : true,\n        \"redemptionType\": \"MILES\"\n    }\n\n]\n"
+        },
+        {
+          "lang": "json",
+          "title": "Points restriction on supplementary program",
+          "code": "[\n    {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"supplementaryProgramId\":\"27001187\",\n        \"isActive\": true,\n        \"intervalValue\": 90000\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points restriction on customer segments",
+          "code": "  [  {\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"segmentId\":\"6136\",\n        \"partitionId\":\"2676\",\n        \"isActive\": true,\n        \"intervalValue\": 100\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Loyalty Program",
+          "code": "[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"programId\" : 469,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Label",
+          "code": "[\n    {   \n        \"orgId\": 4000036,      \n        \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_LABEL\",\n        \"label\":\"Fashion\",\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Points Restriction on Customer Tier",
+          "code": "[\n    {   \"kpi\" :\"POINTS\",\n        \"constraintLevel\" : \"CUSTOMER_TIER\",\n        \"tierId\" : 1,\n        \"frequencyType\" : \"DAILY\",\n        \"intervalValue\" : 1,\n        \"constraintLimitValue\" : 5,\n        \"isActive\" : true\n    }\n]"
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        538,
+        538
+      ],
+      "raw": "# Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        540,
+        798
+      ],
+      "raw": "```json Sample response\n[\n    {\n        \"rewardConstraintId\": 50527,\n        \"orgId\": 100737,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 15,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"createdOn\": 1765370540000,\n        \"lastUpdatedOn\": 1765370540000,\n        \"createdBy\": 75197372,\n        \"lastUpdatedBy\": 75197372,\n        \"createdOnDateTime\": \"2025-12-10T12:42:20Z\",\n        \"lastUpdatedOnDateTime\": \"2025-12-10T12:42:20Z\",\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Response-Org level constraints\n[\n    {\n        \"rewardConstraintId\": 7010,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"MONTHLY\",\n        \"constraintLimitValue\": 100,\n        \"isActive\": true,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"NULL\"\n    }\n]\n```\n```json Response- Multiple content type\n[\n    {\n        \"rewardConstraintId\": 6984,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"CHARITY\"\n    },\n    {\n        \"rewardConstraintId\": 6985,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"GAMES\"\n    },\n    {\n        \"rewardConstraintId\": 4915,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0,\n        },\n       \"redemptionType\": \"VOUCHER\"\n    }\n]\n```\n```json Response- Customer points constraint\n[\n    {\n        \"rewardConstraintId\": 4226,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        }\n    }\n]\n```\n```json Response-Content type\n[\n    {\n        \"rewardConstraintId\": 4227,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]\n```\n```json Response- Creation of points constraint that already exists\n[\n    {\n        \"rewardConstraintId\": 4228,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"TUESDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"MILES\"\n    },\n    {\n        \"rewardConstraintId\": 4226,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": false,\n            \"code\": 12014,\n            \"message\": \"Constraint already exist, use update constraints api\"\n        }\n    }\n]\n```\n```json Response - Creation of points restriction on supplementary program\n[\n    {\n        \"rewardConstraintId\": 2888,\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"supplementaryProgramId\": \"27001187\"\n    }\n]\n```\n```json Response- Creation of points restriction on customer segments\n[\n    {\n        \"rewardConstraintId\": 2887,\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"segmentId\": \"6136\",\n        \"partitionId\": \"2676\"\n    }\n]\n```\n```json Response- Creation of points restriction on customer loyalty program\n[\n    {\n        \"rewardConstraintId\": 11664,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"programId\": \"469\"\n    }\n]\n```\n```json Response- Creation of points restriction on customer label\n[\n    {\n        \"rewardConstraintId\": 11667,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_LABEL\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"label\": \"Fashion\"\n    }\n]\n```\n```json Response- Creation of points restriction on customer tier\n[\n    {\n        \"rewardConstraintId\": 13059,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_TIER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"tierId\": \"1\"\n    }\n]\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Sample response",
+          "code": "[\n    {\n        \"rewardConstraintId\": 50527,\n        \"orgId\": 100737,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 15,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"createdOn\": 1765370540000,\n        \"lastUpdatedOn\": 1765370540000,\n        \"createdBy\": 75197372,\n        \"lastUpdatedBy\": 75197372,\n        \"createdOnDateTime\": \"2025-12-10T12:42:20Z\",\n        \"lastUpdatedOnDateTime\": \"2025-12-10T12:42:20Z\",\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response-Org level constraints",
+          "code": "[\n    {\n        \"rewardConstraintId\": 7010,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"MONTHLY\",\n        \"constraintLimitValue\": 100,\n        \"isActive\": true,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"NULL\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Multiple content type",
+          "code": "[\n    {\n        \"rewardConstraintId\": 6984,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"CHARITY\"\n    },\n    {\n        \"rewardConstraintId\": 6985,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"GAMES\"\n    },\n    {\n        \"rewardConstraintId\": 4915,\n        \"orgId\": 50672,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0,\n        },\n       \"redemptionType\": \"VOUCHER\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Customer points constraint",
+          "code": "[\n    {\n        \"rewardConstraintId\": 4226,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        }\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response-Content type",
+          "code": "[\n    {\n        \"rewardConstraintId\": 4227,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 3,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"INTOUCH_REWARD\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Creation of points constraint that already exists",
+          "code": "[\n    {\n        \"rewardConstraintId\": 4228,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"TUESDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"redemptionType\": \"MILES\"\n    },\n    {\n        \"rewardConstraintId\": 4226,\n        \"orgId\": 100606,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": false,\n            \"code\": 12014,\n            \"message\": \"Constraint already exist, use update constraints api\"\n        }\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response - Creation of points restriction on supplementary program",
+          "code": "[\n    {\n        \"rewardConstraintId\": 2888,\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SUPPL_PROGRAM\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 10000,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"supplementaryProgramId\": \"27001187\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Creation of points restriction on customer segments",
+          "code": "[\n    {\n        \"rewardConstraintId\": 2887,\n        \"orgId\": 4000036,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_SEGMENT\",\n        \"frequencyType\": \"WEEKLY\",\n        \"constraintLimitValue\": 3000,\n        \"isActive\": true,\n        \"startDayOfTheWeek\": \"MONDAY\",\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"segmentId\": \"6136\",\n        \"partitionId\": \"2676\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Creation of points restriction on customer loyalty program",
+          "code": "[\n    {\n        \"rewardConstraintId\": 11664,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_LOYALTY_PROGRAM\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"programId\": \"469\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Creation of points restriction on customer label",
+          "code": "[\n    {\n        \"rewardConstraintId\": 11667,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_LABEL\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"label\": \"Fashion\"\n    }\n]"
+        },
+        {
+          "lang": "json",
+          "title": "Response- Creation of points restriction on customer tier",
+          "code": "[\n    {\n        \"rewardConstraintId\": 13059,\n        \"orgId\": 100458,\n        \"kpi\": \"POINTS\",\n        \"constraintLevel\": \"CUSTOMER_TIER\",\n        \"frequencyType\": \"DAILY\",\n        \"constraintLimitValue\": 5,\n        \"isActive\": true,\n        \"intervalValue\": 1,\n        \"status\": {\n            \"success\": true,\n            \"code\": 0\n        },\n        \"tierId\": \"1\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        800,
+        800
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        802,
+        814
+      ],
+      "raw": "| Parameter                  | Data Type | Description                                                                                                                                                                                                                 |\n| :------------------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **`rewardConstraintId`**   | Integer   | A unique identifier for the reward constraint.                                                                                                                                                                              |\n| **`orgId`**                | Integer   | A unique identifier for the organization.                                                                                                                                                                                   |\n| **`kpi`**                  | String    | The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: `POINTS`.                                                                                                                         |\n| **`constraintLevel`**      | String    | The level at which restrictions are defined by the organization and applied. Only one combination of `Constraint_Level` and `KPI` is allowed with `DAILY`, `WEEKLY`, or `MONTHLY` frequency types.                          |\n| **`frequencyType`**        | String    | The frequency at which the constraint is applied, e.g., `\"DAILY\"`.                                                                                                                                                          |\n| **`constraintLimitValue`** | Integer   | The limit value for the constraint.                                                                                                                                                                                         |\n| **`isActive`**             | Boolean   | The status indicating whether the constraint is active.                                                                                                                                                                     |\n| **`intervalValue`**        | Integer   | The interval at which the frequency is applied.                                                                                                                                                                             |\n| **`status.success`**       | Boolean   | Indicates if the status check was successful.                                                                                                                                                                               |\n| **`status.code`**          | Integer   | The status code associated with the constraint check.                                                                                                                                                                       |\n| **`redemptionType`**       | String    | The type of InTouch reward. Supported values: `INTOUCH_REWARD`, `VENDOR_INTOUCH_REWARD`, `VENDOR_ONLY_REWARD`, `CART_PROMOTION`, `MILES`, `VOUCHER`, `POINTS`, `CHARITY`, `CASH_BACK`, `CASH_WALLET`, `CARD_DISC`, `GAMES`. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "rewardConstraintId",
+            "Integer",
+            "A unique identifier for the reward constraint."
+          ],
+          [
+            "orgId",
+            "Integer",
+            "A unique identifier for the organization."
+          ],
+          [
+            "kpi",
+            "String",
+            "The Key Performance Indicator (KPI) on which the restriction is applied. Supported value: POINTS."
+          ],
+          [
+            "constraintLevel",
+            "String",
+            "The level at which restrictions are defined by the organization and applied. Only one combination of Constraint_Level and KPI is allowed with DAILY, WEEKLY, or MONTHLY frequency types."
+          ],
+          [
+            "frequencyType",
+            "String",
+            "The frequency at which the constraint is applied, e.g., \"DAILY\"."
+          ],
+          [
+            "constraintLimitValue",
+            "Integer",
+            "The limit value for the constraint."
+          ],
+          [
+            "isActive",
+            "Boolean",
+            "The status indicating whether the constraint is active."
+          ],
+          [
+            "intervalValue",
+            "Integer",
+            "The interval at which the frequency is applied."
+          ],
+          [
+            "status.success",
+            "Boolean",
+            "Indicates if the status check was successful."
+          ],
+          [
+            "status.code",
+            "Integer",
+            "The status code associated with the constraint check."
+          ],
+          [
+            "redemptionType",
+            "String",
+            "The type of InTouch reward. Supported values: INTOUCH_REWARD, VENDOR_INTOUCH_REWARD, VENDOR_ONLY_REWARD, CART_PROMOTION, MILES, VOUCHER, POINTS, CHARITY, CASH_BACK, CASH_WALLET, CARD_DISC, GAMES."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        816,
+        816
+      ],
+      "raw": "# API-specific errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API-specific errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        818,
+        826
+      ],
+      "raw": "| Error code | Description                                                                                               |\n| :--------- | :-------------------------------------------------------------------------------------------------------- |\n| 12014      | Constraint already exist. Use the update points restriction API to update the existing constraint.        |\n| 12015      | Constraint does not exist with the passed constraintId, create a new constraint.                          |\n| 12016      | Cannot pass rewardConstraintId in the create new constraint API.                                          |\n| 12017      | Pass the rewardConstraintId in the update points constraint API.                                          |\n| 12018      | Please make sure isActive flag is true for all the entries in the request body in create constraint call. |\n| 12020      | The limit of org level KPIs is reached. Please disable existing KPI constraints to add new constraints.   |\n| 12022      | Multiple restrictions are passed. Only one combination of constraint level and KPI is allowed.            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "12014",
+            "Constraint already exist. Use the update points restriction API to update the existing constraint."
+          ],
+          [
+            "12015",
+            "Constraint does not exist with the passed constraintId, create a new constraint."
+          ],
+          [
+            "12016",
+            "Cannot pass rewardConstraintId in the create new constraint API."
+          ],
+          [
+            "12017",
+            "Pass the rewardConstraintId in the update points constraint API."
+          ],
+          [
+            "12018",
+            "Please make sure isActive flag is true for all the entries in the request body in create constraint call."
+          ],
+          [
+            "12020",
+            "The limit of org level KPIs is reached. Please disable existing KPI constraints to add new constraints."
+          ],
+          [
+            "12022",
+            "Multiple restrictions are passed. Only one combination of constraint level and KPI is allowed."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        828,
+        828
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        830,
+        1045
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/brand/constraints\": {\n      \"post\": {\n        \"summary\": \"Points Restrictions - Create points restriction\",\n        \"description\": \"\",\n        \"operationId\": \"create-points-restriction\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\",\n                    \"description\": \"[     {   \\\"kpi\\\" :\\\"POINTS\\\",         \\\"constraintLevel\\\" : \\\"CUSTOMER_REDEMPTION_TYPE\\\",         \\\"frequencyType\\\" : \\\"DAILY\\\",         \\\"intervalValue\\\" : 1,         \\\"constraintLimitValue\\\" : 15,         \\\"isActive\\\" : true,         \\\"redemptionType\\\": \\\"POINTS\\\"     } ]\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"Request Example\": {\n                  \"value\": [\n                    {\n                      \"kpi\": \"POINTS\",\n                      \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n                      \"frequencyType\": \"DAILY\",\n                      \"intervalValue\": 1,\n                      \"constraintLimitValue\": 15,\n                      \"isActive\": true,\n                      \"redemptionType\": \"POINTS\"\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample response\": {\n                    \"value\": [\n                      {\n                        \"rewardConstraintId\": 50527,\n                        \"orgId\": 100737,\n                        \"kpi\": \"POINTS\",\n                        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n                        \"frequencyType\": \"DAILY\",\n                        \"constraintLimitValue\": 15,\n                        \"isActive\": true,\n                        \"intervalValue\": 1,\n                        \"status\": {\n                          \"success\": true,\n                          \"code\": 0\n                        },\n                        \"createdOn\": 1765370540000,\n                        \"lastUpdatedOn\": 1765370540000,\n                        \"createdBy\": 75197372,\n                        \"lastUpdatedBy\": 75197372,\n                        \"createdOnDateTime\": \"2025-12-10T12:42:20Z\",\n                        \"lastUpdatedOnDateTime\": \"2025-12-10T12:42:20Z\",\n                        \"redemptionType\": \"INTOUCH_REWARD\"\n                      }\n                    ],\n                    \"summary\": \"Sample response\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"rewardConstraintId\": {\n                        \"type\": \"integer\",\n                        \"example\": 6759,\n                        \"default\": 0\n                      },\n                      \"orgId\": {\n                        \"type\": \"integer\",\n                        \"example\": 50672,\n                        \"default\": 0\n                      },\n                      \"kpi\": {\n                        \"type\": \"string\",\n                        \"example\": \"POINTS\"\n                      },\n                      \"constraintLevel\": {\n                        \"type\": \"string\",\n                        \"example\": \"CUSTOMER_REDEMPTION_TYPE\"\n                      },\n                      \"frequencyType\": {\n                        \"type\": \"string\",\n                        \"example\": \"DAILY\"\n                      },\n                      \"constraintLimitValue\": {\n                        \"type\": \"integer\",\n                        \"example\": 15,\n                        \"default\": 0\n                      },\n                      \"isActive\": {\n                        \"type\": \"boolean\",\n                        \"example\": true,\n                        \"default\": true\n                      },\n                      \"intervalValue\": {\n                        \"type\": \"integer\",\n                        \"example\": 1,\n                        \"default\": 0\n                      },\n                      \"status\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"success\": {\n                            \"type\": \"boolean\",\n                            \"example\": true,\n                            \"default\": true\n                          },\n                          \"code\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          }\n                        }\n                      },\n                      \"redemptionType\": {\n                        \"type\": \"string\",\n                        \"example\": \"POINTS\"\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'accept: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHMjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000' \\\\\\n--data '[\\n  {\\n    \\\"kpi\\\": \\\"POINTS\\\",\\n    \\\"constraintLevel\\\": \\\"CUSTOMER_REDEMPTION_TYPE\\\",\\n    \\\"frequencyType\\\": \\\"DAILY\\\",\\n    \\\"intervalValue\\\": 1,\\n    \\\"constraintLimitValue\\\": 15,\\n    \\\"isActive\\\": true,\\n    \\\"redemptionType\\\": \\\"INTOUCH_REWARD\\\"\\n  }\\n]'\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/brand/constraints\": {\n      \"post\": {\n        \"summary\": \"Points Restrictions - Create points restriction\",\n        \"description\": \"\",\n        \"operationId\": \"create-points-restriction\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\",\n                    \"description\": \"[     {   \\\"kpi\\\" :\\\"POINTS\\\",         \\\"constraintLevel\\\" : \\\"CUSTOMER_REDEMPTION_TYPE\\\",         \\\"frequencyType\\\" : \\\"DAILY\\\",         \\\"intervalValue\\\" : 1,         \\\"constraintLimitValue\\\" : 15,         \\\"isActive\\\" : true,         \\\"redemptionType\\\": \\\"POINTS\\\"     } ]\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"Request Example\": {\n                  \"value\": [\n                    {\n                      \"kpi\": \"POINTS\",\n                      \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n                      \"frequencyType\": \"DAILY\",\n                      \"intervalValue\": 1,\n                      \"constraintLimitValue\": 15,\n                      \"isActive\": true,\n                      \"redemptionType\": \"POINTS\"\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample response\": {\n                    \"value\": [\n                      {\n                        \"rewardConstraintId\": 50527,\n                        \"orgId\": 100737,\n                        \"kpi\": \"POINTS\",\n                        \"constraintLevel\": \"CUSTOMER_REDEMPTION_TYPE\",\n                        \"frequencyType\": \"DAILY\",\n                        \"constraintLimitValue\": 15,\n                        \"isActive\": true,\n                        \"intervalValue\": 1,\n                        \"status\": {\n                          \"success\": true,\n                          \"code\": 0\n                        },\n                        \"createdOn\": 1765370540000,\n                        \"lastUpdatedOn\": 1765370540000,\n                        \"createdBy\": 75197372,\n                        \"lastUpdatedBy\": 75197372,\n                        \"createdOnDateTime\": \"2025-12-10T12:42:20Z\",\n                        \"lastUpdatedOnDateTime\": \"2025-12-10T12:42:20Z\",\n                        \"redemptionType\": \"INTOUCH_REWARD\"\n                      }\n                    ],\n                    \"summary\": \"Sample response\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                      \"rewardConstraintId\": {\n                        \"type\": \"integer\",\n                        \"example\": 6759,\n                        \"default\": 0\n                      },\n                      \"orgId\": {\n                        \"type\": \"integer\",\n                        \"example\": 50672,\n                        \"default\": 0\n                      },\n                      \"kpi\": {\n                        \"type\": \"string\",\n                        \"example\": \"POINTS\"\n                      },\n                      \"constraintLevel\": {\n                        \"type\": \"string\",\n                        \"example\": \"CUSTOMER_REDEMPTION_TYPE\"\n                      },\n                      \"frequencyType\": {\n                        \"type\": \"string\",\n                        \"example\": \"DAILY\"\n                      },\n                      \"constraintLimitValue\": {\n                        \"type\": \"integer\",\n                        \"example\": 15,\n                        \"default\": 0\n                      },\n                      \"isActive\": {\n                        \"type\": \"boolean\",\n                        \"example\": true,\n                        \"default\": true\n                      },\n                      \"intervalValue\": {\n                        \"type\": \"integer\",\n                        \"example\": 1,\n                        \"default\": 0\n                      },\n                      \"status\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"success\": {\n                            \"type\": \"boolean\",\n                            \"example\": true,\n                            \"default\": true\n                          },\n                          \"code\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          }\n                        }\n                      },\n                      \"redemptionType\": {\n                        \"type\": \"string\",\n                        \"example\": \"POINTS\"\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/constraints' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'accept: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHMjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=pmgXD8k6OMub7ECuaQ2wrzeksWm6sWXaIIAk1K5YFKk-1765284539237-0.0.1.1-604800000' \\\\\\n--data '[\\n  {\\n    \\\"kpi\\\": \\\"POINTS\\\",\\n    \\\"constraintLevel\\\": \\\"CUSTOMER_REDEMPTION_TYPE\\\",\\n    \\\"frequencyType\\\": \\\"DAILY\\\",\\n    \\\"intervalValue\\\": 1,\\n    \\\"constraintLimitValue\\\": 15,\\n    \\\"isActive\\\": true,\\n    \\\"redemptionType\\\": \\\"INTOUCH_REWARD\\\"\\n  }\\n]'\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

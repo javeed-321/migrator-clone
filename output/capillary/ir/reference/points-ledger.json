@@ -1,0 +1,254 @@
+{
+  "slug": "reference/points-ledger",
+  "source": "https://docs.capillarytech.com/reference/points-ledger.md",
+  "url": "https://docs.capillarytech.com/reference/points-ledger",
+  "title": "Points Ledger",
+  "description": "",
+  "section": "Points Ledger",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 1,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Points Ledger",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Ledger",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Points as incentives are treated as currency within an org and its affiliates. The multitude of credits, debits, and adjustments impact the pool of points in the customer account. When points issued from different programs of the org can be redeemed across the org units or loyalty programs, it is important to understand the debit and credit history. Ledger APIs help you retrieve the points debit and credit details across the programs of the org.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Points as incentives are treated as currency within an org and its affiliates. The multitude of credits, debits, and adjustments impact the pool of points in the customer account. When points issued from different programs of the org can be redeemed across the org units or loyalty programs, it is important to understand the debit and credit history. Ledger APIs help you retrieve the points debit and credit details across the programs of the org.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Status Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Status Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        220
+      ],
+      "raw": "<Table>\n  <thead>\n    <tr>\n      <th>\n        Code\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        11001\n      </td>\n\n      <td>\n        This combination of request parameters is not supported. Try removing parameters.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11002\n      </td>\n\n      <td>\n        This customer has pending events, hence the ledger may be incomplete. Please retry after some time to get a complete ledger\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11003\n      </td>\n\n      <td>\n        There are no ledger entries present for the given parameters. Try removing parameters to widen the search\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11004\n      </td>\n\n      <td>\n        Invalid tillId passed in request\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11005\n      </td>\n\n      <td>\n        Invalid programId passed in request\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11006\n      </td>\n\n      <td>\n        Limit cannot be greater than 10\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11007\n      </td>\n\n      <td>\n        Invalid ledgerEntryType passed in request\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11008\n      </td>\n\n      <td>\n        Invalid pointCategoryType passed in request\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11009\n      </td>\n\n      <td>\n        Startdate is after endDate\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11010\n      </td>\n\n      <td>\n        Time interval between startDate and endDate is greater than 90 days\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11011\n      </td>\n\n      <td>\n        The date format used is not supported. Enter the date in (yyyy-MM-ddTHH:mm:ss) format\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11012\n      </td>\n\n      <td>\n        Invalid userId passed in request\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11013\n      </td>\n\n      <td>\n        identifierName, identifierValue, source can not be empty\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11014\n      </td>\n\n      <td>\n        Event name not found :\\{0},  \n        Requested cannot be processed. Max 10  \n        events are allowed in params.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11015\n      </td>\n\n      <td>\n        Error setting event detail\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11016\n      </td>\n\n      <td>\n        Event detail not found for event log id \\{0}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11017\n      </td>\n\n      <td>\n        Event id format exception:\\{0}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11018\n      </td>\n\n      <td>\n        No users found for provided roles\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        11019\n      </td>\n\n      <td>\n        Source value  \n        capturing status is disabled. Please enable it from org settings page\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {},
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "11001",
+            "This combination of request parameters is not supported. Try removing parameters."
+          ],
+          [
+            "11002",
+            "This customer has pending events, hence the ledger may be incomplete. Please retry after some time to get a complete ledger"
+          ],
+          [
+            "11003",
+            "There are no ledger entries present for the given parameters. Try removing parameters to widen the search"
+          ],
+          [
+            "11004",
+            "Invalid tillId passed in request"
+          ],
+          [
+            "11005",
+            "Invalid programId passed in request"
+          ],
+          [
+            "11006",
+            "Limit cannot be greater than 10"
+          ],
+          [
+            "11007",
+            "Invalid ledgerEntryType passed in request"
+          ],
+          [
+            "11008",
+            "Invalid pointCategoryType passed in request"
+          ],
+          [
+            "11009",
+            "Startdate is after endDate"
+          ],
+          [
+            "11010",
+            "Time interval between startDate and endDate is greater than 90 days"
+          ],
+          [
+            "11011",
+            "The date format used is not supported. Enter the date in (yyyy-MM-ddTHH:mm:ss) format"
+          ],
+          [
+            "11012",
+            "Invalid userId passed in request"
+          ],
+          [
+            "11013",
+            "identifierName, identifierValue, source can not be empty"
+          ],
+          [
+            "11014",
+            "Event name not found :{0},Requested cannot be processed. Max 10events are allowed in params."
+          ],
+          [
+            "11015",
+            "Error setting event detail"
+          ],
+          [
+            "11016",
+            "Event detail not found for event log id {0}"
+          ],
+          [
+            "11017",
+            "Event id format exception:{0}"
+          ],
+          [
+            "11018",
+            "No users found for provided roles"
+          ],
+          [
+            "11019",
+            "Source valuecapturing status is disabled. Please enable it from org settings page"
+          ]
+        ],
+        "align": [],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "### EMF Errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "EMF Errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        224,
+        269
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Code\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        9003\n      </td>\n\n      <td>\n        Error fetching points ledger data : \\{0}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        9004\n      </td>\n\n      <td>\n        Warning while fetching ledger info : \\{0}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        9005\n      </td>\n\n      <td>\n        Invalid alternateCurrencyNames field  \n        value\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "9003",
+            "Error fetching points ledger data : {0}"
+          ],
+          [
+            "9004",
+            "Warning while fetching ledger info : {0}"
+          ],
+          [
+            "9005",
+            "Invalid alternateCurrencyNames fieldvalue"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

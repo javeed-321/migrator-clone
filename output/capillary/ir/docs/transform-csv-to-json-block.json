@@ -1,0 +1,379 @@
+{
+  "slug": "docs/transform-csv-to-json-block",
+  "source": "https://docs.capillarytech.com/docs/transform-csv-to-json-block.md",
+  "url": "https://docs.capillarytech.com/docs/transform-csv-to-json-block",
+  "title": "Transform Csv To Json Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-01T05:59:30.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 2,
+    "Image": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transform (CSV to JSON) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transform (CSV to JSON) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `convert_csv_to_json` block transforms CSV files into JSON format. It acts as a transformation block in a Connect+ dataflow, sitting between the source and destination blocks to convert ingested CSV data into structured JSON.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The convert_csv_to_json block transforms CSV files into JSON format. It acts as a transformation block in a Connect+ dataflow, sitting between the source and destination blocks to convert ingested CSV data into structured JSON.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your dataflow ingests CSV files and needs to convert them to JSON before posting to a Capillary API or another destination.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow ingests CSV files and needs to convert them to JSON before posting to a Capillary API or another destination.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "* A clear understanding of the CSV column headers and the desired output structure",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A clear understanding of the CSV column headers and the desired output structure",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "## Standard properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Standard properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        29
+      ],
+      "raw": "| Field name             | Required | Description                                                                                                                                                                                      |\n| :--------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Block name**         | Yes      | A name for the block instance. The name must be alphanumeric. There is no character limit.                                                                                                       |\n| **Sort Headers**       | No       | A comma-separated list of header names that defines the order in which columns appear in the JSON output. For example, `billId,itemId`.                                                          |\n| **Alphabetical sort?** | Yes      | Determines whether headers are sorted alphabetically in the JSON output. Select `true` to sort headers alphabetically. Select `false` to keep the original column order. Default value: `false`. |\n| **Grouping Limit**     | Yes      | The maximum number of records to include in each group. Accepts values between 1 and 1000. Default value: `1`.                                                                                   |\n| **Group By**           | No       | A comma-separated list of fields to group records by before passing them to the next block. For example, `billId`.                                                                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Sort Headers",
+            "No",
+            "A comma-separated list of header names that defines the order in which columns appear in the JSON output. For example, billId,itemId."
+          ],
+          [
+            "Alphabetical sort?",
+            "Yes",
+            "Determines whether headers are sorted alphabetically in the JSON output. Select true to sort headers alphabetically. Select false to keep the original column order. Default value: false."
+          ],
+          [
+            "Grouping Limit",
+            "Yes",
+            "The maximum number of records to include in each group. Accepts values between 1 and 1000. Default value: 1."
+          ],
+          [
+            "Group By",
+            "No",
+            "A comma-separated list of fields to group records by before passing them to the next block. For example, billId."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "## Advanced properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Advanced properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "⚠️ Advanced properties for CSV to JSON. Ensure you understand the impact before making changes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "⚠️ Advanced properties for CSV to JSON. Ensure you understand the impact before making changes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        35,
+        38
+      ],
+      "raw": "| Field name           | Required | Description                                                                                                                                                                                                                                 |\n| :------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Attribution Type** | No       | The type of entity to attribute the records to. This value forms part of the [X-CAP-API-ATTRIBUTION-ENTITY-TYPE header](https://docs.capillarytech.com/reference/oauth#using-access-token).<br />For example, `TILL`.                       |\n| **Attribution Code** | No       | The identifier of the entity specified in Attribution Type. This value forms part of the [X-CAP-API-ATTRIBUTION-ENTITY-CODE header](https://docs.capillarytech.com/reference/oauth#using-access-token).<br />For example, `store_till_001`. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Attribution Type",
+            "No",
+            "The type of entity to attribute the records to. This value forms part of the X-CAP-API-ATTRIBUTION-ENTITY-TYPE header.For example, TILL."
+          ],
+          [
+            "Attribution Code",
+            "No",
+            "The identifier of the entity specified in Attribution Type. This value forms part of the X-CAP-API-ATTRIBUTION-ENTITY-CODE header.For example, store_till_001."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 37
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 38
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth#using-access-token",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth#using-access-token",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "<Image src=\"https://files.readme.io/b83118918f0a9d466f34d2eba06f4938b4c1e674ee3aaaba0e32a6e49260e6d1-gifss.gif\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b83118918f0a9d466f34d2eba06f4938b4c1e674ee3aaaba0e32a6e49260e6d1-gifss.gif",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        }
+      ]
+    }
+  ]
+}

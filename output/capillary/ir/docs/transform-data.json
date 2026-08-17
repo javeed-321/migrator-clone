@@ -1,0 +1,500 @@
+{
+  "slug": "docs/transform-data",
+  "source": "https://docs.capillarytech.com/docs/transform-data.md",
+  "url": "https://docs.capillarytech.com/docs/transform-data",
+  "title": "Transform Data",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T14:18:12.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 8,
+    "list": 3,
+    "Image": 2,
+    "br": 2,
+    "Callout": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transform Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transform Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Data transformation in Connect+ is the process of converting the ingested data to JSON format. To achieve this,  you need to map the fields in the source files to the appropriate API fields in this block.  This helps connect+ to convert the data to JSON, call the APIs successfully and upload the data. These fields in this Connect+ block are parameters of the JSON payload of the API associated with the template that you have selected for the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Data transformation in Connect+ is the process of converting the ingested data to JSON format. To achieve this,  you need to map the fields in the source files to the appropriate API fields in this block.  This helps connect+ to convert the data to JSON, call the APIs successfully and upload the data. These fields in this Connect+ block are parameters of the JSON payload of the API associated with the template that you have selected for the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Perform the following to map the fields:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform the following to map the fields:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "1. If the workspace is linked to multiple orgs, select the org ID from the **Intouch Org** drop-down.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the workspace is linked to multiple orgs, select the org ID from the Intouch Org drop-down.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "<Image src=\"https://files.readme.io/2bafd5e-Select_intouch_org.png\" align=\"center\" width=\"20% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/2bafd5e-Select_intouch_org.png",
+        "align": "center",
+        "width": "20% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        31
+      ],
+      "raw": "2. In the **File Delimiter** text box, enter the delimiter used to separate the headings in the source file. By default, the delimiter is set as a comma.\n3. Map the API fields with the appropriate columns in the source file. To map, perform the following:\n\n   1. If the column header fields were not uploaded or defined, enter the column header name in the **File header** text box. This is the name of the column header in the source file that will have information for an API field. For example, a column named source can have values for the API field called source. You can also click on **Add more headers**  and can [add more headers](https://docs.capillarytech.com/docs/configure-actions#adding-additional-header) or [add headers using expression](https://docs.capillarytech.com/docs/configure-actions#adding-a-header-using-the-expression).\n\n   2. Select the **API field** name from the API fields drop-down that corresponds to the column header specified in the File header text box. The number of mandatory fields that need to be mapped is displayed next to the parent API field.\n      <Callout icon=\"📘\" theme=\"info\">\n        ### Note\n\n        For a partial return, the `returnType: \"LINE_ITEM\"` field must be placed at the transaction level in the payload, not inside the `lineItemsV2` array.\n      </Callout>\n\n   3. If required, in the **Filter data** text box, use [expression language](https://docs.capillarytech.com/docs/configure-actions#adding-a-header-using-the-expression) and add a filter condition to include or exclude data from the source file. **Example:** Consider a transaction dataflow that includes a **Financial status** header with values such as paid, refunded, or not paid. To exclusively process dataflow for transactions that are either paid or not paid, you can use the filter expression `${header_value:equals('paid'):or(${header_value:equals('not paid')})}`.<br />Refer [Defining column headers](https://docs.capillarytech.com/docs/configure-actions#defining-column-header-for-transform-block) for more information on mapping the API fields.\n\n      <Image src=\"https://files.readme.io/153e3d20ec05d81eb50d7ddfe558b08cba36445430818bc07c1789197b48ce4d-with_header1.gif\" align=\"center\" width=\"80% \" border={true} />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the File Delimiter text box, enter the delimiter used to separate the headings in the source file. By default, the delimiter is set as a comma.Map the API fields with the appropriate columns in the source file. To map, perform the following:If the column header fields were not uploaded or defined, enter the column header name in the File header text box. This is the name of the column header in the source file that will have information for an API field. For example, a column named source can have values for the API field called source. You can also click on Add more headers  and can add more headers or add headers using expression.Select the API field name from the API fields drop-down that corresponds to the column header specified in the File header text box. The number of mandatory fields that need to be mapped is displayed next to the parent API field.NoteFor a partial return, the returnType: \"LINE_ITEM\" field must be placed at the transaction level in the payload, not inside the lineItemsV2 array.If required, in the Filter data text box, use expression language and add a filter condition to include or exclude data from the source file. Example: Consider a transaction dataflow that includes a Financial status header with values such as paid, refunded, or not paid. To exclusively process dataflow for transactions that are either paid or not paid, you can use the filter expression ${header_value:equals('paid'):or(${header_value:equals('not paid')})}.Refer Defining column headers for more information on mapping the API fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#adding-additional-header",
+          "line": 20
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#adding-a-header-using-the-expression",
+          "line": 20
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#adding-a-header-using-the-expression",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#defining-column-header-for-transform-block",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        35,
+        41
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ###\n\n  **Note on switching organizations**\n\n  When switching organizations (orgId) in Connect+, organization-level custom fields for the transaction entity are not displayed immediately. These custom fields become visible only after all mandatory fields are mapped and the **Continue** button is clicked during dataflow configuration. As a result, users cannot view or validate transaction-level custom fields until the required field-mapping step is completed, as the system fetches custom field metadata only after this step.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Note on switching organizationsWhen switching organizations (orgId) in Connect+, organization-level custom fields for the transaction entity are not displayed immediately. These custom fields become visible only after all mandatory fields are mapped and the Continue button is clicked during dataflow configuration. As a result, users cannot view or validate transaction-level custom fields until the required field-mapping step is completed, as the system fetches custom field metadata only after this step.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 8,
+          "lines": [
+            36,
+            36
+          ],
+          "raw": "  ###",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 3,
+          "text": "",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 9,
+          "lines": [
+            38,
+            38
+          ],
+          "raw": "  **Note on switching organizations**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note on switching organizations",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 10,
+          "lines": [
+            40,
+            40
+          ],
+          "raw": "  When switching organizations (orgId) in Connect+, organization-level custom fields for the transaction entity are not displayed immediately. These custom fields become visible only after all mandatory fields are mapped and the **Continue** button is clicked during dataflow configuration. As a result, users cannot view or validate transaction-level custom fields until the required field-mapping step is completed, as the system fetches custom field metadata only after this step.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "When switching organizations (orgId) in Connect+, organization-level custom fields for the transaction entity are not displayed immediately. These custom fields become visible only after all mandatory fields are mapped and the Continue button is clicked during dataflow configuration. As a result, users cannot view or validate transaction-level custom fields until the required field-mapping step is completed, as the system fetches custom field metadata only after this step.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "## Adding a header using the expression",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding a header using the expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "If the value of an **API Field** is the same for all the customers, you can use `const{value}`. For example, to categorize **loyaltyType** as **loyalty** for all customers, you can enter `const{loyalty}` against the API field **loyaltyType**.  For more information, refer to the documentation on [using expression](https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-header-that-has-consistent-values).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the value of an API Field is the same for all the customers, you can use const{value}. For example, to categorize loyaltyType as loyalty for all customers, you can enter const{loyalty} against the API field loyaltyType.  For more information, refer to the documentation on using expression.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-header-that-has-consistent-values",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "To add a header using an expression,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add a header using an expression,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        49,
+        51
+      ],
+      "raw": "1. Click **Add header using expression**.\n2. Enter the expression in the text box.\n3. From the API field drop-down, select the API field you want to map to the header.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add header using expression.Enter the expression in the text box.From the API field drop-down, select the API field you want to map to the header.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "<Image src=\"https://files.readme.io/b6e180e-Expression.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b6e180e-Expression.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "## Adding additional header",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding additional header",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "If you selected **Add manually** as the Column headers input method (with or without header names) for transforming data in the **Connect to source** block, you will have the option to add additional headers. You can add the additional header while mapping the fields or [editing]().",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you selected Add manually as the Column headers input method (with or without header names) for transforming data in the Connect to source block, you will have the option to add additional headers. You can add the additional header while mapping the fields or editing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        59,
+        63
+      ],
+      "raw": "<Callout icon=\"🚧\" theme=\"warn\">\n  ### Note\n\n  If you added the header information through the CSV file method, you cannot add additional headers.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧",
+        "theme": "warn"
+      },
+      "text": "NoteIf you added the header information through the CSV file method, you cannot add additional headers.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "children": [
+        {
+          "i": 19,
+          "lines": [
+            60,
+            60
+          ],
+          "raw": "  ### Note",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 3,
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 20,
+          "lines": [
+            62,
+            62
+          ],
+          "raw": "  If you added the header information through the CSV file method, you cannot add additional headers.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "If you added the header information through the CSV file method, you cannot add additional headers.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 65
+        }
+      ]
+    }
+  ]
+}

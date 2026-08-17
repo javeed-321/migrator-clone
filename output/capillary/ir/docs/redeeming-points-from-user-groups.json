@@ -1,0 +1,482 @@
+{
+  "slug": "docs/redeeming-points-from-user-groups",
+  "source": "https://docs.capillarytech.com/docs/redeeming-points-from-user-groups.md",
+  "url": "https://docs.capillarytech.com/docs/redeeming-points-from-user-groups",
+  "title": "Redeeming Points From User Groups",
+  "description": "",
+  "section": "Rewards Catalog (Old marvel rewards)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-08-14T06:00:03.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 12,
+    "Image": 3,
+    "code": 6,
+    "list": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Redeeming Points from User Groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Redeeming Points from User Groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Users can use both their individual wallet points and group wallet points to purchase the reward. This will allow them to have more flexibility in redeeming their points and enjoy the benefits associated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Users can use both their individual wallet points and group wallet points to purchase the reward. This will allow them to have more flexibility in redeeming their points and enjoy the benefits associated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "<Image align=\"center\" width=\"300px\" src=\"https://files.readme.io/f018673-screen-capture_4.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "width": "300px",
+        "src": "https://files.readme.io/f018673-screen-capture_4.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Enhancements made for points redemption from group wallet:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Enhancements made for points redemption from group wallet:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Every group has a primary user and secondary users. For identifiers, it can be group ID/ primary user ID/ External ID of the group.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Every group has a primary user and secondary users. For identifiers, it can be group ID/ primary user ID/ External ID of the group.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "In the isRedeemable and Redeem API, you can now pass the group identifier along with the user ID to redeem the points from the group wallet and issue the reward.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the isRedeemable and Redeem API, you can now pass the group identifier along with the user ID to redeem the points from the group wallet and issue the reward.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Sample request for issue with group ID:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample request for issue with group ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        45
+      ],
+      "raw": "```\ncurl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":31059,\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"4WF17B\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":31059,\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"4WF17B\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "**Sample request for issue with external ID:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample request for issue with external ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        49,
+        74
+      ],
+      "raw": "```\ncurl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?username=tillcapillary' \\\n\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2ExternalId\":\"famgroup11\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"0LP85Y\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?username=tillcapillary' \\\n\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2ExternalId\":\"famgroup11\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"0LP85Y\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "**Sample request for issue with user group primary user ID:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample request for issue with user group primary user ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        78,
+        103
+      ],
+      "raw": "```\ncurl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?user_group2_primary_user_id=381798579' \\\n\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":31059,\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"4WF17B\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15465/issue?user_group2_primary_user_id=381798579' \\\n\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":31059,\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"intouch\": {\n        \"pointsRedeemed\": \"1\",\n        \"couponCode\": \"4WF17B\",\n        \"codeExpiry\": \"2027-05-12 00:00:00\"\n    },\n    \"promotion\": null,\n    \"vendor\": null\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "**Error when configuration is missing:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Error when configuration is missing:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        107,
+        128
+      ],
+      "raw": "```\ncurl --location 'https://eu.api.capillarytech.com/api_gateway/gamification/v1/brand/JOTUNUAEDEMO/user/971560000005/games/all?language=en' \\\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"828\"\n            ],\n            \"messages\": [\n                \"points redemption rules/configuration not allowing redemption\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/gamification/v1/brand/JOTUNUAEDEMO/user/971560000005/games/all?language=en' \\\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"828\"\n            ],\n            \"messages\": [\n                \"points redemption rules/configuration not allowing redemption\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "**Error when invalid ID is passed:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Error when invalid ID is passed:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        132,
+        160
+      ],
+      "raw": "```\ncurl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15466/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":\"381751178\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"1632\"\n            ],\n            \"messages\": [\n                \"group id/externalId/primary userId 381751178 passed is not valid\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15466/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 919712709262,\n    \"userGroup2Id\":\"381751178\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"1632\"\n            ],\n            \"messages\": [\n                \"group id/externalId/primary userId 381751178 passed is not valid\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "**Error when user doesn’t belong to the group:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Error when user doesn’t belong to the group:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        164,
+        193
+      ],
+      "raw": "```\ncurl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15466/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 917122001239,\n    \"userGroup2PrimaryUserId\":\"381798579\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"1620\"\n            ],\n            \"messages\": [\n                \"user 381798977 does not belong to group 31059\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'http://{host}/api_gateway/rewards/core/v1/user/reward/15466/issue?username=tillcapillary' \\\n--data '{\n    \"brand\": \"MarvelTest\",\n    \"transactionNumber\": \"123456789\",\n    \"mobile\": 917122001239,\n    \"userGroup2PrimaryUserId\":\"381798579\",\n    \"notes\":\"xyz\"\n}'\nResponse:\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 8004,\n        \"message\": \"fail to issue reward as  points are not redeemable\",\n        \"partnerError\": {\n            \"codes\": [\n                \"1620\"\n            ],\n            \"messages\": [\n                \"user 381798977 does not belong to group 31059\"\n            ]\n        }\n    },\n    \"intouch\": null,\n    \"promotion\": null,\n    \"vendor\": null\n}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        195,
+        195
+      ],
+      "raw": "**Points to Note**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Points to Note",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        197,
+        201
+      ],
+      "raw": "1. The reward will be given to the individual initiating the transaction, which can be either the primary user or one of the secondary users.\n2. The reward is not given to the group today as that functionality is not supported.\n3. In Loyalty side in the redemption event, write the rule for the group and configure redeem points action.\n   1. If \"Friends & Family\" group is enabled, choose the redemption options from the Advance settings, and enable redemption.\n   2. If \"Fleet\" group is enabled, in Redemption event, write the rule \"currentEvent.IsUserGroupInfopresent\" and configure redeem points action. Within the action, the option should be selected as group.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The reward will be given to the individual initiating the transaction, which can be either the primary user or one of the secondary users.The reward is not given to the group today as that functionality is not supported.In Loyalty side in the redemption event, write the rule for the group and configure redeem points action.If \"Friends & Family\" group is enabled, choose the redemption options from the Advance settings, and enable redemption.If \"Fleet\" group is enabled, in Redemption event, write the rule \"currentEvent.IsUserGroupInfopresent\" and configure redeem points action. Within the action, the option should be selected as group.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/2b71bf0-Screenshot_2023-07-18_at_11.59.02_AM.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/2b71bf0-Screenshot_2023-07-18_at_11.59.02_AM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/8392395-Screenshot_2023-07-18_at_12.04.55_PM.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/8392395-Screenshot_2023-07-18_at_12.04.55_PM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        207,
+        208
+      ],
+      "raw": "4. The validation checks for accessing points from the group wallet is entirely managed by the EMF side. It relies on the group settings to determine which users have the authority to redeem points from the group wallet.\n5. If either of the user\\_group2\\_primary\\_user\\_id or user\\_group2\\_id or user\\_group2\\_external\\_id is not null, the transaction will be treated as group loyalty redemption.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The validation checks for accessing points from the group wallet is entirely managed by the EMF side. It relies on the group settings to determine which users have the authority to redeem points from the group wallet.If either of the user_group2_primary_user_id or user_group2_id or user_group2_external_id is not null, the transaction will be treated as group loyalty redemption.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "For more information, refer to [this](https://capillarytech.atlassian.net/wiki/spaces/LOYAL/pages/3669000258/Group+Loyalty+in+Rewards).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For more information, refer to this.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

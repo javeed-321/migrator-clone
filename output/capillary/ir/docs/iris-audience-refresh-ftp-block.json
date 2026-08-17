@@ -1,0 +1,263 @@
+{
+  "slug": "docs/iris-audience-refresh-ftp-block",
+  "source": "https://docs.capillarytech.com/docs/iris-audience-refresh-ftp-block.md",
+  "url": "https://docs.capillarytech.com/docs/iris-audience-refresh-ftp-block",
+  "title": "Iris Audience Refresh Ftp Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-27T09:55:03.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Iris Audience Refresh (FTP) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Iris Audience Refresh (FTP) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `iris_ftp_audience_refresh` block refreshes an audience list on Engage+ by triggering the Iris FTP audience reload API. It acts as a destination block in a Connect+ dataflow, calling the iris `/v2/audience/ftp/reload` endpoint and passing the required organisation and authentication headers to route the request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The iris_ftp_audience_refresh block refreshes an audience list on Engage+ by triggering the Iris FTP audience reload API. It acts as a destination block in a Connect+ dataflow, calling the iris /v2/audience/ftp/reload endpoint and passing the required organisation and authentication headers to route the request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your dataflow needs to refresh an Engage+ audience list from a file in an FTP location. The block triggers the reload after the file is available, updating the audience list automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow needs to refresh an Engage+ audience list from a file in an FTP location. The block triggers the reload after the file is available, updating the audience list automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        22
+      ],
+      "raw": "* The audience CSV file is available in the FTP location\n* An audience list created in the Engage+ Audience Manager. The audience name must not contain spaces. For example, use `FTP_Test` instead of `FTP Test`.\n* The Capillary organisation identifier (`X_CAP_ORG`)\n* The Capillary API authentication token (`X_CAP_CT`). If you do not have a token, enter any string in this field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The audience CSV file is available in the FTP locationAn audience list created in the Engage+ Audience Manager. The audience name must not contain spaces. For example, use FTP_Test instead of FTP Test.The Capillary organisation identifier (X_CAP_ORG)The Capillary API authentication token (X_CAP_CT). If you do not have a token, enter any string in this field.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        117
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **API Method**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The HTTP method used to call the API. \n        Default value: `POST`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Remote API URL**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The relative API URL to send the audience refresh request to.  \n        Accepted value: `/v2/audience/ftp/reload`. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **X_CAP_ORG**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The Capillary organisation identifier passed as a request header.  \n        For example, `100458`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **X_CAP_CT**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The Capillary cluster identifier passed as a request header.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance."
+          ],
+          [
+            "API Method",
+            "Yes",
+            "The HTTP method used to call the API.\nDefault value: POST."
+          ],
+          [
+            "Remote API URL",
+            "Yes",
+            "The relative API URL to send the audience refresh request to.Accepted value: /v2/audience/ftp/reload."
+          ],
+          [
+            "X_CAP_ORG",
+            "Yes",
+            "The Capillary organisation identifier passed as a request header.For example, 100458."
+          ],
+          [
+            "X_CAP_CT",
+            "Yes",
+            "The Capillary cluster identifier passed as a request header."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/c5f538f77ce59a9010f27bc7ad31cf85003258051ac2ee7a06b14e2455be0798-Screenshot_2026-04-27_at_3.10.24_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/c5f538f77ce59a9010f27bc7ad31cf85003258051ac2ee7a06b14e2455be0798-Screenshot_2026-04-27_at_3.10.24_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

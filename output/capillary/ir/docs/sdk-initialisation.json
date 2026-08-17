@@ -1,0 +1,107 @@
+{
+  "slug": "docs/sdk-initialisation",
+  "source": "https://docs.capillarytech.com/docs/sdk-initialisation.md",
+  "url": "https://docs.capillarytech.com/docs/sdk-initialisation",
+  "title": "Sdk Initialisation",
+  "description": "",
+  "section": "Android SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-25T09:19:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 2,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Initialise SDK",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Initialise SDK",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This section provides information on initialisation of the SDK.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section provides information on initialisation of the SDK.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "To initialize the Capillary SDK,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To initialize the Capillary SDK,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        107
+      ],
+      "raw": "1. Create an instance of the SDK for each application. This API needs to be called in the `onCreate() `of the application class with the `HydraConfig`. You can use this instance in your code to interact with the SDK.\n\n2. ```kotlin\n   fun instanceWithConfig(  \n      context: Context, config: HydraConfig  \n   ): HydraAPI\n   ```\n   ```java\n   public HydraAPI instanceWithConfig(Context context, HydraConfig config) {\n       // Function body goes here\n   }\n   ```\n\n3. Provide configuration in the SDK using`HydraConfig`. The SDK accepts several parameters. The parameter accountId is mandatory. If accountID is not provided, the SDK throws an exception. All other parameters are optional.\n\n   ```kotlin\n   var accountId: String,  \n   var baseURL: String?,  \n   var sslPublicKey: String?,  \n   var country: String?,  \n   var city: String?,  \n   var countryCode: String?,  \n   var captureViewPortDetails: Boolean,  \n   var isDisableAppLaunchedEvent: Boolean,  \n   var debugLevel: Int,\n   var remoteDebugLevel: Int,\n   var fcmConfig:FcmConfig = defaultFcmConfig(),  \n   val notificationConfig: NotificationConfig? = null\n   ```\n   ```java\n   String accountId;\n   String baseURL;\n   String sslPublicKey;\n   String country;\n   String city;\n   String countryCode;\n   boolean captureViewPortDetails;\n   boolean isDisableAppLaunchedEvent;\n   int debugLevel;\n   int remoteDebugLevel;\n   FcmConfig fcmConfig = defaultFcmConfig();\n   ```\n\n4. Add the SDK initialization block in the `onCreate` callback of your application class as shown below:\n\n   ```kotlin\n   val hydraConfig = HydraConfig.Builder(  \n      applicationContext,  \n      accountId = \"PARTNER_ACCOUNT_ID\"  \n   )  \n      .debugLevel(LogType.VERBOSE)\n      .remoteDebugLevel(LogType.DEBUG)\n      .captureViewPortDetails(true)  \n      .country(\"India\")  \n      .city(\"Pune\")  \n      .countryCode(\"91\")  \n      .baseURL(\"PARTNER_HYDRA_URL\")  \n      .sslPublicKey(\"PARTNER_SSL_PUBLIC_KEY_FOR_HYDRA_URL\")  \n      .build()\n   ```\n   ```java\n   HydraConfig hydraConfig = new HydraConfig.Builder(applicationContext)\n       .setAccountId(\"PARTNER_ACCOUNT_ID\")\n       .setDebugLevel(LogType.VERBOSE)\n       .setRemoteDebugLevel(LogType.DEBUG)\n       .setCaptureViewPortDetails(true)\n       .setCountry(\"India\")\n       .setCity(\"Pune\")\n       .setCountryCode(\"91\")\n       .setBaseURL(\"PARTNER_HYDRA_URL\")\n       .setSslPublicKey(\"PARTNER_SSL_PUBLIC_KEY_FOR_HYDRA_URL\")\n       .build();\n   ```\n\n   | Parameter               | Type                      | Description                                                | Mandatory/Optional                   |\n   | ----------------------- | ------------------------- | ---------------------------------------------------------- | ------------------------------------ |\n   | accountId               | String                    | Account ID of the partner                                  | Mandatory                            |\n   | .debugLevel             | LogType                   | Logging Config i.e. OFF(-1), INFO(0), DEBUG(1), VERBOSE(2) | Optional                             |\n   | .remoteDebugLevel       | LogType                   | Remote Logging Config i.e. OFF(-1), INFO(0), DEBUG(1)      | Optional                             |\n   | .captureViewPortDetails | Boolean                   | Capture ViewPort information                               | Optional                             |\n   | .country                | String                    | Country name                                               | Optional                             |\n   | .city                   | String                    | City name                                                  | Optional                             |\n   | .countryCode            | String                    | Country code value                                         | Optional                             |\n   | .baseURL                | String                    | Base URL of region                                         | Optional                             |\n   | .sslPublicKey           | String                    | Valid SSL Public Key of URL                                | Optional                             |\n   | .fcmConfig              | FcmConfig object          | Firebase Configuration                                     | Optional (If not using Firebase SDK) |\n   | .notificationConfig     | NotificationConfig object | Notification Configuration                                 | Optional (If not using Firebase SDK) |\n\n5. Create an instance of the `HydraAPI `with `HydraConfig`. Use the below functional call:\\\n   `HydraAPI.instanceWithConfig(applicationContext, hydraConfig)`\n\n   | Parameter          | Type        | Description         | Optional/Mandatory |\n   | :----------------- | :---------- | :------------------ | :----------------- |\n   | applicationContext | Context     | Application context | Mandatory          |\n   | hydraConfig        | HydraConfig | HydraConfig object  | Mandatory          |",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create an instance of the SDK for each application. This API needs to be called in the onCreate() of the application class with the HydraConfig. You can use this instance in your code to interact with the SDK.fun instanceWithConfig(  \n   context: Context, config: HydraConfig  \n): HydraAPIpublic HydraAPI instanceWithConfig(Context context, HydraConfig config) {\n    // Function body goes here\n}Provide configuration in the SDK usingHydraConfig. The SDK accepts several parameters. The parameter accountId is mandatory. If accountID is not provided, the SDK throws an exception. All other parameters are optional.var accountId: String,  \nvar baseURL: String?,  \nvar sslPublicKey: String?,  \nvar country: String?,  \nvar city: String?,  \nvar countryCode: String?,  \nvar captureViewPortDetails: Boolean,  \nvar isDisableAppLaunchedEvent: Boolean,  \nvar debugLevel: Int,\nvar remoteDebugLevel: Int,\nvar fcmConfig:FcmConfig = defaultFcmConfig(),  \nval notificationConfig: NotificationConfig? = nullString accountId;\nString baseURL;\nString sslPublicKey;\nString country;\nString city;\nString countryCode;\nboolean captureViewPortDetails;\nboolean isDisableAppLaunchedEvent;\nint debugLevel;\nint remoteDebugLevel;\nFcmConfig fcmConfig = defaultFcmConfig();Add the SDK initialization block in the onCreate callback of your application class as shown below:val hydraConfig = HydraConfig.Builder(  \n   applicationContext,  \n   accountId = \"PARTNER_ACCOUNT_ID\"  \n)  \n   .debugLevel(LogType.VERBOSE)\n   .remoteDebugLevel(LogType.DEBUG)\n   .captureViewPortDetails(true)  \n   .country(\"India\")  \n   .city(\"Pune\")  \n   .countryCode(\"91\")  \n   .baseURL(\"PARTNER_HYDRA_URL\")  \n   .sslPublicKey(\"PARTNER_SSL_PUBLIC_KEY_FOR_HYDRA_URL\")  \n   .build()HydraConfig hydraConfig = new HydraConfig.Builder(applicationContext)\n    .setAccountId(\"PARTNER_ACCOUNT_ID\")\n    .setDebugLevel(LogType.VERBOSE)\n    .setRemoteDebugLevel(LogType.DEBUG)\n    .setCaptureViewPortDetails(true)\n    .setCountry(\"India\")\n    .setCity(\"Pune\")\n    .setCountryCode(\"91\")\n    .setBaseURL(\"PARTNER_HYDRA_URL\")\n    .setSslPublicKey(\"PARTNER_SSL_PUBLIC_KEY_FOR_HYDRA_URL\")\n    .build();ParameterTypeDescriptionMandatory/OptionalaccountIdStringAccount ID of the partnerMandatory.debugLevelLogTypeLogging Config i.e. OFF(-1), INFO(0), DEBUG(1), VERBOSE(2)Optional.remoteDebugLevelLogTypeRemote Logging Config i.e. OFF(-1), INFO(0), DEBUG(1)Optional.captureViewPortDetailsBooleanCapture ViewPort informationOptional.countryStringCountry nameOptional.cityStringCity nameOptional.countryCodeStringCountry code valueOptional.baseURLStringBase URL of regionOptional.sslPublicKeyStringValid SSL Public Key of URLOptional.fcmConfigFcmConfig objectFirebase ConfigurationOptional (If not using Firebase SDK).notificationConfigNotificationConfig objectNotification ConfigurationOptional (If not using Firebase SDK)Create an instance of the HydraAPI with HydraConfig. Use the below functional call:HydraAPI.instanceWithConfig(applicationContext, hydraConfig)ParameterTypeDescriptionOptional/MandatoryapplicationContextContextApplication contextMandatoryhydraConfigHydraConfigHydraConfig objectMandatory",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

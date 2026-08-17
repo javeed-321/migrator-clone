@@ -1,0 +1,494 @@
+{
+  "slug": "docs/configuring-caching",
+  "source": "https://docs.capillarytech.com/docs/configuring-caching.md",
+  "url": "https://docs.capillarytech.com/docs/configuring-caching",
+  "title": "Configuring Caching",
+  "description": "",
+  "section": "Configuration & Setup",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-09T05:51:57.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 14,
+    "list": 5,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configuring Caching",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Caching",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Caching is an optional feature available in all Neo blocks (except **OrgContextSwitch** and **Redis Evict**) that stores frequently accessed data in a temporary cache to improve performance. It helps store frequently accessed data in a temporary storage called a cache, improving performance. Additionally, the connection pool, a managed collection of reusable database connections, operates in the background as a shared resource. This means you don’t need to manually select or configure a database, as multiple blocks share the same pool instead of opening separate connections.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Caching is an optional feature available in all Neo blocks (except OrgContextSwitch and Redis Evict) that stores frequently accessed data in a temporary cache to improve performance. It helps store frequently accessed data in a temporary storage called a cache, improving performance. Additionally, the connection pool, a managed collection of reusable database connections, operates in the background as a shared resource. This means you don’t need to manually select or configure a database, as multiple blocks share the same pool instead of opening separate connections.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "**How does caching work**\\\nWhen caching is enabled in a block, Neo **stores the block’s execution results**. This means that when a cachable block is executed, its output is stored. If the same block is triggered again with the same identifying criteria, the stored output is retrieved from the cache instead of re-executing the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How does caching workWhen caching is enabled in a block, Neo stores the block’s execution results. This means that when a cachable block is executed, its output is stored. If the same block is triggered again with the same identifying criteria, the stored output is retrieved from the cache instead of re-executing the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "The caching mechanism relies on a **Cache key** . When a block is marked as cachable, a key is associated with its execution and resulting output. Subsequent executions of the same block will check the cache for an entry with a matching key",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The caching mechanism relies on a Cache key . When a block is marked as cachable, a key is associated with its execution and resulting output. Subsequent executions of the same block will check the cache for an entry with a matching key",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "## Types of cache key",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Types of cache key",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "Caching keys can be either static or dynamic:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Caching keys can be either static or dynamic:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "**Static Keys:** These are fixed values that do not change based on the incoming request or context. They are suitable for caching data that remains constant, such as language-specific text or unchanging configurations. For example, an OAuth token generated by the OAuth block remains valid and unchanged for its specified duration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Static Keys: These are fixed values that do not change based on the incoming request or context. They are suitable for caching data that remains constant, such as language-specific text or unchanging configurations. For example, an OAuth token generated by the OAuth block remains valid and unchanged for its specified duration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "**Dynamic Keys:** These keys are generated based on parameters of the incoming request or from the [Configuration Manager or Secret Manager using DAO functions](https://docs.capillarytech.com/docs/configuration-manager). This allows for caching responses that are specific to certain inputs. For instance, a block fetching customer details could use the customer ID as part of the dynamic cache key. Therefore, requests for different customers would result in different cache entries.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Dynamic Keys: These keys are generated based on parameters of the incoming request or from the Configuration Manager or Secret Manager using DAO functions. This allows for caching responses that are specific to certain inputs. For instance, a block fetching customer details could use the customer ID as part of the dynamic cache key. Therefore, requests for different customers would result in different cache entries.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuration-manager",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "The decision to use a static or dynamic key depends on the specific business use case and the data flow requirements.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The decision to use a static or dynamic key depends on the specific business use case and the data flow requirements.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Examples for caching",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Examples for caching",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "### Dynamic key example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Dynamic key example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "Use a dynamic cache key when data retrieval depends on unique identifiers like `CustomerID`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use a dynamic cache key when data retrieval depends on unique identifiers like CustomerID.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "**Scenario 1: First Execution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: First Execution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        34,
+        39
+      ],
+      "raw": "1. A request arrives with `CustomerID` = 456.\n2. Neo checks for the cache key `customer_details_456`.\n   * No cache data exists.\n3. The API Request block fetches customer details for `CustomerID` = 456.\n4. Neo caches the response under `customer_details_456`.\n5. The dataflow continues.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A request arrives with CustomerID = 456.Neo checks for the cache key customer_details_456.No cache data exists.The API Request block fetches customer details for CustomerID = 456.Neo caches the response under customer_details_456.The dataflow continues.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "**Scenario 2: Cached Data Retrieval**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Cached Data Retrieval",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        47
+      ],
+      "raw": "1. Another request arrives with `CustomerID` = 456.\n2. Neo checks for the cache key `customer_details_456`.\n   * Cache data exists.\n3. Neo retrieves the cached response, bypassing the API call.\n4. The dataflow continues.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Another request arrives with CustomerID = 456.Neo checks for the cache key customer_details_456.Cache data exists.Neo retrieves the cached response, bypassing the API call.The dataflow continues.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "**Scenario 3: Different Customer**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 3: Different Customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        51,
+        56
+      ],
+      "raw": "1. A request arrives with `CustomerID` = 789.\n2. Neo checks for the cache key `customer_details_789`.\n   * No cache data exists.\n3. The API Request block fetches customer details for `CustomerID` = 789.\n4. Neo caches the response under `customer_details_789`.\n5. The dataflow continues.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A request arrives with CustomerID = 789.Neo checks for the cache key customer_details_789.No cache data exists.The API Request block fetches customer details for CustomerID = 789.Neo caches the response under customer_details_789.The dataflow continues.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "### Static key example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Static key example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "Use a static cache key when accessing frequently used data that does not change, such as a greeting message.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use a static cache key when accessing frequently used data that does not change, such as a greeting message.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "**Cache Behaviour:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Cache Behaviour:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        64,
+        70
+      ],
+      "raw": "1. On the first execution:\n   * The block retrieves the greeting message, `Hello!`.\n   * Neo caches the response under the static key `greeting`.\n2. On subsequent executions:\n   * Neo checks for the key `greeting`.\n     * If the key exists and the cached data is valid, Neo retrieves the cached list directly.\n     * No additional API call is made, reducing backend load and improving performance.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the first execution:The block retrieves the greeting message, Hello!.Neo caches the response under the static key greeting.On subsequent executions:Neo checks for the key greeting.If the key exists and the cached data is valid, Neo retrieves the cached list directly.No additional API call is made, reducing backend load and improving performance.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "## Enabling caching",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Enabling caching",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "To enable caching,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable caching,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        76,
+        78
+      ],
+      "raw": "1. Check the **Is Cachable** checkbox.\n2. In the **Key** field, define a unique identifier to store data in the cache.\n3. In the **TTL** field, set a Time-To-Live (TTL) value for keys to determine how long a key will be stored in the cache before it expires and is automatically removed.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check the Is Cachable checkbox.In the Key field, define a unique identifier to store data in the cache.In the TTL field, set a Time-To-Live (TTL) value for keys to determine how long a key will be stored in the cache before it expires and is automatically removed.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        80,
+        82
+      ],
+      "raw": "<Image alt=\"Configuring Caching\" align=\"center\" border={true} src=\"https://files.readme.io/41614553af181347154b4334c4643ebb2dd89ec439f4f9c8e105aaab561b7cc0-caching.png\">\n  Configuring Caching\n</Image>",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "alt": "Configuring Caching",
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/41614553af181347154b4334c4643ebb2dd89ec439f4f9c8e105aaab561b7cc0-caching.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": []
+    }
+  ]
+}

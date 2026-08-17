@@ -1,0 +1,954 @@
+{
+  "slug": "reference/post-create-custom-field",
+  "source": "https://docs.capillarytech.com/reference/post-create-custom-field.md",
+  "url": "https://docs.capillarytech.com/reference/post-create-custom-field",
+  "title": "Post Create Custom Field",
+  "description": "",
+  "section": "Reward Catalog Custom Fields",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 2,
+    "Callout": 2,
+    "code": 2,
+    "list": 1,
+    "Table": 4,
+    "CodeTabs": 2,
+    "br": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create custom field for reward",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create custom field for reward",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Capillary's custom reward fields let brands personalize loyalty programs with customised data. These fields can be used to add additional information related to rewards. They also support internal tracking and analysis for data-driven improvements. You can create a custom field specific to a reward, catalogue promotion, or issue-reward action. For example, you can create a custom field for the \"issue-reward\" action to include a personalized message when issuing the reward.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary's custom reward fields let brands personalize loyalty programs with customised data. These fields can be used to add additional information related to rewards. They also support internal tracking and analysis for data-driven improvements. You can create a custom field specific to a reward, catalogue promotion, or issue-reward action. For example, you can create a custom field for the \"issue-reward\" action to include a personalized message when issuing the reward.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        15
+      ],
+      "raw": "> 📘 **Note**\n>\n> * Create/Update reward: Add a custom field in the payload which will be mapped to that reward with the scope REWARD\n> * Create/Update promotion: Add a custom field in the payload which will be mapped to that reward with the scope CATALOGUE\\_PROMOTION\n> * Create/Update reward: Add a custom field in the payload which will be mapped to that reward with the scope ISSUE\\_REWARD",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteCreate/Update reward: Add a custom field in the payload which will be mapped to that reward with the scope REWARDCreate/Update promotion: Add a custom field in the payload which will be mapped to that reward with the scope CATALOGUE_PROMOTIONCreate/Update reward: Add a custom field in the payload which will be mapped to that reward with the scope ISSUE_REWARD",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        17,
+        20
+      ],
+      "raw": "> 👍 Note\n>\n> * For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .\n> * Start time and end time are in UTC time zone",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .Start time and end time are in UTC time zone",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 19
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "# Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        24,
+        44
+      ],
+      "raw": "```curl Sample request\ncurl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\n--header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \\\n--data '{\n     Mandatory Parameters\n    \"name\": \"terrorz\",\n    \"description\": \"Custom Field of STRING Type\",\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"dataType\": \"STRING\",\n     Non-Mandatory Parameters\n    \"orgId\": 100737,\n    \"isMandatory\": false,\n    \"isActive\": true,\n     \"defaultValue\": \"EV3\",\n     \"enumValues\": [\"EV1\", \"EV2\", \"EV3\", \"EV4\", \"EV5\", \"EV6\", \"EV7\", \"EV8\", \"EV9\", \"EV10\", \"EV11\", \"EV12\", \"EV13\", \"EV14\", \"EV15\", \"EV16\", \"EV17\", \"EV18\", \"EV19\", \"EV20\", \"EV21\", \"EV22\", \"EV23\", \"EV24\", \"EV25\", \"EV26\", \"EV27\", \"EV28\", \"EV29\", \"EV30\"]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": "Sample request",
+        "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'accept: application/json' \\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\n--header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \\\n--data '{\n     Mandatory Parameters\n    \"name\": \"terrorz\",\n    \"description\": \"Custom Field of STRING Type\",\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"dataType\": \"STRING\",\n     Non-Mandatory Parameters\n    \"orgId\": 100737,\n    \"isMandatory\": false,\n    \"isActive\": true,\n     \"defaultValue\": \"EV3\",\n     \"enumValues\": [\"EV1\", \"EV2\", \"EV3\", \"EV4\", \"EV5\", \"EV6\", \"EV7\", \"EV8\", \"EV9\", \"EV10\", \"EV11\", \"EV12\", \"EV13\", \"EV14\", \"EV15\", \"EV16\", \"EV17\", \"EV18\", \"EV19\", \"EV20\", \"EV21\", \"EV22\", \"EV23\", \"EV24\", \"EV25\", \"EV26\", \"EV27\", \"EV28\", \"EV29\", \"EV30\"]\n}"
+      },
+      "text": "Sample request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        48,
+        49
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authenticationDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        53,
+        59
+      ],
+      "raw": "|                        |                                                 |\n| :--------------------- | :---------------------------------------------- |\n| URI                    | /api\\_gateway/rewards/core/v1/brand/customfield |\n| HTTP Method            | POST                                            |\n| Pagination             | No                                              |\n| Batch support          | No                                              |\n| Rate limit information | None                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/api_gateway/rewards/core/v1/brand/customfield"
+          ],
+          [
+            "HTTP Method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "No"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        63,
+        73
+      ],
+      "raw": "| Parameter Name | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| name\\*         | String    | Unique name identifier for the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |\n| orgId          | String    | Unique identifier of the organisation. To retrieve the orgId, use the [Get Org Details](https://docs.capillarytech.com/reference/get-org-details) API.                                                                                                                                                                                                                                                                                                                                                                                                                                                |\n| description\\*  | String    | Description for the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |\n| isMandatory    | Boolean   | Specify if the custom field is mandatory. Supported values:<br />`true`: Field is mandatory<br />`false`: Field is optional (default value)                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| isActive       | Boolean   | Specify the status of the custom field. Supported values:<br />`true`: Status is active (default value)<br />`false`: Status is inactive.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |\n| scope\\*        | Enum      | Specify where the additional custom fields will apply. Supported values:<br />`REWARD`: While creating or updating a reward.<br />`ISSUE_REWARD`: While issuing a reward.<br />`CATALOGUE_PROMOTION`: While creating or updating a [promotion](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced).                                                                                                                                                                                                                                                                            |\n| defaultValue   | String    | Default value for the custom field used when no value is specified.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |\n| dataType\\*     | Enum      | Type of data for the custom field. Supported values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.<br />255 is the character limit for the datatype `STRING`.<br /><br />Use `ENUM` as the `dataType` to define a set of pre-defined values, ensuring error-free management of reward metadata. For example, as a reward manager, you can create a custom field called \"Reward Category\" and define possible values such as \"Discount,\" \"Free Gift,\" and \"Cashback.\" When creating or updating a reward, you can select one of these predefined values for the \"Reward Category\" custom field. |\n| enumValues     | Object    | Object containing the enum values. This parameter is required if `dataType` is `ENUM`.<br />**Note**:<br /><br />- Define enum values using double quotes in a comma-separated list.<br />- You can provide a maximum of 30 enum values per custom field.<br />- When creating a reward, you can provide only one enum value per custom field in the `customFields` object.<br />- Each enum value must not exceed 80 characters.<br />- Allowed special characters: `[]()-_ `.<br />- Values must be unique within the custom field.<br />- `defaultValue` must be provided if `dataType` is `ENUM`. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "name*",
+            "String",
+            "Unique name identifier for the custom field."
+          ],
+          [
+            "orgId",
+            "String",
+            "Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API."
+          ],
+          [
+            "description*",
+            "String",
+            "Description for the custom field."
+          ],
+          [
+            "isMandatory",
+            "Boolean",
+            "Specify if the custom field is mandatory. Supported values:true: Field is mandatoryfalse: Field is optional (default value)"
+          ],
+          [
+            "isActive",
+            "Boolean",
+            "Specify the status of the custom field. Supported values:true: Status is active (default value)false: Status is inactive."
+          ],
+          [
+            "scope*",
+            "Enum",
+            "Specify where the additional custom fields will apply. Supported values:REWARD: While creating or updating a reward.ISSUE_REWARD: While issuing a reward.CATALOGUE_PROMOTION: While creating or updating a promotion."
+          ],
+          [
+            "defaultValue",
+            "String",
+            "Default value for the custom field used when no value is specified."
+          ],
+          [
+            "dataType*",
+            "Enum",
+            "Type of data for the custom field. Supported values:BOOLEAN, ENUM, DATE, STRING, INTEGER.255 is the character limit for the datatype STRING.Use ENUM as the dataType to define a set of pre-defined values, ensuring error-free management of reward metadata. For example, as a reward manager, you can create a custom field called \"Reward Category\" and define possible values such as \"Discount,\" \"Free Gift,\" and \"Cashback.\" When creating or updating a reward, you can select one of these predefined values for the \"Reward Category\" custom field."
+          ],
+          [
+            "enumValues",
+            "Object",
+            "Object containing the enum values. This parameter is required if dataType is ENUM.Note:- Define enum values using double quotes in a comma-separated list.- You can provide a maximum of 30 enum values per custom field.- When creating a reward, you can provide only one enum value per custom field in the customFields object.- Each enum value must not exceed 80 characters.- Allowed special characters: []()-_ .- Values must be unique within the custom field.- defaultValue must be provided if dataType is ENUM."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 68
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 68
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 69
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 69
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 70
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 70
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 70
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-org-details",
+          "line": 66
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "# Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        77,
+        148
+      ],
+      "raw": "```json Sample response\n{\n    \"id\": 32546,\n    \"orgId\": 100737,\n    \"name\": \"terrorz\",\n    \"description\": \"Custom Field of STRING Type\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75197372,\n    \"createdOn\": null,\n    \"createdOnDateTime\": null,\n    \"lastUpdatedBy\": 75197372,\n    \"lastUpdatedOn\": null,\n    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": null\n}\n```\n```json Scope : REWARD\n{\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}\n```\n```json Scope : CATALOGUE_PROMOTION\n{\n    \"orgId\": 100458,\n    \"name\": \"Order confirmed\",\n    \"description\": \"Reward is processing\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}\n```\n```json Scope: ISSUE_REWARD\n{\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}\n```\n```json dataType: ENUM\n{\n    \"orgId\": 100458,\n    \"name\": \"CustomField\",\n    \"description\": \"\",\n    \"isMandatory\": false,\n    \"isActive\": false,\n    \"defaultValue\": \"PRIMARY\",\n    \"dataType\": \"ENUM\",\n    \"scope\": \"ISSUE_REWARD\",\n    \"enumValues\": [\n        \"PRIMARY\",\n        \"SECONDARY\"\n    ]\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Sample response",
+          "code": "{\n    \"id\": 32546,\n    \"orgId\": 100737,\n    \"name\": \"terrorz\",\n    \"description\": \"Custom Field of STRING Type\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75197372,\n    \"createdOn\": null,\n    \"createdOnDateTime\": null,\n    \"lastUpdatedBy\": 75197372,\n    \"lastUpdatedOn\": null,\n    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Scope : REWARD",
+          "code": "{\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Scope : CATALOGUE_PROMOTION",
+          "code": "{\n    \"orgId\": 100458,\n    \"name\": \"Order confirmed\",\n    \"description\": \"Reward is processing\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Scope: ISSUE_REWARD",
+          "code": "{\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\"\n}"
+        },
+        {
+          "lang": "json",
+          "title": "dataType: ENUM",
+          "code": "{\n    \"orgId\": 100458,\n    \"name\": \"CustomField\",\n    \"description\": \"\",\n    \"isMandatory\": false,\n    \"isActive\": false,\n    \"defaultValue\": \"PRIMARY\",\n    \"dataType\": \"ENUM\",\n    \"scope\": \"ISSUE_REWARD\",\n    \"enumValues\": [\n        \"PRIMARY\",\n        \"SECONDARY\"\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 150
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "Response parameters",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        154,
+        171
+      ],
+      "raw": "| Parameter Name        | Data Type | Description                                                                                                                                                                                                                                    |\n| --------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| id                    | Integer   | Unique identifier of the custom field.                                                                                                                                                                                                         |\n| orgId                 | Integer   | Unique identifier of the organisation.                                                                                                                                                                                                         |\n| name                  | String    | Unique name of the custom field.                                                                                                                                                                                                               |\n| description           | String    | Description of the custom field.                                                                                                                                                                                                               |\n| isMandatory           | Boolean   | Indicates if the custom field is mandatory. Possible values:<br />`true`: Field is mandatory<br />`false`: Field is optional (default value)                                                                                                   |\n| isActive              | Boolean   | Indicates the status of the custom field. Possible values:<br />`true`: Status is active (default value)<br />`false`: Status is inactive.                                                                                                     |\n| scope                 | String    | Indicates where the additional custom fields will apply. Possible values:<br />`REWARD`: While creating or updating a reward.<br />`ISSUE_REWARD`: While issuing a reward.<br />`CATALOGUE_PROMOTION`: While creating or updating a promotion. |\n| defaultValue          | String    | Default value for the custom field used when no value is specified.                                                                                                                                                                            |\n| dataType              | String    | Type of data for the custom field. Possible values:<br />`BOOLEAN`, `ENUM`, `DATE`, `STRING`, `INTEGER`.                                                                                                                                       |\n| createdBy             | Integer   | Unique customer identifier of the user who created the custom field                                                                                                                                                                            |\n| createdOn             | Date      | Creation date and time of the field in Epoch time format.                                                                                                                                                                                      |\n| createdOnDateTime     | String    | Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                                                                                                                  |\n| lastUpdatedBy         | Integer   | Unique customer identifier of the user who last updated the custom field                                                                                                                                                                       |\n| lastUpdatedOn         | Date      | Last update date and time of the field Epoch time format.                                                                                                                                                                                      |\n| lastUpdatedOnDateTime | String    | Last update date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                                                                                                               |\n| enumValues            | Object    | Object containing the enum values.                                                                                                                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "id",
+            "Integer",
+            "Unique identifier of the custom field."
+          ],
+          [
+            "orgId",
+            "Integer",
+            "Unique identifier of the organisation."
+          ],
+          [
+            "name",
+            "String",
+            "Unique name of the custom field."
+          ],
+          [
+            "description",
+            "String",
+            "Description of the custom field."
+          ],
+          [
+            "isMandatory",
+            "Boolean",
+            "Indicates if the custom field is mandatory. Possible values:true: Field is mandatoryfalse: Field is optional (default value)"
+          ],
+          [
+            "isActive",
+            "Boolean",
+            "Indicates the status of the custom field. Possible values:true: Status is active (default value)false: Status is inactive."
+          ],
+          [
+            "scope",
+            "String",
+            "Indicates where the additional custom fields will apply. Possible values:REWARD: While creating or updating a reward.ISSUE_REWARD: While issuing a reward.CATALOGUE_PROMOTION: While creating or updating a promotion."
+          ],
+          [
+            "defaultValue",
+            "String",
+            "Default value for the custom field used when no value is specified."
+          ],
+          [
+            "dataType",
+            "String",
+            "Type of data for the custom field. Possible values:BOOLEAN, ENUM, DATE, STRING, INTEGER."
+          ],
+          [
+            "createdBy",
+            "Integer",
+            "Unique customer identifier of the user who created the custom field"
+          ],
+          [
+            "createdOn",
+            "Date",
+            "Creation date and time of the field in Epoch time format."
+          ],
+          [
+            "createdOnDateTime",
+            "String",
+            "Creation date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ],
+          [
+            "lastUpdatedBy",
+            "Integer",
+            "Unique customer identifier of the user who last updated the custom field"
+          ],
+          [
+            "lastUpdatedOn",
+            "Date",
+            "Last update date and time of the field Epoch time format."
+          ],
+          [
+            "lastUpdatedOnDateTime",
+            "String",
+            "Last update date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ],
+          [
+            "enumValues",
+            "Object",
+            "Object containing the enum values."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 160
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 160
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 161
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 161
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 162
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 162
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 162
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 164
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        175,
+        249
+      ],
+      "raw": "```json Scope : REWARD\n{\n    \"id\": 18833,\n    \"orgId\": 100737,\n    \"name\": \"CustomField1\",\n    \"description\": \"CustomField1\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75152721,\n    \"createdOn\": 1741934782959,\n    \"createdOnDateTime\": \"2025-03-14T06:46:22Z\",\n    \"lastUpdatedBy\": 75152721,\n    \"lastUpdatedOn\": 1741934782959,\n    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:22Z\"\n}\n```\n```json Scope : CATALOGUE_PROMOTION\n{\n    \"id\": 6913,\n    \"orgId\": 100458,\n    \"name\": \"Order confirmed\",\n    \"description\": \"Reward is processing\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75130850,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75130850,\n    \"lastUpdatedOn\": null\n}\n```\n```json Scope: ISSUE_REWARD\n{\n    \"id\": 210,\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75086856,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75086856,\n    \"lastUpdatedOn\": null\n}\n```\n```json dataType: ENUM\n{\n    \"id\": 15006,\n    \"orgId\": 1231,\n    \"name\": \"CustomField\",\n    \"description\": \"\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": \"PRIMARY\",\n    \"dataType\": \"ENUM\",\n    \"createdBy\": 50716508,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 50716508,\n    \"lastUpdatedOn\": null,\n    \"enumValues\": [\n        \"PRIMARY\",\n        \"SECONDARY\"\n    ]\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Scope : REWARD",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Scope : REWARD",
+          "code": "{\n    \"id\": 18833,\n    \"orgId\": 100737,\n    \"name\": \"CustomField1\",\n    \"description\": \"CustomField1\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75152721,\n    \"createdOn\": 1741934782959,\n    \"createdOnDateTime\": \"2025-03-14T06:46:22Z\",\n    \"lastUpdatedBy\": 75152721,\n    \"lastUpdatedOn\": 1741934782959,\n    \"enumValues\": null,\n    \"lastUpdatedOnDateTime\": \"2025-03-14T06:46:22Z\"\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Scope : CATALOGUE_PROMOTION",
+          "code": "{\n    \"id\": 6913,\n    \"orgId\": 100458,\n    \"name\": \"Order confirmed\",\n    \"description\": \"Reward is processing\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"CATALOGUE_PROMOTION\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75130850,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75130850,\n    \"lastUpdatedOn\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Scope: ISSUE_REWARD",
+          "code": "{\n    \"id\": 210,\n    \"orgId\": 100458,\n    \"name\": \"CF1A112\",\n    \"description\": \"CF1A112\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": null,\n    \"dataType\": \"STRING\",\n    \"createdBy\": 75086856,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 75086856,\n    \"lastUpdatedOn\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "dataType: ENUM",
+          "code": "{\n    \"id\": 15006,\n    \"orgId\": 1231,\n    \"name\": \"CustomField\",\n    \"description\": \"\",\n    \"isMandatory\": false,\n    \"isActive\": true,\n    \"scope\": \"ISSUE_REWARD\",\n    \"defaultValue\": \"PRIMARY\",\n    \"dataType\": \"ENUM\",\n    \"createdBy\": 50716508,\n    \"createdOn\": null,\n    \"lastUpdatedBy\": 50716508,\n    \"lastUpdatedOn\": null,\n    \"enumValues\": [\n        \"PRIMARY\",\n        \"SECONDARY\"\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        251,
+        251
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 251
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        253,
+        253
+      ],
+      "raw": "# API-specific error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API-specific error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        255,
+        264
+      ],
+      "raw": "| Error code | Description                                                                    | Reason                                                               |\n| :--------- | :----------------------------------------------------------------------------- | :------------------------------------------------------------------- |\n| 3022       | ISSUE REWARD scope limit reached, max is `{max_limit}`. Allowed limit is 10.   | The number of rewards issued has exceeded the limit.                 |\n| 3025       | Default value not found in the enum list                                       | The default value provided does not match any of the enums.          |\n| 3030       | Enum value cannot be empty                                                     | One or more enum values are null.                                    |\n| 3024       | Invalid characters in enum value. Allowed characters: \\[a-z,A-Z,0-9,[]() -\\_ ] | One or more enum values have an unsupported character.               |\n| 400        | ENUM's list size is out of limit                                               | The enum object does not contain any values.                         |\n| 3028       | Enum value exceeds the limit of 80 characters                                  | One or more enum values have exceeded the supported character limit. |\n| 3029       | Duplicate enum values found                                                    | A duplicate enum is provided                                         |\n| 400        | dataType must not be null                                                      | The field dataType is empty or missing.                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error code",
+          "Description",
+          "Reason"
+        ],
+        "rows": [
+          [
+            "3022",
+            "ISSUE REWARD scope limit reached, max is {max_limit}. Allowed limit is 10.",
+            "The number of rewards issued has exceeded the limit."
+          ],
+          [
+            "3025",
+            "Default value not found in the enum list",
+            "The default value provided does not match any of the enums."
+          ],
+          [
+            "3030",
+            "Enum value cannot be empty",
+            "One or more enum values are null."
+          ],
+          [
+            "3024",
+            "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9, -_ ]",
+            "One or more enum values have an unsupported character."
+          ],
+          [
+            "400",
+            "ENUM's list size is out of limit",
+            "The enum object does not contain any values."
+          ],
+          [
+            "3028",
+            "Enum value exceeds the limit of 80 characters",
+            "One or more enum values have exceeded the supported character limit."
+          ],
+          [
+            "3029",
+            "Duplicate enum values found",
+            "A duplicate enum is provided"
+          ],
+          [
+            "400",
+            "dataType must not be null",
+            "The field dataType is empty or missing."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        266,
+        266
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        268,
+        899
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/brand/customfield\": {\n      \"post\": {\n        \"summary\": \"Create custom field for reward\",\n        \"description\": \"\",\n        \"operationId\": \"post-create-custom-field\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"name\",\n                  \"description\",\n                  \"scope\",\n                  \"dataType\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique name identifier for the custom field.\"\n                  },\n                  \"orgId\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API.\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"Description for the custom field.\"\n                  },\n                  \"isMandatory\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Specify if the custom field is mandatory.\",\n                    \"default\": false\n                  },\n                  \"isActive\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Parameter to define if the custom field is active or not\",\n                    \"default\": true\n                  },\n                  \"scope\": {\n                    \"type\": \"string\",\n                    \"description\": \"Specify where the additional custom fields will apply\",\n                    \"enum\": [\n                      \"REWARD\",\n                      \"ISSUE_REWARD\",\n                      \"CATALOGUE_PROMOTION\"\n                    ]\n                  },\n                  \"dataType\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of data for the custom field. 255 is the character limit with datatype as string\",\n                    \"enum\": [\n                      \"BOOLEAN\",\n                      \"ENUM\",\n                      \"DATE\",\n                      \"STRING\",\n                      \"INTEGER\"\n                    ]\n                  },\n                  \"enumValues\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing the enum values. This parameter is required if dataType is ENUM.\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                }\n              },\n              \"examples\": {\n                \"request body\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"CF1A112\",\n                    \"description\": \"CF1A112\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"REWARD\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                },\n                \"scope : Catalogue Promotion\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"Order confirmed\",\n                    \"description\": \"Reward is processing\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"CATALOGUE_PROMOTION\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                },\n                \"scope: Issue Reward\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"Order confirmed\",\n                    \"description\": \"Reward is processing\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"CATALOGUE_PROMOTION\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Scope: REWARD\": {\n                    \"value\": \"{\\n    \\\"id\\\": 18833,\\n    \\\"orgId\\\": 100737,\\n    \\\"name\\\": \\\"CustomField1\\\",\\n    \\\"description\\\": \\\"CustomField1\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"REWARD\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75152721,\\n    \\\"createdOn\\\": 1741934782959,\\n    \\\"createdOnDateTime\\\": \\\"2025-03-14T06:46:22Z\\\",\\n    \\\"lastUpdatedBy\\\": 75152721,\\n    \\\"lastUpdatedOn\\\": 1741934782959,\\n    \\\"enumValues\\\": null,\\n    \\\"lastUpdatedOnDateTime\\\": \\\"2025-03-14T06:46:22Z\\\"\\n}\"\n                  },\n                  \"Scope: CATALOGUE_PROMOTION\": {\n                    \"value\": \"{\\n    \\\"id\\\": 6913,\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"Order confirmed\\\",\\n    \\\"description\\\": \\\"Reward is processing\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"CATALOGUE_PROMOTION\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75130850,\\n    \\\"createdOn\\\": null,\\n    \\\"lastUpdatedBy\\\": 75130850,\\n    \\\"lastUpdatedOn\\\": null\\n}\"\n                  },\n                  \"Scope: ISSUE_REWARD\": {\n                    \"value\": \"{\\n    \\\"id\\\": 210,\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"CF1A112\\\",\\n    \\\"description\\\": \\\"CF1A112\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"ISSUE_REWARD\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75086856,\\n    \\\"createdOn\\\": null,\\n    \\\"lastUpdatedBy\\\": 75086856,\\n    \\\"lastUpdatedOn\\\": null\\n}\"\n                  },\n                  \"dataType: ENUM\": {\n                    \"value\": \"{\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"CustomField\\\",\\n    \\\"description\\\": \\\"\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": false,\\n    \\\"defaultValue\\\": \\\"PRIMARY\\\",\\n    \\\"dataType\\\": \\\"ENUM\\\",\\n    \\\"scope\\\": \\\"ISSUE_REWARD\\\",\\n    \\\"enumValues\\\": [\\n        \\\"PRIMARY\\\",\\n        \\\"SECONDARY\\\"\\n    ]\\n}\"\n                  },\n                  \"Sample response\": {\n                    \"summary\": \"Sample response\",\n                    \"value\": {\n                      \"id\": 32546,\n                      \"orgId\": 100737,\n                      \"name\": \"terrorz\",\n                      \"description\": \"Custom Field of STRING Type\",\n                      \"isMandatory\": false,\n                      \"isActive\": true,\n                      \"scope\": \"CATALOGUE_PROMOTION\",\n                      \"defaultValue\": null,\n                      \"dataType\": \"STRING\",\n                      \"createdBy\": 75197372,\n                      \"createdOn\": null,\n                      \"createdOnDateTime\": null,\n                      \"lastUpdatedBy\": 75197372,\n                      \"lastUpdatedOn\": null,\n                      \"enumValues\": null,\n                      \"lastUpdatedOnDateTime\": null\n                    }\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Scope: REWARD\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 18833,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100737,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField1\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField1\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"REWARD\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75152721,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1741934782959,\n                          \"default\": 0\n                        },\n                        \"createdOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-14T06:46:22Z\"\n                        },\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75152721,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1741934782959,\n                          \"default\": 0\n                        },\n                        \"enumValues\": {},\n                        \"lastUpdatedOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-14T06:46:22Z\"\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Scope: CATALOGUE_PROMOTION\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 6913,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"Order confirmed\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"Reward is processing\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"CATALOGUE_PROMOTION\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75130850,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {},\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75130850,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {}\n                      }\n                    },\n                    {\n                      \"title\": \"Scope: ISSUE_REWARD\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 210,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CF1A112\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"CF1A112\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"ISSUE_REWARD\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75086856,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {},\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75086856,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {}\n                      }\n                    },\n                    {\n                      \"title\": \"dataType: ENUM\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"defaultValue\": {\n                          \"type\": \"string\",\n                          \"example\": \"PRIMARY\"\n                        },\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"ENUM\"\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"ISSUE_REWARD\"\n                        },\n                        \"enumValues\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"string\",\n                            \"example\": \"PRIMARY\"\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Wrong default value\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3025,\\n        \\\"message\\\": \\\"Default value not found in the enum list\\\"\\n    }\\n}\"\n                  },\n                  \"ENUM value empty\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3030,\\n        \\\"message\\\": \\\"Enum value cannot be empty\\\"\\n    }\\n}\"\n                  },\n                  \"Unsupported character in ENUM\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3024,\\n        \\\"message\\\": \\\"Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\\\"\\n    }\\n}\"\n                  },\n                  \"No ENUM provided\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 400,\\n        \\\"message\\\": \\\"ENUM's list size is out of limit\\\"\\n    }\\n}\"\n                  },\n                  \"ENUM character limit exceeded\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3028,\\n        \\\"message\\\": \\\"Enum value exceeds the limit of 80 characters\\\"\\n    }\\n}\"\n                  },\n                  \"Duplicate ENUM values provided\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3029,\\n        \\\"message\\\": \\\"Duplicate enum values found\\\"\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Wrong default value\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3025,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Default value not found in the enum list\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"ENUM value empty\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3030,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Enum value cannot be empty\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Unsupported character in ENUM\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3024,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"No ENUM provided\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"ENUM's list size is out of limit\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"ENUM character limit exceeded\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3028,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Enum value exceeds the limit of 80 characters\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Duplicate ENUM values provided\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3029,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Duplicate enum values found\"\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \\\\\\n--header 'Accept: application/json' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'accept: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \\\\\\n--data '{\\n     Mandatory Parameters\\n    \\\"name\\\": \\\"terrorz\\\",\\n    \\\"description\\\": \\\"Custom Field of STRING Type\\\",\\n    \\\"scope\\\": \\\"CATALOGUE_PROMOTION\\\",\\n    \\\"dataType\\\": \\\"STRING\\\",\\n     Non-Mandatory Parameters\\n    \\\"orgId\\\": 100737,\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n     \\\"defaultValue\\\": \\\"EV3\\\",\\n     \\\"enumValues\\\": [\\\"EV1\\\", \\\"EV2\\\", \\\"EV3\\\", \\\"EV4\\\", \\\"EV5\\\", \\\"EV6\\\", \\\"EV7\\\", \\\"EV8\\\", \\\"EV9\\\", \\\"EV10\\\", \\\"EV11\\\", \\\"EV12\\\", \\\"EV13\\\", \\\"EV14\\\", \\\"EV15\\\", \\\"EV16\\\", \\\"EV17\\\", \\\"EV18\\\", \\\"EV19\\\", \\\"EV20\\\", \\\"EV21\\\", \\\"EV22\\\", \\\"EV23\\\", \\\"EV24\\\", \\\"EV25\\\", \\\"EV26\\\", \\\"EV27\\\", \\\"EV28\\\", \\\"EV29\\\", \\\"EV30\\\"]\\n}\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/brand/customfield\": {\n      \"post\": {\n        \"summary\": \"Create custom field for reward\",\n        \"description\": \"\",\n        \"operationId\": \"post-create-custom-field\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"required\": [\n                  \"name\",\n                  \"description\",\n                  \"scope\",\n                  \"dataType\"\n                ],\n                \"properties\": {\n                  \"name\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique name identifier for the custom field.\"\n                  },\n                  \"orgId\": {\n                    \"type\": \"string\",\n                    \"description\": \"Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API.\"\n                  },\n                  \"description\": {\n                    \"type\": \"string\",\n                    \"description\": \"Description for the custom field.\"\n                  },\n                  \"isMandatory\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Specify if the custom field is mandatory.\",\n                    \"default\": false\n                  },\n                  \"isActive\": {\n                    \"type\": \"boolean\",\n                    \"description\": \"Parameter to define if the custom field is active or not\",\n                    \"default\": true\n                  },\n                  \"scope\": {\n                    \"type\": \"string\",\n                    \"description\": \"Specify where the additional custom fields will apply\",\n                    \"enum\": [\n                      \"REWARD\",\n                      \"ISSUE_REWARD\",\n                      \"CATALOGUE_PROMOTION\"\n                    ]\n                  },\n                  \"dataType\": {\n                    \"type\": \"string\",\n                    \"description\": \"Type of data for the custom field. 255 is the character limit with datatype as string\",\n                    \"enum\": [\n                      \"BOOLEAN\",\n                      \"ENUM\",\n                      \"DATE\",\n                      \"STRING\",\n                      \"INTEGER\"\n                    ]\n                  },\n                  \"enumValues\": {\n                    \"type\": \"array\",\n                    \"description\": \"Object containing the enum values. This parameter is required if dataType is ENUM.\",\n                    \"items\": {\n                      \"type\": \"string\"\n                    }\n                  }\n                }\n              },\n              \"examples\": {\n                \"request body\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"CF1A112\",\n                    \"description\": \"CF1A112\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"REWARD\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                },\n                \"scope : Catalogue Promotion\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"Order confirmed\",\n                    \"description\": \"Reward is processing\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"CATALOGUE_PROMOTION\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                },\n                \"scope: Issue Reward\": {\n                  \"value\": {\n                    \"orgId\": 100458,\n                    \"name\": \"Order confirmed\",\n                    \"description\": \"Reward is processing\",\n                    \"isMandatory\": false,\n                    \"isActive\": true,\n                    \"scope\": \"CATALOGUE_PROMOTION\",\n                    \"defaultValue\": null,\n                    \"dataType\": \"STRING\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Scope: REWARD\": {\n                    \"value\": \"{\\n    \\\"id\\\": 18833,\\n    \\\"orgId\\\": 100737,\\n    \\\"name\\\": \\\"CustomField1\\\",\\n    \\\"description\\\": \\\"CustomField1\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"REWARD\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75152721,\\n    \\\"createdOn\\\": 1741934782959,\\n    \\\"createdOnDateTime\\\": \\\"2025-03-14T06:46:22Z\\\",\\n    \\\"lastUpdatedBy\\\": 75152721,\\n    \\\"lastUpdatedOn\\\": 1741934782959,\\n    \\\"enumValues\\\": null,\\n    \\\"lastUpdatedOnDateTime\\\": \\\"2025-03-14T06:46:22Z\\\"\\n}\"\n                  },\n                  \"Scope: CATALOGUE_PROMOTION\": {\n                    \"value\": \"{\\n    \\\"id\\\": 6913,\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"Order confirmed\\\",\\n    \\\"description\\\": \\\"Reward is processing\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"CATALOGUE_PROMOTION\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75130850,\\n    \\\"createdOn\\\": null,\\n    \\\"lastUpdatedBy\\\": 75130850,\\n    \\\"lastUpdatedOn\\\": null\\n}\"\n                  },\n                  \"Scope: ISSUE_REWARD\": {\n                    \"value\": \"{\\n    \\\"id\\\": 210,\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"CF1A112\\\",\\n    \\\"description\\\": \\\"CF1A112\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n    \\\"scope\\\": \\\"ISSUE_REWARD\\\",\\n    \\\"defaultValue\\\": null,\\n    \\\"dataType\\\": \\\"STRING\\\",\\n    \\\"createdBy\\\": 75086856,\\n    \\\"createdOn\\\": null,\\n    \\\"lastUpdatedBy\\\": 75086856,\\n    \\\"lastUpdatedOn\\\": null\\n}\"\n                  },\n                  \"dataType: ENUM\": {\n                    \"value\": \"{\\n    \\\"orgId\\\": 100458,\\n    \\\"name\\\": \\\"CustomField\\\",\\n    \\\"description\\\": \\\"\\\",\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": false,\\n    \\\"defaultValue\\\": \\\"PRIMARY\\\",\\n    \\\"dataType\\\": \\\"ENUM\\\",\\n    \\\"scope\\\": \\\"ISSUE_REWARD\\\",\\n    \\\"enumValues\\\": [\\n        \\\"PRIMARY\\\",\\n        \\\"SECONDARY\\\"\\n    ]\\n}\"\n                  },\n                  \"Sample response\": {\n                    \"summary\": \"Sample response\",\n                    \"value\": {\n                      \"id\": 32546,\n                      \"orgId\": 100737,\n                      \"name\": \"terrorz\",\n                      \"description\": \"Custom Field of STRING Type\",\n                      \"isMandatory\": false,\n                      \"isActive\": true,\n                      \"scope\": \"CATALOGUE_PROMOTION\",\n                      \"defaultValue\": null,\n                      \"dataType\": \"STRING\",\n                      \"createdBy\": 75197372,\n                      \"createdOn\": null,\n                      \"createdOnDateTime\": null,\n                      \"lastUpdatedBy\": 75197372,\n                      \"lastUpdatedOn\": null,\n                      \"enumValues\": null,\n                      \"lastUpdatedOnDateTime\": null\n                    }\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Scope: REWARD\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 18833,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100737,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField1\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField1\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"REWARD\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75152721,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1741934782959,\n                          \"default\": 0\n                        },\n                        \"createdOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-14T06:46:22Z\"\n                        },\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75152721,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {\n                          \"type\": \"integer\",\n                          \"example\": 1741934782959,\n                          \"default\": 0\n                        },\n                        \"enumValues\": {},\n                        \"lastUpdatedOnDateTime\": {\n                          \"type\": \"string\",\n                          \"example\": \"2025-03-14T06:46:22Z\"\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Scope: CATALOGUE_PROMOTION\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 6913,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"Order confirmed\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"Reward is processing\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"CATALOGUE_PROMOTION\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75130850,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {},\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75130850,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {}\n                      }\n                    },\n                    {\n                      \"title\": \"Scope: ISSUE_REWARD\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"id\": {\n                          \"type\": \"integer\",\n                          \"example\": 210,\n                          \"default\": 0\n                        },\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CF1A112\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"CF1A112\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": true,\n                          \"default\": true\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"ISSUE_REWARD\"\n                        },\n                        \"defaultValue\": {},\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"STRING\"\n                        },\n                        \"createdBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75086856,\n                          \"default\": 0\n                        },\n                        \"createdOn\": {},\n                        \"lastUpdatedBy\": {\n                          \"type\": \"integer\",\n                          \"example\": 75086856,\n                          \"default\": 0\n                        },\n                        \"lastUpdatedOn\": {}\n                      }\n                    },\n                    {\n                      \"title\": \"dataType: ENUM\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"orgId\": {\n                          \"type\": \"integer\",\n                          \"example\": 100458,\n                          \"default\": 0\n                        },\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"CustomField\"\n                        },\n                        \"description\": {\n                          \"type\": \"string\",\n                          \"example\": \"\"\n                        },\n                        \"isMandatory\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"isActive\": {\n                          \"type\": \"boolean\",\n                          \"example\": false,\n                          \"default\": true\n                        },\n                        \"defaultValue\": {\n                          \"type\": \"string\",\n                          \"example\": \"PRIMARY\"\n                        },\n                        \"dataType\": {\n                          \"type\": \"string\",\n                          \"example\": \"ENUM\"\n                        },\n                        \"scope\": {\n                          \"type\": \"string\",\n                          \"example\": \"ISSUE_REWARD\"\n                        },\n                        \"enumValues\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"string\",\n                            \"example\": \"PRIMARY\"\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Wrong default value\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3025,\\n        \\\"message\\\": \\\"Default value not found in the enum list\\\"\\n    }\\n}\"\n                  },\n                  \"ENUM value empty\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3030,\\n        \\\"message\\\": \\\"Enum value cannot be empty\\\"\\n    }\\n}\"\n                  },\n                  \"Unsupported character in ENUM\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3024,\\n        \\\"message\\\": \\\"Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\\\"\\n    }\\n}\"\n                  },\n                  \"No ENUM provided\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 400,\\n        \\\"message\\\": \\\"ENUM's list size is out of limit\\\"\\n    }\\n}\"\n                  },\n                  \"ENUM character limit exceeded\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3028,\\n        \\\"message\\\": \\\"Enum value exceeds the limit of 80 characters\\\"\\n    }\\n}\"\n                  },\n                  \"Duplicate ENUM values provided\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": false,\\n        \\\"code\\\": 3029,\\n        \\\"message\\\": \\\"Duplicate enum values found\\\"\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"Wrong default value\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3025,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Default value not found in the enum list\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"ENUM value empty\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3030,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Enum value cannot be empty\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Unsupported character in ENUM\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3024,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"No ENUM provided\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 400,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"ENUM's list size is out of limit\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"ENUM character limit exceeded\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3028,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Enum value exceeds the limit of 80 characters\"\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"Duplicate ENUM values provided\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 3029,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Duplicate enum values found\"\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/brand/customfield' \\\\\\n--header 'Accept: application/json' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'accept: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHVfcjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=EZk.XAGmnGytGPQFxLHCnFm_v4YhnMy7zloRQ46HJuo-1763640364440-0.0.1.1-604800000' \\\\\\n--data '{\\n     Mandatory Parameters\\n    \\\"name\\\": \\\"terrorz\\\",\\n    \\\"description\\\": \\\"Custom Field of STRING Type\\\",\\n    \\\"scope\\\": \\\"CATALOGUE_PROMOTION\\\",\\n    \\\"dataType\\\": \\\"STRING\\\",\\n     Non-Mandatory Parameters\\n    \\\"orgId\\\": 100737,\\n    \\\"isMandatory\\\": false,\\n    \\\"isActive\\\": true,\\n     \\\"defaultValue\\\": \\\"EV3\\\",\\n     \\\"enumValues\\\": [\\\"EV1\\\", \\\"EV2\\\", \\\"EV3\\\", \\\"EV4\\\", \\\"EV5\\\", \\\"EV6\\\", \\\"EV7\\\", \\\"EV8\\\", \\\"EV9\\\", \\\"EV10\\\", \\\"EV11\\\", \\\"EV12\\\", \\\"EV13\\\", \\\"EV14\\\", \\\"EV15\\\", \\\"EV16\\\", \\\"EV17\\\", \\\"EV18\\\", \\\"EV19\\\", \\\"EV20\\\", \\\"EV21\\\", \\\"EV22\\\", \\\"EV23\\\", \\\"EV24\\\", \\\"EV25\\\", \\\"EV26\\\", \\\"EV27\\\", \\\"EV28\\\", \\\"EV29\\\", \\\"EV30\\\"]\\n}\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

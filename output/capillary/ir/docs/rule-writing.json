@@ -1,0 +1,2627 @@
+{
+  "slug": "docs/rule-writing",
+  "source": "https://docs.capillarytech.com/docs/rule-writing.md",
+  "url": "https://docs.capillarytech.com/docs/rule-writing",
+  "title": "Rule Writing",
+  "description": "",
+  "section": "Workflows",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T09:08:17.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `)` (U+0029) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 27,
+    "paragraph": 121,
+    "Image": 1,
+    "list": 4,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Rule Writing",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Rule Writing",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Rules Engine in RTIM allows users to set up conditional responses to customer activities. Rules are written using a standard “Expression Editor” which works with a pseudo-code format that allows powerful combinations of conditions. Rules engine has a large library of supported conditions and expressions out of the box for a wide range of use cases. RTIM and rules engine are used across various products and modules e.g. Loyalty+, Loyalty Promotions, Cart Promotions, Target Loyalty.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Rules Engine in RTIM allows users to set up conditional responses to customer activities. Rules are written using a standard “Expression Editor” which works with a pseudo-code format that allows powerful combinations of conditions. Rules engine has a large library of supported conditions and expressions out of the box for a wide range of use cases. RTIM and rules engine are used across various products and modules e.g. Loyalty+, Loyalty Promotions, Cart Promotions, Target Loyalty.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Anatomy of a rule",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Anatomy of a rule",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "A rule consists of a profile, attribute, operator, and value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A rule consists of a profile, attribute, operator, and value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/25d9fc2-Screenshot_203.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/25d9fc2-Screenshot_203.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Profiles in rules",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Profiles in rules",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "currentCustomer (Customer Profile) - Allows you to write conditions based on the properties of the customer who is currently performing the activity",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer (Customer Profile) - Allows you to write conditions based on the properties of the customer who is currently performing the activity",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "currentTxn (Transaction Profile) - In Transaction related events this profile allows you to write conditions based on the properties of the transaction (e.g. net amount, category of items present in the txn, etc.)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn (Transaction Profile) - In Transaction related events this profile allows you to write conditions based on the properties of the transaction (e.g. net amount, category of items present in the txn, etc.)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "currentLineItem (Line Item Profile) - In Transaction related events this profile allows you to specify conditions relating to properties of individual items (note: This only works with line item unrolling)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentLineItem (Line Item Profile) - In Transaction related events this profile allows you to specify conditions relating to properties of individual items (note: This only works with line item unrolling)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "tenderProfile (Payment Method Profile) - In Txn related events this profile allows you to specify conditions relating to individual payment methods used (note: This only works with payment method unrolling)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "tenderProfile (Payment Method Profile) - In Txn related events this profile allows you to specify conditions relating to individual payment methods used (note: This only works with payment method unrolling)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "currentEvent (The “Event” Profile) - This is a dynamic profile that allows you to write conditions pertaining to that particular customer activity. Its properties are different across the different customer activities",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentEvent (The “Event” Profile) - This is a dynamic profile that allows you to write conditions pertaining to that particular customer activity. Its properties are different across the different customer activities",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "currentTrackerCondition (Tracker Profile) - Inside the Tracker set, this profile allows you to write conditions based on the properties of that particular tracker case",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTrackerCondition (Tracker Profile) - Inside the Tracker set, this profile allows you to write conditions based on the properties of that particular tracker case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "To read in detail about profiles and attributes [click here](https://docs.capillarytech.com/docs/profiles)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To read in detail about profiles and attributes click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/profiles",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "## Completing a valid expression",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Completing a valid expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "An expression is considered valid as long as it resolves into a true or a false condition. This can be achieved, by as simple a condition as simply ”true”. Or by completing the appropriate operator and value for the data type. Or even by combining multiple attributes of similar data types together.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An expression is considered valid as long as it resolves into a true or a false condition. This can be achieved, by as simple a condition as simply ”true”. Or by completing the appropriate operator and value for the data type. Or even by combining multiple attributes of similar data types together.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "## Data Types in Expression Editor",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Data Types in Expression Editor",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        39,
+        42
+      ],
+      "raw": "1. Numbers - These can be integer or double (i.e. decimal values), for example, avgBasketSize, grossAmount, rate, etc.\n2. String - These are a string of alphanumeric charactersfor example, firstname, email, notes, etc.\n3. Date - These are date and time values, for example, joinDate, slabExpiryDate, etc.\n4. Boolean - These are true/false values and won’t need further operators, for example, isControl, isUserGroupInfoPresent, etc.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Numbers - These can be integer or double (i.e. decimal values), for example, avgBasketSize, grossAmount, rate, etc.String - These are a string of alphanumeric charactersfor example, firstname, email, notes, etc.Date - These are date and time values, for example, joinDate, slabExpiryDate, etc.Boolean - These are true/false values and won’t need further operators, for example, isControl, isUserGroupInfoPresent, etc.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "## Numerical operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Numerical operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "The basic range of supported operations on numbers allow us to resolve the number to a boolean outcome through comparison with another value, and these include:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The basic range of supported operations on numbers allow us to resolve the number to a boolean outcome through comparison with another value, and these include:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        48,
+        53
+      ],
+      "raw": "* equal to (=)\n* not equal to (!=)\n* greater than (>)\n* greater than or equal to (>=)\n* lesser than (<)\n* lesser than or equal to (<=)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "equal to (=)not equal to (!=)greater than (>)greater than or equal to (>=)lesser than (<)lesser than or equal to (<=)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "Outside of these, users can also perform mathematical operations to transform the value of the numerical attribute, the supported operations for transformation are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Outside of these, users can also perform mathematical operations to transform the value of the numerical attribute, the supported operations for transformation are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        57,
+        61
+      ],
+      "raw": "* Addition (+)\n* Subtraction (-)\n* Multiplication (\\*)\n* Division (/)\n* Mod operation - this provides the remainder after division (%)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Addition (+)Subtraction (-)Multiplication (*)Division (/)Mod operation - this provides the remainder after division (%)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "## String operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "String operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "The basic range of string operations serve to resolve the string attribute into a boolean outcome.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The basic range of string operations serve to resolve the string attribute into a boolean outcome.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "These operators are inserted after the string attribute using the . notation e.g. currentCustomer.email.contains(\".com\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "These operators are inserted after the string attribute using the . notation e.g. currentCustomer.email.contains(\".com\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "The following are the string operators:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the string operators:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        71,
+        78
+      ],
+      "raw": "Contains - used to see if the string contains the defined value\\\nMatches - this is used to perform regular expression based matching on the string\\\nisValidDate - used to check if the string is a proper date field\\\nExists - Some proper value exists for this string (i.e. source passed a value that was not an empty string)\\\nnotExists - The string is either Null or Empty\\\nisEmpty - Similar to notExists\\\nisNull - checks if the string is Null i.e. it was not passed from the source.\\\nisNotNull - checks if the the string is NOT Null i.e. some value was passed from the source (even an empty string counts)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Contains - used to see if the string contains the defined valueMatches - this is used to perform regular expression based matching on the stringisValidDate - used to check if the string is a proper date fieldExists - Some proper value exists for this string (i.e. source passed a value that was not an empty string)notExists - The string is either Null or EmptyisEmpty - Similar to notExistsisNull - checks if the string is Null i.e. it was not passed from the source.isNotNull - checks if the the string is NOT Null i.e. some value was passed from the source (even an empty string counts)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        80,
+        81
+      ],
+      "raw": "A regular expression is a sequence of characters that forms a search pattern. When you search for data in a text, you can use this search pattern to describe what you are searching for. A regular expression can be a single character, or a more complicated pattern.\\\nYou can use Regular Expressions for all string attributes using the .matches operator",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A regular expression is a sequence of characters that forms a search pattern. When you search for data in a text, you can use this search pattern to describe what you are searching for. A regular expression can be a single character, or a more complicated pattern.You can use Regular Expressions for all string attributes using the .matches operator",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "There are also some attributes that support regular expressions as part of its arguments, e.g. currentTxn.basketIncludesRegexCategory(\".SW\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are also some attributes that support regular expressions as part of its arguments, e.g. currentTxn.basketIncludesRegexCategory(\".SW\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "Some common useful expressions include:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Some common useful expressions include:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": ". - allows you to match with any character e.g. .SW matches with CSW, VSW, eSW, etc.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": ". - allows you to match with any character e.g. .SW matches with CSW, VSW, eSW, etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "\\[] - allows you to match from a set of characters e.g. \\[CV]SW matches with CSW or VSW",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "[] - allows you to match from a set of characters e.g. [CV]SW matches with CSW or VSW",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "\\| - acts like an or and allows you to search for different possibilities within the same attribute e.g. currentTxn.basketIncludesRegexCategory(\"shoes|sneakers\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "| - acts like an or and allows you to search for different possibilities within the same attribute e.g. currentTxn.basketIncludesRegexCategory(\"shoes|sneakers\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "^ - matches characters at the start of the entire string e.g. currentTxn.basketIncludesRegexCategory(\"^\\[Pp]remium\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "^ - matches characters at the start of the entire string e.g. currentTxn.basketIncludesRegexCategory(\"^[Pp]remium\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "$ - matches characters at the end of the entire string e.g. currentTxn.basketIncludesRegexCategory(\"\\[Ff]uel$\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "$ - matches characters at the end of the entire string e.g. currentTxn.basketIncludesRegexCategory(\"[Ff]uel$\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "\\w \\s \\d - allows you to see if there’s any alphabet, any space or any digit/number respectively e.g. currentCustomer.firstname.matches(\"\\s\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "\\w \\s \\d - allows you to see if there’s any alphabet, any space or any digit/number respectively e.g. currentCustomer.firstname.matches(\"\\s\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "## Date operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Date operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        101,
+        101
+      ],
+      "raw": "The basic range of date operations serves to resolve the date attribute into a boolean outcome. You will commonly be combining multiple attributes in date operations since you will be comparing dates",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The basic range of date operations serves to resolve the date attribute into a boolean outcome. You will commonly be combining multiple attributes in date operations since you will be comparing dates",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        103,
+        118
+      ],
+      "raw": "isValid - simply checks if a valid date is present in that field e.g. currentCustomer.joinDate.isValid( )\\\ndateDiff - absolute difference between 2 dates e.g. currentCustomer.joinDate.dateDiff(currentTxn.date)==0\\\ndaysDiff - same as dateDiff, but ignores the year. Useful for anniversary type promotions e.g. currentCustomer.extField\\_dob\\_date.daysDiff(currentTxn.date)==0\\\ndaysDiffFromString - same as daysDiff, but when you want to use an attribute that could be saved as a string\\\nminutesDiff - absolute difference similar to dateDiff, but looks at minutes\\\nday - day of the week, week starts on Sunday as 1 e.g. Terrific Tuesdays would be currentTxn.date.day( )==3\\\ndayOfMonth - date of the month e.g. For offers on the first 5 days of each month currentTxn.date.dayOfMonth( )<=5\\\nmonth - month number is returned e.g. currentCustomer.extField\\_dob\\_date.month( )==currentTxn.date.month( )\\\nyear - returns the year from the date e.g. currentCustomer.extField\\_dob\\_date.year( )>=1981&¤tCustomer.extField\\_dob\\_date.year( )<=1996\\\nisAfter - checks if the attribute occurs after a defined date-time e.g. currentTxn.date.isAfter(YYYY,MM,DD,HH,MM,SS)\\\nisHourBetween - scenarios like happy hours. hour in 24 hour format e.g. currentTxn.date.isHourBetween(HH,HH)\\\nisTimeBetween - similar to happy hours, but when minutes also matter e.g. currentTxn.date.isTimeBetween(HH,MM,HH,MM)\\\nisWeekday - checks if the date is a weekday e.g. currentTxn.date.isWeekday( )\\\nisWeekend - checks if the date is a weekend e.g. currentTxn.date.isWeekend( )\\\nisNull - checks if the the date is Null i.e. it was not passed from source\\\nisNotNull - checks if the the date is NOT Null i.e. some value was passed from source",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "isValid - simply checks if a valid date is present in that field e.g. currentCustomer.joinDate.isValid( )dateDiff - absolute difference between 2 dates e.g. currentCustomer.joinDate.dateDiff(currentTxn.date)==0daysDiff - same as dateDiff, but ignores the year. Useful for anniversary type promotions e.g. currentCustomer.extField_dob_date.daysDiff(currentTxn.date)==0daysDiffFromString - same as daysDiff, but when you want to use an attribute that could be saved as a stringminutesDiff - absolute difference similar to dateDiff, but looks at minutesday - day of the week, week starts on Sunday as 1 e.g. Terrific Tuesdays would be currentTxn.date.day( )==3dayOfMonth - date of the month e.g. For offers on the first 5 days of each month currentTxn.date.dayOfMonth( )<=5month - month number is returned e.g. currentCustomer.extField_dob_date.month( )==currentTxn.date.month( )year - returns the year from the date e.g. currentCustomer.extField_dob_date.year( )>=1981&¤tCustomer.extField_dob_date.year( )<=1996isAfter - checks if the attribute occurs after a defined date-time e.g. currentTxn.date.isAfter(YYYY,MM,DD,HH,MM,SS)isHourBetween - scenarios like happy hours. hour in 24 hour format e.g. currentTxn.date.isHourBetween(HH,HH)isTimeBetween - similar to happy hours, but when minutes also matter e.g. currentTxn.date.isTimeBetween(HH,MM,HH,MM)isWeekday - checks if the date is a weekday e.g. currentTxn.date.isWeekday( )isWeekend - checks if the date is a weekend e.g. currentTxn.date.isWeekend( )isNull - checks if the the date is Null i.e. it was not passed from sourceisNotNull - checks if the the date is NOT Null i.e. some value was passed from source",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        120,
+        122
+      ],
+      "raw": "> 📘 **Note**\n>\n> Date functions like `.isValid()`, `.month()`, `.year()`, and `.daysDiff()` evaluate to `false` (or fail the overall condition) if the referenced field is empty or not populated for a customer. If a rule condition unexpectedly evaluates as false, verify that every extended/custom field it references is actually populated on the customer profile, not just a similarly named field.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteDate functions like .isValid(), .month(), .year(), and .daysDiff() evaluate to false (or fail the overall condition) if the referenced field is empty or not populated for a customer. If a rule condition unexpectedly evaluates as false, verify that every extended/custom field it references is actually populated on the customer profile, not just a similarly named field.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        124,
+        124
+      ],
+      "raw": "## Adding multiple expressions and using brackets",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding multiple expressions and using brackets",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        126,
+        126
+      ],
+      "raw": "You can chain together multiple valid expressions using AND (&&) or an OR (||) condition between them",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can chain together multiple valid expressions using AND (&&) or an OR (||) condition between them",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "You can use brackets to combine various parts of the expression to control the order in which the expression is checked, particularly to combine AND and OR type expressions as per the use case",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use brackets to combine various parts of the expression to control the order in which the expression is checked, particularly to combine AND and OR type expressions as per the use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "e.g. to check if a customer has either bought for $100 or more in a completely non-discounted transaction, or for $300 or more then you can say ((currentTxn.value>=100)&&(currentTxn.basketSumIf(\"DISCOUNT\",\"NOT\\_EQUAL\\_TO\",\"0\")==0))||(currentTxn.value>=300)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "e.g. to check if a customer has either bought for $100 or more in a completely non-discounted transaction, or for $300 or more then you can say ((currentTxn.value>=100)&&(currentTxn.basketSumIf(\"DISCOUNT\",\"NOT_EQUAL_TO\",\"0\")==0))||(currentTxn.value>=300)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "## Some tips for efficient rule writing and handling common issues",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Some tips for efficient rule writing and handling common issues",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        134,
+        141
+      ],
+      "raw": "* Use scope early on and wherever possible to restrict the events being processed by conditions unnecessarily\n* Reduce redundancies in rule writing through efficient use of the forward to set action - this action is not just for unrolling, it provides an efficient of setting up “global filters”\\\n  E.g. if you have a program construct where only certain concepts qualify for “earning” and only customers in tier ‘Silver’ and above can earn points, create these as scope and conditions in Set 1 itself and forward from there for all other conditions and actions\n* Use regular expressions to reduce the need for multiple OR conditions and repeating the same expression\n* Ensure expressions match the unrolling status of the ruleset and ensure that the rulesets don’t have nested unrolling actions inside\n* Check for mathematical operations that might lead to irrational numbers e.g. dividing by zero\n* String matches can be case sensitive, and might fail because of input errors, as far as possible use the system suggested values or use regular expressions to adjust for those kinds of situations if needed\n* Using combinations of expressions with ==true or ==false along with the “when expression is false” to specify the action can get confusing, so try to avoid double negatives",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use scope early on and wherever possible to restrict the events being processed by conditions unnecessarilyReduce redundancies in rule writing through efficient use of the forward to set action - this action is not just for unrolling, it provides an efficient of setting up “global filters”E.g. if you have a program construct where only certain concepts qualify for “earning” and only customers in tier ‘Silver’ and above can earn points, create these as scope and conditions in Set 1 itself and forward from there for all other conditions and actionsUse regular expressions to reduce the need for multiple OR conditions and repeating the same expressionEnsure expressions match the unrolling status of the ruleset and ensure that the rulesets don’t have nested unrolling actions insideCheck for mathematical operations that might lead to irrational numbers e.g. dividing by zeroString matches can be case sensitive, and might fail because of input errors, as far as possible use the system suggested values or use regular expressions to adjust for those kinds of situations if neededUsing combinations of expressions with ==true or ==false along with the “when expression is false” to specify the action can get confusing, so try to avoid double negatives",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        143,
+        143
+      ],
+      "raw": "## Sample Scenarios",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Sample Scenarios",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        145,
+        145
+      ],
+      "raw": "### Incentivizing on High Spending Customers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Incentivizing on High Spending Customers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        147,
+        148
+      ],
+      "raw": "Issuing Coupons for current transaction amounts exceeding a certain value\\\nConsider that you want to issue coupons for customers whose current transaction amount is greater than 5000, then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Issuing Coupons for current transaction amounts exceeding a certain valueConsider that you want to issue coupons for customers whose current transaction amount is greater than 5000, then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "currentTxn.value>5000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.value>5000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "For transaction amounts equal to a certain value, use currentTxn.value==5000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For transaction amounts equal to a certain value, use currentTxn.value==5000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        154,
+        155
+      ],
+      "raw": "Issuing Coupons for the current transaction amount between two defined values\\\nConsider that you want to issue coupons for customers whose current transaction amount is greater than 1000, but less than 5000, then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Issuing Coupons for the current transaction amount between two defined valuesConsider that you want to issue coupons for customers whose current transaction amount is greater than 1000, but less than 5000, then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "currentTxn.value>1000&&(currentTxn.value<5000)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.value>1000&&(currentTxn.value<5000)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "To learn more about current Transaction profile, and value profile [click here](https://docs.capillarytech.com/docs/attribute-transaction-value)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To learn more about current Transaction profile, and value profile click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attribute-transaction-value",
+          "line": 159
+        }
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "### Incentivizing on Customer Name and Transaction Amount",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Incentivizing on Customer Name and Transaction Amount",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "Suppose that your store founder’s name is “John Smith” and you want to issue coupons to customers whose name matches that of the founder. But you also have a rider that the transaction must exceed a certain value (say 5000).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose that your store founder’s name is “John Smith” and you want to issue coupons to customers whose name matches that of the founder. But you also have a rider that the transaction must exceed a certain value (say 5000).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        165,
+        166
+      ],
+      "raw": "Issuing coupons depending on the full name and the transaction amount\\\nSuppose you want to issue coupons to customers whose full name matches “John Smith” and whose transaction amount exceeds 5000. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Issuing coupons depending on the full name and the transaction amountSuppose you want to issue coupons to customers whose full name matches “John Smith” and whose transaction amount exceeds 5000. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "(currentTxn.value>1000&&(currentTxn.value<5000)&&(currentCustomer.name.matches(\"John Smith\"))",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "(currentTxn.value>1000&&(currentTxn.value<5000)&&(currentCustomer.name.matches(\"John Smith\"))",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        170,
+        171
+      ],
+      "raw": "Issuing coupons depending on the first name and the transaction amount\\\nSuppose you want to issue coupons to customers whose first name matches “John” and whose transaction amount exceeds 5000. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Issuing coupons depending on the first name and the transaction amountSuppose you want to issue coupons to customers whose first name matches “John” and whose transaction amount exceeds 5000. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "currentTxn.value==5000&&(currentCustomer.firstname.matches(\"John\"))",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.value==5000&&(currentCustomer.firstname.matches(\"John\"))",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        175,
+        176
+      ],
+      "raw": "Issuing coupons depending on the last name and the transaction amount\\\nConsider that you want to issue coupons for certain customers whose current transaction amount is greater than 5000 and their last name matches Smith. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Issuing coupons depending on the last name and the transaction amountConsider that you want to issue coupons for certain customers whose current transaction amount is greater than 5000 and their last name matches Smith. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "currentTxn.value==5000&&(currentCustomer.lastname.matches(\"Smith\"))",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.value==5000&&(currentCustomer.lastname.matches(\"Smith\"))",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        180,
+        180
+      ],
+      "raw": "To learn more about how to write a rule on customer name and other identity related attributes [click here](https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#name)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To learn more about how to write a rule on customer name and other identity related attributes click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#name",
+          "line": 180
+        }
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "### Incentivizing on Current Points",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Incentivizing on Current Points",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        184,
+        184
+      ],
+      "raw": "Suppose you want to issue coupons for customers whose current points is greater than 500, then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to issue coupons for customers whose current points is greater than 500, then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        186,
+        186
+      ],
+      "raw": "currentCustomer.currentPoints>500",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.currentPoints>500",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        188,
+        188
+      ],
+      "raw": "To issue coupons to those customers whose current points fall in the third interval of 600 (the first interval being 1 to 100, the second interval being 101 to 400, the third interval being 401 to 600), then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To issue coupons to those customers whose current points fall in the third interval of 600 (the first interval being 1 to 100, the second interval being 101 to 400, the third interval being 401 to 600), then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "currentTxn.points.interval(\"100,400,600\")==3",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.points.interval(\"100,400,600\")==3",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "To learn more about attributes based on points [click here](https://docs.capillarytech.com/docs/attributes-current-customer-points)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To learn more about attributes based on points click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-current-customer-points",
+          "line": 192
+        }
+      ]
+    },
+    {
+      "i": 70,
+      "lines": [
+        194,
+        194
+      ],
+      "raw": "### Issuing Coupons based on lifetime purchases (Faithful Customers)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on lifetime purchases (Faithful Customers)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        196,
+        196
+      ],
+      "raw": "Suppose you want to issue coupons to those customers whose lifetime purchase is greater than 5000. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to issue coupons to those customers whose lifetime purchase is greater than 5000. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "currentCustomer.lifetimePurchase>5000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.lifetimePurchase>5000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "To issue coupons to customers whose lifetime purchase falls between a specified interval of 3000 (with first interval being 0 to 999, second interval being 1000 to 2999, third interval being 3000 to 5999, fourth interval being 6000 and above), use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To issue coupons to customers whose lifetime purchase falls between a specified interval of 3000 (with first interval being 0 to 999, second interval being 1000 to 2999, third interval being 3000 to 5999, fourth interval being 6000 and above), use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "currentCustomer.lifetimePurchase.interval(\"1000,3000,6000\")==2",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.lifetimePurchase.interval(\"1000,3000,6000\")==2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "Let's take a deep dive to know more about the attributes based on Purchase by [clicking here](https://docs.capillarytech.com/docs/attributes-kpis#6-lifetimepurchase)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Let's take a deep dive to know more about the attributes based on Purchase by clicking here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-kpis#6-lifetimepurchase",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "i": 76,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "### Issuing Coupons based on Customer Tier",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Customer Tier",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "Suppose you want to issue coupons to those customers who fall under the Gold slab, then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to issue coupons to those customers who fall under the Gold slab, then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "currentCustomer.slabName.matches(\"Gold\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.slabName.matches(\"Gold\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "You can also use the following condition to match a set of characters (here Sil could mean Silver)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can also use the following condition to match a set of characters (here Sil could mean Silver)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "currentCustomer.slabName.contains(\"Sil\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.slabName.contains(\"Sil\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "To learn more about the attributes based on slab [click here](https://docs.capillarytech.com/docs/attribute-slab-information)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To learn more about the attributes based on slab click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attribute-slab-information",
+          "line": 216
+        }
+      ]
+    },
+    {
+      "i": 82,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "### Issuing Coupons based on Customer Registration on a Weekday",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Customer Registration on a Weekday",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        220,
+        220
+      ],
+      "raw": "To boost your loyalty program registration, suppose you have offered discounts for customers who register over a weekday. To issue coupons to those customers who have registered on a weekday, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To boost your loyalty program registration, suppose you have offered discounts for customers who register over a weekday. To issue coupons to those customers who have registered on a weekday, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "currentCustomer.joinDate.isWeekday( )",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.joinDate.isWeekday( )",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "### Issuing Coupons based on Customer Registration Time",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Customer Registration Time",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        226,
+        226
+      ],
+      "raw": "To boost your loyalty program registration, suppose you have offered discounts for customers who register at a specific time (say 5 pm to 6 pm). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To boost your loyalty program registration, suppose you have offered discounts for customers who register at a specific time (say 5 pm to 6 pm). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "currentCustomer.joinDate.isHourBetween(18,19)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.joinDate.isHourBetween(18,19)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        230,
+        230
+      ],
+      "raw": "### Issuing Coupons based on Weekend Registrations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Weekend Registrations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "Suppose you want to issue coupons to those customers who have registered on a weekend. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to issue coupons to those customers who have registered on a weekend. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "currentCustomer.joinDate.isWeekend( )",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.joinDate.isWeekend( )",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "The Versatile Customer - Issuing Coupons based on the variety of products bought",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Versatile Customer - Issuing Coupons based on the variety of products bought",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "To encourage sales of different brands in your store, suppose you want to issue coupons to those customers who have bought a variety of products (say 10). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To encourage sales of different brands in your store, suppose you want to issue coupons to those customers who have bought a variety of products (say 10). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "currentCustomer.avgBasketSize==10",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.avgBasketSize==10",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "Note: Average basket size is the number of different products bought (line items) and not the quantity.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Average basket size is the number of different products bought (line items) and not the quantity.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "### Issuing Coupons based on Email ID",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Email ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        246,
+        246
+      ],
+      "raw": "Suppose you want to target office-goers working in a particular company (say “company X”) which is near your store. And you want to issue discounts to those office-goers who have registered using their office email ID. To issue coupons to those customers whose email ID matches that of company X, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to target office-goers working in a particular company (say “company X”) which is near your store. And you want to issue discounts to those office-goers who have registered using their office email ID. To issue coupons to those customers whose email ID matches that of company X, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        248,
+        248
+      ],
+      "raw": "currentCustomer.email.contains(\"@companyX.com\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.email.contains(\"@companyX.com\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        250,
+        250
+      ],
+      "raw": "Learn more about email as an attribute and all the operators by [clicking here](https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#email)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Learn more about email as an attribute and all the operators by clicking here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#email",
+          "line": 250
+        }
+      ]
+    },
+    {
+      "i": 99,
+      "lines": [
+        252,
+        252
+      ],
+      "raw": "### Issuing Coupons based on External ID",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on External ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        254,
+        254
+      ],
+      "raw": "To issue coupons to customers whose external ID contains a certain serial number (say 1234), use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To issue coupons to customers whose external ID contains a certain serial number (say 1234), use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        256,
+        257
+      ],
+      "raw": "currentCustomer.externalId.contains(\"1234\")\\\nTo know more about externalId attribute, [click here](https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#external-id-externalid)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.externalId.contains(\"1234\")To know more about externalId attribute, click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-namefirst-namelast-name#external-id-externalid",
+          "line": 257
+        }
+      ]
+    },
+    {
+      "i": 102,
+      "lines": [
+        259,
+        259
+      ],
+      "raw": "### Issuing Coupons based on the Number of Visits to the Store",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on the Number of Visits to the Store",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        261,
+        262
+      ],
+      "raw": "Scenario 1:\\\nSuppose you want to reward customers who have been visiting your store frequently (say 5 times). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1:Suppose you want to reward customers who have been visiting your store frequently (say 5 times). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        264,
+        264
+      ],
+      "raw": "currentCustomer.numberOfVisits==5",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.numberOfVisits==5",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 105,
+      "lines": [
+        266,
+        267
+      ],
+      "raw": "Scenario 2:\\\nSuppose you want to reward customers who have visiting your store for the fifth time and their average spending per visit is 5000. Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2:Suppose you want to reward customers who have visiting your store for the fifth time and their average spending per visit is 5000. Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        269,
+        269
+      ],
+      "raw": "currentCustomer.numberOfVisits==2&&(currentCustomer.avgSpendPerVisit==4750)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.numberOfVisits==2&&(currentCustomer.avgSpendPerVisit==4750)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        271,
+        271
+      ],
+      "raw": "[click here](https://docs.capillarytech.com/docs/attributes-kpis#5-numberofvisits), to know more about \"numberOfVisits\" attribute.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "click here, to know more about \"numberOfVisits\" attribute.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-kpis#5-numberofvisits",
+          "line": 271
+        }
+      ]
+    },
+    {
+      "i": 108,
+      "lines": [
+        273,
+        273
+      ],
+      "raw": "### Issuing coupons based on the Average Spending Value - Loyal and High Spending Customers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing coupons based on the Average Spending Value - Loyal and High Spending Customers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        275,
+        275
+      ],
+      "raw": "Suppose you want to reward customers whose spending per visit to your store is 5000. To issue coupons based on the average spending of 5000, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to reward customers whose spending per visit to your store is 5000. To issue coupons based on the average spending of 5000, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 110,
+      "lines": [
+        277,
+        277
+      ],
+      "raw": "currentCustomer.avgSpendPerVisit==5000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.avgSpendPerVisit==5000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 111,
+      "lines": [
+        279,
+        279
+      ],
+      "raw": "To know more avgSpendPerVisit, [click here](https://docs.capillarytech.com/docs/attributes-kpis#2-avgspendpervisit)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To know more avgSpendPerVisit, click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/attributes-kpis#2-avgspendpervisit",
+          "line": 279
+        }
+      ]
+    },
+    {
+      "i": 112,
+      "lines": [
+        281,
+        281
+      ],
+      "raw": "### Issuing Coupons based on Clusters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Clusters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 113,
+      "lines": [
+        283,
+        283
+      ],
+      "raw": "Suppose you want to reward customers who belong to a specific cluster. To issue coupons for customers belonging to gold slab, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to reward customers who belong to a specific cluster. To issue coupons for customers belonging to gold slab, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 114,
+      "lines": [
+        285,
+        285
+      ],
+      "raw": "currentCustomer.clusterValueIncludes(\"xyz\",\"Gold\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.clusterValueIncludes(\"xyz\",\"Gold\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 115,
+      "lines": [
+        287,
+        287
+      ],
+      "raw": "To issue coupons for customers not belonging to the Silver slab, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To issue coupons for customers not belonging to the Silver slab, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 116,
+      "lines": [
+        289,
+        289
+      ],
+      "raw": "currentCustomer.clusterValueExcludes(\"xyz\",\"silver\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.clusterValueExcludes(\"xyz\",\"silver\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 117,
+      "lines": [
+        291,
+        291
+      ],
+      "raw": "### Issuing Coupons based on Custom Fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Issuing Coupons based on Custom Fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 118,
+      "lines": [
+        293,
+        294
+      ],
+      "raw": "Scenario 1:\\\nSuppose one of your custom fields includes the name of the bank issuing the credit card and you have a tie-up with the bank for offering discounts. To issue coupons to customers using a credit card from BankX for the current transaction, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1:Suppose one of your custom fields includes the name of the bank issuing the credit card and you have a tie-up with the bank for offering discounts. To issue coupons to customers using a credit card from BankX for the current transaction, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 119,
+      "lines": [
+        296,
+        296
+      ],
+      "raw": "currentTxn.customFieldValueIncludes(\"Credit\\_Card\\_Type\",\"BankX\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.customFieldValueIncludes(\"Credit_Card_Type\",\"BankX\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 120,
+      "lines": [
+        298,
+        298
+      ],
+      "raw": "If the value returned is BankX, then the coupon is issued.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the value returned is BankX, then the coupon is issued.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 121,
+      "lines": [
+        300,
+        301
+      ],
+      "raw": "Scenario 2:\\\nSuppose the college team in your city has won a major championship and you want to celebrate the event by offering discounts to customers who had included that sport as their favorite. To issue coupons to customers who had included SportX as their favorite, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2:Suppose the college team in your city has won a major championship and you want to celebrate the event by offering discounts to customers who had included that sport as their favorite. To issue coupons to customers who had included SportX as their favorite, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 122,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "currentCustomer.customFieldValueIncludes(\"Favorite\\_Sport\",\"SportX\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentCustomer.customFieldValueIncludes(\"Favorite_Sport\",\"SportX\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 123,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "If the value returned is SportX, then the coupon is issued.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the value returned is SportX, then the coupon is issued.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 124,
+      "lines": [
+        307,
+        307
+      ],
+      "raw": "### Incentivizing in Happy Hours",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Incentivizing in Happy Hours",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 125,
+      "lines": [
+        309,
+        309
+      ],
+      "raw": "Suppose you want to offer discounts to customers shopping during happy hours (defined from 4 pm to 8 pm). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you want to offer discounts to customers shopping during happy hours (defined from 4 pm to 8 pm). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 126,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "currentTxn.date.isHourBetween(16,20)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.date.isHourBetween(16,20)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 127,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "Weekday or Weekend Discounts",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Weekday or Weekend Discounts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 128,
+      "lines": [
+        315,
+        316
+      ],
+      "raw": "Scenario 1: Weekday\\\nSuppose you want to offer discounts to customers shopping during weekdays (Monday - Friday). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: WeekdaySuppose you want to offer discounts to customers shopping during weekdays (Monday - Friday). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 129,
+      "lines": [
+        318,
+        318
+      ],
+      "raw": "currentTxn.date.isWeekday( )",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.date.isWeekday( )",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 130,
+      "lines": [
+        320,
+        320
+      ],
+      "raw": "If the value returned is between Monday and Friday, the coupon is issued.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the value returned is between Monday and Friday, the coupon is issued.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 131,
+      "lines": [
+        322,
+        323
+      ],
+      "raw": "Scenario 2: Weekend\\\nSuppose you want to offer discounts to customers shopping during weekends (Saturday or Sunday). Then use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: WeekendSuppose you want to offer discounts to customers shopping during weekends (Saturday or Sunday). Then use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 132,
+      "lines": [
+        325,
+        325
+      ],
+      "raw": "currentTxn.date.isWeekend( )",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.date.isWeekend( )",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 133,
+      "lines": [
+        327,
+        327
+      ],
+      "raw": "If the value returned is Saturday or Sunday, the coupon is issued.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the value returned is Saturday or Sunday, the coupon is issued.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 134,
+      "lines": [
+        329,
+        329
+      ],
+      "raw": "### The Brand Loyalist",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "The Brand Loyalist",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 135,
+      "lines": [
+        331,
+        331
+      ],
+      "raw": "You can use the following rules to issue coupons for customers buying products of any brands.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the following rules to issue coupons for customers buying products of any brands.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 136,
+      "lines": [
+        333,
+        334
+      ],
+      "raw": "Scenario 1: Buying Products of a Particular Brand\\\nSuppose you want to issue coupons to customers who purchase products of a specific brand exceeding a certain transaction amount.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Buying Products of a Particular BrandSuppose you want to issue coupons to customers who purchase products of a specific brand exceeding a certain transaction amount.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 137,
+      "lines": [
+        336,
+        336
+      ],
+      "raw": "To issue coupons for customers purchasing items of the Puma brand for more than 2000, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To issue coupons for customers purchasing items of the Puma brand for more than 2000, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 138,
+      "lines": [
+        338,
+        338
+      ],
+      "raw": "currentTxn.basketSum(\"BrandName\",\"Puma\")>2000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketSum(\"BrandName\",\"Puma\")>2000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 139,
+      "lines": [
+        340,
+        341
+      ],
+      "raw": "Scenario 2: Buying Products of a Brand starting with certain characters\\\nTo issue coupons for customers purchasing items of the brand that starts with “pu” for more than 3000, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Buying Products of a Brand starting with certain charactersTo issue coupons for customers purchasing items of the brand that starts with “pu” for more than 3000, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 140,
+      "lines": [
+        343,
+        343
+      ],
+      "raw": "currentTxn.basketSumRegex(\"BrandName\",\"pu.\\*\")>3000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketSumRegex(\"BrandName\",\"pu.*\")>3000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 141,
+      "lines": [
+        345,
+        346
+      ],
+      "raw": "Scenario 3: Buying Products of any Brand\\\nTo issue coupons for customers purchasing products of any brand exceeding a transaction amount of 3000, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 3: Buying Products of any BrandTo issue coupons for customers purchasing products of any brand exceeding a transaction amount of 3000, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 142,
+      "lines": [
+        348,
+        348
+      ],
+      "raw": "currentTxn.basketSumRegex(\"BrandName\",\"\\[A-Za-z]+\")>3000",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketSumRegex(\"BrandName\",\"[A-Za-z]+\")>3000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 143,
+      "lines": [
+        350,
+        351
+      ],
+      "raw": "Scenario 4: Buying a certain number of products of a brand\\\nSuppose you want to issue coupons to customers who purchase 3 products of the brand ‘Puma’ (irrespective of the quantity of the product), use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 4: Buying a certain number of products of a brandSuppose you want to issue coupons to customers who purchase 3 products of the brand ‘Puma’ (irrespective of the quantity of the product), use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 144,
+      "lines": [
+        353,
+        353
+      ],
+      "raw": "currentTxn.basketCount(\"BrandName\",\"Puma\")>2",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketCount(\"BrandName\",\"Puma\")>2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 145,
+      "lines": [
+        355,
+        355
+      ],
+      "raw": "Note: In this scenario, a customer who has bought 3 pair of shoes would not be eligible for the coupon. The customer must have bought 3 different products (For example Shoes, Watch, and Sun Glasses) to be eligible for the coupon.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: In this scenario, a customer who has bought 3 pair of shoes would not be eligible for the coupon. The customer must have bought 3 different products (For example Shoes, Watch, and Sun Glasses) to be eligible for the coupon.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 146,
+      "lines": [
+        357,
+        358
+      ],
+      "raw": "Scenario 5: Buying atleast one Product of a Brand\\\nSuppose you want to issue coupons to customers who purchase atleast 1 product of a brand such as Puma, use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 5: Buying atleast one Product of a BrandSuppose you want to issue coupons to customers who purchase atleast 1 product of a brand such as Puma, use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 147,
+      "lines": [
+        360,
+        360
+      ],
+      "raw": "currentTxn.basketIncludes(\"BrandName\",\"Puma\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketIncludes(\"BrandName\",\"Puma\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 148,
+      "lines": [
+        362,
+        363
+      ],
+      "raw": "Scenario 6: Buying Specific Quantities of Products of a Brand\\\nSuppose you want to issue coupons to customers who purchases a specific quantity of products of a brand (say 3 pairs of Puma shoes), you can use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 6: Buying Specific Quantities of Products of a BrandSuppose you want to issue coupons to customers who purchases a specific quantity of products of a brand (say 3 pairs of Puma shoes), you can use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 149,
+      "lines": [
+        365,
+        365
+      ],
+      "raw": "currentTxn.basketQty(\"BrandName\",\"Puma\")==3",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketQty(\"BrandName\",\"Puma\")==3",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 150,
+      "lines": [
+        367,
+        367
+      ],
+      "raw": "In this scenario, a customer does not have to buy three different products of the brand to be eligible for coupons. The customer only has to buy 3 pairs of shoes or 3 sunglasses to be eligible.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this scenario, a customer does not have to buy three different products of the brand to be eligible for coupons. The customer only has to buy 3 pairs of shoes or 3 sunglasses to be eligible.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 151,
+      "lines": [
+        369,
+        370
+      ],
+      "raw": "Scenario 7: Buying Specific Quantities of Products of a Brand Starting with a set of characters\\\nSuppose you want to issue coupons to customers who purchase a specific quantity (say 3) of products of a brand that starts with “Pu”, you can use the following condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 7: Buying Specific Quantities of Products of a Brand Starting with a set of charactersSuppose you want to issue coupons to customers who purchase a specific quantity (say 3) of products of a brand that starts with “Pu”, you can use the following condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 152,
+      "lines": [
+        372,
+        372
+      ],
+      "raw": "currentTxn.basketQtyRegex(\"BrandName\",\"Pu.\\*\")==3",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "currentTxn.basketQtyRegex(\"BrandName\",\"Pu.*\")==3",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 153,
+      "lines": [
+        374,
+        374
+      ],
+      "raw": "In this scenario, a customer does not have to buy three different products of the brand to be eligible for coupons. The customer only has to buy 3 pairs of shoes or 3 sunglasses to be eligible.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this scenario, a customer does not have to buy three different products of the brand to be eligible for coupons. The customer only has to buy 3 pairs of shoes or 3 sunglasses to be eligible.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 154,
+      "lines": [
+        376,
+        376
+      ],
+      "raw": "To know more about all Profile and respective attributes in detail [click here](https://dash.readme.com/project/capillary-documentation/v1.0/docs/profiles)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To know more about all Profile and respective attributes in detail click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

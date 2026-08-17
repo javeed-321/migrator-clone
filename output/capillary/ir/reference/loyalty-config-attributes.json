@@ -1,0 +1,280 @@
+{
+  "slug": "reference/loyalty-config-attributes",
+  "source": "https://docs.capillarytech.com/reference/loyalty-config-attributes.md",
+  "url": "https://docs.capillarytech.com/reference/loyalty-config-attributes",
+  "title": "Loyalty Config Attributes",
+  "description": "",
+  "section": "Loyalty Config Attributes",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-17T05:46:10.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 4,
+    "blockquote": 2,
+    "list": 1,
+    "HTMLBlock": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Loyalty Config Attributes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Loyalty Config Attributes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Loyalty config attributes let your org define custom metadata fields for subscription programs and benefits, then enforce them at write time. Define an attribute once for a program and scope, and every subsequent create or update against that scope is validated against it. An unrecognized key is rejected, values are type-checked, and mandatory attributes must be present.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Loyalty config attributes let your org define custom metadata fields for subscription programs and benefits, then enforce them at write time. Define an attribute once for a program and scope, and every subsequent create or update against that scope is validated against it. An unrecognized key is rejected, values are type-checked, and mandatory attributes must be present.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "> **Note:** The legacy Partner Program [Link Customer](https://docs.capillarytech.com/reference/link-customer-to-partner-program) and [Delink Customer](https://docs.capillarytech.com/reference/delink-customer) APIs also support config attributes, using the field name `name` instead of `key` in their request and response payloads. Both surfaces enforce config attributes defined through the APIs on this page; only the wire field name differs by endpoint.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: The legacy Partner Program Link Customer and Delink Customer APIs also support config attributes, using the field name name instead of key in their request and response payloads. Both surfaces enforce config attributes defined through the APIs on this page; only the wire field name differs by endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/link-customer-to-partner-program",
+          "line": 11
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/delink-customer",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "### What you can do",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "What you can do",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "You can use the Loyalty Config Attributes APIs to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the Loyalty Config Attributes APIs to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        19
+      ],
+      "raw": "* **Create:** Define a new config attribute for a program under a specific scope, with a data type, an optional default value, and whether it's mandatory.\n* **Retrieve:** List all config attributes defined for a program, optionally filtered by scope, or list the scopes available on your org.\n* **Update:** Activate or deactivate a config attribute. The attribute's name, data type, and other defining fields can't be changed after creation.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create: Define a new config attribute for a program under a specific scope, with a data type, an optional default value, and whether it's mandatory.Retrieve: List all config attributes defined for a program, optionally filtered by scope, or list the scopes available on your org.Update: Activate or deactivate a config attribute. The attribute's name, data type, and other defining fields can't be changed after creation.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "### Scopes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Scopes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "A config attribute is defined against exactly one scope, which determines where it's enforced. Retrieve the full list with [List Loyalty Config Attribute Scopes](https://docs.capillarytech.com/reference/list-loyalty-config-attribute-scopes). Available scopes include `SUBSCRIPTION_META` (subscription programs, enforced on [Create Subscription](https://docs.capillarytech.com/reference/create-subscription) and [Update Subscription](https://docs.capillarytech.com/reference/update-subscription)) and `BENEFIT` (benefits).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A config attribute is defined against exactly one scope, which determines where it's enforced. Retrieve the full list with List Loyalty Config Attribute Scopes. Available scopes include SUBSCRIPTION_META (subscription programs, enforced on Create Subscription and Update Subscription) and BENEFIT (benefits).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/list-loyalty-config-attribute-scopes",
+          "line": 23
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-subscription",
+          "line": 23
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-subscription",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "### Example: making an attribute mandatory",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example: making an attribute mandatory",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "Say your org defines a config attribute named `price` on scope `SUBSCRIPTION_META` and sets `isMandatory: true`. From that point on, every [Create Subscription](https://docs.capillarytech.com/reference/create-subscription) or [Update Subscription](https://docs.capillarytech.com/reference/update-subscription) call for that program must include a `price` value in `configAttributes`, or the request fails with `CONFIG_ATTRIBUTE.MANDATORY_MISSING`. This is a general mechanism for enforcing your own required fields. The platform has no built-in concept of a \"price\" field or of free versus paid programs; `price` here is just an attribute name your org chose.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Say your org defines a config attribute named price on scope SUBSCRIPTION_META and sets isMandatory: true. From that point on, every Create Subscription or Update Subscription call for that program must include a price value in configAttributes, or the request fails with CONFIG_ATTRIBUTE.MANDATORY_MISSING. This is a general mechanism for enforcing your own required fields. The platform has no built-in concept of a \"price\" field or of free versus paid programs; price here is just an attribute name your org chose.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-subscription",
+          "line": 27
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-subscription",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "> **Note:** A `defaultValue` set on a config attribute is stored as metadata only. It's never applied automatically. If an attribute is mandatory, the caller must still send a value explicitly; a configured default doesn't satisfy the mandatory check.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: A defaultValue set on a config attribute is stored as metadata only. It's never applied automatically. If an attribute is mandatory, the caller must still send a value explicitly; a configured default doesn't satisfy the mandatory check.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        128
+      ],
+      "raw": "<HTMLBlock>{`\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <style>\n        .api-sidebar-container {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n            line-height: 1.5;\n            color: inherit;\n            padding: 10px;\n            max-width: 100%;\n        }\n        .nav-list {\n            list-style: none;\n            padding: 0;\n            margin: 0;\n        }\n        .nav-item {\n            margin-bottom: 8px;\n            border-radius: 8px;\n            transition: all 0.25s ease;\n            border: 1px solid rgba(128, 128, 128, 0.2);\n            background-color: rgba(128, 128, 128, 0.05);\n            overflow: hidden;\n        }\n        .nav-item:hover {\n            background-color: rgba(0, 66, 154, 0.1);\n            transform: translateX(4px);\n            border-color: #007AFF;\n        }\n        .nav-link {\n            text-decoration: none !important;\n            border-bottom: none !important;\n            color: inherit !important;\n            display: flex;\n            align-items: center;\n            justify-content: space-between;\n            padding: 12px 14px;\n            font-size: 14px;\n            font-weight: 500;\n        }\n        .badge {\n            font-size: 10px;\n            font-weight: 800;\n            padding: 2px 8px;\n            border-radius: 4px;\n            min-width: 42px;\n            text-align: center;\n            text-transform: uppercase;\n            flex-shrink: 0;\n            opacity: 0.85;\n        }\n        .post { background-color: #2ea44f; color: #ffffff; }\n        .put  { background-color: #f7811d; color: #ffffff; }\n        .get  { background-color: #007AFF; color: #ffffff; }\n        .nav-item:hover .badge {\n            opacity: 1;\n            box-shadow: 0 0 10px rgba(0, 122, 255, 0.4);\n        }\n        .nav-item:hover .nav-link {\n            color: #007AFF !important;\n        }\n    </style>\n</head>\n<body>\n<div class=\"api-sidebar-container\">\n    <ul class=\"nav-list\">\n        <li class=\"nav-item\">\n            <a href=\"/reference/create-loyalty-config-attribute\" class=\"nav-link\">\n                <span>Create Loyalty Config Attribute</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/list-loyalty-config-attributes\" class=\"nav-link\">\n                <span>List All Loyalty Config Attributes</span>\n                <span class=\"badge get\">GET</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/update-loyalty-config-attribute\" class=\"nav-link\">\n                <span>Update Loyalty Config Attribute</span>\n                <span class=\"badge put\">PUT</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/list-loyalty-config-attribute-scopes\" class=\"nav-link\">\n                <span>List Loyalty Config Attribute Scopes</span>\n                <span class=\"badge get\">GET</span>\n            </a>\n        </li>\n    </ul>\n</div>\n</body>\n</html>\n`}</HTMLBlock>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "HTMLBlock",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "manual",
+        "note": "raw HTML+CSS+JS has no equivalent — rebuild with Cards/Columns/Steps, or drop"
+      },
+      "inline": []
+    }
+  ]
+}

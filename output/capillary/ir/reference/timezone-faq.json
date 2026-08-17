@@ -1,0 +1,679 @@
+{
+  "slug": "reference/timezone-faq",
+  "source": "https://docs.capillarytech.com/reference/timezone-faq.md",
+  "url": "https://docs.capillarytech.com/reference/timezone-faq",
+  "title": "Timezone Faq",
+  "description": "",
+  "section": "Timezone Management in APIs",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-04-24T07:10:16.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 20,
+    "paragraph": 16,
+    "thematicBreak": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# FAQ",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQ",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Find answers to common questions about timezone standardization, API behavior, offset handling, data storage, and edge cases across the platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Find answers to common questions about timezone standardization, API behavior, offset handling, data storage, and edge cases across the platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# General concepts and standardization",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "General concepts and standardization",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## What is the standard format for external APIs?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "What is the standard format for external APIs?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "All external APIs use ISO 8601 format: `yyyy-MM-dd'T'HH:mm:ssXXX`. This format includes the timezone offset and avoids parsing ambiguity.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "All external APIs use ISO 8601 format: yyyy-MM-dd'T'HH:mm:ssXXX. This format includes the timezone offset and avoids parsing ambiguity.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Why not store everything in the user's local time?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Why not store everything in the user's local time?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Storing only local time creates ambiguity. During daylight saving transitions, jobs can run twice or not at all. Storing in a consistent reference timezone enables accurate comparison, sorting, and calculations across regions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Storing only local time creates ambiguity. During daylight saving transitions, jobs can run twice or not at all. Storing in a consistent reference timezone enables accurate comparison, sorting, and calculations across regions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "## Does the system handle the ambiguous hour during DST fall-back?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Does the system handle the ambiguous hour during DST fall-back?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "No. The system does not handle the repeated 01:00–01:59 hour during a DST fall-back. See [DST fall-back handling](/reference/exceptions-and-known-limitations#dst-fall-back-handling) for details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "No. The system does not handle the repeated 01:00–01:59 hour during a DST fall-back. See DST fall-back handling for details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Implementation and feature gating",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Implementation and feature gating",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "## Is timezone support enabled for all organizations by default?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Is timezone support enabled for all organizations by default?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "Yes. Timezone standardisation across APIs is enabled for all organizations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Yes. Timezone standardisation across APIs is enabled for all organizations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "# API and integration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API and integration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "## Do all services and member APIs need to follow the new timezone standard?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Do all services and member APIs need to follow the new timezone standard?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "Yes. All new integrations must follow the ISO 8601 format and use V2 APIs. V1.1 APIs have not been updated to support the standardized timezone model and retain their existing behaviour.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Yes. All new integrations must follow the ISO 8601 format and use V2 APIs. V1.1 APIs have not been updated to support the standardized timezone model and retain their existing behaviour.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "## Which fields should I use when sending date-time values?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Which fields should I use when sending date-time values?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "When timezone is enabled, use ISO fields such as `startDateISO` and `endDateISO`. Do not send legacy fields such as `startDate` in the same payload.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When timezone is enabled, use ISO fields such as startDateISO and endDateISO. Do not send legacy fields such as startDate in the same payload.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "## How should autogenerated times be handled compared to explicitly passed times?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How should autogenerated times be handled compared to explicitly passed times?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "For explicitly passed times (such as a billing date or event date), the value must follow ISO 8601 format with the local date, time, and UTC offset concatenated. For example: `2026-03-25T17:12:00+05:30`. Autogenerated times such as audit log timestamps are handled internally by the service and do not require the caller to provide an offset.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For explicitly passed times (such as a billing date or event date), the value must follow ISO 8601 format with the local date, time, and UTC offset concatenated. For example: 2026-03-25T17:12:00+05:30. Autogenerated times such as audit log timestamps are handled internally by the service and do not require the caller to provide an offset.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "## Does the server perform timezone conversion in responses, or does the client handle it?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Does the server perform timezone conversion in responses, or does the client handle it?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "Responses are returned in the server timezone. However, APIs also return a dedicated offset field (for example, `billingTimeInputOffset`) alongside the server-timezone value. This allows the client application or middleware to convert the server time back into the customer's original local timezone if needed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Responses are returned in the server timezone. However, APIs also return a dedicated offset field (for example, billingTimeInputOffset) alongside the server-timezone value. This allows the client application or middleware to convert the server time back into the customer's original local timezone if needed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "## Why is the offset field only available for behavioural events and transaction GET APIs and not all APIs?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Why is the offset field only available for behavioural events and transaction GET APIs and not all APIs?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "Transactions and behavioural events were prioritized because they are the most time-sensitive for loyalty evaluation. Support for offset preservation in other areas will be extended in future releases. See also [Offset preservation scope](/reference/exceptions-and-known-limitations#offset-preservation-scope).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Transactions and behavioural events were prioritized because they are the most time-sensitive for loyalty evaluation. Support for offset preservation in other areas will be extended in future releases. See also Offset preservation scope.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "## How does the system handle legacy tables that cannot be modified?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How does the system handle legacy tables that cannot be modified?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "The system applies a reverse transformation at API response time and derives the timezone from the current store or till configuration. If that configuration changes later, historical API responses may also change.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system applies a reverse transformation at API response time and derives the timezone from the current store or till configuration. If that configuration changes later, historical API responses may also change.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "## Can I manually pass `eventDateTimeInputOffset`?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Can I manually pass eventDateTimeInputOffset?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "No. This field is system-generated. If you send it manually, the API rejects the request with HTTP 908.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "No. This field is system-generated. If you send it manually, the API rejects the request with HTTP 908.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "# Technical clarifications",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Technical clarifications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "## How are date-time values stored in the database?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How are date-time values stored in the database?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "The system normalizes all date-time values to the server timezone before storage. This is required because the underlying database columns use MySQL `DATETIME` type, which does not natively support timezone offsets.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system normalizes all date-time values to the server timezone before storage. This is required because the underlying database columns use MySQL DATETIME type, which does not natively support timezone offsets.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "## Is the original input offset lost after normalization?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Is the original input offset lost after normalization?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "No. The original offset is extracted from the input and stored separately as an extended field (`event_input_date_offset`). It is returned in GET API responses in the corresponding offset field (for example, `billingTimeInputOffset`).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "No. The original offset is extracted from the input and stored separately as an extended field (event_input_date_offset). It is returned in GET API responses in the corresponding offset field (for example, billingTimeInputOffset).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "## Why store the offset instead of only storing UTC?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Why store the offset instead of only storing UTC?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "UTC enables accurate comparison. However, some workflows require displaying the exact original context of the event. Storing the offset preserves the event's geographical and audit context.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "UTC enables accurate comparison. However, some workflows require displaying the exact original context of the event. Storing the offset preserves the event's geographical and audit context.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "## Does the client need updated DST rules?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Does the client need updated DST rules?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "Yes. If the client uses outdated DST rules, it may send an incorrect offset. Once the platform receives a correct offset, it converts and stores the internal moment accurately.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Yes. If the client uses outdated DST rules, it may send an incorrect offset. Once the platform receives a correct offset, it converts and stores the internal moment accurately.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

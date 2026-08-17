@@ -1,0 +1,717 @@
+{
+  "slug": "docs/sso-integration",
+  "source": "https://docs.capillarytech.com/docs/sso-integration.md",
+  "url": "https://docs.capillarytech.com/docs/sso-integration",
+  "title": "Sso Integration",
+  "description": "",
+  "section": "Admin Controls",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2025-06-20T08:56:23.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `@` (U+0040) in name, expected a name character such as letters, digits, `$`, or `_`; whitespace before attributes; or the end of the tag (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 10,
+    "Callout": 2,
+    "list": 6,
+    "Image": 7,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Single Sign On (SSO)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Single Sign On (SSO)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "In this section, you will find details on how to enable and integrate Single Sign-On (SSO).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this section, you will find details on how to enable and integrate Single Sign-On (SSO).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Single Sign-On (SSO) is an authentication process that allows you to access multiple applications and systems with one set of login credentials (username and password). With Capillary SSO integration, you can log into Intouch using the same identity information that your organization uses for SSO login.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Single Sign-On (SSO) is an authentication process that allows you to access multiple applications and systems with one set of login credentials (username and password). With Capillary SSO integration, you can log into Intouch using the same identity information that your organization uses for SSO login.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Capillary uses [Okta](https://developer.okta.com/docs/guides/build-sso-integration/saml2/main/) to enable and integrate SSO.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary uses Okta to enable and integrate SSO.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "> 👍 Get in touch with   <access@capillarytech.com> for enabling and integrating SSO.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "Get in touch with   access@capillarytech.com for enabling and integrating SSO.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        22
+      ],
+      "raw": "* [ ] SSO metadata\n* [ ] IdP signature certificate\n* [ ] Domain list\n* [ ] Okta admin account",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "SSO metadataIdP signature certificateDomain listOkta admin account",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "# Enabling SSO",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Enabling SSO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "To enable Single Sign-On (SSO), you must activate the `Enable Single Sign On (SSO)` configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable Single Sign-On (SSO), you must activate the Enable Single Sign On (SSO) configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"50% \" border={true} src=\"https://files.readme.io/5b6f1ed-Enable_SSO.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "50% ",
+        "border": "{true}",
+        "src": "https://files.readme.io/5b6f1ed-Enable_SSO.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "To enable and for assistance in integrating SSO, send an e-mail to `access@capillarytech.com`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable and for assistance in integrating SSO, send an e-mail to access@capillarytech.com.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        32,
+        34
+      ],
+      "raw": "> 📘 Note\n>\n> You can enable SSO for only single organisation. Hence, this is not recommended for multi-org users.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteYou can enable SSO for only single organisation. Hence, this is not recommended for multi-org users.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "# Integrating SSO",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Integrating SSO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "To integrate, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To integrate, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "1. From the Okta admin page, navigate to **Security > Identifiers > Add identity provider** and select **SAML**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the Okta admin page, navigate to Security > Identifiers > Add identity provider and select SAML.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"50% \" border={true} src=\"https://files.readme.io/4d5eb2d-SAML.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "50% ",
+        "border": "{true}",
+        "src": "https://files.readme.io/4d5eb2d-SAML.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "**Note:** Capillary supports SSO with SAML 2.0 authentication only (SAML 2.0 <Glossary>IdP</Glossary>).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Capillary supports SSO with SAML 2.0 authentication only (SAML 2.0 <Glossary>IdP</Glossary>).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        46,
+        59
+      ],
+      "raw": "2. Click **Next**.\n3. In the **Configure SAML 2.0 IdP** page, enter the following details:\n   * **Name:** Enter the customer name.\n   * **Prerequisite:** An <Glossary>attribute</Glossary> must be defined and mapped. See step 5 for information on attribute and mapping.\\\n     **Idp username** - Specify the name of the attribute that contains the user's email address. This enables Okta to authenticate the user based on the email address. For example, you may define this attribute as \"appuser.emailaddress\" in the Profile Editor and map it to the user's email address.\n   * **Match against** - Select **Okta Username or Email**. This matches and authenticates users to an IdP based on their user name on Okta or their defined email address.\n   * **Account Link Policy** - Select Automatic.\n   * **Group Assignments** - Select **Assign to specific group** and from the **Specific Groups**, select **SSO Users**. Users who are newly created on the IdP will be added to this group after their verification has been confirmed through metadata.\n   * **IdP User URI** - Search and find entityID in the metadata file and enter the entityID URI.\n   * **IdP Single Sign-On URL** - Search and find the location in the metadata file and enter the location URL information.\n   * **IdP Signature Certificate** - Upload the IdP signature certificate. This should be in *.pem* format.\n   * **Destination** - Search the location in the metadata file and enter the location URL information. This is the location to send the SAML Response.\\\n     Use the default values for the remaining fields.\n4. Click **Finish**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Next.In the Configure SAML 2.0 IdP page, enter the following details:Name: Enter the customer name.Prerequisite: An <Glossary>attribute</Glossary> must be defined and mapped. See step 5 for information on attribute and mapping.Idp username - Specify the name of the attribute that contains the user's email address. This enables Okta to authenticate the user based on the email address. For example, you may define this attribute as \"appuser.emailaddress\" in the Profile Editor and map it to the user's email address.Match against - Select Okta Username or Email. This matches and authenticates users to an IdP based on their user name on Okta or their defined email address.Account Link Policy - Select Automatic.Group Assignments - Select Assign to specific group and from the Specific Groups, select SSO Users. Users who are newly created on the IdP will be added to this group after their verification has been confirmed through metadata.IdP User URI - Search and find entityID in the metadata file and enter the entityID URI.IdP Single Sign-On URL - Search and find the location in the metadata file and enter the location URL information.IdP Signature Certificate - Upload the IdP signature certificate. This should be in .pem format.Destination - Search the location in the metadata file and enter the location URL information. This is the location to send the SAML Response.Use the default values for the remaining fields.Click Finish.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/a4dc3c1-Attributes.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/a4dc3c1-Attributes.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        63,
+        68
+      ],
+      "raw": "5. Navigate to **Directory > Profile Editor** **>** customer **>** **Add Attributes**and enter the attributes:\n   * **Display name**- Enter a valid display name. This is a label that appears on the UI.\n   * **Variable name** - Enter the name of the attribute that can be referred to in mappings.\n   * **External name**- Enter the SAML standard URL.\n   * **Enable Attributes**- Select the checkbox and enable the attributes.\\\n     Use the default values for the remaining fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to Directory > Profile Editor > customer > Add Attributesand enter the attributes:Display name- Enter a valid display name. This is a label that appears on the UI.Variable name - Enter the name of the attribute that can be referred to in mappings.External name- Enter the SAML standard URL.Enable Attributes- Select the checkbox and enable the attributes.Use the default values for the remaining fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/1d7a707-Profile_Attributes.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/1d7a707-Profile_Attributes.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        72,
+        73
+      ],
+      "raw": "6. Click **Save**.\n7. In the **Profile Editor**, click **Mapping** and map the attributes. To map the attributes, select **Capillary SSO to Okta User**, and select the defined attributes against the respective Okta user attributes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Save.In the Profile Editor, click Mapping and map the attributes. To map the attributes, select Capillary SSO to Okta User, and select the defined attributes against the respective Okta user attributes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/2c79f0e-Mapping.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/2c79f0e-Mapping.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        77,
+        83
+      ],
+      "raw": "8. Navigate to **Security > Identity Providers > Routing rules** and define the **Routing rules**. Enter the following details:\n   * **Rule Name**- Enter the customer name.\\\n     **Note:** Make sure that the customer name entered in the identity provider and routing rules are the same.\n   * **User is accessing**- Select **Intouch**.\n   * **User matches**- Select **Domain list on login** and enter the domain names. For example, abc.com, abc.in etc.\\\n     Use the default values for the remaining fields.\n9. Click **Create Rule**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to Security > Identity Providers > Routing rules and define the Routing rules. Enter the following details:Rule Name- Enter the customer name.Note: Make sure that the customer name entered in the identity provider and routing rules are the same.User is accessing- Select Intouch.User matches- Select Domain list on login and enter the domain names. For example, abc.com, abc.in etc.Use the default values for the remaining fields.Click Create Rule.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/15f2f6a-Routing_rules.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/15f2f6a-Routing_rules.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "The SSO integration is now fully complete. You can select the SSO option to sign into Intouch using your SSO login credentials.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The SSO integration is now fully complete. You can select the SSO option to sign into Intouch using your SSO login credentials.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"30% \" border={true} src=\"https://files.readme.io/a5697f3-SSO_login.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "30% ",
+        "border": "{true}",
+        "src": "https://files.readme.io/a5697f3-SSO_login.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "# Disabling SSO",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Disabling SSO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "To disable SSO,  navigate to  **Organisation settings > Authentication configurations** and clear the **Enable Single Sign On (SSO)** check box. If you do not have access to organisation settings, send an e-mail to \\`<access@capillarytech.com>.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To disable SSO,  navigate to  Organisation settings > Authentication configurations and clear the Enable Single Sign On (SSO) check box. If you do not have access to organisation settings, send an e-mail to `access@capillarytech.com.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "# SSO login scenarios and errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "SSO login scenarios and errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "The table below provides information on error messages that occur in various scenarios.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below provides information on error messages that occur in various scenarios.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        99,
+        105
+      ],
+      "raw": "| Scenario                                                                                                                                                                 | Error Message                                                                                                          |\n| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |\n| A user from an SSO-enabled org tries to log in using SSO without an Intouch account created by Capillary access team                                                     | \"User does not have access to Intouch.\"                                                                                |\n| A user from an SSO-enabled org tries to login using SSO after the Capillary access team has created an account but has not defined the access level                      | \"User does not have access level defined.\"                                                                             |\n| A user from an SSO-enabled org tries to log in using SSO after the Capillary access team has created an account but the account is inactive (the user has been disabled) | \"User does not have access to the org.\"                                                                                |\n| SSO for an org was enabled earlier but is now disabled                                                                                                                   | All SSO-related changes are rolled back, allowing users to reset their passwords and log in using Intouch credentials. |\n| A user from an SSO-enabled org with Intouch credentials tries to log in using Intouch credentials.                                                                       | \"The email ID or password entered is incorrect\". The user will be allowed to log in only using SSO.                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Scenario",
+          "Error Message"
+        ],
+        "rows": [
+          [
+            "A user from an SSO-enabled org tries to log in using SSO without an Intouch account created by Capillary access team",
+            "\"User does not have access to Intouch.\""
+          ],
+          [
+            "A user from an SSO-enabled org tries to login using SSO after the Capillary access team has created an account but has not defined the access level",
+            "\"User does not have access level defined.\""
+          ],
+          [
+            "A user from an SSO-enabled org tries to log in using SSO after the Capillary access team has created an account but the account is inactive (the user has been disabled)",
+            "\"User does not have access to the org.\""
+          ],
+          [
+            "SSO for an org was enabled earlier but is now disabled",
+            "All SSO-related changes are rolled back, allowing users to reset their passwords and log in using Intouch credentials."
+          ],
+          [
+            "A user from an SSO-enabled org with Intouch credentials tries to log in using Intouch credentials.",
+            "\"The email ID or password entered is incorrect\". The user will be allowed to log in only using SSO."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

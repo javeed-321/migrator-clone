@@ -1,0 +1,1957 @@
+{
+  "slug": "docs/connectplus-use-cases",
+  "source": "https://docs.capillarytech.com/docs/connectplus-use-cases.md",
+  "url": "https://docs.capillarytech.com/docs/connectplus-use-cases",
+  "title": "Connectplus Use Cases",
+  "description": "",
+  "section": "Connect+",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:20:51.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `@` (U+0040) in member name, expected a name character such as letters, digits, `$`, or `_`; whitespace before attributes; or the end of the tag (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 13,
+    "paragraph": 38,
+    "Table": 8,
+    "code": 8,
+    "thead": 1,
+    "tbody": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Use Cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Use Cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "End-to-end dataflow examples for common integration scenarios in Connect+.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "End-to-end dataflow examples for common integration scenarios in Connect+.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Connect+ use cases show you how to build end-to-end dataflows for common integration scenarios. Each use case covers the full block sequence, configuration values, and any data transformations involved.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ use cases show you how to build end-to-end dataflows for common integration scenarios. Each use case covers the full block sequence, configuration values, and any data transformations involved.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Use case 1: Bulk add customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use case 1: Bulk add customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Use this dataflow to register customer profiles in bulk. The dataflow reads customer data from a source CSV file, groups records into batches, transforms each batch into the format required by the Capillary V2 API, and posts them to the `/v2/customers/bulk` endpoint.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this dataflow to register customer profiles in bulk. The dataflow reads customer data from a source CSV file, groups records into batches, transforms each batch into the format required by the Capillary V2 API, and posts them to the /v2/customers/bulk endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Scenario**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "A brand conducting an in-store registration drive collects customer data in CSV format. The file includes names, mobile numbers, registration source, and loyalty type for each customer. Connect+ reads the file, groups records into batches of 10, transforms each batch into the nested API payload, and posts them to the Capillary platform in a single scheduled operation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand conducting an in-store registration drive collects customer data in CSV format. The file includes names, mobile numbers, registration source, and loyalty type for each customer. Connect+ reads the file, groups records into batches of 10, transforms each batch into the nested API payload, and posts them to the Capillary platform in a single scheduled operation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "**Sample CSV input**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample CSV input",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        27
+      ],
+      "raw": "| firstname | lastname | value        | source  | loyaltyType | identifierType |\n| --------- | -------- | ------------ | ------- | ----------- | -------------- |\n| John      | Doe      | 919812345678 | INSTORE | loyalty     | mobile         |\n| Ravi      | Kumar    | 919812340814 | INSTORE | loyalty     | mobile         |\n| Jane      | Smith    | 919812349864 | INSTORE | loyalty     | mobile         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "firstname",
+          "lastname",
+          "value",
+          "source",
+          "loyaltyType",
+          "identifierType"
+        ],
+        "rows": [
+          [
+            "John",
+            "Doe",
+            "919812345678",
+            "INSTORE",
+            "loyalty",
+            "mobile"
+          ],
+          [
+            "Ravi",
+            "Kumar",
+            "919812340814",
+            "INSTORE",
+            "loyalty",
+            "mobile"
+          ],
+          [
+            "Jane",
+            "Smith",
+            "919812349864",
+            "INSTORE",
+            "loyalty",
+            "mobile"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "**Block sequence**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Block sequence",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "`Connect-to-source` → `Convert-CSV-to-JSON` → `Transform-data` → `Connect-to-destination`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-source → Convert-CSV-to-JSON → Transform-data → Connect-to-destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "### Block configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Block configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "The following table lists the blocks in this dataflow, describes what each block does, and provides the configured values for each field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the blocks in this dataflow, describes what each block does, and provides the configured values for each field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        37,
+        75
+      ],
+      "raw": "| Block Name                                                                                                                  | Block Description                                                                                                                                    | Configuration Field          | Configured Value                                                                                         |\n| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------- |\n| **[Connect-to-source](https://docs.capillarytech.com/docs/sftp-read-block)**<br />Type: `sftp_read`                         | Connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and makes them available for downstream processing. | Hostname                     | `data.capillarydata.com`                                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Username                     | `capillary`                                                                                              |\n|                                                                                                                             |                                                                                                                                                      | Password                     | Redacted                                                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Source directory             | `/Capillary testing/connectplus/sourceNewConnect+`                                                       |\n|                                                                                                                             |                                                                                                                                                      | Filename pattern             | `.*.csv`. Matches all CSV files.                                                                         |\n|                                                                                                                             |                                                                                                                                                      | Processed directory          | `/Capillary testing/connectplus/processedNewConnect+`                                                    |\n|                                                                                                                             |                                                                                                                                                      | Error file path              | `/Capillary testing/connectplus/errorNewConnect+`                                                        |\n|                                                                                                                             |                                                                                                                                                      | Unzip files                  | `false`                                                                                                  |\n|                                                                                                                             |                                                                                                                                                      | Search directory recursively | `false`                                                                                                  |\n|                                                                                                                             |                                                                                                                                                      | Port                         | `22`                                                                                                     |\n|                                                                                                                             |                                                                                                                                                      | File delimiter               | `,`                                                                                                      |\n|                                                                                                                             |                                                                                                                                                      | Report status code           | `all`                                                                                                    |\n| **[Convert-CSV-to-JSON](https://docs.capillarytech.com/docs/transform-csv-to-json-block)**<br />Type: `convert_csv_to_json` | Converts the source CSV to JSON and groups records into batches of 10 for bulk processing.                                                           | File type                    | `5c5b9607-0173-1000-87ad-a0b9ca44885f`                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Sort headers                 | `firstname,lastname,value,source,loyaltyType,identifierType`                                             |\n|                                                                                                                             |                                                                                                                                                      | Alphabetical sort            | `false`                                                                                                  |\n|                                                                                                                             |                                                                                                                                                      | Group size                   | `10`                                                                                                     |\n|                                                                                                                             |                                                                                                                                                      | Line numbers                 | `$[0].LINE_NO`                                                                                           |\n|                                                                                                                             |                                                                                                                                                      | JSON path expression         | `$.[*]`                                                                                                  |\n|                                                                                                                             |                                                                                                                                                      | Split response               | `false`                                                                                                  |\n| **[Transform-data](https://docs.capillarytech.com/docs/jslt-block)**<br />Type: `jslt_transform`                            | Reshapes each batch of flat JSON records into the nested structure required by the `/v2/customers/bulk` API. See JSLT transformation below.          | —                            | —                                                                                                        |\n| **[Connect-to-destination](https://docs.capillarytech.com/docs/api-request-http_write-block)**<br />Type: `http_write`      | Posts each transformed batch to the Capillary `/v2/customers/bulk` API endpoint and handles retries for recoverable errors.                          | API base URL                 | `https://{host}.api.capillarytech.com`                                                                   |\n|                                                                                                                             |                                                                                                                                                      | OAuth base URL               | `https://{host}.api.capillarytech.com`                                                                   |\n|                                                                                                                             |                                                                                                                                                      | API endpoint                 | `/v2/customers/bulk`                                                                                     |\n|                                                                                                                             |                                                                                                                                                      | API method                   | `POST`                                                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Client key                   | `****************`                                                                                       |\n|                                                                                                                             |                                                                                                                                                      | Client secret                | Redacted                                                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Bulk support                 | `true`                                                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Request split path           | `$.*`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Response split path          | `$.*`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Parse response               | `true`                                                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Parse path map               | `{\"status_code\": \"$.['errors'].*.code\", \"error_message\": \"$.['errors'].*.message\", \"entity_id\": \"$.Id\"}` |\n|                                                                                                                             |                                                                                                                                                      | Recoverable error codes      | `521,502,503,504`                                                                                        |\n|                                                                                                                             |                                                                                                                                                      | Yielding error codes         | `429`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Maximum retries              | `3`                                                                                                      |\n|                                                                                                                             |                                                                                                                                                      | Rate                         | `1000`                                                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Period                       | `1`                                                                                                      |\n|                                                                                                                             |                                                                                                                                                      | Time unit                    | `MINUTES`                                                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Block Name",
+          "Block Description",
+          "Configuration Field",
+          "Configured Value"
+        ],
+        "rows": [
+          [
+            "Connect-to-source<br />Type: sftp_read",
+            "Connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and makes them available for downstream processing.",
+            "Hostname",
+            "data.capillarydata.com"
+          ],
+          [
+            "",
+            "",
+            "Username",
+            "capillary"
+          ],
+          [
+            "",
+            "",
+            "Password",
+            "Redacted"
+          ],
+          [
+            "",
+            "",
+            "Source directory",
+            "/Capillary testing/connectplus/sourceNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Filename pattern",
+            ".*.csv. Matches all CSV files."
+          ],
+          [
+            "",
+            "",
+            "Processed directory",
+            "/Capillary testing/connectplus/processedNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Error file path",
+            "/Capillary testing/connectplus/errorNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Unzip files",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Search directory recursively",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Port",
+            "22"
+          ],
+          [
+            "",
+            "",
+            "File delimiter",
+            ","
+          ],
+          [
+            "",
+            "",
+            "Report status code",
+            "all"
+          ],
+          [
+            "Convert-CSV-to-JSON<br />Type: convert_csv_to_json",
+            "Converts the source CSV to JSON and groups records into batches of 10 for bulk processing.",
+            "File type",
+            "5c5b9607-0173-1000-87ad-a0b9ca44885f"
+          ],
+          [
+            "",
+            "",
+            "Sort headers",
+            "firstname,lastname,value,source,loyaltyType,identifierType"
+          ],
+          [
+            "",
+            "",
+            "Alphabetical sort",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Group size",
+            "10"
+          ],
+          [
+            "",
+            "",
+            "Line numbers",
+            "$[0].LINE_NO"
+          ],
+          [
+            "",
+            "",
+            "JSON path expression",
+            "$.[*]"
+          ],
+          [
+            "",
+            "",
+            "Split response",
+            "false"
+          ],
+          [
+            "Transform-data<br />Type: jslt_transform",
+            "Reshapes each batch of flat JSON records into the nested structure required by the /v2/customers/bulk API. See JSLT transformation below.",
+            "—",
+            "—"
+          ],
+          [
+            "Connect-to-destination<br />Type: http_write",
+            "Posts each transformed batch to the Capillary /v2/customers/bulk API endpoint and handles retries for recoverable errors.",
+            "API base URL",
+            "https://{host}.api.capillarytech.com"
+          ],
+          [
+            "",
+            "",
+            "OAuth base URL",
+            "https://{host}.api.capillarytech.com"
+          ],
+          [
+            "",
+            "",
+            "API endpoint",
+            "/v2/customers/bulk"
+          ],
+          [
+            "",
+            "",
+            "API method",
+            "POST"
+          ],
+          [
+            "",
+            "",
+            "Client key",
+            "****************"
+          ],
+          [
+            "",
+            "",
+            "Client secret",
+            "Redacted"
+          ],
+          [
+            "",
+            "",
+            "Bulk support",
+            "true"
+          ],
+          [
+            "",
+            "",
+            "Request split path",
+            "$.*"
+          ],
+          [
+            "",
+            "",
+            "Response split path",
+            "$.*"
+          ],
+          [
+            "",
+            "",
+            "Parse response",
+            "true"
+          ],
+          [
+            "",
+            "",
+            "Parse path map",
+            "{\"status_code\": \"$.['errors'].*.code\", \"error_message\": \"$.['errors'].*.message\", \"entity_id\": \"$.Id\"}"
+          ],
+          [
+            "",
+            "",
+            "Recoverable error codes",
+            "521,502,503,504"
+          ],
+          [
+            "",
+            "",
+            "Yielding error codes",
+            "429"
+          ],
+          [
+            "",
+            "",
+            "Maximum retries",
+            "3"
+          ],
+          [
+            "",
+            "",
+            "Rate",
+            "1000"
+          ],
+          [
+            "",
+            "",
+            "Period",
+            "1"
+          ],
+          [
+            "",
+            "",
+            "Time unit",
+            "MINUTES"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 51
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 58
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-read-block",
+          "line": 39
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/transform-csv-to-json-block",
+          "line": 51
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/jslt-block",
+          "line": 58
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-request-http_write-block",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "### Connect-to-source",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Connect-to-source",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "Connect-to-source connects to the SFTP server, polls for CSV files matching the specified filename pattern, and passes them to the Convert-CSV-to-JSON block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-source connects to the SFTP server, polls for CSV files matching the specified filename pattern, and passes them to the Convert-CSV-to-JSON block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "### Convert-CSV-to-JSON",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Convert-CSV-to-JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "Convert-CSV-to-JSON reads the source CSV and converts each row into a flat JSON object. A group size of 10 batches records before Transform-data processes them.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Convert-CSV-to-JSON reads the source CSV and converts each row into a flat JSON object. A group size of 10 batches records before Transform-data processes them.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "### JSLT transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "JSLT transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "Connect+ converts each CSV row into a JSON object and passes the full array to the jslt\\_transform block before sending the data to the destination.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ converts each CSV row into a JSON object and passes the full array to the jslt_transform block before sending the data to the destination.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "The Transform Data block uses the following JSLT expression to reshape each flat JSON record into the nested structure required by the /v2/customers/bulk API. The `for (.)` loop iterates over each record in the batch.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Transform Data block uses the following JSLT expression to reshape each flat JSON record into the nested structure required by the /v2/customers/bulk API. The for (.) loop iterates over each record in the batch.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "**Input row (as JSON after CSV conversion)**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input row (as JSON after CSV conversion)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        93,
+        102
+      ],
+      "raw": "```json\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"value\": \"919812345678\",\n  \"source\": \"INSTORE\",\n  \"loyaltyType\": \"loyalty\",\n  \"identifierType\": \"mobile\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\",\n  \"value\": \"919812345678\",\n  \"source\": \"INSTORE\",\n  \"loyaltyType\": \"loyalty\",\n  \"identifierType\": \"mobile\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "**JSLT expression**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "JSLT expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        106,
+        128
+      ],
+      "raw": "```json JSLT\n[\n  for (.)\n  {\n    \"profiles\": [\n      {\n        \"firstName\": .firstname,\n        \"lastName\": .lastname,\n        \"source\": .source,\n        \"identifiers\": [\n          {\n            \"type\": .identifierType,\n            \"value\": .value\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": .loyaltyType\n    }\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "JSLT",
+        "code": "[\n  for (.)\n  {\n    \"profiles\": [\n      {\n        \"firstName\": .firstname,\n        \"lastName\": .lastname,\n        \"source\": .source,\n        \"identifiers\": [\n          {\n            \"type\": .identifierType,\n            \"value\": .value\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": .loyaltyType\n    }\n  }\n]"
+      },
+      "text": "JSLT",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "**Output JSON**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        132,
+        190
+      ],
+      "raw": "```json Output JSON\n[\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812345678\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  },\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"Ravi\",\n        \"lastName\": \"Kumar\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812340814\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  },\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Smith\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812349864\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  }\n]\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Output JSON",
+        "code": "[\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812345678\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  },\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"Ravi\",\n        \"lastName\": \"Kumar\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812340814\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  },\n  {\n    \"profiles\": [\n      {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Smith\",\n        \"source\": \"INSTORE\",\n        \"identifiers\": [\n          {\n            \"type\": \"mobile\",\n            \"value\": \"919812349864\"\n          }\n        ]\n      }\n    ],\n    \"loyaltyInfo\": {\n      \"loyaltyType\": \"loyalty\"\n    }\n  }\n]\n"
+      },
+      "text": "Output JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "**How the expression works:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How the expression works:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        194,
+        199
+      ],
+      "raw": "<Table>\n  <thead>\n    <tr>\n      <th>\n        Expression\n      </th>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        201,
+        204
+      ],
+      "raw": "      <th>\n        What it does\n      </th>\n    </tr>",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "  <th>\n    What it does\n  </th>\n</tr>"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "  </thead>",
+      "kind": "html",
+      "syntax": "html",
+      "component": "thead",
+      "target": {
+        "component": null,
+        "status": "manual",
+        "note": "raw HTML — check it against the Documentation.AI components"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        207,
+        211
+      ],
+      "raw": "  <tbody>\n    <tr>\n      <td>\n        `for (.)`\n      </td>",
+      "kind": "html",
+      "syntax": "html",
+      "component": "tbody",
+      "target": {
+        "component": null,
+        "status": "manual",
+        "note": "raw HTML — check it against the Documentation.AI components"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        213,
+        257
+      ],
+      "raw": "      <td>\n        Iterates over every row in the input array and produces one output object per row  \n        **Note**: Place the `for` loop at the beginning.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `.firstname`, `.lastname`, `.source`\n      </td>\n\n      <td>\n        Map directly from the CSV column names to the corresponding API field names\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `.identifierType`\n      </td>\n\n      <td>\n        Maps to the `type` field inside the `identifiers` array\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `.value`\n      </td>\n\n      <td>\n        Maps to the `value` field inside the `identifiers` array\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `.loyaltyType`\n      </td>\n\n      <td>\n        Maps to `loyaltyType` inside the `loyaltyInfo` object\n      </td>\n    </tr>",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "  <td>\n    Iterates over every row in the input array and produces one output object per row  \n    **Note**: Place the `for` loop at the beginning.\n  </td>\n</tr>\n\n<tr>\n  <td>\n    `.firstname`, `.lastname`, `.source`\n  </td>\n\n  <td>\n    Map directly from the CSV column names to the corresponding API field names\n  </td>\n</tr>\n\n<tr>\n  <td>\n    `.identifierType`\n  </td>\n\n  <td>\n    Maps to the `type` field inside the `identifiers` array\n  </td>\n</tr>\n\n<tr>\n  <td>\n    `.value`\n  </td>\n\n  <td>\n    Maps to the `value` field inside the `identifiers` array\n  </td>\n</tr>\n\n<tr>\n  <td>\n    `.loyaltyType`\n  </td>\n\n  <td>\n    Maps to `loyaltyType` inside the `loyaltyInfo` object\n  </td>\n</tr>"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        258,
+        259
+      ],
+      "raw": "  </tbody>\n</Table>",
+      "kind": "html",
+      "syntax": "html",
+      "component": "tbody",
+      "target": {
+        "component": null,
+        "status": "manual",
+        "note": "raw HTML — check it against the Documentation.AI components"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        261,
+        261
+      ],
+      "raw": "The following table describes each field mapping.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table describes each field mapping.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        263,
+        270
+      ],
+      "raw": "| CSV column       | API field                        | Notes                                         |\n| ---------------- | -------------------------------- | --------------------------------------------- |\n| `firstname`      | `profiles[].firstName`           | Customer's first name                         |\n| `lastname`       | `profiles[].lastName`            | Customer's last name                          |\n| `source`         | `profiles[].source`              | Registration source, for example `INSTORE`    |\n| `identifierType` | `profiles[].identifiers[].type`  | Identifier type, for example `mobile`         |\n| `value`          | `profiles[].identifiers[].value` | Identifier value, for example a mobile number |\n| `loyaltyType`    | `loyaltyInfo.loyaltyType`        | Loyalty programme type, for example `loyalty` |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "CSV column",
+          "API field",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "firstname",
+            "profiles[].firstName",
+            "Customer's first name"
+          ],
+          [
+            "lastname",
+            "profiles[].lastName",
+            "Customer's last name"
+          ],
+          [
+            "source",
+            "profiles[].source",
+            "Registration source, for example INSTORE"
+          ],
+          [
+            "identifierType",
+            "profiles[].identifiers[].type",
+            "Identifier type, for example mobile"
+          ],
+          [
+            "value",
+            "profiles[].identifiers[].value",
+            "Identifier value, for example a mobile number"
+          ],
+          [
+            "loyaltyType",
+            "loyaltyInfo.loyaltyType",
+            "Loyalty programme type, for example loyalty"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        272,
+        272
+      ],
+      "raw": "### Connect-to-destination",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Connect-to-destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        274,
+        274
+      ],
+      "raw": "Connect-to-destination receives the transformed JSON from Transform-data and posts each batch to the `/v2/customers/bulk` API endpoint. It handles OAuth authentication, retries recoverable errors, and applies rate limiting.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-destination receives the transformed JSON from Transform-data and posts each batch to the /v2/customers/bulk API endpoint. It handles OAuth authentication, retries recoverable errors, and applies rate limiting.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        276,
+        276
+      ],
+      "raw": "## Use case 2: Add a single customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use case 2: Add a single customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        278,
+        278
+      ],
+      "raw": "Use this dataflow to register one customer record at a time. The dataflow reads customer data from a source CSV file, processes each row individually, transforms the record into the format required by the Capillary V2 API, and posts it to the `/v2/customers` endpoint.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this dataflow to register one customer record at a time. The dataflow reads customer data from a source CSV file, processes each row individually, transforms the record into the format required by the Capillary V2 API, and posts it to the /v2/customers endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        280,
+        280
+      ],
+      "raw": "**Scenario**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        282,
+        282
+      ],
+      "raw": "A brand collects individual customer registrations from an in-store system in CSV format, with each record containing the customer's name, mobile number or email address, and registration source. Connect+ reads the file, processes each row one at a time, transforms the flat record into the nested API payload, and posts it to the Capillary platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand collects individual customer registrations from an in-store system in CSV format, with each record containing the customer's name, mobile number or email address, and registration source. Connect+ reads the file, processes each row one at a time, transforms the flat record into the nested API payload, and posts it to the Capillary platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        284,
+        284
+      ],
+      "raw": "**Sample CSV input**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample CSV input",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        286,
+        289
+      ],
+      "raw": "| firstname | lastname | value                  | source  | identifierType |\n| --------- | -------- | ---------------------- | ------- | -------------- |\n| John      | Smith    | 918298526106           | INSTORE | mobile         |\n| Jane      | Doe      | <jane.doe@example.com> | INSTORE | email          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "firstname",
+          "lastname",
+          "value",
+          "source",
+          "identifierType"
+        ],
+        "rows": [
+          [
+            "John",
+            "Smith",
+            "918298526106",
+            "INSTORE",
+            "mobile"
+          ],
+          [
+            "Jane",
+            "Doe",
+            "jane.doe@example.com",
+            "INSTORE",
+            "email"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        291,
+        291
+      ],
+      "raw": "**Block sequence**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Block sequence",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        293,
+        293
+      ],
+      "raw": "`Connect-to-source` → `Convert-CSV-to-JSON` → `Transform-data` → `Connect-to-destination`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-source → Convert-CSV-to-JSON → Transform-data → Connect-to-destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        295,
+        295
+      ],
+      "raw": "### Block configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Block configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        297,
+        297
+      ],
+      "raw": "The following table lists the blocks in this dataflow, describes what each block does, and provides the configured values for each field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the blocks in this dataflow, describes what each block does, and provides the configured values for each field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        299,
+        335
+      ],
+      "raw": "| Block Name                                                                                                                  | Block Description                                                                                                                                    | Configuration Field          | Configured Value                                                                                       |\n| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------ |\n| **[Connect-to-source](https://docs.capillarytech.com/docs/sftp-read-block)**<br />Type: `sftp_read`                         | Connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and makes them available for downstream processing. | Hostname                     | `data.capillarydata.com`                                                                               |\n|                                                                                                                             |                                                                                                                                                      | Username                     | `capillary`                                                                                            |\n|                                                                                                                             |                                                                                                                                                      | Password                     | Redacted                                                                                               |\n|                                                                                                                             |                                                                                                                                                      | Source directory             | `/Capillary testing/connectplus/sourceNewConnect+`                                                     |\n|                                                                                                                             |                                                                                                                                                      | Filename pattern             | `.*.csv`. Matches all CSV files.                                                                       |\n|                                                                                                                             |                                                                                                                                                      | Processed directory          | `/Capillary testing/connectplus/processedNewConnect+`                                                  |\n|                                                                                                                             |                                                                                                                                                      | Error file path              | `/Capillary testing/connectplus/errorNewConnect+`                                                      |\n|                                                                                                                             |                                                                                                                                                      | Unzip files                  | `false`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Search directory recursively | `false`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Port                         | `22`                                                                                                   |\n|                                                                                                                             |                                                                                                                                                      | File delimiter               | `,`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Report status code           | `all`                                                                                                  |\n| **[Convert-CSV-to-JSON](https://docs.capillarytech.com/docs/transform-csv-to-json-block)**<br />Type: `convert_csv_to_json` | Converts the source CSV to JSON and processes one record at a time.                                                                                  | File type                    | `5c5b9607-0173-1000-87ad-a0b9ca44885f`                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Sort headers                 | `firstname,lastname,value,source,identifierType`                                                       |\n|                                                                                                                             |                                                                                                                                                      | Alphabetical sort            | `false`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Group size                   | `1`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Line numbers                 | `$[0].LINE_NO`                                                                                         |\n|                                                                                                                             |                                                                                                                                                      | JSON path expression         | `$.[*]`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Split response               | `false`                                                                                                |\n| **[Transform-data](https://docs.capillarytech.com/docs/jslt-block)**<br />Type: `jslt_transform`                            | Reshapes each flat JSON record into the nested structure required by the `/v2/customers` API. See JSLT transformation below.                         | —                            | —                                                                                                      |\n| **[Connect-to-destination](https://docs.capillarytech.com/docs/api-request-http_write-block)**<br />Type: `http_write`      | Posts each transformed record to the Capillary `/v2/customers` API endpoint and handles retries for recoverable errors.                              | API base URL                 | `https://{host}.api.capillarytech.com`                                                                 |\n|                                                                                                                             |                                                                                                                                                      | OAuth base URL               | `https://{host}.api.capillarytech.com`                                                                 |\n|                                                                                                                             |                                                                                                                                                      | API endpoint                 | `/v2/customers`                                                                                        |\n|                                                                                                                             |                                                                                                                                                      | API method                   | `POST`                                                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Client key                   | Select from Extension Configurations                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Client secret                | Select from Extension Configurations                                                                   |\n|                                                                                                                             |                                                                                                                                                      | Bulk support                 | `false`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Parse response               | `true`                                                                                                 |\n|                                                                                                                             |                                                                                                                                                      | Parse path map               | `{\"status_code\": \"$.status.code\", \"error_message\": \"$.status.message\", \"entity_id\": \"$.customers.id\"}` |\n|                                                                                                                             |                                                                                                                                                      | Recoverable error codes      | `521,502,503,504`                                                                                      |\n|                                                                                                                             |                                                                                                                                                      | Yielding error codes         | `429`                                                                                                  |\n|                                                                                                                             |                                                                                                                                                      | Maximum retries              | `3`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Rate                         | `1,000`                                                                                                |\n|                                                                                                                             |                                                                                                                                                      | Period                       | `1`                                                                                                    |\n|                                                                                                                             |                                                                                                                                                      | Time unit                    | `MINUTES`                                                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Block Name",
+          "Block Description",
+          "Configuration Field",
+          "Configured Value"
+        ],
+        "rows": [
+          [
+            "Connect-to-source<br />Type: sftp_read",
+            "Connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and makes them available for downstream processing.",
+            "Hostname",
+            "data.capillarydata.com"
+          ],
+          [
+            "",
+            "",
+            "Username",
+            "capillary"
+          ],
+          [
+            "",
+            "",
+            "Password",
+            "Redacted"
+          ],
+          [
+            "",
+            "",
+            "Source directory",
+            "/Capillary testing/connectplus/sourceNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Filename pattern",
+            ".*.csv. Matches all CSV files."
+          ],
+          [
+            "",
+            "",
+            "Processed directory",
+            "/Capillary testing/connectplus/processedNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Error file path",
+            "/Capillary testing/connectplus/errorNewConnect+"
+          ],
+          [
+            "",
+            "",
+            "Unzip files",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Search directory recursively",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Port",
+            "22"
+          ],
+          [
+            "",
+            "",
+            "File delimiter",
+            ","
+          ],
+          [
+            "",
+            "",
+            "Report status code",
+            "all"
+          ],
+          [
+            "Convert-CSV-to-JSON<br />Type: convert_csv_to_json",
+            "Converts the source CSV to JSON and processes one record at a time.",
+            "File type",
+            "5c5b9607-0173-1000-87ad-a0b9ca44885f"
+          ],
+          [
+            "",
+            "",
+            "Sort headers",
+            "firstname,lastname,value,source,identifierType"
+          ],
+          [
+            "",
+            "",
+            "Alphabetical sort",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Group size",
+            "1"
+          ],
+          [
+            "",
+            "",
+            "Line numbers",
+            "$[0].LINE_NO"
+          ],
+          [
+            "",
+            "",
+            "JSON path expression",
+            "$.[*]"
+          ],
+          [
+            "",
+            "",
+            "Split response",
+            "false"
+          ],
+          [
+            "Transform-data<br />Type: jslt_transform",
+            "Reshapes each flat JSON record into the nested structure required by the /v2/customers API. See JSLT transformation below.",
+            "—",
+            "—"
+          ],
+          [
+            "Connect-to-destination<br />Type: http_write",
+            "Posts each transformed record to the Capillary /v2/customers API endpoint and handles retries for recoverable errors.",
+            "API base URL",
+            "https://{host}.api.capillarytech.com"
+          ],
+          [
+            "",
+            "",
+            "OAuth base URL",
+            "https://{host}.api.capillarytech.com"
+          ],
+          [
+            "",
+            "",
+            "API endpoint",
+            "/v2/customers"
+          ],
+          [
+            "",
+            "",
+            "API method",
+            "POST"
+          ],
+          [
+            "",
+            "",
+            "Client key",
+            "Select from Extension Configurations"
+          ],
+          [
+            "",
+            "",
+            "Client secret",
+            "Select from Extension Configurations"
+          ],
+          [
+            "",
+            "",
+            "Bulk support",
+            "false"
+          ],
+          [
+            "",
+            "",
+            "Parse response",
+            "true"
+          ],
+          [
+            "",
+            "",
+            "Parse path map",
+            "{\"status_code\": \"$.status.code\", \"error_message\": \"$.status.message\", \"entity_id\": \"$.customers.id\"}"
+          ],
+          [
+            "",
+            "",
+            "Recoverable error codes",
+            "521,502,503,504"
+          ],
+          [
+            "",
+            "",
+            "Yielding error codes",
+            "429"
+          ],
+          [
+            "",
+            "",
+            "Maximum retries",
+            "3"
+          ],
+          [
+            "",
+            "",
+            "Rate",
+            "1,000"
+          ],
+          [
+            "",
+            "",
+            "Period",
+            "1"
+          ],
+          [
+            "",
+            "",
+            "Time unit",
+            "MINUTES"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 301
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 313
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 320
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 321
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-read-block",
+          "line": 301
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/transform-csv-to-json-block",
+          "line": 313
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/jslt-block",
+          "line": 320
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-request-http_write-block",
+          "line": 321
+        }
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        337,
+        337
+      ],
+      "raw": "### Connect-to-source",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Connect-to-source",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        339,
+        339
+      ],
+      "raw": "Connect-to-source connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and passes them to the Convert-CSV-to-JSON block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-source connects to the source SFTP server, polls for CSV files matching the specified filename pattern, and passes them to the Convert-CSV-to-JSON block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        341,
+        341
+      ],
+      "raw": "### Convert-CSV-to-JSON",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Convert-CSV-to-JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        343,
+        343
+      ],
+      "raw": "Convert-CSV-to-JSON reads the source CSV and converts each row into a flat JSON object. A group size of `1` ensures each record passes to the Transform-data block individually before Connect-to-destination posts it to the API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Convert-CSV-to-JSON reads the source CSV and converts each row into a flat JSON object. A group size of 1 ensures each record passes to the Transform-data block individually before Connect-to-destination posts it to the API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        345,
+        345
+      ],
+      "raw": "### JSLT transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "JSLT transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        347,
+        347
+      ],
+      "raw": "Connect+ converts each CSV row into a JSON object and passes it—one record at a time—to the Transform-data block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ converts each CSV row into a JSON object and passes it—one record at a time—to the Transform-data block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        349,
+        349
+      ],
+      "raw": "**Step 1: Input**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Step 1: Input",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        351,
+        351
+      ],
+      "raw": "The Convert-CSV-to-JSON block converts each CSV row into a flat JSON object before it reaches Transform-data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Convert-CSV-to-JSON block converts each CSV row into a flat JSON object before it reaches Transform-data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        353,
+        361
+      ],
+      "raw": "```json\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Smith\",\n  \"value\": \"918298526106\",\n  \"source\": \"INSTORE\",\n  \"identifierType\": \"mobile\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"firstname\": \"John\",\n  \"lastname\": \"Smith\",\n  \"value\": \"918298526106\",\n  \"source\": \"INSTORE\",\n  \"identifierType\": \"mobile\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        363,
+        363
+      ],
+      "raw": "**Step 2: JSLT expression**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Step 2: JSLT expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        365,
+        365
+      ],
+      "raw": "Unlike the bulk add use case, this expression does not use a `for (.)` loop. It maps a single flat JSON object directly to the nested structure required by the `/v2/customers` API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Unlike the bulk add use case, this expression does not use a for (.) loop. It maps a single flat JSON object directly to the nested structure required by the /v2/customers API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        367,
+        383
+      ],
+      "raw": "```json\n{\n  \"profiles\": [\n    {\n      \"firstName\": .firstname,\n      \"lastName\": .lastname,\n      \"source\": .source,\n      \"identifiers\": [\n        {\n          \"type\": .identifierType,\n          \"value\": .value\n        }\n      ]\n    }\n  ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"profiles\": [\n    {\n      \"firstName\": .firstname,\n      \"lastName\": .lastname,\n      \"source\": .source,\n      \"identifiers\": [\n        {\n          \"type\": .identifierType,\n          \"value\": .value\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        385,
+        385
+      ],
+      "raw": "**Step 3: Output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Step 3: Output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        387,
+        387
+      ],
+      "raw": "The expression produces a single JSON object with a nested `profiles` array.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The expression produces a single JSON object with a nested profiles array.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        389,
+        405
+      ],
+      "raw": "```json\n{\n  \"profiles\": [\n    {\n      \"firstName\": \"John\",\n      \"lastName\": \"Smith\",\n      \"source\": \"INSTORE\",\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": \"918298526106\"\n        }\n      ]\n    }\n  ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"profiles\": [\n    {\n      \"firstName\": \"John\",\n      \"lastName\": \"Smith\",\n      \"source\": \"INSTORE\",\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": \"918298526106\"\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        407,
+        407
+      ],
+      "raw": "**How the expression works**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How the expression works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        409,
+        413
+      ],
+      "raw": "| Expression                           | What it does                                                                |\n| ------------------------------------ | --------------------------------------------------------------------------- |\n| `.firstname`, `.lastname`, `.source` | Map directly from the CSV column names to the corresponding API field names |\n| `.identifierType`                    | Maps to the `type` field inside the `identifiers` array                     |\n| `.value`                             | Maps to the `value` field inside the `identifiers` array                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Expression",
+          "What it does"
+        ],
+        "rows": [
+          [
+            ".firstname, .lastname, .source",
+            "Map directly from the CSV column names to the corresponding API field names"
+          ],
+          [
+            ".identifierType",
+            "Maps to the type field inside the identifiers array"
+          ],
+          [
+            ".value",
+            "Maps to the value field inside the identifiers array"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        415,
+        415
+      ],
+      "raw": "**Field mapping**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Field mapping",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        417,
+        423
+      ],
+      "raw": "| CSV column       | API field                        | Notes                                             |\n| ---------------- | -------------------------------- | ------------------------------------------------- |\n| `firstname`      | `profiles[].firstName`           | Customer's first name                             |\n| `lastname`       | `profiles[].lastName`            | Customer's last name                              |\n| `source`         | `profiles[].source`              | Registration source, for example `INSTORE`        |\n| `identifierType` | `profiles[].identifiers[].type`  | Identifier type, for example `mobile` or `email`  |\n| `value`          | `profiles[].identifiers[].value` | Identifier value—a mobile number or email address |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "CSV column",
+          "API field",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "firstname",
+            "profiles[].firstName",
+            "Customer's first name"
+          ],
+          [
+            "lastname",
+            "profiles[].lastName",
+            "Customer's last name"
+          ],
+          [
+            "source",
+            "profiles[].source",
+            "Registration source, for example INSTORE"
+          ],
+          [
+            "identifierType",
+            "profiles[].identifiers[].type",
+            "Identifier type, for example mobile or email"
+          ],
+          [
+            "value",
+            "profiles[].identifiers[].value",
+            "Identifier value—a mobile number or email address"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        425,
+        425
+      ],
+      "raw": "### Connect-to-destination",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Connect-to-destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        427,
+        427
+      ],
+      "raw": "Connect-to-destination receives the transformed JSON from Transform-data and posts each record to the `/v2/customers` API endpoint, handling OAuth authentication, retrying recoverable errors, and applying rate limiting.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect-to-destination receives the transformed JSON from Transform-data and posts each record to the /v2/customers API endpoint, handling OAuth authentication, retrying recoverable errors, and applying rate limiting.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

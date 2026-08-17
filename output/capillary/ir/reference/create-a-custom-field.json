@@ -1,0 +1,866 @@
+{
+  "slug": "reference/create-a-custom-field",
+  "source": "https://docs.capillarytech.com/reference/create-a-custom-field.md",
+  "url": "https://docs.capillarytech.com/reference/create-a-custom-field",
+  "title": "Create A Custom Field",
+  "description": "",
+  "section": "Custom Fields",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-07-21T10:21:35.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 5,
+    "code": 4,
+    "br": 1,
+    "list": 1,
+    "Table": 3,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create a Custom Field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create a Custom Field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API allows you to create custom fields, either applicable across all entities within the organization or specific to a single entity, such as a loyalty transaction. Field names must be unique within each organization, regardless of the scope. You cannot create multiple custom fields with the same name in different scopes within the same organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API allows you to create custom fields, either applicable across all entities within the organization or specific to a single entity, such as a loyalty transaction. Field names must be unique within each organization, regardless of the scope. You cannot create multiple custom fields with the same name in different scopes within the same organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You can create custom fields with the same name separately for the parent and child organizations. This is useful in scenarios where you want to assign distinct values to the custom field at the parent and child levels, such as setting different header content in email campaigns for each organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can create custom fields with the same name separately for the parent and child organizations. This is useful in scenarios where you want to assign distinct values to the custom field at the parent and child levels, such as setting different header content in email campaigns for each organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Note:** For customer registration, it is recommended to avoid using identical custom field names for both parent and child organizations. When a custom field with the same name exists at both levels, the value at the parent level will always override that of the child organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: For customer registration, it is recommended to avoid using identical custom field names for both parent and child organizations. When a custom field with the same name exists at both levels, the value at the parent level will always override that of the child organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        78
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v2/customFields' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3ODQ2MzI4MTksImp0aSI6Ik9XYlFxRUVYUFRzaWJrOHpVaGpGY3ciLCJpYXQiOjE3ODQ2MjkyMTksInN1YiI6Ik5lZXJhaiIsImNsaWVudF9pZCI6MjE5NzYsIm9yZ19pZCI6MTAwNzM3LCJ0b2tlbl91c2UiOiJ0b2tlbl9hY2Nlc3MiLCJjbGllbnRfa2V5IjoieHY0TFc3MXJOOXJyekY4NlcxMUx3M0pneiIsImRlZmF1bHRfdGlsbCI6NzUxNTUyODIsImhhc19wc2lfYWNjZXNzIjp0cnVlLCJzY29wZXMiOiJbXSJ9.aGOKCH0DRpSUYGcb4IdDewDN92u3HGpKlrI-1cDumpK5fQkni6F8BW16dBCe0RN3ViY3nvFTEnTMJY_jS9QW68Q0b2jUjBklUF4G4bbMwtsgMN3NNyoSR9dT0ecWVhDexLYrLIlMiG728PtvKX5mW7XvA7jjmImDt6GVmTXqa3eYQzJqriHVMbB2-eIGbw786r1q84QesF8bJ3YcRcIJ0uCzvWZ3Gl1cQ3R_ZpuNLCcImDg0LX-K_GOQNVVrGVcxq2oM2YnBphQQNPdqFEB_uxZM5zOwzZAty_B66eNgjyZayUvdMs8g63wxTkmg5PDVoZwkGcBHX-Mld-hluQ' \\\n--data '{\n    \"scope\": \"STORE_CUSTOM_FIELDS\",\n    \"customFields\": [\n        {\n            \"name\": \"CF2\",\n            \"type\": \"textarea\",\n            \"dataType\": \"String\",\n            \"label\": \"test2\",\n            \"scope\": \"STORE_CUSTOM_FIELDS\",\n            \"defaultValue\": \"\",\n            \"phase\": \"1\",\n            \"position\": 7,\n            \"rule\": \"\",\n            \"serverRule\": \"\",\n            \"regex\": \"\",\n            \"helptext\": \"\",\n            \"error\": \"Enter your special_instructions\",\n            \"attrs\": \"\",\n            \"isDisabled\": 0,\n            \"isCompulsory\": 0,\n            \"isUpdatable\": 1,\n            \"disableAtServer\": 0,\n\n            \"enableAuditTrail\": 0,\n            \"isPiiData\": 0,\n            \"isPsiData\": 0,\n            \"options\": \"\",\n            \"value\": \"\"\n        }\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v2/customFields' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3ODQ2MzI4MTksImp0aSI6Ik9XYlFxRUVYUFRzaWJrOHpVaGpGY3ciLCJpYXQiOjE3ODQ2MjkyMTksInN1YiI6Ik5lZXJhaiIsImNsaWVudF9pZCI6MjE5NzYsIm9yZ19pZCI6MTAwNzM3LCJ0b2tlbl91c2UiOiJ0b2tlbl9hY2Nlc3MiLCJjbGllbnRfa2V5IjoieHY0TFc3MXJOOXJyekY4NlcxMUx3M0pneiIsImRlZmF1bHRfdGlsbCI6NzUxNTUyODIsImhhc19wc2lfYWNjZXNzIjp0cnVlLCJzY29wZXMiOiJbXSJ9.aGOKCH0DRpSUYGcb4IdDewDN92u3HGpKlrI-1cDumpK5fQkni6F8BW16dBCe0RN3ViY3nvFTEnTMJY_jS9QW68Q0b2jUjBklUF4G4bbMwtsgMN3NNyoSR9dT0ecWVhDexLYrLIlMiG728PtvKX5mW7XvA7jjmImDt6GVmTXqa3eYQzJqriHVMbB2-eIGbw786r1q84QesF8bJ3YcRcIJ0uCzvWZ3Gl1cQ3R_ZpuNLCcImDg0LX-K_GOQNVVrGVcxq2oM2YnBphQQNPdqFEB_uxZM5zOwzZAty_B66eNgjyZayUvdMs8g63wxTkmg5PDVoZwkGcBHX-Mld-hluQ' \\\n--data '{\n    \"scope\": \"STORE_CUSTOM_FIELDS\",\n    \"customFields\": [\n        {\n            \"name\": \"CF2\",\n            \"type\": \"textarea\",\n            \"dataType\": \"String\",\n            \"label\": \"test2\",\n            \"scope\": \"STORE_CUSTOM_FIELDS\",\n            \"defaultValue\": \"\",\n            \"phase\": \"1\",\n            \"position\": 7,\n            \"rule\": \"\",\n            \"serverRule\": \"\",\n            \"regex\": \"\",\n            \"helptext\": \"\",\n            \"error\": \"Enter your special_instructions\",\n            \"attrs\": \"\",\n            \"isDisabled\": 0,\n            \"isCompulsory\": 0,\n            \"isUpdatable\": 1,\n            \"disableAtServer\": 0,\n\n            \"enableAuditTrail\": 0,\n            \"isPiiData\": 0,\n            \"isPsiData\": 0,\n            \"options\": \"\",\n            \"value\": \"\"\n        }\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        84,
+        85
+      ],
+      "raw": "* Authentication: Basic Auth or OAuth\n* WRITE access to [the Organization resource](https://docs.capillarytech.com/docs/access-group)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic Auth or OAuthWRITE access to the Organization resource",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "## Body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        89,
+        114
+      ],
+      "raw": "| Field               | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| ------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `scope`             | string  | Required | The entity for which the custom field is applicable. Supported values: `LOYALTY_REGISTRATION`, `LOYALTY_TRANSACTION`, `CUSTOMER_FEEDBACK`, `POINTS_REDEMPTION`, `VOUCHER_REDEMPTION`, `ZONE_CUSTOM_FIELDS`, `STORE_CUSTOM_FIELDS`, `CUSTOM_FIELDS_DATA_LOG`, `CHECK_IN_FEEDBACK`, `CUSTOMER_PREFERENCES`, `ADVANCE_FEEDBACK`, `CONCEPT_CUSTOM_FIELDS`, `LOYALTY_LINE_ITEMS` (not in use), `NI_CUSTOM_FIELDS` (not in use), `CUSTOMER_CARD`, `TILL_CUSTOM_FIELDS`, `ORG_CUSTOM_FIELD` (applicable for the entire org). |\n| `customFields`      | array   | Required | List of custom fields to create.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |\n| `.name`             | string  | Required | Name of the custom field. Max 20 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |\n| `.type`             | string  | Required | Field type. Supported values: `text`, `textarea`, `select`, `checkbox`, `radio`, `file`, `template_area`, `datepicker`, `separator`, `button`, `email_body`, `feedback`, `label`.                                                                                                                                                                                                                                                                                                                                     |\n| `.dataType`         | enum    | Required | Data type of the custom field. Supported values: `Boolean`, `Integer`, `Double`, `String`.                                                                                                                                                                                                                                                                                                                                                                                                                            |\n| `.label`            | string  | Optional | Display name shown in the UI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| `.defaultValue`     | string  | Optional | Default value for the custom field, for example, `\"#1234\"`. This is metadata only and is not tagged to an entity by default. Applies to client-side applications like Instore; not validated server-side.                                                                                                                                                                                                                                                                                                             |\n| `.phase`            | string  | Optional | Applicable for Instore only; not in use.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| `.position`         | integer | Optional | Display order of the custom field in the form, for example, `1` for first position. Applies to client-side applications like Instore; not validated server-side.                                                                                                                                                                                                                                                                                                                                                      |\n| `.rule`             | string  | Optional | Logical expression in Infix expression language. Use placeholders like `{{custom_field_name}}`, which are replaced with actual values during evaluation.                                                                                                                                                                                                                                                                                                                                                              |\n| `.serverRule`       | string  | Optional | Rule in Infix form. Format: `{\"name\":\"{{custom_field_name}}\",\"value\":\"{{custom_field_value}}\"}`. Placeholders are replaced with actual values during evaluation.                                                                                                                                                                                                                                                                                                                                                      |\n| `.regex`            | string  | Optional | Regular expression for input validation, for example, to validate an email address.                                                                                                                                                                                                                                                                                                                                                                                                                                   |\n| `.error`            | string  | Optional | Error message to display for invalid input.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| `.helptext`         | string  | Optional | Help text for the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| `.attrs`            | string  | Optional | Additional attributes for the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |\n| `.options`          | string  | Optional | Additional options for the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |\n| `.value`            | string  | Optional | Value associated with the custom field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |\n| `.isDisabled`       | boolean | Optional | Indicates whether the custom field is disabled. `0` for false. Applies to client-side applications like Instore; not validated server-side.                                                                                                                                                                                                                                                                                                                                                                           |\n| `.isCompulsory`     | boolean | Optional | Indicates whether the custom field is mandatory. `0` for false. Applies to client-side applications like Instore; not validated server-side.                                                                                                                                                                                                                                                                                                                                                                          |\n| `.isUpdatable`      | boolean | Optional | Indicates whether the custom field can be updated. `0` for false. Applies to client-side applications like Instore; not validated server-side.                                                                                                                                                                                                                                                                                                                                                                        |\n| `.disableAtServer`  | boolean | Optional | Indicates whether the field is disabled on the server. `0` for false.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |\n| `.enableAuditTrail` | boolean | Optional | Indicates whether audit trails are enabled for the field. `0` for false.                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| `.isPiiData`        | boolean | Optional | Indicates whether the field contains PII data. `0` for false.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| `.isPsiData`        | boolean | Optional | Indicates whether the field contains PSI data. `0` for false.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "scope",
+            "string",
+            "Required",
+            "The entity for which the custom field is applicable. Supported values: LOYALTY_REGISTRATION, LOYALTY_TRANSACTION, CUSTOMER_FEEDBACK, POINTS_REDEMPTION, VOUCHER_REDEMPTION, ZONE_CUSTOM_FIELDS, STORE_CUSTOM_FIELDS, CUSTOM_FIELDS_DATA_LOG, CHECK_IN_FEEDBACK, CUSTOMER_PREFERENCES, ADVANCE_FEEDBACK, CONCEPT_CUSTOM_FIELDS, LOYALTY_LINE_ITEMS (not in use), NI_CUSTOM_FIELDS (not in use), CUSTOMER_CARD, TILL_CUSTOM_FIELDS, ORG_CUSTOM_FIELD (applicable for the entire org)."
+          ],
+          [
+            "customFields",
+            "array",
+            "Required",
+            "List of custom fields to create."
+          ],
+          [
+            ".name",
+            "string",
+            "Required",
+            "Name of the custom field. Max 20 characters."
+          ],
+          [
+            ".type",
+            "string",
+            "Required",
+            "Field type. Supported values: text, textarea, select, checkbox, radio, file, template_area, datepicker, separator, button, email_body, feedback, label."
+          ],
+          [
+            ".dataType",
+            "enum",
+            "Required",
+            "Data type of the custom field. Supported values: Boolean, Integer, Double, String."
+          ],
+          [
+            ".label",
+            "string",
+            "Optional",
+            "Display name shown in the UI."
+          ],
+          [
+            ".defaultValue",
+            "string",
+            "Optional",
+            "Default value for the custom field, for example, \"#1234\". This is metadata only and is not tagged to an entity by default. Applies to client-side applications like Instore; not validated server-side."
+          ],
+          [
+            ".phase",
+            "string",
+            "Optional",
+            "Applicable for Instore only; not in use."
+          ],
+          [
+            ".position",
+            "integer",
+            "Optional",
+            "Display order of the custom field in the form, for example, 1 for first position. Applies to client-side applications like Instore; not validated server-side."
+          ],
+          [
+            ".rule",
+            "string",
+            "Optional",
+            "Logical expression in Infix expression language. Use placeholders like {{custom_field_name}}, which are replaced with actual values during evaluation."
+          ],
+          [
+            ".serverRule",
+            "string",
+            "Optional",
+            "Rule in Infix form. Format: {\"name\":\"{{custom_field_name}}\",\"value\":\"{{custom_field_value}}\"}. Placeholders are replaced with actual values during evaluation."
+          ],
+          [
+            ".regex",
+            "string",
+            "Optional",
+            "Regular expression for input validation, for example, to validate an email address."
+          ],
+          [
+            ".error",
+            "string",
+            "Optional",
+            "Error message to display for invalid input."
+          ],
+          [
+            ".helptext",
+            "string",
+            "Optional",
+            "Help text for the field."
+          ],
+          [
+            ".attrs",
+            "string",
+            "Optional",
+            "Additional attributes for the field."
+          ],
+          [
+            ".options",
+            "string",
+            "Optional",
+            "Additional options for the field."
+          ],
+          [
+            ".value",
+            "string",
+            "Optional",
+            "Value associated with the custom field."
+          ],
+          [
+            ".isDisabled",
+            "boolean",
+            "Optional",
+            "Indicates whether the custom field is disabled. 0 for false. Applies to client-side applications like Instore; not validated server-side."
+          ],
+          [
+            ".isCompulsory",
+            "boolean",
+            "Optional",
+            "Indicates whether the custom field is mandatory. 0 for false. Applies to client-side applications like Instore; not validated server-side."
+          ],
+          [
+            ".isUpdatable",
+            "boolean",
+            "Optional",
+            "Indicates whether the custom field can be updated. 0 for false. Applies to client-side applications like Instore; not validated server-side."
+          ],
+          [
+            ".disableAtServer",
+            "boolean",
+            "Optional",
+            "Indicates whether the field is disabled on the server. 0 for false."
+          ],
+          [
+            ".enableAuditTrail",
+            "boolean",
+            "Optional",
+            "Indicates whether audit trails are enabled for the field. 0 for false."
+          ],
+          [
+            ".isPiiData",
+            "boolean",
+            "Optional",
+            "Indicates whether the field contains PII data. 0 for false."
+          ],
+          [
+            ".isPsiData",
+            "boolean",
+            "Optional",
+            "Indicates whether the field contains PSI data. 0 for false."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{custom_field_name}}",
+          "line": 100
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{custom_field_name}}",
+          "line": 101
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{custom_field_value}}",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        116,
+        145
+      ],
+      "raw": "```json\n{\n  \"scope\": \"ORG_CUSTOM_FIELD\",\n  \"customFields\": [\n    {\n      \"name\": \"Email Footer Color\",\n      \"type\": \"text\",\n      \"dataType\": \"STRING\",\n      \"label\": \"Mail content\",\n      \"scope\": \"ORG_CUSTOM_FIELD\",\n      \"defaultValue\": \"#1234\",\n      \"phase\": \"1\",\n      \"position\": 0,\n      \"rule\": \"\",\n      \"serverRule\": \"\",\n      \"regex\": \"\",\n      \"error\": \"\",\n      \"isDisabled\": 0,\n      \"isCompulsory\": 0,\n      \"disableAtServer\": 0,\n      \"isUpdatable\": 0,\n      \"enableAuditTrail\": 0,\n      \"isPiiData\": 0,\n      \"isPsiData\": 0,\n      \"helptext\": \"\",\n      \"attrs\": \"\"\n    }\n  ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"scope\": \"ORG_CUSTOM_FIELD\",\n  \"customFields\": [\n    {\n      \"name\": \"Email Footer Color\",\n      \"type\": \"text\",\n      \"dataType\": \"STRING\",\n      \"label\": \"Mail content\",\n      \"scope\": \"ORG_CUSTOM_FIELD\",\n      \"defaultValue\": \"#1234\",\n      \"phase\": \"1\",\n      \"position\": 0,\n      \"rule\": \"\",\n      \"serverRule\": \"\",\n      \"regex\": \"\",\n      \"error\": \"\",\n      \"isDisabled\": 0,\n      \"isCompulsory\": 0,\n      \"disableAtServer\": 0,\n      \"isUpdatable\": 0,\n      \"enableAuditTrail\": 0,\n      \"isPiiData\": 0,\n      \"isPsiData\": 0,\n      \"helptext\": \"\",\n      \"attrs\": \"\"\n    }\n  ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        147,
+        151
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ### Note\n\n  The maximum number of auditable custom fields that can be created is controlled by the `PRODUCT_CONF_ORG_AUDITABLE_CUSTOM_FIELDS_LIMIT` configuration. If this configuration is not set for a specified organisation, the default limit is set to 5 at the backend.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteThe maximum number of auditable custom fields that can be created is controlled by the PRODUCT_CONF_ORG_AUDITABLE_CUSTOM_FIELDS_LIMIT configuration. If this configuration is not set for a specified organisation, the default limit is set to 5 at the backend.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 13,
+          "lines": [
+            148,
+            148
+          ],
+          "raw": "  ### Note",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 3,
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 14,
+          "lines": [
+            150,
+            150
+          ],
+          "raw": "  The maximum number of auditable custom fields that can be created is controlled by the `PRODUCT_CONF_ORG_AUDITABLE_CUSTOM_FIELDS_LIMIT` configuration. If this configuration is not set for a specified organisation, the default limit is set to 5 at the backend.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "The maximum number of auditable custom fields that can be created is controlled by the PRODUCT_CONF_ORG_AUDITABLE_CUSTOM_FIELDS_LIMIT configuration. If this configuration is not set for a specified organisation, the default limit is set to 5 at the backend.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "## Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        155,
+        188
+      ],
+      "raw": "```json\n{\n    \"entity\": [\n        {\n            \"orgId\": 50399,\n            \"name\": \"Email Footer Color\",\n            \"type\": \"text\",\n            \"dataType\": \"STRING\",\n            \"label\": \"Mail content\",\n            \"scope\": \"ORG_CUSTOM_FIELD\",\n            \"defaultValue\": \"#1234\",\n            \"phase\": \"1\",\n            \"position\": 0,\n            \"rule\": \"\",\n            \"serverRule\": \"\",\n            \"regex\": \"\",\n            \"error\": \"\",\n            \"isDisabled\": 0,\n            \"isCompulsory\": 0,\n            \"disableAtServer\": 0,\n            \"isUpdatable\": 0,\n            \"enableAuditTrail\": 0,\n            \"isPiiData\": 0,\n            \"isPsiData\": 0,\n            \"helptext\": \"\",\n            \"attrs\": \"\",\n            \"value\": \"\"\n        }\n    ],\n    \"warnings\": [],\n    \"errors\": [],\n    \"success\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"entity\": [\n        {\n            \"orgId\": 50399,\n            \"name\": \"Email Footer Color\",\n            \"type\": \"text\",\n            \"dataType\": \"STRING\",\n            \"label\": \"Mail content\",\n            \"scope\": \"ORG_CUSTOM_FIELD\",\n            \"defaultValue\": \"#1234\",\n            \"phase\": \"1\",\n            \"position\": 0,\n            \"rule\": \"\",\n            \"serverRule\": \"\",\n            \"regex\": \"\",\n            \"error\": \"\",\n            \"isDisabled\": 0,\n            \"isCompulsory\": 0,\n            \"disableAtServer\": 0,\n            \"isUpdatable\": 0,\n            \"enableAuditTrail\": 0,\n            \"isPiiData\": 0,\n            \"isPsiData\": 0,\n            \"helptext\": \"\",\n            \"attrs\": \"\",\n            \"value\": \"\"\n        }\n    ],\n    \"warnings\": [],\n    \"errors\": [],\n    \"success\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "## Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        192,
+        220
+      ],
+      "raw": "| Field               | Type    | Description                                                              |\n| ------------------- | ------- | ------------------------------------------------------------------------ |\n| `entity`            | array   | List of custom fields that were created.                                 |\n| `.orgId`            | integer | Unique identifier of the organization.                                   |\n| `.name`             | string  | Name of the custom field.                                                |\n| `.type`             | string  | Field type of the custom field.                                          |\n| `.dataType`         | string  | Data type of the custom field.                                           |\n| `.label`            | string  | Display name of the custom field shown in the UI.                        |\n| `.scope`            | string  | Entity scope for which the custom field is applicable.                   |\n| `.defaultValue`     | string  | Default value assigned to the custom field.                              |\n| `.phase`            | string  | Phase of the custom field (Instore only).                                |\n| `.position`         | integer | Display order of the custom field in the form.                           |\n| `.rule`             | string  | Logical expression rule for the custom field.                            |\n| `.serverRule`       | string  | Server-side rule for the custom field.                                   |\n| `.regex`            | string  | Regular expression for validation.                                       |\n| `.error`            | string  | Error message for invalid input.                                         |\n| `.helptext`         | string  | Help text for the custom field.                                          |\n| `.attrs`            | string  | Additional attributes for the custom field.                              |\n| `.value`            | string  | Value associated with the custom field.                                  |\n| `.isDisabled`       | boolean | Indicates whether the custom field is disabled. `0` for false.           |\n| `.isCompulsory`     | boolean | Indicates whether the custom field is mandatory. `0` for false.          |\n| `.isUpdatable`      | boolean | Indicates whether the custom field can be updated. `0` for false.        |\n| `.disableAtServer`  | boolean | Indicates whether the field is disabled on the server. `0` for false.    |\n| `.enableAuditTrail` | boolean | Indicates whether audit trails are enabled for the field. `0` for false. |\n| `.isPiiData`        | boolean | Indicates whether the field contains PII data. `0` for false.            |\n| `.isPsiData`        | boolean | Indicates whether the field contains PSI data. `0` for false.            |\n| `warnings`          | array   | List of warnings returned by the API.                                    |\n| `errors`            | array   | List of errors returned by the API.                                      |\n| `success`           | boolean | Indicates whether the request was successful.                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "entity",
+            "array",
+            "List of custom fields that were created."
+          ],
+          [
+            ".orgId",
+            "integer",
+            "Unique identifier of the organization."
+          ],
+          [
+            ".name",
+            "string",
+            "Name of the custom field."
+          ],
+          [
+            ".type",
+            "string",
+            "Field type of the custom field."
+          ],
+          [
+            ".dataType",
+            "string",
+            "Data type of the custom field."
+          ],
+          [
+            ".label",
+            "string",
+            "Display name of the custom field shown in the UI."
+          ],
+          [
+            ".scope",
+            "string",
+            "Entity scope for which the custom field is applicable."
+          ],
+          [
+            ".defaultValue",
+            "string",
+            "Default value assigned to the custom field."
+          ],
+          [
+            ".phase",
+            "string",
+            "Phase of the custom field (Instore only)."
+          ],
+          [
+            ".position",
+            "integer",
+            "Display order of the custom field in the form."
+          ],
+          [
+            ".rule",
+            "string",
+            "Logical expression rule for the custom field."
+          ],
+          [
+            ".serverRule",
+            "string",
+            "Server-side rule for the custom field."
+          ],
+          [
+            ".regex",
+            "string",
+            "Regular expression for validation."
+          ],
+          [
+            ".error",
+            "string",
+            "Error message for invalid input."
+          ],
+          [
+            ".helptext",
+            "string",
+            "Help text for the custom field."
+          ],
+          [
+            ".attrs",
+            "string",
+            "Additional attributes for the custom field."
+          ],
+          [
+            ".value",
+            "string",
+            "Value associated with the custom field."
+          ],
+          [
+            ".isDisabled",
+            "boolean",
+            "Indicates whether the custom field is disabled. 0 for false."
+          ],
+          [
+            ".isCompulsory",
+            "boolean",
+            "Indicates whether the custom field is mandatory. 0 for false."
+          ],
+          [
+            ".isUpdatable",
+            "boolean",
+            "Indicates whether the custom field can be updated. 0 for false."
+          ],
+          [
+            ".disableAtServer",
+            "boolean",
+            "Indicates whether the field is disabled on the server. 0 for false."
+          ],
+          [
+            ".enableAuditTrail",
+            "boolean",
+            "Indicates whether audit trails are enabled for the field. 0 for false."
+          ],
+          [
+            ".isPiiData",
+            "boolean",
+            "Indicates whether the field contains PII data. 0 for false."
+          ],
+          [
+            ".isPsiData",
+            "boolean",
+            "Indicates whether the field contains PSI data. 0 for false."
+          ],
+          [
+            "warnings",
+            "array",
+            "List of warnings returned by the API."
+          ],
+          [
+            "errors",
+            "array",
+            "List of errors returned by the API."
+          ],
+          [
+            "success",
+            "boolean",
+            "Indicates whether the request was successful."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "## Error & warning codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Error & warning codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        224,
+        231
+      ],
+      "raw": "| Code                                     | Error number | Type  | Description                                                                                         |\n| ---------------------------------------- | ------------ | ----- | --------------------------------------------------------------------------------------------------- |\n| `INVALID_CUSTOM_FIELD_SCOPE`             | 1018         | Error | Provided scope is invalid.                                                                          |\n| `AUDITABLE_CUSTOM_FIELDS_COUNT_BREACHED` | 1023         | Error | Maximum auditable custom field limit is {0}, existing count is {1} (including the current payload). |\n| `CUSTOM_FIELD_PARAM_NULL_OR_EMPTY`       | 1024         | Error | Custom field parameter {0} is null or empty.                                                        |\n| `DUPLICATE_ORG_CUSTOM_FIELD`             | 1025         | Error | Duplicate organization custom field: {0}.                                                           |\n| `FAILED_TO_SAVE_CUSTOM_FIELDS`           | 1026         | Error | Failed to save custom fields. Try again.                                                            |\n| `CUSTOM_FIELD_LIST_NULL_OR_EMPTY`        | 1028         | Error | Null or empty custom field list.                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Error number",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "INVALID_CUSTOM_FIELD_SCOPE",
+            "1018",
+            "Error",
+            "Provided scope is invalid."
+          ],
+          [
+            "AUDITABLE_CUSTOM_FIELDS_COUNT_BREACHED",
+            "1023",
+            "Error",
+            "Maximum auditable custom field limit is 0, existing count is 1 (including the current payload)."
+          ],
+          [
+            "CUSTOM_FIELD_PARAM_NULL_OR_EMPTY",
+            "1024",
+            "Error",
+            "Custom field parameter 0 is null or empty."
+          ],
+          [
+            "DUPLICATE_ORG_CUSTOM_FIELD",
+            "1025",
+            "Error",
+            "Duplicate organization custom field: 0."
+          ],
+          [
+            "FAILED_TO_SAVE_CUSTOM_FIELDS",
+            "1026",
+            "Error",
+            "Failed to save custom fields. Try again."
+          ],
+          [
+            "CUSTOM_FIELD_LIST_NULL_OR_EMPTY",
+            "1028",
+            "Error",
+            "Null or empty custom field list."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        233,
+        233
+      ],
+      "raw": "**Note:** In the descriptions, `{0}` and `{1}` are placeholders that will be replaced with specific values, such as the maximum limit, current count, or field name based on the context.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: In the descriptions, {0} and {1} are placeholders that will be replaced with specific values, such as the maximum limit, current count, or field name based on the context.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        235,
+        235
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        237,
+        483
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v2\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v2\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/customFields\": {\n      \"post\": {\n        \"summary\": \"Create a Custom Field\",\n        \"description\": \"\",\n        \"operationId\": \"create-a-custom-field\",\n        \"parameters\": [\n          {\n            \"name\": \"X-CAP-API-AUTH-KEY\",\n            \"in\": \"header\",\n            \"description\": \"Auth Key for internal API\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-CAP-API-AUTH-ORG-ID\",\n            \"in\": \"header\",\n            \"description\": \"Organisation ID\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"entity\\\": [\\n        {\\n            \\\"orgId\\\": 50399,\\n            \\\"name\\\": \\\"Email Footer Color\\\",\\n            \\\"type\\\": \\\"text\\\",\\n            \\\"dataType\\\": \\\"STRING\\\",\\n            \\\"label\\\": \\\"Mail content\\\",\\n            \\\"scope\\\": \\\"ORG_CUSTOM_FIELD\\\",\\n            \\\"defaultValue\\\": \\\"#1234\\\",\\n            \\\"phase\\\": \\\"1\\\",\\n            \\\"position\\\": 0,\\n            \\\"rule\\\": \\\"\\\",\\n            \\\"serverRule\\\": \\\"\\\",\\n            \\\"regex\\\": \\\"\\\",\\n            \\\"error\\\": \\\"\\\",\\n            \\\"isDisabled\\\": 0,\\n            \\\"isCompulsory\\\": 0,\\n            \\\"disableAtServer\\\": 0,\\n            \\\"isUpdatable\\\": 0,\\n            \\\"enableAuditTrail\\\": 0,\\n            \\\"isPiiData\\\": 0,\\n            \\\"isPsiData\\\": 0,\\n            \\\"helptext\\\": \\\"\\\",\\n            \\\"attrs\\\": \\\"\\\",\\n            \\\"value\\\": \\\"\\\"\\n        }\\n    ],\\n    \\\"warnings\\\": [],\\n    \\\"errors\\\": [],\\n    \\\"success\\\": true\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"entity\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"orgId\": {\n                            \"type\": \"integer\",\n                            \"example\": 50399,\n                            \"default\": 0\n                          },\n                          \"name\": {\n                            \"type\": \"string\",\n                            \"example\": \"Email Footer Color\"\n                          },\n                          \"type\": {\n                            \"type\": \"string\",\n                            \"example\": \"text\"\n                          },\n                          \"dataType\": {\n                            \"type\": \"string\",\n                            \"example\": \"STRING\"\n                          },\n                          \"label\": {\n                            \"type\": \"string\",\n                            \"example\": \"Mail content\"\n                          },\n                          \"scope\": {\n                            \"type\": \"string\",\n                            \"example\": \"ORG_CUSTOM_FIELD\"\n                          },\n                          \"defaultValue\": {\n                            \"type\": \"string\",\n                            \"example\": \"#1234\"\n                          },\n                          \"phase\": {\n                            \"type\": \"string\",\n                            \"example\": \"1\"\n                          },\n                          \"position\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"rule\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"serverRule\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"regex\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"error\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"isDisabled\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isCompulsory\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"disableAtServer\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isUpdatable\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"enableAuditTrail\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isPiiData\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isPsiData\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"helptext\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"attrs\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"value\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          }\n                        }\n                      }\n                    },\n                    \"warnings\": {\n                      \"type\": \"array\"\n                    },\n                    \"errors\": {\n                      \"type\": \"array\"\n                    },\n                    \"success\": {\n                      \"type\": \"boolean\",\n                      \"example\": true,\n                      \"default\": true\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/customFields' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3ODQ2MzI4MTksImp0aSI6Ik9XYlFxRUVYUFRzaWJrOHpVaGpGY3ciLCJpYXQiOjE3ODQ2MjkyMTksInN1YiI6Ik5lZXJhaiIsImNsaWVudF9pZCI6MjE5NzYsIm9yZ19pZCI6MTAwNzM3LCJ0b2tlbl91c2UiOiJ0b2tlbl9hY2Nlc3MiLCJjbGllbnRfa2V5IjoieHY0TFc3MXJOOXJyekY4NlcxMUx3M0pneiIsImRlZmF1bHRfdGlsbCI6NzUxNTUyODIsImhhc19wc2lfYWNjZXNzIjp0cnVlLCJzY29wZXMiOiJbXSJ9.aGOKCH0DRpSUYGcb4IdDewDN92u3HGpKlrI-1cDumpK5fQkni6F8BW16dBCe0RN3ViY3nvFKe_CTEnTMJY_jS9QW68Q0b2jUjBklUF4G4bbMwtsgMN3NNyoSR9dT0ecWVhDexLYrLIlMiG728PtvKX5mW7XvA7jjmImDt6GVmTXqa3eYQzJqriHVMbB2-eIGbw786r1q84QesF8bJ3YcRcIJ0uCzvWZ3Gl1cQ3R_ZpuNLCcImDg0LX-K_GOQNVVrGVcxq2oM2YnBphQQNPdqFEB_uxZM5zOwzZAty_B66eNgjyZayUvdMs8g63wxTkmg5PDVoZwkGcBHX-Mld-hluQ' \\\\\\n--data '{\\n    \\\"scope\\\": \\\"STORE_CUSTOM_FIELDS\\\",\\n    \\\"customFields\\\": [\\n        {\\n            \\\"name\\\": \\\"CF2\\\",\\n            \\\"type\\\": \\\"textarea\\\",\\n            \\\"dataType\\\": \\\"String\\\",\\n            \\\"label\\\": \\\"test2\\\",\\n            \\\"scope\\\": \\\"STORE_CUSTOM_FIELDS\\\",\\n            \\\"defaultValue\\\": \\\"\\\",\\n            \\\"phase\\\": \\\"1\\\",\\n            \\\"position\\\": 7,\\n            \\\"rule\\\": \\\"\\\",\\n            \\\"serverRule\\\": \\\"\\\",\\n            \\\"regex\\\": \\\"\\\",\\n            \\\"helptext\\\": \\\"\\\",\\n            \\\"error\\\": \\\"Enter your special_instructions\\\",\\n            \\\"attrs\\\": \\\"\\\",\\n            \\\"isDisabled\\\": 0,\\n            \\\"isCompulsory\\\": 0,\\n            \\\"isUpdatable\\\": 1,\\n            \\\"disableAtServer\\\": 0,\\n\\n            \\\"enableAuditTrail\\\": 0,\\n            \\\"isPiiData\\\": 0,\\n            \\\"isPsiData\\\": 0,\\n            \\\"options\\\": \\\"\\\",\\n            \\\"value\\\": \\\"\\\"\\n        }\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n    ]\\n}'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v2\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v2\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/customFields\": {\n      \"post\": {\n        \"summary\": \"Create a Custom Field\",\n        \"description\": \"\",\n        \"operationId\": \"create-a-custom-field\",\n        \"parameters\": [\n          {\n            \"name\": \"X-CAP-API-AUTH-KEY\",\n            \"in\": \"header\",\n            \"description\": \"Auth Key for internal API\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-CAP-API-AUTH-ORG-ID\",\n            \"in\": \"header\",\n            \"description\": \"Organisation ID\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"entity\\\": [\\n        {\\n            \\\"orgId\\\": 50399,\\n            \\\"name\\\": \\\"Email Footer Color\\\",\\n            \\\"type\\\": \\\"text\\\",\\n            \\\"dataType\\\": \\\"STRING\\\",\\n            \\\"label\\\": \\\"Mail content\\\",\\n            \\\"scope\\\": \\\"ORG_CUSTOM_FIELD\\\",\\n            \\\"defaultValue\\\": \\\"#1234\\\",\\n            \\\"phase\\\": \\\"1\\\",\\n            \\\"position\\\": 0,\\n            \\\"rule\\\": \\\"\\\",\\n            \\\"serverRule\\\": \\\"\\\",\\n            \\\"regex\\\": \\\"\\\",\\n            \\\"error\\\": \\\"\\\",\\n            \\\"isDisabled\\\": 0,\\n            \\\"isCompulsory\\\": 0,\\n            \\\"disableAtServer\\\": 0,\\n            \\\"isUpdatable\\\": 0,\\n            \\\"enableAuditTrail\\\": 0,\\n            \\\"isPiiData\\\": 0,\\n            \\\"isPsiData\\\": 0,\\n            \\\"helptext\\\": \\\"\\\",\\n            \\\"attrs\\\": \\\"\\\",\\n            \\\"value\\\": \\\"\\\"\\n        }\\n    ],\\n    \\\"warnings\\\": [],\\n    \\\"errors\\\": [],\\n    \\\"success\\\": true\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"entity\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"orgId\": {\n                            \"type\": \"integer\",\n                            \"example\": 50399,\n                            \"default\": 0\n                          },\n                          \"name\": {\n                            \"type\": \"string\",\n                            \"example\": \"Email Footer Color\"\n                          },\n                          \"type\": {\n                            \"type\": \"string\",\n                            \"example\": \"text\"\n                          },\n                          \"dataType\": {\n                            \"type\": \"string\",\n                            \"example\": \"STRING\"\n                          },\n                          \"label\": {\n                            \"type\": \"string\",\n                            \"example\": \"Mail content\"\n                          },\n                          \"scope\": {\n                            \"type\": \"string\",\n                            \"example\": \"ORG_CUSTOM_FIELD\"\n                          },\n                          \"defaultValue\": {\n                            \"type\": \"string\",\n                            \"example\": \"#1234\"\n                          },\n                          \"phase\": {\n                            \"type\": \"string\",\n                            \"example\": \"1\"\n                          },\n                          \"position\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"rule\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"serverRule\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"regex\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"error\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"isDisabled\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isCompulsory\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"disableAtServer\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isUpdatable\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"enableAuditTrail\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isPiiData\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"isPsiData\": {\n                            \"type\": \"integer\",\n                            \"example\": 0,\n                            \"default\": 0\n                          },\n                          \"helptext\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"attrs\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          },\n                          \"value\": {\n                            \"type\": \"string\",\n                            \"example\": \"\"\n                          }\n                        }\n                      }\n                    },\n                    \"warnings\": {\n                      \"type\": \"array\"\n                    },\n                    \"errors\": {\n                      \"type\": \"array\"\n                    },\n                    \"success\": {\n                      \"type\": \"boolean\",\n                      \"example\": true,\n                      \"default\": true\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/customFields' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'X-CAP-API-OAUTH-TOKEN: eyJraWQiOiMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE3ODQ2MzI4MTksImp0aSI6Ik9XYlFxRUVYUFRzaWJrOHpVaGpGY3ciLCJpYXQiOjE3ODQ2MjkyMTksInN1YiI6Ik5lZXJhaiIsImNsaWVudF9pZCI6MjE5NzYsIm9yZ19pZCI6MTAwNzM3LCJ0b2tlbl91c2UiOiJ0b2tlbl9hY2Nlc3MiLCJjbGllbnRfa2V5IjoieHY0TFc3MXJOOXJyekY4NlcxMUx3M0pneiIsImRlZmF1bHRfdGlsbCI6NzUxNTUyODIsImhhc19wc2lfYWNjZXNzIjp0cnVlLCJzY29wZXMiOiJbXSJ9.aGOKCH0DRpSUYGcb4IdDewDN92u3HGpKlrI-1cDumpK5fQkni6F8BW16dBCe0RN3ViY3nvFKe_CTEnTMJY_jS9QW68Q0b2jUjBklUF4G4bbMwtsgMN3NNyoSR9dT0ecWVhDexLYrLIlMiG728PtvKX5mW7XvA7jjmImDt6GVmTXqa3eYQzJqriHVMbB2-eIGbw786r1q84QesF8bJ3YcRcIJ0uCzvWZ3Gl1cQ3R_ZpuNLCcImDg0LX-K_GOQNVVrGVcxq2oM2YnBphQQNPdqFEB_uxZM5zOwzZAty_B66eNgjyZayUvdMs8g63wxTkmg5PDVoZwkGcBHX-Mld-hluQ' \\\\\\n--data '{\\n    \\\"scope\\\": \\\"STORE_CUSTOM_FIELDS\\\",\\n    \\\"customFields\\\": [\\n        {\\n            \\\"name\\\": \\\"CF2\\\",\\n            \\\"type\\\": \\\"textarea\\\",\\n            \\\"dataType\\\": \\\"String\\\",\\n            \\\"label\\\": \\\"test2\\\",\\n            \\\"scope\\\": \\\"STORE_CUSTOM_FIELDS\\\",\\n            \\\"defaultValue\\\": \\\"\\\",\\n            \\\"phase\\\": \\\"1\\\",\\n            \\\"position\\\": 7,\\n            \\\"rule\\\": \\\"\\\",\\n            \\\"serverRule\\\": \\\"\\\",\\n            \\\"regex\\\": \\\"\\\",\\n            \\\"helptext\\\": \\\"\\\",\\n            \\\"error\\\": \\\"Enter your special_instructions\\\",\\n            \\\"attrs\\\": \\\"\\\",\\n            \\\"isDisabled\\\": 0,\\n            \\\"isCompulsory\\\": 0,\\n            \\\"isUpdatable\\\": 1,\\n            \\\"disableAtServer\\\": 0,\\n\\n            \\\"enableAuditTrail\\\": 0,\\n            \\\"isPiiData\\\": 0,\\n            \\\"isPsiData\\\": 0,\\n            \\\"options\\\": \\\"\\\",\\n            \\\"value\\\": \\\"\\\"\\n        }\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n    ]\\n}'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

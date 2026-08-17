@@ -1,0 +1,603 @@
+{
+  "slug": "docs/convert-csv-to-json",
+  "source": "https://docs.capillarytech.com/docs/convert-csv-to-json.md",
+  "url": "https://docs.capillarytech.com/docs/convert-csv-to-json",
+  "title": "Convert Csv To Json",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 12,
+    "Table": 1,
+    "paragraph": 2,
+    "list": 4,
+    "thematicBreak": 4,
+    "code": 7
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Convert CSV to JSON",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Convert CSV to JSON",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        14
+      ],
+      "raw": "| **Field Name**    | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Sort by           | Arranges rows based on a chosen column so that similar entries appear together. This is often a prerequisite for grouping to group the similar entries.                                                                                                                                                                                                                                                                                                   |\n| Alphabetical sort | Arranges data in alphabetical or alphanumeric order based on a chosen column                                                                                                                                                                                                                                                                                                                                                                              |\n| Group by          | Collects and organizes data entries that share the same value in a specified header. When you group by a field (e.g., \"bill ID\"), all rows with the same value are consolidated into a single JSON object, with the grouping key appearing once and the related fields organized as a sub-structure (like an array). Sorting by the grouping field often precedes this operation to ensure all related entries are grouped together.                      |\n| Grouping limit    | The \"grouping limit\" parameter sets a threshold on the number of grouped entries to be included in a single output structure. This helps manage payload size when handling many related entries. For example, if grouping by \"bill ID\" with a limit of 10, each JSON object will contain information for up to 10 bills; if there are more than 10, multiple output structures will be generated. It effectively splits bulk data into manageable chunks. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Sort by",
+            "Arranges rows based on a chosen column so that similar entries appear together. This is often a prerequisite for grouping to group the similar entries."
+          ],
+          [
+            "Alphabetical sort",
+            "Arranges data in alphabetical or alphanumeric order based on a chosen column"
+          ],
+          [
+            "Group by",
+            "Collects and organizes data entries that share the same value in a specified header. When you group by a field (e.g., \"bill ID\"), all rows with the same value are consolidated into a single JSON object, with the grouping key appearing once and the related fields organized as a sub-structure (like an array). Sorting by the grouping field often precedes this operation to ensure all related entries are grouped together."
+          ],
+          [
+            "Grouping limit",
+            "The \"grouping limit\" parameter sets a threshold on the number of grouped entries to be included in a single output structure. This helps manage payload size when handling many related entries. For example, if grouping by \"bill ID\" with a limit of 10, each JSON object will contain information for up to 10 bills; if there are more than 10, multiple output structures will be generated. It effectively splits bulk data into manageable chunks."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "# Example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "Consider a CSV file containing records for different bills. Each bill may have multiple identifiers (mobile or email) and associated items. The goal is to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a CSV file containing records for different bills. Each bill may have multiple identifiers (mobile or email) and associated items. The goal is to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        20,
+        23
+      ],
+      "raw": "* **Sort** the data so that rows with the same **bill ID** are together.\n* Apply an **alphabetical sort** to ensure a consistent order.\n* **Group by** the **bill ID** to combine records for each bill.\n* Apply a **grouping limit** so that each output structure contains data for a maximum of two unique bill IDs.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Sort the data so that rows with the same bill ID are together.Apply an alphabetical sort to ensure a consistent order.Group by the bill ID to combine records for each bill.Apply a grouping limit so that each output structure contains data for a maximum of two unique bill IDs.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "## Original CSV Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Original CSV Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        39
+      ],
+      "raw": "```\nbill ID,identifier name,identifier value,itemID\nBILL002,email,anna.koskinen@example.fi,ITEM-A\nBILL001,mobile,040-1234567,ITEM-X\nBILL002,mobile,050-9876543,ITEM-B\nBILL001,email,mikko.nieminen@example.fi,ITEM-Y\nBILL003,mobile,044-5551234,ITEM-P\nBILL001,mobile,044-1112233,ITEM-Z\nBILL003,email,pekka.lehtonen@example.fi,ITEM-Q\nBILL002,email,tiina.virtanen@example.fi,ITEM-C\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "bill ID,identifier name,identifier value,itemID\nBILL002,email,anna.koskinen@example.fi,ITEM-A\nBILL001,mobile,040-1234567,ITEM-X\nBILL002,mobile,050-9876543,ITEM-B\nBILL001,email,mikko.nieminen@example.fi,ITEM-Y\nBILL003,mobile,044-5551234,ITEM-P\nBILL001,mobile,044-1112233,ITEM-Z\nBILL003,email,pekka.lehtonen@example.fi,ITEM-Q\nBILL002,email,tiina.virtanen@example.fi,ITEM-C"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "## Step 1: Sorting and Alphabetical Sort",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 1: Sorting and Alphabetical Sort",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        45,
+        50
+      ],
+      "raw": "* **Purpose:**\\\n  Arrange rows based on the **bill ID** and alphabetically/alphanumerically so that records with the same bill are adjacent.\n* **Configuration:**\\\n  Set **Sort header** value to **bill ID** and **Alphabetical Sort** to True.\n* **Result:**\\\n  The data is reordered alphabetically (or alphanumerically) by **bill ID**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Purpose:Arrange rows based on the bill ID and alphabetically/alphanumerically so that records with the same bill are adjacent.Configuration:Set Sort header value to bill ID and Alphabetical Sort to True.Result:The data is reordered alphabetically (or alphanumerically) by bill ID.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "### Sorted CSV Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Sorted CSV Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        54,
+        64
+      ],
+      "raw": "```\nbill ID,identifier name,identifier value,itemID\nBILL001,mobile,040-1234567,ITEM-X\nBILL001,email,mikko.nieminen@example.fi,ITEM-Y\nBILL001,mobile,044-1112233,ITEM-Z\nBILL002,email,anna.koskinen@example.fi,ITEM-A\nBILL002,mobile,050-9876543,ITEM-B\nBILL002,email,tiina.virtanen@example.fi,ITEM-C\nBILL003,mobile,044-5551234,ITEM-P\nBILL003,email,pekka.lehtonen@example.fi,ITEM-Q\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "bill ID,identifier name,identifier value,itemID\nBILL001,mobile,040-1234567,ITEM-X\nBILL001,email,mikko.nieminen@example.fi,ITEM-Y\nBILL001,mobile,044-1112233,ITEM-Z\nBILL002,email,anna.koskinen@example.fi,ITEM-A\nBILL002,mobile,050-9876543,ITEM-B\nBILL002,email,tiina.virtanen@example.fi,ITEM-C\nBILL003,mobile,044-5551234,ITEM-P\nBILL003,email,pekka.lehtonen@example.fi,ITEM-Q"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "## Step 2: Group By",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 2: Group By",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        70,
+        74
+      ],
+      "raw": "* **Purpose:**\\\n  Group all records with the same **bill ID** into a single JSON object.\n* **Configuration:**\\\n  Set \"group by\" as **bill ID**.\n* **JSON Structure (Before Applying Grouping Limit):**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Purpose:Group all records with the same bill ID into a single JSON object.Configuration:Set \"group by\" as bill ID.JSON Structure (Before Applying Grouping Limit):",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        76,
+        116
+      ],
+      "raw": "```json\n[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"040-1234567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"mikko.nieminen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-1112233\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"anna.koskinen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"050-9876543\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"tiina.virtanen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-5551234\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"pekka.lehtonen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"040-1234567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"mikko.nieminen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-1112233\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"anna.koskinen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"050-9876543\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"tiina.virtanen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-5551234\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"pekka.lehtonen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "## Step 3: Grouping Limit",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 3: Grouping Limit",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        122,
+        125
+      ],
+      "raw": "* **Purpose:**\\\n  Limit the number of grouped entries in each output structure to make payloads more manageable.\n* **Configuration:**\\\n  Set a **grouping limit of 2**, meaning that each output structure will contain data for at most two unique **bill ID** groups. If the total number of unique **bill ID** values exceeds this limit, the output is split into multiple JSON structures.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Purpose:Limit the number of grouped entries in each output structure to make payloads more manageable.Configuration:Set a grouping limit of 2, meaning that each output structure will contain data for at most two unique bill ID groups. If the total number of unique bill ID values exceeds this limit, the output is split into multiple JSON structures.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "### **Result with Grouping Limit of 2:**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Result with Grouping Limit of 2:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "#### Output 1",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Output 1",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        131,
+        160
+      ],
+      "raw": "```json\n[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"040-1234567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"mikko.nieminen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-1112233\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"anna.koskinen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"050-9876543\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"tiina.virtanen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"040-1234567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"mikko.nieminen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-1112233\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"anna.koskinen@example.fi\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"050-9876543\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"tiina.virtanen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "#### Output 2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Output 2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        164,
+        178
+      ],
+      "raw": "```json\n[\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-5551234\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"pekka.lehtonen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"044-5551234\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"pekka.lehtonen@example.fi\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        180,
+        180
+      ],
+      "raw": "**Note:** In this example, there are three unique **bill ID** values. With a grouping limit of 2, the first output contains grouped data for **BILL001** and **BILL002**, while the second output contains grouped data for **BILL003**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: In this example, there are three unique bill ID values. With a grouping limit of 2, the first output contains grouped data for BILL001 and BILL002, while the second output contains grouped data for BILL003.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "### Result with Grouping Limit of 3:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Result with Grouping Limit of 3:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        184,
+        224
+      ],
+      "raw": "```json\n[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"123-456-7890\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"john.doe@example.com\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"111-222-3333\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"jane.smith@example.com\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"987-654-3210\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"another@example.com\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"555-123-4567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"peter.jones@sample.org\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"123-456-7890\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"john.doe@example.com\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"111-222-3333\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-X\" },\n      { \"itemID\": \"ITEM-Y\" },\n      { \"itemID\": \"ITEM-Z\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifiers\": [\n      { \"identifier name\": \"email\", \"identifier value\": \"jane.smith@example.com\" },\n      { \"identifier name\": \"mobile\", \"identifier value\": \"987-654-3210\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"another@example.com\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-A\" },\n      { \"itemID\": \"ITEM-B\" },\n      { \"itemID\": \"ITEM-C\" }\n    ]\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifiers\": [\n      { \"identifier name\": \"mobile\", \"identifier value\": \"555-123-4567\" },\n      { \"identifier name\": \"email\", \"identifier value\": \"peter.jones@sample.org\" }\n    ],\n    \"items\": [\n      { \"itemID\": \"ITEM-P\" },\n      { \"itemID\": \"ITEM-Q\" }\n    ]\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        226,
+        226
+      ],
+      "raw": "### Result with No Grouping:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Result with No Grouping:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        228,
+        279
+      ],
+      "raw": "```json\n[\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"jane.smith@example.com\",\n    \"itemID\": \"ITEM-A\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"123-456-7890\",\n    \"itemID\": \"ITEM-X\"\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"987-654-3210\",\n    \"itemID\": \"ITEM-B\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"john.doe@example.com\",\n    \"itemID\": \"ITEM-Y\"\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"555-123-4567\",\n    \"itemID\": \"ITEM-P\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"111-222-3333\",\n    \"itemID\": \"ITEM-Z\"\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"peter.jones@sample.org\",\n    \"itemID\": \"ITEM-Q\"\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"another@example.com\",\n    \"itemID\": \"ITEM-C\"\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"jane.smith@example.com\",\n    \"itemID\": \"ITEM-A\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"123-456-7890\",\n    \"itemID\": \"ITEM-X\"\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"987-654-3210\",\n    \"itemID\": \"ITEM-B\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"john.doe@example.com\",\n    \"itemID\": \"ITEM-Y\"\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"555-123-4567\",\n    \"itemID\": \"ITEM-P\"\n  },\n  {\n    \"bill ID\": \"BILL001\",\n    \"identifier name\": \"mobile\",\n    \"identifier value\": \"111-222-3333\",\n    \"itemID\": \"ITEM-Z\"\n  },\n  {\n    \"bill ID\": \"BILL003\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"peter.jones@sample.org\",\n    \"itemID\": \"ITEM-Q\"\n  },\n  {\n    \"bill ID\": \"BILL002\",\n    \"identifier name\": \"email\",\n    \"identifier value\": \"another@example.com\",\n    \"itemID\": \"ITEM-C\"\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

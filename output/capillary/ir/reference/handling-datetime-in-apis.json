@@ -1,0 +1,819 @@
+{
+  "slug": "reference/handling-datetime-in-apis",
+  "source": "https://docs.capillarytech.com/reference/handling-datetime-in-apis.md",
+  "url": "https://docs.capillarytech.com/reference/handling-datetime-in-apis",
+  "title": "Handling Datetime In Apis",
+  "description": "",
+  "section": "Timezone Management in APIs",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-04-17T13:43:37.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 20,
+    "code": 2,
+    "Table": 3,
+    "Callout": 1,
+    "list": 1,
+    "Image": 1,
+    "br": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# How Date and Time Values are Handled",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "How Date and Time Values are Handled",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you with information on date and time handling across APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you with information on date and time handling across APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Capillary follows a consistent model for handling date and time values across APIs. This ensures predictable behaviour for integrations across regions and clusters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary follows a consistent model for handling date and time values across APIs. This ensures predictable behaviour for integrations across regions and clusters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# ISO-compliant fields across APIs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "ISO-compliant fields across APIs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Capillary APIs return and accept date and time fields in ISO 8601 format.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary APIs return and accept date and time fields in ISO 8601 format.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        19
+      ],
+      "raw": "```\nyyyy-MM-ddTHH:mm:ssXXX\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "yyyy-MM-ddTHH:mm:ssXXX"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Examples:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Examples:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        26
+      ],
+      "raw": "```\n2025-12-16T14:30:45Z\n2025-12-16T14:30:45+05:30\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "2025-12-16T14:30:45Z\n2025-12-16T14:30:45+05:30"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Where a legacy field does not follow ISO 8601, an additional `*ISO` shadow field is provided alongside the original for backward compatibility. For integrations, always use the ISO-formatted field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Where a legacy field does not follow ISO 8601, an additional *ISO shadow field is provided alongside the original for backward compatibility. For integrations, always use the ISO-formatted field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        30,
+        33
+      ],
+      "raw": "| Field                  | Behavior                |\n| ---------------------- | ----------------------- |\n| `ledgerCreatedDate`    | Legacy format retained  |\n| `ledgerCreatedDateISO` | ISO 8601 representation |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Behavior"
+        ],
+        "rows": [
+          [
+            "ledgerCreatedDate",
+            "Legacy format retained"
+          ],
+          [
+            "ledgerCreatedDateISO",
+            "ISO 8601 representation"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "For Promotion APIs, the `timeZoneName` <Anchor label=\"field accepts a timezone value in **IANA format** (for example, `Asia/Shanghai`) and enables solving complications that arise during Daylight Saving Time (DST) transitions\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/timezone_introduction#daylight-saving-time-dst-handling\">field accepts a timezone value in **IANA format** (for example, `Asia/Shanghai`) and enables solving complications that arise during Daylight Saving Time (DST) transitions</Anchor>. This value is returned in subsequent GET APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For Promotion APIs, the timeZoneName field accepts a timezone value in IANA format (for example, Asia/Shanghai) and enables solving complications that arise during Daylight Saving Time (DST) transitions. This value is returned in subsequent GET APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/timezone_introduction#daylight-saving-time-dst-handling",
+          "line": 35
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/timezone_introduction#daylight-saving-time-dst-handling",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "## API timezone behaviour summary",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "API timezone behaviour summary",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        39,
+        43
+      ],
+      "raw": "| API type                     | Timezone handling                                                                                  | Notes                                                                                                                                                                                                                                                                                                                    |\n| ---------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Selected POST / PUT APIs** | Accept date-time values in **ISO 8601 format**.                                                    | For legacy fields that did not follow ISO format, additional `*ISO` shadow fields are provided. Existing fields remain unchanged for backward compatibility. Example: `startOnISO` in the Badges creation API.                                                                                                           |\n| **Selected POST / PUT APIs** | Accepts timezone value in **IANA format** . For example, `Asia/Shanghai`.                          | This value records the timezone used during entity creation. It is stored and returned in subsequent GET APIs (for example, Get Target Groups). This enables solving the complications that [arise during DST transitions.](https://docs.capillarytech.com/docs/timezone_introduction#daylight-saving-time-dst-handling) |\n| **GET APIs**                 | All date-time fields, including those of extended fields, are returned in the **server timezone**. | Responses use ISO 8601 format (`yyyy-MM-ddTHH:mm:ssXXX`). Examples: `2025-12-16T14:30:45Z`, `2025-12-16T14:30:45+05:30`                                                                                                                                                                                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "API type",
+          "Timezone handling",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Selected POST / PUT APIs",
+            "Accept date-time values in ISO 8601 format.",
+            "For legacy fields that did not follow ISO format, additional *ISO shadow fields are provided. Existing fields remain unchanged for backward compatibility. Example: startOnISO in the Badges creation API."
+          ],
+          [
+            "Selected POST / PUT APIs",
+            "Accepts timezone value in IANA format . For example, Asia/Shanghai.",
+            "This value records the timezone used during entity creation. It is stored and returned in subsequent GET APIs (for example, Get Target Groups). This enables solving the complications that arise during DST transitions."
+          ],
+          [
+            "GET APIs",
+            "All date-time fields, including those of extended fields, are returned in the server timezone.",
+            "Responses use ISO 8601 format (yyyy-MM-ddTHH:mm:ssXXX). Examples: 2025-12-16T14:30:45Z, 2025-12-16T14:30:45+05:30"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/timezone_introduction#daylight-saving-time-dst-handling",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "# Offset preservation in behavioural events and transactions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Offset preservation in behavioural events and transactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "When a transaction or behavioural event is submitted with a timezone offset, Capillary extracts and stores the offset alongside the event. This preserved offset is returned in subsequent GET responses, allowing downstream systems to reconstruct the original local time of the event.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a transaction or behavioural event is submitted with a timezone offset, Capillary extracts and stores the offset alongside the event. This preserved offset is returned in subsequent GET responses, allowing downstream systems to reconstruct the original local time of the event.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "For transactions, the offset is extracted from the billing date-time and returned as `billingTimeInputOffset`. For behavioural events, it is returned as `eventDateTimeInputOffset`. In both cases, the offset is only stored when it is present in the input.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For transactions, the offset is extracted from the billing date-time and returned as billingTimeInputOffset. For behavioural events, it is returned as eventDateTimeInputOffset. In both cases, the offset is only stored when it is present in the input.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        51,
+        54
+      ],
+      "raw": "> 🚧 Notes\n>\n> * If you do not include a timezone offset, the system treats the value as being in server timezone and stores it as provided. For example, 2026-03-25T09:00:00 is stored as 2026-03-25T09:00:00 in server timezone.\n> * Autogenerated timestamps such as audit log entries and system-created dates are handled internally. You do not need to provide an offset for these.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "NotesIf you do not include a timezone offset, the system treats the value as being in server timezone and stores it as provided. For example, 2026-03-25T09:00:00 is stored as 2026-03-25T09:00:00 in server timezone.Autogenerated timestamps such as audit log entries and system-created dates are handled internally. You do not need to provide an offset for these.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        56,
+        61
+      ],
+      "raw": "| Input scenario                                | Transactions (`billingTimeInputOffset`) | Behavioural events (`eventDateTimeInputOffset`) |\n| --------------------------------------------- | --------------------------------------- | ----------------------------------------------- |\n| Input includes offset (for example, `+07:00`) | Yes                                     | Yes                                             |\n| Input has no offset                           | No                                      | No                                              |\n| Input offset is `+00:00` or `Z`               | Yes (`+00:00`)                          | Yes (`+00:00`)                                  |\n| Offset is null or empty                       | No                                      | No                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Input scenario",
+          "Transactions (billingTimeInputOffset)",
+          "Behavioural events (eventDateTimeInputOffset)"
+        ],
+        "rows": [
+          [
+            "Input includes offset (for example, +07:00)",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Input has no offset",
+            "No",
+            "No"
+          ],
+          [
+            "Input offset is +00:00 or Z",
+            "Yes (+00:00)",
+            "Yes (+00:00)"
+          ],
+          [
+            "Offset is null or empty",
+            "No",
+            "No"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "For transactions, if the billing date includes an offset and you also manually send `event_input_date_offset`, the system ignores the manually provided value. If the billing date has no offset and you manually provide `event_input_date_offset`, the system uses the provided value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For transactions, if the billing date includes an offset and you also manually send event_input_date_offset, the system ignores the manually provided value. If the billing date has no offset and you manually provide event_input_date_offset, the system uses the provided value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "For behavioural events, `eventDateTimeInputOffset` is system-generated. If you send it manually, the API rejects the request with HTTP 908.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For behavioural events, eventDateTimeInputOffset is system-generated. If you send it manually, the API rejects the request with HTTP 908.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "# Epoch milliseconds in event notifications",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Epoch milliseconds in event notifications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "In event notifications, date and time values are standardised using **epoch milliseconds**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In event notifications, date and time values are standardised using epoch milliseconds.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        71,
+        72
+      ],
+      "raw": "* If a date-time field is **already available in milliseconds** (for example, `1761728400000`), **no changes are made**.\n* If a date-time field is **not available in milliseconds**, a **new shadow field** is added to provide the same value in milliseconds.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If a date-time field is already available in milliseconds (for example, 1761728400000), no changes are made.If a date-time field is not available in milliseconds, a new shadow field is added to provide the same value in milliseconds.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "The shadow field uses the `<fieldName>InMillis` naming convention.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The shadow field uses the <fieldName>InMillis naming convention.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "### **Example**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "If an event includes a date-time field in a non-millisecond format:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If an event includes a date-time field in a non-millisecond format:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "`expiryAt\": \"2025-12-31T23:59:59+05:30`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "expiryAt\": \"2025-12-31T23:59:59+05:30",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "A corresponding shadow field is added:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A corresponding shadow field is added:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "`expiryAt\": \"2025-12-31T23:59:59+05:30`,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "expiryAt\": \"2025-12-31T23:59:59+05:30,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "`expiryAtInMillis\": 1767205799000`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "expiryAtInMillis\": 1767205799000",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/9b2720aaa9ae23f0b91413ebb9165d356202c6dd2ab60f7d9d1352f7de1e168d-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/9b2720aaa9ae23f0b91413ebb9165d356202c6dd2ab60f7d9d1352f7de1e168d-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "# Timezone resolution for Loyalty, Points, Coupons, and Promotions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Timezone resolution for Loyalty, Points, Coupons, and Promotions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "For modules like Loyalty, Points, Coupons, and Promotions, transaction times are recorded based on the timezone of the store where the transaction happened (follows Till → Store → Zone → Org hierarchy). This is the standard behavior for all new organizations on the platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For modules like Loyalty, Points, Coupons, and Promotions, transaction times are recorded based on the timezone of the store where the transaction happened (follows Till → Store → Zone → Org hierarchy). This is the standard behavior for all new organizations on the platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "For older organizations, the system used a different rule: it would pick whichever timezone was further ahead in time between the store and the server. This means some transactions were recorded in store time and others in server time, depending on the store's location, leaving the data inconsistent.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For older organizations, the system used a different rule: it would pick whichever timezone was further ahead in time between the store and the server. This means some transactions were recorded in store time and others in server time, depending on the store's location, leaving the data inconsistent.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "For older organizations, switching to the new behavior is handled through a separate configuration. Because the system will start reading all old records as if they were stored in store time, even if they weren't, this change requires careful evaluation. To enable this, raise a ticket with the Capillary Product Support team. They will assess the organization's data history before making the change.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For older organizations, switching to the new behavior is handled through a separate configuration. Because the system will start reading all old records as if they were stored in store time, even if they weren't, this change requires careful evaluation. To enable this, raise a ticket with the Capillary Product Support team. They will assess the organization's data history before making the change.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "i": 38,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 102
+        }
+      ]
+    }
+  ]
+}

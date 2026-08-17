@@ -1,0 +1,2970 @@
+{
+  "slug": "docs/transactions-profiles",
+  "source": "https://docs.capillarytech.com/docs/transactions-profiles.md",
+  "url": "https://docs.capillarytech.com/docs/transactions-profiles",
+  "title": "Transactions Profiles",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T11:20:11.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 16,
+    "paragraph": 67,
+    "list": 27,
+    "Table": 11,
+    "blockquote": 3,
+    "Callout": 3,
+    "Image": 11
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transactions profiles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transactions profiles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This category lets you import all transactions data, including bill outlier status, bill line items, extended fields and more.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This category lets you import all transactions data, including bill outlier status, bill line items, extended fields and more.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Possible Errors in transaction import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Possible Errors in transaction import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "When you import data to the local database, you will see the list of errors, auto-corrections, and download report option. You can download the entire report. The following table provides the list of errors that could occur when importing for transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you import data to the local database, you will see the list of errors, auto-corrections, and download report option. You can download the entire report. The following table provides the list of errors that could occur when importing for transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Additional error for Loyalty Return Bills:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Additional error for Loyalty Return Bills:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "* **Parent bill not found for transaction**: This error occurs when importing Loyalty Return Bills if the required fields (org\\_id, user\\_id, bill\\_number, till, and transaction date) do not exactly match an existing record in Member Care. To avoid this error, disable the configurations **Allow import without parent transaction** and **Allow returning non-existing transactions**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Parent bill not found for transaction: This error occurs when importing Loyalty Return Bills if the required fields (org_id, user_id, bill_number, till, and transaction date) do not exactly match an existing record in Member Care. To avoid this error, disable the configurations Allow import without parent transaction and Allow returning non-existing transactions.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        95
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Error\n      </th>\n\n      <th>\n        Explanation\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Bill_date is invalid/null/void/of future date\n      </td>\n\n      <td>\n        Invalid bill date.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill_store is invalid/null/void\n      </td>\n\n      <td>\n        The stores linked are not present in the system.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        bill_number repeating within X days\n      </td>\n\n      <td>\n        X is a number between 0 and 365 (that is configurable). It decides how often a bill_number is repeatable on the same store.\n        For example, X=5, it means bill_number B1 cannot repeat on store S1 for at least 5 days.\n        bill_discount > bill_gross_value\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Duplicate within File\n      </td>\n\n      <td>\n        Duplicate bill_no, bill_date, and billing_store in the import file.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Duplicate within database\n      </td>\n\n      <td>\n        This means the same bill_no, bill_date, billing_store are already present in the system (Loyalty / Non-Loyalty).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User Not Registered\n      </td>\n\n      <td>\n        The user tagged to the bill is not registered in the system.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Error",
+          "Explanation"
+        ],
+        "rows": [
+          [
+            "Bill_date is invalid/null/void/of future date",
+            "Invalid bill date."
+          ],
+          [
+            "Bill_store is invalid/null/void",
+            "The stores linked are not present in the system."
+          ],
+          [
+            "bill_number repeating within X days",
+            "X is a number between 0 and 365 (that is configurable). It decides how often a bill_number is repeatable on the same store.\nFor example, X=5, it means bill_number B1 cannot repeat on store S1 for at least 5 days.\nbill_discount > bill_gross_value"
+          ],
+          [
+            "Bill Duplicate within File",
+            "Duplicate bill_no, bill_date, and billing_store in the import file."
+          ],
+          [
+            "Bill Duplicate within database",
+            "This means the same bill_no, bill_date, billing_store are already present in the system (Loyalty / Non-Loyalty)."
+          ],
+          [
+            "User Not Registered",
+            "The user tagged to the bill is not registered in the system."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "## Outlier Status",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Outlier Status",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "The following are the different outlier statuses that you can have for a transaction.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the different outlier statuses that you can have for a transaction.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        101,
+        106
+      ],
+      "raw": "| Outlier Status | Description                                                                    |\n| :------------- | :----------------------------------------------------------------------------- |\n| NORMAL         | For normal transactions                                                        |\n| FRAUD          | For fraud transactions                                                         |\n| INTERNAL       | This is for bills imported for internal use and will not be shown outside      |\n| OUTLIER        | This ensures the transaction is not added to the customer’s lifetime purchases |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Outlier Status",
+          "Description"
+        ],
+        "rows": [
+          [
+            "NORMAL",
+            "For normal transactions"
+          ],
+          [
+            "FRAUD",
+            "For fraud transactions"
+          ],
+          [
+            "INTERNAL",
+            "This is for bills imported for internal use and will not be shown outside"
+          ],
+          [
+            "OUTLIER",
+            "This ensures the transaction is not added to the customer’s lifetime purchases"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        108,
+        110
+      ],
+      "raw": "> **Note**\n>\n> Transactions with an outlier status of OUTLIER (outlier\\_status = 4) or a fraud status of CONFIRMED are automatically excluded from the bill summary ETL and do not appear in the Databricks bill summary report. Outlier status is assigned to bills with abnormally low or high transaction amounts, based on thresholds set for each organization. These thresholds determine which transactions are considered outliers and are omitted from reporting by design.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "NoteTransactions with an outlier status of OUTLIER (outlier_status = 4) or a fraud status of CONFIRMED are automatically excluded from the bill summary ETL and do not appear in the Databricks bill summary report. Outlier status is assigned to bills with abnormally low or high transaction amounts, based on thresholds set for each organization. These thresholds determine which transactions are considered outliers and are omitted from reporting by design.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "This article provides detailed information on how to import the following data using different profiles of the Transactions category.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This article provides detailed information on how to import the following data using different profiles of the Transactions category.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "**Profiles of Transactions**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profiles of Transactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        116,
+        130
+      ],
+      "raw": "* Possible Errors in transaction import\n* Outlier Status\n* Loyalty Transactions - Transactions (Bills)\n* Transactions (Not-Interested)\n* Transaction Line Items (Loyalty)\n* Transaction Line Items (Not Interested Transaction)\n* Transaction (Returns)\n* Update Transaction Line Items (for Loyalty Transactions)\n* Update Transaction Line Items (for Not-interested Transactions)\n* Update Outlier Status (Loyalty Transactions)\n* Update Transaction Outlier Status (Not-Interested Bills)\n* Extended Fields Import\n* Payment Mode Import\n* Payment Mode\n* Supported and Mandatory Fields for each mode",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Possible Errors in transaction importOutlier StatusLoyalty Transactions - Transactions (Bills)Transactions (Not-Interested)Transaction Line Items (Loyalty)Transaction Line Items (Not Interested Transaction)Transaction (Returns)Update Transaction Line Items (for Loyalty Transactions)Update Transaction Line Items (for Not-interested Transactions)Update Outlier Status (Loyalty Transactions)Update Transaction Outlier Status (Not-Interested Bills)Extended Fields ImportPayment Mode ImportPayment ModeSupported and Mandatory Fields for each mode",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "## Loyalty Transactions - Transactions (Bills)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Loyalty Transactions - Transactions (Bills)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "This profile is used to upload the transaction details of loyalty customers. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile is used to upload the transaction details of loyalty customers. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        136,
+        138
+      ],
+      "raw": "> **Note**\n>\n> When you import transactions using this profile, the system updates the 'gap to upgrade' value for the customer within the same cycle. However, importing transactions does not trigger EMF evaluations or automatic tier/slab upgrades. Only eligible activity events, such as direct transactions, start the slab upgrade evaluation workflow. Member Care reflects this behavior. Imported transactions will update the gap to upgrade, but the customer's tier or slab will not change automatically as a result of the import.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "NoteWhen you import transactions using this profile, the system updates the 'gap to upgrade' value for the customer within the same cycle. However, importing transactions does not trigger EMF evaluations or automatic tier/slab upgrades. Only eligible activity events, such as direct transactions, start the slab upgrade evaluation workflow. Member Care reflects this behavior. Imported transactions will update the gap to upgrade, but the customer's tier or slab will not change automatically as a result of the import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "You also need to specify outlier\\_status for an import; then the transaction will have normal outlier by default, meaning it is a normal transaction.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You also need to specify outlier_status for an import; then the transaction will have normal outlier by default, meaning it is a normal transaction.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "Before doing a transaction import, it is important to understand the billing configurations set for the organization. To know more, see Billing Configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before doing a transaction import, it is important to understand the billing configurations set for the organization. To know more, see Billing Configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "The following are the supported entries (CSV columns) for Loyalty Transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the supported entries (CSV columns) for Loyalty Transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        146,
+        159
+      ],
+      "raw": "* Customer identifier\\* - mobile number/external ID/Email ID/User ID (the option you select in Choose customers' unique identifier is mandatory)\n* Group identifiers\\*\\* - group ID, group external ID, primary user ID, primary user mobile, primary user email, primary user external ID, primary user card number (the option you select in User Group2 Identifier Type is mandatory). This is required for group transactions.\n* Transaction/Bill Number\\*\n* Transaction/Bill Date\\*\n* Transaction/Bill Amount\\*\n* Till IUN/Store's External ID/ Store Terminal User Name\\*\n* Slab\n* Counter ID\n* Transaction/Bill Discount\n* Shipping Source Store Code(Shipping Store Code)\n* Currency Ratio(Currency Ratio)\n* Transaction Final Amount(Bill Final Amount) - Net bill amount\n* Outlier Status\n* Other transaction-level extended fields and custom fields supported for the org. For example, discount, tax, and GST.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer identifier* - mobile number/external ID/Email ID/User ID (the option you select in Choose customers' unique identifier is mandatory)Group identifiers** - group ID, group external ID, primary user ID, primary user mobile, primary user email, primary user external ID, primary user card number (the option you select in User Group2 Identifier Type is mandatory). This is required for group transactions.Transaction/Bill Number*Transaction/Bill Date*Transaction/Bill Amount*Till IUN/Store's External ID/ Store Terminal User Name*SlabCounter IDTransaction/Bill DiscountShipping Source Store Code(Shipping Store Code)Currency Ratio(Currency Ratio)Transaction Final Amount(Bill Final Amount) - Net bill amountOutlier StatusOther transaction-level extended fields and custom fields supported for the org. For example, discount, tax, and GST.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        161,
+        165
+      ],
+      "raw": "> 📘 Notes\n>\n> * A line item with null or blank SKU is considered Outlier.\n> * Fields marked with \\* are mandatory.\n> * Field marked with \\*\\* is required for group transactions.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotesA line item with null or blank SKU is considered Outlier.Fields marked with * are mandatory.Field marked with ** is required for group transactions.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "#### CSV Sample",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "CSV Sample",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "Mobile,GroupID,TransactionNumber,TransactionDate,Till,TransactionAmount,Slab",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Mobile,GroupID,TransactionNumber,TransactionDate,Till,TransactionAmount,Slab",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "9900111111,598612,TRA1240,2018-10-10,mal1,2000,Gold",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "9900111111,598612,TRA1240,2018-10-10,mal1,2000,Gold",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "Template Configuration",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/53745d0-temp.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/53745d0-temp.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        177,
+        322
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        OPTION\n      </th>\n\n      <th>\n        DESCRIPTION\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        User Group2 Enabled\n      </td>\n\n      <td>\n        Check this option to import group transactions.\n\n        You will see an option to choose the identifier type to recognize the group - User Group2 Identifier Type.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User Group2 Identifier Type\n      </td>\n\n      <td>\n        Select the identifier for the group used in the CSV file. You can pass any of the following identifiers of the group.\n\n        * GROUP_ID\n        * EXTERNAL_ID\n        * PRIMARY_USER_ID\n        * PRIMARY_USER_MOBILE\n        * PRIMARY_USER_EMAIL\n        * PRIMARY_USER_EXTERNAL_ID\n        * PRIMARY_USER_CARD_NO\n          You need to have the field that you select here in the CSV file and map it to the respective field.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Register new customers automatically\n      </td>\n\n      <td>\n        Check this option to allow registering new customers automatically.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Choose the store that you want to replace with for invalid stores identified in the import.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Denote stores by external ids\n      </td>\n\n      <td>\n        Check this box if the stores of the organization use store external ids as store codes.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Update points and purchases for existing transactions\n      </td>\n\n      <td>\n        Check this option to update points and lifetime purchases automatically for the import.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Append country code to the mobile number automatically\n      </td>\n\n      <td>\n        Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Disable mobile number validation\n      </td>\n\n      <td>\n        Check this option to disable validating customer's mobile number while importing the data.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Disable email id validation\n      </td>\n\n      <td>\n        Check this option to disable validating customer's email id while importing the data.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Choose customers' unique identifier\n      </td>\n\n      <td>\n        Choose the unique identifier of the customer used at the organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Enter email id for email notifications\n      </td>\n\n      <td>\n        Specify email ids to whom the notifications related to the import need to be sent.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Transaction Currency\n      </td>\n\n      <td>\n        Lets you convert currency of a loyalty transaction to the customer's local currency. For this, it is required to specify the respective currency conversion ratio for each transaction in the .csv file.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "OPTION",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "User Group2 Enabled",
+            "Check this option to import group transactions.You will see an option to choose the identifier type to recognize the group - User Group2 Identifier Type."
+          ],
+          [
+            "User Group2 Identifier Type",
+            "Select the identifier for the group used in the CSV file. You can pass any of the following identifiers of the group.GROUP_IDEXTERNAL_IDPRIMARY_USER_IDPRIMARY_USER_MOBILEPRIMARY_USER_EMAILPRIMARY_USER_EXTERNAL_IDPRIMARY_USER_CARD_NO\nYou need to have the field that you select here in the CSV file and map it to the respective field."
+          ],
+          [
+            "Register new customers automatically",
+            "Check this option to allow registering new customers automatically."
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with for invalid stores identified in the import."
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes."
+          ],
+          [
+            "Update points and purchases for existing transactions",
+            "Check this option to update points and lifetime purchases automatically for the import."
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified."
+          ],
+          [
+            "Disable mobile number validation",
+            "Check this option to disable validating customer's mobile number while importing the data."
+          ],
+          [
+            "Disable email id validation",
+            "Check this option to disable validating customer's email id while importing the data."
+          ],
+          [
+            "Choose customers' unique identifier",
+            "Choose the unique identifier of the customer used at the organization."
+          ],
+          [
+            "Enter email id for email notifications",
+            "Specify email ids to whom the notifications related to the import need to be sent."
+          ],
+          [
+            "Transaction Currency",
+            "Lets you convert currency of a loyalty transaction to the customer's local currency. For this, it is required to specify the respective currency conversion ratio for each transaction in the .csv file."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        324,
+        326
+      ],
+      "raw": "* To convert transactions with local currency, it is required to set the currency of transactions that you want to import (Transaction Currency in template configuration) and the conversion ratio of each transaction (in the CSV file)\n* You can add/modify supported currencies of the org in **Organization Setup > Organization Profile > Edit > Supported Currencies >** add required currencies and save it.\n* You can have only one type of transaction currency in the CSV file you import. However, you can specify different conversion ratios for each transaction depending on customers' base currency.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To convert transactions with local currency, it is required to set the currency of transactions that you want to import (Transaction Currency in template configuration) and the conversion ratio of each transaction (in the CSV file)You can add/modify supported currencies of the org in Organization Setup > Organization Profile > Edit > Supported Currencies > add required currencies and save it.You can have only one type of transaction currency in the CSV file you import. However, you can specify different conversion ratios for each transaction depending on customers' base currency.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        328,
+        328
+      ],
+      "raw": "## Transactions (Not-Interested)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transactions (Not-Interested)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        330,
+        330
+      ],
+      "raw": "This profile lets you import transactions of not interested customers, that is transactions without customer details. You can also import transactions of Product Bundle - either combo items or add-on items. To import not-interested transaction details, you need to create a CSV file with the following fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you import transactions of not interested customers, that is transactions without customer details. You can also import transactions of Product Bundle - either combo items or add-on items. To import not-interested transaction details, you need to create a CSV file with the following fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        332,
+        339
+      ],
+      "raw": "* Transaction Number\\*\n* Transaction Date\\*\n* Transaction Amount\\*\n* TILL IUN or Store's External ID (Store Code)\\*\n* Reason or Notes\n* Bill Outlier Status\n* Transaction Discount\n* Transaction Final Amount",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transaction Number*Transaction Date*Transaction Amount*TILL IUN or Store's External ID (Store Code)*Reason or NotesBill Outlier StatusTransaction DiscountTransaction Final Amount",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        341,
+        341
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        343,
+        344
+      ],
+      "raw": "TransactionNumber,TransactionDate,TransactionAmount,TillID,LineItemType\nTrans1222,2005-10-10,300,mal1,SPLIT",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "TransactionNumber,TransactionDate,TransactionAmount,TillID,LineItemType\nTrans1222,2005-10-10,300,mal1,SPLIT",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        346,
+        346
+      ],
+      "raw": "**Template Creation**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Creation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        348,
+        348
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/14e6ac3-conf.png\" title=\"conf.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/14e6ac3-conf.png",
+        "title": "conf.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        350,
+        410
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Options\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Denote stores by external ids\n      </td>\n\n      <td>\n        Check this box if the stores of the organization use store external ids as store codes.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Choose the store that you want to replace with for invalid stores identified in the import.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Override amount calculation\n      </td>\n\n      <td>\n        By default, the final bill amount (final_amount) is calculated as  (bill_amount - discount) and stores it in the final_amount field in the database.\n        Check this if you need to consider the value provided in the import file as per the field mapping.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Default bill outlier status\n      </td>\n\n      <td>\n        Set the default outlier status from the available options. The default value is Normal.\n\n        * Normal: For normal transactions.\n        * Fraud: For fraud transactions.\n        * Internal: For internal or sample transactions.\n        * Outlier: For outlier transactions - there are not included/added in the lifetime transactions/store transactions.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Options",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes."
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with for invalid stores identified in the import."
+          ],
+          [
+            "Override amount calculation",
+            "By default, the final bill amount (final_amount) is calculated as  (bill_amount - discount) and stores it in the final_amount field in the database.\nCheck this if you need to consider the value provided in the import file as per the field mapping."
+          ],
+          [
+            "Default bill outlier status",
+            "Set the default outlier status from the available options. The default value is Normal.Normal: For normal transactions.Fraud: For fraud transactions.Internal: For internal or sample transactions.Outlier: For outlier transactions - there are not included/added in the lifetime transactions/store transactions."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        412,
+        412
+      ],
+      "raw": "## Transaction Line Items (Loyalty)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Line Items (Loyalty)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        414,
+        414
+      ],
+      "raw": "Use this profile to upload line item details of loyalty transactions. Hence, the file should contain line-items of transactions of only loyalty customers. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this profile to upload line item details of loyalty transactions. Hence, the file should contain line-items of transactions of only loyalty customers. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        416,
+        438
+      ],
+      "raw": "* Item\\*\n* Mobile no./External id/Customer unique identifier\\* (the option you choose in Select the user input type is mandatory)\n* Group identifiers\\*\\* - group ID, group external ID, primary user ID, primary user mobile, primary user email, primary user external ID, primary user card number (the option you select in User Group2 Identifier Type is mandatory). This is required for group transactions.\n* Till Username/Store external id\\*\n* Item id/code\\*\n* Item description\n* Rate\\*\n* Quantity\\*\n* Value (rate\\*quantity-discount)\n* Discount\n* Bill amount\n* Serial no.\n* Transaction date\\*\n* Counter Id\n* Transaction Number\\*\n* Points\n* Gross value (Net value)\\*\n* Outlier Status\n* Line item outlier status\n* User id\n* Email id\n* Line item type (Mandatory for transactions with combo items)\n* Parent line item serial no. (Mandatory for transactions with combo items)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Item*Mobile no./External id/Customer unique identifier* (the option you choose in Select the user input type is mandatory)Group identifiers** - group ID, group external ID, primary user ID, primary user mobile, primary user email, primary user external ID, primary user card number (the option you select in User Group2 Identifier Type is mandatory). This is required for group transactions.Till Username/Store external id*Item id/code*Item descriptionRate*Quantity*Value (rate*quantity-discount)DiscountBill amountSerial no.Transaction date*Counter IdTransaction Number*PointsGross value (Net value)*Outlier StatusLine item outlier statusUser idEmail idLine item type (Mandatory for transactions with combo items)Parent line item serial no. (Mandatory for transactions with combo items)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        440,
+        440
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        442,
+        444
+      ],
+      "raw": "* A line item with null or blank SKU is considered Outlier.\n* Fields marked with \\* are mandatory.\n* Field marked with \\*\\* is required for group transactions.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A line item with null or blank SKU is considered Outlier.Fields marked with * are mandatory.Field marked with ** is required for group transactions.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        446,
+        446
+      ],
+      "raw": "**Product Bundle Support**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Product Bundle Support",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        448,
+        448
+      ],
+      "raw": "Import Framework now supports transactions with product bundle details. There are three types of produce bundle - add-on type, combo type, and split type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Import Framework now supports transactions with product bundle details. There are three types of produce bundle - add-on type, combo type, and split type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        450,
+        452
+      ],
+      "raw": "* **Combo**: Bundling one or more products of the same category and selling them as a single unit. In Import, you need to pass each combo item with line item type COMBO\\_ITEM and the parent item with line item type REGULAR\n* **Add-on:** It refers to a personalized product where a base product will have different add-ons. For example, pizza with cheese burst, toppings and so on. Each add-on item should be represented as ADDON\\_ITEM and the parent item should be represented as REGULAR\n  Each combo or add-on item should be associated with a parent item (Parent Line item Serial No). Any new combo or add on items, which you import for a transaction, will be added automatically to the inventory.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Combo: Bundling one or more products of the same category and selling them as a single unit. In Import, you need to pass each combo item with line item type COMBO_ITEM and the parent item with line item type REGULARAdd-on: It refers to a personalized product where a base product will have different add-ons. For example, pizza with cheese burst, toppings and so on. Each add-on item should be represented as ADDON_ITEM and the parent item should be represented as REGULAR\nEach combo or add-on item should be associated with a parent item (Parent Line item Serial No). Any new combo or add on items, which you import for a transaction, will be added automatically to the inventory.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        454,
+        454
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/409b226-inventory.png\" title=\"inventory.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/409b226-inventory.png",
+        "title": "inventory.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        456,
+        456
+      ],
+      "raw": "* **Split Items**: It refers to item price based on different parameters involved (break up of item price). This is mainly used for jewellery stores. For example, if a necklace is considered as the base product, the split could include store charge, making charges, wastage charges and so on. It is not necessary that the price of the base item should match with the sum of individual split items.  For a split item, Line item type should be SPLIT and the base line item type should be REGULAR",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Split Items: It refers to item price based on different parameters involved (break up of item price). This is mainly used for jewellery stores. For example, if a necklace is considered as the base product, the split could include store charge, making charges, wastage charges and so on. It is not necessary that the price of the base item should match with the sum of individual split items.  For a split item, Line item type should be SPLIT and the base line item type should be REGULAR",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        458,
+        458
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        460,
+        461
+      ],
+      "raw": "Mobile,TransactionNumber,Til,ItemID,Rate,Quantity,TransactionDate,OutlierStatus,Value\n9900111111,TRANS122562,mal1,GB35,601,1,2005-10-10,Normal,601",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Mobile,TransactionNumber,Til,ItemID,Rate,Quantity,TransactionDate,OutlierStatus,Value\n9900111111,TRANS122562,mal1,GB35,601,1,2005-10-10,Normal,601",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        463,
+        463
+      ],
+      "raw": "Template Configuration",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        465,
+        465
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/ec16624-confi.png\" title=\"confi.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/ec16624-confi.png",
+        "title": "confi.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        467,
+        662
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Denote stores by external ids\n      </td>\n\n      <td>\n        Check this box if the stores of the organization use store external ids as store codes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Choose the store that you want to replace with for invalid stores identified in the import\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Register new customers automatically\n      </td>\n\n      <td>\n        Check this option to allow registering new customers automatically\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Allow adding line items to the existing transactions\n      </td>\n\n      <td>\n        Check this option to enable line-item level transactions\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Outlier status to be considered for billing\n      </td>\n\n      <td>\n        Add the items that need to be considered as outlier items\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Update points and purchases for existing transactions\n      </td>\n\n      <td>\n        Check this option to update points and lifetime purchases automatically for the import\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line item level points given\n      </td>\n\n      <td>\n        Check this option if the points are issued at a line item level\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Append country code to the mobile number automatically\n      </td>\n\n      <td>\n        Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ignore currency conversion\n      </td>\n\n      <td>\n        Check this option to skip currency conversion even if the CSV file consists of conversion ratio.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ignore inventory push\n      </td>\n\n      <td>\n        Check this option to ignore adding/updating product details available in the CSV file.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ignore combo add ons\n      </td>\n\n      <td>\n        Check this option to ignore adding combo (add-on) details available in the CSV file.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Disable mobile number validation\n      </td>\n\n      <td>\n        Check this option to disable validating customer's mobile number while importing the data\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Disable email id validation\n      </td>\n\n      <td>\n        Check this option to disable validating customer's email id while importing the data\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Enter email id for email notifications\n      </td>\n\n      <td>\n        Specify email ids to whom you want to send notifications related to the import.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select the user input type\n      </td>\n\n      <td>\n        Select the customer identifier provided in the CSV file (mobile, email ID, external ID, or user ID).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Disable creation of non-existing bills\n      </td>\n\n      <td>\n        Choose the desired points expiry strategy for the current template\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Allow separate line items of same item code in a bill\n      </td>\n\n      <td>\n        Usually, if the item code is the same, the record merges with increment in the quantity.\n        Check this option to add such items as a separate record.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Transaction currency\n      </td>\n\n      <td>\n        Lets you convert transaction currencies to any other currencies supported by the org. (basically a customer's local currency). For this, it is required to specify the respective currency conversion ratio for each transaction in the CSV file\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes"
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with for invalid stores identified in the import"
+          ],
+          [
+            "Register new customers automatically",
+            "Check this option to allow registering new customers automatically"
+          ],
+          [
+            "Allow adding line items to the existing transactions",
+            "Check this option to enable line-item level transactions"
+          ],
+          [
+            "Outlier status to be considered for billing",
+            "Add the items that need to be considered as outlier items"
+          ],
+          [
+            "Update points and purchases for existing transactions",
+            "Check this option to update points and lifetime purchases automatically for the import"
+          ],
+          [
+            "Line item level points given",
+            "Check this option if the points are issued at a line item level"
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified"
+          ],
+          [
+            "Ignore currency conversion",
+            "Check this option to skip currency conversion even if the CSV file consists of conversion ratio."
+          ],
+          [
+            "Ignore inventory push",
+            "Check this option to ignore adding/updating product details available in the CSV file."
+          ],
+          [
+            "Ignore combo add ons",
+            "Check this option to ignore adding combo (add-on) details available in the CSV file."
+          ],
+          [
+            "Disable mobile number validation",
+            "Check this option to disable validating customer's mobile number while importing the data"
+          ],
+          [
+            "Disable email id validation",
+            "Check this option to disable validating customer's email id while importing the data"
+          ],
+          [
+            "Enter email id for email notifications",
+            "Specify email ids to whom you want to send notifications related to the import."
+          ],
+          [
+            "Select the user input type",
+            "Select the customer identifier provided in the CSV file (mobile, email ID, external ID, or user ID)."
+          ],
+          [
+            "Disable creation of non-existing bills",
+            "Choose the desired points expiry strategy for the current template"
+          ],
+          [
+            "Allow separate line items of same item code in a bill",
+            "Usually, if the item code is the same, the record merges with increment in the quantity.\nCheck this option to add such items as a separate record."
+          ],
+          [
+            "Transaction currency",
+            "Lets you convert transaction currencies to any other currencies supported by the org. (basically a customer's local currency). For this, it is required to specify the respective currency conversion ratio for each transaction in the CSV file"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        664,
+        664
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        666,
+        674
+      ],
+      "raw": "* To convert transactions with local currency, it is required to set the currency of transactions that you want to import (Transaction Currency in template configuration) and the conversion ratio of each transaction (in the CSV file)\n  * You can add/modify supported currencies of the org in Organization Setup > Organization Profile > Edit > Supported Currencies > add required currencies and save it.\n  * You can have only one type of transaction currency in the CSV file you import. However, you can specify different conversion ratios for each transaction depending on customers' base currency.\n\n* You could have an outlier status as Normal, Fraud, Internal, and Outlier. A bill and a line item can have separate outlier statuses.\n\n* The priority of a line item outlier status is more than the bill outlier status, and the status 'Normal' has the highest precedence. i.e. if in a bill of two or more line items, a line item has the status 'Normal', then the bill will have the status normal irrespective of the statuses of other line-items.\n\n* Each line-item in a file should have a different Item ID. The line item that is imported should be a part of the Org’s Inventory. No new item will be added to the inventory.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To convert transactions with local currency, it is required to set the currency of transactions that you want to import (Transaction Currency in template configuration) and the conversion ratio of each transaction (in the CSV file)You can add/modify supported currencies of the org in Organization Setup > Organization Profile > Edit > Supported Currencies > add required currencies and save it.You can have only one type of transaction currency in the CSV file you import. However, you can specify different conversion ratios for each transaction depending on customers' base currency.You could have an outlier status as Normal, Fraud, Internal, and Outlier. A bill and a line item can have separate outlier statuses.The priority of a line item outlier status is more than the bill outlier status, and the status 'Normal' has the highest precedence. i.e. if in a bill of two or more line items, a line item has the status 'Normal', then the bill will have the status normal irrespective of the statuses of other line-items.Each line-item in a file should have a different Item ID. The line item that is imported should be a part of the Org’s Inventory. No new item will be added to the inventory.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        676,
+        676
+      ],
+      "raw": "## Transaction Line Items (Not Interested Transaction)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Line Items (Not Interested Transaction)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        678,
+        678
+      ],
+      "raw": "This profile lets you update the line-items of non-loyalty transactions. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update the line-items of non-loyalty transactions. The Import Framework now supports transactions of Product Bundle. A bundle can have combo items or add-on items.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        680,
+        694
+      ],
+      "raw": "* Transaction Number\\*\n* Transaction Date\\*\n* Bill Amount\\*\n* Item Code\\*\n* Rate\\*\n* Quantity (of Items purchased)\\*\n* Discount\n* Description\n* Gross Value\\*\n* TILL IUN/Store External ID\\*\n* Serial number in the listing\n* Line item outlier status\n* Bill outlier status\n* Line item type (Mandatory for transactions with combo items)\n* Parent line item serial no. (Mandatory for transactions with combo items)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transaction Number*Transaction Date*Bill Amount*Item Code*Rate*Quantity (of Items purchased)*DiscountDescriptionGross Value*TILL IUN/Store External ID*Serial number in the listingLine item outlier statusBill outlier statusLine item type (Mandatory for transactions with combo items)Parent line item serial no. (Mandatory for transactions with combo items)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        696,
+        697
+      ],
+      "raw": "**Product Bundle Support**\nImport Framework now supports transactions with product bundle details. There are three types of produce bundle - add-on type, combo type, and split type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Product Bundle Support\nImport Framework now supports transactions with product bundle details. There are three types of produce bundle - add-on type, combo type, and split type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        699,
+        701
+      ],
+      "raw": "* **Combo**: Bundling one or more products of the same category and selling them as a single unit. In Import, you need to pass each combo item with line item type COMBO\\_ITEM and the parent item with line item type REGULAR\n* **Add-on**: It refers to a personalized product where a base product will have different add-ons. For example, pizza with cheese burst, toppings and so on. Each add-on item should be represented as ADDON\\_ITEM and the parent item should be represented as REGULAR\n  Each combo or add-on item should be associated with a parent item (Parent Line item Serial No).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Combo: Bundling one or more products of the same category and selling them as a single unit. In Import, you need to pass each combo item with line item type COMBO_ITEM and the parent item with line item type REGULARAdd-on: It refers to a personalized product where a base product will have different add-ons. For example, pizza with cheese burst, toppings and so on. Each add-on item should be represented as ADDON_ITEM and the parent item should be represented as REGULAR\nEach combo or add-on item should be associated with a parent item (Parent Line item Serial No).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        703,
+        703
+      ],
+      "raw": "Any new combo or add on items, which you import for a transaction, will be added automatically to the inventory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Any new combo or add on items, which you import for a transaction, will be added automatically to the inventory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        705,
+        705
+      ],
+      "raw": "* **Split Items**: It refers to item price based on different parameters involved (break up of item price). This is mainly used for jewellery stores. For example, if a necklace is considered as the base product, the split could include store charge, making charges, wastage charges and so on. It is not necessary that the price of the base item should match with the sum of individual split items.  For a split item, Line item type should be SPLIT and the base line item type should be REGULAR",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Split Items: It refers to item price based on different parameters involved (break up of item price). This is mainly used for jewellery stores. For example, if a necklace is considered as the base product, the split could include store charge, making charges, wastage charges and so on. It is not necessary that the price of the base item should match with the sum of individual split items.  For a split item, Line item type should be SPLIT and the base line item type should be REGULAR",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        707,
+        707
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        709,
+        710
+      ],
+      "raw": "TransactionNumber,TransactionDate,Till,ItemCode,Rate,Qunatity,GrossValue,BillAmount\nTrans1224,2018-10-10,mal1,GB1474,300,1,300,300",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "TransactionNumber,TransactionDate,Till,ItemCode,Rate,Qunatity,GrossValue,BillAmount\nTrans1224,2018-10-10,mal1,GB1474,300,1,300,300",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        712,
+        712
+      ],
+      "raw": "Template Configuration",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        714,
+        714
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/6df9ff2-config.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/6df9ff2-config.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        716,
+        791
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Default line-item outlier status\n      </td>\n\n      <td>\n        Choose the default outlier status for line-items.\n        Values: Internal, normal, invalid, outlier, failed, others\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Allow adding line-items to existing transactions\n      </td>\n\n      <td>\n        Check this option to allow adding line-items to the already existing transactions\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Default bill outlier status\n      </td>\n\n      <td>\n        Choose the default outlier status at the transaction level\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Update bill amount if already exists\n      </td>\n\n      <td>\n        Check this option to enable line-item level transactions\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Denote stores by external ids\n      </td>\n\n      <td>\n        Check this box if the stores of the organization use store external ids as store codes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Choose the store that you want to replace with for invalid stores identified in the import\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Default line-item outlier status",
+            "Choose the default outlier status for line-items.\nValues: Internal, normal, invalid, outlier, failed, others"
+          ],
+          [
+            "Allow adding line-items to existing transactions",
+            "Check this option to allow adding line-items to the already existing transactions"
+          ],
+          [
+            "Default bill outlier status",
+            "Choose the default outlier status at the transaction level"
+          ],
+          [
+            "Update bill amount if already exists",
+            "Check this option to enable line-item level transactions"
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes"
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with for invalid stores identified in the import"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        793,
+        793
+      ],
+      "raw": "## Transaction (Returns)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction (Returns)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        795,
+        805
+      ],
+      "raw": "> ⚠️ **Warning**\n>\n> For non-loyalty return imports, you must map the **Returned Transaction Date** in the template.\n>\n> If **Returned Transaction Date** is not mapped:\n>\n> * Line items may not link to their corresponding return bill.\n> * Only a single aggregated entry per bill may be created instead of individual line items.\n> * Re-importing the same data will not update or attach missing line items unless the existing bill is first marked as **DELETED**.\n>\n> This issue does not always surface as an import error. Always verify that **Returned Transaction Date** is mapped when importing non-loyalty return line items.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️"
+      },
+      "text": "WarningFor non-loyalty return imports, you must map the Returned Transaction Date in the template.If Returned Transaction Date is not mapped:Line items may not link to their corresponding return bill.Only a single aggregated entry per bill may be created instead of individual line items.Re-importing the same data will not update or attach missing line items unless the existing bill is first marked as DELETED.This issue does not always surface as an import error. Always verify that Returned Transaction Date is mapped when importing non-loyalty return line items.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        807,
+        807
+      ],
+      "raw": "This profile lets you update return transactions of a customer. You can import complete return or mixed return types. Following are three different cases of a return transaction:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update return transactions of a customer. You can import complete return or mixed return types. Following are three different cases of a return transaction:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        809,
+        811
+      ],
+      "raw": "* Case A. Returning a transaction with amount without making a new purchase - full return transaction\n* Case B. Returning a transaction or a line-item and purchasing another item on behalf - mixed transaction\n* Case C.  Returning a transaction which does not exist in Capillary Database. (bill) then this flow will be followed. This depends on the configuration set at the org level for return transactions.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Case A. Returning a transaction with amount without making a new purchase - full return transactionCase B. Returning a transaction or a line-item and purchasing another item on behalf - mixed transactionCase C.  Returning a transaction which does not exist in Capillary Database. (bill) then this flow will be followed. This depends on the configuration set at the org level for return transactions.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        813,
+        815
+      ],
+      "raw": "There are three types of transactions - Amount (when the transaction is returned with amount); Line-item (when a line-item of a transaction is returned, and a new item is purchased); Full (when the entire transaction is returned, and a new purchase is made).\nYou can import only one return transaction type at a time. Hence, create different CSV files for each return type and create a separate import job for each of the return types.\nAlso, once a transaction is returned as AMOUNT, then the same transaction cannot be returned with any other type (LINEITEM or FULL) again and vice versa.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are three types of transactions - Amount (when the transaction is returned with amount); Line-item (when a line-item of a transaction is returned, and a new item is purchased); Full (when the entire transaction is returned, and a new purchase is made).\nYou can import only one return transaction type at a time. Hence, create different CSV files for each return type and create a separate import job for each of the return types.\nAlso, once a transaction is returned as AMOUNT, then the same transaction cannot be returned with any other type (LINEITEM or FULL) again and vice versa.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        817,
+        832
+      ],
+      "raw": "* Transaction Number\n* TransactionDate\\*\n* Mobile/Email/External ID/User ID (the option you select in Select the user input type is mandatory)\n* Return Transaction Number\\*\n* TILL IUN/Store External ID\\*\n* Return Type\\* (Values: FULL/LINEITEM/AMOUNT)\n* Amount\\*\n* Discount\n* Rate\n* Quantity\n* Item Code\\*\\* (Required for line-item return)\n* Returned Transaction Store\n* Notes\n* Credit Note Number\n* Credit Note Amount\n* Other custom or extended fields",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transaction NumberTransactionDate*Mobile/Email/External ID/User ID (the option you select in Select the user input type is mandatory)Return Transaction Number*TILL IUN/Store External ID*Return Type* (Values: FULL/LINEITEM/AMOUNT)Amount*DiscountRateQuantityItem Code** (Required for line-item return)Returned Transaction StoreNotesCredit Note NumberCredit Note AmountOther custom or extended fields",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        834,
+        834
+      ],
+      "raw": "**CSV Sample**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        836,
+        837
+      ],
+      "raw": "TransactionNumber,Til,TransactionDate,TransactionAmount,Attribute,Qty,Transaction Discount(Bill Discount), Serial, Item Code, Customer Int, Customer Flag\nGB1458,mal1,10/10/2005,300,Blue ,1,10,19,test12,87,Normal",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "TransactionNumber,Til,TransactionDate,TransactionAmount,Attribute,Qty,Transaction Discount(Bill Discount), Serial, Item Code, Customer Int, Customer Flag\nGB1458,mal1,10/10/2005,300,Blue ,1,10,19,test12,87,Normal",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        839,
+        839
+      ],
+      "raw": "**Template Creation**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Creation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        841,
+        841
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/fb07448-templ.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/fb07448-templ.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 77,
+      "lines": [
+        843,
+        854
+      ],
+      "raw": "| Option                                                 | Description                                                                                                                          |\n| :----------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |\n| Allow returning non existing transactions              | Check this option to allow transaction returns for transactions that are not available in Capillary database                         |\n| Allow updating duplicate return transactions           | Check this option to allow updating duplicate bills of return transactions                                                           |\n| Allow import without parent transaction                | Check this option to import transaction returns without any reference transaction (parent transaction)                               |\n| Disable mobile number validation                       | Check this box to disable validating customers' mobile numbers while importing transaction returns                                   |\n| Disable email id validation                            | Check this box to disable validating customers' email ids while importing transaction returns                                        |\n| Denote stores by external ids                          | Check this box if the stores of the organization use store external ids as store codes                                               |\n| Replace invalid store names with                       | Choose the store that you want to replace with for invalid stores identified in the import                                           |\n| Append country code to the mobile number automatically | Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified |\n| Enter email id for email notifications                 | Specify email ids to whom the notifications related to the import need to be sent                                                    |\n| Select the user input type                             | Select the unique identifier of customers used in the CSV file (MOBILE/EMAIL/ETERNAL ID/USER ID)                                     |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Allow returning non existing transactions",
+            "Check this option to allow transaction returns for transactions that are not available in Capillary database"
+          ],
+          [
+            "Allow updating duplicate return transactions",
+            "Check this option to allow updating duplicate bills of return transactions"
+          ],
+          [
+            "Allow import without parent transaction",
+            "Check this option to import transaction returns without any reference transaction (parent transaction)"
+          ],
+          [
+            "Disable mobile number validation",
+            "Check this box to disable validating customers' mobile numbers while importing transaction returns"
+          ],
+          [
+            "Disable email id validation",
+            "Check this box to disable validating customers' email ids while importing transaction returns"
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes"
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with for invalid stores identified in the import"
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified"
+          ],
+          [
+            "Enter email id for email notifications",
+            "Specify email ids to whom the notifications related to the import need to be sent"
+          ],
+          [
+            "Select the user input type",
+            "Select the unique identifier of customers used in the CSV file (MOBILE/EMAIL/ETERNAL ID/USER ID)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        856,
+        856
+      ],
+      "raw": "## Update Transaction Line Items (for Loyalty Transactions)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Transaction Line Items (for Loyalty Transactions)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        858,
+        858
+      ],
+      "raw": "Lets you update item code and description of loyalty transactions. Other fields cannot be updated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you update item code and description of loyalty transactions. Other fields cannot be updated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        860,
+        860
+      ],
+      "raw": "The following are the fields supported for the update loyalty transaction line item profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the fields supported for the update loyalty transaction line item profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        862,
+        867
+      ],
+      "raw": "* Transaction ID\\*\\*\\*\n* Bill Number\\*\\*\n* Till Code\\*\\*\n* Bill Date\\*\\*\n* Item Code\\*\n* Item Description",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transaction ID***Bill Number**Till Code**Bill Date**Item Code*Item Description",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        869,
+        869
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        871,
+        873
+      ],
+      "raw": "* The parameter marked with \\* is mandatory along with either fields marked with **or**\\* .\n* The parameter marked with \\*\\*\\* is mandatory if Choose Identifier in Configure Template is set to the Transaction ID.\n* The parameters marked with \\*\\* are mandatory if Choose Identifier in Configure Template is set to bill\\_number\\_date\\_till\\_code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The parameter marked with * is mandatory along with either fields marked with or* .The parameter marked with *** is mandatory if Choose Identifier in Configure Template is set to the Transaction ID.The parameters marked with ** are mandatory if Choose Identifier in Configure Template is set to bill_number_date_till_code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        875,
+        875
+      ],
+      "raw": "**Template Configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        877,
+        877
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/6880ea3-templa.png\" title=\"templa.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/6880ea3-templa.png",
+        "title": "templa.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 86,
+      "lines": [
+        879,
+        880
+      ],
+      "raw": "* Select Transaction ID to identify transaction by transaction number. For this, the transaction ID is a mandatory parameter in the import file.\n* Select BillNumber\\_Date\\_TillCode to identify transaction by bill number, bill date, and TILL code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select Transaction ID to identify transaction by transaction number. For this, the transaction ID is a mandatory parameter in the import file.Select BillNumber_Date_TillCode to identify transaction by bill number, bill date, and TILL code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        882,
+        882
+      ],
+      "raw": "## Update Transaction Line Items (for Not-interested Transactions)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Transaction Line Items (for Not-interested Transactions)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        884,
+        884
+      ],
+      "raw": "Lets you update item code and description of non-interested loyalty transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you update item code and description of non-interested loyalty transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        886,
+        886
+      ],
+      "raw": "The following are the fields supported for the update loyalty transaction line item profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the fields supported for the update loyalty transaction line item profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        888,
+        893
+      ],
+      "raw": "* Transaction ID\\*\\*\\*\n* Bill Number\\*\\*\n* Till Code\\*\\*\n* Bill Date\\*\\*\n* Item Code\\*\n* Item Description",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Transaction ID***Bill Number**Till Code**Bill Date**Item Code*Item Description",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        895,
+        895
+      ],
+      "raw": "Note:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        897,
+        899
+      ],
+      "raw": "* The parameter marked with \\* is mandatory along with either fields marked with **or**\\* .\n* The parameter marked with \\*\\*\\* is mandatory if Choose Identifier in Configure Template is set to the Transaction ID.\n* The parameters marked with \\*\\* are mandatory if Choose Identifier in Configure Template is set to bill\\_number\\_date\\_till\\_code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The parameter marked with * is mandatory along with either fields marked with or* .The parameter marked with *** is mandatory if Choose Identifier in Configure Template is set to the Transaction ID.The parameters marked with ** are mandatory if Choose Identifier in Configure Template is set to bill_number_date_till_code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        901,
+        901
+      ],
+      "raw": "**Template Configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        903,
+        903
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/6bc983a-template.png\" title=\"template.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/6bc983a-template.png",
+        "title": "template.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 95,
+      "lines": [
+        905,
+        906
+      ],
+      "raw": "* Select Transaction ID to identify transaction by transaction number. For this, the transaction ID is a mandatory parameter in the import file.\n* Select BillNumber\\_Date\\_TillCode to identify transaction by bill number, bill date, and TILL code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select Transaction ID to identify transaction by transaction number. For this, the transaction ID is a mandatory parameter in the import file.Select BillNumber_Date_TillCode to identify transaction by bill number, bill date, and TILL code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        908,
+        908
+      ],
+      "raw": "**Note:** Bill custom fields cannot be updated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Bill custom fields cannot be updated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        910,
+        910
+      ],
+      "raw": "## Update Outlier Status (Loyalty Transactions)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Outlier Status (Loyalty Transactions)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        912,
+        914
+      ],
+      "raw": "> ❗️ Warning\n>\n> Updating the outlier status will not change the loyalty KPIs such as transaction count, returns, or trackers.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "WarningUpdating the outlier status will not change the loyalty KPIs such as transaction count, returns, or trackers.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        916,
+        916
+      ],
+      "raw": "This profile lets you update outlier status of a bill or to delete a bill (outlier status - DELETED). When you delete a bill, all the line-items associated with the bill will be removed automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update outlier status of a bill or to delete a bill (outlier status - DELETED). When you delete a bill, all the line-items associated with the bill will be removed automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        918,
+        919
+      ],
+      "raw": "Upload a CSV file with bill ids along with the outlier status.\n*A line item with null or blank SKU is considered an outlier.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Upload a CSV file with bill ids along with the outlier status.\nA line item with null or blank SKU is considered an outlier.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        921,
+        921
+      ],
+      "raw": "The CSV file for creating bulk outliers should contain the following fields:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The CSV file for creating bulk outliers should contain the following fields:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        923,
+        927
+      ],
+      "raw": "* Bill ID ( transaction dump id or loyalty log id)\\*\n* Outlier status\\*: The following are values supported for outlier status\n  * OUTLIER: To mark a bill outlier\n  * NORMAL: To mark a bill as a valid bill\n  * DELETED: To delete a bill with all the associated line-items",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Bill ID ( transaction dump id or loyalty log id)*Outlier status*: The following are values supported for outlier statusOUTLIER: To mark a bill outlierNORMAL: To mark a bill as a valid billDELETED: To delete a bill with all the associated line-items",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        929,
+        929
+      ],
+      "raw": "**Template Configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        931,
+        931
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/064c0d1-connn.png\" title=\"connn.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/064c0d1-connn.png",
+        "title": "connn.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 105,
+      "lines": [
+        933,
+        968
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Identifier for updating transactions\n      </td>\n\n      <td>\n        Choose the identifier you want to use for updating transactions - Loyalty Log ID or Bill Dump ID\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid outlier status with\n      </td>\n\n      <td>\n        Choose the default status that you want to have for invalid outlier statuses in the import.\n        Values: Normal, Fraud, Outlier\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Identifier for updating transactions",
+            "Choose the identifier you want to use for updating transactions - Loyalty Log ID or Bill Dump ID"
+          ],
+          [
+            "Replace invalid outlier status with",
+            "Choose the default status that you want to have for invalid outlier statuses in the import.\nValues: Normal, Fraud, Outlier"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        970,
+        970
+      ],
+      "raw": "## Update Transaction Outlier Status (Not-Interested Bills)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Transaction Outlier Status (Not-Interested Bills)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        972,
+        972
+      ],
+      "raw": "This profile lets you modify the outlier status of a line-item and the value of a transaction amount. Use this profile to update invalid outlier status or outlier line-item amount.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you modify the outlier status of a line-item and the value of a transaction amount. Use this profile to update invalid outlier status or outlier line-item amount.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 108,
+      "lines": [
+        974,
+        975
+      ],
+      "raw": "* Identifier ( transaction dump id or loyalty log id)\\*\n* Outlier status\\*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Identifier ( transaction dump id or loyalty log id)*Outlier status*",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        977,
+        977
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 110,
+      "lines": [
+        979,
+        979
+      ],
+      "raw": "Identifier,OutlierStatus",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Identifier,OutlierStatus",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 111,
+      "lines": [
+        981,
+        981
+      ],
+      "raw": "636319,Deleted",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "636319,Deleted",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 112,
+      "lines": [
+        983,
+        983
+      ],
+      "raw": "**Note:** Line item level outlier status cannot be updated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Line item level outlier status cannot be updated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 113,
+      "lines": [
+        985,
+        985
+      ],
+      "raw": "## Extended Fields Import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Extended Fields Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 114,
+      "lines": [
+        987,
+        989
+      ],
+      "raw": "> **Important**\n>\n> When you onboard an extended field as Integer type for bill or line item entities, any null values in the source data are converted to 0 during import. This enables numeric aggregations but means that null values are not preserved. If you need to retain null values for these fields, onboard the field as String type instead.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "ImportantWhen you onboard an extended field as Integer type for bill or line item entities, any null values in the source data are converted to 0 during import. This enables numeric aggregations but means that null values are not preserved. If you need to retain null values for these fields, onboard the field as String type instead.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 115,
+      "lines": [
+        991,
+        991
+      ],
+      "raw": "This profile lets you add/update the extended field values of a customer. With this profile, you can import extended fields of customer, transaction, transaction line item, and lead. You cannot do both add and update of an extended field value (for a customer) in the same file/import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you add/update the extended field values of a customer. With this profile, you can import extended fields of customer, transaction, transaction line item, and lead. You cannot do both add and update of an extended field value (for a customer) in the same file/import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 116,
+      "lines": [
+        993,
+        993
+      ],
+      "raw": "Again, for a transaction, you can add or update extended fields for",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Again, for a transaction, you can add or update extended fields for",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 117,
+      "lines": [
+        995,
+        997
+      ],
+      "raw": "* loyalty transactions (regular transaction, regular transaction line item, return transaction);\n\n* not-interested transactions (not-interested transaction, not-interested transaction line item, not-interested return transaction, not-interested line item return).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "loyalty transactions (regular transaction, regular transaction line item, return transaction);not-interested transactions (not-interested transaction, not-interested transaction line item, not-interested return transaction, not-interested line item return).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 118,
+      "lines": [
+        999,
+        999
+      ],
+      "raw": "The following are the fields supported for each entity type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the fields supported for each entity type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 119,
+      "lines": [
+        1001,
+        1094
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Customer\n      </th>\n\n      <th>\n        Transaction\n      </th>\n\n      <th>\n        Transaction line item\n      </th>\n\n      <th>\n        Lead\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        * Entity ID_ (customer id)\n\n        * Extended field value 1_\n\n        * Email ID\n\n        * Mobile Number\n\n        * External ID\n      </td>\n\n      <td>\n        * Entity ID***\n\n        * Bill Number**\n\n        * Till Code**\n\n        * Bill Date**\n\n        * Email ID\n\n        * Mobile Number\n\n        * External ID\n\n        * TransactExtended field values_ (Each in a different column)Note:\n\n          * Entity ID could be transaction id/line item id/return transaction id.\n          * Either the field with **_ or fields with _**are mandatory depending on the option selected in**Choose Identifier.**\n      </td>\n\n      <td>\n        * Entity ID***\n\n        * Bill Number**\n\n        * Till Code**\n\n        * Bill Date**\n\n        * Email ID\n\n        * Mobile Number\n\n        * External ID\n\n        * Extended field values*\n      </td>\n\n      <td>\n        * Entity ID_ (Lead ID)\n\n        * Email ID\n\n        * Mobile Number\n\n        * External ID\n\n        * Bill Number\n\n        * Till Code\n\n        * Bill Date\n\n        * Extended field values_ (Each in a different column)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Customer",
+          "Transaction",
+          "Transaction line item",
+          "Lead"
+        ],
+        "rows": [
+          [
+            "Entity ID_ (customer id)Extended field value 1_Email IDMobile NumberExternal ID",
+            "Entity ID***Bill Number**Till Code**Bill Date**Email IDMobile NumberExternal IDTransactExtended field values_ (Each in a different column)Note:Entity ID could be transaction id/line item id/return transaction id.Either the field with _ or fields with _are mandatory depending on the option selected inChoose Identifier.",
+            "Entity ID***Bill Number**Till Code**Bill Date**Email IDMobile NumberExternal IDExtended field values*",
+            "Entity ID_ (Lead ID)Email IDMobile NumberExternal IDBill NumberTill CodeBill DateExtended field values_ (Each in a different column)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 120,
+      "lines": [
+        1096,
+        1096
+      ],
+      "raw": "*Specify each extended field value that you want to update for a customer in a different column.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Specify each extended field value that you want to update for a customer in a different column.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 121,
+      "lines": [
+        1098,
+        1098
+      ],
+      "raw": "Fields for customer level extended",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fields for customer level extended",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 122,
+      "lines": [
+        1100,
+        1108
+      ],
+      "raw": "* Entity ID\\* (For a customer, it is customer id (user id), and for a transaction, it is transaction id/line-item id, for lead it is lead id)\n* Extended Field Value\\*\n* Bill Number\\*\n* Till Code\\*\n* Bill Date\\*\n* Email ID\n* Mobile Number\n* External ID\n* Extended fields based on the entity type",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Entity ID* (For a customer, it is customer id (user id), and for a transaction, it is transaction id/line-item id, for lead it is lead id)Extended Field Value*Bill Number*Till Code*Bill Date*Email IDMobile NumberExternal IDExtended fields based on the entity type",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 123,
+      "lines": [
+        1110,
+        1110
+      ],
+      "raw": "**Template Creation**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Creation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 124,
+      "lines": [
+        1112,
+        1112
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/29be483-entityy.png\" title=\"entityy.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/29be483-entityy.png",
+        "title": "entityy.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 125,
+      "lines": [
+        1114,
+        1178
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Entity Type\n      </td>\n\n      <td>\n        According to the entity type uploaded, select the type of the entity.\n        For example:\n\n        * If the entity ID is customer ID, you can update customer level extended fields. So, select Customer from the list.\n        * If the entity ID is transaction/line item ID, you can update transaction/line item level extended fields. So,  select the type of transaction - regular, return, not-interested, regular line item, return line item, not-interested line item.\n        * If the entity ID is lead ID, select Lead to update extended fields of Lead.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Extended Fields\n      </td>\n\n      <td>\n        Add the fields that you want to update.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Choose Identifier\n      </td>\n\n      <td>\n        Choose the identifier used based on the type of external fields.\n\n        * For transaction level extended fields, the identifier should be transaction ID.\n        * For line item level extended fields it should be transaction line item ID.\n        * For customer level extended fields, the identifier could be mobile, email, user id, external id.\n        * For lead level extended fields, it is lead ID.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Skip Records with Null Values\n      </td>\n\n      <td>\n        Check this box if you do not want null values to pass into the transformation. For example, if you select this, any null value identified for an extended field (in the CSV file) is ignored from saving.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Entity Type",
+            "According to the entity type uploaded, select the type of the entity.\nFor example:If the entity ID is customer ID, you can update customer level extended fields. So, select Customer from the list.If the entity ID is transaction/line item ID, you can update transaction/line item level extended fields. So,  select the type of transaction - regular, return, not-interested, regular line item, return line item, not-interested line item.If the entity ID is lead ID, select Lead to update extended fields of Lead."
+          ],
+          [
+            "Extended Fields",
+            "Add the fields that you want to update."
+          ],
+          [
+            "Choose Identifier",
+            "Choose the identifier used based on the type of external fields.For transaction level extended fields, the identifier should be transaction ID.For line item level extended fields it should be transaction line item ID.For customer level extended fields, the identifier could be mobile, email, user id, external id.For lead level extended fields, it is lead ID."
+          ],
+          [
+            "Skip Records with Null Values",
+            "Check this box if you do not want null values to pass into the transformation. For example, if you select this, any null value identified for an extended field (in the CSV file) is ignored from saving."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 126,
+      "lines": [
+        1180,
+        1180
+      ],
+      "raw": "## Payment Mode Import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Payment Mode Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 127,
+      "lines": [
+        1182,
+        1182
+      ],
+      "raw": "You can now import payment mode details of existing transactions through Import Framework. For new transactions, you first need to import transactions and then update payment modes through Payment Mode Import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can now import payment mode details of existing transactions through Import Framework. For new transactions, you first need to import transactions and then update payment modes through Payment Mode Import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 128,
+      "lines": [
+        1184,
+        1184
+      ],
+      "raw": "The fields associated with each payment mode might vary depending on the brand's payment mode configurations. Hence there are no fixed fields for each payment mode.  However, the fields user id, transaction number and transaction date are mandatory for any payment mode.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The fields associated with each payment mode might vary depending on the brand's payment mode configurations. Hence there are no fixed fields for each payment mode.  However, the fields user id, transaction number and transaction date are mandatory for any payment mode.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 129,
+      "lines": [
+        1186,
+        1187
+      ],
+      "raw": "**Payment Mode**\nIn Select payment mode, choose the preferred mode of payment.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Payment Mode\nIn Select payment mode, choose the preferred mode of payment.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 130,
+      "lines": [
+        1189,
+        1189
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/1fdf937-payment.jpg\" title=\"payment.jpg\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/1fdf937-payment.jpg",
+        "title": "payment.jpg"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 131,
+      "lines": [
+        1191,
+        1199
+      ],
+      "raw": "* Card: Payments through debit or credit card\n* Check: Payments through checks\n* Gift Card: Payments through store gift cards\n* Discount Coupon: Discount coupons used for payments\n* Exchange Lineitem: Exchanging a purchased line item\n* Points:  Payments through loyalty points\n* Cash on delivery: Payments through cash upon delivery\n* Bank credit:\n* Net banking: Payments through online internet banking",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Card: Payments through debit or credit cardCheck: Payments through checksGift Card: Payments through store gift cardsDiscount Coupon: Discount coupons used for paymentsExchange Lineitem: Exchanging a purchased line itemPoints:  Payments through loyalty pointsCash on delivery: Payments through cash upon deliveryBank credit:Net banking: Payments through online internet banking",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 132,
+      "lines": [
+        1201,
+        1201
+      ],
+      "raw": "**Supported and Mandatory Fields for each mode**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Supported and Mandatory Fields for each mode",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 133,
+      "lines": [
+        1203,
+        1261
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Payment Mode\n      </th>\n\n      <th>\n        Supported Fields\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Card\n      </td>\n\n      <td>\n        User Id(User Id)\n        Bill Number(Bill Number) _\n        Bill Date(Bill Date)_\n        Payment Mode Value(Payment Mode Value) *\n        Name On Card(AF)\n        CardIssuerCode(AF)\n        AuthorizationMethodCode(AF)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Check\n      </td>\n\n      <td>\n        User Id(User Id) _\n        Bill Number(Bill Number)_\n        Bill Date(Bill Date) _\n        Payment Mode Value_\n        Bank Name\n        Branch Name\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Gift Card/ Exchange Line item/ Points/ Cash on Delivery/ Bank Credit/ Net Banking\n      </td>\n\n      <td>\n        User Id(User Id) _\n        Bill Number(Bill Number)_\n        Bill Date(Bill Date) _\n        Payment Mode Value_\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Payment Mode",
+          "Supported Fields"
+        ],
+        "rows": [
+          [
+            "Card",
+            "User Id(User Id)\nBill Number(Bill Number) _\nBill Date(Bill Date)_\nPayment Mode Value(Payment Mode Value) *\nName On Card(AF)\nCardIssuerCode(AF)\nAuthorizationMethodCode(AF)"
+          ],
+          [
+            "Check",
+            "User Id(User Id) _\nBill Number(Bill Number)_\nBill Date(Bill Date) _\nPayment Mode Value_\nBank Name\nBranch Name"
+          ],
+          [
+            "Gift Card/ Exchange Line item/ Points/ Cash on Delivery/ Bank Credit/ Net Banking",
+            "User Id(User Id) _\nBill Number(Bill Number)_\nBill Date(Bill Date) _\nPayment Mode Value_"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 134,
+      "lines": [
+        1263,
+        1263
+      ],
+      "raw": "Note:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 135,
+      "lines": [
+        1265,
+        1267
+      ],
+      "raw": "* The payment mode value is the amount paid through the respective payment mode\n* It is required to provide original Bill number and Bill date to process the import\n* No new transaction or line items can be added through this import",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The payment mode value is the amount paid through the respective payment modeIt is required to provide original Bill number and Bill date to process the importNo new transaction or line items can be added through this import",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 136,
+      "lines": [
+        1269,
+        1269
+      ],
+      "raw": "## Bill Store Update",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Bill Store Update",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 137,
+      "lines": [
+        1271,
+        1271
+      ],
+      "raw": "This profile allows you to update the store linked to a transaction using the bill ID and Till details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile allows you to update the store linked to a transaction using the bill ID and Till details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 138,
+      "lines": [
+        1273,
+        1274
+      ],
+      "raw": "**Use Case**\nSuppose transaction T1 is currently associated with store S1, and you need to change the association to store S2. You can use the Bill Store Update profile to accomplish this by providing the bill ID and Till details. This reassigns the transaction from S1 to S2.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use Case\nSuppose transaction T1 is currently associated with store S1, and you need to change the association to store S2. You can use the Bill Store Update profile to accomplish this by providing the bill ID and Till details. This reassigns the transaction from S1 to S2.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

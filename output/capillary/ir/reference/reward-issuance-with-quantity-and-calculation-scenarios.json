@@ -1,0 +1,1020 @@
+{
+  "slug": "reference/reward-issuance-with-quantity-and-calculation-scenarios",
+  "source": "https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios.md",
+  "url": "https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios",
+  "title": "Reward Issuance With Quantity And Calculation Scenarios",
+  "description": "",
+  "section": "Reward Catalog Issuance",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-05-20T09:03:33.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 18,
+    "Callout": 1,
+    "code": 7,
+    "list": 11,
+    "thematicBreak": 5,
+    "br": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Reward Issuance with Quantity and Redemption Value Details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Reward Issuance with Quantity and Redemption Value Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The example below illustrates how point values are calculated for rewards with the payment configuration CONV\\_RATIO and KPI as Quantity or KPI as Redemption Value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The example below illustrates how point values are calculated for rewards with the payment configuration CONV_RATIO and KPI as Quantity or KPI as Redemption Value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "> ⚠️ Loyalty program prerequisite for decimal redemptions\n>\n> If the conversion ratio results in a decimal points value, for example, 2,475 points × 0.005 ratio = 12.375 points, the Loyalty program must be configured to allow redemptions in multiples of **0.001**. Without this setting, the reward issuance will fail. To configure this, set **Allow redemption in multiples of** to **0.001** in the Loyalty program's redeem conditions. See [Points, Create redeem conditions](https://docs.capillarytech.com/docs/points#points-consumption-order) for instructions. The exact decimal amount is also returned in the `pointsRedeemedInDecimal` field in the API response.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️"
+      },
+      "text": "Loyalty program prerequisite for decimal redemptionsIf the conversion ratio results in a decimal points value, for example, 2,475 points × 0.005 ratio = 12.375 points, the Loyalty program must be configured to allow redemptions in multiples of 0.001. Without this setting, the reward issuance will fail. To configure this, set Allow redemption in multiples of to 0.001 in the Loyalty program's redeem conditions. See Points, Create redeem conditions for instructions. The exact decimal amount is also returned in the pointsRedeemedInDecimal field in the API response.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points#points-consumption-order",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "### Example Scenarios",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example Scenarios",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "#### Scenario 1: Single/Bulk Issue Reward with No Quantity and No Payment Config (KPI = Quantity/Redemption value)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 1: Single/Bulk Issue Reward with No Quantity and No Payment Config (KPI = Quantity/Redemption value)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Input JSON:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input JSON:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        27
+      ],
+      "raw": "```json\n{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "**Details:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Details:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        31,
+        32
+      ],
+      "raw": "* **Quantity:** null (defaults to 1)\n* **Payment Config:** null (no specific payment config used)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Quantity: null (defaults to 1)Payment Config: null (no specific payment config used)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "**Calculations:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        36,
+        37
+      ],
+      "raw": "* **Redemption Value:** 1 (default quantity).\n* **Points Deducted:** Quantity ÷ Ratio = 1 ÷ 0.35 ≈ 2.85 (rounded to 3).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redemption Value: 1 (default quantity).Points Deducted: Quantity ÷ Ratio = 1 ÷ 0.35 ≈ 2.85 (rounded to 3).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "#### Scenario 2: Single/Bulk Issue Reward with Explicit Quantity and No Payment Config (KPI = Quantity/Redemption value)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 2: Single/Bulk Issue Reward with Explicit Quantity and No Payment Config (KPI = Quantity/Redemption value)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "**Input JSON:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input JSON:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        45,
+        52
+      ],
+      "raw": "```json\n{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "**Details:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Details:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        56,
+        57
+      ],
+      "raw": "* **Quantity:** 40 (explicitly set).\n* **Payment Config:** null (no specific payment config used).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Quantity: 40 (explicitly set).Payment Config: null (no specific payment config used).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "**Calculations:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        61,
+        62
+      ],
+      "raw": "* **Redemption Value:** 40 (explicitly provided quantity).\n* **Points Deducted:** Quantity ÷ Ratio = 40 ÷ 0.35 ≈ 114.29 (rounded to 114).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redemption Value: 40 (explicitly provided quantity).Points Deducted: Quantity ÷ Ratio = 40 ÷ 0.35 ≈ 114.29 (rounded to 114).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "#### Scenario 3: Single/Bulk Issue Reward with Quantity and Payment Config that Includes Points (KPI = Quantity/Redemption value)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 3: Single/Bulk Issue Reward with Quantity and Payment Config that Includes Points (KPI = Quantity/Redemption value)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "**Input JSON:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input JSON:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        70,
+        80
+      ],
+      "raw": "```json\n{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40,\n  \"paymentConfig\": {,\n    \"points\": 500\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40,\n  \"paymentConfig\": {,\n    \"points\": 500\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "**Details:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Details:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        84,
+        85
+      ],
+      "raw": "* **Quantity:** 40.\n* **Payment Config:** Points = 500.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Quantity: 40.Payment Config: Points = 500.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "**Calculations:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        89,
+        90
+      ],
+      "raw": "* **Redemption Value:** Points × Ratio = 500 × 0.35 = 175.\n* **Points Deducted:** 500 (directly used from the payment configuration).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redemption Value: Points × Ratio = 500 × 0.35 = 175.Points Deducted: 500 (directly used from the payment configuration).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "#### Scenario 4: Single/Bulk Issue Reward with Quantity and Payment Config that Includes ID but Not Points (KPI = Quantity/Redemption value)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 4: Single/Bulk Issue Reward with Quantity and Payment Config that Includes ID but Not Points (KPI = Quantity/Redemption value)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "**Input JSON:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input JSON:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        98,
+        108
+      ],
+      "raw": "```json\n{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40,\n  \"paymentConfig\": {\n    \"id\": 307\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"mobile\": \"911886022308\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"quantity\": 40,\n  \"paymentConfig\": {\n    \"id\": 307\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "Details:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Details:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        112,
+        114
+      ],
+      "raw": "Quantity: 40.\\\nPayment Config: Contains an ID but not points (defaults to using quantity).\\\nCalculations:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Quantity: 40.Payment Config: Contains an ID but not points (defaults to using quantity).Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        116,
+        117
+      ],
+      "raw": "Redemption Value: 40 (quantity used directly).\\\nPoints Deducted: Quantity ÷ Ratio = 40 ÷ 0.35 ≈ 114.29 (rounded to 114).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Redemption Value: 40 (quantity used directly).Points Deducted: Quantity ÷ Ratio = 40 ÷ 0.35 ≈ 114.29 (rounded to 114).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "#### Scenario 5: Bulk Issue Reward with Multiple Payment Configurations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 5: Bulk Issue Reward with Multiple Payment Configurations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "**Input JSON:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input JSON:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        125,
+        145
+      ],
+      "raw": "```json\n{\n  \"mobile\": \"919886022338\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"rewards\": [\n    {\n      \"rewardId\": 13649,\n      \"quantity\": 40,\n      \"paymentConfig\": {\n        \"id\": 307,\n        \"points\": 500\n      }\n    },\n    {\n      \"rewardId\": 14746,\n      \"quantity\": 1\n    }\n  ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"mobile\": \"919886022338\",\n  \"brand\": \"marvel_automation\",\n  \"transactionNumber\": \"Transaction-1716621508000\",\n  \"rewards\": [\n    {\n      \"rewardId\": 13649,\n      \"quantity\": 40,\n      \"paymentConfig\": {\n        \"id\": 307,\n        \"points\": 500\n      }\n    },\n    {\n      \"rewardId\": 14746,\n      \"quantity\": 1\n    }\n  ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        147,
+        147
+      ],
+      "raw": "**Details:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Details:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        149,
+        161
+      ],
+      "raw": "* **Reward 1:**\n  * Reward ID: 13649.\n  * Quantity: 40.\n  * Payment Config: Points = 500.\n  * **Calculations:**\n    * Redemption Value = Points × Ratio = 500 × 0.35 = 175.\n    * Points Deducted = 500 (directly used).\n* **Reward 2:**\n  * Reward ID: 14746.\n  * Quantity: 1.\n  * Payment Config: None specified.\n  * **Outcome:**\n    * If multiple payment configs exist and none is specified, the system cannot process this reward and will fail for Reward 2 but proceed with Reward 1 using its default configuration.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Reward 1:Reward ID: 13649.Quantity: 40.Payment Config: Points = 500.Calculations:Redemption Value = Points × Ratio = 500 × 0.35 = 175.Points Deducted = 500 (directly used).Reward 2:Reward ID: 14746.Quantity: 1.Payment Config: None specified.Outcome:If multiple payment configs exist and none is specified, the system cannot process this reward and will fail for Reward 2 but proceed with Reward 1 using its default configuration.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "#### Scenario 6: Issue Single Reward with Quantity and Redemption Value (KPI = Redemption value or Quantity)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 6: Issue Single Reward with Quantity and Redemption Value (KPI = Redemption value or Quantity)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 165
+        }
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        167,
+        176
+      ],
+      "raw": "```json\n{  \n  \"mobile\": \"11223569865\",  \n  \"brand\": \"BUKL\",  \n  \"quantity\": 3,  \n    \"paymentConfig\": {  \n            \"redemptionValue\": 100  \n     }  \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{  \n  \"mobile\": \"11223569865\",  \n  \"brand\": \"BUKL\",  \n  \"quantity\": 3,  \n    \"paymentConfig\": {  \n            \"redemptionValue\": 100  \n     }  \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        178,
+        180
+      ],
+      "raw": "* Quantity: 1 (defaults to 1 for single issue)\n* Payment Config: Contains a specific redemption value\n* Conv\\_ratio is set as 0.35",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Quantity: 1 (defaults to 1 for single issue)Payment Config: Contains a specific redemption valueConv_ratio is set as 0.35",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "**Calculations:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        184,
+        185
+      ],
+      "raw": "* Redemption Value: 100 (used directly)\n* Points Deducted: (Redemption Value ÷ Conv Ratio) × Reward Quantity = 100 ÷ 0.35 ≈ 285.71 (rounded to 286)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redemption Value: 100 (used directly)Points Deducted: (Redemption Value ÷ Conv Ratio) × Reward Quantity = 100 ÷ 0.35 ≈ 285.71 (rounded to 286)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 187
+        }
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "#### Scenario 7:  Bulk Issue Reward with Quantity and Redemption Value (KPI = Redemption value or Quantity)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 7:  Bulk Issue Reward with Quantity and Redemption Value (KPI = Redemption value or Quantity)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        191,
+        205
+      ],
+      "raw": "```json\n{  \n    \"mobile\": \"11223569865\",  \n    \"brand\": \"BUKL\",  \n    \"rewards\": [  \n        {  \n            \"rewardId\": 308697,  \n            \"quantity\": 3,  \n            \"paymentConfig\": {  \n                \"redemptionValue\": 100  \n            }  \n        }  \n    ]  \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{  \n    \"mobile\": \"11223569865\",  \n    \"brand\": \"BUKL\",  \n    \"rewards\": [  \n        {  \n            \"rewardId\": 308697,  \n            \"quantity\": 3,  \n            \"paymentConfig\": {  \n                \"redemptionValue\": 100  \n            }  \n        }  \n    ]  \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 207
+        }
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        209,
+        211
+      ],
+      "raw": "* Quantity: 3 (explicitly set)\n* Payment Config: Contains specific redemption value.\n* Conv\\_ratio is set as 0.35",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Quantity: 3 (explicitly set)Payment Config: Contains specific redemption value.Conv_ratio is set as 0.35",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        213,
+        213
+      ],
+      "raw": "**Calculations:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        215,
+        216
+      ],
+      "raw": "* Redemption Value: 100, quantity = 3, so total redemption value= 100 x 3 = 300\n* Points Deducted: (Redemption Value ÷ Conv Ratio) × Reward Quantity = (100 ÷ 0.35) x 3 ≈ 857.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redemption Value: 100, quantity = 3, so total redemption value= 100 x 3 = 300Points Deducted: (Redemption Value ÷ Conv Ratio) × Reward Quantity = (100 ÷ 0.35) x 3 ≈ 857.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

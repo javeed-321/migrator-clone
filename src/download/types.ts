@@ -1,10 +1,10 @@
 /**
- * The types for the harvest stage — the step that sits between "fetch a page"
+ * The types for the download stage — the step that sits between "fetch a page"
  * and "convert it to Documentation.AI MDX".
  *
  * The existing pipeline goes HTML -> HAST -> MDAST -> MDX in one `unified()`
  * chain, which means the only place a component is ever visible is inside a
- * transformer, mid-run. Harvesting stops in the middle on purpose: it fetches
+ * transformer, mid-run. Downloading stops in the middle on purpose: it fetches
  * the *authored* markdown ReadMe serves at `<page-url>.md` and freezes it as an
  * ordered list of typed blocks, one JSON file per page. Every block says what
  * ReadMe component it is, what attributes it carries, which source lines it came

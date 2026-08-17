@@ -1,0 +1,1120 @@
+{
+  "slug": "reference/connectedorgs-get-customer-ledger-info",
+  "source": "https://docs.capillarytech.com/reference/connectedorgs-get-customer-ledger-info.md",
+  "url": "https://docs.capillarytech.com/reference/connectedorgs-get-customer-ledger-info",
+  "title": "Connectedorgs Get Customer Ledger Info",
+  "description": "",
+  "section": "Connected Org APIs",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-03T06:55:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 11,
+    "paragraph": 6,
+    "Callout": 1,
+    "list": 1,
+    "Table": 7,
+    "br": 2,
+    "CodeTabs": 1,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Get Points Ledger Information in Connected Orgs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Get Points Ledger Information in Connected Orgs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API fetches the ledger information of a customer registered in a connected organisation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API fetches the ledger information of a customer registered in a connected organisation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "A customer points ledger is essentially a record that tracks the points earned, spent, and adjusted within an organization and its affiliates. These points are treated like currency and can be redeemed across various units or loyalty programs within the organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A customer points ledger is essentially a record that tracks the points earned, spent, and adjusted within an organization and its affiliates. These points are treated like currency and can be redeemed across various units or loyalty programs within the organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "For more information, refer to the documentation on [Points Ledgers](https://docs.capillarytech.com/reference/points-ledger).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For more information, refer to the documentation on Points Ledgers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/points-ledger",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        17
+      ],
+      "raw": "> 👍 Note\n>\n> For detailed information about our APIs and for hands-on testing, refer to the documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on [making your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer to the documentation in API overview and step-by-step guide on making your first API call.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth credentials\n* [ ] Access to the Points Access group. For more information, see [access group documentation](https://docs.capillarytech.com/docs/access-group).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth credentialsAccess to the Points Access group. For more information, see access group documentation.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "# API Specification",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Specification",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        30
+      ],
+      "raw": "|               |     |\n| :------------ | :-- |\n| HTTP Method   | GET |\n| Pagination    | Yes |\n| Batch support | No  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "HTTP Method",
+            "GET"
+          ],
+          [
+            "Pagination",
+            "Yes"
+          ],
+          [
+            "Batch support",
+            "No"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "`'https://{host}/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=917406401004&source=INSTORE'`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "'https://{host}/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=917406401004&source=INSTORE'",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "# Headers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Headers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        38,
+        41
+      ],
+      "raw": "| Header         | Description                                                                                                                                                                                                                                                                                                                                                                                                      |\n| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| DATA-SCOPE-ORG | List of Organization IDs                                                                                                                                                                                                                                                                                                                                                                                         |\n| DATA-SCOPE     | Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: `SELF` and `OTHER`. Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes) for more information. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Header",
+          "Description"
+        ],
+        "rows": [
+          [
+            "DATA-SCOPE-ORG",
+            "List of Organization IDs"
+          ],
+          [
+            "DATA-SCOPE",
+            "Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization. Supported headers: SELF and OTHER. Refer to connected orgs data scopes for more information."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/connected-orgs-data-scopes",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "# Query parameter (Customer)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Query parameter (Customer)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "You can use the below query parameters and retrieve points ledger entries of a customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the below query parameters and retrieve points ledger entries of a customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        47,
+        65
+      ],
+      "raw": "| Parameter (Parameters marked with \\* sign are mandatory) | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |\n| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| identifierName\\*                                         | Identifier of the customer. Supported values `mobile`, `id`, `email` and `externalid`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |\n| identifierValue\\*                                        | Value for the identifier. For example, the mobile number or customer ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| source\\*                                                 | Source in which the identifier is available. For example, `instore`, `martjack`, `wechat`, `facebook`, `web_engage`, `tmall`, `taobao`, `jd`, `ecommerce`, `website`, `line`, `all`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| accountId\\*                                              | For sources with multiple accounts, pass the specific accountId for the source.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |\n| tillId                                                   | A customer till is the point of sale (POS) system used in a store. Use the [get active tills API](https://docs.capillarytech.com/reference/get-active-tills) to get the active tills for the organisation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |\n| limit                                                    | The number of results to retrieve.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |\n| offset                                                   | Page number to retrieve.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| programId                                                | Retrieve the ledger details of a specific program. A loyalty program encourages customers to continue shopping or using services by offering rewards, discounts, or special incentives for frequent purchases.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |\n| isFilterBasedOnDate                                      | Indicates whether the date filter is applied when fetching data. If the start date and end date are not included in the API request, `isFilterBasedOnDate` is false, and the API retrieves the user’s entire purchase history. Default value:`true`                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| includeLastOneYearData                                   | If `includeLastOneYearData` is true, the API response includes data from the last year instead of the last 90 days when only `startDate` or `endDate` is included in the API query parameters. Default value: `false`                                                                                                                                                                                                                                                                                                                                                                                                                                                            |\n| startDate                                                | Get ledger information from on or after a specific date. Pass the start date in `YYYY-MM-DDThh:mm:ss` format. **Note:** - The maximum difference between `startDate` and `endDate` must not exceed 90 days. - If only `startDate` or `endDate` is included in the API query parameters, the ledger data for 90 days is retrieved based on the provided startDate or endDate. If `includeLastOneYearData` is true, the API response includes data from the last year instead of the last 90 days. - When `startDate` and `endDate` are not included in the API request parameters, `isFilterBasedOnDate` is false, and the API retrieves the user’s entire past purchase history. |\n| endDate                                                  | Get ledger information until a specific date. Pass the end date in `YYYY-MM-DDThh:mm:ss` format. **Note:** - The maximum difference between `startDate` and `endDate` must not exceed 90 days. - If only `startDate` or `endDate` is included in the API query parameters, the ledger data for 90 days is retrieved based on the provided `startDate` or `endDate`. If `includeLastOneYearData` is true, the API response includes data from the last year instead of the last 90 days. - When `startDate` and `endDate` are not included in the API request parameters, `isFilterBasedOnDate` is false, and the API retrieves the user’s entire past purchase history.          |\n| includeTillConceptEvents                                 | Set the value as `true` to fetch deduction entries triggered at tills mapped to the [concept event](https://docs.capillarytech.com/docs/view-event_details) of the Program ID, even if the deductions are from a different program. When set to `true`, set the `programId` value; otherwise, it will be considered an invalid input combination. The default value is `false`.                                                                                                                                                                                                                                                                                                  |\n| ledgerEntryType                                          | Specify the type of ledger entries you want to fetch. Supported values: `CREDIT`, `DEBIT`, `OPENING_BALANCE`. By default, it fetches all the ledger entry types.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |\n| pointCategoryType                                        | Specify the [point category type](https://docs.capillarytech.com/docs/dimension-tables#points-category) for which you want to fetch ledger details. Supported values: REGULAR, PROMISED, TRIGGER\\_BASED. By default, it fetches all the points category details.                                                                                                                                                                                                                                                                                                                                                                                                                 |\n| includeAlternateCurrencies                               | Set `includeAlternateCurrencies` to `true` to retrieve all alternate currencies available with the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |\n| alternateCurrencyNames                                   | Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter `includeAlternateCurrencies` to `false` when using this. If the value is `true`, `includeAlternateCurrencies` lists all the available currencies.                                                                                                                                                                                                                                                                                                                                                                        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter (Parameters marked with * sign are mandatory)",
+          "Description"
+        ],
+        "rows": [
+          [
+            "identifierName*",
+            "Identifier of the customer. Supported values mobile, id, email and externalid"
+          ],
+          [
+            "identifierValue*",
+            "Value for the identifier. For example, the mobile number or customer ID."
+          ],
+          [
+            "source*",
+            "Source in which the identifier is available. For example, instore, martjack, wechat, facebook, web_engage, tmall, taobao, jd, ecommerce, website, line, all"
+          ],
+          [
+            "accountId*",
+            "For sources with multiple accounts, pass the specific accountId for the source."
+          ],
+          [
+            "tillId",
+            "A customer till is the point of sale (POS) system used in a store. Use the get active tills API to get the active tills for the organisation."
+          ],
+          [
+            "limit",
+            "The number of results to retrieve."
+          ],
+          [
+            "offset",
+            "Page number to retrieve."
+          ],
+          [
+            "programId",
+            "Retrieve the ledger details of a specific program. A loyalty program encourages customers to continue shopping or using services by offering rewards, discounts, or special incentives for frequent purchases."
+          ],
+          [
+            "isFilterBasedOnDate",
+            "Indicates whether the date filter is applied when fetching data. If the start date and end date are not included in the API request, isFilterBasedOnDate is false, and the API retrieves the user’s entire purchase history. Default value:true"
+          ],
+          [
+            "includeLastOneYearData",
+            "If includeLastOneYearData is true, the API response includes data from the last year instead of the last 90 days when only startDate or endDate is included in the API query parameters. Default value: false"
+          ],
+          [
+            "startDate",
+            "Get ledger information from on or after a specific date. Pass the start date in YYYY-MM-DDThh:mm:ss format. Note: - The maximum difference between startDate and endDate must not exceed 90 days. - If only startDate or endDate is included in the API query parameters, the ledger data for 90 days is retrieved based on the provided startDate or endDate. If includeLastOneYearData is true, the API response includes data from the last year instead of the last 90 days. - When startDate and endDate are not included in the API request parameters, isFilterBasedOnDate is false, and the API retrieves the user’s entire past purchase history."
+          ],
+          [
+            "endDate",
+            "Get ledger information until a specific date. Pass the end date in YYYY-MM-DDThh:mm:ss format. Note: - The maximum difference between startDate and endDate must not exceed 90 days. - If only startDate or endDate is included in the API query parameters, the ledger data for 90 days is retrieved based on the provided startDate or endDate. If includeLastOneYearData is true, the API response includes data from the last year instead of the last 90 days. - When startDate and endDate are not included in the API request parameters, isFilterBasedOnDate is false, and the API retrieves the user’s entire past purchase history."
+          ],
+          [
+            "includeTillConceptEvents",
+            "Set the value as true to fetch deduction entries triggered at tills mapped to the concept event of the Program ID, even if the deductions are from a different program. When set to true, set the programId value; otherwise, it will be considered an invalid input combination. The default value is false."
+          ],
+          [
+            "ledgerEntryType",
+            "Specify the type of ledger entries you want to fetch. Supported values: CREDIT, DEBIT, OPENING_BALANCE. By default, it fetches all the ledger entry types."
+          ],
+          [
+            "pointCategoryType",
+            "Specify the point category type for which you want to fetch ledger details. Supported values: REGULAR, PROMISED, TRIGGER_BASED. By default, it fetches all the points category details."
+          ],
+          [
+            "includeAlternateCurrencies",
+            "Set includeAlternateCurrencies to true to retrieve all alternate currencies available with the customer."
+          ],
+          [
+            "alternateCurrencyNames",
+            "Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies to false when using this. If the value is true, includeAlternateCurrencies lists all the available currencies."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-active-tills",
+          "line": 53
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/view-event_details",
+          "line": 61
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#points-category",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "# Query parameter (User group)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Query parameter (User group)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "You can use the below query parameters and retrieve points ledger entries of a usergroup.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the below query parameters and retrieve points ledger entries of a usergroup.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        71,
+        81
+      ],
+      "raw": "| Parameter (Parameters marked with \\* sign are mandatory) | Description                                                                                                                                                                                                                                                                                         |\n| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| identifierName\\*                                         | The identifier of the group to search for the ledger information. The following identifiers are applicable: `groupId`, `externalId`, and `primaryUserId`                                                                                                                                            |\n| identifierValue\\*                                        | The value of the identifier.                                                                                                                                                                                                                                                                        |\n| source\\*                                                 | Source in which the identifier is available. For example, `INSTORE`, `MARTJACK`, `WECHAT`, `FACEBOOK`, `WEB_ENGAGE`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`                                                                                                                 |\n| limit                                                    | The maximum number of items to be retrieved.                                                                                                                                                                                                                                                        |\n| includeAlternateCurrencies                               | Set includeAlternateCurrencies=true to retrieve all alternate currencies available with the group.                                                                                                                                                                                                  |\n| alternateCurrencyNames                                   | Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies to false when you use this. If the value is true, includeAlternateCurrencies lists all the available currencies. |\n| offset                                                   | The starting index for data retrieval.                                                                                                                                                                                                                                                              |\n| sort                                                     | Sort the order of entries from date. The supported values are `ASC` and `DESC`.                                                                                                                                                                                                                     |\n| role                                                     | These are the roles defined by the brands for members in a user group. For example, `PRIMARY`, `SECONDARY`, and so on.                                                                                                                                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter (Parameters marked with * sign are mandatory)",
+          "Description"
+        ],
+        "rows": [
+          [
+            "identifierName*",
+            "The identifier of the group to search for the ledger information. The following identifiers are applicable: groupId, externalId, and primaryUserId"
+          ],
+          [
+            "identifierValue*",
+            "The value of the identifier."
+          ],
+          [
+            "source*",
+            "Source in which the identifier is available. For example, INSTORE, MARTJACK, WECHAT, FACEBOOK, WEB_ENGAGE, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL"
+          ],
+          [
+            "limit",
+            "The maximum number of items to be retrieved."
+          ],
+          [
+            "includeAlternateCurrencies",
+            "Set includeAlternateCurrencies=true to retrieve all alternate currencies available with the group."
+          ],
+          [
+            "alternateCurrencyNames",
+            "Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies to false when you use this. If the value is true, includeAlternateCurrencies lists all the available currencies."
+          ],
+          [
+            "offset",
+            "The starting index for data retrieval."
+          ],
+          [
+            "sort",
+            "Sort the order of entries from date. The supported values are ASC and DESC."
+          ],
+          [
+            "role",
+            "These are the roles defined by the brands for members in a user group. For example, PRIMARY, SECONDARY, and so on."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 83
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        85,
+        252
+      ],
+      "raw": "```json SELF\n{\n    \"customerDetails\": {\n        \"firstName\": \"Porter\",\n        \"lastName\": \"Robinson\",\n        \"userId\": 3923627848,\n        \"entityType\": \"CUSTOMER\"\n    },\n    \"ledgerDetails\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"totalEntries\": 2,\n        \"pageCount\": 1,\n        \"ledgerClosingBalance\": []\n    },\n    \"ledgerEntries\": [\n        {\n            \"eventLogId\": 13499091,\n            \"eventName\": \"TransactionAdd\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:17:57.0\",\n            \"customerDetails\": {\n                \"userId\": 0\n            },\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"CREDIT\",\n                    \"points\": \"100.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                }\n            ],\n            \"netPointsOnEvent\": \"100.000\",\n            \"transactionDetails\": {\n                \"transactionId\": 36363905,\n                \"transactionNumber\": \"1725016677\",\n                \"date\": \"2024-08-30 11:17:57.0\",\n                \"amount\": 5000.0,\n                \"grossBillAmount\": 5000.0,\n                \"source\": \"instore\"\n            },\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"childorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\",\n            \"orgId\": 50406\n        },\n        {\n            \"eventLogId\": 13499017,\n            \"eventName\": \"CustomerRegistration\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:09:02.0\",\n            \"customerDetails\": null,\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"DelayedAccrualPointCategory\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"ExternalTriggerBasedPointCategory\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                }\n            ],\n            \"netPointsOnEvent\": \"0.000\",\n            \"transactionDetails\": {},\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"childorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\",\n            \"orgId\": 50406\n        }\n    ],\n    \"warnings\": []\n}\n```\n```json OTHER\n{\n    \"customerDetails\": {\n        \"firstName\": \"Porter\",\n        \"lastName\": \"Robinson\",\n        \"userId\": 341257848,\n        \"entityType\": \"CUSTOMER\"\n    },\n    \"ledgerDetails\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"totalEntries\": 1,\n        \"pageCount\": 1,\n        \"ledgerClosingBalance\": []\n    },\n    \"ledgerEntries\": [\n        {\n            \"eventLogId\": 13499088,\n            \"eventName\": \"TransactionAdd\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:15:48.0\",\n            \"customerDetails\": {\n                \"userId\": 0\n            },\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"DelayedAccrualPointCategory\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"ExternalTriggerBasedPointCategory\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"CREDIT\",\n                    \"points\": \"50.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                }\n            ],\n            \"netPointsOnEvent\": \"50.000\",\n            \"transactionDetails\": {\n                \"transactionId\": 36363904,\n                \"transactionNumber\": \"1725016548\",\n                \"date\": \"2024-08-30 11:15:48.0\",\n                \"amount\": 6000.0,\n                \"grossBillAmount\": 6000.0,\n                \"source\": \"instore\"\n            },\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"parentorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1147,\n            \"sourceProgramName\": \"ParentOrgDefaultProgram\",\n            \"orgId\": 50405\n        }\n    ],\n    \"warnings\": []\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "SELF",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "SELF",
+          "code": "{\n    \"customerDetails\": {\n        \"firstName\": \"Porter\",\n        \"lastName\": \"Robinson\",\n        \"userId\": 3923627848,\n        \"entityType\": \"CUSTOMER\"\n    },\n    \"ledgerDetails\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"totalEntries\": 2,\n        \"pageCount\": 1,\n        \"ledgerClosingBalance\": []\n    },\n    \"ledgerEntries\": [\n        {\n            \"eventLogId\": 13499091,\n            \"eventName\": \"TransactionAdd\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:17:57.0\",\n            \"customerDetails\": {\n                \"userId\": 0\n            },\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"CREDIT\",\n                    \"points\": \"100.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                }\n            ],\n            \"netPointsOnEvent\": \"100.000\",\n            \"transactionDetails\": {\n                \"transactionId\": 36363905,\n                \"transactionNumber\": \"1725016677\",\n                \"date\": \"2024-08-30 11:17:57.0\",\n                \"amount\": 5000.0,\n                \"grossBillAmount\": 5000.0,\n                \"source\": \"instore\"\n            },\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"childorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\",\n            \"orgId\": 50406\n        },\n        {\n            \"eventLogId\": 13499017,\n            \"eventName\": \"CustomerRegistration\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:09:02.0\",\n            \"customerDetails\": null,\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"DelayedAccrualPointCategory\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"ExternalTriggerBasedPointCategory\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ChildOrg1DefaultProgram\",\n                    \"programId\": 1148\n                }\n            ],\n            \"netPointsOnEvent\": \"0.000\",\n            \"transactionDetails\": {},\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"childorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1148,\n            \"sourceProgramName\": \"ChildOrg1DefaultProgram\",\n            \"orgId\": 50406\n        }\n    ],\n    \"warnings\": []\n}"
+        },
+        {
+          "lang": "json",
+          "title": "OTHER",
+          "code": "{\n    \"customerDetails\": {\n        \"firstName\": \"Porter\",\n        \"lastName\": \"Robinson\",\n        \"userId\": 341257848,\n        \"entityType\": \"CUSTOMER\"\n    },\n    \"ledgerDetails\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"totalEntries\": 1,\n        \"pageCount\": 1,\n        \"ledgerClosingBalance\": []\n    },\n    \"ledgerEntries\": [\n        {\n            \"eventLogId\": 13499088,\n            \"eventName\": \"TransactionAdd\",\n            \"customerId\": 347297848,\n            \"ledgerCreatedDate\": \"2024-08-30 11:15:48.0\",\n            \"customerDetails\": {\n                \"userId\": 0\n            },\n            \"entryDetails\": [\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"DelayedAccrualPointCategory\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"ExternalTriggerBasedPointCategory\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"OPENING_BALANCE\",\n                    \"points\": \"0.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                },\n                {\n                    \"ledgerEntryType\": \"CREDIT\",\n                    \"points\": \"50.000\",\n                    \"pointsCategory\": \"Main\",\n                    \"programName\": \"ParentOrgDefaultProgram\",\n                    \"programId\": 1147\n                }\n            ],\n            \"netPointsOnEvent\": \"50.000\",\n            \"transactionDetails\": {\n                \"transactionId\": 36363904,\n                \"transactionNumber\": \"1725016548\",\n                \"date\": \"2024-08-30 11:15:48.0\",\n                \"amount\": 6000.0,\n                \"grossBillAmount\": 6000.0,\n                \"source\": \"instore\"\n            },\n            \"store\": \"Store1\",\n            \"storeCode\": \"store1\",\n            \"tillCode\": \"parentorgtill1\",\n            \"eventDetails\": {},\n            \"sourceProgramId\": 1147,\n            \"sourceProgramName\": \"ParentOrgDefaultProgram\",\n            \"orgId\": 50405\n        }\n    ],\n    \"warnings\": []\n}"
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        254,
+        254
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 254
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        256,
+        256
+      ],
+      "raw": "# Response parameter (Customer)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameter (Customer)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        258,
+        290
+      ],
+      "raw": "| Parameter            | Description                                                                                                                                                                                                                   |\n| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| customerDetails      | Details of the current customer.                                                                                                                                                                                              |\n| firstName            | First name of the customer.                                                                                                                                                                                                   |\n| lastName             | Last name of the customer.                                                                                                                                                                                                    |\n| userId               | Unique user ID of the customer.                                                                                                                                                                                               |\n| externalId           | External ID of the customer. A customer external ID is a unique identifier that can be manually [generated](https://docs.capillarytech.com/reference/generate-card-external-id) and tagged to a customer during registration. |\n| entityType           | Whether the points are issued to an individual (CUSTOMER), or group (FLEET).                                                                                                                                                  |\n| pageNumber           | Current page number. Default value - 0 (first page).                                                                                                                                                                          |\n| pageSize             | Number of entries shown on the current page.                                                                                                                                                                                  |\n| totalEntries         | Total number of ledger entries available for the customer.                                                                                                                                                                    |\n| pageCount            | Total number of pages according to the page size.                                                                                                                                                                             |\n| eventLogId           | Unique log ID of the current event.                                                                                                                                                                                           |\n| eventName            | Name of the event associated with the points. Example - TransactionAdd, PointsRedemption, DelayedAccrual, PointsExpiry, CustomerRegistration, ReturnBill.                                                                     |\n| ledgerCreatedDate    | Date and time when the points ledger entry was created. Custom Date Format                                                                                                                                                    |\n| entryDetails         | Details of the points ledger.                                                                                                                                                                                                 |\n| ledgerClosingBalance | Details of closing ledger balance on a specific date.                                                                                                                                                                         |\n| pointsCategory       | Category from which points are issued. Supported values: Main (redeemable account), DelayedAccrualPointCategory (promised points), ExternalTriggerBasedPointCategory (promised points).                                       |\n| programName          | Name of the loyalty program associated with points.                                                                                                                                                                           |\n| programId            | Unique ID of the loyalty program.                                                                                                                                                                                             |\n| closingBalance       | Available closing balance on that particular end date.                                                                                                                                                                        |\n| netPointsOnEvent     | Net points in the current event (by adding credits and subtracting debits).                                                                                                                                                   |\n| transactionDetails   | Transaction details of the current points. Applicable for transaction related events.                                                                                                                                         |\n| transactionId        | Transaction ID associated with the points.                                                                                                                                                                                    |\n| transactionNumber    | Transaction number associated with the points.                                                                                                                                                                                |\n| date                 | Date of the transaction.                                                                                                                                                                                                      |\n| amount               | Net transaction amount.                                                                                                                                                                                                       |\n| store                | Name of the store associated with the points.                                                                                                                                                                                 |\n| storeCode            | Unique code of the store associated with points.                                                                                                                                                                              |\n| tillCode             | Unique TILL code associated with points.                                                                                                                                                                                      |\n| sourceProgramId      | The identifier of the source program associated with the entry.                                                                                                                                                               |\n| sourceProgramName    | The name of the source program associated with the entry.                                                                                                                                                                     |\n| orgID                | Unique ID of the organization.                                                                                                                                                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description"
+        ],
+        "rows": [
+          [
+            "customerDetails",
+            "Details of the current customer."
+          ],
+          [
+            "firstName",
+            "First name of the customer."
+          ],
+          [
+            "lastName",
+            "Last name of the customer."
+          ],
+          [
+            "userId",
+            "Unique user ID of the customer."
+          ],
+          [
+            "externalId",
+            "External ID of the customer. A customer external ID is a unique identifier that can be manually generated and tagged to a customer during registration."
+          ],
+          [
+            "entityType",
+            "Whether the points are issued to an individual (CUSTOMER), or group (FLEET)."
+          ],
+          [
+            "pageNumber",
+            "Current page number. Default value - 0 (first page)."
+          ],
+          [
+            "pageSize",
+            "Number of entries shown on the current page."
+          ],
+          [
+            "totalEntries",
+            "Total number of ledger entries available for the customer."
+          ],
+          [
+            "pageCount",
+            "Total number of pages according to the page size."
+          ],
+          [
+            "eventLogId",
+            "Unique log ID of the current event."
+          ],
+          [
+            "eventName",
+            "Name of the event associated with the points. Example - TransactionAdd, PointsRedemption, DelayedAccrual, PointsExpiry, CustomerRegistration, ReturnBill."
+          ],
+          [
+            "ledgerCreatedDate",
+            "Date and time when the points ledger entry was created. Custom Date Format"
+          ],
+          [
+            "entryDetails",
+            "Details of the points ledger."
+          ],
+          [
+            "ledgerClosingBalance",
+            "Details of closing ledger balance on a specific date."
+          ],
+          [
+            "pointsCategory",
+            "Category from which points are issued. Supported values: Main (redeemable account), DelayedAccrualPointCategory (promised points), ExternalTriggerBasedPointCategory (promised points)."
+          ],
+          [
+            "programName",
+            "Name of the loyalty program associated with points."
+          ],
+          [
+            "programId",
+            "Unique ID of the loyalty program."
+          ],
+          [
+            "closingBalance",
+            "Available closing balance on that particular end date."
+          ],
+          [
+            "netPointsOnEvent",
+            "Net points in the current event (by adding credits and subtracting debits)."
+          ],
+          [
+            "transactionDetails",
+            "Transaction details of the current points. Applicable for transaction related events."
+          ],
+          [
+            "transactionId",
+            "Transaction ID associated with the points."
+          ],
+          [
+            "transactionNumber",
+            "Transaction number associated with the points."
+          ],
+          [
+            "date",
+            "Date of the transaction."
+          ],
+          [
+            "amount",
+            "Net transaction amount."
+          ],
+          [
+            "store",
+            "Name of the store associated with the points."
+          ],
+          [
+            "storeCode",
+            "Unique code of the store associated with points."
+          ],
+          [
+            "tillCode",
+            "Unique TILL code associated with points."
+          ],
+          [
+            "sourceProgramId",
+            "The identifier of the source program associated with the entry."
+          ],
+          [
+            "sourceProgramName",
+            "The name of the source program associated with the entry."
+          ],
+          [
+            "orgID",
+            "Unique ID of the organization."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/generate-card-external-id",
+          "line": 264
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        292,
+        292
+      ],
+      "raw": "# Response parameter (User group)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameter (User group)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        294,
+        324
+      ],
+      "raw": "| Parameter             | Description                                                                                                                                                                                           |\n| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| ledgerDetails         | Contains details about the pagination of the ledger entries.                                                                                                                                          |\n| pageNumber            | The current page number in the pagination.                                                                                                                                                            |\n| pageSize              | The number of entries per page in the pagination.                                                                                                                                                     |\n| totalEntries          | The total number of entries in the ledger.                                                                                                                                                            |\n| pageCount             | The total number of pages in the pagination.                                                                                                                                                          |\n| ledgerEntries         | An array containing the ledger entries.                                                                                                                                                               |\n| eventLogId            | A unique identifier for the [event](https://docs.capillarytech.com/docs/view-event_details).                                                                                                          |\n| eventName             | The name of the event.                                                                                                                                                                                |\n| customerId            | The identifier of the customer associated with the event.                                                                                                                                             |\n| ledgerCreatedDate     | The date and time when the ledger entry was created. Custom Date Format                                                                                                                               |\n| customerDetails       | Details of the customer.                                                                                                                                                                              |\n| entryDetails          | An array containing the details about the ledger entry.                                                                                                                                               |\n| ledgerEntryType       | The type of the ledger entry.                                                                                                                                                                         |\n| points                | The number of points associated with the entry.                                                                                                                                                       |\n| pointsCategory        | The category of the points.                                                                                                                                                                           |\n| programName           | The name of the program associated with the entry.                                                                                                                                                    |\n| programId             | The identifier of the program is associated with the entry.                                                                                                                                           |\n| alternateCurrencyName | Alternate currency name. This is visible when you query for the [alternate currency](https://www.google.com/search?q=https://docs.capillarytech.com/docs/alternate-currencies) ledger for a customer. |\n| netPointsOnEvent      | The net points associated with the event.                                                                                                                                                             |\n| transactionDetails    | Details about the transaction.                                                                                                                                                                        |\n| store                 | The store associated with the event.                                                                                                                                                                  |\n| storeCode             | The code of the store associated with the event.                                                                                                                                                      |\n| tillCode              | The code of the till associated with the event.                                                                                                                                                       |\n| eventDetails          | Details about the event.                                                                                                                                                                              |\n| reason                | The reason for the event.                                                                                                                                                                             |\n| orgID                 | Unique ID of the organization.                                                                                                                                                                        |\n| sourceProgramId       | The identifier of the source program associated with the entry.                                                                                                                                       |\n| sourceProgramName     | The name of the source program associated with the entry.                                                                                                                                             |\n| warnings              | An array containing any warning messages.                                                                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description"
+        ],
+        "rows": [
+          [
+            "ledgerDetails",
+            "Contains details about the pagination of the ledger entries."
+          ],
+          [
+            "pageNumber",
+            "The current page number in the pagination."
+          ],
+          [
+            "pageSize",
+            "The number of entries per page in the pagination."
+          ],
+          [
+            "totalEntries",
+            "The total number of entries in the ledger."
+          ],
+          [
+            "pageCount",
+            "The total number of pages in the pagination."
+          ],
+          [
+            "ledgerEntries",
+            "An array containing the ledger entries."
+          ],
+          [
+            "eventLogId",
+            "A unique identifier for the event."
+          ],
+          [
+            "eventName",
+            "The name of the event."
+          ],
+          [
+            "customerId",
+            "The identifier of the customer associated with the event."
+          ],
+          [
+            "ledgerCreatedDate",
+            "The date and time when the ledger entry was created. Custom Date Format"
+          ],
+          [
+            "customerDetails",
+            "Details of the customer."
+          ],
+          [
+            "entryDetails",
+            "An array containing the details about the ledger entry."
+          ],
+          [
+            "ledgerEntryType",
+            "The type of the ledger entry."
+          ],
+          [
+            "points",
+            "The number of points associated with the entry."
+          ],
+          [
+            "pointsCategory",
+            "The category of the points."
+          ],
+          [
+            "programName",
+            "The name of the program associated with the entry."
+          ],
+          [
+            "programId",
+            "The identifier of the program is associated with the entry."
+          ],
+          [
+            "alternateCurrencyName",
+            "Alternate currency name. This is visible when you query for the alternate currency ledger for a customer."
+          ],
+          [
+            "netPointsOnEvent",
+            "The net points associated with the event."
+          ],
+          [
+            "transactionDetails",
+            "Details about the transaction."
+          ],
+          [
+            "store",
+            "The store associated with the event."
+          ],
+          [
+            "storeCode",
+            "The code of the store associated with the event."
+          ],
+          [
+            "tillCode",
+            "The code of the till associated with the event."
+          ],
+          [
+            "eventDetails",
+            "Details about the event."
+          ],
+          [
+            "reason",
+            "The reason for the event."
+          ],
+          [
+            "orgID",
+            "Unique ID of the organization."
+          ],
+          [
+            "sourceProgramId",
+            "The identifier of the source program associated with the entry."
+          ],
+          [
+            "sourceProgramName",
+            "The name of the source program associated with the entry."
+          ],
+          [
+            "warnings",
+            "An array containing any warning messages."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/view-event_details",
+          "line": 302
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/alternate-currencies",
+          "line": 313
+        }
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        326,
+        326
+      ],
+      "raw": "# API specific error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API specific error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        328,
+        333
+      ],
+      "raw": "| Error      | Description                                                                                                    |\n| ---------- | -------------------------------------------------------------------------------------------------------------- |\n| **8013**   | Identifier name missing or incorrect.                                                                          |\n| **8015**   | Identifier value missing or incorrect.                                                                         |\n| **8003**   | Source is missing or incorrect.                                                                                |\n| **310144** | Connected Orgs not set properly in Headers. Check whether the target organization is a connected organization. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error",
+          "Description"
+        ],
+        "rows": [
+          [
+            "8013",
+            "Identifier name missing or incorrect."
+          ],
+          [
+            "8015",
+            "Identifier value missing or incorrect."
+          ],
+          [
+            "8003",
+            "Source is missing or incorrect."
+          ],
+          [
+            "310144",
+            "Connected Orgs not set properly in Headers. Check whether the target organization is a connected organization."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        335,
+        335
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        337,
+        861
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/v2.1/pointsLedger/getCustomerLedgerInfo\": {\n      \"get\": {\n        \"summary\": \"Get Points Ledger Information in Connected Orgs\",\n        \"description\": \"\",\n        \"operationId\": \"connectedorgs-get-customer-ledger-info\",\n        \"parameters\": [\n          {\n            \"name\": \"identifierName\",\n            \"in\": \"query\",\n            \"description\": \"Identifier type to identify the customer or group. For user groups, the following identifiers are applicable: groupId, externalId, and primaryUserId. For customers, the applicable identifiers include mobile, email, externalId, cuid, and id.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"identifierValue\",\n            \"in\": \"query\",\n            \"description\": \"Value of the specified identifier type of the customer.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"source\",\n            \"in\": \"query\",\n            \"description\": \"Source in which the identifier is available.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"accountId\",\n            \"in\": \"query\",\n            \"description\": \"For a source with multiple accounts, pass the specific accountId in which the customer identifier is available.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"tillId\",\n            \"in\": \"query\",\n            \"description\": \"Get the customer’s ledger information of a specific TILL. Pass the unique till ID.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 10\n            }\n          },\n          {\n            \"name\": \"limit\",\n            \"in\": \"query\",\n            \"description\": \"Number of results to retrieve. Max value supported is 10.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"offset\",\n            \"in\": \"query\",\n            \"description\": \"Page number to show.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 0\n            }\n          },\n          {\n            \"name\": \"programId\",\n            \"in\": \"query\",\n            \"description\": \"Retrieve the ledger details of a specific program. By default, details of all programs will be retrieved.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"startDate\",\n            \"in\": \"query\",\n            \"description\": \"Get ledger information from on or after a specific date. Pass the start date in YYYY-MM-DDThh:mm:ss format. Default value is 90 days\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"endDate\",\n            \"in\": \"query\",\n            \"description\": \"Get ledger information until a specific date. Pass the end date in YYYY-MM-DDThh:mm:ss format. Default value is 90 days\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"includeTillConceptEvents\",\n            \"in\": \"query\",\n            \"description\": \"Pass true to fetch deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is false. When true, pass the programId also, else it will be qualified as invalid input combination.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"ledgerEntryType\",\n            \"in\": \"query\",\n            \"description\": \"The type of ledger entries to fetch. By default, it fetches all the ledger entry types.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"pointCategoryType\",\n            \"in\": \"query\",\n            \"description\": \"The point category type for which you want to fetch ledger details. By default, it fetches all the points category details.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"type\",\n            \"in\": \"query\",\n            \"description\": \"Setting this field returns entries for type of user, whether individual customer or a group. Only two values are allowed here - CUTSOMER, USERGROUP2\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"isPrimaryUser\",\n            \"in\": \"query\",\n            \"description\": \"Returns entry for the primary member of a group, in case of usergroups.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"excludeEvents\",\n            \"in\": \"query\",\n            \"description\": \"Exclude certain events if you dont want to retrieve entries from that event.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"eventFilter\",\n            \"in\": \"query\",\n            \"description\": \"Retrieves the value of that particular event, which is passed in this filed. Eg. TransactionAdd, CustomerRegistration etc.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"roles\",\n            \"in\": \"query\",\n            \"description\": \"These are the roles defined by the brands for members in a user group. For example, PRIMARY, SECONDARY, and so on.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"includeLastOneYearData\",\n            \"in\": \"query\",\n            \"description\": \"If set to true, the API response will include data from the last year instead of the last 90 days when only startDate or endDate is passed in the API query parameter.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"order\",\n            \"in\": \"query\",\n            \"description\": \"Sort the order of entries from date. ASC or DESC\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"isFilterBasedOnDate\",\n            \"in\": \"query\",\n            \"description\": \"Indicates whether the date filter should be applied when fetching data from the database.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"includeAlternateCurrencies\",\n            \"in\": \"query\",\n            \"description\": \"Pass includeAlternateCurrencies=true to retrieve all alternate currencies available with the customer.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"alternateCurrencyNames\",\n            \"in\": \"query\",\n            \"description\": \"Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies to false when you use this. If the value is true, includeAlternateCurrencies lists all the available currencies.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"DATA-SCOPE-ORG\",\n            \"in\": \"header\",\n            \"description\": \"List of Organization IDs\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"DATA-SCOPE\",\n            \"in\": \"header\",\n            \"description\": \"The scope to authorize access (SELF, OTHER, ALL)\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"CUSTOMER\": {\n                    \"value\": \"{\\n    \\\"customerDetails\\\": {\\n        \\\"firstName\\\": \\\"Sushant\\\",\\n        \\\"lastName\\\": \\\"Raj\\\",\\n        \\\"userId\\\": 347297848,\\n        \\\"entityType\\\": \\\"CUSTOMER\\\"\\n    },\\n    \\\"ledgerDetails\\\": {\\n        \\\"pageNumber\\\": 0,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalEntries\\\": 2,\\n        \\\"pageCount\\\": 1,\\n        \\\"ledgerClosingBalance\\\": []\\n    },\\n    \\\"ledgerEntries\\\": [\\n        {\\n            \\\"eventLogId\\\": 13499091,\\n            \\\"eventName\\\": \\\"TransactionAdd\\\",\\n            \\\"customerId\\\": 347297848,\\n            \\\"ledgerCreatedDate\\\": \\\"Fri Aug 30 11:17:57 GMT 2024\\\",\\n            \\\"customerDetails\\\": {\\n                \\\"userId\\\": 0\\n            },\\n            \\\"entryDetails\\\": [\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n                    \\\"points\\\": \\\"100.000\\\",\\n                    \\\"pointsCategory\\\": \\\"Main\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                }\\n            ],\\n            \\\"netPointsOnEvent\\\": \\\"100.000\\\",\\n            \\\"transactionDetails\\\": {\\n                \\\"transactionId\\\": 36363905,\\n                \\\"transactionNumber\\\": \\\"1725016677\\\",\\n                \\\"date\\\": \\\"2024-08-30 11:17:57.0\\\",\\n                \\\"amount\\\": 5000.0,\\n                \\\"grossBillAmount\\\": 5000.0,\\n                \\\"source\\\": \\\"instore\\\"\\n            },\\n            \\\"store\\\": \\\"Store1\\\",\\n            \\\"storeCode\\\": \\\"store1\\\",\\n            \\\"tillCode\\\": \\\"childorgtill1\\\",\\n            \\\"eventDetails\\\": {},\\n            \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n        },\\n        {\\n            \\\"eventLogId\\\": 13499017,\\n            \\\"eventName\\\": \\\"CustomerRegistration\\\",\\n            \\\"customerId\\\": 347297848,\\n            \\\"ledgerCreatedDate\\\": \\\"Fri Aug 30 11:09:02 GMT 2024\\\",\\n            \\\"customerDetails\\\": null,\\n            \\\"entryDetails\\\": [\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"DelayedAccrualPointCategory\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                },\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"ExternalTriggerBasedPointCategory\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                },\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"Main\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                }\\n            ],\\n            \\\"netPointsOnEvent\\\": \\\"0.000\\\",\\n            \\\"transactionDetails\\\": {},\\n            \\\"store\\\": \\\"Store1\\\",\\n            \\\"storeCode\\\": \\\"store1\\\",\\n            \\\"tillCode\\\": \\\"childorgtill1\\\",\\n            \\\"eventDetails\\\": {},\\n            \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n        }\\n    ],\\n    \\\"warnings\\\": []\\n}\"\n                  },\n                  \"GROUP\": {\n                    \"value\": \"{\\n  \\\"ledgerDetails\\\": {\\n    \\\"pageNumber\\\": 0,\\n    \\\"pageSize\\\": 10,\\n    \\\"totalEntries\\\": 2,\\n    \\\"pageCount\\\": 1\\n  },\\n  \\\"ledgerEntries\\\": [\\n    {\\n      \\\"eventLogId\\\": 508308379,\\n      \\\"eventName\\\": \\\"AllocateGoodwillPoints\\\",\\n      \\\"customerId\\\": -2860,\\n      \\\"ledgerCreatedDate\\\": \\\"2023-06-21 13:34:16.0\\\",\\n      \\\"customerDetails\\\": null,\\n      \\\"entryDetails\\\": [\\n        {\\n          \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n          \\\"points\\\": \\\"350.000\\\",\\n          \\\"pointsCategory\\\": \\\"Main\\\",\\n          \\\"programName\\\": \\\"Default Program\\\",\\n          \\\"programId\\\": 469\\n        }\\n      ],\\n      \\\"netPointsOnEvent\\\": \\\"350.000\\\",\\n      \\\"transactionDetails\\\": {},\\n      \\\"store\\\": \\\"test\\\",\\n      \\\"storeCode\\\": \\\"teststore\\\",\\n      \\\"tillCode\\\": \\\"neestoretillssnee23\\\",\\n      \\\"eventDetails\\\": {\\n        \\\"reason\\\": \\\"POINTS_ISSUE\\\"\\n      }\\n    },\\n    {\\n      \\\"eventLogId\\\": 508308319,\\n      \\\"eventName\\\": \\\"AllocateGoodwillPoints\\\",\\n      \\\"customerId\\\": -2860,\\n      \\\"ledgerCreatedDate\\\": \\\"2023-06-21 13:32:44.0\\\",\\n      \\\"customerDetails\\\": null,\\n      \\\"entryDetails\\\": [\\n        {\\n          \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n          \\\"points\\\": \\\"100.000\\\",\\n          \\\"pointsCategory\\\": \\\"Main\\\",\\n          \\\"programName\\\": \\\"Default Program\\\",\\n          \\\"programId\\\": 469\\n        }\\n      ],\\n      \\\"netPointsOnEvent\\\": \\\"100.000\\\",\\n      \\\"transactionDetails\\\": {},\\n      \\\"store\\\": \\\"test\\\",\\n      \\\"storeCode\\\": \\\"teststore\\\",\\n      \\\"tillCode\\\": \\\"neestoretillssnee23\\\",\\n      \\\"eventDetails\\\": {\\n        \\\"reason\\\": \\\"POINTS_ISSUE\\\"\\n        \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n      }\\n    }\\n  ],\\n  \\\"warnings\\\": []\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"customerDetails\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"firstName\": {\n                          \"type\": \"string\",\n                          \"example\": \"Sushant\"\n                        },\n                        \"lastName\": {\n                          \"type\": \"string\",\n                          \"example\": \"Raj\"\n                        },\n                        \"userId\": {\n                          \"type\": \"integer\",\n                          \"example\": 347297848,\n                          \"default\": 0\n                        },\n                        \"entityType\": {\n                          \"type\": \"string\",\n                          \"example\": \"CUSTOMER\"\n                        }\n                      }\n                    },\n                    \"ledgerDetails\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"pageNumber\": {\n                          \"type\": \"integer\",\n                          \"example\": 0,\n                          \"default\": 0\n                        },\n                        \"pageSize\": {\n                          \"type\": \"integer\",\n                          \"example\": 10,\n                          \"default\": 0\n                        },\n                        \"totalEntries\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"pageCount\": {\n                          \"type\": \"integer\",\n                          \"example\": 1,\n                          \"default\": 0\n                        },\n                        \"ledgerClosingBalance\": {\n                          \"type\": \"array\"\n                        }\n                      }\n                    },\n                    \"ledgerEntries\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"eventLogId\": {\n                            \"type\": \"integer\",\n                            \"example\": 13499091,\n                            \"default\": 0\n                          },\n                          \"eventName\": {\n                            \"type\": \"string\",\n                            \"example\": \"TransactionAdd\"\n                          },\n                          \"customerId\": {\n                            \"type\": \"integer\",\n                            \"example\": 347297848,\n                            \"default\": 0\n                          },\n                          \"ledgerCreatedDate\": {\n                            \"type\": \"string\",\n                            \"example\": \"Fri Aug 30 11:17:57 GMT 2024\"\n                          },\n                          \"customerDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"userId\": {\n                                \"type\": \"integer\",\n                                \"example\": 0,\n                                \"default\": 0\n                              }\n                            }\n                          },\n                          \"entryDetails\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"ledgerEntryType\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"CREDIT\"\n                                },\n                                \"points\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"100.000\"\n                                },\n                                \"pointsCategory\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Main\"\n                                },\n                                \"programName\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"ChildOrg1DefaultProgram\"\n                                },\n                                \"programId\": {\n                                  \"type\": \"integer\",\n                                  \"example\": 1148,\n                                  \"default\": 0\n                                }\n                              }\n                            }\n                          },\n                          \"netPointsOnEvent\": {\n                            \"type\": \"string\",\n                            \"example\": \"100.000\"\n                          },\n                          \"transactionDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 36363905,\n                                \"default\": 0\n                              },\n                              \"transactionNumber\": {\n                                \"type\": \"string\",\n                                \"example\": \"1725016677\"\n                              },\n                              \"date\": {\n                                \"type\": \"string\",\n                                \"example\": \"2024-08-30 11:17:57.0\"\n                              },\n                              \"amount\": {\n                                \"type\": \"integer\",\n                                \"example\": 5000,\n                                \"default\": 0\n                              },\n                              \"grossBillAmount\": {\n                                \"type\": \"integer\",\n                                \"example\": 5000,\n                                \"default\": 0\n                              },\n                              \"source\": {\n                                \"type\": \"string\",\n                                \"example\": \"instore\"\n                              }\n                            }\n                          },\n                          \"store\": {\n                            \"type\": \"string\",\n                            \"example\": \"Store1\"\n                          },\n                          \"storeCode\": {\n                            \"type\": \"string\",\n                            \"example\": \"store1\"\n                          },\n                          \"tillCode\": {\n                            \"type\": \"string\",\n                            \"example\": \"childorgtill1\"\n                          },\n                          \"eventDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {}\n                          },\n                          \"sourceProgramId\": {\n                            \"type\": \"integer\",\n                            \"example\": 1148,\n                            \"default\": 0\n                          },\n                          \"sourceProgramName\": {\n                            \"type\": \"string\",\n                            \"example\": \"ChildOrg1DefaultProgram\"\n                          },\n                          \"orgId\": {\n                            \"type\": \"integer\",\n                            \"example\": 50406,\n                            \"default\": 0\n                          }\n                        }\n                      }\n                    },\n                    \"warnings\": {\n                      \"type\": \"array\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": false,\\n            \\\"code\\\": 8003,\\n            \\\"message\\\": \\\"Invalid source\\\"\\n        }\\n    ]\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"errors\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"status\": {\n                            \"type\": \"boolean\",\n                            \"example\": false,\n                            \"default\": true\n                          },\n                          \"code\": {\n                            \"type\": \"integer\",\n                            \"example\": 8003,\n                            \"default\": 0\n                          },\n                          \"message\": {\n                            \"type\": \"string\",\n                            \"example\": \"Invalid source\"\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://host/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE' \\\\\\n--header 'DATA-SCOPE: OTHER' \\\\\\n--header 'DATA-SCOPE-ORG: 50405' \\\\\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/v2.1/pointsLedger/getCustomerLedgerInfo\": {\n      \"get\": {\n        \"summary\": \"Get Points Ledger Information in Connected Orgs\",\n        \"description\": \"\",\n        \"operationId\": \"connectedorgs-get-customer-ledger-info\",\n        \"parameters\": [\n          {\n            \"name\": \"identifierName\",\n            \"in\": \"query\",\n            \"description\": \"Identifier type to identify the customer or group. For user groups, the following identifiers are applicable: groupId, externalId, and primaryUserId. For customers, the applicable identifiers include mobile, email, externalId, cuid, and id.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"identifierValue\",\n            \"in\": \"query\",\n            \"description\": \"Value of the specified identifier type of the customer.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"source\",\n            \"in\": \"query\",\n            \"description\": \"Source in which the identifier is available.\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"accountId\",\n            \"in\": \"query\",\n            \"description\": \"For a source with multiple accounts, pass the specific accountId in which the customer identifier is available.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"tillId\",\n            \"in\": \"query\",\n            \"description\": \"Get the customer’s ledger information of a specific TILL. Pass the unique till ID.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 10\n            }\n          },\n          {\n            \"name\": \"limit\",\n            \"in\": \"query\",\n            \"description\": \"Number of results to retrieve. Max value supported is 10.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"offset\",\n            \"in\": \"query\",\n            \"description\": \"Page number to show.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 0\n            }\n          },\n          {\n            \"name\": \"programId\",\n            \"in\": \"query\",\n            \"description\": \"Retrieve the ledger details of a specific program. By default, details of all programs will be retrieved.\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"startDate\",\n            \"in\": \"query\",\n            \"description\": \"Get ledger information from on or after a specific date. Pass the start date in YYYY-MM-DDThh:mm:ss format. Default value is 90 days\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"endDate\",\n            \"in\": \"query\",\n            \"description\": \"Get ledger information until a specific date. Pass the end date in YYYY-MM-DDThh:mm:ss format. Default value is 90 days\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"includeTillConceptEvents\",\n            \"in\": \"query\",\n            \"description\": \"Pass true to fetch deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is false. When true, pass the programId also, else it will be qualified as invalid input combination.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"ledgerEntryType\",\n            \"in\": \"query\",\n            \"description\": \"The type of ledger entries to fetch. By default, it fetches all the ledger entry types.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"pointCategoryType\",\n            \"in\": \"query\",\n            \"description\": \"The point category type for which you want to fetch ledger details. By default, it fetches all the points category details.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"type\",\n            \"in\": \"query\",\n            \"description\": \"Setting this field returns entries for type of user, whether individual customer or a group. Only two values are allowed here - CUTSOMER, USERGROUP2\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"isPrimaryUser\",\n            \"in\": \"query\",\n            \"description\": \"Returns entry for the primary member of a group, in case of usergroups.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"excludeEvents\",\n            \"in\": \"query\",\n            \"description\": \"Exclude certain events if you dont want to retrieve entries from that event.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"eventFilter\",\n            \"in\": \"query\",\n            \"description\": \"Retrieves the value of that particular event, which is passed in this filed. Eg. TransactionAdd, CustomerRegistration etc.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"roles\",\n            \"in\": \"query\",\n            \"description\": \"These are the roles defined by the brands for members in a user group. For example, PRIMARY, SECONDARY, and so on.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"includeLastOneYearData\",\n            \"in\": \"query\",\n            \"description\": \"If set to true, the API response will include data from the last year instead of the last 90 days when only startDate or endDate is passed in the API query parameter.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"order\",\n            \"in\": \"query\",\n            \"description\": \"Sort the order of entries from date. ASC or DESC\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"isFilterBasedOnDate\",\n            \"in\": \"query\",\n            \"description\": \"Indicates whether the date filter should be applied when fetching data from the database.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"includeAlternateCurrencies\",\n            \"in\": \"query\",\n            \"description\": \"Pass includeAlternateCurrencies=true to retrieve all alternate currencies available with the customer.\",\n            \"schema\": {\n              \"type\": \"boolean\"\n            }\n          },\n          {\n            \"name\": \"alternateCurrencyNames\",\n            \"in\": \"query\",\n            \"description\": \"Filter alternate currencies for the customer based on the name. You can also pass a list of comma-separated alternate currency names. Set the parameter includeAlternateCurrencies to false when you use this. If the value is true, includeAlternateCurrencies lists all the available currencies.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"DATA-SCOPE-ORG\",\n            \"in\": \"header\",\n            \"description\": \"List of Organization IDs\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"DATA-SCOPE\",\n            \"in\": \"header\",\n            \"description\": \"The scope to authorize access (SELF, OTHER, ALL)\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"CUSTOMER\": {\n                    \"value\": \"{\\n    \\\"customerDetails\\\": {\\n        \\\"firstName\\\": \\\"Sushant\\\",\\n        \\\"lastName\\\": \\\"Raj\\\",\\n        \\\"userId\\\": 347297848,\\n        \\\"entityType\\\": \\\"CUSTOMER\\\"\\n    },\\n    \\\"ledgerDetails\\\": {\\n        \\\"pageNumber\\\": 0,\\n        \\\"pageSize\\\": 10,\\n        \\\"totalEntries\\\": 2,\\n        \\\"pageCount\\\": 1,\\n        \\\"ledgerClosingBalance\\\": []\\n    },\\n    \\\"ledgerEntries\\\": [\\n        {\\n            \\\"eventLogId\\\": 13499091,\\n            \\\"eventName\\\": \\\"TransactionAdd\\\",\\n            \\\"customerId\\\": 347297848,\\n            \\\"ledgerCreatedDate\\\": \\\"Fri Aug 30 11:17:57 GMT 2024\\\",\\n            \\\"customerDetails\\\": {\\n                \\\"userId\\\": 0\\n            },\\n            \\\"entryDetails\\\": [\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n                    \\\"points\\\": \\\"100.000\\\",\\n                    \\\"pointsCategory\\\": \\\"Main\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                }\\n            ],\\n            \\\"netPointsOnEvent\\\": \\\"100.000\\\",\\n            \\\"transactionDetails\\\": {\\n                \\\"transactionId\\\": 36363905,\\n                \\\"transactionNumber\\\": \\\"1725016677\\\",\\n                \\\"date\\\": \\\"2024-08-30 11:17:57.0\\\",\\n                \\\"amount\\\": 5000.0,\\n                \\\"grossBillAmount\\\": 5000.0,\\n                \\\"source\\\": \\\"instore\\\"\\n            },\\n            \\\"store\\\": \\\"Store1\\\",\\n            \\\"storeCode\\\": \\\"store1\\\",\\n            \\\"tillCode\\\": \\\"childorgtill1\\\",\\n            \\\"eventDetails\\\": {},\\n            \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n        },\\n        {\\n            \\\"eventLogId\\\": 13499017,\\n            \\\"eventName\\\": \\\"CustomerRegistration\\\",\\n            \\\"customerId\\\": 347297848,\\n            \\\"ledgerCreatedDate\\\": \\\"Fri Aug 30 11:09:02 GMT 2024\\\",\\n            \\\"customerDetails\\\": null,\\n            \\\"entryDetails\\\": [\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"DelayedAccrualPointCategory\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                },\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"ExternalTriggerBasedPointCategory\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                },\\n                {\\n                    \\\"ledgerEntryType\\\": \\\"OPENING_BALANCE\\\",\\n                    \\\"points\\\": \\\"0.000\\\",\\n                    \\\"pointsCategory\\\": \\\"Main\\\",\\n                    \\\"programName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n                    \\\"programId\\\": 1148\\n                }\\n            ],\\n            \\\"netPointsOnEvent\\\": \\\"0.000\\\",\\n            \\\"transactionDetails\\\": {},\\n            \\\"store\\\": \\\"Store1\\\",\\n            \\\"storeCode\\\": \\\"store1\\\",\\n            \\\"tillCode\\\": \\\"childorgtill1\\\",\\n            \\\"eventDetails\\\": {},\\n            \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n        }\\n    ],\\n    \\\"warnings\\\": []\\n}\"\n                  },\n                  \"GROUP\": {\n                    \"value\": \"{\\n  \\\"ledgerDetails\\\": {\\n    \\\"pageNumber\\\": 0,\\n    \\\"pageSize\\\": 10,\\n    \\\"totalEntries\\\": 2,\\n    \\\"pageCount\\\": 1\\n  },\\n  \\\"ledgerEntries\\\": [\\n    {\\n      \\\"eventLogId\\\": 508308379,\\n      \\\"eventName\\\": \\\"AllocateGoodwillPoints\\\",\\n      \\\"customerId\\\": -2860,\\n      \\\"ledgerCreatedDate\\\": \\\"2023-06-21 13:34:16.0\\\",\\n      \\\"customerDetails\\\": null,\\n      \\\"entryDetails\\\": [\\n        {\\n          \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n          \\\"points\\\": \\\"350.000\\\",\\n          \\\"pointsCategory\\\": \\\"Main\\\",\\n          \\\"programName\\\": \\\"Default Program\\\",\\n          \\\"programId\\\": 469\\n        }\\n      ],\\n      \\\"netPointsOnEvent\\\": \\\"350.000\\\",\\n      \\\"transactionDetails\\\": {},\\n      \\\"store\\\": \\\"test\\\",\\n      \\\"storeCode\\\": \\\"teststore\\\",\\n      \\\"tillCode\\\": \\\"neestoretillssnee23\\\",\\n      \\\"eventDetails\\\": {\\n        \\\"reason\\\": \\\"POINTS_ISSUE\\\"\\n      }\\n    },\\n    {\\n      \\\"eventLogId\\\": 508308319,\\n      \\\"eventName\\\": \\\"AllocateGoodwillPoints\\\",\\n      \\\"customerId\\\": -2860,\\n      \\\"ledgerCreatedDate\\\": \\\"2023-06-21 13:32:44.0\\\",\\n      \\\"customerDetails\\\": null,\\n      \\\"entryDetails\\\": [\\n        {\\n          \\\"ledgerEntryType\\\": \\\"CREDIT\\\",\\n          \\\"points\\\": \\\"100.000\\\",\\n          \\\"pointsCategory\\\": \\\"Main\\\",\\n          \\\"programName\\\": \\\"Default Program\\\",\\n          \\\"programId\\\": 469\\n        }\\n      ],\\n      \\\"netPointsOnEvent\\\": \\\"100.000\\\",\\n      \\\"transactionDetails\\\": {},\\n      \\\"store\\\": \\\"test\\\",\\n      \\\"storeCode\\\": \\\"teststore\\\",\\n      \\\"tillCode\\\": \\\"neestoretillssnee23\\\",\\n      \\\"eventDetails\\\": {\\n        \\\"reason\\\": \\\"POINTS_ISSUE\\\"\\n        \\\"sourceProgramId\\\": 1148,\\n            \\\"sourceProgramName\\\": \\\"ChildOrg1DefaultProgram\\\",\\n            \\\"orgId\\\": 50406\\n      }\\n    }\\n  ],\\n  \\\"warnings\\\": []\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"customerDetails\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"firstName\": {\n                          \"type\": \"string\",\n                          \"example\": \"Sushant\"\n                        },\n                        \"lastName\": {\n                          \"type\": \"string\",\n                          \"example\": \"Raj\"\n                        },\n                        \"userId\": {\n                          \"type\": \"integer\",\n                          \"example\": 347297848,\n                          \"default\": 0\n                        },\n                        \"entityType\": {\n                          \"type\": \"string\",\n                          \"example\": \"CUSTOMER\"\n                        }\n                      }\n                    },\n                    \"ledgerDetails\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"pageNumber\": {\n                          \"type\": \"integer\",\n                          \"example\": 0,\n                          \"default\": 0\n                        },\n                        \"pageSize\": {\n                          \"type\": \"integer\",\n                          \"example\": 10,\n                          \"default\": 0\n                        },\n                        \"totalEntries\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"pageCount\": {\n                          \"type\": \"integer\",\n                          \"example\": 1,\n                          \"default\": 0\n                        },\n                        \"ledgerClosingBalance\": {\n                          \"type\": \"array\"\n                        }\n                      }\n                    },\n                    \"ledgerEntries\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"eventLogId\": {\n                            \"type\": \"integer\",\n                            \"example\": 13499091,\n                            \"default\": 0\n                          },\n                          \"eventName\": {\n                            \"type\": \"string\",\n                            \"example\": \"TransactionAdd\"\n                          },\n                          \"customerId\": {\n                            \"type\": \"integer\",\n                            \"example\": 347297848,\n                            \"default\": 0\n                          },\n                          \"ledgerCreatedDate\": {\n                            \"type\": \"string\",\n                            \"example\": \"Fri Aug 30 11:17:57 GMT 2024\"\n                          },\n                          \"customerDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"userId\": {\n                                \"type\": \"integer\",\n                                \"example\": 0,\n                                \"default\": 0\n                              }\n                            }\n                          },\n                          \"entryDetails\": {\n                            \"type\": \"array\",\n                            \"items\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"ledgerEntryType\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"CREDIT\"\n                                },\n                                \"points\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"100.000\"\n                                },\n                                \"pointsCategory\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Main\"\n                                },\n                                \"programName\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"ChildOrg1DefaultProgram\"\n                                },\n                                \"programId\": {\n                                  \"type\": \"integer\",\n                                  \"example\": 1148,\n                                  \"default\": 0\n                                }\n                              }\n                            }\n                          },\n                          \"netPointsOnEvent\": {\n                            \"type\": \"string\",\n                            \"example\": \"100.000\"\n                          },\n                          \"transactionDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 36363905,\n                                \"default\": 0\n                              },\n                              \"transactionNumber\": {\n                                \"type\": \"string\",\n                                \"example\": \"1725016677\"\n                              },\n                              \"date\": {\n                                \"type\": \"string\",\n                                \"example\": \"2024-08-30 11:17:57.0\"\n                              },\n                              \"amount\": {\n                                \"type\": \"integer\",\n                                \"example\": 5000,\n                                \"default\": 0\n                              },\n                              \"grossBillAmount\": {\n                                \"type\": \"integer\",\n                                \"example\": 5000,\n                                \"default\": 0\n                              },\n                              \"source\": {\n                                \"type\": \"string\",\n                                \"example\": \"instore\"\n                              }\n                            }\n                          },\n                          \"store\": {\n                            \"type\": \"string\",\n                            \"example\": \"Store1\"\n                          },\n                          \"storeCode\": {\n                            \"type\": \"string\",\n                            \"example\": \"store1\"\n                          },\n                          \"tillCode\": {\n                            \"type\": \"string\",\n                            \"example\": \"childorgtill1\"\n                          },\n                          \"eventDetails\": {\n                            \"type\": \"object\",\n                            \"properties\": {}\n                          },\n                          \"sourceProgramId\": {\n                            \"type\": \"integer\",\n                            \"example\": 1148,\n                            \"default\": 0\n                          },\n                          \"sourceProgramName\": {\n                            \"type\": \"string\",\n                            \"example\": \"ChildOrg1DefaultProgram\"\n                          },\n                          \"orgId\": {\n                            \"type\": \"integer\",\n                            \"example\": 50406,\n                            \"default\": 0\n                          }\n                        }\n                      }\n                    },\n                    \"warnings\": {\n                      \"type\": \"array\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"errors\\\": [\\n        {\\n            \\\"status\\\": false,\\n            \\\"code\\\": 8003,\\n            \\\"message\\\": \\\"Invalid source\\\"\\n        }\\n    ]\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"errors\": {\n                      \"type\": \"array\",\n                      \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                          \"status\": {\n                            \"type\": \"boolean\",\n                            \"example\": false,\n                            \"default\": true\n                          },\n                          \"code\": {\n                            \"type\": \"integer\",\n                            \"example\": 8003,\n                            \"default\": 0\n                          },\n                          \"message\": {\n                            \"type\": \"string\",\n                            \"example\": \"Invalid source\"\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://host/v2.1/pointsLedger/getCustomerLedgerInfo?identifierName=mobile&identifierValue=9988221100&source=INSTORE' \\\\\\n--header 'DATA-SCOPE: OTHER' \\\\\\n--header 'DATA-SCOPE-ORG: 50405' \\\\\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

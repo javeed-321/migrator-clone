@@ -1,0 +1,238 @@
+{
+  "slug": "docs/connectplus-databricks-job-trigger-template",
+  "source": "https://docs.capillarytech.com/docs/connectplus-databricks-job-trigger-template.md",
+  "url": "https://docs.capillarytech.com/docs/connectplus-databricks-job-trigger-template",
+  "title": "Connectplus Databricks Job Trigger Template",
+  "description": "",
+  "section": "Explore templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-23T06:08:58.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Could not parse expression with acorn",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 6,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Databricks job trigger template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Databricks job trigger template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The data bricks job trigger template allows you to trigger a data bricks notebook job that is already created. This template can be used to validate a set of records and further process the records that meet the validation requirements. The validation rules are defined in the Databricks notebook.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The data bricks job trigger template allows you to trigger a data bricks notebook job that is already created. This template can be used to validate a set of records and further process the records that meet the validation requirements. The validation rules are defined in the Databricks notebook.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "A brand wants to ensure the accuracy and integrity of the data before processing them further. They decide to implement batch feed validations using Databricks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand wants to ensure the accuracy and integrity of the data before processing them further. They decide to implement batch feed validations using Databricks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The brand's data engineering team develops validation rules using Databricks. These rules include checks for data completeness, consistency, and accuracy. For example, they may check if each order contains valid customer information, product details, and payment information.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The brand's data engineering team develops validation rules using Databricks. These rules include checks for data completeness, consistency, and accuracy. For example, they may check if each order contains valid customer information, product details, and payment information.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Further, the brand can use the Connect+ template to trigger the Databricks notebook at regular intervals.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Further, the brand can use the Connect+ template to trigger the Databricks notebook at regular intervals.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "# Configuring databricks job trigger template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring databricks job trigger template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To configure the Databricks job trigger dataflow, perform the below steps/actions:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Databricks job trigger dataflow, perform the below steps/actions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        41
+      ],
+      "raw": "1. In the **Connect-to-source section** <Glossary>Block</Glossary> enter the source server details where the source<br />data is present and the location for saving the processed file. See [Connect to source](https://docs.capillarytech.com/docs/configure-actions#connect-to-source).\n2. In the **Databricks-Job-trigger-and-status** block, enter the following information:\n\n   <Image src=\"https://files.readme.io/9e1b25b-image.png\" align=\"center\" border={true} />\n\n   1. **Job ID**: Enter the job ID of the Databricks job that needs to be triggered.\n\n      <Image src=\"https://files.readme.io/2383cbb-Job_ID.png\" align=\"center\" width=\"65% \" border={true} />\n\n   2. **Max retries**:  This parameter defines the maximum number of attempts a file undergoes processing before it is marked as failed. By default, the maximum retries value is set to 10. When a Databricks job is triggered, and while it is running, subsequent job triggers must wait until the ongoing job is completed. The system periodically checks the status of the job every minute until either the job completes successfully or reaches the maximum retry count. If the job is still running after one minute, the system enters a retry loop, repeatedly checking the job status until it either completes or reaches the maximum retry count. If the maximum retry count is exceeded without successful completion, the file in the queue is considered unprocessed.\n\n   3. **dataBricks Processed Files Path**:  This parameter specifies the destination file path where Databricks stores the files after executing the job. Regardless of whether the job succeeds or fails, the resulting files are stored at this location. Databricks uses the credentials entered in the \"Connect to source\" section to add the files to this location.\n\n   4. **dataBricksToken**:  This parameter specifies the Databricks token used to secure authentication for the Databricks API instead of using passwords.<br />In Databricks, user permissions and roles determine who can create personal access tokens. The workspace administrator sets these permissions and can create custom roles and groups with specific permissions. If you belong to a role or group with the right permissions, you can create access tokens by navigating to User Settings > Developer > Access Tokens in Databricks.\n\n      <Image src=\"https://files.readme.io/d5ea981-databricks.png\" align=\"center\" border={true} />\n\n   5. **dataBricksUrl**- This parameter specifies the Databricks URL. If the URL is null, it retrieves the default value configured under Properties in the Processor Details of Databricks.<br />**Syntax**: https\\://${DATABRICKS\\_HOST}/api/${DATABRICKS\\_API\\_VERSION}/jobs\n3. In the **Trigger** block, enter the details to schedule the trigger. Refer to [Trigger](https://docs.capillarytech.com/docs/configure-actions#schedule-trigger) for more information.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Connect-to-source section <Glossary>Block</Glossary> enter the source server details where the source<br />data is present and the location for saving the processed file. See Connect to source.In the Databricks-Job-trigger-and-status block, enter the following information:<Image src=\"https://files.readme.io/9e1b25b-image.png\" align=\"center\" border={true} />Job ID: Enter the job ID of the Databricks job that needs to be triggered.<Image src=\"https://files.readme.io/2383cbb-Job_ID.png\" align=\"center\" width=\"65% \" border={true} />Max retries:  This parameter defines the maximum number of attempts a file undergoes processing before it is marked as failed. By default, the maximum retries value is set to 10. When a Databricks job is triggered, and while it is running, subsequent job triggers must wait until the ongoing job is completed. The system periodically checks the status of the job every minute until either the job completes successfully or reaches the maximum retry count. If the job is still running after one minute, the system enters a retry loop, repeatedly checking the job status until it either completes or reaches the maximum retry count. If the maximum retry count is exceeded without successful completion, the file in the queue is considered unprocessed.dataBricks Processed Files Path:  This parameter specifies the destination file path where Databricks stores the files after executing the job. Regardless of whether the job succeeds or fails, the resulting files are stored at this location. Databricks uses the credentials entered in the \"Connect to source\" section to add the files to this location.dataBricksToken:  This parameter specifies the Databricks token used to secure authentication for the Databricks API instead of using passwords.<br />In Databricks, user permissions and roles determine who can create personal access tokens. The workspace administrator sets these permissions and can create custom roles and groups with specific permissions. If you belong to a role or group with the right permissions, you can create access tokens by navigating to User Settings > Developer > Access Tokens in Databricks.<Image src=\"https://files.readme.io/d5ea981-databricks.png\" align=\"center\" border={true} />dataBricksUrl- This parameter specifies the Databricks URL. If the URL is null, it retrieves the default value configured under Properties in the Processor Details of Databricks.<br />Syntax: https://${DATABRICKS_HOST}/api/${DATABRICKS_API_VERSION}/jobsIn the Trigger block, enter the details to schedule the trigger. Refer to Trigger for more information.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 23
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 36
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-source",
+          "line": 23
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#schedule-trigger",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "For troubleshooting information, refer to [troubleshooting section](https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For troubleshooting information, refer to troubleshooting section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus",
+          "line": 43
+        }
+      ]
+    }
+  ]
+}

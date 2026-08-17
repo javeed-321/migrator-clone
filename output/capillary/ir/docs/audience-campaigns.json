@@ -1,0 +1,416 @@
+{
+  "slug": "docs/audience-campaigns",
+  "source": "https://docs.capillarytech.com/docs/audience-campaigns.md",
+  "url": "https://docs.capillarytech.com/docs/audience-campaigns",
+  "title": "Audience Campaigns",
+  "description": "",
+  "section": "Explore Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:24:43.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 8,
+    "list": 1,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Audience & Campaigns",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Audience & Campaigns",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Templates for syncing audience data and reloading campaign segments from SFTP.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Templates for syncing audience data and reloading campaign segments from SFTP.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Audience and campaigns templates let you manage audience lists and campaign-related customer data in Engage+. Each template provides a pre-configured block sequence for a specific use case. Select a template, configure the block details for your environment, and deploy the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Audience and campaigns templates let you manage audience lists and campaign-related customer data in Engage+. Each template provides a pre-configured block sequence for a specific use case. Select a template, configure the block details for your environment, and deploy the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following templates are available for audience and campaigns.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following templates are available for audience and campaigns.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Audience reload from SFTP",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Audience reload from SFTP",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Refreshes files in a defined FTP location at specified intervals and automatically updates the matching audience list in Engage+. The template reads the updated audience file from FTP, pushes it to the configured S3 bucket, and calls the Iris audience reload API to update the list.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refreshes files in a defined FTP location at specified intervals and automatically updates the matching audience list in Engage+. The template reads the updated audience file from FTP, pushes it to the configured S3 bucket, and calls the Iris audience reload API to update the list.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Prerequisites**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "* The audience CSV file must be available in the FTP location.\n* An audience list must be created in the Engage+ Audience Manager before configuring this template. The audience list name must match the name used in the template configuration and must not contain any spaces. For example, FTP\\_Test is a valid name; FTP Test is not.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The audience CSV file must be available in the FTP location.An audience list must be created in the Engage+ Audience Manager before configuring this template. The audience list name must match the name used in the template configuration and must not contain any spaces. For example, FTP_Test is a valid name; FTP Test is not.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "**Use case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "A brand runs a recurring campaign that targets a customer segment updated daily from an external data source outside the Capillary database. The updated customer list is generated in Databricks each day and placed in an FTP location. Using this template, the brand configures a scheduled dataflow that picks up the new file, pushes it to S3, and triggers a reload of the corresponding Engage+ audience list. The campaign then runs against the refreshed audience, removing the need for manual list updates before each send.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand runs a recurring campaign that targets a customer segment updated daily from an external data source outside the Capillary database. The updated customer list is generated in Databricks each day and placed in an FTP location. Using this template, the brand configures a scheduled dataflow that picks up the new file, pushes it to S3, and triggers a reload of the corresponding Engage+ audience list. The campaign then runs against the refreshed audience, removing the need for manual list updates before each send.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "### Block configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Block configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "The following table lists the blocks in the Audience reload from SFTP template, describes what each block does, and provides the configured values for each field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the blocks in the Audience reload from SFTP template, describes what each block does, and provides the configured values for each field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        32,
+        51
+      ],
+      "raw": "| Block Name                                                                                                                                  | Configuration Field    | Configured Value                              |\n| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | --------------------------------------------- |\n| **[Connect-to-source](https://docs.capillarytech.com/docs/sftp-read-block)**<br />Type: `sftp_read`                                         | Hostname               | `data.capillarydata.com`                      |\n|                                                                                                                                             | Username               | `capillary`                                   |\n|                                                                                                                                             | Password               | Redacted                                      |\n|                                                                                                                                             | Source directory       | `/capillary testing/vtest/source`             |\n|                                                                                                                                             | Filename pattern       | `.*.csv`. Matches all CSV files.              |\n|                                                                                                                                             | Processed directory    | `/capillary testing/vtest/process`            |\n|                                                                                                                                             | API error file path    | `/capillary testing/vtest/error`              |\n|                                                                                                                                             | Port                   | `22`                                          |\n|                                                                                                                                             | File delimiter         | `,`                                           |\n|                                                                                                                                             | Report status code     | `all`                                         |\n| **[Push-to-S3](https://docs.capillarytech.com/docs/push-to-s3)**<br />Type: `s3_write`                                                      | S3 object key          | `${'${filename}'}`. Uses the source filename. |\n|                                                                                                                                             | S3 bucket name         | `newValue`                                    |\n|                                                                                                                                             | Content type           | `application/octet-stream`                    |\n|                                                                                                                                             | AWS region             | `us-east-1`                                   |\n| **[Destination-Iris-audience](https://docs.capillarytech.com/docs/iris_ftp_audience_refresh-block)**<br />Type: `iris_ftp_audience_refresh` | API method             | `POST`                                        |\n|                                                                                                                                             | API URL                | `/`                                           |\n|                                                                                                                                             | Organization ID header | Not configured                                |\n|                                                                                                                                             | Capillary token        | Not configured                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Block Name",
+          "Configuration Field",
+          "Configured Value"
+        ],
+        "rows": [
+          [
+            "Connect-to-sourceType: sftp_read",
+            "Hostname",
+            "data.capillarydata.com"
+          ],
+          [
+            "",
+            "Username",
+            "capillary"
+          ],
+          [
+            "",
+            "Password",
+            "Redacted"
+          ],
+          [
+            "",
+            "Source directory",
+            "/capillary testing/vtest/source"
+          ],
+          [
+            "",
+            "Filename pattern",
+            ".*.csv. Matches all CSV files."
+          ],
+          [
+            "",
+            "Processed directory",
+            "/capillary testing/vtest/process"
+          ],
+          [
+            "",
+            "API error file path",
+            "/capillary testing/vtest/error"
+          ],
+          [
+            "",
+            "Port",
+            "22"
+          ],
+          [
+            "",
+            "File delimiter",
+            ","
+          ],
+          [
+            "",
+            "Report status code",
+            "all"
+          ],
+          [
+            "Push-to-S3Type: s3_write",
+            "S3 object key",
+            "${'${filename}'}. Uses the source filename."
+          ],
+          [
+            "",
+            "S3 bucket name",
+            "newValue"
+          ],
+          [
+            "",
+            "Content type",
+            "application/octet-stream"
+          ],
+          [
+            "",
+            "AWS region",
+            "us-east-1"
+          ],
+          [
+            "Destination-Iris-audienceType: iris_ftp_audience_refresh",
+            "API method",
+            "POST"
+          ],
+          [
+            "",
+            "API URL",
+            "/"
+          ],
+          [
+            "",
+            "Organization ID header",
+            "Not configured"
+          ],
+          [
+            "",
+            "Capillary token",
+            "Not configured"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 34
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 44
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-read-block",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/push-to-s3",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/iris_ftp_audience_refresh-block",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 53
+        }
+      ]
+    }
+  ]
+}

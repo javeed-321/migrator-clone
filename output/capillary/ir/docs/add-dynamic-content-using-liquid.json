@@ -1,0 +1,1434 @@
+{
+  "slug": "docs/add-dynamic-content-using-liquid",
+  "source": "https://docs.capillarytech.com/docs/add-dynamic-content-using-liquid.md",
+  "url": "https://docs.capillarytech.com/docs/add-dynamic-content-using-liquid",
+  "title": "Add Dynamic Content Using Liquid",
+  "description": "",
+  "section": "Personalisation",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-06T10:07:30.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 26,
+    "Callout": 2,
+    "Table": 1,
+    "br": 9,
+    "list": 3,
+    "code": 18
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Add Dynamic Content Using Liquid",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Add Dynamic Content Using Liquid",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This guide provides an overview of the Liquid template language, focusing on features relevant for personalizing messages in Engage+.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This guide provides an overview of the Liquid template language, focusing on features relevant for personalizing messages in Engage+.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Introduction to Liquid",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Introduction to Liquid",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Liquid is a templating language used to add dynamic content. It lets you personalize your messages based on user data, making your communications more relevant and engaging. For instance, you can use liquid language to define the date format according to the customer's locale, send product recommendations based on the customer's interest, etc.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Liquid is a templating language used to add dynamic content. It lets you personalize your messages based on user data, making your communications more relevant and engaging. For instance, you can use liquid language to define the date format according to the customer's locale, send product recommendations based on the customer's interest, etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Liquid expressions are supported across **SMS**, **Push notification**, **In app**, and **Email** channels and is available for all the organizations by default.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Liquid expressions are supported across SMS, Push notification, In app, and Email channels and is available for all the organizations by default.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        21
+      ],
+      "raw": "> 📘 Note\n>\n> While creating a template in the **Creatives** section for **SMS**, **Push Notification**, **In-App**, and **Email** channels, Liquid expressions are not strictly validated at the time of creation. You can add any Liquid expressions, save the template without errors, and use **Test & Preview** within Creatives. However, ensure that all curly braces are properly closed; improperly closed `{{` or `{%` tags will still throw a validation error when saving the template.\n>\n> During campaign creation or journey, if the selected template contains invalid or unsupported Liquid expressions, the system will throw an error and will not allow you to select or use that template.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteWhile creating a template in the Creatives section for SMS, Push Notification, In-App, and Email channels, Liquid expressions are not strictly validated at the time of creation. You can add any Liquid expressions, save the template without errors, and use Test & Preview within Creatives. However, ensure that all curly braces are properly closed; improperly closed {{ or {% tags will still throw a validation error when saving the template.During campaign creation or journey, if the selected template contains invalid or unsupported Liquid expressions, the system will throw an error and will not allow you to select or use that template.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# Basic Syntax",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Basic Syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Liquid uses two types of markup:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Liquid uses two types of markup:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        30
+      ],
+      "raw": "| Syntax Type     | Markup  | Description                      |\n| :-------------- | :------ | :------------------------------- |\n| Output          | `{{ }}` | Used to output dynamic content.  |\n| Logic & Control | `{% %}` | Used for logic and control flow. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Syntax Type",
+          "Markup",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Output",
+            "{{ }}",
+            "Used to output dynamic content."
+          ],
+          [
+            "Logic & Control",
+            "{% %}",
+            "Used for logic and control flow."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{ }}",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        38
+      ],
+      "raw": "> 🚧 Important\n>\n> * Make sure that all tags contain data. Inconsistency in the tags will result in a validation error.\n> * When using Liquid loops `({% for %}...{% endfor %})`, ensure that all HTML referencing loop variables stay inside the loop block. Some editors may automatically reformat HTML and move elements outside the loop, which can break variables like `item` or `item.index`. Always review the code after editing to confirm the loop structure is intact.\n> * When using special characters in text, such as a forward slash (`/`), use single quotes (`'`) instead of double quotes (`\"`) to prevent errors. For example, `{% if generic_event_field__hotel_name == 'The Lakeside Resort/Spa' %}`",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "ImportantMake sure that all tags contain data. Inconsistency in the tags will result in a validation error.When using Liquid loops ({% for %}...{% endfor %}), ensure that all HTML referencing loop variables stay inside the loop block. Some editors may automatically reformat HTML and move elements outside the loop, which can break variables like item or item.index. Always review the code after editing to confirm the loop structure is intact.When using special characters in text, such as a forward slash (/), use single quotes (') instead of double quotes (\") to prevent errors. For example, {% if generic_event_field__hotel_name == 'The Lakeside Resort/Spa' %}",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "# Variables",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Variables",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "Variables allow you to insert dynamic content into your templates. Common variables might include:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Variables allow you to insert dynamic content into your templates. Common variables might include:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        44,
+        46
+      ],
+      "raw": "* `{{first_name}}`: The customer's first name\n* `{{customer_email}}`: The customer's email address\n* `{{customer_mobile}}`: The customer's mobile number",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "{{first_name}}: The customer's first name{{customer_email}}: The customer's email address{{customer_mobile}}: The customer's mobile number",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 44
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{customer_email}}",
+          "line": 45
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{customer_mobile}}",
+          "line": 46
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "## Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "**1. Brands Want to Send Messages About Coupon Expiry Linked to an Event**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "1. Brands Want to Send Messages About Coupon Expiry Linked to an Event",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        52,
+        66
+      ],
+      "raw": "```liquid\nHey {{first_name}},\n\n{% if event_name == 'Freedom Fiesta' %}\nDon't miss out on the {{ event_name }}!\n{% endif %}\n\n{% if voucher_expiry_date == '31 July 2025' %}\nYour coupon is valid until {{ voucher_expiry_date }}.\n{% endif %}\n\n{% if valid_days_from_create == 7 %}\nThis coupon is valid for {{ valid_days_from_create }} days from the day it was issued.\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "Hey {{first_name}},\n\n{% if event_name == 'Freedom Fiesta' %}\nDon't miss out on the {{ event_name }}!\n{% endif %}\n\n{% if voucher_expiry_date == '31 July 2025' %}\nYour coupon is valid until {{ voucher_expiry_date }}.\n{% endif %}\n\n{% if valid_days_from_create == 7 %}\nThis coupon is valid for {{ valid_days_from_create }} days from the day it was issued.\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 53
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ event_name }}",
+          "line": 56
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ voucher_expiry_date }}",
+          "line": 60
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ valid_days_from_create }}",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "**Example output:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        70,
+        78
+      ],
+      "raw": "```\nHey Riya,\n\nDon't miss out on the Freedom Fiesta!\n\nYour coupon is valid until 31 July 2025.\n\nThis coupon is valid for 7 days from the day it was issued.\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hey Riya,\n\nDon't miss out on the Freedom Fiesta!\n\nYour coupon is valid until 31 July 2025.\n\nThis coupon is valid for 7 days from the day it was issued."
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "**2. A brand wants to inform users about the benefits of their current loyalty tier or encourage them to upgrade for added perks like free home delivery.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "2. A brand wants to inform users about the benefits of their current loyalty tier or encourage them to upgrade for added perks like free home delivery.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        84,
+        94
+      ],
+      "raw": "```liquid\nHey {{first_name}},\n\n{% if slab_name == \"Platinum\" %}\nAs a Platinum member, you get free home delivery!\n{% endif %}\n\n{% if slab_name == \"Gold\" %}\nUpgrade to Platinum to enjoy free home delivery.\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "Hey {{first_name}},\n\n{% if slab_name == \"Platinum\" %}\nAs a Platinum member, you get free home delivery!\n{% endif %}\n\n{% if slab_name == \"Gold\" %}\nUpgrade to Platinum to enjoy free home delivery.\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "**Example output:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "When `{{first_name}}` = \"Riya\" and `{{slab_name}}` = \"Platinum\":",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When {{first_name}} = \"Riya\" and {{slab_name}} = \"Platinum\":",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 98
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{slab_name}}",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        100,
+        108
+      ],
+      "raw": "```\n\nHey Riya,\nAs a Platinum member, you get free home delivery!\n\nWhen `{{first_name}}` = \"Riya\" and `{{slab_name}}` = \"Gold\":\n\nUpgrade to Platinum to enjoy free home delivery.\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "\nHey Riya,\nAs a Platinum member, you get free home delivery!\n\nWhen `{{first_name}}` = \"Riya\" and `{{slab_name}}` = \"Gold\":\n\nUpgrade to Platinum to enjoy free home delivery."
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 105
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{slab_name}}",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 110
+        }
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "**3. A brand wants to remind users that their loyalty points are expiring by the end of the month and highlight the actual value they’ll lose if not redeemed**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "3. A brand wants to remind users that their loyalty points are expiring by the end of the month and highlight the actual value they’ll lose if not redeemed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        114,
+        123
+      ],
+      "raw": "```liquid\n{% if expiring_points_value == 150 %}\nHi {{first_name}},  \nYou have ₹150 worth of points expiring by the end of this month.  \nRedeem them now on your next purchase!\n{% else %}\nHi {{ first_name }},  \nYou have no points expiring this month. Keep shopping and earning rewards!\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "{% if expiring_points_value == 150 %}\nHi {{first_name}},  \nYou have ₹150 worth of points expiring by the end of this month.  \nRedeem them now on your next purchase!\n{% else %}\nHi {{ first_name }},  \nYou have no points expiring this month. Keep shopping and earning rewards!\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 116
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ first_name }}",
+          "line": 120
+        }
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "**Example output:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "* When `{{first_name}}` = \"Riya\" and `{{expiring_points_value = 150}}` :",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When {{first_name}} = \"Riya\" and {{expiring_points_value = 150}} :",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 127
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{expiring_points_value = 150}}",
+          "line": 127
+        }
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        129,
+        133
+      ],
+      "raw": "```\nHi Riya,\\\nYou have ₹150 worth of points expiring by the end of this month.\nRedeem them now on your next purchase!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya,\\\nYou have ₹150 worth of points expiring by the end of this month.\nRedeem them now on your next purchase!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        137,
+        137
+      ],
+      "raw": "* When `{{first_name}}` = \"Riya\" and `{{expiring_points_value = 0}}` :",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When {{first_name}} = \"Riya\" and {{expiring_points_value = 0}} :",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 137
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{expiring_points_value = 0}}",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        139,
+        139
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        141,
+        144
+      ],
+      "raw": "```\nHi Riya,\\\nYou have no points expiring this month. Keep shopping and earning rewards!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya,\\\nYou have no points expiring this month. Keep shopping and earning rewards!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 146
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "**4. A brand wants to send marketing or service messages in the language each user prefers  like English, Hindi, Tamil, etc.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "4. A brand wants to send marketing or service messages in the language each user prefers  like English, Hindi, Tamil, etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        150,
+        163
+      ],
+      "raw": "```liquid\n{% if extended_field.preferred_language == \"English\" %}\nHi {{first_name}}, check out our new arrivals and enjoy special offers this week!\n\n{% elsif extended_field.preferred_language == \"Hindi\" %}\nनमस्ते {{first_name}}, हमारे नए प्रोडक्ट्स देखें और इस सप्ताह के विशेष ऑफ़र का लाभ उठाएं!\n\n{% elsif extended_field.preferred_language == \"Tamil\" %}\nவணக்கம் {{first_name}}, எங்கள் புதிய வரவுகளைப் பாருங்கள் மற்றும் சிறப்பு சலுகைகளை அனுபவிக்கவும்!\n\n{% else %}\nHi {{first_name}}, check out our latest offers!\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "{% if extended_field.preferred_language == \"English\" %}\nHi {{first_name}}, check out our new arrivals and enjoy special offers this week!\n\n{% elsif extended_field.preferred_language == \"Hindi\" %}\nनमस्ते {{first_name}}, हमारे नए प्रोडक्ट्स देखें और इस सप्ताह के विशेष ऑफ़र का लाभ उठाएं!\n\n{% elsif extended_field.preferred_language == \"Tamil\" %}\nவணக்கம் {{first_name}}, எங்கள் புதிய வரவுகளைப் பாருங்கள் மற்றும் சிறப்பு சலுகைகளை அனுபவிக்கவும்!\n\n{% else %}\nHi {{first_name}}, check out our latest offers!\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 152
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 155
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 158
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 161
+        }
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "**Example output 1**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 1:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        167,
+        169
+      ],
+      "raw": "```\nHi Riya, check out our new arrivals and enjoy special offers this week!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya, check out our new arrivals and enjoy special offers this week!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "**Example output 2**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 2:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        173,
+        175
+      ],
+      "raw": "```\nनमस्ते Riya, हमारे नए प्रोडक्ट्स देखें और इस सप्ताह के विशेष ऑफ़र का लाभ उठाएं!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "नमस्ते Riya, हमारे नए प्रोडक्ट्स देखें और इस सप्ताह के विशेष ऑफ़र का लाभ उठाएं!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "**Example output 3**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 3:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        179,
+        181
+      ],
+      "raw": "```\nவணக்கம் Riya, எங்கள் புதிய வரவுகளைப் பாருங்கள் மற்றும் சிறப்பு சலுகைகளை அனுபவிக்கவும்!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "வணக்கம் Riya, எங்கள் புதிய வரவுகளைப் பாருங்கள் மற்றும் சிறப்பு சலுகைகளை அனுபவிக்கவும்!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "**Example output 4**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 4:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        185,
+        187
+      ],
+      "raw": "```\nHi Riya, check out our latest offers!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya, check out our latest offers!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 189
+        }
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "**5. A brand wants to send country-specific promotions, delivery updates, or legal disclaimers based on where the customer lives.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "5. A brand wants to send country-specific promotions, delivery updates, or legal disclaimers based on where the customer lives.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        193,
+        208
+      ],
+      "raw": "```liquid\nHi {{first_name}},\n\n{% if extended_field.country_of_residence == \"India\" %}\nGreat news! Free delivery is now available across India on all orders above ₹499.\n\n{% elsif extended_field.country_of_residence == \"UAE\" %}\nEnjoy free express shipping in the UAE for orders above AED 100!\n\n{% elsif extended_field.country_of_residence == \"Singapore\" %}\nFree next-day delivery across Singapore on all purchases this week!\n\n{% else %}\nWe ship internationally! Check delivery timelines at checkout.\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "Hi {{first_name}},\n\n{% if extended_field.country_of_residence == \"India\" %}\nGreat news! Free delivery is now available across India on all orders above ₹499.\n\n{% elsif extended_field.country_of_residence == \"UAE\" %}\nEnjoy free express shipping in the UAE for orders above AED 100!\n\n{% elsif extended_field.country_of_residence == \"Singapore\" %}\nFree next-day delivery across Singapore on all purchases this week!\n\n{% else %}\nWe ship internationally! Check delivery timelines at checkout.\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "**Example output 1**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 1:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "if `{{extended_field.country_of_residence}}` = \"India\"",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "if {{extended_field.country_of_residence}} = \"India\"",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{extended_field.country_of_residence}}",
+          "line": 212
+        }
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        214,
+        217
+      ],
+      "raw": "```\nHi Riya,\nGreat news! Free delivery is now available across India on all orders above ₹499.\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya,\nGreat news! Free delivery is now available across India on all orders above ₹499."
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        219,
+        219
+      ],
+      "raw": "**Example output 2**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 2:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        221,
+        221
+      ],
+      "raw": "if `{{extended_field.country_of_residence}}` = \"UAE\"",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "if {{extended_field.country_of_residence}} = \"UAE\"",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{extended_field.country_of_residence}}",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        223,
+        226
+      ],
+      "raw": "```\nHi Riya,\nEnjoy free express shipping in the UAE for orders above AED 100!\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya,\nEnjoy free express shipping in the UAE for orders above AED 100!"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "**Example output 3**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output 3:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        230,
+        230
+      ],
+      "raw": "if `{{extended_field.country_of_residence}}` = \"USA\" (not matched in conditions)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "if {{extended_field.country_of_residence}} = \"USA\" (not matched in conditions)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{extended_field.country_of_residence}}",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        232,
+        234
+      ],
+      "raw": "```\nWe ship internationally! Check delivery timelines at checkout.\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "We ship internationally! Check delivery timelines at checkout."
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 236
+        }
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "**6. A brand wants to send personalized product suggestions to users based on their browsing or purchase history, encouraging them to explore and shop.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "6. A brand wants to send personalized product suggestions to users based on their browsing or purchase history, encouraging them to explore and shop.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        240,
+        249
+      ],
+      "raw": "```liquid\nHi {{first_name}},\n\nWe’ve handpicked some products just for you:  \n{{ recommended_products }}\n\n{% if extended_field.preferred_product %}\nLove {{ extended_field.preferred_product }}? We’ve got great offers on it waiting for you!\n{% endif %}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "liquid",
+        "title": null,
+        "code": "Hi {{first_name}},\n\nWe’ve handpicked some products just for you:  \n{{ recommended_products }}\n\n{% if extended_field.preferred_product %}\nLove {{ extended_field.preferred_product }}? We’ve got great offers on it waiting for you!\n{% endif %}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{first_name}}",
+          "line": 241
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ recommended_products }}",
+          "line": 244
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ extended_field.preferred_product }}",
+          "line": 247
+        }
+      ]
+    },
+    {
+      "i": 62,
+      "lines": [
+        251,
+        251
+      ],
+      "raw": "**Example output**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        253,
+        261
+      ],
+      "raw": "```\nHi Riya,\n\nWe’ve handpicked some products just for you:  \nFace Wash, Lip Balm, Moisturizer\n\nLove Vitamin C Serum? We’ve got great offers on it waiting for you!\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Hi Riya,\n\nWe’ve handpicked some products just for you:  \nFace Wash, Lip Balm, Moisturizer\n\nLove Vitamin C Serum? We’ve got great offers on it waiting for you!\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        263,
+        263
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 263
+        }
+      ]
+    }
+  ]
+}

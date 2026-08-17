@@ -1,0 +1,1422 @@
+{
+  "slug": "docs/creating-and-managing-groups",
+  "source": "https://docs.capillarytech.com/docs/creating-and-managing-groups.md",
+  "url": "https://docs.capillarytech.com/docs/creating-and-managing-groups",
+  "title": "Creating And Managing Groups",
+  "description": "",
+  "section": "User Group Loyalty",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:37:02.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 15,
+    "paragraph": 36,
+    "Table": 4,
+    "Callout": 5,
+    "code": 6,
+    "list": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create and Manage Groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create and Manage Groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Create friends and family groups, business groups, manage members, and delete groups.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create friends and family groups, business groups, manage members, and delete groups.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Creating and managing user groups is a structured process that covers group creation, membership configuration, and lifecycle management. The following steps guide you through each stage. There are two types of groups: friends-and-family groups and business groups.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Creating and managing user groups is a structured process that covers group creation, membership configuration, and lifecycle management. The following steps guide you through each stage. There are two types of groups: friends-and-family groups and business groups.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Creating a friends and family group",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Creating a friends and family group",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "A friends and family group is a simple user group with a simple hierarchy: a primary member with administrator privileges and secondary members with no permissions or permissions to redeem or transfer points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A friends and family group is a simple user group with a simple hierarchy: a primary member with administrator privileges and secondary members with no permissions or permissions to redeem or transfer points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Step 1: Creating a group",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 1: Creating a group",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Start by creating a user group and defining basic details, such as the user group name, external identifier, and maximum group size. You can also add additional metadata using extended fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Start by creating a user group and defining basic details, such as the user group name, external identifier, and maximum group size. You can also add additional metadata using extended fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To create a user group, use the [POST `/v2/userGroup2` API](https://docs.capillarytech.com/reference/add-group) to create a user group and define the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a user group, use the POST /v2/userGroup2 API to create a user group and define the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-group",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        28
+      ],
+      "raw": "| Field            | Description                                                                  |\n| :--------------- | :--------------------------------------------------------------------------- |\n| `groupName`      | Display name for the group                                                   |\n| `maxGroupSize`   | Maximum number of members allowed                                            |\n| `externalId`     | Your internal identifier for the group                                       |\n| `extendedFields` | Optional custom metadata such as status, avatar URL, registration date, etc. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "groupName",
+            "Display name for the group"
+          ],
+          [
+            "maxGroupSize",
+            "Maximum number of members allowed"
+          ],
+          [
+            "externalId",
+            "Your internal identifier for the group"
+          ],
+          [
+            "extendedFields",
+            "Optional custom metadata such as status, avatar URL, registration date, etc."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        30,
+        32
+      ],
+      "raw": "> 📘 **Note on extended fields:**\n>\n> Extended fields for user groups are not arbitrary key-value pairs. They must first be created as extended fields for the `usergroup2` entity type — raise a support ticket to Capillary to have these configured at the backend. Once created, enable them using the Configure Org Extended Field API (`POST /v2/organization/entity/extended_field_config`), specifying `usergroup2` as the entity type. Refer to the [Extended Fields](https://docs.capillarytech.com/docs/extended-fields) documentation for more information.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note on extended fields:Extended fields for user groups are not arbitrary key-value pairs. They must first be created as extended fields for the usergroup2 entity type — raise a support ticket to Capillary to have these configured at the backend. Once created, enable them using the Configure Org Extended Field API (POST /v2/organization/entity/extended_field_config), specifying usergroup2 as the entity type. Refer to the Extended Fields documentation for more information.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extended-fields",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "Example request body:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request body:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        47
+      ],
+      "raw": "```json\n{\n  \"externalId\": \"family_ug_1\",\n  \"groupName\": \"FamilyGroup1\",\n  \"maxGroupSize\": 6,\n  \"extendedFields\": {\n    \"ug_status\": \"Active\",\n    \"group_avatar_url\": \"https://example.com/avatar.png\",\n    \"ug_registration_date\": \"2025-11-10T15:10:00Z\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"externalId\": \"family_ug_1\",\n  \"groupName\": \"FamilyGroup1\",\n  \"maxGroupSize\": 6,\n  \"extendedFields\": {\n    \"ug_status\": \"Active\",\n    \"group_avatar_url\": \"https://example.com/avatar.png\",\n    \"ug_registration_date\": \"2025-11-10T15:10:00Z\"\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "**You have created the group entity and are now ready to update its details or begin adding members.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You have created the group entity and are now ready to update its details or begin adding members.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "## Step 2: Adding members and defining permissions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 2: Adding members and defining permissions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "Once you have created a user group, you can add a primary member and secondary members and define permissions for the members.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you have created a user group, you can add a primary member and secondary members and define permissions for the members.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "### Adding a member",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Adding a member",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "To add members to a user group, use the [POST `/v2/userGroup2/join` API](https://docs.capillarytech.com/reference/join-member-to-group). Set the `primaryMember` value to `true` for the primary member. You can also define permissions to allow or block users from transferring and redeeming points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add members to a user group, use the POST /v2/userGroup2/join API. Set the primaryMember value to true for the primary member. You can also define permissions to allow or block users from transferring and redeeming points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/join-member-to-group",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "The payload structure comprises the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The payload structure comprises the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        61,
+        67
+      ],
+      "raw": "| Field           | Description                                                           |\n| :-------------- | :-------------------------------------------------------------------- |\n| `userId`        | The identifier of the member                                          |\n| `primaryMember` | Indicate if the member to be added is a primary member                |\n| `permissions`   | The permissions for the member                                        |\n| `defaultGroup`  | Indicate if the group is the default group for all group transactions |\n| `active`        | Indicate if the member is active in the group                         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "userId",
+            "The identifier of the member"
+          ],
+          [
+            "primaryMember",
+            "Indicate if the member to be added is a primary member"
+          ],
+          [
+            "permissions",
+            "The permissions for the member"
+          ],
+          [
+            "defaultGroup",
+            "Indicate if the group is the default group for all group transactions"
+          ],
+          [
+            "active",
+            "Indicate if the member is active in the group"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "Example request:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        71,
+        84
+      ],
+      "raw": "```json\n[\n  {\n    \"userId\": 564662499,\n    \"primaryMember\": false,\n    \"permissions\": [\n      \"allow_points_redemption\",\n      \"allow_points_transfer\"\n    ],\n    \"defaultGroup\": true,\n    \"active\": true\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  {\n    \"userId\": 564662499,\n    \"primaryMember\": false,\n    \"permissions\": [\n      \"allow_points_redemption\",\n      \"allow_points_transfer\"\n    ],\n    \"defaultGroup\": true,\n    \"active\": true\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "### Assigning permissions to a member",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Assigning permissions to a member",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "Permissions can be set at join time using the `permissions` array in the `/v2/userGroup2/join` payload.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Permissions can be set at join time using the permissions array in the /v2/userGroup2/join payload.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        90,
+        95
+      ],
+      "raw": "| Permission                | Description                                                  |\n| :------------------------ | :----------------------------------------------------------- |\n| `allow_points_redemption` | Allows the member to redeem points from the group wallet     |\n| `allow_points_transfer`   | Allows the member to transfer points out of the group wallet |\n| `block_points_redemption` | Blocks the member from redeeming group points                |\n| `block_points_transfer`   | Blocks the member from transferring group points             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Permission",
+          "Description"
+        ],
+        "rows": [
+          [
+            "allow_points_redemption",
+            "Allows the member to redeem points from the group wallet"
+          ],
+          [
+            "allow_points_transfer",
+            "Allows the member to transfer points out of the group wallet"
+          ],
+          [
+            "block_points_redemption",
+            "Blocks the member from redeeming group points"
+          ],
+          [
+            "block_points_transfer",
+            "Blocks the member from transferring group points"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "To remove a secondary member from the group, see [Removing a secondary member](#removing-a-secondary-member).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To remove a secondary member from the group, see Removing a secondary member.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "You can also create a more structured setup for corporate use cases.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can also create a more structured setup for corporate use cases.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        101,
+        101
+      ],
+      "raw": "# Creating a business group",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Creating a business group",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "A business group is a structured user group with a defined hierarchy. Unlike a friends-and-family group, it can comprise multiple roles with varying permissions, and members are assigned to roles based on their position in the organisational structure.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A business group is a structured user group with a defined hierarchy. Unlike a friends-and-family group, it can comprise multiple roles with varying permissions, and members are assigned to roles based on their position in the organisational structure.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "Setting up a business group is a four-step process:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setting up a business group is a four-step process:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        107,
+        110
+      ],
+      "raw": "* Define the hierarchy\n* Associate customers with the heirarchy\n* Create the group entity\n* Add members to the user group.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Define the hierarchyAssociate customers with the heirarchyCreate the group entityAdd members to the user group.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "## Step 1: Create a hierarchy",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 1: Create a hierarchy",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "Define the hierarchy structure before creating any group or associating any customers. See [Create a hierarchy](https://docs.capillarytech.com/docs/hierarchy) for more information.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Define the hierarchy structure before creating any group or associating any customers. See Create a hierarchy for more information.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/hierarchy",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "## Step 2: Associate the hierarchy with a customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 2: Associate the hierarchy with a customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "Once the hierarchy is defined, associate it with a new or existing customer using the `associationDetails` object in the associte customer [create](https://docs.capillarytech.com/reference/associate-customer) or [update](https://docs.capillarytech.com/reference/update-association-details) API call.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once the hierarchy is defined, associate it with a new or existing customer using the associationDetails object in the associte customer create or update API call.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/associate-customer",
+          "line": 118
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-association-details",
+          "line": 118
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        120,
+        126
+      ],
+      "raw": "| Field                                  | Description                                                                              |\n| :------------------------------------- | :--------------------------------------------------------------------------------------- |\n| `hierarchyCode`                        | The code of the hierarchy definition to associate the customer with                      |\n| `roleCode`                             | The role assigned to the customer within the hierarchy (for example, `Drivers`, `Owner`) |\n| `fleetCompany.name`                    | Display name of the company entity                                                       |\n| `fleetCompany.hierarchyDefinitionCode` | The hierarchy definition code for the company                                            |\n| `fleetCompany.externalId`              | The identifier for the company                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "hierarchyCode",
+            "The code of the hierarchy definition to associate the customer with"
+          ],
+          [
+            "roleCode",
+            "The role assigned to the customer within the hierarchy (for example, Drivers, Owner)"
+          ],
+          [
+            "fleetCompany.name",
+            "Display name of the company entity"
+          ],
+          [
+            "fleetCompany.hierarchyDefinitionCode",
+            "The hierarchy definition code for the company"
+          ],
+          [
+            "fleetCompany.externalId",
+            "The identifier for the company"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "**Example request body:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request body:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        130,
+        152
+      ],
+      "raw": "```json\n{\n  \"profiles\": [\n    {\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": \"9781027293\"\n        }\n      ]\n    }\n  ],\n  \"associationDetails\": {\n    \"hierarchyCode\": \"SIL0101\",\n    \"roleCode\": \"Drivers\",\n    \"fleetCompany\": {\n      \"name\": \"X Company\",\n      \"hierarchyDefinitionCode\": \"SIL0101\",\n      \"externalId\": \"c_123\"\n    }\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"profiles\": [\n    {\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": \"9781027293\"\n        }\n      ]\n    }\n  ],\n  \"associationDetails\": {\n    \"hierarchyCode\": \"SIL0101\",\n    \"roleCode\": \"Drivers\",\n    \"fleetCompany\": {\n      \"name\": \"X Company\",\n      \"hierarchyDefinitionCode\": \"SIL0101\",\n      \"externalId\": \"c_123\"\n    }\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "## Step 3: Create a user group and add members",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 3: Create a user group and add members",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "Follow the steps described in [Creating a friends and family group](#creating-a-friends-and-family-group):",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Follow the steps described in Creating a friends and family group:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        158,
+        159
+      ],
+      "raw": "* Create the group entity using `POST /v2/userGroup2` and\n* Add members using `POST /v2/userGroup2/join`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create the group entity using POST /v2/userGroup2 andAdd members using POST /v2/userGroup2/join.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "Once a group is created and its members are added, you can perform ongoing membership management such as transfers and removals.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once a group is created and its members are added, you can perform ongoing membership management such as transfers and removals.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "# Managing members",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Managing members",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "Once a group is created and populated, you can manage membership through dedicated API endpoints. This section covers assigning permissions, removing members, and handling ownership changes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once a group is created and populated, you can manage membership through dedicated API endpoints. This section covers assigning permissions, removing members, and handling ownership changes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "## Removing a secondary member",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Removing a secondary member",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "To remove a secondary member, use `DELETE /v2/userGroup2/{groupId}/leave` (see [Remove group member](https://docs.capillarytech.com/reference/remove-group-member)). Identify the member using the `identifierName` and `identifierValue` query parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To remove a secondary member, use DELETE /v2/userGroup2/{groupId}/leave (see Remove group member). Identify the member using the identifierName and identifierValue query parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/remove-group-member",
+          "line": 169
+        }
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "**Example request:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        173,
+        179
+      ],
+      "raw": "```shell\ncurl -L -X DELETE 'https://eu.api.capillarytech.com/v2/userGroup2/3952525/leave\n  ?source=INSTORE\n  &identifierName=mobile\n  &identifierValue=918988123462' \\\n-H 'Authorization: Basic {token}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "shell",
+        "title": null,
+        "code": "curl -L -X DELETE 'https://eu.api.capillarytech.com/v2/userGroup2/3952525/leave\n  ?source=INSTORE\n  &identifierName=mobile\n  &identifierValue=918988123462' \\\n-H 'Authorization: Basic {token}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        181,
+        183
+      ],
+      "raw": "> 📘 **Note:**\n>\n> Only secondary members can be removed this way. Removing the primary member has a different outcome. See [Deleting a group](#deleting-a-group).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Only secondary members can be removed this way. Removing the primary member has a different outcome. See Deleting a group.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "## Transferring members between groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transferring members between groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "Merging two groups into one is not supported. However, you can move specific members between groups using the transfer API. This is useful when reorganising group structures or consolidating members after a group is dissolved.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Merging two groups into one is not supported. However, you can move specific members between groups using the transfer API. This is useful when reorganising group structures or consolidating members after a group is dissolved.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "Use `POST /v2/userGroup2/transfer` (see [Transfer group member](https://docs.capillarytech.com/reference/transfer-group-member)) and provide the source group ID (`leaveGroupId`), the destination group ID (`joinGroupId`), and a list of member user IDs to move.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use POST /v2/userGroup2/transfer (see Transfer group member) and provide the source group ID (leaveGroupId), the destination group ID (joinGroupId), and a list of member user IDs to move.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/transfer-group-member",
+          "line": 189
+        }
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "**Example request:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        193,
+        200
+      ],
+      "raw": "```shell\ncurl -L 'https://eu.api.capillarytech.com/v2/userGroup2/transfer' \\\n-d '{\n  \"leaveGroupId\": \"3917591\",\n  \"joinGroupId\": \"3916144\",\n  \"userIds\": [564829146, 564709342]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "shell",
+        "title": null,
+        "code": "curl -L 'https://eu.api.capillarytech.com/v2/userGroup2/transfer' \\\n-d '{\n  \"leaveGroupId\": \"3917591\",\n  \"joinGroupId\": \"3916144\",\n  \"userIds\": [564829146, 564709342]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        202,
+        204
+      ],
+      "raw": "> 📘 **Note:**\n>\n> Points are not transferred automatically when members move between groups. Handle point transfers separately before or after initiating the member transfer.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Points are not transferred automatically when members move between groups. Handle point transfers separately before or after initiating the member transfer.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "### **Transaction returns after group updates**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Transaction returns after group updates",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "When a member makes a purchase as part of a group and then changes groups before returning the item, the return transaction may be blocked by default. This is because the system validates the member's current group context against the original transaction's group context.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a member makes a purchase as part of a group and then changes groups before returning the item, the return transaction may be blocked by default. This is because the system validates the member's current group context against the original transaction's group context.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "You can override this behavior to allow returns even after the member has moved to a different group. This is particularly relevant in fleet or B2B programs where member transfers between groups are common.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can override this behavior to allow returns even after the member has moved to a different group. This is particularly relevant in fleet or B2B programs where member transfers between groups are common.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "To do this, enable the `CONF_ALLOW_TRANSACTION_RETURN_AFTER_GROUP_TRANSITION` flag by raising a JIRA ticket to the Capillary product support team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To do this, enable the CONF_ALLOW_TRANSACTION_RETURN_AFTER_GROUP_TRANSITION flag by raising a JIRA ticket to the Capillary product support team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        214,
+        216
+      ],
+      "raw": "> 📘 **Note:**\n>\n> Enabling this flag can result in negative group wallet balances. When a return is processed after the original points have already been redeemed, the reversal pushes the group balance below zero.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Enabling this flag can result in negative group wallet balances. When a return is processed after the original points have already been redeemed, the reversal pushes the group balance below zero.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "When a group is no longer needed, it can be deleted through the API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a group is no longer needed, it can be deleted through the API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        220,
+        220
+      ],
+      "raw": "# Deleting a group",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Deleting a group",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "To delete a user group, use `DELETE /v2/userGroup2` (see [Delete user group](https://docs.capillarytech.com/reference/delete-user-group)) with the group's `id` or `externalId` as query parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To delete a user group, use DELETE /v2/userGroup2 (see Delete user group) with the group's id or externalId as query parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/delete-user-group",
+          "line": 222
+        }
+      ]
+    },
+    {
+      "i": 63,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "**Example request:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example request:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        226,
+        229
+      ],
+      "raw": "```shell\ncurl -L -X DELETE 'https://eu.api.capillarytech.com/v2/userGroup2?id=3916904&externalId=uat_ug_10_delete_1' \\\n-H 'Authorization: Basic {token}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "shell",
+        "title": null,
+        "code": "curl -L -X DELETE 'https://eu.api.capillarytech.com/v2/userGroup2?id=3916904&externalId=uat_ug_10_delete_1' \\\n-H 'Authorization: Basic {token}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        231,
+        231
+      ],
+      "raw": "By default, a user group is deactivated when the primary member leaves. All members lose access to the shared wallet, and the group can no longer be managed or searched in Member Care. You can override this behavior to keep the group active even after the primary member exits. This is useful when the group's operations should continue independently of the original owner.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, a user group is deactivated when the primary member leaves. All members lose access to the shared wallet, and the group can no longer be managed or searched in Member Care. You can override this behavior to keep the group active even after the primary member exits. This is useful when the group's operations should continue independently of the original owner.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        233,
+        233
+      ],
+      "raw": "**Example:** A fleet owner decides to leave the program. Rather than immediately dissolving the fleet group, the brand enables this flag to keep the group active to allow secondary members to earn and redeem group points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: A fleet owner decides to leave the program. Rather than immediately dissolving the fleet group, the brand enables this flag to keep the group active to allow secondary members to earn and redeem group points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        235,
+        235
+      ],
+      "raw": "To do this, enable the `CONF_DISABLE_GROUP_DEACTIVATION_ON_PRIMARY_MEMBER_EXIT` flag by raising a JIRA ticket to the Capillary product support team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To do this, enable the CONF_DISABLE_GROUP_DEACTIVATION_ON_PRIMARY_MEMBER_EXIT flag by raising a JIRA ticket to the Capillary product support team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        237,
+        239
+      ],
+      "raw": "> 📘 **Note:**\n>\n> When enabled, the group remains active but has no primary member. It is not possible to add a new primary member or reassign primary membership to an existing member once the primary member has exited the user group. Points in the group wallet remain accessible to members with redemption permissions during this period.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:When enabled, the group remains active but has no primary member. It is not possible to add a new primary member or reassign primary membership to an existing member once the primary member has exited the user group. Points in the group wallet remain accessible to members with redemption permissions during this period.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        241,
+        241
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 241
+        }
+      ]
+    }
+  ]
+}

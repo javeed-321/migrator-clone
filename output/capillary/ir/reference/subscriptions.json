@@ -1,0 +1,273 @@
+{
+  "slug": "reference/subscriptions",
+  "source": "https://docs.capillarytech.com/reference/subscriptions.md",
+  "url": "https://docs.capillarytech.com/reference/subscriptions",
+  "title": "Subscriptions",
+  "description": "",
+  "section": "Subscriptions",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-17T05:46:32.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 5,
+    "blockquote": 1,
+    "list": 2,
+    "HTMLBlock": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Subscriptions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Subscriptions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Subscription programs let members opt into a supplementary loyalty program with its own duration, points exchange ratio, and benefits — separate from the base program. Each subscription program follows a maker-checker approval workflow before it goes live.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Subscription programs let members opt into a supplementary loyalty program with its own duration, points exchange ratio, and benefits — separate from the base program. Each subscription program follows a maker-checker approval workflow before it goes live.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "> **Note:** `/v3/subscriptions` is the primary API surface for creating and managing subscription programs (formerly called \"Partner Programs\"). It's a different, newer API from the legacy Partner Program customer link and delink APIs, which remain in use for enrolling individual customers into an already-published subscription program. This section covers only `/v3/subscriptions`.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: /v3/subscriptions is the primary API surface for creating and managing subscription programs (formerly called \"Partner Programs\"). It's a different, newer API from the legacy Partner Program customer link and delink APIs, which remain in use for enrolling individual customers into an already-published subscription program. This section covers only /v3/subscriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "### What you can do",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "What you can do",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "You can use the Subscriptions APIs to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the Subscriptions APIs to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        22
+      ],
+      "raw": "* **Create and update:** Create a subscription program in `DRAFT` status and update its configuration. Updating a `LIVE` subscription program forks a new draft version so the live program stays unchanged until the change is approved.\n* **Retrieve:** List all subscription programs for a loyalty program with pagination, or retrieve a single subscription program by ID and status.\n* **Manage the approval workflow:** Submit a `DRAFT` for approval, withdraw a submission, or approve or reject a submission that's `PENDING_APPROVAL`.\n* **Pause and resume the program:** Pause a `LIVE` subscription program and resume it later, separate from the customer-level pause covered under [Pause Subscription](https://docs.capillarytech.com/reference/pause-subscription).\n* **Discard a draft:** Permanently remove a `DRAFT` that was never published.\n* **Link and unlink benefits:** Attach or remove a benefit from a subscription program directly by ID.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create and update: Create a subscription program in DRAFT status and update its configuration. Updating a LIVE subscription program forks a new draft version so the live program stays unchanged until the change is approved.Retrieve: List all subscription programs for a loyalty program with pagination, or retrieve a single subscription program by ID and status.Manage the approval workflow: Submit a DRAFT for approval, withdraw a submission, or approve or reject a submission that's PENDING_APPROVAL.Pause and resume the program: Pause a LIVE subscription program and resume it later, separate from the customer-level pause covered under Pause Subscription.Discard a draft: Permanently remove a DRAFT that was never published.Link and unlink benefits: Attach or remove a benefit from a subscription program directly by ID.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/pause-subscription",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "### Subscription lifecycle",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Subscription lifecycle",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "Subscription programs move through a maker-checker workflow before they go live:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Subscription programs move through a maker-checker workflow before they go live:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        28,
+        33
+      ],
+      "raw": "1. **Create** a subscription program. It is created in `DRAFT` status.\n2. **Submit for approval:** [Update Subscription Status](https://docs.capillarytech.com/reference/update-subscription-status) with `action: SUBMIT_FOR_APPROVAL` transitions the program to `PENDING_APPROVAL`.\n3. **Approve or reject:** [Approve Subscription](https://docs.capillarytech.com/reference/approve-subscription) either publishes the program to `LIVE`, or sends it back to `DRAFT` with the reviewer's comment attached.\n4. **Withdraw:** while a submission is still `PENDING_APPROVAL`, the maker can call [Update Subscription Status](https://docs.capillarytech.com/reference/update-subscription-status) with `action: REVOKE` to pull it back to `DRAFT` without waiting on a reviewer.\n5. **Pause and resume:** a `LIVE` program can be paused and resumed with `action: PAUSE` and `action: RESUME` on the same endpoint.\n6. **Stop:** `action: STOP` ends a `LIVE` program.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create a subscription program. It is created in DRAFT status.Submit for approval: Update Subscription Status with action: SUBMIT_FOR_APPROVAL transitions the program to PENDING_APPROVAL.Approve or reject: Approve Subscription either publishes the program to LIVE, or sends it back to DRAFT with the reviewer's comment attached.Withdraw: while a submission is still PENDING_APPROVAL, the maker can call Update Subscription Status with action: REVOKE to pull it back to DRAFT without waiting on a reviewer.Pause and resume: a LIVE program can be paused and resumed with action: PAUSE and action: RESUME on the same endpoint.Stop: action: STOP ends a LIVE program.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-subscription-status",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/approve-subscription",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-subscription-status",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "Filter with `status=ACTIVE` to list published programs; each returned record reports its lifecycle status as `LIVE`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Filter with status=ACTIVE to list published programs; each returned record reports its lifecycle status as LIVE.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "Once a `DRAFT` is no longer needed, delete it with [Discard Subscription](https://docs.capillarytech.com/reference/discard-subscription). Only `DRAFT` subscriptions can be discarded.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once a DRAFT is no longer needed, delete it with Discard Subscription. Only DRAFT subscriptions can be discarded.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/discard-subscription",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        39,
+        180
+      ],
+      "raw": "<HTMLBlock>{`\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <style>\n        .api-sidebar-container {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n            line-height: 1.5;\n            color: inherit;\n            padding: 10px;\n            max-width: 100%;\n        }\n        .nav-list {\n            list-style: none;\n            padding: 0;\n            margin: 0;\n        }\n        .nav-item {\n            margin-bottom: 8px;\n            border-radius: 8px;\n            transition: all 0.25s ease;\n            border: 1px solid rgba(128, 128, 128, 0.2);\n            background-color: rgba(128, 128, 128, 0.05);\n            overflow: hidden;\n        }\n        .nav-item:hover {\n            background-color: rgba(0, 66, 154, 0.1);\n            transform: translateX(4px);\n            border-color: #007AFF;\n        }\n        .nav-link {\n            text-decoration: none !important;\n            border-bottom: none !important;\n            color: inherit !important;\n            display: flex;\n            align-items: center;\n            justify-content: space-between;\n            padding: 12px 14px;\n            font-size: 14px;\n            font-weight: 500;\n        }\n        .badge {\n            font-size: 10px;\n            font-weight: 800;\n            padding: 2px 8px;\n            border-radius: 4px;\n            min-width: 42px;\n            text-align: center;\n            text-transform: uppercase;\n            flex-shrink: 0;\n            opacity: 0.85;\n        }\n        .post  { background-color: #2ea44f; color: #ffffff; }\n        .put   { background-color: #f7811d; color: #ffffff; }\n        .get   { background-color: #007AFF; color: #ffffff; }\n        .patch { background-color: #6f42c1; color: #ffffff; }\n        .delete { background-color: #e53e3e; color: #ffffff; }\n        .nav-item:hover .badge {\n            opacity: 1;\n            box-shadow: 0 0 10px rgba(0, 122, 255, 0.4);\n        }\n        .nav-item:hover .nav-link {\n            color: #007AFF !important;\n        }\n    </style>\n</head>\n<body>\n<div class=\"api-sidebar-container\">\n    <ul class=\"nav-list\">\n        <li class=\"nav-item\">\n            <a href=\"/reference/create-subscription\" class=\"nav-link\">\n                <span>Create Subscription</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/list-subscriptions\" class=\"nav-link\">\n                <span>List All Subscriptions</span>\n                <span class=\"badge get\">GET</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/get-subscription\" class=\"nav-link\">\n                <span>Get Subscription</span>\n                <span class=\"badge get\">GET</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/update-subscription\" class=\"nav-link\">\n                <span>Update Subscription</span>\n                <span class=\"badge put\">PUT</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/pause-subscription\" class=\"nav-link\">\n                <span>Pause Subscription</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/resume-subscription\" class=\"nav-link\">\n                <span>Resume Subscription</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/update-subscription-status\" class=\"nav-link\">\n                <span>Update Subscription Status</span>\n                <span class=\"badge patch\">PATCH</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/approve-subscription\" class=\"nav-link\">\n                <span>Approve Subscription</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/discard-subscription\" class=\"nav-link\">\n                <span>Discard Subscription</span>\n                <span class=\"badge delete\">DELETE</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/link-benefit-to-subscription\" class=\"nav-link\">\n                <span>Link Benefit to Subscription</span>\n                <span class=\"badge post\">POST</span>\n            </a>\n        </li>\n        <li class=\"nav-item\">\n            <a href=\"/reference/unlink-benefit-from-subscription\" class=\"nav-link\">\n                <span>Unlink Benefit from Subscription</span>\n                <span class=\"badge delete\">DELETE</span>\n            </a>\n        </li>\n    </ul>\n</div>\n</body>\n</html>\n`}</HTMLBlock>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "HTMLBlock",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "manual",
+        "note": "raw HTML+CSS+JS has no equivalent — rebuild with Cards/Columns/Steps, or drop"
+      },
+      "inline": []
+    }
+  ]
+}

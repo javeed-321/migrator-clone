@@ -1,0 +1,620 @@
+{
+  "slug": "docs/create-segments-using-scheduled-ftp-upload",
+  "source": "https://docs.capillarytech.com/docs/create-segments-using-scheduled-ftp-upload.md",
+  "url": "https://docs.capillarytech.com/docs/create-segments-using-scheduled-ftp-upload",
+  "title": "Create Segments Using Scheduled Ftp Upload",
+  "description": "",
+  "section": "Customer Segmentation",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 6,
+    "Image": 4,
+    "list": 7,
+    "Table": 1,
+    "Callout": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create segments using scheduled FTP upload",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create segments using scheduled FTP upload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This feature enables you to automate user segment uploads. You can create a new segment or select any segment that is manually refreshed through FTP upload. For these segments, you can configure an automated refresh cycle using scheduled upload features. For example, a segment created on Insights+ using analytics notebooks(Databricks) refreshes automatically every week - update the segment values to a CSV file by syncing it to the specific FTP path(folder). Insights+ automatically selects the latest file and refreshes the segment according to the selected frequency and validity.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This feature enables you to automate user segment uploads. You can create a new segment or select any segment that is manually refreshed through FTP upload. For these segments, you can configure an automated refresh cycle using scheduled upload features. For example, a segment created on Insights+ using analytics notebooks(Databricks) refreshes automatically every week - update the segment values to a CSV file by syncing it to the specific FTP path(folder). Insights+ automatically selects the latest file and refreshes the segment according to the selected frequency and validity.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "There are two types of customer segments - **SCD** and **Non-SCD**. SCD based scheduled upload records segment snapshots at multiple points of time, whereas to perform upload on the latest segment snapshot Non-SCD based scheduled upload is used.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are two types of customer segments - SCD and Non-SCD. SCD based scheduled upload records segment snapshots at multiple points of time, whereas to perform upload on the latest segment snapshot Non-SCD based scheduled upload is used.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/b16e0c0--DKuFy97J7LWudhz3fRxEWfS-BtyXgI5zQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/b16e0c0--DKuFy97J7LWudhz3fRxEWfS-BtyXgI5zQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Segment Status",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Segment Status",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "The following are the segment status.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the segment status.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        24
+      ],
+      "raw": "1. **Inprogress**: Segment creation is under process.\n2. **Draft**: Signifies a draft state where the recent changes are not saved. You can open the segment to save the draft available and click on Create to save the partition values. You can also edit partitions or Deactivate draft segments.\n3. **Active**: Only active segments are available for services that use Segments. You can either edit or deactivate an active segment.\n4. **Inactive**: These segments will be inactive and not appear in any service that consumes segments. You can modify an inactive segment to activate it.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Inprogress: Segment creation is under process.Draft: Signifies a draft state where the recent changes are not saved. You can open the segment to save the draft available and click on Create to save the partition values. You can also edit partitions or Deactivate draft segments.Active: Only active segments are available for services that use Segments. You can either edit or deactivate an active segment.Inactive: These segments will be inactive and not appear in any service that consumes segments. You can modify an inactive segment to activate it.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Create a new segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Create a new segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "To create a new segment with scheduled FTP server upload, follow the steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a new segment with scheduled FTP server upload, follow the steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        37
+      ],
+      "raw": "1. On the EI navigation pane, click **Segments** > **User Segments**.\n2. Click the **Create Segment**.\n3. In the **Segment Name**, specify a name for the group.\n4. In the **Description**, specify a short description of the segment.\n5. In **Type**, select **SCD** to keep track of customer behavior for the current segment. Select **Non-SCD** to save only the current snapshot.\n6. In the **Method**, select **Upload** and click **Next** to continue.\n7. In **Upload Type**, select **Scheduled Upload**.\n8. In **Scheduled Upload**, select the **FTP Configuration** to configure the following options",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the EI navigation pane, click Segments > User Segments.Click the Create Segment.In the Segment Name, specify a name for the group.In the Description, specify a short description of the segment.In Type, select SCD to keep track of customer behavior for the current segment. Select Non-SCD to save only the current snapshot.In the Method, select Upload and click Next to continue.In Upload Type, select Scheduled Upload.In Scheduled Upload, select the FTP Configuration to configure the following options",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/c73d050-MjkYsbfP9lfb1h8WNrrxcZIUCfSHvl32hw.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/c73d050-MjkYsbfP9lfb1h8WNrrxcZIUCfSHvl32hw.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        41,
+        127
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Options\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        FTP name\n      </td>\n\n      <td>\n        Select the FTP name from the list. You can select from five FTP names as configured in FTP settings.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        FTP path\n      </td>\n\n      <td>\n        Enter a valid FTP path. FTP path must be relative to the configured root folder. For example, root\\_folder/FTP path such as ftp\\://demo\\_apac/demo\\_master/demo\\_path/demo\\*\\*points.csv. Here, demo\\_apac/demo\\_master/ is the root folder and /demo\\_path/ is the FTP path.\\\n        Note:  \n\n        * Name of the file must be in the format 'name of the segment\\*\\*any suffix'. For example, consider demo\\_\\_points.csv as a file name here demo is the segment name separated by a double underscore from the suffix(points).\n\n        * The FTP path must point to the correct CSV file.\n\n        * The first row of the CSV sheet must be a column header.\n\n        * First column header must be a user identifier such as user id, mobile, email, and external\\_ID.\n\n        * If the identifier is mobile(mobile number), country code is mandatory (without the \"+\" sign). For example, 919972752991.\n\n        * The second column header must have a partition value. For example, If the first column header is the user\\_id(1,2,3, and so on) then the second column header must hold the partition value( high, medium, or low).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Frequency\n      </td>\n\n      <td>\n        Schedule the FTP upload frequency by selecting the options - daily, weekly, or monthly. This schedule starts on the day the user segment is created and ends on the last day, week, or month as selected in the frequency and validity option. Since this update occurs after the ETL process, the underlying data may be up to 24 hours old.  \n\n        Consider the segment created using FTP scheduled upload on October 1, 2020.    \n\n        * \\*Daily\\*\\*: The schedule starts from October 1, 2020, till the last(to) date of validity.  \n        * \\*Note\\*\\*: Daily schedule always runs on the system sync time. It is recommended to use a daily schedule rather than a weekly and monthly schedule for a regular refresh in the upload of data.  \n        * \\*Weekly\\*\\*: The schedule starts from October 5, 2020, till the last(to) week of validity.  \n        * \\*Note\\*\\*: Weekly schedule always starts on Monday. If on Monday the schedule is created before the system sync time then the schedule starts on the same day.  \n        * \\*Monthly\\*\\*: The schedule starts from November 1, 2020, till the last(to) month of validity.  \n        * \\*Note\\*\\*: Monthly schedule always starts from the 1st day of every month. If the schedule is created before the system sync time then the schedule starts from October 1, 2020. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Validity\n      </td>\n\n      <td>\n        To mention the validity of the scheduled upload's frequency, select the start(**from**) and end(**to**) date using a calendar picker.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Recipient\n      </td>\n\n      <td>\n        To receive the error notifications, select the recipient(s) using the drop-down list. Any recipient who has access to the organization can receive the notification based on your selection from the drop-down list.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Options",
+          "Description"
+        ],
+        "rows": [
+          [
+            "FTP name",
+            "Select the FTP name from the list. You can select from five FTP names as configured in FTP settings."
+          ],
+          [
+            "FTP path",
+            "Enter a valid FTP path. FTP path must be relative to the configured root folder. For example, root_folder/FTP path such as ftp://demo_apac/demo_master/demo_path/demo**points.csv. Here, demo_apac/demo_master/ is the root folder and /demo_path/ is the FTP path.Note:Name of the file must be in the format 'name of the segment**any suffix'. For example, consider demo__points.csv as a file name here demo is the segment name separated by a double underscore from the suffix(points).The FTP path must point to the correct CSV file.The first row of the CSV sheet must be a column header.First column header must be a user identifier such as user id, mobile, email, and external_ID.If the identifier is mobile(mobile number), country code is mandatory (without the \"+\" sign). For example, 919972752991.The second column header must have a partition value. For example, If the first column header is the user_id(1,2,3, and so on) then the second column header must hold the partition value( high, medium, or low)."
+          ],
+          [
+            "Frequency",
+            "Schedule the FTP upload frequency by selecting the options - daily, weekly, or monthly. This schedule starts on the day the user segment is created and ends on the last day, week, or month as selected in the frequency and validity option. Since this update occurs after the ETL process, the underlying data may be up to 24 hours old.Consider the segment created using FTP scheduled upload on October 1, 2020.*Daily**: The schedule starts from October 1, 2020, till the last(to) date of validity.*Note**: Daily schedule always runs on the system sync time. It is recommended to use a daily schedule rather than a weekly and monthly schedule for a regular refresh in the upload of data.*Weekly**: The schedule starts from October 5, 2020, till the last(to) week of validity.*Note**: Weekly schedule always starts on Monday. If on Monday the schedule is created before the system sync time then the schedule starts on the same day.*Monthly**: The schedule starts from November 1, 2020, till the last(to) month of validity.*Note**: Monthly schedule always starts from the 1st day of every month. If the schedule is created before the system sync time then the schedule starts from October 1, 2020."
+          ],
+          [
+            "Validity",
+            "To mention the validity of the scheduled upload's frequency, select the start(from) and end(to) date using a calendar picker."
+          ],
+          [
+            "Recipient",
+            "To receive the error notifications, select the recipient(s) using the drop-down list. Any recipient who has access to the organization can receive the notification based on your selection from the drop-down list."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        129,
+        130
+      ],
+      "raw": "9. Click **Save** and **Proceed**. Once the process is complete, review the details and click **Create**.\n10. After the segment creation using scheduled FTP upload, you can see the segment with a list of partitions as shown below.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Save and Proceed. Once the process is complete, review the details and click Create.After the segment creation using scheduled FTP upload, you can see the segment with a list of partitions as shown below.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        132,
+        134
+      ],
+      "raw": "> 📘\n>\n> * You can see the segment partition once the segment is created depending on the start date of the scheduled FTP upload",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "You can see the segment partition once the segment is created depending on the start date of the scheduled FTP upload",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/f69ef14-u0EmBd4wUEaed05AEUhvu9K7zqSGeRCPjw.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/f69ef14-u0EmBd4wUEaed05AEUhvu9K7zqSGeRCPjw.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "* **Partitions**: Partitions are different values of a segment. For example, suppose a segment has High loyal, Medium loyal, and Low loyal as segment values. In that case, three partitions will be created (one for each value).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Partitions: Partitions are different values of a segment. For example, suppose a segment has High loyal, Medium loyal, and Low loyal as segment values. In that case, three partitions will be created (one for each value).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "## Edit existing uploaded segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Edit existing uploaded segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "To modify an existing upload-based segment using a scheduled FTP server upload, follow the steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To modify an existing upload-based segment using a scheduled FTP server upload, follow the steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        144,
+        149
+      ],
+      "raw": "1. On the EI navigation pane, click **Segments** > **User Segments**.\n2. Click on the **Segment Name** that you want to edit. You can filter the summary list by **Type (SCD)** and **Method (Upload)** and search for a specific filter in the **Search box**.\n3. Click the **Edit Segment**.\n4. In the **Edit segment**, click on **Edit partitions**.\n5. In **Upload Type**, select **Scheduled Upload**.\n6. In **Scheduled Upload**, configure upload options such as **FTP**, **FTP path**, **Frequency**, **Validity**, and **Recipient**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the EI navigation pane, click Segments > User Segments.Click on the Segment Name that you want to edit. You can filter the summary list by Type (SCD) and Method (Upload) and search for a specific filter in the Search box.Click the Edit Segment.In the Edit segment, click on Edit partitions.In Upload Type, select Scheduled Upload.In Scheduled Upload, configure upload options such as FTP, FTP path, Frequency, Validity, and Recipient.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        151,
+        153
+      ],
+      "raw": "> 📘\n>\n> * For detailed information on configurable options, refer to step 8 under the heading Create a new segment.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "For detailed information on configurable options, refer to step 8 under the heading Create a new segment.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        155,
+        156
+      ],
+      "raw": "7. Click **Save** and **Proceed**. Once the process is complete, review the details and click **Create**.\n8. After updating the segment using scheduled FTP upload, you can see the segment with a list of partitions. You can also edit the partition.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Save and Proceed. Once the process is complete, review the details and click Create.After updating the segment using scheduled FTP upload, you can see the segment with a list of partitions. You can also edit the partition.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        158,
+        160
+      ],
+      "raw": "> 📘\n>\n> After updating the segment, initially, it will be in Inprogress status until the scheduled upload happens, post-process completion the status label disappears",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "After updating the segment, initially, it will be in Inprogress status until the scheduled upload happens, post-process completion the status label disappears",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "## Execution logs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Execution logs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "To track each scheduled upload status, you can check the execution logs that contain a list of details of successful and unsuccessful scheduled uploads.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To track each scheduled upload status, you can check the execution logs that contain a list of details of successful and unsuccessful scheduled uploads.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        166,
+        167
+      ],
+      "raw": "* **Green Dot**: Signifies successful execution\n* **Red Dot**: Signifies failed execution.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Green Dot: Signifies successful executionRed Dot: Signifies failed execution.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/3345d98-sB6CkMqmjlQMALFDnAr6_UE5yJFDQD6Z9w.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/3345d98-sB6CkMqmjlQMALFDnAr6_UE5yJFDQD6Z9w.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+---
+updatedAt: 2026-06-22T05:46:23.000Z
+---
+
+Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.
+
+# Configure Event Notification
+
+To configure the event notification, log on to InTouch of your cluster and navigate to **Profile** icon > **Organization Settings** > **Event Notifications** and perform the following:
+
+1. [Create webhook](https://docs.capillarytech.com/docs/configure-event-notification#creating-webhook)
+2. <Anchor label="Add webhook" target="_blank" href="https://docs.capillarytech.com/docs/configure-event-notification#adding-webhook">Add webhook</Anchor>
+3. (Optional) <Anchor label="Enrich the event payload" target="_blank" href="https://docs.capillarytech.com/docs/configure-event-notification#enriching-the-event-notification-payload">Enrich the event payload</Anchor>
+4. Select and add applicable events for the webhook. Use the Search box to easily find the event. To view the complete schema of a specific event click the respective **>** icon.
+5. Click **Done**.
+
+<Image align="center" border={true} src="https://files.readme.io/2ad9c4dfdcc280b97343ab272c16d2c3f06d6251c0b1bf000c74745dda28f37a-Event_Notif.gif" className="border" />
+
+> **Note:** Capillary delivers event notifications in near real time. 95% of events are published for delivery within about 2 to 3 minutes. For details, see [Event delivery time](https://docs.capillarytech.com/docs/copy-of-consuming-event-notifications#event-delivery-time).
+
+## Creating webhook
+
+A webhook defines the integration URL where the Event Notification Service (ENS) sends event data.
+
+Before configuring event notifications, you must create a webhook endpoint and generate its URL. This endpoint receives HTTP POST requests containing event payloads from ENS.
+
+You can create the webhook URL using an API gateway or proxy service such as Apigee, AWS API Gateway, or Kong, which routes incoming events securely to your backend server.
+
+Example: <https://eo9v7fva2e80ept.m.pipedream.net>
+
+## Adding webhook
+
+To add the webhook, perform the following:
+
+1. On the **Webhooks** tab, click **New Webhook**.
+
+<Image align="center" border={true} width="smart" src="https://files.readme.io/89054e1-HbYUddyuarSMTUpzVuqrDExMHSix4U6lSQ.png" className="border" />
+
+3. In **Webhook** name, specify a name for the event notification.
+4. In **Webhook URL**, enter the Webhook URL that you want to associate with the event notification. To get a Webhook URL, you need to have a Webhook account. You can use the URL generated for the account to configure event notifications.
+5. In **Header**, enter the required headers (for integration authentication) as key-value pairs, specifying the necessary authentication information for event notification. A webhook requires authentication when the receiving endpoint (your webhook URL) needs to verify that incoming event notifications are legitimate and originated from Capillary, not from any unauthorised source. The authentication credentials are provided by the owner of the webhook endpoint; this could be the brand or whoever manages the integration.
+
+## Enriching the event notification payload
+
+Payload enrichment lets you enhance event notifications with additional contextual data.
+By selecting relevant entries in the Payload enrichment settings, you can include parameters such as store, till, or customer identifiers.
+
+<Image align="center" alt="Event notification UI " border={true} caption="Event notification UI" src="https://files.readme.io/5d25e35212bb96505b0a0d3f92bebd59b650041de83e5be70555834119ca3094-image.png" width="85% " />
+
+The table below explains the additional information that you can choose to include in the event notification payload.
+
+| **Option**                                                                 | **Description**                                                                                                                                                                                                                                                                                                                                                                                           |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Till**                                                                   | Captures till details – till data enrichment. The payload will contain till details such as till code, till name, and till ID.                                                                                                                                                                                                                                                                            |
+| **Store**                                                                  | Captures store details – store data enrichment. The payload will contain store details such as store name, store ID, store code, and store external ID.                                                                                                                                                                                                                                                   |
+| **Customer identifiers**                                                   | Includes customer identifiers according to the selected customer registration source. The available options for sources  are WeChat, WebEngage, and InStore. For example, if you select InStore and the InStore profile of the customer contains an external ID, mobile, and email, the event response payload will include the identifiers external ID, mobile, and email.                               |
+| **Card Number** (Selection available in the customer identifier drop-down) | Includes card information along with customer identifier information. An associated source (channel or source from which the card number is obtained or linked to a customer's profile) must be selected before selecting the **Card Number** check box. If the customer has multiple card numbers, all the card numbers are added.                                                                       |
+| **Awarded Reference ID**                                                   | Includes the unique identifier associated with each issued point or redemption transaction within the system. These IDs are generated upon awarding loyalty points and can be used to track points issuance and redemption activities. Includes the reference ID of the points issued as a result of behavioural events.                                                                                  |
+| **Available Points Balance**                                               | Captures the total available points across multiple program IDs the customer is associated with. You can raise a JIRA ticket to the sustenance team and enable the configuration `availablePointsBalanceEnrichmentEnabled`. Once activated, the system automatically records the customer's total points balance across `pointsIssued` and `pointsRedeemed` events in the `AvailablePointsBalance` field. |
+| **Enrich through Neo dataflow**                                            | Enriches or transforms data through Neo dataflows. Choose the required Neo dataflow from the drop-down.For details, refer to                                                                                                                                                                                                                                                                              |
+
+<br />

@@ -1,0 +1,273 @@
+{
+  "slug": "docs/transform-headers-block",
+  "source": "https://docs.capillarytech.com/docs/transform-headers-block.md",
+  "url": "https://docs.capillarytech.com/docs/transform-headers-block",
+  "title": "Transform Headers Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:48:49.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transform (Headers) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transform (Headers) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `transform_header_data` block manipulates and remaps CSV column headers using header mappings and expressions as a transformation block in a Connect+ dataflow. It defines the structure and order of the output file, supports headerless input files, and passes the transformed data to downstream blocks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The transform_header_data block manipulates and remaps CSV column headers using header mappings and expressions as a transformation block in a Connect+ dataflow. It defines the structure and order of the output file, supports headerless input files, and passes the transformed data to downstream blocks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your source file's column headers need to be renamed, reordered, or derived from expressions before the file is passed to downstream blocks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your source file's column headers need to be renamed, reordered, or derived from expressions before the file is passed to downstream blocks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* A list of the desired output column headers in the required order\n* A mapping from output headers to input headers\n* If the input file is headerless, a list of column names to assign to the input columns",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A list of the desired output column headers in the required orderA mapping from output headers to input headersIf the input file is headerless, a list of column names to assign to the input columns",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        146
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Output Headers Order**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The comma-separated list of output column headers in the order they should appear in the output file.   \n        For example, `TAmount,bill_name,BillID`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Output File Delimiter**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The delimiter used to separate fields in the output file. Default value: `,`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Output Filename**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The name of the output file including its extension.   \n        Default value: `${filename}`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Header Mapping**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A JSON object that maps output column headers to input column headers.   \n        Default value: `{}`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Is the file headerless?**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Determines whether the input file has column headers. Select `true` or `false` from the dropdown.   \n        Default value: `false`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Mention header names (for use in mapping and expressions)**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Defines the column header names when the input file is headerless, for use in mapping and expressions.   \n        For example, `TAmount,BillID`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Output Headers Order",
+            "Yes",
+            "The comma-separated list of output column headers in the order they should appear in the output file.For example, TAmount,bill_name,BillID."
+          ],
+          [
+            "Output File Delimiter",
+            "Yes",
+            "The delimiter used to separate fields in the output file. Default value: ,."
+          ],
+          [
+            "Output Filename",
+            "Yes",
+            "The name of the output file including its extension.Default value: ${filename}."
+          ],
+          [
+            "Header Mapping",
+            "Yes",
+            "A JSON object that maps output column headers to input column headers.Default value: {}."
+          ],
+          [
+            "Is the file headerless?",
+            "Yes",
+            "Determines whether the input file has column headers. Select true or false from the dropdown.Default value: false."
+          ],
+          [
+            "Mention header names (for use in mapping and expressions)",
+            "No",
+            "Defines the column header names when the input file is headerless, for use in mapping and expressions.For example, TAmount,BillID."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/134146872da67d7e5b7ed209374c18b4c69dfbce608cc8d290455fe3027687ac-Screenshot_2026-04-20_at_5.27.43_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/134146872da67d7e5b7ed209374c18b4c69dfbce608cc8d290455fe3027687ac-Screenshot_2026-04-20_at_5.27.43_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

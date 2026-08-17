@@ -1,0 +1,1846 @@
+{
+  "slug": "docs/vulcan-getting-started",
+  "source": "https://docs.capillarytech.com/docs/vulcan-getting-started.md",
+  "url": "https://docs.capillarytech.com/docs/vulcan-getting-started",
+  "title": "Vulcan Getting Started",
+  "description": "",
+  "section": "Vulcan",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 14,
+    "paragraph": 21,
+    "Table": 7,
+    "list": 17,
+    "code": 2,
+    "Callout": 10,
+    "Image": 6
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Getting Started",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Getting Started",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This section covers essential concepts, setup prerequisites, access roles, application setup steps, internationalisation and enabling RBAC for Vulcan API calls, enabling you to get started with Vulcan.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section covers essential concepts, setup prerequisites, access roles, application setup steps, internationalisation and enabling RBAC for Vulcan API calls, enabling you to get started with Vulcan.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Terms and Abbreviations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Terms and Abbreviations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        24
+      ],
+      "raw": "| **Acronym** | **Full Form**                                                                                                                  |\n| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |\n| **UI**      | User Interface                                                                                                                 |\n| **UX**      | User Experience                                                                                                                |\n| **UAT**     | User Acceptance Testing                                                                                                        |\n| **CLI**     | Command Line Interface                                                                                                         |\n| **SDK**     | Software Development Kit                                                                                                       |\n| **TDD**     | Test-Driven Development                                                                                                        |\n| **QA**      | Quality Assurance                                                                                                              |\n| **API**     | Application Programming Interface                                                                                              |\n| **GTM**     | [Google Tag Manager](https://support.google.com/tagmanager/answer/6102821?hl=en)                                               |\n| **GA**      | [Google Analytics](https://support.google.com/analytics/topic/14089939?hl=en\\&ref_topic=14090456\\&sjid=7662243895788080453-AP) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Acronym",
+          "Full Form"
+        ],
+        "rows": [
+          [
+            "UI",
+            "User Interface"
+          ],
+          [
+            "UX",
+            "User Experience"
+          ],
+          [
+            "UAT",
+            "User Acceptance Testing"
+          ],
+          [
+            "CLI",
+            "Command Line Interface"
+          ],
+          [
+            "SDK",
+            "Software Development Kit"
+          ],
+          [
+            "TDD",
+            "Test-Driven Development"
+          ],
+          [
+            "QA",
+            "Quality Assurance"
+          ],
+          [
+            "API",
+            "Application Programming Interface"
+          ],
+          [
+            "GTM",
+            "Google Tag Manager"
+          ],
+          [
+            "GA",
+            "Google Analytics"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Application Types",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Application Types",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        28,
+        32
+      ],
+      "raw": "| **Type**                 | **Description**                                                                                              |\n| ------------------------ | ------------------------------------------------------------------------------------------------------------ |\n| **Global Application**   | Applications are accessible to all organisations. They are not editable after creation.                      |\n| **Native Application**   | Applications accessible to a specific organisation, shareable with other brands.                             |\n| **External Application** | Applications developed as standalone React projects with Capillary UX dependencies. \\[Currently Unsupported] |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Global Application",
+            "Applications are accessible to all organisations. They are not editable after creation."
+          ],
+          [
+            "Native Application",
+            "Applications accessible to a specific organisation, shareable with other brands."
+          ],
+          [
+            "External Application",
+            "Applications developed as standalone React projects with Capillary UX dependencies. [Currently Unsupported]"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "Before setting up your application on Vulcan, ensure that you have the following prerequisites:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before setting up your application on Vulcan, ensure that you have the following prerequisites:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        38,
+        40
+      ],
+      "raw": "* [ ] Mac or Linux system.\n* [ ] Node.js 14 (preferably using [nvm](https://dev.to/csituma/install-nvm-on-mac-windows-and-linux-1aj9)).\\\n  You can also install npm using the following command:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mac or Linux system.Node.js 14 (preferably using nvm).You can also install npm using the following command:",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        42,
+        44
+      ],
+      "raw": "```shell\ncurl -o- <https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh> | bash\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "shell",
+        "title": null,
+        "code": "curl -o- <https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh> | bash"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        46,
+        51
+      ],
+      "raw": "* [ ] React 18 with Webpack 5: Prior knowledge of React is required.\n* [ ] Vulcan module for your organisation. For access, raise a JIRA request to the Capillary product support team.\n* [ ] Read-only npm token for the Capillary organisation NPM registry. For access, raise a JIRA request to the Capillary product support team.\n* [ ] [User access](https://docs.capillarytech.com/docs/vulcan-getting-started#access-roles) to Vulcan UI.\n* [ ] Vulcan [setup script](https://storage.crm.n.content-cdn.io/create-vulcan-app.sh) with execution permissions.\n* [ ] Vulcan SDK v.2.4.0.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "React 18 with Webpack 5: Prior knowledge of React is required.Vulcan module for your organisation. For access, raise a JIRA request to the Capillary product support team.Read-only npm token for the Capillary organisation NPM registry. For access, raise a JIRA request to the Capillary product support team.User access to Vulcan UI.Vulcan setup script with execution permissions.Vulcan SDK v.2.4.0.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#access-roles",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        53,
+        61
+      ],
+      "raw": "> 📘 Note:\n>\n> The setup script is used to automate the setup of a Vulcan application executing a few tasks.\n>\n> The setup script does the following:\n>\n> * Requests npm token.\n> * Configures npm settings.\n> * Runs the command to create the Vulcan application with the provided name.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The setup script is used to automate the setup of a Vulcan application executing a few tasks.The setup script does the following:Requests npm token.Configures npm settings.Runs the command to create the Vulcan application with the provided name.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "# Accessing Vulcan UI",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Accessing Vulcan UI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "The Vulcan UI lets you access and manage your applications within the Vulcan platform. Users have different permission levels to view and access Vulcan applications. Refer to [Access Roles](https://docs.capillarytech.com/docs/vulcan-getting-started#access-roles)  for information on the access roles. For access, create a JIRA ticket to the Capillary product support team. For more information, refer to the user management documentation [here](https://docs.capillarytech.com/docs/managing-permissions#list-of-standard-permission-set).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Vulcan UI lets you access and manage your applications within the Vulcan platform. Users have different permission levels to view and access Vulcan applications. Refer to Access Roles  for information on the access roles. For access, create a JIRA ticket to the Capillary product support team. For more information, refer to the user management documentation here.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#access-roles",
+          "line": 65
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions#list-of-standard-permission-set",
+          "line": 65
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "To access the Vulcan UI, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To access the Vulcan UI, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        69,
+        70
+      ],
+      "raw": "1. On the InTouch portal, click on **Home** in the left-hand corner.\n2. Select **Vulcan** from the sidebar menu.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the InTouch portal, click on Home in the left-hand corner.Select Vulcan from the sidebar menu.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "## Access Roles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Access Roles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "Accessing Vulcan involves various permission levels tailored to specific roles within the development and management process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Accessing Vulcan involves various permission levels tailored to specific roles within the development and management process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "The roles are as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The roles are as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        78,
+        142
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        **Role**\n      </th>\n\n      <th>\n        **Description**\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **VULCAN VIEWER**\n      </td>\n\n      <td>\n        This access level is for users to view the application without making any changes.\n\n        Users with this level cannot modify or manage the application.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **VULCAN DEVELOPER**\n      </td>\n\n      <td>\n        This access level is for developers actively working on application development and testing.\n\n        Users with DEV access can upload new builds to the platform and enable or disable User Acceptance Testing (UAT) mode.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **VULCAN ADMIN**\n      </td>\n\n      <td>\n        This access level is for administrators managing the overall application.\n\n        Users with ADMIN access can create new applications, enable or disable User Acceptance Testing (UAT) mode, enable or disable production (PROD) mode, and delete applications.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **VULCAN SUPERADMIN**\n      </td>\n\n      <td>\n        This access level is for super administrators.\n\n        Users with SUPERADMIN access can delete applications, setup, modify, and delete cluster CF configurations, and override Member Care UI.\n\n        This is currently restricted to the Capillary engineering team.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Role",
+          "Description"
+        ],
+        "rows": [
+          [
+            "VULCAN VIEWER",
+            "This access level is for users to view the application without making any changes.Users with this level cannot modify or manage the application."
+          ],
+          [
+            "VULCAN DEVELOPER",
+            "This access level is for developers actively working on application development and testing.Users with DEV access can upload new builds to the platform and enable or disable User Acceptance Testing (UAT) mode."
+          ],
+          [
+            "VULCAN ADMIN",
+            "This access level is for administrators managing the overall application.Users with ADMIN access can create new applications, enable or disable User Acceptance Testing (UAT) mode, enable or disable production (PROD) mode, and delete applications."
+          ],
+          [
+            "VULCAN SUPERADMIN",
+            "This access level is for super administrators.Users with SUPERADMIN access can delete applications, setup, modify, and delete cluster CF configurations, and override Member Care UI.This is currently restricted to the Capillary engineering team."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "# Application Setup",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Application Setup",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "Setting up an application on Vulcan involves two steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setting up an application on Vulcan involves two steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        148,
+        149
+      ],
+      "raw": "* [Creating and configuring the application on Vulcan UI.](https://docs.capillarytech.com/docs/vulcan-getting-started#application-setup-in-vulcan-ui)\n* [Initialising the project on your local machine.](https://docs.capillarytech.com/docs/vulcan-getting-started#local-project-initialization)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Creating and configuring the application on Vulcan UI.Initialising the project on your local machine.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#application-setup-in-vulcan-ui",
+          "line": 148
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#local-project-initialization",
+          "line": 149
+        }
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "Start by configuring the application on the Vulcan UI. This includes entering the basic details, selecting the appropriate application type, and configuring internationalisation settings.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Start by configuring the application on the Vulcan UI. This includes entering the basic details, selecting the appropriate application type, and configuring internationalisation settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "After completing the setup on Vulcan UI, initialise the project on your local machine. This includes setting up the development environment, providing necessary credentials, and configuring project details and endpoints.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After completing the setup on Vulcan UI, initialise the project on your local machine. This includes setting up the development environment, providing necessary credentials, and configuring project details and endpoints.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "## Application Setup in Vulcan UI",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Application Setup in Vulcan UI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "To create and configure your application on the Vulcan UI, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create and configure your application on the Vulcan UI, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        159,
+        160
+      ],
+      "raw": "1. [Access the Vulcan UI page](https://docs.capillarytech.com/docs/vulcan-getting-started#accessing-vulcan-ui) from InTouch.\n2. Click **Create application** on the Vulcan UI.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Access the Vulcan UI page from InTouch.Click Create application on the Vulcan UI.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#accessing-vulcan-ui",
+          "line": 159
+        }
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/228f845-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/228f845-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "3. In the Basic Details section, define the basic details for the application, validate the name and prefix path and set the application type. [Refer to the section Basic Details](https://docs.capillarytech.com/docs/vulcan-getting-started#basic-details).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Basic Details section, define the basic details for the application, validate the name and prefix path and set the application type. Refer to the section Basic Details.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#basic-details",
+          "line": 164
+        }
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        166,
+        166
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/0fce1de-image10.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/0fce1de-image10.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        168,
+        169
+      ],
+      "raw": "4. Enter the Authentication details. This is applicable for external applications and is currently unsupported.\n5. If localisation is required for the application, enter the internationalisation details. [Refer to the section on Internationalisation Details](https://docs.capillarytech.com/docs/application-development-process#setting-up-internationalization-during-development).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter the Authentication details. This is applicable for external applications and is currently unsupported.If localisation is required for the application, enter the internationalisation details. Refer to the section on Internationalisation Details.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/application-development-process#setting-up-internationalization-during-development",
+          "line": 169
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/4917693-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/4917693-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "### Basic Details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Basic Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "The details of each field are as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The details of each field are as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        177,
+        262
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        **Field**\n      </th>\n\n      <th>\n        **Description**\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Name**\n      </td>\n\n      <td>\n        Name of the application + Organisation ID.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Application ID**\n      </td>\n\n      <td>\n        Unique ID specific to the application.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Description**\n      </td>\n\n      <td>\n        Short description explaining the basic functions of the application.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Readme**\n      </td>\n\n      <td>\n        Details on the features and functions of the application.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Prefix Path**\n      </td>\n\n      <td>\n        The public URL path points to the entry point where the application will be loaded on the Vulcan UI.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Application Type**\n      </td>\n\n      <td>\n        The type of Vulcan application.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Share with other organisations**\n      </td>\n\n      <td>\n        Share the Vulcan application with other organisations that the user has access to.\n        Refer to the document on [Sharing Member Care Replica Apps Across Organisations](https://docs.capillarytech.com/reference/customizing-the-member-care-ui#sharing-member-care-replica-apps-across-organizations) for more information on sharing with other organisations.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Name",
+            "Name of the application + Organisation ID."
+          ],
+          [
+            "Application ID",
+            "Unique ID specific to the application."
+          ],
+          [
+            "Description",
+            "Short description explaining the basic functions of the application."
+          ],
+          [
+            "Readme",
+            "Details on the features and functions of the application."
+          ],
+          [
+            "Prefix Path",
+            "The public URL path points to the entry point where the application will be loaded on the Vulcan UI."
+          ],
+          [
+            "Application Type",
+            "The type of Vulcan application."
+          ],
+          [
+            "Share with other organisations",
+            "Share the Vulcan application with other organisations that the user has access to.\nRefer to the document on Sharing Member Care Replica Apps Across Organisations for more information on sharing with other organisations."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/customizing-the-member-care-ui#sharing-member-care-replica-apps-across-organizations",
+          "line": 258
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        264,
+        266
+      ],
+      "raw": "> 📘 Note:\n>\n> The name and its associated Organization ID and Prefix Path must be unique across the entire cluster. No two applications can have the same name, Organization ID and Prefix Path within the same cluster.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The name and its associated Organization ID and Prefix Path must be unique across the entire cluster. No two applications can have the same name, Organization ID and Prefix Path within the same cluster.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        268,
+        268
+      ],
+      "raw": "#### Types of Vulcan applications",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Types of Vulcan applications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        270,
+        270
+      ],
+      "raw": "There are three types of applications available on Vulcan:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are three types of applications available on Vulcan:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        272,
+        276
+      ],
+      "raw": "| Type          | Description                                                                   |\n| :------------ | :---------------------------------------------------------------------------- |\n| Global        | Accessible to all organisations and clusters, and not editable once created.  |\n| Native        | Accessible to a specific organisation and shareable with other organisations. |\n| External Apps | Not currently supported.                                                      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Global",
+            "Accessible to all organisations and clusters, and not editable once created."
+          ],
+          [
+            "Native",
+            "Accessible to a specific organisation and shareable with other organisations."
+          ],
+          [
+            "External Apps",
+            "Not currently supported."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        278,
+        282
+      ],
+      "raw": "> 📘 Notes\n>\n> * Creating global applications requires Capillary Organization access and Vulcan ADMIN permissions.\n> * Native and external applications can be edited or deleted by users with Vulcan ADMIN access.\n> * Global and native apps are embedded in Member Care, they use InTouch authentication by default  and do not require additional authentication.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotesCreating global applications requires Capillary Organization access and Vulcan ADMIN permissions.Native and external applications can be edited or deleted by users with Vulcan ADMIN access.Global and native apps are embedded in Member Care, they use InTouch authentication by default  and do not require additional authentication.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        284,
+        284
+      ],
+      "raw": "### Internationalisation Details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Internationalisation Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        286,
+        286
+      ],
+      "raw": "The internationalisation (I18n) setup in Vulcan allows developers to configure applications to support multiple languages and regional settings.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The internationalisation (I18n) setup in Vulcan allows developers to configure applications to support multiple languages and regional settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        288,
+        290
+      ],
+      "raw": "> 📘 Note:\n>\n> Vulcan provides built-in support for InTouch (Locize) or the option to implement a custom API-based solution for internationalization.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Vulcan provides built-in support for InTouch (Locize) or the option to implement a custom API-based solution for internationalization.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        292,
+        292
+      ],
+      "raw": "To enable internationalisation for your application, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable internationalisation for your application, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        294,
+        296
+      ],
+      "raw": "1. Navigate to the **Internationalisation Details** section.\n2. Choose **Yes** under Enable I18n.\n3. Choose the I18n Type.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Internationalisation Details section.Choose Yes under Enable I18n.Choose the I18n Type.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        298,
+        303
+      ],
+      "raw": "> 📘 Note:\n>\n> The types are as follows:\n>\n> **InTouch:** Through Locize\\\n> **Custom:** External I18n provider or API",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The types are as follows:InTouch: Through LocizeCustom: External I18n provider or API",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "4. Enter the details for internationalisation.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter the details for internationalisation.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        307,
+        311
+      ],
+      "raw": "> 📘 Note:\n>\n> You can find your Locize Project Id and Project Key in your projects settings under your Locize account.\n>\n> To get started and configure Locize, refer to the Locize developer documentation.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:You can find your Locize Project Id and Project Key in your projects settings under your Locize account.To get started and configure Locize, refer to the Locize developer documentation.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        313,
+        314
+      ],
+      "raw": "5. Click on **Test** to validate the details.\n6. Click **Create Application** to register the app on the Vulcan platform.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click on Test to validate the details.Click Create Application to register the app on the Vulcan platform.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        316,
+        316
+      ],
+      "raw": "The details of each field are as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The details of each field are as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        318,
+        323
+      ],
+      "raw": "| **Field**               | **Description**                                                                                              |\n| :---------------------- | :----------------------------------------------------------------------------------------------------------- |\n| **Locize Project Name** | The name of your translation project in Locize, used to organise translation resources for your application. |\n| **Locize Project ID**   | A unique identifier for your Locize project, ensuring your app pulls the correct translations.               |\n| **Locize Project Key**  | A unique key provided by Locize, used to authenticate and access your specific translation project.          |\n| **Test Locale**         | The locale code (en-US, fr-FR) is used for testing your app's internationalisation setup.                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Locize Project Name",
+            "The name of your translation project in Locize, used to organise translation resources for your application."
+          ],
+          [
+            "Locize Project ID",
+            "A unique identifier for your Locize project, ensuring your app pulls the correct translations."
+          ],
+          [
+            "Locize Project Key",
+            "A unique key provided by Locize, used to authenticate and access your specific translation project."
+          ],
+          [
+            "Test Locale",
+            "The locale code (en-US, fr-FR) is used for testing your app's internationalisation setup."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        325,
+        327
+      ],
+      "raw": "> 📘 Note:\n>\n> To manually setup internationalization during application development refer to the [Setting Up Internationalization During Development](https://docs.capillarytech.com/docs/vulcan-application-development#setting-up-internationalization-during-development) section.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:To manually setup internationalization during application development refer to the Setting Up Internationalization During Development section.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-application-development#setting-up-internationalization-during-development",
+          "line": 327
+        }
+      ]
+    },
+    {
+      "i": 54,
+      "lines": [
+        329,
+        329
+      ],
+      "raw": "### **RBAC Details**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "RBAC Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        331,
+        331
+      ],
+      "raw": "Role-Based Access Control (RBAC) allows you to configure and whitelist Vulcan APIs used within a microsite, ensuring secure and structured access. When RBAC is enabled for a Vulcan application, API access is restricted by app ID, and only users with the required permissions (through a membership group or permission set) can access and execute the whitelisted Vulcan APIs. When RBAC is disabled for an application, all Vulcan APIs are accessible to all users. Refer to the documentation on [Managing User Permissions](https://docs.capillarytech.com/docs/managing-permissions) for more information on managing permissions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Role-Based Access Control (RBAC) allows you to configure and whitelist Vulcan APIs used within a microsite, ensuring secure and structured access. When RBAC is enabled for a Vulcan application, API access is restricted by app ID, and only users with the required permissions (through a membership group or permission set) can access and execute the whitelisted Vulcan APIs. When RBAC is disabled for an application, all Vulcan APIs are accessible to all users. Refer to the documentation on Managing User Permissions for more information on managing permissions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 331
+        }
+      ]
+    },
+    {
+      "i": 56,
+      "lines": [
+        333,
+        335
+      ],
+      "raw": "> 📘 Note:\n>\n> This feature is supported for native Vulcan applications only. Refer to the documentation for more information on the [types of Vulcan applications](https://docs.capillarytech.com/docs/vulcan-getting-started#types-of-vulcan-applications).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:This feature is supported for native Vulcan applications only. Refer to the documentation for more information on the types of Vulcan applications.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#types-of-vulcan-applications",
+          "line": 335
+        }
+      ]
+    },
+    {
+      "i": 57,
+      "lines": [
+        337,
+        337
+      ],
+      "raw": "#### **Key Features of RBAC for Vulcan**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Key Features of RBAC for Vulcan",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        339,
+        340
+      ],
+      "raw": "1. **Enhanced Security**: RBAC ensures that only the necessary APIs are accessible to users, restricting unauthorised API calls and defining clear access scopes to improve application security.\n2. **Permission Enforcement**: API access is controlled by assigned RBAC permissions. If a user lacks the required permissions, they cannot access or execute the API.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enhanced Security: RBAC ensures that only the necessary APIs are accessible to users, restricting unauthorised API calls and defining clear access scopes to improve application security.Permission Enforcement: API access is controlled by assigned RBAC permissions. If a user lacks the required permissions, they cannot access or execute the API.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        342,
+        344
+      ],
+      "raw": "> 🚧 Note:\n>\n> During [application development](https://docs.capillarytech.com/docs/application-development-process), it is recommended to disable RBAC initially, complete the UI implementation, and then enable RBAC to whitelist the required APIs.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "Note:During application development, it is recommended to disable RBAC initially, complete the UI implementation, and then enable RBAC to whitelist the required APIs.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/application-development-process",
+          "line": 344
+        }
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        346,
+        346
+      ],
+      "raw": "To enable RBAC for a Vulcan microsite, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable RBAC for a Vulcan microsite, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        348,
+        354
+      ],
+      "raw": "1. Navigate to the **RBAC Details** section.\n2. Enable RBAC by selecting **Yes** under **Enable RBAC**.\n3. Map a permission to the Vulcan API call by selecting the appropriate permission in the **Permission** drop-down and mapping it to the corresponding Vulcan API endpoint. Permissions define specific actions a user can perform within the system. For example, the `VULCAN_DELETE_APPLICATION` permission allows a user to delete a Vulcan application on the Vulcan UI.\n\n   > 📘 Note:\n   >\n   > Creating an individual permission is currently unsupported. You can only choose from the list of existing permissions available on the Capillary platform.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the RBAC Details section.Enable RBAC by selecting Yes under Enable RBAC.Map a permission to the Vulcan API call by selecting the appropriate permission in the Permission drop-down and mapping it to the corresponding Vulcan API endpoint. Permissions define specific actions a user can perform within the system. For example, the VULCAN_DELETE_APPLICATION permission allows a user to delete a Vulcan application on the Vulcan UI.📘 Note:Creating an individual permission is currently unsupported. You can only choose from the list of existing permissions available on the Capillary platform.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        356,
+        356
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/2e8bec66af8c82d549408030639325231e0f20b0fe6930cf97995288f39a2115-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/2e8bec66af8c82d549408030639325231e0f20b0fe6930cf97995288f39a2115-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 63,
+      "lines": [
+        358,
+        358
+      ],
+      "raw": "The required fields are as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The required fields are as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        360,
+        365
+      ],
+      "raw": "| Field Name  | Description                                                                                                          |\n| :---------- | :------------------------------------------------------------------------------------------------------------------- |\n| Permission  | Permission to map to the Vulcan API.                                                                                 |\n| Method      | Type of API call.                                                                                                    |\n| URL         | Endpoint of the Vulcan API. You can find the list of URLs to whitelist from the `api.js` file in the project folder. |\n| Description | Description for the API-permission map.                                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Permission",
+            "Permission to map to the Vulcan API."
+          ],
+          [
+            "Method",
+            "Type of API call."
+          ],
+          [
+            "URL",
+            "Endpoint of the Vulcan API. You can find the list of URLs to whitelist from the api.js file in the project folder."
+          ],
+          [
+            "Description",
+            "Description for the API-permission map."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        367,
+        367
+      ],
+      "raw": "4. In the user management UI, create a permission set with the mapped permissions and assign it to a user. Refer to the documentation for more information on [creating a permission set](https://docs.capillarytech.com/docs/custom-permission-sets#creating-a-custom-permission-set) and [assigning a permission set to a user](https://docs.capillarytech.com/docs/assigning-permission-set-to-users).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the user management UI, create a permission set with the mapped permissions and assign it to a user. Refer to the documentation for more information on creating a permission set and assigning a permission set to a user.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/custom-permission-sets#creating-a-custom-permission-set",
+          "line": 367
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/assigning-permission-set-to-users",
+          "line": 367
+        }
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        369,
+        369
+      ],
+      "raw": "RBAC for the Vulcan application has been successfully created. If a user has the required permissions, they can access and use the whitelisted APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "RBAC for the Vulcan application has been successfully created. If a user has the required permissions, they can access and use the whitelisted APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        371,
+        371
+      ],
+      "raw": "## Local Project Initialisation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Local Project Initialisation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        373,
+        373
+      ],
+      "raw": "Once you have created an application in the Vulcan UI, you can start initialising the project on your local machine.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you have created an application in the Vulcan UI, you can start initialising the project on your local machine.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        375,
+        375
+      ],
+      "raw": "1. In a new terminal window, run the following command and press Enter on the keyboard. Use the same application name as provided during the application creation.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In a new terminal window, run the following command and press Enter on the keyboard. Use the same application name as provided during the application creation.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        377,
+        379
+      ],
+      "raw": "```shell\nsh create-vulcan-app.sh <app-name>\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "shell",
+        "title": null,
+        "code": "sh create-vulcan-app.sh <app-name>"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        381,
+        383
+      ],
+      "raw": "> 📘 Note:\n>\n> The [create-vulcan-app](https://storage.crm.n.content-cdn.io/create-vulcan-app.sh) is a required setup script. Ensure you have appropriate system permissions to run the script.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The create-vulcan-app is a required setup script. Ensure you have appropriate system permissions to run the script.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        385,
+        389
+      ],
+      "raw": "2. Provide the npm token (required to pull Capillary-specific modules from the NPM registry) and press Enter on the keyboard.\n3. Enter the required details: name, email ID, project description, repository type, and repository URL.\n4. Answer the questions (Yes or No) when prompted.\n5. Enter your **[Vulcan application ID](https://docs.capillarytech.com/docs/vulcan-getting-started#basic-details)** (generated when creating the application on Vulcan UI).\n6. Enter the cluster where the application is created. This action sets up the endpoints for the specified cluster.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Provide the npm token (required to pull Capillary-specific modules from the NPM registry) and press Enter on the keyboard.Enter the required details: name, email ID, project description, repository type, and repository URL.Answer the questions (Yes or No) when prompted.Enter your Vulcan application ID (generated when creating the application on Vulcan UI).Enter the cluster where the application is created. This action sets up the endpoints for the specified cluster.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#basic-details",
+          "line": 388
+        }
+      ]
+    },
+    {
+      "i": 73,
+      "lines": [
+        391,
+        391
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/655ff1a-image8.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/655ff1a-image8.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 74,
+      "lines": [
+        393,
+        393
+      ],
+      "raw": "7. Open the generated project folder through your code editor.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the generated project folder through your code editor.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        395,
+        395
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/c22e582-image_2.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/c22e582-image_2.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 76,
+      "lines": [
+        397,
+        402
+      ],
+      "raw": "8. On the Vulcan UI, hover over the meatballs menu and select **Download configuration** to download the `app-config.js` file.\n\n   <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/913773a0af0c077b9779bd737f8b98c93d4a4cc8efb582e971a177c340d0ebdd-image.png\" />\n9. Move the `app-config.js` file to the root folder of your Vulcan project.\n\n   <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/941f97d1784a1a4296841b85315bfd2b222a65ca5b889a1e79c7ef1eb1d67221-image.png\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Vulcan UI, hover over the meatballs menu and select Download configuration to download the app-config.js file.Move the app-config.js file to the root folder of your Vulcan project.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        404,
+        404
+      ],
+      "raw": "The Vulcan app has been initialised. You can begin the application development process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Vulcan app has been initialised. You can begin the application development process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

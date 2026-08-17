@@ -1,0 +1,289 @@
+{
+  "slug": "docs/s3_write-block",
+  "source": "https://docs.capillarytech.com/docs/s3_write-block.md",
+  "url": "https://docs.capillarytech.com/docs/s3_write-block",
+  "title": "S3 Write Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T09:00:11.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# S3 (Write) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "S3 (Write) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `s3_write` block puts an S3 object, writing processed files to a destination Amazon S3 bucket. It acts as the destination block in a Connect+ dataflow, receiving output from upstream blocks and uploading the resulting file to a specified S3 bucket using AWS credentials. The block supports configurable content types, AWS credential-based authentication, and an optional AWS Credentials Provider service for internal authentication.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The s3_write block puts an S3 object, writing processed files to a destination Amazon S3 bucket. It acts as the destination block in a Connect+ dataflow, receiving output from upstream blocks and uploading the resulting file to a specified S3 bucket using AWS credentials. The block supports configurable content types, AWS credential-based authentication, and an optional AWS Credentials Provider service for internal authentication.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when the processed output of your dataflow needs to be stored in an Amazon S3 bucket.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when the processed output of your dataflow needs to be stored in an Amazon S3 bucket.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "* AWS access key ID and secret access key with write permissions on the destination bucket\n* The destination S3 bucket name and AWS region",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "AWS access key ID and secret access key with write permissions on the destination bucketThe destination S3 bucket name and AWS region",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        163
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **S3 Object name/Filename**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The name given to the file uploaded to S3.  \n        Default value: `${filename}`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **S3 Bucket Name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The name of the destination S3 bucket.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager)  section of the Dev Console.\n        Default value: `us-east-1`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Content Type**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The type of the file being uploaded.  \n        Default value: `application/octet-stream`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Access Key**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS access key ID used to authenticate with the S3 bucket.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager)  section of the Dev Console.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Secret Key**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS secret access key used for authentication.  \n        Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.  \n        **Note**: When creating the configuration in the Extension Configuration section of the Dev Console,  `Is Secret` must be set to make it available in the dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **AWS Region**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS region of the destination S3 bucket.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **AWS Credentials Provider service**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The credentials provider to use for authentication.\n        Select `None` to use the Access Key and Secret Key, or `InternalService` to use Capillary's internal credentials provider.\n        For example, when using the campaign bucket, you can skip providing the Access Key and Secret Key, as authentication is handled by Capillary.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "S3 Object name/Filename",
+            "Yes",
+            "The name given to the file uploaded to S3.Default value: ${filename}."
+          ],
+          [
+            "S3 Bucket Name",
+            "Yes",
+            "The name of the destination S3 bucket.Select a value from the dropdown. The list shows all values configured in the Extension Configuration  section of the Dev Console.\nDefault value: us-east-1."
+          ],
+          [
+            "Content Type",
+            "Yes",
+            "The type of the file being uploaded.Default value: application/octet-stream."
+          ],
+          [
+            "Access Key",
+            "Yes",
+            "The AWS access key ID used to authenticate with the S3 bucket.Select a value from the dropdown. The list shows all values configured in the Extension Configuration  section of the Dev Console."
+          ],
+          [
+            "Secret Key",
+            "Yes",
+            "The AWS secret access key used for authentication.Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.Note: When creating the configuration in the Extension Configuration section of the Dev Console,  Is Secret must be set to make it available in the dropdown."
+          ],
+          [
+            "AWS Region",
+            "Yes",
+            "The AWS region of the destination S3 bucket."
+          ],
+          [
+            "AWS Credentials Provider service",
+            "Yes",
+            "The credentials provider to use for authentication.\nSelect None to use the Access Key and Secret Key, or InternalService to use Capillary's internal credentials provider.\nFor example, when using the campaign bucket, you can skip providing the Access Key and Secret Key, as authentication is handled by Capillary."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 82
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/59f2bb07d9462db14917d9511c267228a4faef82f7e2af52d349ea79ca0467bb-Screen_Recording_2026-04-15_at_11.45.52_AM.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/59f2bb07d9462db14917d9511c267228a4faef82f7e2af52d349ea79ca0467bb-Screen_Recording_2026-04-15_at_11.45.52_AM.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

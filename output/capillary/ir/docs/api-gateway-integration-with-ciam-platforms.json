@@ -1,0 +1,254 @@
+{
+  "slug": "docs/api-gateway-integration-with-ciam-platforms",
+  "source": "https://docs.capillarytech.com/docs/api-gateway-integration-with-ciam-platforms.md",
+  "url": "https://docs.capillarytech.com/docs/api-gateway-integration-with-ciam-platforms",
+  "title": "Api Gateway Integration With Ciam Platforms",
+  "description": "",
+  "section": "Admin Controls",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2025-06-20T08:56:24.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 5,
+    "list": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API Gateway Integration with CIAM Platforms",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Gateway Integration with CIAM Platforms",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Background",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Background",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The integration of the API gateway with the Customer Identity and Access Management (CIAM) feature allows brands to avoid dependency on the Capillary authentication engine and allows enterprise customers to implement licensed CIAM solutions for managing customer identity. This integration helps in enhancing security, ensuring compliance with standards like OpenID, and supporting various methods of user authentication.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The integration of the API gateway with the Customer Identity and Access Management (CIAM) feature allows brands to avoid dependency on the Capillary authentication engine and allows enterprise customers to implement licensed CIAM solutions for managing customer identity. This integration helps in enhancing security, ensuring compliance with standards like OpenID, and supporting various methods of user authentication.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "To enable integration of any CIAMs, enhancements are made to the Capillary API gateway, which is integrated with Capillar's authentication engine. As an initial phase of the process, it enables to deploy [NextReason](https://nextreason.com/) CIAM for identity management purposes on their loyalty applications. This allows you to access features such as OpenID compliance, support for multiple authentication methods, audit logging etc.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable integration of any CIAMs, enhancements are made to the Capillary API gateway, which is integrated with Capillar's authentication engine. As an initial phase of the process, it enables to deploy NextReason CIAM for identity management purposes on their loyalty applications. This allows you to access features such as OpenID compliance, support for multiple authentication methods, audit logging etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Prerequisite:** Knowledge of the configuration of NextReason as the CIAM for your application.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Prerequisite: Knowledge of the configuration of NextReason as the CIAM for your application.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Perform the following to configure  NextReason on the Capillary deployment server and Intouch:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform the following to configure  NextReason on the Capillary deployment server and Intouch:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        35
+      ],
+      "raw": "1. If the brand does not exist for your org, create the brand corresponding to the organization where you want to set up NextReason CIAM integration on the deployment server.\n\n2. Add the following configurations from your NextReason setup to the Capillary API gateway.\n   1. Application ID - This is obtained after the successful registration and configuration of NextReason for your application.\n   2. Client ID - For Oauth client credentials flow\n   3. First name, last name, mobile and email field mappings - Key-value pairs that map first name, last name, mobile and e-mail fields on Capillary's customer entity with the claims that come with the ID token post authentication on NextReason.\n   4. Name of brand\n   5. User info endpoint\n   6. JSON Web Key Set URI\n      > ❗️ There is no UI on the deployment server for adding these details as of now. Please raise a ticket to the sustenance team with the aforementioned details for adding these configurations until UI is made available.\n\n3. To capture the customer profile identifier generated on NextReason, set up a new channel account within your organization and link it to Intouch.  Perform the following:\n   1. Navigate to   **Organisation Settings -> Omni Channel Settings >  Channel Configurations**.\n   2. Search for `OAUTH_EXTERNAL` and click **Add Account**.\n   3. Enter the account name and source account ID as shown in the screenshot below. Unlike the WebEngage account setup, the account name and ID hold no significance in this context. These are placeholder values and do not have any functional relevance.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the brand does not exist for your org, create the brand corresponding to the organization where you want to set up NextReason CIAM integration on the deployment server.Add the following configurations from your NextReason setup to the Capillary API gateway.Application ID - This is obtained after the successful registration and configuration of NextReason for your application.Client ID - For Oauth client credentials flowFirst name, last name, mobile and email field mappings - Key-value pairs that map first name, last name, mobile and e-mail fields on Capillary's customer entity with the claims that come with the ID token post authentication on NextReason.Name of brandUser info endpointJSON Web Key Set URI❗️ There is no UI on the deployment server for adding these details as of now. Please raise a ticket to the sustenance team with the aforementioned details for adding these configurations until UI is made available.To capture the customer profile identifier generated on NextReason, set up a new channel account within your organization and link it to Intouch.  Perform the following:Navigate to   Organisation Settings -> Omni Channel Settings >  Channel Configurations.Search for OAUTH_EXTERNAL and click Add Account.Enter the account name and source account ID as shown in the screenshot below. Unlike the WebEngage account setup, the account name and ID hold no significance in this context. These are placeholder values and do not have any functional relevance.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/36cb392-Account.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/36cb392-Account.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "The integration setup on the Capillary side is complete. You can proceed with testing the integration with NextReason. After successfully completing the integration, when a customer is registered through NextReason, the NextReason-generated user identifier (UUID) will be displayed in the cuid field on Member Care under the `OAUTH_EXTERNAL` source profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The integration setup on the Capillary side is complete. You can proceed with testing the integration with NextReason. After successfully completing the integration, when a customer is registered through NextReason, the NextReason-generated user identifier (UUID) will be displayed in the cuid field on Member Care under the OAUTH_EXTERNAL source profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "## Notes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Notes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        43,
+        47
+      ],
+      "raw": "1. Capillary API gateway works as a service provider with NextReason as an identity provider. OAuth scopes, however, are not supported.\n2. Only user login, logout and profile update flows have been tested.\n3. During the registration process, NextReason can only capture a limited set of fields, including First name, last name, mobile number, and e-mail address. If you require additional customer details for loyalty purposes, you must implement a separate registration flow in addition to the NextReason-supported account creation flow.\\\n   To achieve this, you should make a separate customer registration API call from the app, specifying the source as \"Instore\" along with customer identifiers and metadata.\n4. To initiate an identifier change, you need to perform a two-step process similar to the registration process. First, the identifier change should be executed on the NextReason side. After that, a separate customer identifier update API call should be made to the Capillary platform to make sure that the changes are reflected accordingly.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Capillary API gateway works as a service provider with NextReason as an identity provider. OAuth scopes, however, are not supported.Only user login, logout and profile update flows have been tested.During the registration process, NextReason can only capture a limited set of fields, including First name, last name, mobile number, and e-mail address. If you require additional customer details for loyalty purposes, you must implement a separate registration flow in addition to the NextReason-supported account creation flow.To achieve this, you should make a separate customer registration API call from the app, specifying the source as \"Instore\" along with customer identifiers and metadata.To initiate an identifier change, you need to perform a two-step process similar to the registration process. First, the identifier change should be executed on the NextReason side. After that, a separate customer identifier update API call should be made to the Capillary platform to make sure that the changes are reflected accordingly.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

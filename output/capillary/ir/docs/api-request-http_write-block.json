@@ -1,0 +1,603 @@
+{
+  "slug": "docs/api-request-http_write-block",
+  "source": "https://docs.capillarytech.com/docs/api-request-http_write-block.md",
+  "url": "https://docs.capillarytech.com/docs/api-request-http_write-block",
+  "title": "Api Request Http Write Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T11:57:26.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 2,
+    "Image": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API request (http_write) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API request (http_write) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `http_write` block sends data to an external HTTP API endpoint using OAuth-based authentication as a destination block in a Connect+ dataflow. It supports rate limiting, configurable retry logic, and response parsing. The block is typically used to post process data to Capillary or third-party APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The http_write block sends data to an external HTTP API endpoint using OAuth-based authentication as a destination block in a Connect+ dataflow. It supports rate limiting, configurable retry logic, and response parsing. The block is typically used to post process data to Capillary or third-party APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your dataflow needs to deliver data to an HTTP API, for example, posting transactions to the Capillary Transaction v2 API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow needs to deliver data to an HTTP API, for example, posting transactions to the Capillary Transaction v2 API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* OAuth client key and secret\n* The API endpoint path\n* The HTTP method required by the API (`POST` or `PUT`)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "OAuth client key and secretThe API endpoint pathThe HTTP method required by the API (POST or PUT)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Standard properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Standard properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        136
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Client Key**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The OAuth client key used for authentication. Select the client key from the dropdown. The list shows configurations created in the [Extension Configuration ](https://docs.capillarytech.com/docs/extension-configuration)section of the Dev Console.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Client Secret**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The OAuth client secret used for authentication. Select the client secret from the dropdown. The list shows configurations marked as secret in the [Extension Configuration ](https://docs.capillarytech.com/docs/extension-configuration)section of the Dev Console.\n\n        **Note**: When creating a password configuration in the Extension Configuration section of the Dev Console, set `Is Secret` to make it available in the dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **API Endpoint**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The relative endpoint path of the API to call.<br />For example, `/v2/transactions/bulk`.\n        For Neo endpoints, use the format `/x/neo/<neo_dataflow_name>`. <br />To insert a path parameter populated at runtime, use `$attributeName`, where `attributeName` is a variable declared in the **Attributes** property of the JSLT block. <br />For example, if you declared a `userId` attribute, enter `/v2/customer/$userId`.<br /><br />**Note**: <br />- Attributes referenced here must be declared in the JSLT block. If an attribute is not declared in the JSLT block, you cannot use it here.<br />- Do not append query parameters manually using `?` in the API URL. Connect+ automatically appends the configured query parameters when sending the request.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **API Method**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The HTTP method used to call the API.<br />Select `POST` or `PUT` from the dropdown.<br />Default value: `POST`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Parse API Response**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Parses the API response after each request and extracts specific values using the Parse path map.<br />Select `true` to extract values from the response.<br />Select `false` to skip response parsing.<br />When set to `true`, the parse path map defines which fields to extract from the response:\n\n        - status\\_code — the error code returned by the API\n        - error\\_message — the error description\n        - entity\\_id — the ID of the created or updated record\n\n        Default value: `true`.<br />Set the value to `false` for Neo APIs.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Client Key",
+            "Yes",
+            "The OAuth client key used for authentication. Select the client key from the dropdown. The list shows configurations created in the Extension Configuration section of the Dev Console."
+          ],
+          [
+            "Client Secret",
+            "Yes",
+            "The OAuth client secret used for authentication. Select the client secret from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.Note: When creating a password configuration in the Extension Configuration section of the Dev Console, set Is Secret to make it available in the dropdown."
+          ],
+          [
+            "API Endpoint",
+            "Yes",
+            "The relative endpoint path of the API to call.For example, /v2/transactions/bulk.\nFor Neo endpoints, use the format /x/neo/<neo_dataflow_name>. To insert a path parameter populated at runtime, use $attributeName, where attributeName is a variable declared in the Attributes property of the JSLT block. For example, if you declared a userId attribute, enter /v2/customer/$userId.Note: - Attributes referenced here must be declared in the JSLT block. If an attribute is not declared in the JSLT block, you cannot use it here.- Do not append query parameters manually using ? in the API URL. Connect+ automatically appends the configured query parameters when sending the request."
+          ],
+          [
+            "API Method",
+            "Yes",
+            "The HTTP method used to call the API.Select POST or PUT from the dropdown.Default value: POST."
+          ],
+          [
+            "Parse API Response",
+            "No",
+            "Parses the API response after each request and extracts specific values using the Parse path map.Select true to extract values from the response.Select false to skip response parsing.When set to true, the parse path map defines which fields to extract from the response:status_code — the error code returned by the APIerror_message — the error descriptionentity_id — the ID of the created or updated recordDefault value: true.Set the value to false for Neo APIs."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 97
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 112
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 112
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 126
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 126
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 126
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration",
+          "line": 67
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "## Advanced properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Advanced properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "⚠️ Advanced properties for OAuth HTTP API Call. Make changes only if you know what you are doing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "⚠️ Advanced properties for OAuth HTTP API Call. Make changes only if you know what you are doing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        142,
+        156
+      ],
+      "raw": "| Field name                  | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                      |\n| --------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **API Base URL**            | Yes      | The base URL of the API. You can use the default value.<br />If you enter a URL, do not include a trailing `/`.<br />Default value: `{intouch_url}`.                                                                                                                                                                                                                                                                             |\n| **OAuth Base URL**          | Yes      | The base URL used to obtain the OAuth token. You can use the default value.<br />If you enter a URL, do not include a trailing `/`.<br />Default value: `{intouch_url}`.                                                                                                                                                                                                                                                         |\n| **Bulk Support**            | Yes      | Determines whether bulk API calls are supported. Select from the dropdown.<br />Select `false` when the target API expects individual objects.<br />Select `true` when the target API expects an array.<br />Default value: `true`.                                                                                                                                                                                              |\n| **Request Split Path**      | Yes      | The JSONPath expression used to split outgoing requests.<br />Default value: `$.*`.                                                                                                                                                                                                                                                                                                                                              |\n| **Response Split Path**     | Yes      | The JSONPath expression used to split API responses.<br />Default value: `$.*`.                                                                                                                                                                                                                                                                                                                                                  |\n| **Parse Path Map**          | Yes      | The JSONPath map used to parse API responses.<br />Default value: `{\"status_code\":\"$.[errors'].*.code\",\"error_message\":\"$.[errors'].*.r...\"}`.                                                                                                                                                                                                                                                                                   |\n| **Recoverable Error Codes** | No       | Comma-separated HTTP status codes that trigger a retry.<br />Default value: `521,502,503,504`.                                                                                                                                                                                                                                                                                                                                   |\n| **Yielding Error Codes**    | No       | Comma-separated HTTP status codes that cause the block to yield and wait before retrying.<br />Default value: `429`.                                                                                                                                                                                                                                                                                                             |\n| **Max Retries**             | No       | The maximum number of retry attempts on failure.<br />Default value: `3`.                                                                                                                                                                                                                                                                                                                                                        |\n| **Additional Headers**      | No       | Additional HTTP headers to include in the API request, entered as a JSON object.<br />For example, `{\"X-Custom-Header\": \"value\"}`.<br /><br />To reference an attribute declared in the JSLT block, use `$attributeName`. For example, `{\"X-Cap-Id\": \"$userId\"}`.<br /><br />**Note**: Attributes referenced here must be declared in the JSLT block. If an attribute is not declared in the JSLT block, you cannot use it here. |\n| **Rate**                    | Yes      | The number of flow files processed per time period.<br />Default value: `1000`.                                                                                                                                                                                                                                                                                                                                                  |\n| **Time Period**             | Yes      | The duration of the rate-limiting time window.<br />Default value: `1`.                                                                                                                                                                                                                                                                                                                                                          |\n| **Time Unit**               | Yes      | The time unit for the rate-limiting period. Select `SECONDS`, `MINUTES`, or `HOURS` from the dropdown.<br />Default value: `MINUTES`.                                                                                                                                                                                                                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "API Base URL",
+            "Yes",
+            "The base URL of the API. You can use the default value.If you enter a URL, do not include a trailing /.Default value: {intouch_url}."
+          ],
+          [
+            "OAuth Base URL",
+            "Yes",
+            "The base URL used to obtain the OAuth token. You can use the default value.If you enter a URL, do not include a trailing /.Default value: {intouch_url}."
+          ],
+          [
+            "Bulk Support",
+            "Yes",
+            "Determines whether bulk API calls are supported. Select from the dropdown.Select false when the target API expects individual objects.Select true when the target API expects an array.Default value: true."
+          ],
+          [
+            "Request Split Path",
+            "Yes",
+            "The JSONPath expression used to split outgoing requests.Default value: $.*."
+          ],
+          [
+            "Response Split Path",
+            "Yes",
+            "The JSONPath expression used to split API responses.Default value: $.*."
+          ],
+          [
+            "Parse Path Map",
+            "Yes",
+            "The JSONPath map used to parse API responses.Default value: {\"status_code\":\"$.[errors'].*.code\",\"error_message\":\"$.[errors'].*.r...\"}."
+          ],
+          [
+            "Recoverable Error Codes",
+            "No",
+            "Comma-separated HTTP status codes that trigger a retry.Default value: 521,502,503,504."
+          ],
+          [
+            "Yielding Error Codes",
+            "No",
+            "Comma-separated HTTP status codes that cause the block to yield and wait before retrying.Default value: 429."
+          ],
+          [
+            "Max Retries",
+            "No",
+            "The maximum number of retry attempts on failure.Default value: 3."
+          ],
+          [
+            "Additional Headers",
+            "No",
+            "Additional HTTP headers to include in the API request, entered as a JSON object.For example, {\"X-Custom-Header\": \"value\"}.To reference an attribute declared in the JSLT block, use $attributeName. For example, {\"X-Cap-Id\": \"$userId\"}.Note: Attributes referenced here must be declared in the JSLT block. If an attribute is not declared in the JSLT block, you cannot use it here."
+          ],
+          [
+            "Rate",
+            "Yes",
+            "The number of flow files processed per time period.Default value: 1000."
+          ],
+          [
+            "Time Period",
+            "Yes",
+            "The duration of the rate-limiting time window.Default value: 1."
+          ],
+          [
+            "Time Unit",
+            "Yes",
+            "The time unit for the rate-limiting period. Select SECONDS, MINUTES, or HOURS from the dropdown.Default value: MINUTES."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 144
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 144
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 145
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 145
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 146
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 146
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 146
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 147
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 148
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 149
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 150
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 151
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 152
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 154
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 155
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 156
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "<Image src=\"https://files.readme.io/fd5c7ebc2fae4e790dc3c2e149500141243b150b503aac4378d0236a08cf653b-Untitled_design_2.gif\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/fd5c7ebc2fae4e790dc3c2e149500141243b150b503aac4378d0236a08cf653b-Untitled_design_2.gif",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 160
+        }
+      ]
+    }
+  ]
+}

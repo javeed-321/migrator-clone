@@ -1,0 +1,235 @@
+{
+  "slug": "docs/connect-to-destination",
+  "source": "https://docs.capillarytech.com/docs/connect-to-destination.md",
+  "url": "https://docs.capillarytech.com/docs/connect-to-destination",
+  "title": "Connect To Destination",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 4,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Connect to Destination",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Connect to Destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This block enables you to define the details of the v2 API that will be used for running the dataflow.  The API details are auto-filled. You must enter the API client key and secret key to initiate the API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This block enables you to define the details of the v2 API that will be used for running the dataflow.  The API details are auto-filled. You must enter the API client key and secret key to initiate the API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The table contains the fields and their descriptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table contains the fields and their descriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        215
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Client Key\n      </td>\n\n      <td>\n        Enter the API client key. For information on creating an API client key, refer to [Creating API client key and secret](https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Client Secret\n      </td>\n\n      <td>\n        Enter the API client secret. For information on creating an API client key, refer to [Creating API client key and secret](https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        API EndPoint\n      </td>\n\n      <td>\n        API endpoint. For example, `/v2/customers`. This field is auto-filled for the available templates.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        API Base Url\n      </td>\n\n      <td>\n        API cluster URL of the org. For more information on cluster URLs, refer to [documentation on host URLs](https://docs.capillarytech.com/reference/apioverview#host-urls). This field is auto-filled.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        OAuth Base Url\n      </td>\n\n      <td>\n        This URL is used when an API uses the OAuth for authentication and authorization, serving as the base address for the authorization server. For example: \\{host}/v3/oauth/token/generate. This field is auto-filled for the pre-defined templates.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        API Method\n      </td>\n\n      <td>\n        API method. For example, POST. This field is auto-filled for the pre-defined templates.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bulk Support\n      </td>\n\n      <td>\n        If set to true, allows for processing multiple records within a single JSON payload. Setting a [grouping limit greater than one](https://docs.capillarytech.com/docs/convert-csv-to-json#step-3-grouping-limit) indicates that the system can create bulk payloads for downstream API calls. This field is auto-filled for the pre-defined templates.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Request Split Path\n      </td>\n\n      <td>\n        This is for internal purposes and can be left empty. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Response Split Path\n      </td>\n\n      <td>\n        Applicable when Bulk spport is set to true. It is used to divide a single API response containing multiple objects into distinct parts. This is particularly useful for APIs that return a collection of results, such as successes and failures, within a single response. For example, using the expression `$.result.errors.data._,$.result.success.data._`  groups the success data under one object and error data under another. Example response below:  \n\n        \\{\\\n          \"result\": \\{\\\n            \"success\": \\{\\\n              \"data\": [\\\n                \\{\\\n                  \"id\": \"123\",\\\n                  \"status\": true,\\\n                  \"message\": \"Customer created successfully\"\\\n                },\\\n                \\{\\\n                  \"id\": \"456\",\\\n                  \"status\": true,\\\n                  \"message\": \"Order placed successfully\"\\\n                }\\\n              ][  \n                \\{  \n                  \"id\": \"123\",  \n                  \"status\": true,  \n                  \"message\": \"Customer created successfully\"  \n                },  \n                \\{  \n                  \"id\": \"456\",  \n                  \"status\": true,  \n                  \"message\": \"Order placed successfully\"  \n                }  \n              ]\\\n            },\\\n            \"errors\": \\{\\\n              \"data\": [\\\n                \\{\\\n                  \"id\": \"789\",\\\n                  \"status\": false,\\\n                  \"code\": \"E101\",\\\n                  \"message\": \"Invalid address\"\\\n                }\\\n              ][  \n                \\{  \n                  \"id\": \"789\",  \n                  \"status\": false,  \n                  \"code\": \"E101\",  \n                  \"message\": \"Invalid address\"  \n                }  \n              ]\\\n            }\\\n          }\\\n        }\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Recoverable Error Codes\n      </td>\n\n      <td>\n        Specific error codes that indicate situations in which the system should attempt to retry the failed operation. For example, you can error codes such as - 502 Bad Gateway, 504 Gateway Timeout, 520 Unknown Error, 521 Web Server Is Down etc.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Parse Path Map\n      </td>\n\n      <td>\n        Lets you define expressions to parse the status message and error code from your API response, and include them in the error file. This is crucial since API responses can have varying structures for error information. This field is auto-filled for the pre-defined templates. Ex: `{\"status_code\": \"$.error.code\", \"error_message\": \"$.error.message\",\"displayLabel\": \"$.error.displayLabel\"}`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Yielding Error Codes\n      </td>\n\n      <td>\n        Error codes that will be retried an unlimited number of times. This strategy is usually reserved for specific error types where the expectation is that the issue will eventually resolve without intervention, but it might take an indefinite amount of time.\\\n        Example: When a \"429\" error (indicating that the request rate is too high) is encountered, the system configured with this strategy will retry the request indefinitely until it is successful. This is because the rate limit is expected to eventually lift, allowing the request to proceed.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Max Retries\n      </td>\n\n      <td>\n        Defines the maximum number of attempts to make an API request in case of failures. This field is auto-filled for the pre-defined templates.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Additional headers\n      </td>\n\n      <td>\n        Applicable only for certain templates. This enables the auto-approval for the request. For example, for issuing goodwill points or for tagging customers to an old transaction templates, this enables auto-approval for those requests.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Client Key",
+            "Enter the API client key. For information on creating an API client key, refer to Creating API client key and secret."
+          ],
+          [
+            "Client Secret",
+            "Enter the API client secret. For information on creating an API client key, refer to Creating API client key and secret."
+          ],
+          [
+            "API EndPoint",
+            "API endpoint. For example, /v2/customers. This field is auto-filled for the available templates."
+          ],
+          [
+            "API Base Url",
+            "API cluster URL of the org. For more information on cluster URLs, refer to documentation on host URLs. This field is auto-filled."
+          ],
+          [
+            "OAuth Base Url",
+            "This URL is used when an API uses the OAuth for authentication and authorization, serving as the base address for the authorization server. For example: {host}/v3/oauth/token/generate. This field is auto-filled for the pre-defined templates."
+          ],
+          [
+            "API Method",
+            "API method. For example, POST. This field is auto-filled for the pre-defined templates."
+          ],
+          [
+            "Bulk Support",
+            "If set to true, allows for processing multiple records within a single JSON payload. Setting a grouping limit greater than one indicates that the system can create bulk payloads for downstream API calls. This field is auto-filled for the pre-defined templates."
+          ],
+          [
+            "Request Split Path",
+            "This is for internal purposes and can be left empty."
+          ],
+          [
+            "Response Split Path",
+            "Applicable when Bulk spport is set to true. It is used to divide a single API response containing multiple objects into distinct parts. This is particularly useful for APIs that return a collection of results, such as successes and failures, within a single response. For example, using the expression $.result.errors.data._,$.result.success.data._  groups the success data under one object and error data under another. Example response below:{\"result\": {\"success\": {\"data\": [{\"id\": \"123\",\"status\": true,\"message\": \"Customer created successfully\"},{\"id\": \"456\",\"status\": true,\"message\": \"Order placed successfully\"}][{\"id\": \"123\",\"status\": true,\"message\": \"Customer created successfully\"},{\"id\": \"456\",\"status\": true,\"message\": \"Order placed successfully\"}]},\"errors\": {\"data\": [{\"id\": \"789\",\"status\": false,\"code\": \"E101\",\"message\": \"Invalid address\"}][{\"id\": \"789\",\"status\": false,\"code\": \"E101\",\"message\": \"Invalid address\"}]}}}"
+          ],
+          [
+            "Recoverable Error Codes",
+            "Specific error codes that indicate situations in which the system should attempt to retry the failed operation. For example, you can error codes such as - 502 Bad Gateway, 504 Gateway Timeout, 520 Unknown Error, 521 Web Server Is Down etc."
+          ],
+          [
+            "Parse Path Map",
+            "Lets you define expressions to parse the status message and error code from your API response, and include them in the error file. This is crucial since API responses can have varying structures for error information. This field is auto-filled for the pre-defined templates. Ex: {\"status_code\": \"$.error.code\", \"error_message\": \"$.error.message\",\"displayLabel\": \"$.error.displayLabel\"}"
+          ],
+          [
+            "Yielding Error Codes",
+            "Error codes that will be retried an unlimited number of times. This strategy is usually reserved for specific error types where the expectation is that the issue will eventually resolve without intervention, but it might take an indefinite amount of time.Example: When a \"429\" error (indicating that the request rate is too high) is encountered, the system configured with this strategy will retry the request indefinitely until it is successful. This is because the rate limit is expected to eventually lift, allowing the request to proceed."
+          ],
+          [
+            "Max Retries",
+            "Defines the maximum number of attempts to make an API request in case of failures. This field is auto-filled for the pre-defined templates."
+          ],
+          [
+            "Additional headers",
+            "Applicable only for certain templates. This enables the auto-approval for the request. For example, for issuing goodwill points or for tagging customers to an old transaction templates, this enables auto-approval for those requests."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret",
+          "line": 43
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview#host-urls",
+          "line": 63
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/convert-csv-to-json#step-3-grouping-limit",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        217,
+        217
+      ],
+      "raw": "**Error Handling**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Error Handling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        219,
+        219
+      ],
+      "raw": "In case of any errors connecting to the destination URL, refer [Troubleshooting guide](https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In case of any errors connecting to the destination URL, refer Troubleshooting guide.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus",
+          "line": 219
+        }
+      ]
+    }
+  ]
+}

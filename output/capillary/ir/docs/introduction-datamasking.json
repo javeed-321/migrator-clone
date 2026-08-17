@@ -1,0 +1,1149 @@
+{
+  "slug": "docs/introduction-datamasking",
+  "source": "https://docs.capillarytech.com/docs/introduction-datamasking.md",
+  "url": "https://docs.capillarytech.com/docs/introduction-datamasking",
+  "title": "Introduction Datamasking",
+  "description": "",
+  "section": "Data Masking",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T09:47:14.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 13,
+    "paragraph": 19,
+    "list": 9,
+    "Table": 3,
+    "Callout": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Overview of Data Masking",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Overview of Data Masking",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Data masking protects sensitive customer information by controlling what data is visible to different users and systems. [When enabled](https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking), Capillary replaces sensitive field values with masked characters in the Member Care UI, API responses, and the analytics platforms unless explicit access is granted.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Data masking protects sensitive customer information by controlling what data is visible to different users and systems. When enabled, Capillary replaces sensitive field values with masked characters in the Member Care UI, API responses, and the analytics platforms unless explicit access is granted.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This ensures that sensitive information is:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This ensures that sensitive information is:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        15
+      ],
+      "raw": "* Visible only to authorized users or API clients\n* Protected from accidental or unnecessary exposure\n* Handled in line with internal security and privacy requirements",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Visible only to authorized users or API clientsProtected from accidental or unnecessary exposureHandled in line with internal security and privacy requirements",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "### **Example**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "A customer’s mobile number is stored in the system.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A customer’s mobile number is stored in the system.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "* A support user without permission sees the value as `******` in Member Care and in the API responses.\n* An authorized user or API client sees the full mobile number on Member Care and in the API responses",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A support user without permission sees the value as ****** in Member Care and in the API responses.An authorized user or API client sees the full mobile number on Member Care and in the API responses",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "# How data masking works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "How data masking works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "Capillary evaluates masking for each request based on:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary evaluates masking for each request based on:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        30
+      ],
+      "raw": "* <Anchor label=\"Organisation level configuration\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking-1\">Organisation level configuration</Anchor>\n* <Anchor label=\"Field-level sensitivity classification\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii\">Field-level sensitivity classification</Anchor>\n* Access permissions of the <Anchor label=\"user\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/managing-permissions\">user</Anchor> or <Anchor label=\"API client\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii\">API client</Anchor>",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Organisation level configurationField-level sensitivity classificationAccess permissions of the user or API client",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking-1",
+          "line": 28
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 29
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 30
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking-1",
+          "line": 28
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "Once enabled, this configuration applies across:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once enabled, this configuration applies across:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        34,
+        36
+      ],
+      "raw": "* Member Care UI\n* All APIs\n* Analytics platform (Databricks)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Member Care UIAll APIsAnalytics platform (Databricks)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "# What data is masked",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "What data is masked",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "<Anchor label=\"When data masking is enabled\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking\">When data masking is enabled</Anchor>, certain customer identifiers are handled automatically, while others require you to explicitly <Anchor label=\"mark them as personally sensitive data\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii\">mark them as personally sensitive data</Anchor>. Once a field is marked, the same masking behaviour is applied consistently across Member Care, API responses, and Databricks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When data masking is enabled, certain customer identifiers are handled automatically, while others require you to explicitly mark them as personally sensitive data. Once a field is marked, the same masking behaviour is applied consistently across Member Care, API responses, and Databricks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking",
+          "line": 40
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/introduction-datamasking#enabling-data-masking",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "## Data masking in Member Care & APIs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Data masking in Member Care & APIs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        44,
+        50
+      ],
+      "raw": "| Data type                                                            | Masked by default | Requires explicit marking |\n| :------------------------------------------------------------------- | :---------------- | :------------------------ |\n| Core customer identifiers (first name, last name, and mobile, email) | Yes               | No                        |\n| Identifiers under communication channel                              | Yes               | No                        |\n| Customer profile custom fields                                       | No                | Yes (mark as PSI)         |\n| Customer profile extended fields                                     | No                | Yes (mark as PSI)         |\n| Behavioural event attributes                                         | No                | Yes (mark as PSI)         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Data type",
+          "Masked by default",
+          "Requires explicit marking"
+        ],
+        "rows": [
+          [
+            "Core customer identifiers (first name, last name, and mobile, email)",
+            "Yes",
+            "No"
+          ],
+          [
+            "Identifiers under communication channel",
+            "Yes",
+            "No"
+          ],
+          [
+            "Customer profile custom fields",
+            "No",
+            "Yes (mark as PSI)"
+          ],
+          [
+            "Customer profile extended fields",
+            "No",
+            "Yes (mark as PSI)"
+          ],
+          [
+            "Behavioural event attributes",
+            "No",
+            "Yes (mark as PSI)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        52,
+        56
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  External IDs are not masked. Card data, Transaction or billing data, and other data other than the mentioned above data are not masked.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteExternal IDs are not masked. Card data, Transaction or billing data, and other data other than the mentioned above data are not masked.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 17,
+          "lines": [
+            53,
+            53
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 18,
+          "lines": [
+            55,
+            55
+          ],
+          "raw": "  External IDs are not masked. Card data, Transaction or billing data, and other data other than the mentioned above data are not masked.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "External IDs are not masked. Card data, Transaction or billing data, and other data other than the mentioned above data are not masked.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "## Data masking in Databricks",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Data masking in Databricks",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "In Databricks, sensitive customer data is masked by default and displayed as asterisks (`*****`). Unmasked values are shown only when the user or job has been explicitly authorised to access sensitive data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In Databricks, sensitive customer data is masked by default and displayed as asterisks (*****). Unmasked values are shown only when the user or job has been explicitly authorised to access sensitive data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        62,
+        72
+      ],
+      "raw": "| Data category                                                                                                                                                                                                                      | Masked in Databricks  | Notes                                                    |\n| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------- | :------------------------------------------------------- |\n| Core customer identifiers                                                                                                                                                                                                          | Yes                   | First name, last name, email, mobile number, external ID |\n| Customer profile custom fields                                                                                                                                                                                                     | Yes, if marked as PSI | Must be explicitly marked to be masked                   |\n| Customer profile extended fields                                                                                                                                                                                                   | Yes, if marked as PSI | Must be explicitly marked to be masked                   |\n| <Anchor label=\"Read API tables\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/getting-started-databricks#read-api-databases\">Read API tables</Anchor>                                                                  | Yes                   | Masking applies to PSI-marked fields                     |\n| <Anchor label=\"History-tracking user dimension tables\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/getting-started-databricks#history-tracking-user-dimension-table\">History-tracking user dimension tables</Anchor> | Yes                   | Applicable only to the USHC cluster                      |\n| Card data                                                                                                                                                                                                                          | No                    | Not supported                                            |\n| Transaction or billing data                                                                                                                                                                                                        | No                    | Not supported                                            |\n| Behavioural event data                                                                                                                                                                                                             | No                    | Not masked in Databricks                                 |\n| Any other non-customer data                                                                                                                                                                                                        | No                    | Not supported                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Data category",
+          "Masked in Databricks",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Core customer identifiers",
+            "Yes",
+            "First name, last name, email, mobile number, external ID"
+          ],
+          [
+            "Customer profile custom fields",
+            "Yes, if marked as PSI",
+            "Must be explicitly marked to be masked"
+          ],
+          [
+            "Customer profile extended fields",
+            "Yes, if marked as PSI",
+            "Must be explicitly marked to be masked"
+          ],
+          [
+            "Read API tables",
+            "Yes",
+            "Masking applies to PSI-marked fields"
+          ],
+          [
+            "History-tracking user dimension tables",
+            "Yes",
+            "Applicable only to the USHC cluster"
+          ],
+          [
+            "Card data",
+            "No",
+            "Not supported"
+          ],
+          [
+            "Transaction or billing data",
+            "No",
+            "Not supported"
+          ],
+          [
+            "Behavioural event data",
+            "No",
+            "Not masked in Databricks"
+          ],
+          [
+            "Any other non-customer data",
+            "No",
+            "Not supported"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#read-api-databases",
+          "line": 67
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#history-tracking-user-dimension-table",
+          "line": 68
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#read-api-databases",
+          "line": 67
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#history-tracking-user-dimension-table",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "# Impact of data masking on existing and new users",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Impact of data masking on existing and new users",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "When data masking is enabled for an organisation, the behaviour is the same for both existing and new users. All classified sensitive data is masked by default unless the user has <Anchor label=\"access to sensitive data\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/managing-permissions\">access to sensitive data</Anchor>. By deafult, PSI data masking is disabled",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When data masking is enabled for an organisation, the behaviour is the same for both existing and new users. All classified sensitive data is masked by default unless the user has access to sensitive data. By deafult, PSI data masking is disabled",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 76
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "# Managing access to masked data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Managing access to masked data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "Capillary applies PSI masking differently for **Member Care users** and **API clients**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary applies PSI masking differently for Member Care users and API clients.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        82,
+        85
+      ],
+      "raw": "| Access type                                   | What controls masking                       |\n| :-------------------------------------------- | :------------------------------------------ |\n| Access to sensitive data on Member Care       | Access to `VIEW_MASKED_DATA` permission set |\n| Access to sensitive data in the API responses | API client with PSI permission              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Access type",
+          "What controls masking"
+        ],
+        "rows": [
+          [
+            "Access to sensitive data on Member Care",
+            "Access to VIEW_MASKED_DATA permission set"
+          ],
+          [
+            "Access to sensitive data in the API responses",
+            "API client with PSI permission"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "## PSI masking in Member Care",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "PSI masking in Member Care",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "In Member Care, access to masked data is controlled by **<Anchor label=\"user access\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/new-user-management-overview\">user access</Anchor>**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In Member Care, access to masked data is controlled by user access.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/new-user-management-overview",
+          "line": 89
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/new-user-management-overview",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "### How it works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "How it works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "When data masking is enabled for the organization:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When data masking is enabled for the organization:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        95,
+        96
+      ],
+      "raw": "* Users **without access to** VIEW\\_MASKED\\_DATA permission set see masked values (`*****`) for masked fields.\n* Users **access** see unmasked values.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Users without access to VIEW_MASKED_DATA permission set see masked values (*****) for masked fields.Users access see unmasked values.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "## PSI masking for APIs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "PSI masking for APIs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "For APIs, data masking is controlled by <Anchor label=\"**API client permissions**, not user roles\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret\">**API client permissions**, not user roles</Anchor>.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For APIs, data masking is controlled by API client permissions, not user roles.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret",
+          "line": 100
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-client#creating-an-api-client-key-and-secret",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "### How it works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "How it works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "When PSI masking is enabled for the organization:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When PSI masking is enabled for the organization:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        106,
+        107
+      ],
+      "raw": "* API clients **without access to masked data** receive masked values for PSI-marked fields.\n* API clients **with access** receive unmasked values.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "API clients without access to masked data receive masked values for PSI-marked fields.API clients with access receive unmasked values.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        109,
+        111
+      ],
+      "raw": "<Callout icon=\"🚧\" theme=\"warn\">\n  Data masking is not applicable for Basic Authentication. It is recommended to use OAuth.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧",
+        "theme": "warn"
+      },
+      "text": "Data masking is not applicable for Basic Authentication. It is recommended to use OAuth.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "children": [
+        {
+          "i": 38,
+          "lines": [
+            110,
+            110
+          ],
+          "raw": "  Data masking is not applicable for Basic Authentication. It is recommended to use OAuth.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Data masking is not applicable for Basic Authentication. It is recommended to use OAuth.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "# Enabling data masking",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Enabling data masking",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "By default, data masking is disabled for all organizations. To enable, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, data masking is disabled for all organizations. To enable, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        117,
+        120
+      ],
+      "raw": "1. From Organization settings, navigate to **Organization Setup** -> **PII Configurations**.\n2. To enable the PII deletion, select the **CONF\\_PSI\\_MASKING\\_ENABLED** check box.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/83a458ec820e75e5fbe32439b2ecef066e0d76812737f2e6caa2ea031e2a0b04-image.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From Organization settings, navigate to Organization Setup -> PII Configurations.To enable the PII deletion, select the CONF_PSI_MASKING_ENABLED check box.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        122,
+        122
+      ],
+      "raw": "**Behaviour**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Behaviour",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        124,
+        133
+      ],
+      "raw": "* When **CONF\\_PSI\\_MASKING\\_ENABLED = false**\n  * Data masking is disabled.\n  * All fields are returned unmasked,\n* When **CONF\\_PSI\\_MASKING\\_ENABLED = true**\n  * Data masking is enabled.\n  * Capillary evaluates masking for each request based on:\n    * Default masked fields\n    * <Anchor label=\"User permissions\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/managing-permissions\">User permissions</Anchor>\n    * <Anchor label=\"Custom and extended fields marked as sensitive\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii\">Custom and extended fields marked as sensitive</Anchor>\n    * <Anchor label=\"API client permissions\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii\">API client permissions</Anchor>",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When CONF_PSI_MASKING_ENABLED = falseData masking is disabled.All fields are returned unmasked,When CONF_PSI_MASKING_ENABLED = trueData masking is enabled.Capillary evaluates masking for each request based on:Default masked fieldsUser permissionsCustom and extended fields marked as sensitiveAPI client permissions",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 131
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 132
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii",
+          "line": 133
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/managing-permissions",
+          "line": 131
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/how-capillary-identifies-and-uses-psi-and-pii",
+          "line": 133
+        }
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "Once enabled, this configuration applies across:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once enabled, this configuration applies across:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        137,
+        139
+      ],
+      "raw": "* Member Care UI\n* All APIs\n* Analytics platform (Databricks)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Member Care UIAll APIsAnalytics platform (Databricks)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        141,
+        141
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 141
+        }
+      ]
+    }
+  ]
+}

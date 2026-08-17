@@ -1,0 +1,1019 @@
+{
+  "slug": "docs/entity-management-custom-fields",
+  "source": "https://docs.capillarytech.com/docs/entity-management-custom-fields.md",
+  "url": "https://docs.capillarytech.com/docs/entity-management-custom-fields",
+  "title": "Entity Management Custom Fields",
+  "description": "",
+  "section": "Set up Data Fields",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-10T12:43:54.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 11,
+    "list": 13,
+    "Callout": 3,
+    "Image": 7,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Custom Fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Custom Fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Custom fields are user-defined attributes used to capture information not covered by standard or extended fields. They offer flexibility to store specialized data across entities such as customers, transactions, transaction line items, and coupons.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Custom fields are user-defined attributes used to capture information not covered by standard or extended fields. They offer flexibility to store specialized data across entities such as customers, transactions, transaction line items, and coupons.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "While custom fields are useful for capturing non-standard information, they can pose challenges in maintaining data consistency, generating accurate reports, and conducting reliable analysis.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "While custom fields are useful for capturing non-standard information, they can pose challenges in maintaining data consistency, generating accurate reports, and conducting reliable analysis.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "### Scope of custom fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Scope of custom fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "You can create custom fields for the following scopes:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can create custom fields for the following scopes:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        28
+      ],
+      "raw": "* Loyalty registration\n* Loyalty transaction\n* Customer feedback\n* Zone custom fields\n* Store custom fields\n* Points redemption\n* Voucher redemption (coupon redemption)\n* Customer advanced feedback\n* Customer preferences\n* Customer Card",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Loyalty registrationLoyalty transactionCustomer feedbackZone custom fieldsStore custom fieldsPoints redemptionVoucher redemption (coupon redemption)Customer advanced feedbackCustomer preferencesCustomer Card",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "### Key limitations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Key limitations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        32,
+        38
+      ],
+      "raw": "* **Uncontrolled field values**<br />Custom fields often lack strict data entry rules, resulting in inconsistent or unclear data. For example, a gender field might have entries such as \"M,\" \"F,\" \"Male,\" \"Female,\" or \"MF.\" These differences make it more challenging to filter, search, or report on the data, and often require manual effort to clean and standardize the values.\n* **Limited reporting and analytics support**<br />Custom fields are less suitable for reporting and analytics than extended fields.\n  * Custom fields cannot be used as dimensions in reports, which are essential for grouping and analyzing data.\n  * Custom fields support only simple filtering, such as exact matches (regular expressions). They do not support advanced options, such as filtering by range or partial values. This limits their effectiveness in complex data searches.\n* **Implications for CDP integration and data governance**<br />In Loyalty, custom and extended fields are often used interchangeably, such as in rule definitions. However,  Customer Data Platforms (CDPs) enforce stricter standards to ensure data consistency and quality.\n\n  The uncontrolled nature of custom field values can hinder their direct use in CDP-driven use cases like personalization, segmentation, and automated workflows unless rigorous validation and standardization practices are applied.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Uncontrolled field valuesCustom fields often lack strict data entry rules, resulting in inconsistent or unclear data. For example, a gender field might have entries such as \"M,\" \"F,\" \"Male,\" \"Female,\" or \"MF.\" These differences make it more challenging to filter, search, or report on the data, and often require manual effort to clean and standardize the values.Limited reporting and analytics supportCustom fields are less suitable for reporting and analytics than extended fields.Custom fields cannot be used as dimensions in reports, which are essential for grouping and analyzing data.Custom fields support only simple filtering, such as exact matches (regular expressions). They do not support advanced options, such as filtering by range or partial values. This limits their effectiveness in complex data searches.Implications for CDP integration and data governanceIn Loyalty, custom and extended fields are often used interchangeably, such as in rule definitions. However,  Customer Data Platforms (CDPs) enforce stricter standards to ensure data consistency and quality.The uncontrolled nature of custom field values can hinder their direct use in CDP-driven use cases like personalization, segmentation, and automated workflows unless rigorous validation and standardization practices are applied.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 32
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 33
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "## Creating a new custom field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a new custom field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        42,
+        44
+      ],
+      "raw": "> ⚠️ Important\n>\n> For store-level custom fields, you must enter a label for the field to appear as editable on the store page. If you do not provide a label, the custom field will not be visible or editable in the UI. This requirement is due to how the frontend displays custom fields based on the presence of a label.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️"
+      },
+      "text": "ImportantFor store-level custom fields, you must enter a label for the field to appear as editable on the store page. If you do not provide a label, the custom field will not be visible or editable in the UI. This requirement is due to how the frontend displays custom fields based on the presence of a label.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "To create a new custom field, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a new custom field, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "1. On InTouch, navigate to  **Organization Settings** > **Master Data Management** > **Data Model** > **Custom Fields**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On InTouch, navigate to  Organization Settings > Master Data Management > Data Model > Custom Fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "<Image src=\"https://files.readme.io/77e3f9c7c4853867cdae644739f414576cbc42e888b8e069ee3b92bff0d179fa-image.png\" align=\"center\" width=\"80% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/77e3f9c7c4853867cdae644739f414576cbc42e888b8e069ee3b92bff0d179fa-image.png",
+        "align": "center",
+        "width": "80% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "2. Click **Add New Custom Field.**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New Custom Field.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "<Image src=\"https://files.readme.io/9b3f43946eae291548d6d0e8ca3defde6d794e5fb45ceb20ca31add06a235f82-image.png\" align=\"center\" width=\"80% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/9b3f43946eae291548d6d0e8ca3defde6d794e5fb45ceb20ca31add06a235f82-image.png",
+        "align": "center",
+        "width": "80% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "3. Configure the new custom field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Configure the new custom field.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "<Image src=\"https://files.readme.io/473f46e12980e202a84d60ffea547092b3ab1453559d9f348cb7ef66e4fac065-cdp_.gif\" align=\"center\" width=\"80% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/473f46e12980e202a84d60ffea547092b3ab1453559d9f348cb7ef66e4fac065-cdp_.gif",
+        "align": "center",
+        "width": "80% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "The table shows the fields with their descriptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table shows the fields with their descriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        62,
+        156
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        OPTION\n      </th>\n\n      <th>\n        DESCRIPTION\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Field Name\n      </td>\n\n      <td>\n        Name of the field.<br />**Note**:  Field names must be unique within each organization, regardless of the scope. You cannot create multiple custom fields with the same name in different scopes within the same organization. Attempting to do so will fail silently, and the custom field will not be created.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Applicable Entity\n      </td>\n\n      <td>\n        Choose the entry of the custom field from the options available.\n\n        - Loyalty registration\n\n        - Loyalty transaction\n\n        - Customer feedback\n\n        - Zone custom fields\n\n        - Store custom fields\n\n        - Points redemption\n\n        - Voucher redemption (coupon redemption)\n\n        - Customer advanced feedback\n\n        - Customer preferences\n\n        - Customer card\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Label\n      </td>\n\n      <td>\n        Enter the field name to appear on the UI. <strong>For store-level custom fields, the field is only shown as editable on the store page if a label is configured. If you do not enter a label, the custom field will not appear or be editable in the UI.</strong>\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Enable Audit Trail\n      </td>\n\n      <td>\n        Select the checkbox if you want to enable audit logging of the custom field. You can add up to 5 custom fields for audit logging.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is this pii data ?\n      </td>\n\n      <td>\n        Select the checkbox if you want to classify the custom field as PII data.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is this psi data\n      </td>\n\n      <td>\n        Select the checkbox to classify the extended field as sensitive data. Refer to the PSI data documentation for more [information on classifying PSI data](https://docs.capillarytech.com/docs/classify-potentially-sensitive-information-psi) .\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "OPTION",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "Field Name",
+            "Name of the field.Note:  Field names must be unique within each organization, regardless of the scope. You cannot create multiple custom fields with the same name in different scopes within the same organization. Attempting to do so will fail silently, and the custom field will not be created."
+          ],
+          [
+            "Applicable Entity",
+            "Choose the entry of the custom field from the options available.Loyalty registrationLoyalty transactionCustomer feedbackZone custom fieldsStore custom fieldsPoints redemptionVoucher redemption (coupon redemption)Customer advanced feedbackCustomer preferencesCustomer card"
+          ],
+          [
+            "Label",
+            "Enter the field name to appear on the UI. For store-level custom fields, the field is only shown as editable on the store page if a label is configured. If you do not enter a label, the custom field will not appear or be editable in the UI."
+          ],
+          [
+            "Enable Audit Trail",
+            "Select the checkbox if you want to enable audit logging of the custom field. You can add up to 5 custom fields for audit logging."
+          ],
+          [
+            "Is this pii data ?",
+            "Select the checkbox if you want to classify the custom field as PII data."
+          ],
+          [
+            "Is this psi data",
+            "Select the checkbox to classify the extended field as sensitive data. Refer to the PSI data documentation for more information on classifying PSI data ."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 82
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/classify-potentially-sensitive-information-psi",
+          "line": 152
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        158,
+        163
+      ],
+      "raw": "> 📘\n>\n> **Notes**\n>\n> * Custom field names have a 20-character limit, and custom field values can contain up to 250 values. Speical characters (! @ # $ % / ? . >) are not supported for custom field names.\n> * The data type for all custom fields is set to String by default. You cannot change the data type.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotesCustom field names have a 20-character limit, and custom field values can contain up to 250 values. Speical characters (! @ # $ % / ? . >) are not supported for custom field names.The data type for all custom fields is set to String by default. You cannot change the data type.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "5. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "The custom field is created.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The custom field is created.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "## Viewing a custom field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Viewing a custom field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        171,
+        177
+      ],
+      "raw": "1. To view the new custom field, navigate to **Organization Settings** > **Master Data Management** > **Data Model** > **Custom Fields**.\n\n2. Click the scope of the custom field .<br />All custom fields within the scope are visible.\n\n   <Image src=\"https://files.readme.io/1e9c2015c08a2f954caafdbdfa7577aa6c1c1f67fb1baf96542b95a091099869-scope_of_cf.png\" align=\"center\" border={true} />\n\n3. Click the custom field to view.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To view the new custom field, navigate to Organization Settings > Master Data Management > Data Model > Custom Fields.Click the scope of the custom field .All custom fields within the scope are visible.Click the custom field to view.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "<Image src=\"https://files.readme.io/627aa87-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/627aa87-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        181,
+        181
+      ],
+      "raw": "## Updating a custom field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating a custom field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "To update a custom field, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To update a custom field, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "1. On InTouch, navigate to  **Organization Settings** > **Master Data Management** > **Data Model** > **Custom Fields**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On InTouch, navigate to  Organization Settings > Master Data Management > Data Model > Custom Fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "<Image src=\"https://files.readme.io/9495020-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/9495020-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        189,
+        190
+      ],
+      "raw": "2. Select the field you want to modify.\n3. Click **Edit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the field you want to modify.Click Edit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "![](https://files.readme.io/405f028-image.png)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/405f028-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/405f028-image.png",
+          "line": 192
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        194,
+        195
+      ],
+      "raw": "4. Update the custom field according to your requirements.\n5. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Update the custom field according to your requirements.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "### Updating custom fields via Data Import Framework",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Updating custom fields via Data Import Framework",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "When updating custom fields using the Data Import Framework, blank or null values in the import file will not clear the field. To clear or reset a custom field, enter a dash ('-') as the value in the import file. The system will interpret the dash as 'no data' and clear the field value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When updating custom fields using the Data Import Framework, blank or null values in the import file will not clear the field. To clear or reset a custom field, enter a dash ('-') as the value in the import file. The system will interpret the dash as 'no data' and clear the field value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        201,
+        201
+      ],
+      "raw": "## Deleting a custom field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Deleting a custom field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "To delete a custom field, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To delete a custom field, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        205,
+        208
+      ],
+      "raw": "1. On InTouch, navigate to  **Organization Settings** > **Master Data Management** > **Data Model** > **Custom Fields.**\n2. Click the field you want to delete.\n3. Click **Edit**.\n4. Select the **Disable Custom Field**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On InTouch, navigate to  Organization Settings > Master Data Management > Data Model > Custom Fields.Click the field you want to delete.Click Edit.Select the Disable Custom Field.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "<Image src=\"https://files.readme.io/71c30ed-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/71c30ed-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "5. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "After you make changes in a custom field:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After you make changes in a custom field:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        216,
+        217
+      ],
+      "raw": "* For Store Server, perform a complete sync from Settings or wait till the next auto-sync completes.\n* For Thin Client, restart your thin client and check if you are able to view the changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "For Store Server, perform a complete sync from Settings or wait till the next auto-sync completes.For Thin Client, restart your thin client and check if you are able to view the changes.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        219,
+        219
+      ],
+      "raw": "## Converting custom field to extended field",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Converting custom field to extended field",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        221,
+        221
+      ],
+      "raw": "To convert a custom field to an extended field, raise a ticket to the Platforms team requesting the conversion. The converted extended field is be used in reports and campaigns.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To convert a custom field to an extended field, raise a ticket to the Platforms team requesting the conversion. The converted extended field is be used in reports and campaigns.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        223,
+        226
+      ],
+      "raw": "> 📘 NOTE:\n>\n> * The platforms team verifies whether the conversion is necessary; otherwise, the request is rejected.\n> * The platforms team carries out the mapping of custom field to extended field.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NOTE:The platforms team verifies whether the conversion is necessary; otherwise, the request is rejected.The platforms team carries out the mapping of custom field to extended field.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 228
+        }
+      ]
+    }
+  ]
+}

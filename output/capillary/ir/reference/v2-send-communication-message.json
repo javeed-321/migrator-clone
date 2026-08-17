@@ -1,0 +1,840 @@
+{
+  "slug": "reference/v2-send-communication-message",
+  "source": "https://docs.capillarytech.com/reference/v2-send-communication-message.md",
+  "url": "https://docs.capillarytech.com/reference/v2-send-communication-message",
+  "title": "V2 Send Communication Message",
+  "description": "",
+  "section": "Communications (v2)",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-25T05:31:19.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 12,
+    "paragraph": 1,
+    "Callout": 1,
+    "CodeTabs": 2,
+    "list": 1,
+    "Table": 7,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Send communication message",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Send communication message",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API allows you to send communication message using SMS/WhatsApp/Zalo or Email as a communication channel. You can use it to send messages to a single customer or to multiple customers in bulk.  ",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API allows you to send communication message using SMS/WhatsApp/Zalo or Email as a communication channel. You can use it to send messages to a single customer or to multiple customers in bulk.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "> 👍 Note\n>\n> For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        149
+      ],
+      "raw": "```curl Sample request for Single email\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data-raw '{\n\t\"email\": [\n        {\n            \"to\": \"tomswayer@capillarytech.com\",\n            \"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        }\n\t]\n}'\n```\n```curl Sample request for Bulk email\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data-raw '{\n\t\"email\": [\n        {\n            \"to\": \"tomswayer@capillarytech.com\",\n           // \"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        },\n        {\n            \"to\": \"tomswayer09@capillarytech.com\",\n            //\"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        }\n\t]\n}'\n```\n```curl Sample request for Single sms\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data '{\n    \"sms\": [\n      {\n        \"to\": \"919777785302\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        \"scheduledTime\": \"2025-06-14T18:55:0Z\",  \n        \"sender\": \"7381814046\"\n      }\n    ]\n}'\n```\n```curl Sample request for Bulk sms\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data '{\n    \"sms\": [\n      {\n        \"to\": \"918866775544\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        //\"scheduledTime\": \"2025-11-05T12:10:0Z\",  \n        \"sender\": \"7381814046\"\n      },\n      {\n        \"to\": \"914455776688\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        //\"scheduledTime\": \"2025-06-14T18:55:0Z\",  \n        \"sender\": \"7381814046\"\n      }\n    ]\n}'\n```\n```curl Sample request for Single whatsapp\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"whatsappMessage\": [\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n        \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n      }\n    ]\n  }'\n```\n```curl Sample request for Bulk whatsapp\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"whatsappMessage\": [\n      {\n        \"receiver\": \"918899776655\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n        \n      },\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n        \n      }\n    ]\n  }'\n```\n```curl Sample request for Zalo\ncurl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=zalo' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"zaloMessage\": [\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n        \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n      }\n    ]\n  }\n'\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample request for Single email",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ],
+      "tabs": [
+        {
+          "lang": "curl",
+          "title": "Sample request for Single email",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data-raw '{\n\t\"email\": [\n        {\n            \"to\": \"tomswayer@capillarytech.com\",\n            \"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        }\n\t]\n}'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Bulk email",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data-raw '{\n\t\"email\": [\n        {\n            \"to\": \"tomswayer@capillarytech.com\",\n           // \"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        },\n        {\n            \"to\": \"tomswayer09@capillarytech.com\",\n            //\"cc\": \"tomswayer21@capillarytech.com\",\n            \"bcc\": \"\",\n            \"from\": \"rewards@rallyengage.com\",\n            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n            \"body\": \"\"\n        }\n\t]\n}'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Single sms",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data '{\n    \"sms\": [\n      {\n        \"to\": \"919777785302\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        \"scheduledTime\": \"2025-06-14T18:55:0Z\",  \n        \"sender\": \"7381814046\"\n      }\n    ]\n}'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Bulk sms",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic *******' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data '{\n    \"sms\": [\n      {\n        \"to\": \"918866775544\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        //\"scheduledTime\": \"2025-11-05T12:10:0Z\",  \n        \"sender\": \"7381814046\"\n      },\n      {\n        \"to\": \"914455776688\",\n        \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n        //\"scheduledTime\": \"2025-06-14T18:55:0Z\",  \n        \"sender\": \"7381814046\"\n      }\n    ]\n}'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Single whatsapp",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"whatsappMessage\": [\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n        \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n      }\n    ]\n  }'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Bulk whatsapp",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"whatsappMessage\": [\n      {\n        \"receiver\": \"918899776655\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n        \n      },\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n        \n      }\n    ]\n  }'"
+        },
+        {
+          "lang": "curl",
+          "title": "Sample request for Zalo",
+          "code": "curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=zalo' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic ********' \\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\n--data ' {\n    \"zaloMessage\": [\n      {\n        \"receiver\": \"919988221100\",\n        \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n        \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n      }\n    ]\n  }\n'"
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        153,
+        154
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication details\n* [ ] Access group resource: WRITE access to Communication access group resource",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authentication detailsAccess group resource: WRITE access to Communication access group resource",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        158,
+        161
+      ],
+      "raw": "|             |                                                 |\n| :---------- | :---------------------------------------------- |\n| URI         | `/communications/sendMessage?channel={channel}` |\n| HTTP method | POST                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/communications/sendMessage?channel={channel}"
+          ],
+          [
+            "HTTP method",
+            "POST"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "# Path parameter",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Path parameter",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        165,
+        167
+      ],
+      "raw": "| Parameter | Datatype | Description                                                                                                                              |\n| :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |\n| channel   | Enum     | The communication channel. The supported values are sms, whatsapp, email and zalo. The values are not case-sensitive. Default value-sms. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "channel",
+            "Enum",
+            "The communication channel. The supported values are sms, whatsapp, email and zalo. The values are not case-sensitive. Default value-sms."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "# Request Body Parameters (SMS)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request Body Parameters (SMS)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        171,
+        177
+      ],
+      "raw": "| Parameter     | Datatype  | Description                                                                                                                                                                                                                                                        |\n| ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| sms\\*         | array-obj | Details of the SMS to send. Pass each SMS in a separate object.                                                                                                                                                                                                    |\n| to\\*          | string    | Mobile number of the recipient.                                                                                                                                                                                                                                    |\n| body\\*        | string    | Message content to be sent.                                                                                                                                                                                                                                        |\n| scheduledTime | date-time | Date and time of sending in ISO standard format.                                                                                                                                                                                                                   |\n| sender        | string    | Sender ID from which the message has to go (sender IDs configured for the respective OU). If not passed, the default sender ID of the org is considered. Refer [here](https://docs.capillarytech.com/docs/configure-sms-settings#/) for configuring the sender ID. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "sms*",
+            "array-obj",
+            "Details of the SMS to send. Pass each SMS in a separate object."
+          ],
+          [
+            "to*",
+            "string",
+            "Mobile number of the recipient."
+          ],
+          [
+            "body*",
+            "string",
+            "Message content to be sent."
+          ],
+          [
+            "scheduledTime",
+            "date-time",
+            "Date and time of sending in ISO standard format."
+          ],
+          [
+            "sender",
+            "string",
+            "Sender ID from which the message has to go (sender IDs configured for the respective OU). If not passed, the default sender ID of the org is considered. Refer here for configuring the sender ID."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-sms-settings#/",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "# Request body (Email)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body (Email)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        181,
+        196
+      ],
+      "raw": "| Parameter            | Datatype  | Description                                                                                                                                                                                                                    |\n| -------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| email\\*              | array-obj | Complete details of the email to send.                                                                                                                                                                                         |\n| to\\*                 | string    | Recipient's email ID.                                                                                                                                                                                                          |\n| cc                   | string    | Email ID to be included in CC                                                                                                                                                                                                  |\n| bcc                  | string    | Email IDs to included in BCC.                                                                                                                                                                                                  |\n| from\\*               | string    | Email ID of the sender.                                                                                                                                                                                                        |\n| subject\\*            | string    | Subject of the email.                                                                                                                                                                                                          |\n| body\\*               | string    | Body of the email.                                                                                                                                                                                                             |\n| attachments          | obj       | Details of the attachment used in the email.                                                                                                                                                                                   |\n| attachment           | array-obj | Details of each attachment in email.                                                                                                                                                                                           |\n| file\\_name           | string    | Name of the attached file.                                                                                                                                                                                                     |\n| file\\_type           | string    | Type of the file (file format).                                                                                                                                                                                                |\n| file\\_data           | string    | Encoded data of the attachment.                                                                                                                                                                                                |\n| file\\_encoding\\_type | string    | Encoding type of the attachment provided in fileData. Required for all base64 encoded image formats such as JPG, PNG, JPEG, and GIF. This is not required for other file types like TXT, and PDF which are not base64 encoded. |\n| scheduledTime        | date-time | ISO standard date and time of scheduling the email.                                                                                                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "email*",
+            "array-obj",
+            "Complete details of the email to send."
+          ],
+          [
+            "to*",
+            "string",
+            "Recipient's email ID."
+          ],
+          [
+            "cc",
+            "string",
+            "Email ID to be included in CC"
+          ],
+          [
+            "bcc",
+            "string",
+            "Email IDs to included in BCC."
+          ],
+          [
+            "from*",
+            "string",
+            "Email ID of the sender."
+          ],
+          [
+            "subject*",
+            "string",
+            "Subject of the email."
+          ],
+          [
+            "body*",
+            "string",
+            "Body of the email."
+          ],
+          [
+            "attachments",
+            "obj",
+            "Details of the attachment used in the email."
+          ],
+          [
+            "attachment",
+            "array-obj",
+            "Details of each attachment in email."
+          ],
+          [
+            "file_name",
+            "string",
+            "Name of the attached file."
+          ],
+          [
+            "file_type",
+            "string",
+            "Type of the file (file format)."
+          ],
+          [
+            "file_data",
+            "string",
+            "Encoded data of the attachment."
+          ],
+          [
+            "file_encoding_type",
+            "string",
+            "Encoding type of the attachment provided in fileData. Required for all base64 encoded image formats such as JPG, PNG, JPEG, and GIF. This is not required for other file types like TXT, and PDF which are not base64 encoded."
+          ],
+          [
+            "scheduledTime",
+            "date-time",
+            "ISO standard date and time of scheduling the email."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "# Request body (WhatsApp)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body (WhatsApp)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        200,
+        205
+      ],
+      "raw": "| Parameter         | Datatype  | Description                                                                               |\n| ----------------- | --------- | ----------------------------------------------------------------------------------------- |\n| whatsappMessage\\* | array-obj | Details of the WhatsApp message to send. Pass each WhatsApp message in a separate object. |\n| receiver\\*        | string    | Mobile number of the recipient.                                                           |\n| template\\*        | string    | Message content to be sent. This is the content that will be communicated to the user.    |\n| scheduledTime     | date-time | ISO standard date and time of scheduling the message.                                     |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "whatsappMessage*",
+            "array-obj",
+            "Details of the WhatsApp message to send. Pass each WhatsApp message in a separate object."
+          ],
+          [
+            "receiver*",
+            "string",
+            "Mobile number of the recipient."
+          ],
+          [
+            "template*",
+            "string",
+            "Message content to be sent. This is the content that will be communicated to the user."
+          ],
+          [
+            "scheduledTime",
+            "date-time",
+            "ISO standard date and time of scheduling the message."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "# Request body (Zalo)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body (Zalo)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        209,
+        214
+      ],
+      "raw": "| Parameter     | Datatype  | Description                                                                            |\n| ------------- | --------- | -------------------------------------------------------------------------------------- |\n| zaloMessage\\* | array-obj | Details of the Zalo message to send. Pass each Zalo message in a separate object.      |\n| receiver\\*    | string    | Mobile number of the recipient.                                                        |\n| template\\*    | string    | Message content to be sent. This is the content that will be communicated to the user. |\n| scheduledTime | date-time | ISO standard date and time of scheduling the message.                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "zaloMessage*",
+            "array-obj",
+            "Details of the Zalo message to send. Pass each Zalo message in a separate object."
+          ],
+          [
+            "receiver*",
+            "string",
+            "Mobile number of the recipient."
+          ],
+          [
+            "template*",
+            "string",
+            "Message content to be sent. This is the content that will be communicated to the user."
+          ],
+          [
+            "scheduledTime",
+            "date-time",
+            "ISO standard date and time of scheduling the message."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "# Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        218,
+        464
+      ],
+      "raw": "```json Sample response for Single sms\n{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"smsList\": [\n        {\n            \"sms\": {\n                \"to\": \"919777785302\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-06-14T18:55:00Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Bulk sms\n{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"message\": \"Success\",\n            \"code\": 200\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"success\": true\n    },\n    \"smsList\": [\n        {\n            \"sms\": {\n                \"to\": \"918866775544\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-11-05T06:38:37Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"sms\": {\n                \"to\": \"914455776688\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-11-05T06:38:37Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Single email\n{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"emails\": [\n        {\n            \"email\": {\n                \"to\": \"tomswayer@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-09-26T14:21:07Z\",\n                \"cc\": \"tomswayer21@capillarytech.com\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Bulk email\n{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"message\": \"Success\",\n            \"code\": 200\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"success\": true\n    },\n    \"emails\": [\n        {\n            \"email\": {\n                \"to\": \"tomswayer@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-11-05T06:25:21Z\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"email\": {\n                \"to\": \"tomswayer09@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-11-05T06:25:21Z\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Single whatsapp\n{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"whatsapp\": [\n        {\n            \"whatsappMessage\": {\n                \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"919988221100\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Bulk whatsapp\n{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"whatsapp\": [\n        {\n            \"whatsappMessage\": {\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"918899776655\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"whatsappMessage\": {\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"919988221100\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```\n```json Sample response for Zalo\n{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"zalo\": [\n        {\n            \"zaloMessage\": {\n                \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                \"receiver\": \"919988221100\",\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample response for Single sms",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Sample response for Single sms",
+          "code": "{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"smsList\": [\n        {\n            \"sms\": {\n                \"to\": \"919777785302\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-06-14T18:55:00Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Bulk sms",
+          "code": "{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"message\": \"Success\",\n            \"code\": 200\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"success\": true\n    },\n    \"smsList\": [\n        {\n            \"sms\": {\n                \"to\": \"918866775544\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-11-05T06:38:37Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"sms\": {\n                \"to\": \"914455776688\",\n                \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                \"scheduledTime\": \"2025-11-05T06:38:37Z\",\n                \"sender\": \"7381814046\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Single email",
+          "code": "{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"emails\": [\n        {\n            \"email\": {\n                \"to\": \"tomswayer@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-09-26T14:21:07Z\",\n                \"cc\": \"tomswayer21@capillarytech.com\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Bulk email",
+          "code": "{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"message\": \"Success\",\n            \"code\": 200\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"success\": true\n    },\n    \"emails\": [\n        {\n            \"email\": {\n                \"to\": \"tomswayer@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-11-05T06:25:21Z\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"email\": {\n                \"to\": \"tomswayer09@capillarytech.com\",\n                \"body\": \"\",\n                \"scheduledTime\": \"2025-11-05T06:25:21Z\",\n                \"bcc\": \"\",\n                \"from\": \"rewards@rallyengage.com\",\n                \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                \"fileHandler\": [],\n                \"attachments\": []\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Single whatsapp",
+          "code": "{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"whatsapp\": [\n        {\n            \"whatsappMessage\": {\n                \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"919988221100\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Bulk whatsapp",
+          "code": "{\n    \"status\": {\n        \"count\": 2,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 2,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"whatsapp\": [\n        {\n            \"whatsappMessage\": {\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"918899776655\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        },\n        {\n            \"whatsappMessage\": {\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                \"receiver\": \"919988221100\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Sample response for Zalo",
+          "code": "{\n    \"status\": {\n        \"count\": 1,\n        \"statusCode\": {\n            \"status\": true,\n            \"code\": 200,\n            \"message\": \"Success\"\n        },\n        \"successCount\": 1,\n        \"warnings\": [],\n        \"warningsAsStatusCode\": [],\n        \"code\": 200,\n        \"success\": true,\n        \"message\": \"Success\"\n    },\n    \"zalo\": [\n        {\n            \"zaloMessage\": {\n                \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                \"receiver\": \"919988221100\",\n                \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n            },\n            \"errors\": [],\n            \"warnings\": []\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        466,
+        466
+      ],
+      "raw": "# Error code",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Error code",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        468,
+        473
+      ],
+      "raw": "| Error code | Description                                                                            |\n| :--------- | :------------------------------------------------------------------------------------- |\n| 4203       | Indicates that either the recipient’s mobile number or the SMS message body is missing |\n| 8055       | Invalid email ID                                                                       |\n| 4201       | Indicates the email is missing a subject                                               |\n| 403        | Indicates that the receiver is missing from the request for the WhatsApp channel.      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "4203",
+            "Indicates that either the recipient’s mobile number or the SMS message body is missing"
+          ],
+          [
+            "8055",
+            "Invalid email ID"
+          ],
+          [
+            "4201",
+            "Indicates the email is missing a subject"
+          ],
+          [
+            "403",
+            "Indicates that the receiver is missing from the request for the WhatsApp channel."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        475,
+        475
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        477,
+        908
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v2\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v2\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/communications/sendMessage?channel={channel}\": {\n      \"post\": {\n        \"summary\": \"Send communication message\",\n        \"description\": \"This API allows you to send communication message using SMS/WhatsApp/Zalo or Email as a communication channel.\",\n        \"operationId\": \"v2-send-communication-message\",\n        \"parameters\": [\n          {\n            \"name\": \"format\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"xml\",\n                \"json\"\n              ]\n            }\n          },\n          {\n            \"name\": \"channel\",\n            \"in\": \"path\",\n            \"description\": \"sms, email, whatsapp, zalo\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"\"\n              ]\n            },\n            \"required\": true\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\",\n                    \"format\": \"json\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"sms\": {\n                  \"value\": {\n                    \"root\": {\n                      \"sms\": [\n                        {\n                          \"to\": \"447700900000\",\n                          \"body\": \"Hi, wish you a happy wedding anniversary!\",\n                          \"scheduled_time\": \"2012-08-05 22:00:00IST\",\n                          \"sender\": \"918000000000\"\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"whatsapp\": {\n                  \"value\": {\n                    \"root\": {\n                      \"whatsappMessage\": [\n                        {\n                          \"receiver\": \"919591471711\",\n                          \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                          \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"zalo\": {\n                  \"value\": {\n                    \"root\": {\n                      \"zaloMessage\": [\n                        {\n                          \"receiver\": \"919591471711\",\n                          \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                          \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"sms\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"smsList\": [\n                        {\n                          \"sms\": {\n                            \"to\": \"919777785302\",\n                            \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                            \"scheduledTime\": \"2025-06-14T18:55:00Z\",\n                            \"sender\": \"7381814046\"\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  },\n                  \"email\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"emails\": [\n                        {\n                          \"email\": {\n                            \"to\": \"tomswayer@capillarytech.com\",\n                            \"body\": \"\",\n                            \"scheduledTime\": \"2025-09-26T14:21:07Z\",\n                            \"cc\": \"tomswayer21@capillarytech.com\",\n                            \"bcc\": \"\",\n                            \"from\": \"rewards@rallyengage.com\",\n                            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                            \"fileHandler\": [],\n                            \"attachments\": []\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  },\n                  \"whatsapp\": {\n                    \"value\": \"\"\n                  },\n                  \"zalo\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"zalo\": [\n                        {\n                          \"zaloMessage\": {\n                            \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                            \"receiver\": \"919988221100\",\n                            \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"sms\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"response\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"status\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"success\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"true\"\n                                },\n                                \"code\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"200\"\n                                },\n                                \"message\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"success\"\n                                }\n                              }\n                            },\n                            \"sms\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"23423443\"\n                                },\n                                \"to\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"447700900000\"\n                                },\n                                \"status\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Sent\"\n                                },\n                                \"scheduled_time\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"2012-08-05 22:00:00IST\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"email\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"count\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"statusCode\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"status\": {\n                                  \"type\": \"boolean\",\n                                  \"example\": true,\n                                  \"default\": true\n                                },\n                                \"code\": {\n                                  \"type\": \"integer\",\n                                  \"example\": 200,\n                                  \"default\": 0\n                                },\n                                \"message\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Success\"\n                                }\n                              }\n                            },\n                            \"successCount\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"warnings\": {\n                              \"type\": \"array\"\n                            },\n                            \"warningsAsStatusCode\": {\n                              \"type\": \"array\"\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Success\"\n                            }\n                          }\n                        },\n                        \"emails\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"email\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"to\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"tom.swayer@capillarytech.com\"\n                                  },\n                                  \"body\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"scheduledTime\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"2024-12-20T03:53:14-05:00\"\n                                  },\n                                  \"cc\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"dicaprio@capillarytech.com\"\n                                  },\n                                  \"bcc\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"from\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"rewards@rallyengage.com\"\n                                  },\n                                  \"subject\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Request to Void Check: <Reward Transaction ID>\"\n                                  },\n                                  \"fileHandler\": {\n                                    \"type\": \"array\"\n                                  },\n                                  \"attachments\": {\n                                    \"type\": \"array\"\n                                  }\n                                }\n                              },\n                              \"errors\": {\n                                \"type\": \"array\"\n                              },\n                              \"warnings\": {\n                                \"type\": \"array\"\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic *******' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data-raw '{\\n\\t\\\"email\\\": [\\n        {\\n            \\\"to\\\": \\\"tomswayer@capillarytech.com\\\",\\n            \\\"cc\\\": \\\"tomswayer21@capillarytech.com\\\",\\n            \\\"bcc\\\": \\\"\\\",\\n            \\\"from\\\": \\\"rewards@rallyengage.com\\\",\\n            \\\"subject\\\": \\\"Request to Void Check: <Reward Transaction ID>\\\",\\n            \\\"body\\\": \\\"\\\"\\n        }\\n\\t]\\n}'\",\n              \"name\": \"email\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"sms\\\": [\\n      {\\n        \\\"to\\\": \\\"919777785302\\\",\\n        \\\"body\\\": \\\"Hi :smile: (😊 )wish you a happy wedding anniversary!?\\\",\\n        \\\"scheduledTime\\\": \\\"2025-06-14T18:55:0Z\\\",  \\n        \\\"sender\\\": \\\"7381814046\\\"\\n      }\\n    ]\\n}'\",\n              \"language\": \"shell\",\n              \"name\": \"sms\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data ' {\\n    \\\"whatsappMessage\\\": [\\n      {\\n        \\\"receiver\\\": \\\"919988221100\\\",\\n        \\\"template\\\": \\\"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\\\",\\n        \\\"scheduledTime\\\": \\\"2024-02-22T00:25:06+05:30\\\"\\n      }\\n    ]\\n  }'\",\n              \"language\": \"shell\",\n              \"name\": \"whatsapp\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=zalo' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data ' {\\n    \\\"zaloMessage\\\": [\\n      {\\n        \\\"receiver\\\": \\\"919988221100\\\",\\n        \\\"template\\\": \\\"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\\\",\\n        \\\"scheduledTime\\\": \\\"2024-02-22T00:25:06+05:30\\\"\\n      }\\n    ]\\n  }\\n'\",\n              \"language\": \"shell\",\n              \"name\": \"zalo\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\",\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v2\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}/v2\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/communications/sendMessage?channel={channel}\": {\n      \"post\": {\n        \"summary\": \"Send communication message\",\n        \"description\": \"This API allows you to send communication message using SMS/WhatsApp/Zalo or Email as a communication channel.\",\n        \"operationId\": \"v2-send-communication-message\",\n        \"parameters\": [\n          {\n            \"name\": \"format\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"xml\",\n                \"json\"\n              ]\n            }\n          },\n          {\n            \"name\": \"channel\",\n            \"in\": \"path\",\n            \"description\": \"sms, email, whatsapp, zalo\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"\"\n              ]\n            },\n            \"required\": true\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"RAW_BODY\": {\n                    \"type\": \"string\",\n                    \"format\": \"json\"\n                  }\n                }\n              },\n              \"examples\": {\n                \"sms\": {\n                  \"value\": {\n                    \"root\": {\n                      \"sms\": [\n                        {\n                          \"to\": \"447700900000\",\n                          \"body\": \"Hi, wish you a happy wedding anniversary!\",\n                          \"scheduled_time\": \"2012-08-05 22:00:00IST\",\n                          \"sender\": \"918000000000\"\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"whatsapp\": {\n                  \"value\": {\n                    \"root\": {\n                      \"whatsappMessage\": [\n                        {\n                          \"receiver\": \"919591471711\",\n                          \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                          \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"zalo\": {\n                  \"value\": {\n                    \"root\": {\n                      \"zaloMessage\": [\n                        {\n                          \"receiver\": \"919591471711\",\n                          \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\",\n                          \"scheduledTime\": \"2024-02-22T00:25:06+05:30\"\n                        }\n                      ]\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"sms\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"smsList\": [\n                        {\n                          \"sms\": {\n                            \"to\": \"919777785302\",\n                            \"body\": \"Hi :smile: (😊 )wish you a happy wedding anniversary!?\",\n                            \"scheduledTime\": \"2025-06-14T18:55:00Z\",\n                            \"sender\": \"7381814046\"\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  },\n                  \"email\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"emails\": [\n                        {\n                          \"email\": {\n                            \"to\": \"tomswayer@capillarytech.com\",\n                            \"body\": \"\",\n                            \"scheduledTime\": \"2025-09-26T14:21:07Z\",\n                            \"cc\": \"tomswayer21@capillarytech.com\",\n                            \"bcc\": \"\",\n                            \"from\": \"rewards@rallyengage.com\",\n                            \"subject\": \"Request to Void Check: <Reward Transaction ID>\",\n                            \"fileHandler\": [],\n                            \"attachments\": []\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  },\n                  \"whatsapp\": {\n                    \"value\": \"\"\n                  },\n                  \"zalo\": {\n                    \"value\": {\n                      \"status\": {\n                        \"count\": 1,\n                        \"statusCode\": {\n                          \"status\": true,\n                          \"code\": 200,\n                          \"message\": \"Success\"\n                        },\n                        \"successCount\": 1,\n                        \"warnings\": [],\n                        \"warningsAsStatusCode\": [],\n                        \"code\": 200,\n                        \"success\": true,\n                        \"message\": \"Success\"\n                      },\n                      \"zalo\": [\n                        {\n                          \"zaloMessage\": {\n                            \"scheduledTime\": \"2024-02-21T18:55:06Z\",\n                            \"receiver\": \"919988221100\",\n                            \"template\": \"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\"\n                          },\n                          \"errors\": [],\n                          \"warnings\": []\n                        }\n                      ]\n                    }\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"sms\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"response\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"status\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"success\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"true\"\n                                },\n                                \"code\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"200\"\n                                },\n                                \"message\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"success\"\n                                }\n                              }\n                            },\n                            \"sms\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"id\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"23423443\"\n                                },\n                                \"to\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"447700900000\"\n                                },\n                                \"status\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Sent\"\n                                },\n                                \"scheduled_time\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"2012-08-05 22:00:00IST\"\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"email\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"count\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"statusCode\": {\n                              \"type\": \"object\",\n                              \"properties\": {\n                                \"status\": {\n                                  \"type\": \"boolean\",\n                                  \"example\": true,\n                                  \"default\": true\n                                },\n                                \"code\": {\n                                  \"type\": \"integer\",\n                                  \"example\": 200,\n                                  \"default\": 0\n                                },\n                                \"message\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"Success\"\n                                }\n                              }\n                            },\n                            \"successCount\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"warnings\": {\n                              \"type\": \"array\"\n                            },\n                            \"warningsAsStatusCode\": {\n                              \"type\": \"array\"\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Success\"\n                            }\n                          }\n                        },\n                        \"emails\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"email\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"to\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"tom.swayer@capillarytech.com\"\n                                  },\n                                  \"body\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"scheduledTime\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"2024-12-20T03:53:14-05:00\"\n                                  },\n                                  \"cc\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"dicaprio@capillarytech.com\"\n                                  },\n                                  \"bcc\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"\"\n                                  },\n                                  \"from\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"rewards@rallyengage.com\"\n                                  },\n                                  \"subject\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Request to Void Check: <Reward Transaction ID>\"\n                                  },\n                                  \"fileHandler\": {\n                                    \"type\": \"array\"\n                                  },\n                                  \"attachments\": {\n                                    \"type\": \"array\"\n                                  }\n                                }\n                              },\n                              \"errors\": {\n                                \"type\": \"array\"\n                              },\n                              \"warnings\": {\n                                \"type\": \"array\"\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=email' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic *******' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data-raw '{\\n\\t\\\"email\\\": [\\n        {\\n            \\\"to\\\": \\\"tomswayer@capillarytech.com\\\",\\n            \\\"cc\\\": \\\"tomswayer21@capillarytech.com\\\",\\n            \\\"bcc\\\": \\\"\\\",\\n            \\\"from\\\": \\\"rewards@rallyengage.com\\\",\\n            \\\"subject\\\": \\\"Request to Void Check: <Reward Transaction ID>\\\",\\n            \\\"body\\\": \\\"\\\"\\n        }\\n\\t]\\n}'\",\n              \"name\": \"email\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=sms' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"sms\\\": [\\n      {\\n        \\\"to\\\": \\\"919777785302\\\",\\n        \\\"body\\\": \\\"Hi :smile: (😊 )wish you a happy wedding anniversary!?\\\",\\n        \\\"scheduledTime\\\": \\\"2025-06-14T18:55:0Z\\\",  \\n        \\\"sender\\\": \\\"7381814046\\\"\\n      }\\n    ]\\n}'\",\n              \"language\": \"shell\",\n              \"name\": \"sms\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=whatsapp' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data ' {\\n    \\\"whatsappMessage\\\": [\\n      {\\n        \\\"receiver\\\": \\\"919988221100\\\",\\n        \\\"template\\\": \\\"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\\\",\\n        \\\"scheduledTime\\\": \\\"2024-02-22T00:25:06+05:30\\\"\\n      }\\n    ]\\n  }'\",\n              \"language\": \"shell\",\n              \"name\": \"whatsapp\"\n            },\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/v2/communications/sendMessage?channel=zalo' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic ********' \\\\\\n--header 'Cookie: _cfuvid=ALa0x4zd1i9salqIltaokSaDsHfKQ5LU7Vuat4AO6Es-1758894901926-0.0.1.1-604800000' \\\\\\n--data ' {\\n    \\\"zaloMessage\\\": [\\n      {\\n        \\\"receiver\\\": \\\"919988221100\\\",\\n        \\\"template\\\": \\\"747977 is the OTP for Go+. Valid for 15 minutes. f1obOaOBiPA\\\",\\n        \\\"scheduledTime\\\": \\\"2024-02-22T00:25:06+05:30\\\"\\n      }\\n    ]\\n  }\\n'\",\n              \"language\": \"shell\",\n              \"name\": \"zalo\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\",\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

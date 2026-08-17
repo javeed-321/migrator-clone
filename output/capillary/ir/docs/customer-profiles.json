@@ -1,0 +1,2719 @@
+{
+  "slug": "docs/customer-profiles",
+  "source": "https://docs.capillarytech.com/docs/customer-profiles.md",
+  "url": "https://docs.capillarytech.com/docs/customer-profiles",
+  "title": "Customer Profiles",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-31T13:22:30.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `@` (U+0040) in name, expected a name character such as letters, digits, `$`, or `_`; whitespace before attributes; or the end of the tag (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 12,
+    "paragraph": 60,
+    "Callout": 3,
+    "Table": 9,
+    "list": 23,
+    "Image": 11,
+    "blockquote": 6,
+    "code": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Customer profiles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Customer profiles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "When you import data to the local database, you will see the list of errors, auto-corrections, and download report option. You can download the entire report. The following table provides the list of errors that could encounter while importing for the customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you import data to the local database, you will see the list of errors, auto-corrections, and download report option. You can download the entire report. The following table provides the list of errors that could encounter while importing for the customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        15
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  Note\n\n  For customers registered using dataimport,  External IDs will not be generated automatically.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Error Description",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Error Description",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "To know about supported fields and template configuration for each profile, skip to the next section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To know about supported fields and template configuration for each profile, skip to the next section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        37
+      ],
+      "raw": "| Error                                                                                                                                     | Explanation                                                                                                                        |\n| :---------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |\n| When different users are linked with the email                                                                                            | Email is already present for some other registered user in the system                                                              |\n| When an error on duplicate external id occurs                                                                                             | All records would be rejected                                                                                                      |\n| When an error on duplicate value for mobile in the file occurs                                                                            | All records would be rejected                                                                                                      |\n| When an error on duplicate value for external\\_id in the file occurs                                                                      | All records would be rejected                                                                                                      |\n| When an error on duplicate value for an email in the file occurs                                                                          | All records would be rejected                                                                                                      |\n| When a different user is linked with the mobile                                                                                           | Mobile number is already registered for a different user in the system                                                             |\n| When different mobile is linked with the users                                                                                            | Since the mobile number is not allowed to update though import, trying to update an existing mobile for a user leads to such error |\n| Different external id linked to the user                                                                                                  | The external id already exists in our database or the external id is associated with a different user                              |\n| Invalid Mobile Number                                                                                                                     | Check the pre-configured mobile regex for brand                                                                                    |\n| When a different user gets linked with the external id, duplicate value for mobile in a file, duplicate value for an email in file occurs | External ID / Card number is already registered for a different user                                                               |\n| Invalid email id                                                                                                                          | Deviation from standard Email regex                                                                                                |\n| Deactivated user / Fraud User                                                                                                             | The user is inactive or marked as fraud (as per brand requirement)                                                                 |\n| When customer name contains special characters                                                                                            | Customer Name should not contain any special characters other than alphabets/space                                                 |\n| join\\_date is invalid/null/void/of future date                                                                                            | Invalid join date                                                                                                                  |\n| join\\_store is invalid/null/void                                                                                                          | The store(s) specified in the file are not present in the system                                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error",
+          "Explanation"
+        ],
+        "rows": [
+          [
+            "When different users are linked with the email",
+            "Email is already present for some other registered user in the system"
+          ],
+          [
+            "When an error on duplicate external id occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for mobile in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for external_id in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for an email in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When a different user is linked with the mobile",
+            "Mobile number is already registered for a different user in the system"
+          ],
+          [
+            "When different mobile is linked with the users",
+            "Since the mobile number is not allowed to update though import, trying to update an existing mobile for a user leads to such error"
+          ],
+          [
+            "Different external id linked to the user",
+            "The external id already exists in our database or the external id is associated with a different user"
+          ],
+          [
+            "Invalid Mobile Number",
+            "Check the pre-configured mobile regex for brand"
+          ],
+          [
+            "When a different user gets linked with the external id, duplicate value for mobile in a file, duplicate value for an email in file occurs",
+            "External ID / Card number is already registered for a different user"
+          ],
+          [
+            "Invalid email id",
+            "Deviation from standard Email regex"
+          ],
+          [
+            "Deactivated user / Fraud User",
+            "The user is inactive or marked as fraud (as per brand requirement)"
+          ],
+          [
+            "When customer name contains special characters",
+            "Customer Name should not contain any special characters other than alphabets/space"
+          ],
+          [
+            "join_date is invalid/null/void/of future date",
+            "Invalid join date"
+          ],
+          [
+            "join_store is invalid/null/void",
+            "The store(s) specified in the file are not present in the system"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "## Card Import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Card Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "Lets you import the historical data of customer’s card details",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you import the historical data of customer’s card details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        43,
+        44
+      ],
+      "raw": "**Setup Import**\nTo set up the import, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setup Import\nTo set up the import, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "* In Choose profile, select Card Import profile to create an import template.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose profile, select Card Import profile to create an import template.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "![473](https://files.readme.io/ac7769b-setup_import.png \"setup import.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/ac7769b-setup_import.png",
+        "alt": "473",
+        "title": "setup import.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/ac7769b-setup_import.png",
+          "line": 48
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        50,
+        53
+      ],
+      "raw": "* In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these steps\n  * In Create new template, enable the checkbox to create a new template.\n  * In Name of the template, enter the name of the template.\n* Click Submit.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these stepsIn Create new template, enable the checkbox to create a new template.In Name of the template, enter the name of the template.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        55,
+        56
+      ],
+      "raw": "**Template Configuration**\nTo configure the template, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration\nTo configure the template, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        58,
+        60
+      ],
+      "raw": "* In **Choose customer's unique identifier**, select customer identifier that is present in the CSV file - *mobile, email, external id, user id.*\n* In **Link user**, enable the option to tag the customer.\n* Click **Submit.**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose customer's unique identifier, select customer identifier that is present in the CSV file - mobile, email, external id, user id.In Link user, enable the option to tag the customer.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        62,
+        63
+      ],
+      "raw": "**Configure Field Mapping**\nThe following are the fields to map with the CSV headers(column names).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure Field Mapping\nThe following are the fields to map with the CSV headers(column names).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        65,
+        75
+      ],
+      "raw": "| Field                                   | Description                                                                                                                                     |\n| :-------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |\n| Card Number(Number) \\*                  | The unique number of the card as per the card series configuration.                                                                             |\n| Card Series Code(Series Code) \\*        | The unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.                                              |\n| Card Status Label(Status Label) \\*      | Current user-defined status of the card. Check your user-defined values for the system values (not issued, active, inactive, deleted, expired). |\n| Till IUN Or Store Ext Id(Store Code) \\* | The unique identifier of the Till or store which is tagged to the card series.                                                                  |\n| User Id                                 | The unique code to identify the customer to whom the card is allotted.                                                                          |\n| Mobile                                  | The mobile number of the customer to whom the card is allotted.                                                                                 |\n| External Id                             | The external ID of the customer.                                                                                                                |\n| Email                                   | Email address of the customer to whom the card is allotted.                                                                                     |\n| Card External ID(Card External Id)      | This is the external reference ID of a card provided by the Org.                                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Card Number(Number) *",
+            "The unique number of the card as per the card series configuration."
+          ],
+          [
+            "Card Series Code(Series Code) *",
+            "The unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed."
+          ],
+          [
+            "Card Status Label(Status Label) *",
+            "Current user-defined status of the card. Check your user-defined values for the system values (not issued, active, inactive, deleted, expired)."
+          ],
+          [
+            "Till IUN Or Store Ext Id(Store Code) *",
+            "The unique identifier of the Till or store which is tagged to the card series."
+          ],
+          [
+            "User Id",
+            "The unique code to identify the customer to whom the card is allotted."
+          ],
+          [
+            "Mobile",
+            "The mobile number of the customer to whom the card is allotted."
+          ],
+          [
+            "External Id",
+            "The external ID of the customer."
+          ],
+          [
+            "Email",
+            "Email address of the customer to whom the card is allotted."
+          ],
+          [
+            "Card External ID(Card External Id)",
+            "This is the external reference ID of a card provided by the Org."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "Note: \\* Mandatory field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: * Mandatory field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "Card Number,Card Series Code,Card Status Label,Till IUN,Mobile,Email,External Id,User Id,Card External ID",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Card Number,Card Series Code,Card Status Label,Till IUN,Mobile,Email,External Id,User Id,Card External ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "GOLDPHY2TT12311,GOLDPHY2,NOT\\_ISSUED,1234,8765433279,<xyz@abc.com>,WA8765433279,1234234,E34334",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "GOLDPHY2TT12311,GOLDPHY2,NOT_ISSUED,1234,8765433279,xyz@abc.com,WA8765433279,1234234,E34334",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "## Card Series Import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Card Series Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "Lets you create new card series for the organization or organization units. For example, value cards, premium cards, digital cards, physical cards, and many more cards.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you create new card series for the organization or organization units. For example, value cards, premium cards, digital cards, physical cards, and many more cards.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "Card series stores information such as card series name, the procedure to create card numbers for the card series, card expiry date or time period, and more.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Card series stores information such as card series name, the procedure to create card numbers for the card series, card expiry date or time period, and more.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "The following are a few more information stored on the card series.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are a few more information stored on the card series.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        93,
+        96
+      ],
+      "raw": "* Card series name\n* Card series code\n* Card number generation configurations\n* Card expiry configuration",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Card series nameCard series codeCard number generation configurationsCard expiry configuration",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "To auto-generate the card for the series set the Card Generation Enabled field value - true.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To auto-generate the card for the series set the Card Generation Enabled field value - true.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        100,
+        101
+      ],
+      "raw": "**Setup Import**\nTo set up the import, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setup Import\nTo set up the import, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "* In Choose profile, select Card Series Import profile to create an import template.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose profile, select Card Series Import profile to create an import template.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "![508](https://files.readme.io/cbf5247-import.png \"import.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/cbf5247-import.png",
+        "alt": "508",
+        "title": "import.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/cbf5247-import.png",
+          "line": 105
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        107,
+        110
+      ],
+      "raw": "* In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these steps\n  * In Create new template, enable the checkbox to create a new template.\n  * In Name of the template, enter the name of the template.\n* Click Submit.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these stepsIn Create new template, enable the checkbox to create a new template.In Name of the template, enter the name of the template.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        112,
+        113
+      ],
+      "raw": "Template Configuration\nTo configure the template, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration\nTo configure the template, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "* In Select fields to be Update, add or remove your preferred fields to update.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Select fields to be Update, add or remove your preferred fields to update.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        117,
+        117
+      ],
+      "raw": "![503](https://files.readme.io/6a9d8fe-configure.png \"configure.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/6a9d8fe-configure.png",
+        "alt": "503",
+        "title": "configure.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/6a9d8fe-configure.png",
+          "line": 117
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "* Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        121,
+        122
+      ],
+      "raw": "**Configure Field Mapping**\nThe following are the fields to map with the CSV headers(column names).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure Field Mapping\nThe following are the fields to map with the CSV headers(column names).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        124,
+        134
+      ],
+      "raw": "| Field                                   | Description                                                                                                        |\n| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |\n| Card Series Code(Series Code) \\*        | Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.                     |\n| Expiry Days                             | Validity of the card series in the number of days from the issued date.                                            |\n| Card Type \\*                            | Type of the card. For example, PHYSICAL (for physical cards), DIGITAL (for digital or soft copies).                |\n| Card Suffix                             | Ending characters of a card series.                                                                                |\n| Card Prefix                             | Starting characters of a card series.                                                                              |\n| Card Length                             | Length of the card series number. For example, on a credit or debit card you can see 16 digits of the card number. |\n| Card Generation Enabled                 | Enter the value as true to auto-generate cards for the series, false to generate cards manually.                   |\n| Till IUN Or Store Ext Id(Store Code) \\* | Unique identifier of the Till or store which is tagged to the card series.                                         |\n| Card Series Description(Description)    | Description of the card series.                                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Card Series Code(Series Code) *",
+            "Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed."
+          ],
+          [
+            "Expiry Days",
+            "Validity of the card series in the number of days from the issued date."
+          ],
+          [
+            "Card Type *",
+            "Type of the card. For example, PHYSICAL (for physical cards), DIGITAL (for digital or soft copies)."
+          ],
+          [
+            "Card Suffix",
+            "Ending characters of a card series."
+          ],
+          [
+            "Card Prefix",
+            "Starting characters of a card series."
+          ],
+          [
+            "Card Length",
+            "Length of the card series number. For example, on a credit or debit card you can see 16 digits of the card number."
+          ],
+          [
+            "Card Generation Enabled",
+            "Enter the value as true to auto-generate cards for the series, false to generate cards manually."
+          ],
+          [
+            "Till IUN Or Store Ext Id(Store Code) *",
+            "Unique identifier of the Till or store which is tagged to the card series."
+          ],
+          [
+            "Card Series Description(Description)",
+            "Description of the card series."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "Note: \\* Mandatory field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: * Mandatory field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "Card Series Code,Card Series Description,Card Type,Card Generation Enabled,Card Suffix,Card Prefix,Card Length,Expiry Days,Till IUN",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Card Series Code,Card Series Description,Card Type,Card Generation Enabled,Card Suffix,Card Prefix,Card Length,Expiry Days,Till IUN",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "GOLDPHY2,Gold Card,PHYSICAL,true,2021,GOLD2,16,1000,1234",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "GOLDPHY2,Gold Card,PHYSICAL,true,2021,GOLD2,16,1000,1234",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "## Coupon Redemption",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Coupon Redemption",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "This profile allows you redeem coupons offline. To redeem coupons in bulk, create a CSV file with the following fields",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile allows you redeem coupons offline. To redeem coupons in bulk, create a CSV file with the following fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        148,
+        155
+      ],
+      "raw": "* Voucher Series Id\\*\n* Voucher Code\\*\n* Store's External ID/ Store Terminal User Name\\*\n* User Identification Input\\*\n* Date of Redemption\\*\n* Transaction Number\\*\n* Transaction Amount\n* CSV Sample:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Voucher Series Id*Voucher Code*Store's External ID/ Store Terminal User Name*User Identification Input*Date of Redemption*Transaction Number*Transaction AmountCSV Sample:",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        157,
+        158
+      ],
+      "raw": "Coupon Series Id(Voucher Series Id),Coupon Code(Voucher Code),Till IUN,User Identification Input,Redeemed Date,Transaction Number(Bill Number)\n5309,7003008,mal1,919900111111,12/15/2016 15:06",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Coupon Series Id(Voucher Series Id),Coupon Code(Voucher Code),Till IUN,User Identification Input,Redeemed Date,Transaction Number(Bill Number)\n5309,7003008,mal1,919900111111,12/15/2016 15:06",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "#### Template Configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "<Image src=\"https://files.readme.io/388f942-TemplateConfiguration.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/388f942-TemplateConfiguration.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        164,
+        173
+      ],
+      "raw": "| OPTION                                                 | DESCRIPTION                                                                                                                          |\n| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |\n| Disable existing data updation                         | Check this box to not allow updating existing details                                                                                |\n| Denote stores by external ids                          | Check this box if the stores of the organization use store external ids as store codes                                               |\n| Select fields to be updated                            | Add fields that you want to allow updating for the current profile template                                                          |\n| Validate Transaction Number                            | Check this box to validate transaction numbers before saving to the database                                                         |\n| Choose customers' unique identifier                    | Choose the unique identifier of the customer used at the organization                                                                |\n| Do not check redemption range                          | Check this box to disable validating redemption date range                                                                           |\n| Replace invalid voucher series id with                 | Choose the coupon series id that you want to replace with in place of invalid series ids identified in the import                    |\n| Append country code to the mobile number automatically | Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "OPTION",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "Disable existing data updation",
+            "Check this box to not allow updating existing details"
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes"
+          ],
+          [
+            "Select fields to be updated",
+            "Add fields that you want to allow updating for the current profile template"
+          ],
+          [
+            "Validate Transaction Number",
+            "Check this box to validate transaction numbers before saving to the database"
+          ],
+          [
+            "Choose customers' unique identifier",
+            "Choose the unique identifier of the customer used at the organization"
+          ],
+          [
+            "Do not check redemption range",
+            "Check this box to disable validating redemption date range"
+          ],
+          [
+            "Replace invalid voucher series id with",
+            "Choose the coupon series id that you want to replace with in place of invalid series ids identified in the import"
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "## Customer Status Import (Customer Status Update)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Customer Status Import (Customer Status Update)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "Lets you update customers' status labels.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you update customers' status labels.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        179,
+        181
+      ],
+      "raw": "> \\[!IMPORTANT]\n> **External ID validation:**\n> When you update customer status using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!IMPORTANT]\nExternal ID validation:\nWhen you update customer status using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "The following are the supported fields for the profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the supported fields for the profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        185,
+        187
+      ],
+      "raw": "* Customer identifier\\* (user ID/email ID/external ID/mobile)\n* Customer Status Label\\* - New status label of the customer\n* Till IUN Or Store Ext Id(Store Code)   - to associate with the update action.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer identifier* (user ID/email ID/external ID/mobile)Customer Status Label* - New status label of the customerTill IUN Or Store Ext Id(Store Code)   - to associate with the update action.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "Mobile,External ID,Status Label,StoreCode,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Mobile,External ID,Status Label,StoreCode,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        193,
+        193
+      ],
+      "raw": "91982737437,Active,store.4683",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "91982737437,Active,store.4683",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        195,
+        195
+      ],
+      "raw": "**Setup Import**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setup Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "To set up the import, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up the import, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "* In Choose profile, select Customer Status Import profile to create an import template",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose profile, select Customer Status Import profile to create an import template",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        201,
+        201
+      ],
+      "raw": "![588](https://files.readme.io/47ef9f7-setup.png \"setup.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/47ef9f7-setup.png",
+        "alt": "588",
+        "title": "setup.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/47ef9f7-setup.png",
+          "line": 201
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        203,
+        206
+      ],
+      "raw": "* In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these steps\n  * In Create new template, enable the checkbox to create a new template.\n  * In Name of the template, enter the name of the template.\n* Click Submit.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose template, select template using the drop-down options. If no template available in the drop-down option, follow these stepsIn Create new template, enable the checkbox to create a new template.In Name of the template, enter the name of the template.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        208,
+        209
+      ],
+      "raw": "**Template Configuration**\nTo configure the template, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration\nTo configure the template, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        211,
+        212
+      ],
+      "raw": "* In Choose customers' unique identifier, select your preferred customer's identifier - \\*Mobile, External ID, User ID, and Email.\n*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose customers' unique identifier, select your preferred customer's identifier - *Mobile, External ID, User ID, and Email.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "![450](https://files.readme.io/86613bb-email.png \"email.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/86613bb-email.png",
+        "alt": "450",
+        "title": "email.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/86613bb-email.png",
+          "line": 214
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "* Click Submit.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        218,
+        219
+      ],
+      "raw": "**Configure Field Mapping**\nThe following are the fields to map with the CSV headers(column names).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure Field Mapping\nThe following are the fields to map with the CSV headers(column names).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        221,
+        297
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        User Id\n      </td>\n\n      <td>\n        The unique code to identify the customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Mobile\n      </td>\n\n      <td>\n        The mobile number of the customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        External Id\n      </td>\n\n      <td>\n        The external ID of the customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Email\n      </td>\n\n      <td>\n        The email address of the customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Customer Status Label(Status Label)\n      </td>\n\n      <td>\n        Current user-defined status label of the customer.\n        Check user-defined values created for each standard status (Active, Suspended, Deleted, Fraud Suspected, Fraud Confirmed, and Internal).\n        To know more, see create customer status labels.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Till IUN Or Store Ext Id(Store Code)\n      </td>\n\n      <td>\n        The unique identifier of the Till or store that is tagged to the customer.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 67,
+      "lines": [
+        299,
+        299
+      ],
+      "raw": "Note: \\* Mandatory field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: * Mandatory field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        301,
+        301
+      ],
+      "raw": "## Entity Life Cycle",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Entity Life Cycle",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "Lets you map customer registrations with the source registration events of the org such as WeChat Follow, and WeChat Register.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Lets you map customer registrations with the source registration events of the org such as WeChat Follow, and WeChat Register.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "The following are the supported fields for the Entity Life Cycle profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the supported fields for the Entity Life Cycle profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        307,
+        314
+      ],
+      "raw": "* Entity Type\\*\n* Entity ID\\*\n* Org Source ID\\*  (ID of the source through which the customer is registered)\n* Activity\\* (Activity for which the customer is registered)\n* State\\*\n* Added by\\*\n* Reference ID\\*\n* Updated on\\*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Entity Type*Entity ID*Org Source ID*  (ID of the source through which the customer is registered)Activity* (Activity for which the customer is registered)State*Added by*Reference ID*Updated on*",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        316,
+        316
+      ],
+      "raw": "## Loyalty Customers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Loyalty Customers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        318,
+        320
+      ],
+      "raw": "> \\[!WARNING]\n> **Possible missing external IDs:**\n> When you import new customer profiles, external ID generation may fail if all candidate IDs (when automatic External ID generation runs, the system generates a candidate ID) within the retry limit are already present, or if the maximum external ID in the database does not match the required prefix or suffix. In these cases, new customers may be created without external IDs. This can cause downstream integration failures or missing customer records in connected systems. Always review import reports for missing external IDs and resolve any issues before relying on the imported data.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!WARNING]\nPossible missing external IDs:\nWhen you import new customer profiles, external ID generation may fail if all candidate IDs (when automatic External ID generation runs, the system generates a candidate ID) within the retry limit are already present, or if the maximum external ID in the database does not match the required prefix or suffix. In these cases, new customers may be created without external IDs. This can cause downstream integration failures or missing customer records in connected systems. Always review import reports for missing external IDs and resolve any issues before relying on the imported data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        322,
+        322
+      ],
+      "raw": "This profile is used to manage loyalty customers - add new customers or update existing customers' profiles. Apart from the standard fields specified below, you can also add custom field values and customer-level extended field values. The CSV file of loyalty customers should contain the following fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile is used to manage loyalty customers - add new customers or update existing customers' profiles. Apart from the standard fields specified below, you can also add custom field values and customer-level extended field values. The CSV file of loyalty customers should contain the following fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        324,
+        324
+      ],
+      "raw": "> **Note:** The Loyalty Customers import profile updates standard customer fields and custom fields. It does not update tracker values. To import tracker data, use the [Trackers import profile](https://docs.capillarytech.com/docs/other-import-profiles#trackers) instead. Note that the Trackers profile supports only `bill` and `lineitem` tracker types; importing with a `points` tracker type will fail with an \"Invalid tracker type\" error.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: The Loyalty Customers import profile updates standard customer fields and custom fields. It does not update tracker values. To import tracker data, use the Trackers import profile instead. Note that the Trackers profile supports only bill and lineitem tracker types; importing with a points tracker type will fail with an \"Invalid tracker type\" error.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/other-import-profiles#trackers",
+          "line": 324
+        }
+      ]
+    },
+    {
+      "i": 76,
+      "lines": [
+        326,
+        328
+      ],
+      "raw": "> \\[!IMPORTANT]\n> **External ID validation:**\n> When you import loyalty customers, the system strictly enforces the External ID prefix and length as configured in your organization settings (Org Settings > Registration). Only External IDs that match the required prefix (for example, LM\\*) and length (for example, 10 digits) are accepted. Records with External IDs that do not meet these requirements will be rejected during import.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!IMPORTANT]\nExternal ID validation:\nWhen you import loyalty customers, the system strictly enforces the External ID prefix and length as configured in your organization settings (Org Settings > Registration). Only External IDs that match the required prefix (for example, LM*) and length (for example, 10 digits) are accepted. Records with External IDs that do not meet these requirements will be rejected during import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        330,
+        344
+      ],
+      "raw": "* Mobile no./External id\\* (Email id that represents unique customer identity)\n* Store's External ID/ Store Terminal Username\\*\n* Registration date\n* First Name\n* Last Name\n* Email ID\\*\n* Mobile No.\\*\n* Loyalty Points\n* Lifetime Points\n* Lifetime Purchases\n* External ID\\*\n* Date of Joining\n* Store Code\\*\n* Slab Name\n* User ID\\*\\* (required to update existing customer profile)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mobile no./External id* (Email id that represents unique customer identity)Store's External ID/ Store Terminal Username*Registration dateFirst NameLast NameEmail ID*Mobile No.*Loyalty PointsLifetime PointsLifetime PurchasesExternal ID*Date of JoiningStore Code*Slab NameUser ID** (required to update existing customer profile)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        346,
+        346
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        348,
+        348
+      ],
+      "raw": "First Name,Last Name,Mobile,Email,External Id,Till IUN Or Store Ext Id",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "First Name,Last Name,Mobile,Email,External Id,Till IUN Or Store Ext Id",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        350,
+        350
+      ],
+      "raw": "Tom,Sawyer,9900111111,<tom.sawyer@capllary.com>,lb67p,mal",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Tom,Sawyer,9900111111,tom.sawyer@capllary.com,lb67p,mal",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        352,
+        352
+      ],
+      "raw": "**Template Configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        354,
+        354
+      ],
+      "raw": "![820](https://files.readme.io/d8fbb3e-submitttt.png \"submitttt.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/d8fbb3e-submitttt.png",
+        "alt": "820",
+        "title": "submitttt.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/d8fbb3e-submitttt.png",
+          "line": 354
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 83,
+      "lines": [
+        356,
+        366
+      ],
+      "raw": "| Option                                                 | Description                                                                                                                           |\n| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |\n| Disable existing data updation                         | Check this box to not allow updating existing customer details                                                                        |\n| Disable updation of custom fields with empty values    | Check this box to not allow updating custom field values with null values                                                             |\n| Select fields to be updated                            | Add the fields that you want to allow updating for the current template                                                               |\n| Replace invalid store names with                       | Choose the store that you want to replace with wherever invalid stores are identified                                                 |\n| Append country code to the mobile number automatically | Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified. |\n| Disable mobile number validation                       | Check this box to disable validating mobile numbers while registering customers (through the current import)                          |\n| Disable email id validation                            | Check this box to disable validating email ids while registering customers (through the current import)                               |\n| Denote stores by external ids                          | Check this box if the stores of the organization use store external ids as store codes                                                |\n| Choose customers' unique identifier                    | Choose the unique identifier of the customer used at the organization                                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Disable existing data updation",
+            "Check this box to not allow updating existing customer details"
+          ],
+          [
+            "Disable updation of custom fields with empty values",
+            "Check this box to not allow updating custom field values with null values"
+          ],
+          [
+            "Select fields to be updated",
+            "Add the fields that you want to allow updating for the current template"
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with wherever invalid stores are identified"
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified."
+          ],
+          [
+            "Disable mobile number validation",
+            "Check this box to disable validating mobile numbers while registering customers (through the current import)"
+          ],
+          [
+            "Disable email id validation",
+            "Check this box to disable validating email ids while registering customers (through the current import)"
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes"
+          ],
+          [
+            "Choose customers' unique identifier",
+            "Choose the unique identifier of the customer used at the organization"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        368,
+        374
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ### Note\n\n  If points ledger is enabled, the import process creates an OPENING_BALANCE entry for each imported customer. For non-loyalty customers without a valid CPS_ID, the system assigns cps_id = -1. Importing multiple non-loyalty customers can create duplicate (org_id, cps_id, entry_type, event_log_id) combinations, which causes a unique constraint violation. As a result, the import job fails with an ERR_IMPORT_POINTS_LEDGER_INSERT error.\n\n  If you encounter this error, verify that the import file contains only valid loyalty customers when points ledger is enabled.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 85,
+      "lines": [
+        376,
+        376
+      ],
+      "raw": "## User Subscription (Subscription Service New)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "User Subscription (Subscription Service New)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        378,
+        378
+      ],
+      "raw": "This profile is used to update the status of the subscription of customers for different channels. You can only use mobile numbers and email IDs that are registered in the org. Extended fields update also has Replay option - When an import job is failed to upload from the temporary database to the main database for some reason, the system retries to upload for up to three times, until successful upload. If the import fails even then, you have an option to manually retry in the import details using Click to Replay on the Import File Details page. This option is available for up to seven days.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile is used to update the status of the subscription of customers for different channels. You can only use mobile numbers and email IDs that are registered in the org. Extended fields update also has Replay option - When an import job is failed to upload from the temporary database to the main database for some reason, the system retries to upload for up to three times, until successful upload. If the import fails even then, you have an option to manually retry in the import details using Click to Replay on the Import File Details page. This option is available for up to seven days.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        380,
+        384
+      ],
+      "raw": "<Callout icon=\"🚧\" theme=\"warn\">\n  **Note**\n\n  Updates made using the Subscription Service import template with `orgUnitId = -1` apply to non-InStore source profiles and do not update the InStore profile’s subscription status in the users table. The Members export template derives subscription data specifically from the InStore profile. As a result, when subscriptions are updated using `orgUnitId = -1`, the Members export may continue to display outdated or `NOT-SET` subscription values, even though the subscription was successfully updated for other profiles.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧",
+        "theme": "warn"
+      },
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 88,
+      "lines": [
+        386,
+        386
+      ],
+      "raw": "![1036](https://files.readme.io/ae88265-profit.png \"profit.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/ae88265-profit.png",
+        "alt": "1036",
+        "title": "profit.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/ae88265-profit.png",
+          "line": 386
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 89,
+      "lines": [
+        388,
+        388
+      ],
+      "raw": "**Template Configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        390,
+        390
+      ],
+      "raw": "![273](https://files.readme.io/01d6804-subm.png \"subm.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/01d6804-subm.png",
+        "alt": "273",
+        "title": "subm.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/01d6804-subm.png",
+          "line": 390
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 91,
+      "lines": [
+        392,
+        393
+      ],
+      "raw": "* In Select the user input type, select the unique identifier of customers used in the CSV file (MOBILE/EMAIL/ETERNAL ID/USER ID)\n  For bulk subscription update, create a CSV file with the  following fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Select the user input type, select the unique identifier of customers used in the CSV file (MOBILE/EMAIL/ETERNAL ID/USER ID)\nFor bulk subscription update, create a CSV file with the  following fields.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        395,
+        502
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Account Name\n      </td>\n\n      <td>\n        Required for channels with multiple accounts.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Org Unit or Concept Code\n      </td>\n\n      <td>\n        Concept code or org unit code for which you want to update subscription details.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Comm Channel\\*\n      </td>\n\n      <td>\n        The communication channel for which you need to update customer subscription status.\n        Supported values: line, mobile, email, whatsapp, ios, android, postmail, mobilePush\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Priority\\*\n      </td>\n\n      <td>\n        Type of message to update status.\n        Supported values: TRANS, BULK\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Sub Status\\*\n      </td>\n\n      <td>\n        The new status of the channel.\n        Supported values: OPTIN, OPTOUT\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Mobile\\* \\*\n      </td>\n\n      <td>\n        Mobile number of the customer. This is required if  Select the user input type in _Template Configuration is Mobile._\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        External ID\\*\\*\n      </td>\n\n      <td>\n        External ID of the customer. This is required if  Select the user input type in Template Configuration is External_ID.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User ID\\*\\*\n      </td>\n\n      <td>\n        User ID of the customer. This is required if  Select the user input type in Template Configuration is User_ID.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Email\\*\\*\n      </td>\n\n      <td>\n        Email ID of the customer. This is required if  Select the user input type in Template Configuration is Email.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 93,
+      "lines": [
+        504,
+        504
+      ],
+      "raw": "**CSV Sample of Subscription to Trans SMS:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample of Subscription to Trans SMS:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        506,
+        507
+      ],
+      "raw": "Mobile,Subscription Status,Channel,Priority\n9900111111,OPTIN,SMS,TRANS",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Mobile,Subscription Status,Channel,Priority\n9900111111,OPTIN,SMS,TRANS",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        509,
+        511
+      ],
+      "raw": "**CSV Sample of subscription to bulk email**\nMobile,Subscription Status,Channel,Priority\n9900111111,OPTIN,EMAIL,BULK",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample of subscription to bulk email\nMobile,Subscription Status,Channel,Priority\n9900111111,OPTIN,EMAIL,BULK",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        513,
+        513
+      ],
+      "raw": "## Update Fraud Status",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Fraud Status",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        515,
+        515
+      ],
+      "raw": "This profile lets you update the fraud status of customers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update the fraud status of customers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        517,
+        519
+      ],
+      "raw": "> \\[!IMPORTANT]\n> **External ID validation:**\n> When you update fraud status using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!IMPORTANT]\nExternal ID validation:\nWhen you update fraud status using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        521,
+        521
+      ],
+      "raw": "The CSV file should contain the following fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The CSV file should contain the following fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        523,
+        526
+      ],
+      "raw": "* Mobile no./External id/External ID/User ID\\*\n* Fraud status\\* (Values: INTERNAL, MARKED, CONFIRMED, RECONFIRMED, NOT\\_FRAUD)\n* Fraud reason\\*\n* Store code\\*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mobile no./External id/External ID/User ID*Fraud status* (Values: INTERNAL, MARKED, CONFIRMED, RECONFIRMED, NOT_FRAUD)Fraud reason*Store code*",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        528,
+        528
+      ],
+      "raw": "Any one customer identifier among the mobile number, email ID, external ID, or user ID is mandatory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Any one customer identifier among the mobile number, email ID, external ID, or user ID is mandatory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        530,
+        530
+      ],
+      "raw": "**CSV Sample to update fraud status**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample to update fraud status",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        532,
+        533
+      ],
+      "raw": "Mobile,Status,Reason,StoreCode\n9900111111,INTERNAL,Staff customer,store654",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Mobile,Status,Reason,StoreCode\n9900111111,INTERNAL,Staff customer,store654",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        535,
+        535
+      ],
+      "raw": "**Template configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 105,
+      "lines": [
+        537,
+        537
+      ],
+      "raw": "<Image src=\"https://files.readme.io/1142374-none.png\" alt=\"450\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/1142374-none.png",
+        "alt": "450",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        539,
+        543
+      ],
+      "raw": "| Option                           | Description                                                                                                 |\n| :------------------------------- | :---------------------------------------------------------------------------------------------------------- |\n| Replace invalid store names with | Choose the store that you want to replace with instead of invalid stores.                                   |\n| Denote stores by external ids    | Check this box if the stores of the organization use store external ids as store codes.                     |\n| Select the user input type       | Choose the unique identifier used for the customer in the CSV file - MOBILE, EMAIL, EXTERNAL\\_ID, USER\\_ID. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with instead of invalid stores."
+          ],
+          [
+            "Denote stores by external ids",
+            "Check this box if the stores of the organization use store external ids as store codes."
+          ],
+          [
+            "Select the user input type",
+            "Choose the unique identifier used for the customer in the CSV file - MOBILE, EMAIL, EXTERNAL_ID, USER_ID."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        545,
+        545
+      ],
+      "raw": "## V2 Profile Identifier Add/Update",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "V2 Profile Identifier Add/Update",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 108,
+      "lines": [
+        547,
+        547
+      ],
+      "raw": "This import profile is used to update V2 profiles of users. The V2 profiles represent user details specific to each communication channel or source of creation, example WebEngage, WhatsApp, WeChat.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This import profile is used to update V2 profiles of users. The V2 profiles represent user details specific to each communication channel or source of creation, example WebEngage, WhatsApp, WeChat.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        549,
+        551
+      ],
+      "raw": "> \\[!IMPORTANT]\n> **External ID validation:**\n> When you update V2 profiles using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!IMPORTANT]\nExternal ID validation:\nWhen you update V2 profiles using this import, the system strictly enforces the External ID prefix and length as configured in your organization settings. Only External IDs that match the required prefix and length are accepted. Records with External IDs that do not meet these requirements will be rejected.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 110,
+      "lines": [
+        553,
+        553
+      ],
+      "raw": "You use this when you need to update user profile information for one or more communication channels or when a user’s account information or communication channel has changed in the source system.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You use this when you need to update user profile information for one or more communication channels or when a user’s account information or communication channel has changed in the source system.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 111,
+      "lines": [
+        555,
+        555
+      ],
+      "raw": "The template matches each incoming profile record to a corresponding user based on unique identifiers and updates the corresponding V2 profile entry with the latest data from the import file.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The template matches each incoming profile record to a corresponding user based on unique identifiers and updates the corresponding V2 profile entry with the latest data from the import file.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 112,
+      "lines": [
+        557,
+        557
+      ],
+      "raw": "**CSV Sample**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 113,
+      "lines": [
+        559,
+        562
+      ],
+      "raw": "```\nUser_ID,Source,Account_ID,Identifier_Type,Identifier_Value\n575539069,MAPP_SDK,gpq-73812,cuid,6591394935\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "User_ID,Source,Account_ID,Identifier_Type,Identifier_Value\n575539069,MAPP_SDK,gpq-73812,cuid,6591394935"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 114,
+      "lines": [
+        564,
+        564
+      ],
+      "raw": "**Setup Import**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setup Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 115,
+      "lines": [
+        566,
+        566
+      ],
+      "raw": "To set up the import, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up the import, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 116,
+      "lines": [
+        568,
+        568
+      ],
+      "raw": "1. In **Choose profile**, select the *V2 Profile Identifier Add/Update* profile from the drop-down list to create an import template.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose profile, select the V2 Profile Identifier Add/Update profile from the drop-down list to create an import template.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 117,
+      "lines": [
+        570,
+        570
+      ],
+      "raw": "<Image src=\"https://files.readme.io/7f4389144d304529a32f78bc39df01ed5a3bdb8cb55c63473a4f68682ad5c472-v.png\" align=\"center\" width=\"75% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/7f4389144d304529a32f78bc39df01ed5a3bdb8cb55c63473a4f68682ad5c472-v.png",
+        "align": "center",
+        "width": "75% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 118,
+      "lines": [
+        572,
+        575
+      ],
+      "raw": "2. In **Choose template,** select a template by using the drop-down list. If no template is available in the drop-down list, follow these steps.\n   1. In **Create new template,** enable the checkbox to create a new template.\n   2. In **Name of the template**, enter the name of the template.\n3. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose template, select a template by using the drop-down list. If no template is available in the drop-down list, follow these steps.In Create new template, enable the checkbox to create a new template.In Name of the template, enter the name of the template.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 119,
+      "lines": [
+        577,
+        578
+      ],
+      "raw": "**Template Configuration**\nTo configure the template, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template Configuration\nTo configure the template, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 120,
+      "lines": [
+        580,
+        582
+      ],
+      "raw": "1. Click the checkbox next to **Allow updating existing identifier**.\n2. (Optional) In the Store access group, the Admin (default) access group appears. Change the default access group for stores from API Access Settings.\n3. Click **Submit.**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click the checkbox next to Allow updating existing identifier.(Optional) In the Store access group, the Admin (default) access group appears. Change the default access group for stores from API Access Settings.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 121,
+      "lines": [
+        584,
+        585
+      ],
+      "raw": "**Cancel File Import**\nYou can cancel or delete the file import by selecting the appropriate radio button.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Cancel File Import\nYou can cancel or delete the file import by selecting the appropriate radio button.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 122,
+      "lines": [
+        587,
+        588
+      ],
+      "raw": "**Configure Field Mapping**\nTo configure the mapping,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure Field Mapping\nTo configure the mapping,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 123,
+      "lines": [
+        590,
+        590
+      ],
+      "raw": "1. Map the following fields with the CSV headers.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Map the following fields with the CSV headers.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 124,
+      "lines": [
+        592,
+        598
+      ],
+      "raw": "| Field (Fields marked with an asterisk (\\*) are mandatory) | Description                                                                                                                                                                                                            |\n| :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| User ID(User Id)\\*                                        | The unique code to identify the customer.                                                                                                                                                                              |\n| Source(Source)\\*                                          | The source where the customer was created.                                                                                                                                                                             |\n| Account ID(Account Id) \\*                                 | The unique account ID of the customer.                                                                                                                                                                                 |\n| Identifier Type(Identifier Type) \\*                       | The type of customer identifier.<br />The valid identifier types are: `wechat, martjackId, cuid, fbid, unionId, fcmToken, line.`<br />For WebEngage, use the cuid identifier type, which represents the mobile number. |\n| Identifier Value(Identifier Value) \\*                     | The value of the identifier                                                                                                                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field (Fields marked with an asterisk (*) are mandatory)",
+          "Description"
+        ],
+        "rows": [
+          [
+            "User ID(User Id)*",
+            "The unique code to identify the customer."
+          ],
+          [
+            "Source(Source)*",
+            "The source where the customer was created."
+          ],
+          [
+            "Account ID(Account Id) *",
+            "The unique account ID of the customer."
+          ],
+          [
+            "Identifier Type(Identifier Type) *",
+            "The type of customer identifier.<br />The valid identifier types are: wechat, martjackId, cuid, fbid, unionId, fcmToken, line.<br />For WebEngage, use the cuid identifier type, which represents the mobile number."
+          ],
+          [
+            "Identifier Value(Identifier Value) *",
+            "The value of the identifier"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 597
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 597
+        }
+      ]
+    },
+    {
+      "i": 125,
+      "lines": [
+        600,
+        600
+      ],
+      "raw": "2. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 126,
+      "lines": [
+        602,
+        602
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 602
+        }
+      ]
+    }
+  ]
+}

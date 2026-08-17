@@ -1,0 +1,781 @@
+{
+  "slug": "docs/transactions-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/transactions-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/transactions-standard-export-template",
+  "title": "Transactions Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-06T11:38:58.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transactions Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transactions Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Transactions template is based on the **Bill Lineitems** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Transactions template is based on the Bill Lineitems fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This template lets you export transaction-related details such as:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template lets you export transaction-related details such as:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Note:** The `parent_line_number` field is populated only from line item extended fields when a value is explicitly provided. Values from custom fields or coupons are not mapped to `parent_line_number`. If the extended field is not provided, `parent_line_number` defaults to 0.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: The parent_line_number field is populated only from line item extended fields when a value is explicitly provided. Values from custom fields or coupons are not mapped to parent_line_number. If the extended field is not provided, parent_line_number defaults to 0.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        23
+      ],
+      "raw": "* Bill and line-item level transactions\n* Member and non-member transactions\n* Store level transactions\n* Audience list (irrespective of selected date-range)\n* Transaction level points\n* Transactions of user segments\n* Transaction level custom fields, and extended fields\n* Line item level custom fields and extended fields\n* User level extended fields",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Bill and line-item level transactionsMember and non-member transactionsStore level transactionsAudience list (irrespective of selected date-range)Transaction level pointsTransactions of user segmentsTransaction level custom fields, and extended fieldsLine item level custom fields and extended fieldsUser level extended fields",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "# Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        546
+      ],
+      "raw": "<Table>\n  <thead>\n    <tr>\n      <th>\n        Measure\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Initial Bill Value\n      </td>\n\n      <td>\n        Represents the original bill amount before any discounts are applied.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Number\n      </td>\n\n      <td>\n        A unique number for a transaction that is either auto-generated at the POS machine or provided manually. The uniqueness of the bill number depends on the configurations.  \n        **Note**:   \n\n        * Exports based on the `bill_lineitems` table show one row for every individual item in a bill. So, if a bill has several items, the bill_number will repeat across multiple rows—one for each item.  \n          If you want each bill_number to appear only once (one row per bill), use the bill_summary table instead, or set up your export to combine the item details into a single row.  \n        * When exporting transactions with this template, the system joins the bill_lineitems table with the users and user_custom_fields tables. Only transactions with a Bill Number linked to a user are included. Any transaction without a linked user is excluded from the export.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Visit Count\n      </td>\n\n      <td>\n        Total number of visits made by a customer. It is based on the number of transactions recorded for the customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Amount\n      </td>\n\n      <td>\n        Net amount of the transaction made by the customer after discounts, taxes, etc. Represents the final amount the customer is required to pay.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Visit Day Count\n      </td>\n\n      <td>\n        nth visit of the customer, based on ranking by dates. Even if the customer visits multiple times on the same day, it counts as one day in the visit count.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Discount\n      </td>\n\n      <td>\n        Total discount applied on the bill.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Redeemed Points\n      </td>\n\n      <td>\n        Number of points redeemed for a specific transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Days Since Last Visit\n      </td>\n\n      <td>\n        The number of days since the customer's last transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Tax Amount\n      </td>\n\n      <td>\n        Total tax levied at the bill level.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Central Gst\n      </td>\n\n      <td>\n        GST tax levied by the Central Government.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Integrated Gst\n      </td>\n\n      <td>\n        GST levied by the Central Government for inter-state trade.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        State Gst\n      </td>\n\n      <td>\n        Taxes levied by the State Government on the bill.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Bill\n      </td>\n\n      <td>\n        Date and time when the record in the bill table was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Shipping\n      </td>\n\n      <td>\n        Date and time when the record in the shipping table was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Combo Details\n      </td>\n\n      <td>\n        Date and time when the record in the combo_details table was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Bill Extended Fields\n      </td>\n\n      <td>\n        Date and time when the record in the bill extended fields table was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Total Quantity\n      </td>\n\n      <td>\n        Total number of line items in the bill.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Reason\n      </td>\n\n      <td>\n        Captures the reason for the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Notes\n      </td>\n\n      <td>\n        Field for capturing important notes related to a line item, such as a custom description or specific details while recording line-item level data.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Converted Bill Id\n      </td>\n\n      <td>\n        The new bill id after conversion from non-loyal customer to loyal customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Allocated Points\n      </td>\n\n      <td>\n        Number of loyalty points allocated to a customer for a specific transaction, either at the bill, line item, or customer level.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Id\n      </td>\n\n      <td>\n        A unique id generated for the bill internally by the system, helping differentiate one customer's bill from another.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Rate\n      </td>\n\n      <td>\n        Total cost of a line item, obtained by multiplying the item price by the quantity purchased.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line Item Amount\n      </td>\n\n      <td>\n        Total amount for the line item after discounts and taxes.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\n      </td>\n\n      <td>\n        Number of units/line items bought.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Initial Line Item Value\n      </td>\n\n      <td>\n        The original value of a line item before discounts or taxes.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Item Code\n      </td>\n\n      <td>\n        Unique code assigned to a line item within the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line Item Discount\n      </td>\n\n      <td>\n        Discount applied to the specific line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Parent Line Item Id\n      </td>\n\n      <td>\n        Identifier for the parent line item in combo or add-on transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Additional Discount\n      </td>\n\n      <td>\n        Extra discount applied, such as for combo or bulk items, based on user input.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Total Unit Cost\n      </td>\n\n      <td>\n        Total price of the item, including taxes and other charges.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Lineitem\n      </td>\n\n      <td>\n        Date and time when the line item table (e.g., product name, quantity, price) was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Auto Update Time Lineitem Extended Fields\n      </td>\n\n      <td>\n        Date and time when the line item extended fields table was last updated, in Unix timestamp format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Uuid\n      </td>\n\n      <td>\n        Universal Unique Identifier (UUID) for the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Serial Number\n      </td>\n\n      <td>\n        Unique serial number for the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Vat Tax Percentage\n      </td>\n\n      <td>\n        Percentage of VAT levied by the Central Government on the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Vat Amount\n      </td>\n\n      <td>\n        Amount of VAT levied by the Central Government on the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Service Tax Amount\n      </td>\n\n      <td>\n        Amount of service tax applicable to the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Service Tax Percentage\n      </td>\n\n      <td>\n        Percentage of service tax levied on the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Central Gst\n      </td>\n\n      <td>\n        GST levied by the Central Government on the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem State Gst\n      </td>\n\n      <td>\n        State GST applicable to the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Integrated Gst\n      </td>\n\n      <td>\n        Integrated GST levied by the Central Government on the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Lineitem Size\n      </td>\n\n      <td>\n        Size of the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Description\n      </td>\n\n      <td>\n        Description of the line items.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Items In Product Set\n      </td>\n\n      <td>\n        Count of items within a product set.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Item Discount Description\n      </td>\n\n      <td>\n        Description of the reason for applying the discount to the item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Item Points Discount\n      </td>\n\n      <td>\n        Discount applied to the line item using loyalty points.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Item Coupon Discount\n      </td>\n\n      <td>\n        Discount applied to the line item using coupons.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Item Unit Margin\n      </td>\n\n      <td>\n        Profit margin associated with the item.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line Item Id\n      </td>\n\n      <td>\n        Unique id generated by the system for the specific line item.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {},
+      "table": {
+        "header": [
+          "Measure",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Initial Bill Value",
+            "Represents the original bill amount before any discounts are applied."
+          ],
+          [
+            "Bill Number",
+            "A unique number for a transaction that is either auto-generated at the POS machine or provided manually. The uniqueness of the bill number depends on the configurations.Note:Exports based on the bill_lineitems table show one row for every individual item in a bill. So, if a bill has several items, the bill_number will repeat across multiple rows—one for each item.If you want each bill_number to appear only once (one row per bill), use the bill_summary table instead, or set up your export to combine the item details into a single row.When exporting transactions with this template, the system joins the bill_lineitems table with the users and user_custom_fields tables. Only transactions with a Bill Number linked to a user are included. Any transaction without a linked user is excluded from the export."
+          ],
+          [
+            "Visit Count",
+            "Total number of visits made by a customer. It is based on the number of transactions recorded for the customer."
+          ],
+          [
+            "Bill Amount",
+            "Net amount of the transaction made by the customer after discounts, taxes, etc. Represents the final amount the customer is required to pay."
+          ],
+          [
+            "Visit Day Count",
+            "nth visit of the customer, based on ranking by dates. Even if the customer visits multiple times on the same day, it counts as one day in the visit count."
+          ],
+          [
+            "Bill Discount",
+            "Total discount applied on the bill."
+          ],
+          [
+            "Redeemed Points",
+            "Number of points redeemed for a specific transaction."
+          ],
+          [
+            "Days Since Last Visit",
+            "The number of days since the customer's last transaction."
+          ],
+          [
+            "Tax Amount",
+            "Total tax levied at the bill level."
+          ],
+          [
+            "Central Gst",
+            "GST tax levied by the Central Government."
+          ],
+          [
+            "Integrated Gst",
+            "GST levied by the Central Government for inter-state trade."
+          ],
+          [
+            "State Gst",
+            "Taxes levied by the State Government on the bill."
+          ],
+          [
+            "Auto Update Time Bill",
+            "Date and time when the record in the bill table was last updated, in Unix timestamp format."
+          ],
+          [
+            "Auto Update Time Shipping",
+            "Date and time when the record in the shipping table was last updated, in Unix timestamp format."
+          ],
+          [
+            "Auto Update Time Combo Details",
+            "Date and time when the record in the combo_details table was last updated, in Unix timestamp format."
+          ],
+          [
+            "Auto Update Time Bill Extended Fields",
+            "Date and time when the record in the bill extended fields table was last updated, in Unix timestamp format."
+          ],
+          [
+            "Total Quantity",
+            "Total number of line items in the bill."
+          ],
+          [
+            "Reason",
+            "Captures the reason for the transaction."
+          ],
+          [
+            "Notes",
+            "Field for capturing important notes related to a line item, such as a custom description or specific details while recording line-item level data."
+          ],
+          [
+            "Converted Bill Id",
+            "The new bill id after conversion from non-loyal customer to loyal customer."
+          ],
+          [
+            "Allocated Points",
+            "Number of loyalty points allocated to a customer for a specific transaction, either at the bill, line item, or customer level."
+          ],
+          [
+            "Bill Id",
+            "A unique id generated for the bill internally by the system, helping differentiate one customer's bill from another."
+          ],
+          [
+            "Rate",
+            "Total cost of a line item, obtained by multiplying the item price by the quantity purchased."
+          ],
+          [
+            "Line Item Amount",
+            "Total amount for the line item after discounts and taxes."
+          ],
+          [
+            "Quantity",
+            "Number of units/line items bought."
+          ],
+          [
+            "Initial Line Item Value",
+            "The original value of a line item before discounts or taxes."
+          ],
+          [
+            "Item Code",
+            "Unique code assigned to a line item within the transaction."
+          ],
+          [
+            "Line Item Discount",
+            "Discount applied to the specific line item."
+          ],
+          [
+            "Parent Line Item Id",
+            "Identifier for the parent line item in combo or add-on transactions."
+          ],
+          [
+            "Additional Discount",
+            "Extra discount applied, such as for combo or bulk items, based on user input."
+          ],
+          [
+            "Total Unit Cost",
+            "Total price of the item, including taxes and other charges."
+          ],
+          [
+            "Auto Update Time Lineitem",
+            "Date and time when the line item table (e.g., product name, quantity, price) was last updated, in Unix timestamp format."
+          ],
+          [
+            "Auto Update Time Lineitem Extended Fields",
+            "Date and time when the line item extended fields table was last updated, in Unix timestamp format."
+          ],
+          [
+            "Lineitem Uuid",
+            "Universal Unique Identifier (UUID) for the line item."
+          ],
+          [
+            "Lineitem Serial Number",
+            "Unique serial number for the line item."
+          ],
+          [
+            "Lineitem Vat Tax Percentage",
+            "Percentage of VAT levied by the Central Government on the line item."
+          ],
+          [
+            "Lineitem Vat Amount",
+            "Amount of VAT levied by the Central Government on the line item."
+          ],
+          [
+            "Lineitem Service Tax Amount",
+            "Amount of service tax applicable to the line item."
+          ],
+          [
+            "Lineitem Service Tax Percentage",
+            "Percentage of service tax levied on the line item."
+          ],
+          [
+            "Lineitem Central Gst",
+            "GST levied by the Central Government on the line item."
+          ],
+          [
+            "Lineitem State Gst",
+            "State GST applicable to the line item."
+          ],
+          [
+            "Lineitem Integrated Gst",
+            "Integrated GST levied by the Central Government on the line item."
+          ],
+          [
+            "Lineitem Size",
+            "Size of the line item."
+          ],
+          [
+            "Description",
+            "Description of the line items."
+          ],
+          [
+            "Items In Product Set",
+            "Count of items within a product set."
+          ],
+          [
+            "Item Discount Description",
+            "Description of the reason for applying the discount to the item."
+          ],
+          [
+            "Item Points Discount",
+            "Discount applied to the line item using loyalty points."
+          ],
+          [
+            "Item Coupon Discount",
+            "Discount applied to the line item using coupons."
+          ],
+          [
+            "Item Unit Margin",
+            "Profit margin associated with the item."
+          ],
+          [
+            "Line Item Id",
+            "Unique id generated by the system for the specific line item."
+          ]
+        ],
+        "align": [],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        548,
+        548
+      ],
+      "raw": "# Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        550,
+        592
+      ],
+      "raw": "| Dimension Name                                                                                                                                             | Description                                                                                                                                                                                                                                                                |\n| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [Membership](https://docs.capillarytech.com/docs/dimension-tables#membership-type)                                                                         | Specifies the membership type and Id of the customer who completed the transaction.                                                                                                                                                                                        |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                                                                   | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc.                                                                                                                                                                            |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                                                          | Segment details of the customers such as valued customer, lapsed customer.                                                                                                                                                                                                 |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                                                        | User attributes such as total visits, recent view.                                                                                                                                                                                                                         |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                                          | Time attributes.                                                                                                                                                                                                                                                           |\n| [Store Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                          | Identifier assigned to the point-of-sale (POS) terminal within a store.                                                                                                                                                                                                    |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                        | Identifier for the concept.                                                                                                                                                                                                                                                |\n| [Ou Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                             | Identifier for the organization unit.                                                                                                                                                                                                                                      |\n| [Line Item Outlier](https://docs.capillarytech.com/docs/dimension-tables#outlier-status)                                                                   | Outlier status of the bill at the line item level.                                                                                                                                                                                                                         |\n| [Product](https://docs.capillarytech.com/docs/dimension-tables#item)                                                                                       | Product related attributes such as item code, category, item id, color, style, etc.                                                                                                                                                                                        |\n| [Product Attributes](https://docs.capillarytech.com/docs/dimension-tables#item)                                                                            | Additional product attributes such as description, item sku and item Id.                                                                                                                                                                                                   |\n| [Bill Outlier](https://docs.capillarytech.com/docs/dimension-tables#outlier-status)                                                                        | Outlier status of the bill.                                                                                                                                                                                                                                                |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                                          | Date attributes.                                                                                                                                                                                                                                                           |\n| [Repeat](https://docs.capillarytech.com/docs/dimension-tables#repeat-status)                                                                               | Shows if the customer has made previous purchases or if it's their first transaction.                                                                                                                                                                                      |\n| [Loyalty](https://docs.capillarytech.com/docs/dimension-tables#loyalty-type)                                                                               | Indicates the loyalty type of the customer. Possible values are - loyalty, non loyalty, not registered (who have not provided their contact details).                                                                                                                      |\n| [Source](https://docs.capillarytech.com/docs/dimension-tables#source-type)                                                                                 | Indicates the source of the bill. Possible values are instore, e-comm, newsletter, campaigns, NCA, Wechat, Facebook, etc.                                                                                                                                                  |\n| [Line Item Type](https://docs.capillarytech.com/docs/dimension-tables#line-item-type)                                                                      | Type of the line item; such as an add on item, combo item, combo parent, and split.                                                                                                                                                                                        |\n| [Parent Item](https://docs.capillarytech.com/docs/dimension-tables#item)                                                                                   | Product related attributes of the parent item, such as item code, category, item id, color, style, etc.                                                                                                                                                                    |\n| [Order Channel](https://docs.capillarytech.com/docs/dimension-tables#order-channel)                                                                        | It indicates the specific channel through which the transaction was completed. They include - online, in-store, through a mobile app, etc.                                                                                                                                 |\n| [Special Lineitem Type](https://docs.capillarytech.com/docs/dimension-tables#special-line-item-type)                                                       | Identifier for the special line item type. Possible values are - free item, and processing fee information.                                                                                                                                                                |\n| [Nps](https://docs.capillarytech.com/docs/dimension-tables#nps-score)                                                                                      | Net Promoter Score (NPS) for the transaction, where NPS is a measure for customer satisfaction, ranging from 1 to 10.                                                                                                                                                      |\n| [Cashier Id](https://docs.capillarytech.com/docs/dimension-tables#cashier)                                                                                 | Identifier of the cashier who processed the transaction.                                                                                                                                                                                                                   |\n| [Lineitem Cashier Discount Reason](https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason) | Identifier of the reason behind the discount applied to the lineitem.                                                                                                                                                                                                      |\n| [Lineitem Cashier](https://docs.capillarytech.com/docs/dimension-tables#line-item-cashier-id)                                                              | Identifier of the cashier who processed the transaction.                                                                                                                                                                                                                   |\n| [Lineitem External Coupon Code](https://docs.capillarytech.com/docs/dimension-tables#line-item-external-coupon-code)                                       | Coupon code id if any external coupon has been applied on the lineitems.                                                                                                                                                                                                   |\n| [Lineitem Return Reason](https://docs.capillarytech.com/docs/dimension-tables#line-item-return-reason-id)                                                  | Identifier of the reason for returning the lineitem.                                                                                                                                                                                                                       |\n| [Conversion Request Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                       | Date when the request was raised to convert a bill from non-loyalty customer to loyalty customer status.                                                                                                                                                                   |\n| [Conversion Request Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                       | Time when the request was raised to convert a bill from non-loyalty customer to loyalty customer status.                                                                                                                                                                   |\n| [Bill Conversion Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                          | Date of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer.                                                                                                                                                            |\n| [Bill Conversion Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                          | Time of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer.                                                                                                                                                            |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                           | Latest date when the data is updated.                                                                                                                                                                                                                                      |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                           | Latest date when the data is updated.                                                                                                                                                                                                                                      |\n| [Cashier Discount Reason](https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason)          | Identifier of the reason behind the discount applied to the bill.                                                                                                                                                                                                          |\n| [Buyer Type](https://docs.capillarytech.com/docs/dimension-tables#buyer-type)                                                                              | Identifier for the type of buyer. Possible values are retail, and wholesale.                                                                                                                                                                                               |\n| [Membership Card Present](https://docs.capillarytech.com/docs/dimension-tables#membership-card-present)                                                    | Indicates whether a membership card is present for the customer or not.                                                                                                                                                                                                    |\n| [Item Tax Code](https://docs.capillarytech.com/docs/dimension-tables#line-item-tax-code)                                                                   | Indicates a specific tax category. Includes GST at the central and state levels, interstate GST, and taxes levied to the total bill.                                                                                                                                       |\n| [Item Promotion Code](https://docs.capillarytech.com/docs/dimension-tables#line-item-promotion-code)                                                       | Gives the line item promotion code information                                                                                                                                                                                                                             |\n| [Item Discount Type](https://docs.capillarytech.com/docs/dimension-tables#line-item-discount-type)                                                         | Identifier of the type of discount given to the customer.                                                                                                                                                                                                                  |\n| [Cashier Name](https://docs.capillarytech.com/docs/dimension-tables#cashier-name)                                                                          | Name of the cashier who processed the transaction.                                                                                                                                                                                                                         |\n| [Card Used](https://docs.capillarytech.com/docs/dimension-tables#card-used-card_used)                                                                      | Identifier for the card used in the transaction.                                                                                                                                                                                                                           |\n| Parent Line Number                                                                                                                                         | Indicates the parent line number for a line item. This value is populated only from line item extended fields when explicitly provided. If the extended field is not provided, the value defaults to 0. Values from custom fields or coupons are not mapped to this field. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Membership",
+            "Specifies the membership type and Id of the customer who completed the transaction."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers such as valued customer, lapsed customer."
+          ],
+          [
+            "User Attributes",
+            "User attributes such as total visits, recent view."
+          ],
+          [
+            "Time",
+            "Time attributes."
+          ],
+          [
+            "Store Hierarchy",
+            "Identifier assigned to the point-of-sale (POS) terminal within a store."
+          ],
+          [
+            "Concept Hierarchy",
+            "Identifier for the concept."
+          ],
+          [
+            "Ou Hierarchy",
+            "Identifier for the organization unit."
+          ],
+          [
+            "Line Item Outlier",
+            "Outlier status of the bill at the line item level."
+          ],
+          [
+            "Product",
+            "Product related attributes such as item code, category, item id, color, style, etc."
+          ],
+          [
+            "Product Attributes",
+            "Additional product attributes such as description, item sku and item Id."
+          ],
+          [
+            "Bill Outlier",
+            "Outlier status of the bill."
+          ],
+          [
+            "Date",
+            "Date attributes."
+          ],
+          [
+            "Repeat",
+            "Shows if the customer has made previous purchases or if it's their first transaction."
+          ],
+          [
+            "Loyalty",
+            "Indicates the loyalty type of the customer. Possible values are - loyalty, non loyalty, not registered (who have not provided their contact details)."
+          ],
+          [
+            "Source",
+            "Indicates the source of the bill. Possible values are instore, e-comm, newsletter, campaigns, NCA, Wechat, Facebook, etc."
+          ],
+          [
+            "Line Item Type",
+            "Type of the line item; such as an add on item, combo item, combo parent, and split."
+          ],
+          [
+            "Parent Item",
+            "Product related attributes of the parent item, such as item code, category, item id, color, style, etc."
+          ],
+          [
+            "Order Channel",
+            "It indicates the specific channel through which the transaction was completed. They include - online, in-store, through a mobile app, etc."
+          ],
+          [
+            "Special Lineitem Type",
+            "Identifier for the special line item type. Possible values are - free item, and processing fee information."
+          ],
+          [
+            "Nps",
+            "Net Promoter Score (NPS) for the transaction, where NPS is a measure for customer satisfaction, ranging from 1 to 10."
+          ],
+          [
+            "Cashier Id",
+            "Identifier of the cashier who processed the transaction."
+          ],
+          [
+            "Lineitem Cashier Discount Reason",
+            "Identifier of the reason behind the discount applied to the lineitem."
+          ],
+          [
+            "Lineitem Cashier",
+            "Identifier of the cashier who processed the transaction."
+          ],
+          [
+            "Lineitem External Coupon Code",
+            "Coupon code id if any external coupon has been applied on the lineitems."
+          ],
+          [
+            "Lineitem Return Reason",
+            "Identifier of the reason for returning the lineitem."
+          ],
+          [
+            "Conversion Request Date",
+            "Date when the request was raised to convert a bill from non-loyalty customer to loyalty customer status."
+          ],
+          [
+            "Conversion Request Time",
+            "Time when the request was raised to convert a bill from non-loyalty customer to loyalty customer status."
+          ],
+          [
+            "Bill Conversion Date",
+            "Date of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer."
+          ],
+          [
+            "Bill Conversion Time",
+            "Time of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer."
+          ],
+          [
+            "Latest Updated Date",
+            "Latest date when the data is updated."
+          ],
+          [
+            "Latest Updated Time",
+            "Latest date when the data is updated."
+          ],
+          [
+            "Cashier Discount Reason",
+            "Identifier of the reason behind the discount applied to the bill."
+          ],
+          [
+            "Buyer Type",
+            "Identifier for the type of buyer. Possible values are retail, and wholesale."
+          ],
+          [
+            "Membership Card Present",
+            "Indicates whether a membership card is present for the customer or not."
+          ],
+          [
+            "Item Tax Code",
+            "Indicates a specific tax category. Includes GST at the central and state levels, interstate GST, and taxes levied to the total bill."
+          ],
+          [
+            "Item Promotion Code",
+            "Gives the line item promotion code information"
+          ],
+          [
+            "Item Discount Type",
+            "Identifier of the type of discount given to the customer."
+          ],
+          [
+            "Cashier Name",
+            "Name of the cashier who processed the transaction."
+          ],
+          [
+            "Card Used",
+            "Identifier for the card used in the transaction."
+          ],
+          [
+            "Parent Line Number",
+            "Indicates the parent line number for a line item. This value is populated only from line item extended fields when explicitly provided. If the extended field is not provided, the value defaults to 0. Values from custom fields or coupons are not mapped to this field."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#membership-type",
+          "line": 552
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 553
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 554
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 555
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 556
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 557
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 558
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 559
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#outlier-status",
+          "line": 560
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#item",
+          "line": 561
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#item",
+          "line": 562
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#outlier-status",
+          "line": 563
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 564
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#repeat-status",
+          "line": 565
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#loyalty-type",
+          "line": 566
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#source-type",
+          "line": 567
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-type",
+          "line": 568
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#item",
+          "line": 569
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#order-channel",
+          "line": 570
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#special-line-item-type",
+          "line": 571
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#nps-score",
+          "line": 572
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#cashier",
+          "line": 573
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason",
+          "line": 574
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-cashier-id",
+          "line": 575
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-external-coupon-code",
+          "line": 576
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-return-reason-id",
+          "line": 577
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 578
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 579
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 580
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 581
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 582
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 583
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason",
+          "line": 584
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#buyer-type",
+          "line": 585
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#membership-card-present",
+          "line": 586
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-tax-code",
+          "line": 587
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-promotion-code",
+          "line": 588
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#line-item-discount-type",
+          "line": 589
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#cashier-name",
+          "line": 590
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#card-used-card_used",
+          "line": 591
+        }
+      ]
+    }
+  ]
+}

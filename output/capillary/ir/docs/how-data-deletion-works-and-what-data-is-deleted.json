@@ -1,0 +1,549 @@
+{
+  "slug": "docs/how-data-deletion-works-and-what-data-is-deleted",
+  "source": "https://docs.capillarytech.com/docs/how-data-deletion-works-and-what-data-is-deleted.md",
+  "url": "https://docs.capillarytech.com/docs/how-data-deletion-works-and-what-data-is-deleted",
+  "title": "How Data Deletion Works And What Data Is Deleted",
+  "description": "",
+  "section": "Data Deletion",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-08-12T11:40:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 8,
+    "Table": 2,
+    "Callout": 3,
+    "blockquote": 2,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# How Data Deletion Works and What Data is Deleted",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "How Data Deletion Works and What Data is Deleted",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "When data deletion is enabled, certain customer identifiers are handled automatically, while others require you to explicitly mark them as personally identifiable information. Once a field is marked, the same masking behaviour is applied consistently across Member Care and API responses.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When data deletion is enabled, certain customer identifiers are handled automatically, while others require you to explicitly mark them as personally identifiable information. Once a field is marked, the same masking behaviour is applied consistently across Member Care and API responses.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Understanding what data is deleted and retained",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Understanding what data is deleted and retained",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "When a deletion request is executed, the system removes sensitive customer information while retaining certain non-personally identifiable information (non-PII) data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a deletion request is executed, the system removes sensitive customer information while retaining certain non-personally identifiable information (non-PII) data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        163
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Deleted data\n      </th>\n\n      <th>\n        Non-deletion data\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        First name and last name\n      </td>\n\n      <td>\n        User ID\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Identifiers such as mobile, e-mail, and external id\n      </td>\n\n      <td>\n        Transactions (but transaction custom/extended fields can be configured to be deleted).  See\n\n        <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi\">Classifying custom field, extended field and payment attribute data as PII data</Anchor>\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Customer custom and extended fields. This is configurable. See\n\n        <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi\">Classifying custom field, extended field and payment attribute data as PII data</Anchor>\n      </td>\n\n      <td>\n        Communications data\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Payment mode attributes against a transaction\n      </td>\n\n      <td>\n        Payment mode (Card, UPI, BNPL) details used for the transaction. But the attributes can be deleted. See Configuring data that need not be deleted.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        V1 and V2 profile identifiers\n      </td>\n\n      <td>\n        PII data in the promo engine or on the OTA (Over The Air) side\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        V1 and V2 profile comm channels\n      </td>\n\n      <td>\n        Coupons/promotions/gift vouchers and all benefits\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Identifiers/login details in the auth engine\n      </td>\n\n      <td>\n        Behavioural events\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Card custom fields and card extended fields. See Configuring data that need not be deleted.\n      </td>\n\n      <td>\n        Points data (will still be attributed to User ID)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Search database (solr/ES)\n      </td>\n\n      <td>\n        Supplementary and coalition memberships\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Identifier change logs\n      </td>\n\n      <td>\n        Targets and Member care profiles -  If you have the profile URL, you can access the profile; however, the page displays a message indicating that the customer has been deleted.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Identifiers that are kept in the change requests log are set to null\n      </td>\n\n      <td>\n        User group dependencies and associations. Deleted customers remain part of groups/companies unless explicitly removed from groups (User ID remains)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Customer data audit logs\n      </td>\n\n      <td>\n        PII captured in leads data\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        \\_\n      </td>\n\n      <td>\n        Any other details not mentioned under Deleted data.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Deleted data",
+          "Non-deletion data"
+        ],
+        "rows": [
+          [
+            "First name and last name",
+            "User ID"
+          ],
+          [
+            "Identifiers such as mobile, e-mail, and external id",
+            "Transactions (but transaction custom/extended fields can be configured to be deleted).  SeeClassifying custom field, extended field and payment attribute data as PII data"
+          ],
+          [
+            "Customer custom and extended fields. This is configurable. SeeClassifying custom field, extended field and payment attribute data as PII data",
+            "Communications data"
+          ],
+          [
+            "Payment mode attributes against a transaction",
+            "Payment mode (Card, UPI, BNPL) details used for the transaction. But the attributes can be deleted. See Configuring data that need not be deleted."
+          ],
+          [
+            "V1 and V2 profile identifiers",
+            "PII data in the promo engine or on the OTA (Over The Air) side"
+          ],
+          [
+            "V1 and V2 profile comm channels",
+            "Coupons/promotions/gift vouchers and all benefits"
+          ],
+          [
+            "Identifiers/login details in the auth engine",
+            "Behavioural events"
+          ],
+          [
+            "Card custom fields and card extended fields. See Configuring data that need not be deleted.",
+            "Points data (will still be attributed to User ID)"
+          ],
+          [
+            "Search database (solr/ES)",
+            "Supplementary and coalition memberships"
+          ],
+          [
+            "Identifier change logs",
+            "Targets and Member care profiles -  If you have the profile URL, you can access the profile; however, the page displays a message indicating that the customer has been deleted."
+          ],
+          [
+            "Identifiers that are kept in the change requests log are set to null",
+            "User group dependencies and associations. Deleted customers remain part of groups/companies unless explicitly removed from groups (User ID remains)"
+          ],
+          [
+            "Customer data audit logs",
+            "PII captured in leads data"
+          ],
+          [
+            "_",
+            "Any other details not mentioned under Deleted data."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 47
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 55
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 47
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 55
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        165,
+        169
+      ],
+      "raw": "> 📘\n>\n> Note\n>\n> In Databricks, deleted customers must be explicitly excluded in queries to ensure accurate reporting.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteIn Databricks, deleted customers must be explicitly excluded in queries to ensure accurate reporting.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "## Actions blocked while a customer is in pending-deletion state",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Actions blocked while a customer is in pending-deletion state",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "While a customer is in **pending-deletion** state (a PII deletion request has been raised but not yet completed), the platform blocks merges that involve that customer. This applies to both parties in a merge: the customer being merged and the survivor or target customer they would be merged into.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "While a customer is in pending-deletion state (a PII deletion request has been raised but not yet completed), the platform blocks merges that involve that customer. This applies to both parties in a merge: the customer being merged and the survivor or target customer they would be merged into.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "If either customer in a merge is in pending-deletion state, the request is rejected with error code `8109` (*\"this action is not supported for customer having pending deletion state\"*). This covers both the change-identifier merge flow and customer merge requests. Resolve or cancel the pending deletion before retrying the merge.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If either customer in a merge is in pending-deletion state, the request is rejected with error code 8109 (\"this action is not supported for customer having pending deletion state\"). This covers both the change-identifier merge flow and customer merge requests. Resolve or cancel the pending deletion before retrying the merge.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "> **Note:** This check applies only when PII deletion is enabled for your organisation.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: This check applies only when PII deletion is enabled for your organisation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "## PII deletion for accounts with merged victims",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "PII deletion for accounts with merged victims",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        181,
+        181
+      ],
+      "raw": "When a PII deletion request is approved for a survivor account, the system automatically deletes the PII data of all victim accounts previously merged into that survivor. You do not need to raise separate deletion requests for victim accounts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a PII deletion request is approved for a survivor account, the system automatically deletes the PII data of all victim accounts previously merged into that survivor. You do not need to raise separate deletion requests for victim accounts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "As part of the same deletion job, the system does the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "As part of the same deletion job, the system does the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        185,
+        187
+      ],
+      "raw": "1. Identifies all victim accounts merged into the survivor, traversing the merge history recursively up to a depth of 10.\n2. Triggers PII deletion for each victim account found, in addition to the survivor.\n3. Releases the identifiers of all accounts in the chain: email, mobile number, last name, external ID, and other registered identifiers.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Identifies all victim accounts merged into the survivor, traversing the merge history recursively up to a depth of 10.Triggers PII deletion for each victim account found, in addition to the survivor.Releases the identifiers of all accounts in the chain: email, mobile number, last name, external ID, and other registered identifiers.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "> **Note:** The system traverses the merge chain up to a maximum depth of 10. Accounts beyond depth 10 are not included in the deletion run.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: The system traverses the merge chain up to a maximum depth of 10. Accounts beyond depth 10 are not included in the deletion run.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "### Configuration requirements for identifier release",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Configuration requirements for identifier release",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        193,
+        193
+      ],
+      "raw": "Identifier release for victim accounts is controlled by two org-level configurations:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Identifier release for victim accounts is controlled by two org-level configurations:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        195,
+        198
+      ],
+      "raw": "| Configuration                               | Type    | Description                                                                                                                                                                                                                             |\n| ------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED`    | Boolean | Enables or disables the victim identifier release flow. When set to `false` (default), the system skips identifier release for victim accounts even when a PII deletion job runs. Must be set to `true` for identifiers to be released. |\n| `CONF_VICTIM_IDENTIFIER_RELEASE_AFTER_DAYS` | Integer | Number of days after a successful merge before the system schedules identifier release. Applies only when `CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED` is `true`. This value does not have any minimum or maximum value constraints.        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Configuration",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED",
+            "Boolean",
+            "Enables or disables the victim identifier release flow. When set to false (default), the system skips identifier release for victim accounts even when a PII deletion job runs. Must be set to true for identifiers to be released."
+          ],
+          [
+            "CONF_VICTIM_IDENTIFIER_RELEASE_AFTER_DAYS",
+            "Integer",
+            "Number of days after a successful merge before the system schedules identifier release. Applies only when CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED is true. This value does not have any minimum or maximum value constraints."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        200,
+        204
+      ],
+      "raw": "> 📘\n>\n> Note\n>\n> Contact Capillary Support to enable `CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED` for your organisation.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteContact Capillary Support to enable CONF_VICTIM_IDENTIFIER_RELEASE_ENABLED for your organisation.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        206,
+        210
+      ],
+      "raw": "> 🚧\n>\n> Identifier release is not instantaneous, even at `CONF_VICTIM_IDENTIFIER_RELEASE_AFTER_DAYS = 0`\n>\n> Identifier release runs as part of the org's PII deletion cron job, not immediately after the merge. This cron picks up eligible requests and queues them for processing once daily, at a time configurable per organisation (default 1:00 AM, server time zone). If the merge completes before that day's scheduled run, identifiers are released the same day; if it completes after, release happens on the next day's run. So the release can take up to approximately 24 hours from the time of the merge.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "Identifier release is not instantaneous, even at CONF_VICTIM_IDENTIFIER_RELEASE_AFTER_DAYS = 0Identifier release runs as part of the org's PII deletion cron job, not immediately after the merge. This cron picks up eligible requests and queues them for processing once daily, at a time configurable per organisation (default 1:00 AM, server time zone). If the merge completes before that day's scheduled run, identifiers are released the same day; if it completes after, release happens on the next day's run. So the release can take up to approximately 24 hours from the time of the merge.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "### What gets deleted for victim accounts",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "What gets deleted for victim accounts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "[The same data categories deleted for a survivor account](https://docs.capillarytech.com/docs/how-data-deletion-works-and-what-data-is-deleted) are deleted for each victim account in the merge chain. Data not deleted for a survivor, such as transactions, points, behavioral events, and coupons, is also not deleted for victim accounts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The same data categories deleted for a survivor account are deleted for each victim account in the merge chain. Data not deleted for a survivor, such as transactions, points, behavioral events, and coupons, is also not deleted for victim accounts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/how-data-deletion-works-and-what-data-is-deleted",
+          "line": 214
+        }
+      ]
+    }
+  ]
+}

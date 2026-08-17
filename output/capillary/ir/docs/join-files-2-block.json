@@ -1,0 +1,346 @@
+{
+  "slug": "docs/join-files-2-block",
+  "source": "https://docs.capillarytech.com/docs/join-files-2-block.md",
+  "url": "https://docs.capillarytech.com/docs/join-files-2-block",
+  "title": "Join Files 2 Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:41:22.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "Callout": 1,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "#  Join files (2) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Join files (2) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        11
+      ],
+      "raw": "<Callout icon=\"❗️\" theme=\"error\">\n  This block will be deprecated in future releases.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️",
+        "theme": "error"
+      },
+      "text": "This block will be deprecated in future releases.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 2,
+          "lines": [
+            10,
+            10
+          ],
+          "raw": "  This block will be deprecated in future releases.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This block will be deprecated in future releases.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The `two_join` block merges two source files into a single output file based on specified join conditions and matching headers. It acts as a transformation block in a Connect+ dataflow, enabling you to combine data from two separate files using SQL-style join operations before passing the merged output to downstream blocks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The two_join block merges two source files into a single output file based on specified join conditions and matching headers. It acts as a transformation block in a Connect+ dataflow, enabling you to combine data from two separate files using SQL-style join operations before passing the merged output to downstream blocks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Use this block when your dataflow needs to combine data from two separate files for example, merging bill-level and line-level transaction files before ingestion.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow needs to combine data from two separate files for example, merging bill-level and line-level transaction files before ingestion.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        25
+      ],
+      "raw": "* Two source files with a common column to join on\n* Regex patterns that uniquely identify each file\n* Column header names used for joining in each file",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Two source files with a common column to join onRegex patterns that uniquely identify each fileColumn header names used for joining in each file",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        49
+      ],
+      "raw": "| Field name                                                             | Required | Description                                                                                                                                                                                                 |\n| :--------------------------------------------------------------------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Block name**                                                         | Yes      | A name for the block instance. The name must be alphanumeric. There is no character limit.                                                                                                                  |\n| **Files 1-2 Join Type**                                                | Yes      | The type of SQL join used to merge the two files. Select `LEFT_OUTER_JOIN`, `OUTER_JOIN`, `INNER_JOIN`, or `RIGHT_OUTER_JOIN` from the dropdown. Default value: `LEFT_OUTER_JOIN`.                          |\n| **All Files Delimiter**                                                | Yes      | The delimiter used to separate fields in the source files. For example, `,`.                                                                                                                                |\n| **File 1 Regex**                                                       | Yes      | The filename pattern used to identify File 1. For example, `BILL_LEVEL_MERGE.*.csv`.                                                                                                                        |\n| **File 1 Headers**                                                     | Yes      | The column header name in File 1 used for the join comparison. To match on multiple headers, enter the header names separated by a comma. For example, `BillNumber`.                                        |\n| **File 2 Regex**                                                       | Yes      | The filename pattern used to identify File 2. For example, `LINE_LEVEL_MERGE.*.csv`.                                                                                                                        |\n| **File 2 Headers**                                                     | Yes      | The column header name in File 2 used for the join comparison. To match on multiple headers, enter the header names separated by a comma. For example, `BillNumber`.                                        |\n| **Output Filename**                                                    | Yes      | The name of the merged output file. For example, `merged_output.csv`.                                                                                                                                       |\n| **File Join Use Case**                                                 | No       | The use case for the file join. Select `NONE` or `TRANSACTION_LINE_ITEM` from the dropdown. Default value: `NONE`.                                                                                          |\n| **Use Alphabetical Sort**                                              | No       | Determines whether files are sorted in alphanumerical order before merging. Select `true` or `false` from the dropdown. Default value: `false`.                                                             |\n| **Merge based on common Name**                                         | No       | Determines whether files are identified and merged based on a common name pattern. Select `true` or `false` from the dropdown. Default value: `false`.                                                      |\n| **Merge based on common Name Template File One**                       | No       | The filename template for File 1 using the `<common>` tag to identify the common part of the filename. Select `TRANSACTION_LINE_ITEM` or `NONE` from the dropdown. For example, `TktDocument_<common>.dat`. |\n| **Merge based on common Name Template File Two**                       | No       | The filename template for File 2 using the `<common>` tag to identify the common part of the filename. For example, `TktDocument_<common>.dat`.                                                             |\n| **File One is Headerless**                                             | No       | Indicates whether File 1 does not contain column headers. Select `true` or `false` from the dropdown. Default value: `false`.                                                                               |\n| **File two is Headerless**                                             | No       | Indicates whether File 2 does not contain column headers. Select `true` or `false` from the dropdown. Default value: `false`.                                                                               |\n| **File One Mention Header names (for use in mapping and expressions)** | No       | The column header names for File 1, separated by commas. Required if File 1 is headerless. For example, `BillNumber,Amount,Date`.                                                                           |\n| **File Two Mention Header names (for use in mapping and expressions)** | No       | The column header names for File 2, separated by commas. Required if File 2 is headerless. For example, `BillNumber,ItemCode,Quantity`.                                                                     |\n| **Match All Regex**                                                    | No       | Determines whether only the files matching the regex pattern are retained on the server and non-matching files are deleted. Select `true` or `false` from the dropdown. Default value: `false`.             |\n| **All Unique Match**                                                   | No       | Determines whether duplicate files are identified and deleted. Select `true` or `false` from the dropdown. Default value: `false`.                                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Files 1-2 Join Type",
+            "Yes",
+            "The type of SQL join used to merge the two files. Select LEFT_OUTER_JOIN, OUTER_JOIN, INNER_JOIN, or RIGHT_OUTER_JOIN from the dropdown. Default value: LEFT_OUTER_JOIN."
+          ],
+          [
+            "All Files Delimiter",
+            "Yes",
+            "The delimiter used to separate fields in the source files. For example, ,."
+          ],
+          [
+            "File 1 Regex",
+            "Yes",
+            "The filename pattern used to identify File 1. For example, BILL_LEVEL_MERGE.*.csv."
+          ],
+          [
+            "File 1 Headers",
+            "Yes",
+            "The column header name in File 1 used for the join comparison. To match on multiple headers, enter the header names separated by a comma. For example, BillNumber."
+          ],
+          [
+            "File 2 Regex",
+            "Yes",
+            "The filename pattern used to identify File 2. For example, LINE_LEVEL_MERGE.*.csv."
+          ],
+          [
+            "File 2 Headers",
+            "Yes",
+            "The column header name in File 2 used for the join comparison. To match on multiple headers, enter the header names separated by a comma. For example, BillNumber."
+          ],
+          [
+            "Output Filename",
+            "Yes",
+            "The name of the merged output file. For example, merged_output.csv."
+          ],
+          [
+            "File Join Use Case",
+            "No",
+            "The use case for the file join. Select NONE or TRANSACTION_LINE_ITEM from the dropdown. Default value: NONE."
+          ],
+          [
+            "Use Alphabetical Sort",
+            "No",
+            "Determines whether files are sorted in alphanumerical order before merging. Select true or false from the dropdown. Default value: false."
+          ],
+          [
+            "Merge based on common Name",
+            "No",
+            "Determines whether files are identified and merged based on a common name pattern. Select true or false from the dropdown. Default value: false."
+          ],
+          [
+            "Merge based on common Name Template File One",
+            "No",
+            "The filename template for File 1 using the <common> tag to identify the common part of the filename. Select TRANSACTION_LINE_ITEM or NONE from the dropdown. For example, TktDocument_<common>.dat."
+          ],
+          [
+            "Merge based on common Name Template File Two",
+            "No",
+            "The filename template for File 2 using the <common> tag to identify the common part of the filename. For example, TktDocument_<common>.dat."
+          ],
+          [
+            "File One is Headerless",
+            "No",
+            "Indicates whether File 1 does not contain column headers. Select true or false from the dropdown. Default value: false."
+          ],
+          [
+            "File two is Headerless",
+            "No",
+            "Indicates whether File 2 does not contain column headers. Select true or false from the dropdown. Default value: false."
+          ],
+          [
+            "File One Mention Header names (for use in mapping and expressions)",
+            "No",
+            "The column header names for File 1, separated by commas. Required if File 1 is headerless. For example, BillNumber,Amount,Date."
+          ],
+          [
+            "File Two Mention Header names (for use in mapping and expressions)",
+            "No",
+            "The column header names for File 2, separated by commas. Required if File 2 is headerless. For example, BillNumber,ItemCode,Quantity."
+          ],
+          [
+            "Match All Regex",
+            "No",
+            "Determines whether only the files matching the regex pattern are retained on the server and non-matching files are deleted. Select true or false from the dropdown. Default value: false."
+          ],
+          [
+            "All Unique Match",
+            "No",
+            "Determines whether duplicate files are identified and deleted. Select true or false from the dropdown. Default value: false."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

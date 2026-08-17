@@ -1,0 +1,318 @@
+{
+  "slug": "reference/errors-and-warnings",
+  "source": "https://docs.capillarytech.com/reference/errors-and-warnings.md",
+  "url": "https://docs.capillarytech.com/reference/errors-and-warnings",
+  "title": "Errors And Warnings",
+  "description": "",
+  "section": "Getting Started",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 4,
+    "list": 1,
+    "Callout": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API status codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API status codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you information regarding the errors and warnings that might occur during API calls.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you information regarding the errors and warnings that might occur during API calls.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "API responses are generated at the request level and item level.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API responses are generated at the request level and item level.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        14
+      ],
+      "raw": "* Request Level Responses: These response codes are generated at the request level (for an entire request).\n* Item Level Responses: These response codes are generated at individual items of a request.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Request Level Responses: These response codes are generated at the request level (for an entire request).Item Level Responses: These response codes are generated at individual items of a request.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "For instance, assume that a batch API call is made to add multiple transactions. The entire request will have a status (successful, failed or partial success) and each transaction item will have its own response code element. You can see API level response in the element and item level in the element.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For instance, assume that a batch API call is made to add multiple transactions. The entire request will have a status (successful, failed or partial success) and each transaction item will have its own response code element. You can see API level response in the element and item level in the element.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "# Request level response codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request level response codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        22
+      ],
+      "raw": "> 📘 **Note**\n>\n> There are two types of failure cases - Errors and Warnings. Errors occur when the main activity fails - it could be due to internal error or incorrect input. Warnings occur when the primary activity is succeeded, but the secondary activity/activities failed.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThere are two types of failure cases - Errors and Warnings. Errors occur when the main activity fails - it could be due to internal error or incorrect input. Warnings occur when the primary activity is succeeded, but the secondary activity/activities failed.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        42
+      ],
+      "raw": "| Code | Description                                                                                                                                                                                                      |\n| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 200  | Global request success.                                                                                                                                                                                          |\n| 201  | One or more requests have failed due to errors.                                                                                                                                                                  |\n| 400  | Invalid input. Please check request body parameters or input xml/json.<br />Invalid path parameter.<br />Invalid X-CAP-API-ATTRIBUTION-LOOKUP-TYPE specified.<br />Error with range passed or array in indexing. |\n| 401  | Authentication failed. Please check username and password.                                                                                                                                                       |\n| 403  | V2 is not enabled for the org.<br />Mandatory field is missing. Field `\\{x\\}` is mandatory.                                                                                                                      |\n| 404  | Incorrect resource or resource not found.                                                                                                                                                                        |\n| 405  | The operation is not supported for the resource.                                                                                                                                                                 |\n| 415  | Unsupported media type. Occurs when the Content-Type is not defined properly. for JSON, `Content-Type` should be `application/json`.                                                                             |\n| 461  | Search Engine is busy or unable to respond. Please try after some time.                                                                                                                                          |\n| 500  | Requests have failed due to errors.                                                                                                                                                                              |\n| 521  | Multiple actions are running for the same customer. Please try after some time.                                                                                                                                  |\n| 1060 | Batch limit size exceeded.                                                                                                                                                                                       |\n| 1061 | X-CAP-API-ATTRIBUTION-LOOKUP-TYPE header required with X-CAP-API-ATTRIBUTION-LOOKUP header.                                                                                                                      |\n| 1062 | Invalid test and control status.                                                                                                                                                                                 |\n| 1064 | Invalid org ID passed.                                                                                                                                                                                           |\n| 503  | Authorization status is unavailable. Make sure that your API resource has appropriate access control permissions.                                                                                                |\n| 403  | Access denied. Make sure that your API resource has appropriate access control permissions.                                                                                                                      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "200",
+            "Global request success."
+          ],
+          [
+            "201",
+            "One or more requests have failed due to errors."
+          ],
+          [
+            "400",
+            "Invalid input. Please check request body parameters or input xml/json.Invalid path parameter.Invalid X-CAP-API-ATTRIBUTION-LOOKUP-TYPE specified.Error with range passed or array in indexing."
+          ],
+          [
+            "401",
+            "Authentication failed. Please check username and password."
+          ],
+          [
+            "403",
+            "V2 is not enabled for the org.Mandatory field is missing. Field \\{x\\} is mandatory."
+          ],
+          [
+            "404",
+            "Incorrect resource or resource not found."
+          ],
+          [
+            "405",
+            "The operation is not supported for the resource."
+          ],
+          [
+            "415",
+            "Unsupported media type. Occurs when the Content-Type is not defined properly. for JSON, Content-Type should be application/json."
+          ],
+          [
+            "461",
+            "Search Engine is busy or unable to respond. Please try after some time."
+          ],
+          [
+            "500",
+            "Requests have failed due to errors."
+          ],
+          [
+            "521",
+            "Multiple actions are running for the same customer. Please try after some time."
+          ],
+          [
+            "1060",
+            "Batch limit size exceeded."
+          ],
+          [
+            "1061",
+            "X-CAP-API-ATTRIBUTION-LOOKUP-TYPE header required with X-CAP-API-ATTRIBUTION-LOOKUP header."
+          ],
+          [
+            "1062",
+            "Invalid test and control status."
+          ],
+          [
+            "1064",
+            "Invalid org ID passed."
+          ],
+          [
+            "503",
+            "Authorization status is unavailable. Make sure that your API resource has appropriate access control permissions."
+          ],
+          [
+            "403",
+            "Access denied. Make sure that your API resource has appropriate access control permissions."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 28
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 28
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 28
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "# Item level response codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Item level response codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "Each entity has a different set of response codes. Item-level response codes for each entity are provided in the respective entity section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each entity has a different set of response codes. Item-level response codes for each entity are provided in the respective entity section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,1657 @@
+{
+  "slug": "docs/a",
+  "source": "https://docs.capillarytech.com/docs/a.md",
+  "url": "https://docs.capillarytech.com/docs/a",
+  "title": "A",
+  "description": "",
+  "section": "Profile : Current Transaction",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:04:18.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `5` (U+0035) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 15,
+    "paragraph": 27,
+    "Table": 23,
+    "thematicBreak": 13
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Attributes - KPI (Basket)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Attributes - KPI (Basket)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Attributes based on Basket/Cart of currentTxn:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Attributes based on Basket/Cart of currentTxn:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        254
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th style={{ textAlign: \"left\" }}>\n        Attributes\n      </th>\n\n      <th style={{ textAlign: \"left\" }}>\n        Data Type\n      </th>\n\n      <th style={{ textAlign: \"left\" }}>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSum\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Sum of value of the items matching the inventory attribute\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSumRegex\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        \\`BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Sum of value of the items matching the inventory attribute - regular expression\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketQty\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Total quantity of items in the bill matching the inventory. For instance, if 2 items of a given line-item are bought, then the basket quantity is 2\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketQtyRegex\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Quantity of items in the bill matching the regular expression\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketcount\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        int\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Number of products in the transaction of the given inventory type - irrespective of quantity\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketcountRegex\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        int\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Number of products whose item attribute matches the given regular expression\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketIncludes\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Boolean\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Products contained in the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketExcludes\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Boolean\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Products not contained in the transaction\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketIncludesRegex\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Boolean\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        If the bill includes products whose item attribute does not match the given regular expression\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketExcludesRegex\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Boolean\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        If the bill does not include products whose item attribute does not match the given regular expression\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSumIf\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Returns the sum of amount of line items (in basket) that satisfies a specific condition. You can define conditions based on the amount, discount, quantity, rate, or value of line items in the basket.\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketCountIf\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Returns the count of line items of the basket that satisfies a specific condition. You can define condition based on the amount, discount, quantity, rate, or value of line items in the basket.\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketQtyIf\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Return the sum of quantities of qualifying line items in the basket. The qualifying condition could be on the amount, discount, quantity, rate, or value of the line item.\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSize\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        int\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Total number of items in the bill - irrespective of quantity of each item\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSumGross\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Returns the sum of the gross amount of each line items in a basket whose attribute name matches with a specific value. Supported attribute names: product name, short description, SKU number, category, and subcategory.\n      </td>\n    </tr>\n\n    <tr>\n      <td style={{ textAlign: \"left\" }}>\n        basketSumRegexGross\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        BigDecimal\n      </td>\n\n      <td style={{ textAlign: \"left\" }}>\n        Returns the sum of gross amount of each line item in the basket\\\n        whose product attribute values match the given regular expression.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 14
+        }
+      ],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        256,
+        256
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        258,
+        258
+      ],
+      "raw": "## **basketSum**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSum",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        260,
+        264
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Sub-Attributes**: Attribute Name and Inventory Value\\\n**Description**: sum of amount of all line items which are matching input inventory attribute and their inventory  attribute value matches exactly with input attribute value\\\n**Syntax: currentTxn.basketSum(“Attribute Name”,”Attribute Inventory Value”)\\&#xA;**&#x45;xample :- currentTxn.basketSum(\"company\\_code\",\"PETRON\"), this will give the sum of all the amount of petron products of company\\_code inventory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalSub-Attributes: Attribute Name and Inventory ValueDescription: sum of amount of all line items which are matching input inventory attribute and their inventory  attribute value matches exactly with input attribute valueSyntax: currentTxn.basketSum(“Attribute Name”,”Attribute Inventory Value”)&#xA;Example :- currentTxn.basketSum(\"company_code\",\"PETRON\"), this will give the sum of all the amount of petron products of company_code inventory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        266,
+        268
+      ],
+      "raw": "| Example 1: write a condition to check if the current transaction value for product “blue socks” exceeds 1000. |\n| :------------------------------------------------------------------------------------------------------------ |\n| currentTxn.basketSum(“Socks”,”Blue”)>1000                                                                     |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 1: write a condition to check if the current transaction value for product “blue socks” exceeds 1000."
+        ],
+        "rows": [
+          [
+            "currentTxn.basketSum(“Socks”,”Blue”)>1000"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        270,
+        294
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 2 : “Buying Products of a Particular Brand”\n\n\n\n\n        Suppose you want to issue coupons to customers who purchase products of a specific brand exceeding a certain transaction amount i.e 2000.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        To issue coupons for customers purchasing items of the Puma brand for more than 2000, use the following condition:\n        Profile: currentTxn, Attribute:basketSum, Inventory Attribute Name: BrandName, Inventory Value: Puma, Transaction Value: 2000\n        Syntax: currentTxn.basketSum(“Attribute Name”,”Inventory Attribute Value”)[operator][Value]\n        **currentTxn.basketSum(\"BrandName\",\"Puma\")>2000**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        296,
+        329
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 3: As a marketing manager I want to allocate points based on basked Sum Value of a particular product category i.e shirting, if value exceeds 3000 but only to the customers who are in crosssale cluster and sub cluster value is solsuiting.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Rule :[Condition 1] AND [Condition 2]**  \n\n        * \\*Condition 1:\\*\\* basketSum value of product category i.e shirting should be greater than 3000\n          Profile: currentTxn\n          Attribute: basketSum\n          Inventory Attribute name : Product Category\n          Inventory Attribute Value: Shirting\n          Condition1: currentTxn.basketSum(“Product Category”,”Shirting”)>3000\n            \n        * \\*Condition 2 : \\*\\*Customer should belong to crosssale cluster and sub cluster value is solsuitting.\n          Profile: currentCustomer\n          Attribute : clusterValueIncludes\n          Cluster Name:crosssale cluster\n          Cluster Value:solsuitting.\n          Condition2 : currentCustomer.clusterValueIncludes(“crosssale”,”solsuitting”)\n            \n\n        **Overall rule => currentCustomer.clusterValueIncludes(“crosssale”,”solsuitting”)&&(currentTxn.basketSum(“Product Category”,”Shirting”)>3000)**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        331,
+        333
+      ],
+      "raw": "| Example 4: Write a rule for a customer transaction to check if the customer belongs to “diwali cluster: valueseeker16” and buy from the gents section with a sum value greater than 2999. |\n| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| currentCustomer.clusterValueIncludes(\"Diwali\\_Cluster\",\"valueseeker16\")&&(currentTxn.basketSum(\"Section\",\"GENTS\")>2999                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 4: Write a rule for a customer transaction to check if the customer belongs to “diwali cluster: valueseeker16” and buy from the gents section with a sum value greater than 2999."
+        ],
+        "rows": [
+          [
+            "currentCustomer.clusterValueIncludes(\"Diwali_Cluster\",\"valueseeker16\")&&(currentTxn.basketSum(\"Section\",\"GENTS\")>2999"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        335,
+        335
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        337,
+        337
+      ],
+      "raw": "## **basketSumRegex**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSumRegex",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        339,
+        344
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Sub-Attributes**: Attribute Name and Inventory Value\\\n**Description:** sum of the amount of all line items which are matching input inventory attribute and their inventory attribute value matches with input regex.\\\n**Syntax: currentTxn.basketSumRegex(\"Inventory Attribute Name\",\"Inventory Attribute Regex\")**\\\n**Example** :- currentTxn.basketSumRegex(\"company\\_code\",\"PET.\\*\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalSub-Attributes: Attribute Name and Inventory ValueDescription: sum of the amount of all line items which are matching input inventory attribute and their inventory attribute value matches with input regex.Syntax: currentTxn.basketSumRegex(\"Inventory Attribute Name\",\"Inventory Attribute Regex\")Example :- currentTxn.basketSumRegex(\"company_code\",\"PET.*\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        346,
+        368
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example1: Write an expression to check if the inventory commodities amount sum of the inventory attribute “SUMMER” and value “shirts”, “shorts”, is greater than 3000.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Profile: Current Transaction(currentTxn)\n        Attribute: basketSumRegex\n        Inventory Attribute Name: SUMMER\n        Inventory Attribute Value : SHIRTS & SHORTS\n        Inventory attribute matching Regex: “SH.\\*”  \n\n        Rule: currentTxn.basketSumRegex(“SUMMER”,”SH.\\*”)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        370,
+        391
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example2: Write an expression to check if the current Transaction Value is less than 5000 and inventory items belonging to footwear, kids boy, kids girl, kids infant, ladies ethnic, ladies western,Mens ethnic, Mens Lower, Mens Upper is equal to or greater than 2999.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Profile: Current Transaction(currentTxn)\n        Attribute: basketSumRegex\n        Inventory Attribute Name: Division\n        Inventory Attribute Value : FOOTWEAR|KIDS BOY|KIDS GIRL|KIDS GIRL|KIDS INFANT|LADIES ETHNIC|LADIES WESTERN|MENS ETHNIC|MENS LOWER|MENS UPPER  \n\n        **Rule: currentTxn.value\\<5000&&(currentTxn.basketSumRegex(\"Division\",\"FOOTWEAR|KIDS BOY|KIDS GIRL|KIDS INFANT|LADIES ETHNIC|LADIES WESTERN|MENS ETHNIC|MENS LOWER|MENS UPPER\"))>2999**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        393,
+        393
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        395,
+        395
+      ],
+      "raw": "## **basketQty**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketQty",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        397,
+        402
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Sub-Attributes**: Attribute Name and Inventory Attribute Value\\\n**Description**: sum of quantity of all line items which are matching input inventory attribute and their inventory attribute value exactly matches with input attribute value.\\\n**Syntax: currentTxn.basketQty(\"Attribute Name\",\"Attribute Value\")\\[OPERATORS]\\[VALUE]**\\\nExample: currentTxn.basketQty(\"product\",\"TROUSER\")>=2",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalSub-Attributes: Attribute Name and Inventory Attribute ValueDescription: sum of quantity of all line items which are matching input inventory attribute and their inventory attribute value exactly matches with input attribute value.Syntax: currentTxn.basketQty(\"Attribute Name\",\"Attribute Value\")[OPERATORS][VALUE]Example: currentTxn.basketQty(\"product\",\"TROUSER\")>=2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        404,
+        424
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example: Write an expression to check if the count of product in the inventory is from attribute name : company_code and attribute value is PETRON, is greater than 6.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Profile: currentTxn()\n        Attribute: basketQty()\n        Sub-Attribute: Attribute Name: Company\\_code and Inventory Attribute Value: Petron  \n\n        Example: currentTxn.basketQty(“company\\_code”:”PETRON”)>6\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        426,
+        426
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        428,
+        428
+      ],
+      "raw": "## **basketQtyRegex**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketQtyRegex",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        430,
+        435
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Sub-Attributes:** Attribute Name and Inventory Attribute Value Regex.\\\n**Description:** sum of quantity of all line items which are matching input inventory attribute and their inventory attribute value matches with input regex.\\\n**Syntax: currentTxn.basketQtyRegex(\"Attribute Name\",\"Attribute Value Regex\")\\[OPERATORS]\\[VALUE]**\\\n**Example**: currentTxn.basketQtyRegex(\"product\",\"TR.\\*?\")>=2",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalSub-Attributes: Attribute Name and Inventory Attribute Value Regex.Description: sum of quantity of all line items which are matching input inventory attribute and their inventory attribute value matches with input regex.Syntax: currentTxn.basketQtyRegex(\"Attribute Name\",\"Attribute Value Regex\")[OPERATORS][VALUE]Example: currentTxn.basketQtyRegex(\"product\",\"TR.*?\")>=2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        437,
+        456
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example: Write an expression to check if the count of product in the inventory is from attribute name : company_code and attribute value is SHIRT and SHORTS, is greater than 7.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Profile: currentTxn()\n        Attribute: basketQty()\n        Sub-Attribute: Attribute Name: Company\\_code and Inventory Attribute Value: Shirts and Shorts.\n        Example: currentTxn.basketQty(“company\\_code”:”SH.\\*”)>6\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        458,
+        458
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        460,
+        460
+      ],
+      "raw": "## **basketCount**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketCount",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        462,
+        467
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type:** BigDecimal\\\n**Meaning:** count of line items from request payload which are matching input inventory attribute and their inventory attribute value matches exactly with input attribute value.\\\n**Sub-Attributes**: Attribute name and Attribute value\\\n**Syntax:** currentTxn.basketCount(“Attribute Name”,”Attribute Value”)\\\n**Example: currentTxn.basketCount(“Brand”,”Puma”)**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalMeaning: count of line items from request payload which are matching input inventory attribute and their inventory attribute value matches exactly with input attribute value.Sub-Attributes: Attribute name and Attribute valueSyntax: currentTxn.basketCount(“Attribute Name”,”Attribute Value”)Example: currentTxn.basketCount(“Brand”,”Puma”)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        469,
+        493
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example: Write a condition to check if the count of PUMA shoes in the transaction is equal to the total basket Size.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Profile: current Transaction (currentTxn)**\n        Attribute: basketCount\n        SubAttribute Name: PUMA\n        SubAttribute Value: Shoes\n        Condition2:\n        Profile: currentTransaction\n        Attribute: basketSize  \n\n        **Rule: currentTxn.basketCount(“PUMA”,”Shoes”) == currentTxn.basketSize**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        495,
+        497
+      ],
+      "raw": "| Example: Write a condition to check that the basket contains at least one product of “Trouser\\_AW15” from “Product” Attribute and slab Number is greater than 1. |\n| :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Rule: currentTxn.basketCount(\"product\",\"Trouser\\_AW15\")>=1&&(currentCustomer.slabNumber>1)                                                                       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: Write a condition to check that the basket contains at least one product of “Trouser_AW15” from “Product” Attribute and slab Number is greater than 1."
+        ],
+        "rows": [
+          [
+            "Rule: currentTxn.basketCount(\"product\",\"Trouser_AW15\")>=1&&(currentCustomer.slabNumber>1)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        499,
+        499
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        501,
+        501
+      ],
+      "raw": "## **basketIncludes**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketIncludes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        503,
+        509
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Output Type:** Boolean\\\n**Meaning:** return true if any line item matches input inventory attribute and their inventory attribute value matches exactly with input attribute value, basically it returns true if the line item contains a particular Product.\\\n**Sub-Attributes:** Inventory Attribute Name and Inventory Attribute Value.\\\n**Syntax: currentTxn.basketIncludes(“Attribute Name”,”Attribute Value”)**\\\n**Example:** currentTxn.basketIncludes(“Brand”,”Puma”)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalOutput Type: BooleanMeaning: return true if any line item matches input inventory attribute and their inventory attribute value matches exactly with input attribute value, basically it returns true if the line item contains a particular Product.Sub-Attributes: Inventory Attribute Name and Inventory Attribute Value.Syntax: currentTxn.basketIncludes(“Attribute Name”,”Attribute Value”)Example: currentTxn.basketIncludes(“Brand”,”Puma”)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        511,
+        533
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 1: Let’s say a transaction bill contains 3 items from a particular brand. For example a Tshirt, shoes and Cap from Sports Brand “Adidas”. Now we need to write a rule to check if the current Transaction bill contains the shoes from Adidas or not.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Condition:\n        Profile: current Transaction (currentTxn)\n        Attribute: basketIncludes\n        SubAttribute Name: Adidas\n        SubAttribute Value: Shoes\n        Rule: currentCustomer.basketIncludes(“Attribute Name”,”Attribute Value”)\n        **Example: currentCustomer.basketIncludes(“Adidas”,”Shoes”)**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        535,
+        556
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 2: Write a rule to check if the basket contains the product of a specific product code\n\n\n\n\n        261010009/ 261010010 and excludes 261010006.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        (currentTxn.basketIncludes(\"MC\\_CODE\",\"261010009\")||currentTxn.basketIncludes(\"MC\\_CODE\",\"261010010\"))&&(currentTxn.basketExcludes(\"MC\\_CODE\",\"261010006\"))\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        558,
+        560
+      ],
+      "raw": "| Example 3: Write a rule to check if the basket Includes “Shirts” and excludes “Women Trousers” from the inventory attribute name “Product” |\n| :----------------------------------------------------------------------------------------------------------------------------------------- |\n| currentTxn.basketIncludes(\"PRODUCT\",\"Shirts\")&&(currentTxn.basketExcludes(\"PRODUCT\",\"WOMEN TROUSERS\"))                                     |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 3: Write a rule to check if the basket Includes “Shirts” and excludes “Women Trousers” from the inventory attribute name “Product”"
+        ],
+        "rows": [
+          [
+            "currentTxn.basketIncludes(\"PRODUCT\",\"Shirts\")&&(currentTxn.basketExcludes(\"PRODUCT\",\"WOMEN TROUSERS\"))"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        562,
+        562
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        564,
+        564
+      ],
+      "raw": "## **basketExcludes**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketExcludes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        566,
+        572
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxns)\\\n**Data Type:** BigDecimal\\\n**Output Type:** Boolean\\\n**Meaning:** return false if any lineitem matches input inventory attribute and their inventory attribute value matches with input regex or the bill does not include products whose item attribute does not match the given regular expression it returns False.\\\n**Sub-Attributes:** Inventory Attribute Name and Inventory Attribute Value.\\\n**Syntax:** currentTxn.basketExcludes(“Attribute Name”,”Attribute Value”)\\\n**Example:** currentTxn.basketExcludes(\"Jeans\",\"Levis002\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxns)Data Type: BigDecimalOutput Type: BooleanMeaning: return false if any lineitem matches input inventory attribute and their inventory attribute value matches with input regex or the bill does not include products whose item attribute does not match the given regular expression it returns False.Sub-Attributes: Inventory Attribute Name and Inventory Attribute Value.Syntax: currentTxn.basketExcludes(“Attribute Name”,”Attribute Value”)Example: currentTxn.basketExcludes(\"Jeans\",\"Levis002\")",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        574,
+        595
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 1: Write a rule to check if the basket contains the product of a specific product code\n\n\n\n\n        261010009/ 261010010 and excludes 261010006.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        (currentTxn.basketIncludes(\"MC\\_CODE\",\"261010009\")||currentTxn.basketIncludes(\"MC\\_CODE\",\"261010010\"))&&(currentTxn.basketExcludes(\"MC\\_CODE\",\"261010006\")\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        597,
+        614
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example2: Write a condition where the current Customer belongs to Adventure-seeker cluster from behavioral segments  and current transaction basket excludes Nike shoes and current transaction value is less than 5000.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Rule: Condition1 AND Condition2 AND Condition3\n        (currentCustomer.clusterValueIncludes(\"Behavioral Segment\",\"Adventure-seeker\"))&&(currentTxn.basketExcludes(\"nike\",\"shoes\"))&&(currentTxn.value\\<5000)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        616,
+        616
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        618,
+        618
+      ],
+      "raw": "## **basketSumIf**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSumIf",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        620,
+        621
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type:** BigDecimal",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimal",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        623,
+        623
+      ],
+      "raw": "**Meaning**: Returns the sum of the amount of line items (in basket) that satisfies a specific condition. You can define conditions based on the amount, discount, quantity, rate, or value of line items in the basket. For example, sum of line items amount in the basket whose quantity is more than 2.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Meaning: Returns the sum of the amount of line items (in basket) that satisfies a specific condition. You can define conditions based on the amount, discount, quantity, rate, or value of line items in the basket. For example, sum of line items amount in the basket whose quantity is more than 2.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        625,
+        625
+      ],
+      "raw": "**Sub-Attributes:** AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sub-Attributes: AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        627,
+        627
+      ],
+      "raw": "**Supported Operators:** GREATER\\_THAN, LESS\\_THAN, LESS\\_THAN\\_EQUALS\\_TO, GREATER\\_THAN\\_EQUALS\\_TO, EQUALS\\_TO, NOT\\_EQUALS\\_TO",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Supported Operators: GREATER_THAN, LESS_THAN, LESS_THAN_EQUALS_TO, GREATER_THAN_EQUALS_TO, EQUALS_TO, NOT_EQUALS_TO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        629,
+        630
+      ],
+      "raw": "**Syntax: currentCustomer.basketSumIf(“\\{Sub-Attribute}”, “\\{expression}”,\"\\{value}\")\\[operator]\\{value})**\\\n**Example : currentTxn.basketSumIf(\"DISCOUNT\",\"GREATER\\_THAN\",\"10\")>4**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: currentCustomer.basketSumIf(“{Sub-Attribute}”, “{expression}”,\"{value}\")[operator]{value})Example : currentTxn.basketSumIf(\"DISCOUNT\",\"GREATER_THAN\",\"10\")>4",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        632,
+        632
+      ],
+      "raw": "Examples of Rules for basketSumIf() Attribute.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Examples of Rules for basketSumIf() Attribute.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        634,
+        640
+      ],
+      "raw": "| Profile    | Attribute     | Sub-Attribute | Operator                  | Expression and Example                                                |\n| :--------- | :------------ | :------------ | :------------------------ | :-------------------------------------------------------------------- |\n| currentTxn | basketSumif() | AMOUNT        | GREATER\\_THAN             | (currentTxn.basketSumIf(\"AMOUNT\",\"GREATER\\_THAN\",\"1000\")>5000))       |\n| currentTxn | basketSumif() | DISCOUNT      | LESS\\_THAN                | (currentTxn.basketSumIf(\"DISCOUNT\",\"LESS\\_THAN\",\"10\")>90))            |\n| currentTxn | basketSumif() | QUANTITY      | LESS\\_THAN\\_EQUALS\\_TO    | (currentTxn.basketSumIf(\"QUANTITY\",\"LESS\\_THAN\\_EQUALS\\_TO\",\"10\")>3)) |\n| currentTxn | basketSumif() | RATE          | GREATER\\_THAN\\_EQUALS\\_TO | (currentTxn.basketSumIf(\"RATE\",\"GREATER\\_THAN\\_EQUALS\\_TO\",\"500\")>7)) |\n| currentTxn | basketSumif() | VALUE         | EQUALS\\_TO                | (currentTxn.basketSumIf(\"VALUE\",\"EQUALS\\_TO\",\"200\")>400))             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Profile",
+          "Attribute",
+          "Sub-Attribute",
+          "Operator",
+          "Expression and Example"
+        ],
+        "rows": [
+          [
+            "currentTxn",
+            "basketSumif()",
+            "AMOUNT",
+            "GREATER_THAN",
+            "(currentTxn.basketSumIf(\"AMOUNT\",\"GREATER_THAN\",\"1000\")>5000))"
+          ],
+          [
+            "currentTxn",
+            "basketSumif()",
+            "DISCOUNT",
+            "LESS_THAN",
+            "(currentTxn.basketSumIf(\"DISCOUNT\",\"LESS_THAN\",\"10\")>90))"
+          ],
+          [
+            "currentTxn",
+            "basketSumif()",
+            "QUANTITY",
+            "LESS_THAN_EQUALS_TO",
+            "(currentTxn.basketSumIf(\"QUANTITY\",\"LESS_THAN_EQUALS_TO\",\"10\")>3))"
+          ],
+          [
+            "currentTxn",
+            "basketSumif()",
+            "RATE",
+            "GREATER_THAN_EQUALS_TO",
+            "(currentTxn.basketSumIf(\"RATE\",\"GREATER_THAN_EQUALS_TO\",\"500\")>7))"
+          ],
+          [
+            "currentTxn",
+            "basketSumif()",
+            "VALUE",
+            "EQUALS_TO",
+            "(currentTxn.basketSumIf(\"VALUE\",\"EQUALS_TO\",\"200\")>400))"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        642,
+        642
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        644,
+        644
+      ],
+      "raw": "## **basketCountIf**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketCountIf",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        646,
+        647
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type:** BigDecimal",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimal",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        649,
+        649
+      ],
+      "raw": "**Meaning:** Returns the count of line items of the basket that satisfies a specific condition. You can define conditions based on the amount, discount, quantity, rate, or value of line items in the basket.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Meaning: Returns the count of line items of the basket that satisfies a specific condition. You can define conditions based on the amount, discount, quantity, rate, or value of line items in the basket.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        651,
+        652
+      ],
+      "raw": "**Sub-Attributes:** AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.\\\n**Supported EXPRESSION:** GREATER\\_THAN, LESS\\_THAN, LESS\\_THAN\\_EQUALS\\_TO, GREATER\\_THAN\\_EQUALS\\_TO, EQUALS\\_TO, NOT\\_EQUALS\\_TO",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sub-Attributes: AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.Supported EXPRESSION: GREATER_THAN, LESS_THAN, LESS_THAN_EQUALS_TO, GREATER_THAN_EQUALS_TO, EQUALS_TO, NOT_EQUALS_TO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        654,
+        655
+      ],
+      "raw": "**Syntax:** **currentTxn.basketCountIf(“\\{parameter}”, “\\{expression}”,\"\\{value}\")\\[operator]\\{value})**\\\nExample :- currentTxn.basketCountIf(\"DISCOUNT\",\"GREATER\\_THAN\",\"10\")<5",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: currentTxn.basketCountIf(“{parameter}”, “{expression}”,\"{value}\")[operator]{value})Example :- currentTxn.basketCountIf(\"DISCOUNT\",\"GREATER_THAN\",\"10\")<5",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        657,
+        663
+      ],
+      "raw": "| Profile    | Attribute       | Sub-Attribute | Operator                  | Expression and Example                                                  |\n| :--------- | :-------------- | :------------ | :------------------------ | :---------------------------------------------------------------------- |\n| currentTxn | basketCountif() | AMOUNT        | GREATER\\_THAN             | (currentTxn.basketCountIf(\"AMOUNT\",\"GREATER\\_THAN\",\"1000\")>5))          |\n| currentTxn | basketCountif() | DISCOUNT      | LESS\\_THAN                | (currentTxn.basketCountIf(\"DISCOUNT\",\"LESS\\_THAN\",\"10\")>9))             |\n| currentTxn | basketCountif() | QUANTITY      | LESS\\_THAN\\_EQUALS\\_TO    | (currentTxn.basketCountIf(\"QUANTITY\",\"LESS\\_THAN\\_EQUALS\\_TO\",\"10\")>4)) |\n| currentTxn | basketCountif() | RATE          | GREATER\\_THAN\\_EQUALS\\_TO | (currentTxn.basketCountIf(\"RATE\",\"GREATER\\_THAN\\_EQUALS\\_TO\",\"500\")>4)) |\n| currentTxn | basketCountif() | VALUE         | EQUALS\\_TO                | (currentTxn.basketCountIf(\"VALUE\",\"EQUALS\\_TO\",\"200\")>3))               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Profile",
+          "Attribute",
+          "Sub-Attribute",
+          "Operator",
+          "Expression and Example"
+        ],
+        "rows": [
+          [
+            "currentTxn",
+            "basketCountif()",
+            "AMOUNT",
+            "GREATER_THAN",
+            "(currentTxn.basketCountIf(\"AMOUNT\",\"GREATER_THAN\",\"1000\")>5))"
+          ],
+          [
+            "currentTxn",
+            "basketCountif()",
+            "DISCOUNT",
+            "LESS_THAN",
+            "(currentTxn.basketCountIf(\"DISCOUNT\",\"LESS_THAN\",\"10\")>9))"
+          ],
+          [
+            "currentTxn",
+            "basketCountif()",
+            "QUANTITY",
+            "LESS_THAN_EQUALS_TO",
+            "(currentTxn.basketCountIf(\"QUANTITY\",\"LESS_THAN_EQUALS_TO\",\"10\")>4))"
+          ],
+          [
+            "currentTxn",
+            "basketCountif()",
+            "RATE",
+            "GREATER_THAN_EQUALS_TO",
+            "(currentTxn.basketCountIf(\"RATE\",\"GREATER_THAN_EQUALS_TO\",\"500\")>4))"
+          ],
+          [
+            "currentTxn",
+            "basketCountif()",
+            "VALUE",
+            "EQUALS_TO",
+            "(currentTxn.basketCountIf(\"VALUE\",\"EQUALS_TO\",\"200\")>3))"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        665,
+        665
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        667,
+        667
+      ],
+      "raw": "## **basketQtyIf**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketQtyIf",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        669,
+        673
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Meaning:** Return the sum of quantities of qualifying line items in the basket. The qualifying condition could be on the amount, discount, quantity, rate, or value of the line item.\\\n**For example,** quantity of all line items in the basket whose discount is less or equals to $10.\\\ncurrentTxn.basketQtyIf(\"DISCOUNT\",\"LESS\\_THAN\\_EQUALS\\_TO\",\"10\")>20",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalMeaning: Return the sum of quantities of qualifying line items in the basket. The qualifying condition could be on the amount, discount, quantity, rate, or value of the line item.For example, quantity of all line items in the basket whose discount is less or equals to $10.currentTxn.basketQtyIf(\"DISCOUNT\",\"LESS_THAN_EQUALS_TO\",\"10\")>20",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        675,
+        676
+      ],
+      "raw": "**Sub-Attributes:** AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.\\\n**Supported EXPRESSION:** GREATER\\_THAN, LESS\\_THAN, LESS\\_THAN\\_EQUALS\\_TO, GREATER\\_THAN\\_EQUALS\\_TO, EQUALS\\_TO, NOT\\_EQUALS\\_TO",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sub-Attributes: AMOUNT, DISCOUNT, QUANTITY, RATE, and VALUE.Supported EXPRESSION: GREATER_THAN, LESS_THAN, LESS_THAN_EQUALS_TO, GREATER_THAN_EQUALS_TO, EQUALS_TO, NOT_EQUALS_TO",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        678,
+        679
+      ],
+      "raw": "**Syntax: currentTxn.basketCountIf(“\\{parameter}”, “\\{expression}”,\"\\{value}\")\\[operator]\\{value})**\\\nExample :- currentTxn.basketCountIf(\"DISCOUNT\",\"GREATER\\_THAN\",\"10\")<5",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: currentTxn.basketCountIf(“{parameter}”, “{expression}”,\"{value}\")[operator]{value})Example :- currentTxn.basketCountIf(\"DISCOUNT\",\"GREATER_THAN\",\"10\")<5",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        681,
+        687
+      ],
+      "raw": "| Profile    | Attribute     | Sub-Attribute | Operator                  | Expression and Example                                                |\n| :--------- | :------------ | :------------ | :------------------------ | :-------------------------------------------------------------------- |\n| currentTxn | basketQtyif() | AMOUNT        | GREATER\\_THAN             | (currentTxn.basketQtyIf(\"AMOUNT\",\"GREATER\\_THAN\",\"1000\")>5))          |\n| currentTxn | basketQtyif() | DISCOUNT      | LESS\\_THAN                | (currentTxn.basketQtyIf(\"DISCOUNT\",\"LESS\\_THAN\",\"10\")>9))             |\n| currentTxn | basketQtyif() | QUANTITY      | LESS\\_THAN\\_EQUALS\\_TO    | (currentTxn.basketQtyIf(\"QUANTITY\",\"LESS\\_THAN\\_EQUALS\\_TO\",\"10\")>4)) |\n| currentTxn | basketQtyif() | RATE          | GREATER\\_THAN\\_EQUALS\\_TO | (currentTxn.basketQtyIf(\"RATE\",\"GREATER\\_THAN\\_EQUALS\\_TO\",\"500\")>4)) |\n| currentTxn | basketQtyif() | VALUE         | EQUALS\\_TO                | (currentTxn.basketQtyIf(\"VALUE\",\"EQUALS\\_TO\",\"200\")>3))               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Profile",
+          "Attribute",
+          "Sub-Attribute",
+          "Operator",
+          "Expression and Example"
+        ],
+        "rows": [
+          [
+            "currentTxn",
+            "basketQtyif()",
+            "AMOUNT",
+            "GREATER_THAN",
+            "(currentTxn.basketQtyIf(\"AMOUNT\",\"GREATER_THAN\",\"1000\")>5))"
+          ],
+          [
+            "currentTxn",
+            "basketQtyif()",
+            "DISCOUNT",
+            "LESS_THAN",
+            "(currentTxn.basketQtyIf(\"DISCOUNT\",\"LESS_THAN\",\"10\")>9))"
+          ],
+          [
+            "currentTxn",
+            "basketQtyif()",
+            "QUANTITY",
+            "LESS_THAN_EQUALS_TO",
+            "(currentTxn.basketQtyIf(\"QUANTITY\",\"LESS_THAN_EQUALS_TO\",\"10\")>4))"
+          ],
+          [
+            "currentTxn",
+            "basketQtyif()",
+            "RATE",
+            "GREATER_THAN_EQUALS_TO",
+            "(currentTxn.basketQtyIf(\"RATE\",\"GREATER_THAN_EQUALS_TO\",\"500\")>4))"
+          ],
+          [
+            "currentTxn",
+            "basketQtyif()",
+            "VALUE",
+            "EQUALS_TO",
+            "(currentTxn.basketQtyIf(\"VALUE\",\"EQUALS_TO\",\"200\")>3))"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        689,
+        689
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        691,
+        691
+      ],
+      "raw": "## **basketSumGross**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSumGross",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        693,
+        696
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: BigDecimal\\\n**Meaning**: Returns the sum of the gross amount of each line item in a basket whose attribute name matches with a specific value. Supported attribute names: product name, short description, SKU number, category, and subcategory.\\\n**Standard expression: currentTxn.basketSumGross\\{(\"\\[Attribute Name]\",\"\\[Inventory Value]\")\\[Operator]\\[Value]}**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BigDecimalMeaning: Returns the sum of the gross amount of each line item in a basket whose attribute name matches with a specific value. Supported attribute names: product name, short description, SKU number, category, and subcategory.Standard expression: currentTxn.basketSumGross{(\"[Attribute Name]\",\"[Inventory Value]\")[Operator][Value]}",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        698,
+        700
+      ],
+      "raw": "| Write an expression If the total gross amount of line items in the basket with attribute name value is \"demoname\", exceeds 2000, then execute a specific action. |\n| :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| currentTxn.basketSumGross(\"name\",\"demoname\")>2000                                                                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Write an expression If the total gross amount of line items in the basket with attribute name value is \"demoname\", exceeds 2000, then execute a specific action."
+        ],
+        "rows": [
+          [
+            "currentTxn.basketSumGross(\"name\",\"demoname\")>2000"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        702,
+        702
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        704,
+        704
+      ],
+      "raw": "## **basketSumRegexGross**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSumRegexGross",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        706,
+        708
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type**: Boolean\\\n**Meaning:** Returns the sum of gross amount of each line item in the basket whose product attribute values match the given regular expression.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BooleanMeaning: Returns the sum of gross amount of each line item in the basket whose product attribute values match the given regular expression.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        710,
+        710
+      ],
+      "raw": "**Standard expression: currentTxn.basketSumRegexGross\\{(\"\\[Attribute Name]\",\"\\[Attribute Regex]\") \\[Operator] \\[Value]}**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Standard expression: currentTxn.basketSumRegexGross{(\"[Attribute Name]\",\"[Attribute Regex]\") [Operator] [Value]}",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        712,
+        714
+      ],
+      "raw": "| Example: If the sum of the gross amount of line items of the basket, whose attribute name (brand) starts with purple, exceeds 5000 execute a specific action. |\n| :------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| Expression: currentTxn.basketSumRegexGross(\"brand\",\"^purple\")>5000                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: If the sum of the gross amount of line items of the basket, whose attribute name (brand) starts with purple, exceeds 5000 execute a specific action."
+        ],
+        "rows": [
+          [
+            "Expression: currentTxn.basketSumRegexGross(\"brand\",\"^purple\")>5000"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        716,
+        716
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        718,
+        718
+      ],
+      "raw": "## **basketSumRegexBrandGross**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSumRegexBrandGross",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        720,
+        722
+      ],
+      "raw": "**Profile**: Current Transaction (currentTxn)\\\n**Data Type:** Boolean\\\n**Meaning:** Returns the sum of the gross amount of each line item in the basket whose brand name matches with the given regular expression.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: Current Transaction (currentTxn)Data Type: BooleanMeaning: Returns the sum of the gross amount of each line item in the basket whose brand name matches with the given regular expression.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        724,
+        724
+      ],
+      "raw": "Standard expression: **currentTxn.basketSumRegexCategoryGross\\{(\"\\[Regex]\")\\[Operator]\\[Value]}**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Standard expression: currentTxn.basketSumRegexCategoryGross{(\"[Regex]\")[Operator][Value]}",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        726,
+        728
+      ],
+      "raw": "| Example:If the sum of the gross amount of line items of the basket with brand names containing “demo” exceeds 1000 execute a specific action. |\n| :-------------------------------------------------------------------------------------------------------------------------------------------- |\n| currentTxn.basketSumRegexCategoryGross(\"demo\\*\")>1000                                                                                         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example:If the sum of the gross amount of line items of the basket with brand names containing “demo” exceeds 1000 execute a specific action."
+        ],
+        "rows": [
+          [
+            "currentTxn.basketSumRegexCategoryGross(\"demo*\")>1000"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        730,
+        730
+      ],
+      "raw": "## **basketSize**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "basketSize",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        732,
+        739
+      ],
+      "raw": "**Profile** : currentTxn\\\n**Attribute :** basketSize\\\n**Type** : String\\\n**Meaning** : Total number of items in the bill - irrespective of quantity of each item or number of line items passed in payload\\\n**Sub-Attribute**: NA\\\n**Operators:** <,>,<=,>=,==\\\n**Syntax**: currentTxn.basketSize.\\[Operators]\\[Value]\\\n**Example**: currentTxn.basketSize >= 10.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentTxnAttribute : basketSizeType : StringMeaning : Total number of items in the bill - irrespective of quantity of each item or number of line items passed in payloadSub-Attribute: NAOperators: <,>,<=,>=,==Syntax: currentTxn.basketSize.[Operators][Value]Example: currentTxn.basketSize >= 10.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        741,
+        758
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example: write a rule for a current customer to check if the customer is a part of “CrownFeb2019” cluster and speaks English (sub segment) and current transaction done by the customer has line item count is less than 10.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Rule: condition 1 && condition 2\n        currentCustomer.clusterValueIncludes(\"CrownFeb2019\",\"English\")&&(currentTxn.basketSize\\<10)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    }
+  ]
+}

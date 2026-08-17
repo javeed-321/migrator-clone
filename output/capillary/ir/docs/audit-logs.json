@@ -1,0 +1,1951 @@
+{
+  "slug": "docs/audit-logs",
+  "source": "https://docs.capillarytech.com/docs/audit-logs.md",
+  "url": "https://docs.capillarytech.com/docs/audit-logs",
+  "title": "Audit Logs",
+  "description": "",
+  "section": "(New) User Management",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-27T09:10:19.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 18,
+    "Table": 4,
+    "Image": 3,
+    "br": 40,
+    "list": 4,
+    "blockquote": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Audit Logs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Audit Logs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Audit logs give organization owners complete visibility into changes made to users, roles, and permissions in Intouch. Track who added or removed users, updated permission sets, or granted organization owner access, along with the date and time of each action.Access and availability",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Audit logs give organization owners complete visibility into changes made to users, roles, and permissions in Intouch. Track who added or removed users, updated permission sets, or granted organization owner access, along with the date and time of each action.Access and availability",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following table summarizes access and availability details for audit logs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table summarizes access and availability details for audit logs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        20
+      ],
+      "raw": "| Field                | Details                                        |\n| -------------------- | ---------------------------------------------- |\n| **Roles**            | Organization owner                             |\n| **Access**           | Self serve. No support ticket required.        |\n| **Availability**     | Enabled by default for all orgs                |\n| **Where to find it** | Intouch > **User Management** > **Audit Logs** |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Details"
+        ],
+        "rows": [
+          [
+            "Roles",
+            "Organization owner"
+          ],
+          [
+            "Access",
+            "Self serve. No support ticket required."
+          ],
+          [
+            "Availability",
+            "Enabled by default for all orgs"
+          ],
+          [
+            "Where to find it",
+            "Intouch > User Management > Audit Logs"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "Audit logs are visible to organization owners only. Administrators and standard users don't have access to this page. Access is controlled by the organization owner role with no explicit permission set required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Audit logs are visible to organization owners only. Administrators and standard users don't have access to this page. Access is controlled by the organization owner role with no explicit permission set required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Events logged",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Events logged",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "The following table lists the User Management events captured in audit logs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the User Management events captured in audit logs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        28,
+        48
+      ],
+      "raw": "| Activity                                                    | Action type | Security event |\n| ----------------------------------------------------------- | ----------- | -------------- |\n| Standard user added to organization                         | Create      | No             |\n| Standard user removed from organization                     | Delete      | No             |\n| Organization owner or admin added                           | Create      | Yes            |\n| Organization owner or admin removed                         | Delete      | Yes            |\n| User type changed to organization owner or admin            | Update      | Yes            |\n| User type changed to standard user                          | Update      | Yes            |\n| Standard user permissions or accessible entities updated    | Update      | No             |\n| Admin user permissions or accessible entities updated       | Update      | Yes            |\n| Permission set created                                      | Create      | No             |\n| Permission set updated                                      | Update      | No             |\n| Permission set deleted                                      | Delete      | No             |\n| Custom permissions created                                  | Create      | No             |\n| Users added in bulk                                         | Create      | No             |\n| Users updated in bulk (append mode)                         | Update      | No             |\n| Users updated in bulk (overwrite mode)                      | Update      | No             |\n| Invite link regenerated                                     | Invite link | No             |\n| User list exported                                          | Export      | Yes            |\n| Multiple organization user visibility configuration updated | Update      | Yes            |\n| Proxy organization access granted                           | Create      | Yes            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Activity",
+          "Action type",
+          "Security event"
+        ],
+        "rows": [
+          [
+            "Standard user added to organization",
+            "Create",
+            "No"
+          ],
+          [
+            "Standard user removed from organization",
+            "Delete",
+            "No"
+          ],
+          [
+            "Organization owner or admin added",
+            "Create",
+            "Yes"
+          ],
+          [
+            "Organization owner or admin removed",
+            "Delete",
+            "Yes"
+          ],
+          [
+            "User type changed to organization owner or admin",
+            "Update",
+            "Yes"
+          ],
+          [
+            "User type changed to standard user",
+            "Update",
+            "Yes"
+          ],
+          [
+            "Standard user permissions or accessible entities updated",
+            "Update",
+            "No"
+          ],
+          [
+            "Admin user permissions or accessible entities updated",
+            "Update",
+            "Yes"
+          ],
+          [
+            "Permission set created",
+            "Create",
+            "No"
+          ],
+          [
+            "Permission set updated",
+            "Update",
+            "No"
+          ],
+          [
+            "Permission set deleted",
+            "Delete",
+            "No"
+          ],
+          [
+            "Custom permissions created",
+            "Create",
+            "No"
+          ],
+          [
+            "Users added in bulk",
+            "Create",
+            "No"
+          ],
+          [
+            "Users updated in bulk (append mode)",
+            "Update",
+            "No"
+          ],
+          [
+            "Users updated in bulk (overwrite mode)",
+            "Update",
+            "No"
+          ],
+          [
+            "Invite link regenerated",
+            "Invite link",
+            "No"
+          ],
+          [
+            "User list exported",
+            "Export",
+            "Yes"
+          ],
+          [
+            "Multiple organization user visibility configuration updated",
+            "Update",
+            "Yes"
+          ],
+          [
+            "Proxy organization access granted",
+            "Create",
+            "Yes"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "### Security actions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Security actions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "A security action is a high-sensitivity event that could affect the security or access control of your organization, such as granting admin privileges, removing an organization owner, or exporting the user list. These events are flagged with a **Security action** tag in the audit log table so they're easy to identify at a glance.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A security action is a high-sensitivity event that could affect the security or access control of your organization, such as granting admin privileges, removing an organization owner, or exporting the user list. These events are flagged with a Security action tag in the audit log table so they're easy to identify at a glance.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "## The Audit Logs page",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "The Audit Logs page",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "The Audit Logs page shows a live feed of user activity across your organization. At the top of the page, a date picker lets you scope the results to a specific time window. The filter icon opens the **Additional filters** panel for more granular filtering. The **Export Logs** button at the top right lets you download the full log or your current filtered view.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Audit Logs page shows a live feed of user activity across your organization. At the top of the page, a date picker lets you scope the results to a specific time window. The filter icon opens the Additional filters panel for more granular filtering. The Export Logs button at the top right lets you download the full log or your current filtered view.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "The table shows events sorted newest first, with columns for **Date and Time**, **Activity**, **Entity**, and **Performed By**. Each row includes an activity type, a short description of what happened, and the name and email of the person who performed the action. Events tagged **Security action** are high-sensitivity actions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table shows events sorted newest first, with columns for Date and Time, Activity, Entity, and Performed By. Each row includes an activity type, a short description of what happened, and the name and email of the person who performed the action. Events tagged Security action are high-sensitivity actions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "<Image src=\"https://files.readme.io/66b910280e05d43d6c5dd6100470da92e2dc75009365e96fe85e9bf5a21f08f0-Frame_19_1.png\" align=\"left\" border={true} wrap={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/66b910280e05d43d6c5dd6100470da92e2dc75009365e96fe85e9bf5a21f08f0-Frame_19_1.png",
+        "align": "left",
+        "border": "{true}",
+        "wrap": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 66
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 78
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "The table below lists the fields and their descriptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below lists the fields and their descriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        84,
+        95
+      ],
+      "raw": "| #  | Element                  | Description                                                                                     |\n| -- | ------------------------ | ----------------------------------------------------------------------------------------------- |\n| 1  | **Date picker**          | Sets the date range for the logs displayed. The range is 90 days.                               |\n| 2  | **Filter icon**          | Opens the **Additional filters** panel to filter by activity type, user, or security actions.   |\n| 3  | **Export Logs**          | Downloads the full log or your current filtered view as a CSV file.                             |\n| 4  | **Applied filters chip** | Shows the active filters. Select **×** on a chip to remove that filter.                         |\n| 5  | **Clear all**            | Removes all active filters and resets the table to the full log view.                           |\n| 6  | **Date and Time**        | The date and time the action was performed, shown in the organization's time zone.              |\n| 7  | **Activity**             | The action type (for example, Create, Update, Delete) and a short description of what happened. |\n| 8  | **Entity**               | The user or object the action was performed on, along with the entity type and product area.    |\n| 9  | **Performed By**         | The name and email address of the user who performed the action.                                |\n| 10 | **Security action tag**  | Flags high sensitivity events so they're easy to identify at a glance.                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "#",
+          "Element",
+          "Description"
+        ],
+        "rows": [
+          [
+            "1",
+            "Date picker",
+            "Sets the date range for the logs displayed. The range is 90 days."
+          ],
+          [
+            "2",
+            "Filter icon",
+            "Opens the Additional filters panel to filter by activity type, user, or security actions."
+          ],
+          [
+            "3",
+            "Export Logs",
+            "Downloads the full log or your current filtered view as a CSV file."
+          ],
+          [
+            "4",
+            "Applied filters chip",
+            "Shows the active filters. Select × on a chip to remove that filter."
+          ],
+          [
+            "5",
+            "Clear all",
+            "Removes all active filters and resets the table to the full log view."
+          ],
+          [
+            "6",
+            "Date and Time",
+            "The date and time the action was performed, shown in the organization's time zone."
+          ],
+          [
+            "7",
+            "Activity",
+            "The action type (for example, Create, Update, Delete) and a short description of what happened."
+          ],
+          [
+            "8",
+            "Entity",
+            "The user or object the action was performed on, along with the entity type and product area."
+          ],
+          [
+            "9",
+            "Performed By",
+            "The name and email address of the user who performed the action."
+          ],
+          [
+            "10",
+            "Security action tag",
+            "Flags high sensitivity events so they're easy to identify at a glance."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "## Viewing audit logs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Viewing audit logs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        99,
+        103
+      ],
+      "raw": "1. Go to **User Management** > **Audit Logs**.\n2. Review the events in the table. Events marked with a **Security action** tag are high sensitivity actions.\n3. Select any row to open the **Activity Details** panel and view the full record of that event.\n\n   <Image src=\"https://files.readme.io/840551fc4672c036d3ce790bd1c01ebd6748a76455b1a03352fb711121b94bd3-ActivityDetails.png\" align=\"left\" border={true} wrap={true} />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Go to User Management > Audit Logs.Review the events in the table. Events marked with a Security action tag are high sensitivity actions.Select any row to open the Activity Details panel and view the full record of that event.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 107
+        }
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 109
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 111
+        }
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "i": 36,
+      "lines": [
+        117,
+        117
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 117
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 119
+        }
+      ]
+    },
+    {
+      "i": 38,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 121
+        }
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 125
+        }
+      ]
+    },
+    {
+      "i": 41,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "### Activity Details panel",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Activity Details panel",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "The **Activity Details** panel shows the following information for each event.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Activity Details panel shows the following information for each event.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        131,
+        138
+      ],
+      "raw": "| Field                             | Description                                                                       |\n| --------------------------------- | --------------------------------------------------------------------------------- |\n| **Activity type and description** | The action performed, for example, *Update — Made organization owner/admin*.      |\n| **Date and Time**                 | When the action was performed.                                                    |\n| **Performed By**                  | The name and email address of the user who performed the action.                  |\n| **Entity**                        | The user or object the action was performed on.                                   |\n| **Product**                       | The product area the action belongs to, for example, UserManagement.              |\n| **Log ID**                        | A unique identifier for the event. Share this with support when raising a ticket. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Activity type and description",
+            "The action performed, for example, Update — Made organization owner/admin."
+          ],
+          [
+            "Date and Time",
+            "When the action was performed."
+          ],
+          [
+            "Performed By",
+            "The name and email address of the user who performed the action."
+          ],
+          [
+            "Entity",
+            "The user or object the action was performed on."
+          ],
+          [
+            "Product",
+            "The product area the action belongs to, for example, UserManagement."
+          ],
+          [
+            "Log ID",
+            "A unique identifier for the event. Share this with support when raising a ticket."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "The panel also includes an **Activity Details (JSON)** section with the complete technical record of the event, including the trace ID, product, actor details, organization ID, and event expiry.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The panel also includes an Activity Details (JSON) section with the complete technical record of the event, including the trace ID, product, actor details, organization ID, and event expiry.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "## Filtering logs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Filtering logs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "Use the date picker and the **Additional filters** panel to narrow results. All filters can be applied together.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the date picker and the Additional filters panel to narrow results. All filters can be applied together.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "**To filter by date range:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To filter by date range:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        148,
+        151
+      ],
+      "raw": "1. Select the date picker at the top of the page.\n2. Choose a start and end date from the calendar. The range can't exceed 30 days.\n\n   <Image src=\"https://files.readme.io/6afa71584a9a976155af9224eaada3940cd8e7c5df1da456af42f58e80759480-Date_filter.png\" align=\"left\" border={true} wrap={true} />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the date picker at the top of the page.Choose a start and end date from the calendar. The range can't exceed 30 days.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 155
+        }
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 159
+        }
+      ]
+    },
+    {
+      "i": 53,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 161
+        }
+      ]
+    },
+    {
+      "i": 54,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 163
+        }
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 165
+        }
+      ]
+    },
+    {
+      "i": 56,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 167
+        }
+      ]
+    },
+    {
+      "i": 57,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 169
+        }
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 171
+        }
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "> **Note:** Audit logs are retained for 90 days. If you select a date range that extends beyond 90 days, a warning appears and only data from the last 90 days is returned.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: Audit logs are retained for 90 days. If you select a date range that extends beyond 90 days, a warning appears and only data from the last 90 days is returned.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "**To filter by activity, user, or security actions:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To filter by activity, user, or security actions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        179,
+        198
+      ],
+      "raw": "1. Select the filter icon (!\\[filter icon]) next to the date picker to open the **Additional filters** panel.\n\n2. Set your filters:\n   * **Activity**: select an action type: Create, Update, Delete, View, Approve, Export, or Login.\n\n     <Image src=\"https://files.readme.io/8f07202d927c0f63244563cc7ef8afd9b531c3ff83179573274e15f18ee15ff0-Activity_filter.png\" align=\"left\" border={true} wrap={true} />\n\n   * **User**: search and select a user by email address to see actions performed by that user.\n\n     <Image src=\"https://files.readme.io/5450a7ca0e87d9663f9d9dbd2bcf6333b75cb84530ddd574b767667b1238d4a4-User_filter.png\" align=\"left\" border={true} wrap={true} />\n\n   * **Show only security actions**: select this checkbox to show only events tagged as security actions.\n\n     <Image src=\"https://files.readme.io/61f1bb358b875cf8a056809a9c716811f449a51f3061214592f743a7e873f968-Security_option.png\" align=\"center\" border={true} />\n\n3. Select **Apply** to refresh the table.\n\n4. To reset all filters, select **Clear all**.\n\n   <Image src=\"https://files.readme.io/1e14eb9b0778f116310fcf47d806af9ab84dcba5dc35a78e728e007aa153eac9-clearAll.png\" align=\"left\" border={true} wrap={true} />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the filter icon (![filter icon]) next to the date picker to open the Additional filters panel.Set your filters:Activity: select an action type: Create, Update, Delete, View, Approve, Export, or Login.User: search and select a user by email address to see actions performed by that user.Show only security actions: select this checkbox to show only events tagged as security actions.Select Apply to refresh the table.To reset all filters, select Clear all.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 200
+        }
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 202
+        }
+      ]
+    },
+    {
+      "i": 65,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 206
+        }
+      ]
+    },
+    {
+      "i": 67,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 208
+        }
+      ]
+    },
+    {
+      "i": 68,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 210
+        }
+      ]
+    },
+    {
+      "i": 69,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 212
+        }
+      ]
+    },
+    {
+      "i": 70,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "i": 71,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "After applying the **Show only security actions** filter, the table shows only security action events and displays the applied filter as a chip at the top.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After applying the Show only security actions filter, the table shows only security action events and displays the applied filter as a chip at the top.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "<Image src=\"https://files.readme.io/faaa4f9147ae01754e7e5dbdda324bd157dffcc0a673eb243628d2b53a28eaca-secureaction.png\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/faaa4f9147ae01754e7e5dbdda324bd157dffcc0a673eb243628d2b53a28eaca-secureaction.png",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 73,
+      "lines": [
+        220,
+        220
+      ],
+      "raw": "After applying an **Activity** filter, the table shows only events of that type. The applied filter appears as a chip at the top with a count of matching results.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After applying an Activity filter, the table shows only events of that type. The applied filter appears as a chip at the top with a count of matching results.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "<Image src=\"https://files.readme.io/f68ff30b85bf6ed19a130611b886d7e37fdf1444f6322101e54c4e488ab6523b-activity_-_create.png\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/f68ff30b85bf6ed19a130611b886d7e37fdf1444f6322101e54c4e488ab6523b-activity_-_create.png",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 75,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "## Exporting logs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Exporting logs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        226,
+        238
+      ],
+      "raw": "1. Select **Export Logs** at the top right of the page.\n\n2. Choose an export option from the dropdown:\n   * **Export all logs**: exports all audit log records from the last 90 days, regardless of any filters applied.\n   * **Export filtered logs**: exports only the events matching your current filters. This option is available only when at least one filter is active.\n\n     <Image src=\"https://files.readme.io/5c780aaeeedddefa18acbc101ed56741d11529dd3cd16e3680653e7683013d11-Export-options.png\" border={true} />\n\n3. A confirmation dialog appears. Select **Yes, export** to confirm.\n\n   <Image src=\"https://files.readme.io/fdca2ab08af0e952d32f96bb433412055ef97bb71f62e274a0351630607829a7-export_-_yes.png\" border={true} />\n\n   The records are downloaded as a CSV file.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select Export Logs at the top right of the page.Choose an export option from the dropdown:Export all logs: exports all audit log records from the last 90 days, regardless of any filters applied.Export filtered logs: exports only the events matching your current filters. This option is available only when at least one filter is active.A confirmation dialog appears. Select Yes, export to confirm.The records are downloaded as a CSV file.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "## FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "**Q: How far back are audit logs available?**<br />A: Audit logs are retained for 90 days.&#x20;",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Q: How far back are audit logs available?A: Audit logs are retained for 90 days.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 242
+        }
+      ]
+    },
+    {
+      "i": 79,
+      "lines": [
+        244,
+        245
+      ],
+      "raw": "**Q: Is it possible to search for a specific user's actions?**\nA: Yes. Use the **User** filter in the **Filters** panel to search by the user's email address.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Q: Is it possible to search for a specific user's actions?\nA: Yes. Use the User filter in the Filters panel to search by the user's email address.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        247,
+        247
+      ],
+      "raw": "**Q: Are all Intouch actions visible in audit logs?**<br />A: This release covers User Management actions only. Actions from Loyalty+, Engage+, and Insights+ will be available in future releases.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Q: Are all Intouch actions visible in audit logs?A: This release covers User Management actions only. Actions from Loyalty+, Engage+, and Insights+ will be available in future releases.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 247
+        }
+      ]
+    }
+  ]
+}

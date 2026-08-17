@@ -1,0 +1,998 @@
+{
+  "slug": "docs/loyalty-promotions-operators",
+  "source": "https://docs.capillarytech.com/docs/loyalty-promotions-operators.md",
+  "url": "https://docs.capillarytech.com/docs/loyalty-promotions-operators",
+  "title": "Loyalty Promotions Operators",
+  "description": "",
+  "section": "Building Blocks of Loyalty Promotions",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-08-13T10:38:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 5,
+    "Table": 6
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "**Operators** are the logic functions used to compare attributes against values when building qualifying conditions. They determine how the system checks a specific data point. The available operators are based on the data type of the attribute you are evaluating.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Operators are the logic functions used to compare attributes against values when building qualifying conditions. They determine how the system checks a specific data point. The available operators are based on the data type of the attribute you are evaluating.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## 1. Standard Comparison Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "1. Standard Comparison Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "*Applicable to Strings, Dates, and Numbers.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Applicable to Strings, Dates, and Numbers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        28
+      ],
+      "raw": "| Operator                        | Data Type               | Description                                                        | Examples                                                                                                                                                                                             |\n| :------------------------------ | :---------------------- | :----------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Equals**                      | String, Date, Number    | Checks whether the attribute matches the value exactly.            | Example 1: `Member Attributes` > `First Name` > `Equals` > `John` <br /> Example 2: `Purchase attributes` > `Gross Amount` > `Equals` > `100.50`                                                     |\n| **Not Equals**                  | String, Date, Number    | Checks whether the attribute isn't equal to the specified value.   | Example 1: `Member Attributes` > `Slab Name` > `Not Equals` > `Gold` <br /> Example 2: `Store Attributes` > `Name` > `Not Equals` > `Main Street`                                                    |\n| **Is set**                      | String, Date, Number    | Checks whether the field has a value.                              | Example 1: `Member Attributes` > `Mobile` > `Is set` <br /> Example 2: `Card Attributes` > `Card Number` > `Is set`                                                                                  |\n| **Is not set**                  | String, Date, Number    | Checks whether the field has no value.                             | Example 1: `Member Attributes` > `Email` > `Is not set` <br /> Example 2: `Purchase attributes` > `Notes` > `Is not set`                                                                             |\n| **Is one of**                   | String, List of Strings | Matches any single item in the list.                               | Example 1: `Member Attributes` > `Tier` > `Is one of` > `Gold, Platinum` <br /> Example 2: `Purchase attributes` > `Tender Code` > `Is one of` > `CASH, VISA`                                        |\n| **Is none of**                  | String, List of Strings | Matches only if the value isn't in the list.                       | Example 1: `Member Attributes` > `Status` > `Is none of` > `Blocked, Fraud` <br /> Example 2: `Store Attributes` > `Code` > `Is none of` > `Store_001`                                               |\n| **Previous Value**              | String                  | Checks what the value was before the change.                       | Example 1: `Member Update attributes` > `Mobile` > `Previous Value` > `9999999999` <br /> Example 2: `Member Update attributes` > `Email` > `Previous Value` > `old@mail.com`                        |\n| **Previous Custom Field Value** | String                  | Checks the value of a specific custom field before it was changed. | Example 1: `Member Update attributes` > `Custom Field` > `Previous Custom Field Value` > `Standard` <br /> Example 2: `Member Update attributes` > `Tier` > `Previous Custom Field Value` > `Silver` |\n| **Current Custom Field Value**  | String                  | Checks the value of a specific custom field after it has changed.  | Example 1: `Member Update attributes` > `Custom Field` > `Current Custom Field Value` > `Premium` <br /> Example 2: `Member Update attributes` > `Status` > `Current Custom Field Value` > `Active`  |\n| **Current Value**               | String                  | Checks the value after the change.                                 | Example 1: `Member Update attributes` > `Last Name` > `Current Value` > `Smith`  Example 2: `Member Update attributes` > `Loyalty Type` > `Current Value` > `Loyal`                                  |\n| **Is set**                      | String, List of Strings | Checks whether the attribute key is in the data.                   | Example 1: `Member Attributes` > `External Id` > `Is set` <br /> Example 2: `Purchase attributes` > `Custom Field` > `Is set`                                                                        |\n| **Is not set**                  | String, List of Strings | Checks whether the attribute key isn't in the data.                | Example 1: `Member Attributes` > `Partner ID` > `Is not set` <br /> Example 2: `Card Attributes` > `Legacy ID` > `Is not set`                                                                        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "Description",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Equals",
+            "String, Date, Number",
+            "Checks whether the attribute matches the value exactly.",
+            "Example 1: Member Attributes > First Name > Equals > John  Example 2: Purchase attributes > Gross Amount > Equals > 100.50"
+          ],
+          [
+            "Not Equals",
+            "String, Date, Number",
+            "Checks whether the attribute isn't equal to the specified value.",
+            "Example 1: Member Attributes > Slab Name > Not Equals > Gold  Example 2: Store Attributes > Name > Not Equals > Main Street"
+          ],
+          [
+            "Is set",
+            "String, Date, Number",
+            "Checks whether the field has a value.",
+            "Example 1: Member Attributes > Mobile > Is set  Example 2: Card Attributes > Card Number > Is set"
+          ],
+          [
+            "Is not set",
+            "String, Date, Number",
+            "Checks whether the field has no value.",
+            "Example 1: Member Attributes > Email > Is not set  Example 2: Purchase attributes > Notes > Is not set"
+          ],
+          [
+            "Is one of",
+            "String, List of Strings",
+            "Matches any single item in the list.",
+            "Example 1: Member Attributes > Tier > Is one of > Gold, Platinum  Example 2: Purchase attributes > Tender Code > Is one of > CASH, VISA"
+          ],
+          [
+            "Is none of",
+            "String, List of Strings",
+            "Matches only if the value isn't in the list.",
+            "Example 1: Member Attributes > Status > Is none of > Blocked, Fraud  Example 2: Store Attributes > Code > Is none of > Store_001"
+          ],
+          [
+            "Previous Value",
+            "String",
+            "Checks what the value was before the change.",
+            "Example 1: Member Update attributes > Mobile > Previous Value > 9999999999  Example 2: Member Update attributes > Email > Previous Value > old@mail.com"
+          ],
+          [
+            "Previous Custom Field Value",
+            "String",
+            "Checks the value of a specific custom field before it was changed.",
+            "Example 1: Member Update attributes > Custom Field > Previous Custom Field Value > Standard  Example 2: Member Update attributes > Tier > Previous Custom Field Value > Silver"
+          ],
+          [
+            "Current Custom Field Value",
+            "String",
+            "Checks the value of a specific custom field after it has changed.",
+            "Example 1: Member Update attributes > Custom Field > Current Custom Field Value > Premium  Example 2: Member Update attributes > Status > Current Custom Field Value > Active"
+          ],
+          [
+            "Current Value",
+            "String",
+            "Checks the value after the change.",
+            "Example 1: Member Update attributes > Last Name > Current Value > Smith  Example 2: Member Update attributes > Loyalty Type > Current Value > Loyal"
+          ],
+          [
+            "Is set",
+            "String, List of Strings",
+            "Checks whether the attribute key is in the data.",
+            "Example 1: Member Attributes > External Id > Is set  Example 2: Purchase attributes > Custom Field > Is set"
+          ],
+          [
+            "Is not set",
+            "String, List of Strings",
+            "Checks whether the attribute key isn't in the data.",
+            "Example 1: Member Attributes > Partner ID > Is not set  Example 2: Card Attributes > Legacy ID > Is not set"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 17
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 18
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 19
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 20
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 21
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 22
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 23
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 24
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 25
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 27
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "## 2. Text and List Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "2. Text and List Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "*Specific to String fields and List of Strings.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Specific to String fields and List of Strings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        34,
+        42
+      ],
+      "raw": "| Operator           | Data Type               | Description                                                             | Examples                                                                                                                                                                          |\n| :----------------- | :---------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Contains**       | String, List of Strings | Checks whether the text includes a specific sequence of letters.        | Example 1: `Member Attributes` > `Full Name` > `Contains` > `Smith` <br /> Example 2: `Purchase attributes` > `Item Description` > `Contains` > `Organic`                         |\n| **Is empty**       | String                  | Checks whether the field has no value.                                  | Example 1: `Member Attributes` > `Middle Name` > `Is empty` <br /> Example 2: `Purchase attributes` > `Tender Notes` > `Is empty`                                                 |\n| **Matches Regex**  | String, List of Strings | Checks whether the value matches a specific regular expression pattern. | Example 1: `Member Attributes` > `First Name` > `Matches Regex` > `^[A-Z]` <br /> Example 2: `Card Attributes` > `Vehicle Number` > `Matches Regex` > `[0-9]{4}`                  |\n| **Matches any of** | List of Strings         | Checks whether at least one item in a list matches the criteria.        | Example 1: `Purchase attributes` > `Item Code` > `Matches any of` > `Milk, Bread` <br /> Example 2: `Purchase attributes` > `Tender Code` > `Matches any of` > `VISA, AMEX`       |\n| **Matches all of** | List of Strings         | Checks whether every item in the list matches the criteria.             | Example 1: `Purchase attributes` > `Item Code` > `Matches all of` > `ItemA, ItemB` <br /> Example 2: `Purchase attributes` > `Promotion Code` > `Matches all of` > `SALE10, APP5` |\n| **Is not in**      | List of Strings         | Checks whether the specific value isn't in the list.                    | Example 1: `Member Attributes` > `Belong To Segment` > `Is not in` > `<segment name>` <br /> Example 2: `Member Attributes` > `Communication Profile` > `Is not in` > `EMAIL`     |\n| **Is valid**       | String                  | Checks whether a text string is in a valid date format.                 | Example 1: `Member Attributes` > `Passport Expiry String` > `Is valid` <br /> Example 2: `Card Attributes` > `Activation String` > `Is valid`                                     |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "Description",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Contains",
+            "String, List of Strings",
+            "Checks whether the text includes a specific sequence of letters.",
+            "Example 1: Member Attributes > Full Name > Contains > Smith  Example 2: Purchase attributes > Item Description > Contains > Organic"
+          ],
+          [
+            "Is empty",
+            "String",
+            "Checks whether the field has no value.",
+            "Example 1: Member Attributes > Middle Name > Is empty  Example 2: Purchase attributes > Tender Notes > Is empty"
+          ],
+          [
+            "Matches Regex",
+            "String, List of Strings",
+            "Checks whether the value matches a specific regular expression pattern.",
+            "Example 1: Member Attributes > First Name > Matches Regex > ^[A-Z]  Example 2: Card Attributes > Vehicle Number > Matches Regex > [0-9]{4}"
+          ],
+          [
+            "Matches any of",
+            "List of Strings",
+            "Checks whether at least one item in a list matches the criteria.",
+            "Example 1: Purchase attributes > Item Code > Matches any of > Milk, Bread  Example 2: Purchase attributes > Tender Code > Matches any of > VISA, AMEX"
+          ],
+          [
+            "Matches all of",
+            "List of Strings",
+            "Checks whether every item in the list matches the criteria.",
+            "Example 1: Purchase attributes > Item Code > Matches all of > ItemA, ItemB  Example 2: Purchase attributes > Promotion Code > Matches all of > SALE10, APP5"
+          ],
+          [
+            "Is not in",
+            "List of Strings",
+            "Checks whether the specific value isn't in the list.",
+            "Example 1: Member Attributes > Belong To Segment > Is not in > <segment name>  Example 2: Member Attributes > Communication Profile > Is not in > EMAIL"
+          ],
+          [
+            "Is valid",
+            "String",
+            "Checks whether a text string is in a valid date format.",
+            "Example 1: Member Attributes > Passport Expiry String > Is valid  Example 2: Card Attributes > Activation String > Is valid"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 36
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 37
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 38
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 41
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "## 3. Numerical Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "3. Numerical Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "*Specific to Real numbers, Integers, and List of Numbers.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Specific to Real numbers, Integers, and List of Numbers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        48,
+        58
+      ],
+      "raw": "| Operator                     | Data Type               | Description                                                               | Examples                                                                                                                                                                   |\n| :--------------------------- | :---------------------- | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Greater than**             | Number, List of Numbers | Checks whether the value is greater than the specified value.             | Example 1: `Member Attributes` > `Current Points` > `Greater than` > `1000` <br /> Example 2: `Purchase attributes` > `Gross Amount` > `Greater than` > `50`               |\n| **Less than**                | Number, List of Numbers | Checks whether the value is less than the specified value.                | Example 1: `Member Attributes` > `Slab Number` > `Less than` > `3` <br /> Example 2: `Member Attributes` > `Number of Visits` > `Less than` > `5`                          |\n| **Greater than or equal to** | Number, List of Numbers | Checks whether the value is greater than or equal to the specified value. | Example 1: `Member Attributes` > `Age` > `Greater than or equal to` > `18` <br /> Example 2: `Purchase attributes` > `Item Quantity` > `Greater than or equal to` > `2`    |\n| **Less than or equal to**    | Number, List of Numbers | Checks whether the value is less than or equal to the specified value.    | Example 1: `Member Attributes` > `Days Since Visit` > `Less than or equal to` > `30` <br /> Example 2: `Purchase attributes` > `Discount` > `Less than or equal to` > `20` |\n| **Is between**               | Number, List of Numbers | Checks whether the value falls within a range (inclusive).                | Example 1: `Member Attributes` > `Age` > `Is between` > `21, 35` <br /> Example 2: `Purchase attributes` > `Run Time` > `Is between` > `60, 120`                           |\n| **Interval**                 | Number                  | Checks whether the number matches a specific interval.                    | Example 1: `Member Attributes` > `Number of Visits` > `Interval` > `5` <br /> Example 2: `Purchase attributes` > `Gross Amount` > `Interval` > `100`                       |\n| **Year**                     | Number                  | Extracts the year from a date for numeric comparison.                     | Example 1: `Purchase attributes` > `Date` > `Year` > `Equals` > `2025` <br /> Example 2: `Member Attributes` > `Birth Date` > `Year` > `Less Than` > `2000`                |\n| **Month**                    | Number                  | Extracts the month (1-12) from a date.                                    | Example 1: `Purchase attributes` > `Date` > `Month` > `Equals` > `12` <br /> Example 2: `Member Attributes` > `Enrolment Date` > `Month` > `Is One Of` > `6, 7, 8`         |\n| **Day**                      | Number                  | Extracts the day of the week or the numeric day.                          | Example 1: `Purchase attributes` > `Date` > `Day` > `Equals` > `15` <br /> Example 2: `Member Attributes` > `Join Date` > `Day` > `Is Not` > `1`                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "Description",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Greater than",
+            "Number, List of Numbers",
+            "Checks whether the value is greater than the specified value.",
+            "Example 1: Member Attributes > Current Points > Greater than > 1000  Example 2: Purchase attributes > Gross Amount > Greater than > 50"
+          ],
+          [
+            "Less than",
+            "Number, List of Numbers",
+            "Checks whether the value is less than the specified value.",
+            "Example 1: Member Attributes > Slab Number > Less than > 3  Example 2: Member Attributes > Number of Visits > Less than > 5"
+          ],
+          [
+            "Greater than or equal to",
+            "Number, List of Numbers",
+            "Checks whether the value is greater than or equal to the specified value.",
+            "Example 1: Member Attributes > Age > Greater than or equal to > 18  Example 2: Purchase attributes > Item Quantity > Greater than or equal to > 2"
+          ],
+          [
+            "Less than or equal to",
+            "Number, List of Numbers",
+            "Checks whether the value is less than or equal to the specified value.",
+            "Example 1: Member Attributes > Days Since Visit > Less than or equal to > 30  Example 2: Purchase attributes > Discount > Less than or equal to > 20"
+          ],
+          [
+            "Is between",
+            "Number, List of Numbers",
+            "Checks whether the value falls within a range (inclusive).",
+            "Example 1: Member Attributes > Age > Is between > 21, 35  Example 2: Purchase attributes > Run Time > Is between > 60, 120"
+          ],
+          [
+            "Interval",
+            "Number",
+            "Checks whether the number matches a specific interval.",
+            "Example 1: Member Attributes > Number of Visits > Interval > 5  Example 2: Purchase attributes > Gross Amount > Interval > 100"
+          ],
+          [
+            "Year",
+            "Number",
+            "Extracts the year from a date for numeric comparison.",
+            "Example 1: Purchase attributes > Date > Year > Equals > 2025  Example 2: Member Attributes > Birth Date > Year > Less Than > 2000"
+          ],
+          [
+            "Month",
+            "Number",
+            "Extracts the month (1-12) from a date.",
+            "Example 1: Purchase attributes > Date > Month > Equals > 12  Example 2: Member Attributes > Enrolment Date > Month > Is One Of > 6, 7, 8"
+          ],
+          [
+            "Day",
+            "Number",
+            "Extracts the day of the week or the numeric day.",
+            "Example 1: Purchase attributes > Date > Day > Equals > 15  Example 2: Member Attributes > Join Date > Day > Is Not > 1"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 50
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 51
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 52
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 53
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 54
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 55
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 56
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 57
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 58
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "## 4. Date Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "4. Date Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "*Specific to Date fields.*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Specific to Date fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        64,
+        82
+      ],
+      "raw": "| Operator                  | Data Type | Description                                                                       | Examples                                                                                                                                                                                  |\n| :------------------------ | :-------- | :-------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Is**                    | Date      | Checks whether the date falls on a specific unit, for example, weekend).          | Example 1: `Purchase attributes` > `Date` > `Is` > `Weekend` <br /> Example 2: `Purchase attributes` > `Date` > `Is` > `Day`                                                              |\n| **Is Not**                | Date      | Checks whether the date doesn't fall on a specific unit.                          | Example 1: `Purchase attributes` > `Date` > `Is Not` > `Weekend` <br /> Example 2: `Purchase attributes` > `Date` > `Is Not` > `Weekday`                                                  |\n| **Is Before**             | Date      | Checks whether the date is earlier.                                               | Example 1: `Member Attributes` > `Join Date` > `Is Before` > `2024-01-01` <br /> Example 2: `Card Attributes` > `Expiry Date` > `Is Before` > `2025-12-31`                                |\n| **Is After**              | Date      | Checks whether the date is later.                                                 | Example 1: `Purchase attributes` > `Date` > `Is After` > `2024-01-01` <br /> Example 2: `Member Attributes` > `Last Login` > `Is After` > `2025-02-01`                                    |\n| **Is On Or Before**       | Date      | Checks whether the date is on or before a specified date.                         | Example 1: `Purchase attributes` > `Date` > `Is On Or Before` > `2024-12-31` <br /> Example 2: `Member Attributes` > `Slab Expiry` > `Is On Or Before` > `2025-06-30`                     |\n| **Is On Or After**        | Date      | Checks whether the date is on or after a specified date.                          | Example 1: `Purchase attributes` > `Date` > `Is On Or After` > `2025-01-01` <br /> Example 2: `Card Attributes` > `Start Date` > `Is On Or After` > `2023-01-01`                          |\n| **Is Time Between**       | Date      | Checks whether the time is between the specified times.                           | Example 1: `Purchase attributes` > `Date` > `Is Time Between` > `12:00, 14:00` <br /> Example 2: `Purchase attributes` > `Date` > `Is Time Between` > `06:00, 09:00`                      |\n| **Is Hour Between**       | Date      | Checks whether the hour is from 0 through 23.                                     | Example 1: `Purchase attributes` > `Date` > `Is Hour Between` > `12, 14` <br /> Example 2: `Purchase attributes` > `Date` > `Is Hour Between` > `17, 22`                                  |\n| **Is Between**            | Date      | Checks whether the date falls within a specified range (inclusive).               | Example 1: `Purchase attributes` > `Date` > `Is Between` > `2024-01-01, 2024-12-31` <br /> Example 2: `Member Attributes` > `Join Date` > `Is Between` > `2023-01-01, 2023-06-30`         |\n| **Is Not Between**        | Date      | Checks whether the date falls outside a specified range.                          | Example 1: `Purchase attributes` > `Date` > `Is Not Between` > `2024-01-01, 2024-12-31` <br /> Example 2: `Member Attributes` > `Join Date` > `Is Not Between` > `2023-01-01, 2023-06-30` |\n| **Is Valid**              | Date      | Checks whether the date is a valid date object.                                   | Example 1: `Member Attributes` > `Birth Date` > `Is Valid` <br /> Example 2: `Card Attributes` > `Activation Date` > `Is Valid`                                                           |\n| **Day Of Month**          | Date      | Checks whether the day of the month is from 1 through 31.                         | Example 1: `Purchase attributes` > `Date` > `Day Of Month` > `1` <br /> Example 2: `Member Attributes` > `Join Date` > `Day Of Month` > `15`                                              |\n| **Days Diff**             | Date      | Calculates the count of days between two dates.                                   | Example 1: `Purchase attributes` > `Date` > `Days Diff` > `Member Attributes.Join Date` <br /> Example 2: `Card Attributes` > `Expiry Date` > `Days Diff` > `Current Date`                |\n| **Days Diff from String** | Date      | Calculates the count of days between a date attribute and a fixed date you enter. | Example 1: `Purchase attributes` > `Date` > `Days Diff from String` > `2024-01-01` <br /> Example 2: `Card Attributes` > `Expiry Date` > `Days Diff from String` > `2025-06-30`           |\n| **Date Diff**             | Date      | Calculates the absolute difference between two dates.                             | Example 1: `Purchase attributes` > `Date` > `Date Diff` > `Member Attributes.Join Date`  Example 2: `Redemption attributes` > `Date` > `Date Diff` > `Purchase attributes.Date`           |\n| **Minutes Diff**          | Date      | Calculates the number of minutes between two dates.                               | Example 1: `Purchase attributes` > `Date` > `Minutes Diff` > `30` <br /> Example 2: `Purchase attributes` > `Show Time` > `Minutes Diff` > `15`                                           |\n| **Is Before (TZ)**        | Date      | Checks whether a date is earlier than a specified date in a specific time zone.   | Example 1: `Purchase attributes` > `Date` > `Is Before With Timezone` > `Asia/Kolkata` <br /> Example 2: `Member Attributes` > `Event Date` > `Is Before With Timezone` > `GMT`           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "Description",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Is",
+            "Date",
+            "Checks whether the date falls on a specific unit, for example, weekend).",
+            "Example 1: Purchase attributes > Date > Is > Weekend  Example 2: Purchase attributes > Date > Is > Day"
+          ],
+          [
+            "Is Not",
+            "Date",
+            "Checks whether the date doesn't fall on a specific unit.",
+            "Example 1: Purchase attributes > Date > Is Not > Weekend  Example 2: Purchase attributes > Date > Is Not > Weekday"
+          ],
+          [
+            "Is Before",
+            "Date",
+            "Checks whether the date is earlier.",
+            "Example 1: Member Attributes > Join Date > Is Before > 2024-01-01  Example 2: Card Attributes > Expiry Date > Is Before > 2025-12-31"
+          ],
+          [
+            "Is After",
+            "Date",
+            "Checks whether the date is later.",
+            "Example 1: Purchase attributes > Date > Is After > 2024-01-01  Example 2: Member Attributes > Last Login > Is After > 2025-02-01"
+          ],
+          [
+            "Is On Or Before",
+            "Date",
+            "Checks whether the date is on or before a specified date.",
+            "Example 1: Purchase attributes > Date > Is On Or Before > 2024-12-31  Example 2: Member Attributes > Slab Expiry > Is On Or Before > 2025-06-30"
+          ],
+          [
+            "Is On Or After",
+            "Date",
+            "Checks whether the date is on or after a specified date.",
+            "Example 1: Purchase attributes > Date > Is On Or After > 2025-01-01  Example 2: Card Attributes > Start Date > Is On Or After > 2023-01-01"
+          ],
+          [
+            "Is Time Between",
+            "Date",
+            "Checks whether the time is between the specified times.",
+            "Example 1: Purchase attributes > Date > Is Time Between > 12:00, 14:00  Example 2: Purchase attributes > Date > Is Time Between > 06:00, 09:00"
+          ],
+          [
+            "Is Hour Between",
+            "Date",
+            "Checks whether the hour is from 0 through 23.",
+            "Example 1: Purchase attributes > Date > Is Hour Between > 12, 14  Example 2: Purchase attributes > Date > Is Hour Between > 17, 22"
+          ],
+          [
+            "Is Between",
+            "Date",
+            "Checks whether the date falls within a specified range (inclusive).",
+            "Example 1: Purchase attributes > Date > Is Between > 2024-01-01, 2024-12-31  Example 2: Member Attributes > Join Date > Is Between > 2023-01-01, 2023-06-30"
+          ],
+          [
+            "Is Not Between",
+            "Date",
+            "Checks whether the date falls outside a specified range.",
+            "Example 1: Purchase attributes > Date > Is Not Between > 2024-01-01, 2024-12-31  Example 2: Member Attributes > Join Date > Is Not Between > 2023-01-01, 2023-06-30"
+          ],
+          [
+            "Is Valid",
+            "Date",
+            "Checks whether the date is a valid date object.",
+            "Example 1: Member Attributes > Birth Date > Is Valid  Example 2: Card Attributes > Activation Date > Is Valid"
+          ],
+          [
+            "Day Of Month",
+            "Date",
+            "Checks whether the day of the month is from 1 through 31.",
+            "Example 1: Purchase attributes > Date > Day Of Month > 1  Example 2: Member Attributes > Join Date > Day Of Month > 15"
+          ],
+          [
+            "Days Diff",
+            "Date",
+            "Calculates the count of days between two dates.",
+            "Example 1: Purchase attributes > Date > Days Diff > Member Attributes.Join Date  Example 2: Card Attributes > Expiry Date > Days Diff > Current Date"
+          ],
+          [
+            "Days Diff from String",
+            "Date",
+            "Calculates the count of days between a date attribute and a fixed date you enter.",
+            "Example 1: Purchase attributes > Date > Days Diff from String > 2024-01-01  Example 2: Card Attributes > Expiry Date > Days Diff from String > 2025-06-30"
+          ],
+          [
+            "Date Diff",
+            "Date",
+            "Calculates the absolute difference between two dates.",
+            "Example 1: Purchase attributes > Date > Date Diff > Member Attributes.Join Date  Example 2: Redemption attributes > Date > Date Diff > Purchase attributes.Date"
+          ],
+          [
+            "Minutes Diff",
+            "Date",
+            "Calculates the number of minutes between two dates.",
+            "Example 1: Purchase attributes > Date > Minutes Diff > 30  Example 2: Purchase attributes > Show Time > Minutes Diff > 15"
+          ],
+          [
+            "Is Before (TZ)",
+            "Date",
+            "Checks whether a date is earlier than a specified date in a specific time zone.",
+            "Example 1: Purchase attributes > Date > Is Before With Timezone > Asia/Kolkata  Example 2: Member Attributes > Event Date > Is Before With Timezone > GMT"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 66
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 67
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 68
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 69
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 70
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 71
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 72
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 73
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 74
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 75
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 76
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 77
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 78
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 79
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 81
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "## 5. Partner Program Specific Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "5. Partner Program Specific Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        86,
+        90
+      ],
+      "raw": "| Operator                        | Data Type     | What it Means                                                                | Examples                                                                                                                                                                      |\n| :------------------------------ | :------------ | :--------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Partner Program Type**        | String (Enum) | Filters by the partner program type (for example, External or Supplementary. | Example 1: `Partner attributes` > `Partner Program Type` > `Equals` > `EXTERNAL` <br /> Example 2: `Partner attributes` > `Partner Program Type` > `Is Not` > `SUPPLEMENTARY` |\n| **Partner Tier Name**           | String        | Matches the specific tier level assigned by the partner.                     | Example 1: `Partner attributes` > `Partner Tier Name` > `Equals` > `Platinum` <br /> Example 2: `Partner attributes` > `Partner Tier Name` > `Is One Of` > `Level 1, Level 2` |\n| **Partner Program Update Type** | String (Enum) | Checks the reason for a tier change (Upgrade, Downgrade, or Renew).          | Example 1: `Partner attributes` > `Update Type` > `Equals` > `UPGRADE` <br /> Example 2: `Partner attributes` > `Update Type` > `Is None Of` > `DOWNGRADE`                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "What it Means",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Partner Program Type",
+            "String (Enum)",
+            "Filters by the partner program type (for example, External or Supplementary.",
+            "Example 1: Partner attributes > Partner Program Type > Equals > EXTERNAL  Example 2: Partner attributes > Partner Program Type > Is Not > SUPPLEMENTARY"
+          ],
+          [
+            "Partner Tier Name",
+            "String",
+            "Matches the specific tier level assigned by the partner.",
+            "Example 1: Partner attributes > Partner Tier Name > Equals > Platinum  Example 2: Partner attributes > Partner Tier Name > Is One Of > Level 1, Level 2"
+          ],
+          [
+            "Partner Program Update Type",
+            "String (Enum)",
+            "Checks the reason for a tier change (Upgrade, Downgrade, or Renew).",
+            "Example 1: Partner attributes > Update Type > Equals > UPGRADE  Example 2: Partner attributes > Update Type > Is None Of > DOWNGRADE"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 88
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 89
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 90
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "## 6. Event Attribute Operators",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "6. Event Attribute Operators",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        94,
+        98
+      ],
+      "raw": "| Operator                           | Data Type | What it Means                                                             | Examples                                                                                                                                                                  |\n| :--------------------------------- | :-------- | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Card Status**                    | Boolean   | Checks whether the card associated with the event is in a specific state. | Example 1: `Event attributes` > `Card Status` > `Equals` > `Active` <br /> Example 2: `Registration attributes` > `Card Status` > `Not Equals` > `Expired`                |\n| **Card Series Name**               | Boolean   | Checks whether the card belongs to a specific named series.               | Example 1: `Event attributes` > `Card Series Name` > `Contains` > `Elite` <br /> Example 2: `Redemption attributes` > `Card Series Name` > `Is One Of` > `Default, Promo` |\n| **Promotion Identifiers Includes** | Boolean   | Checks whether the event is linked to specific internal promotion IDs.    | Example 1: `Event attributes` > `Promotion Identifiers` > `Contains` > `SUMMER_24`  <br /> Example 2: `Purchase attributes` > `Promotion Identifiers` > `Exists`          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operator",
+          "Data Type",
+          "What it Means",
+          "Examples"
+        ],
+        "rows": [
+          [
+            "Card Status",
+            "Boolean",
+            "Checks whether the card associated with the event is in a specific state.",
+            "Example 1: Event attributes > Card Status > Equals > Active  Example 2: Registration attributes > Card Status > Not Equals > Expired"
+          ],
+          [
+            "Card Series Name",
+            "Boolean",
+            "Checks whether the card belongs to a specific named series.",
+            "Example 1: Event attributes > Card Series Name > Contains > Elite  Example 2: Redemption attributes > Card Series Name > Is One Of > Default, Promo"
+          ],
+          [
+            "Promotion Identifiers Includes",
+            "Boolean",
+            "Checks whether the event is linked to specific internal promotion IDs.",
+            "Example 1: Event attributes > Promotion Identifiers > Contains > SUMMER_24   Example 2: Purchase attributes > Promotion Identifiers > Exists"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 96
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 97
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 98
+        }
+      ]
+    }
+  ]
+}

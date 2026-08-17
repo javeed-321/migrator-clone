@@ -1,0 +1,398 @@
+{
+  "slug": "docs/cachemanager-executor",
+  "source": "https://docs.capillarytech.com/docs/cachemanager-executor.md",
+  "url": "https://docs.capillarytech.com/docs/cachemanager-executor",
+  "title": "Cachemanager Executor",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 5,
+    "list": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Cache Manager Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Cache Manager Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Cache Manager block lets you interact with a cache system, such as Redis, to perform operations like retrieving data, setting distributed locks, incrementing or decrementing numeric values, and managing cache entries within your Neo dataflow. This block helps optimize dataflow performance by caching frequently accessed data, ensuring data consistency across distributed processes using locks, and managing temporary or transient states.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Cache Manager block lets you interact with a cache system, such as Redis, to perform operations like retrieving data, setting distributed locks, incrementing or decrementing numeric values, and managing cache entries within your Neo dataflow. This block helps optimize dataflow performance by caching frequently accessed data, ensuring data consistency across distributed processes using locks, and managing temporary or transient states.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Requirement",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "A high-traffic e-commerce platform displays product recommendations on its homepage. Generating these recommendations requires multiple database queries and machine learning model inferences, which are computationally intensive. To ensure fast page load times and reduce database load, the platform must cache recommendations for popular categories for a short period.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A high-traffic e-commerce platform displays product recommendations on its homepage. Generating these recommendations requires multiple database queries and machine learning model inferences, which are computationally intensive. To ensure fast page load times and reduce database load, the platform must cache recommendations for popular categories for a short period.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "During flash sales, when a user adds a limited-stock item to their cart, the system must place a temporary lock on that item’s inventory count for that user. This lock prevents overselling while the user completes the checkout process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "During flash sales, when a user adds a limited-stock item to their cart, the system must place a temporary lock on that item’s inventory count for that user. This lock prevents overselling while the user completes the checkout process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To meet the performance and consistency requirements, you can create a Neo dataflow that uses the **Cache Manager** block for the two key tasks:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To meet the performance and consistency requirements, you can create a Neo dataflow that uses the Cache Manager block for the two key tasks:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "### 1. Caching product recommendations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "1. Caching product recommendations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        27
+      ],
+      "raw": "* Use the **Cache Manager** block in `Get` mode to check if recommendations for a product category already exist in the cache.\n* If a cache miss occurs (no data found or expired), the dataflow computes the recommendations using downstream blocks (e.g., database queries or model inference).\n* While the **Cache Manager** block currently does not support `Set` mode, the system generating the recommendations is responsible for writing them back to the cache with a suitable TTL (time to live). This ensures that future requests can fetch recommendations directly from the cache, improving page load times and reducing database and compute load.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use the Cache Manager block in Get mode to check if recommendations for a product category already exist in the cache.If a cache miss occurs (no data found or expired), the dataflow computes the recommendations using downstream blocks (e.g., database queries or model inference).While the Cache Manager block currently does not support Set mode, the system generating the recommendations is responsible for writing them back to the cache with a suitable TTL (time to live). This ensures that future requests can fetch recommendations directly from the cache, improving page load times and reducing database and compute load.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "### 2. Locking inventory during flash sales",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "2. Locking inventory during flash sales",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        33
+      ],
+      "raw": "* You can use the **Cache Manager** block to store a temporary lock for an item’s inventory when a user adds it to their cart.\n* The lock entry includes user and item identifiers, with a short TTL to automatically release the lock if the user does not complete the checkout.\n* When the user proceeds to checkout, the dataflow can check the cache to validate the lock before finalising the order.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "You can use the Cache Manager block to store a temporary lock for an item’s inventory when a user adds it to their cart.The lock entry includes user and item identifiers, with a short TTL to automatically release the lock if the user does not complete the checkout.When the user proceeds to checkout, the dataflow can check the cache to validate the lock before finalising the order.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "# Configuring the CacheManager block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the CacheManager block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "To configure the **Cache Manager** block:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Cache Manager block:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        39,
+        167
+      ],
+      "raw": "1. From the dataflow canvas, click the node where you want to add caching logic, and select the **Cache Manager** block from the list of available executors.\n\n   <Image align=\"center\" className=\"border\" width=\"55% \" border={true} src=\"https://files.readme.io/cff72c3c6a7f19917146409479621cecfa346e992a25900032cb32fbab6617c2-image.png\" />\n\n2. In the **Block name** field, enter a descriptive name for the block.\\\n   **Note**: Block names cannot contain spaces or special characters, except for underscores (`_`). Use camelCase or snake\\_case formatting.\n\n3. In the **Operation Mode** field, choose the cache operation to perform.\\\n   The following operations are available:\n\n   <Table align={[\"left\",\"left\"]}>\n     <thead>\n       <tr>\n         <th style={{ textAlign: \"left\" }}>\n           Operation\n         </th>\n\n         <th style={{ textAlign: \"left\" }}>\n           Description\n         </th>\n       </tr>\n     </thead>\n\n     <tbody>\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           Get\n           (Retrieve from Cache)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Retrieves an item from the cache using the specified key. If the cached item was originally the output of a Neo block, specifically a `BlockDto` (Block Data Transfer Object), the system correctly reconstructs it. Returns `null` if the key is not found or if an error occurs.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           Lock\\\n            (Acquire Distributed Lock)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Attempts to acquire a distributed lock for a specific key. This is useful for synchronizing operations on shared resources and preventing race conditions.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           Incr\\\n            (Increment Value)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Increments the numeric value associated with a key. If the key does not exist, it is initialized to `0` before the increment operation. A Time-To-Live (TTL) can also be set.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           Decr\\\n           (Decrement Value)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Decrements the numeric value associated with a key. If the key does not exist, it is initialized to `0` before the decrement operation. A Time-To-Live (TTL) can also be set.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           RemoveKey\\\n           (Delete from Cache)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Deletes a key and its associated value from the cache.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           ReleaseLock\\\n           (Release Distributed Lock)\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Releases a previously acquired distributed lock. Always release locks when they are no longer needed to free up resources.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           Set\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n            The `Set` operation is currently not supported in the **Cache Manager** block. You must write to the cache using an external system or custom logic.\n         </td>\n       </tr>\n     </tbody>\n   </Table>\n\n   <br />\n\n4. In the **Cache Key Expression** field, enter a JavaScript expression that evaluates to the final [cache key](https://docs.capillarytech.com/docs/configuring-caching) string. This key uniquely identifies the data or lock in the cache.\\\n   **Example**:\\\n   To create a user-specific cache key, use: `\"user_profile_\" + input.body.userId`\n\n5. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions).\n\n6. Depending on the selected **Operation Mode**, additional fields **become** available:\n\n   * If the **Operation Mode** is `Lock`, the following fields are available. Both fields are optional.\n\n     | Field Name                             | Description                                                                                                                                                                       | Default    | Constraints                                                                                                       |\n     | :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :---------------------------------------------------------------------------------------------------------------- |\n     | **Lock Duration (seconds)**            | Specifies the duration, in seconds, to hold the lock. If the lock isn't explicitly released, it automatically expires after this period.                                          | 20 seconds | Must be a positive number between `1` and `20` (inclusive). If an invalid value is provided, the default is used. |\n     | **Lock Acquisition Timeout (seconds)** | Specifies the maximum time, in seconds, for the block to try acquiring the lock if another process is holding it. If the lock isn’t acquired within this time, the attempt fails. | 1          | Must be a positive number between `1` and `20` (inclusive).                                                       |\n\n   * If the **Operation Mode** is `Incr` or `Decr`, the following fields are available. Both are optional.\n\n     | Field Name              | Description                                                                                                                         | Default | Constraints                |\n     | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :------ | :------------------------- |\n     | **Amount**              | Specifies the numeric value to increment or decrement the cached key.                                                               | 1       | Must be a valid number.    |\n     | **Value TTL (seconds)** | Specifies the time-to-live (TTL), in seconds, for the key when its value is set or updated by the increment or decrement operation. | 3600    | Must be a positive number. |\n\n7. Specify the [execution path](https://docs.capillarytech.com/docs/configuring-relations), if needed.\n\n8. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click the node where you want to add caching logic, and select the Cache Manager block from the list of available executors.In the Block name field, enter a descriptive name for the block.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Operation Mode field, choose the cache operation to perform.The following operations are available:OperationDescriptionGet\n(Retrieve from Cache)Retrieves an item from the cache using the specified key. If the cached item was originally the output of a Neo block, specifically a BlockDto (Block Data Transfer Object), the system correctly reconstructs it. Returns null if the key is not found or if an error occurs.Lock(Acquire Distributed Lock)Attempts to acquire a distributed lock for a specific key. This is useful for synchronizing operations on shared resources and preventing race conditions.Incr(Increment Value)Increments the numeric value associated with a key. If the key does not exist, it is initialized to 0 before the increment operation. A Time-To-Live (TTL) can also be set.Decr(Decrement Value)Decrements the numeric value associated with a key. If the key does not exist, it is initialized to 0 before the decrement operation. A Time-To-Live (TTL) can also be set.RemoveKey(Delete from Cache)Deletes a key and its associated value from the cache.ReleaseLock(Release Distributed Lock)Releases a previously acquired distributed lock. Always release locks when they are no longer needed to free up resources.SetThe Set operation is currently not supported in the Cache Manager block. You must write to the cache using an external system or custom logic.In the Cache Key Expression field, enter a JavaScript expression that evaluates to the final cache key string. This key uniquely identifies the data or lock in the cache.Example:To create a user-specific cache key, use: \"user_profile_\" + input.body.userIdConfigure the input execution logic.Depending on the selected Operation Mode, additional fields become available:If the Operation Mode is Lock, the following fields are available. Both fields are optional.Field NameDescriptionDefaultConstraintsLock Duration (seconds)Specifies the duration, in seconds, to hold the lock. If the lock isn't explicitly released, it automatically expires after this period.20 secondsMust be a positive number between 1 and 20 (inclusive). If an invalid value is provided, the default is used.Lock Acquisition Timeout (seconds)Specifies the maximum time, in seconds, for the block to try acquiring the lock if another process is holding it. If the lock isn’t acquired within this time, the attempt fails.1Must be a positive number between 1 and 20 (inclusive).If the Operation Mode is Incr or Decr, the following fields are available. Both are optional.Field NameDescriptionDefaultConstraintsAmountSpecifies the numeric value to increment or decrement the cached key.1Must be a valid number.Value TTL (seconds)Specifies the time-to-live (TTL), in seconds, for the key when its value is set or updated by the increment or decrement operation.3600Must be a positive number.Specify the execution path, if needed.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 141
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 52
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 56
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 64
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 69
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 75
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 80
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 86
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 91
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 97
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 102
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 108
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 113
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 119
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 124
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 130
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 134
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 143
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 147
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 165
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,759 @@
+{
+  "slug": "docs/schedule-an-export-job-fetch-details",
+  "source": "https://docs.capillarytech.com/docs/schedule-an-export-job-fetch-details.md",
+  "url": "https://docs.capillarytech.com/docs/schedule-an-export-job-fetch-details",
+  "title": "Schedule An Export Job Fetch Details",
+  "description": "",
+  "section": "Schedule an Export Job & Fetch Details",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-27T08:34:31.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 8,
+    "list": 7,
+    "Callout": 6,
+    "br": 1,
+    "Image": 4,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Schedule an Export Job & Fetch Details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Schedule an Export Job & Fetch Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "An export job can be either:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An export job can be either:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "* Recurring: This job runs on a regular schedule (e.g., daily). It only exports new or updated data since the last export. For example, if the job is set to run daily for a month, each day it exports only the data from the previous day.\n* One-Time: This job runs only once and exports the data available at that specific time.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Recurring: This job runs on a regular schedule (e.g., daily). It only exports new or updated data since the last export. For example, if the job is set to run daily for a month, each day it exports only the data from the previous day.One-Time: This job runs only once and exports the data available at that specific time.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        18
+      ],
+      "raw": "* Insights access\n* [FTP server configuration](https://docs.capillarytech.com/docs/configure-ftp-server-for-data-export) — required only when the export destination is **FTP**. Make sure the FTP server is correctly set up to handle data exports. This setup is crucial for the successful transfer of data.\n* For a **Download** export, no FTP setup is needed. You need the **Exports Admin** permission to download the generated file.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Insights accessFTP server configuration — required only when the export destination is FTP. Make sure the FTP server is correctly set up to handle data exports. This setup is crucial for the successful transfer of data.For a Download export, no FTP setup is needed. You need the Exports Admin permission to download the generated file.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-ftp-server-for-data-export",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        27
+      ],
+      "raw": "> 📘 Note\n>\n> * The system does not assure a fixed finish time for the jobs. The export framework picks up a job according to the order of scheduled time.\n> * Please note that you cannot:\n>   * Edit the template after creation.\n>   * Modify KPIs, dimensions, filters, and customer list once scheduled.\n>   * Export measures (such as bill id, bill number, bill amount, auto update time) and custom fields in custom templates. You can export only KPIs and its dimensions.\n> * Current day's data will not be included in the exported data as the data will be synced to the capillary server only during non-business hours.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe system does not assure a fixed finish time for the jobs. The export framework picks up a job according to the order of scheduled time.Please note that you cannot:Edit the template after creation.Modify KPIs, dimensions, filters, and customer list once scheduled.Export measures (such as bill id, bill number, bill amount, auto update time) and custom fields in custom templates. You can export only KPIs and its dimensions.Current day's data will not be included in the exported data as the data will be synced to the capillary server only during non-business hours.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "# Configuring an export schedule",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring an export schedule",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "Perform the following steps to configure an export schedule:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform the following steps to configure an export schedule:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        35,
+        38
+      ],
+      "raw": "1. [Create an Export Job (Step 1 of 3)](https://docs.capillarytech.com/docs/create-an-export-job-step-1-of-3)  .\n2. [Select Data Templates (Step 2 of 3)](https://docs.capillarytech.com/docs/select-data-templates-step-2-of-3) templates that you want to export.\n3. [Modifying Template & Creating Schedule (Step 3 of 3)](https://docs.capillarytech.com/docs/modifying-template-creating-schedule-step-3-of-3) templates to add or remove fields, apply filters and dimensions to export a specific data that you need\n4. Click **Create** to schedule",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create an Export Job (Step 1 of 3)  .Select Data Templates (Step 2 of 3) templates that you want to export.Modifying Template & Creating Schedule (Step 3 of 3) templates to add or remove fields, apply filters and dimensions to export a specific data that you needClick Create to schedule",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/create-an-export-job-step-1-of-3",
+          "line": 35
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/select-data-templates-step-2-of-3",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/modifying-template-creating-schedule-step-3-of-3",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        40,
+        43
+      ],
+      "raw": "> 📘 Important\n>\n> * When you use a Dimension template, the entire data will be exported irrespective of the duration filter applied. Hence, it is recommended not to use templates of Dimensions, Users for example, for recurring schedules unless you wanted to apply the Audience Group filter on it\n> * You cannot apply standard filters such as outlier status, fraud status, merge status, and admin TILL",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "ImportantWhen you use a Dimension template, the entire data will be exported irrespective of the duration filter applied. Hence, it is recommended not to use templates of Dimensions, Users for example, for recurring schedules unless you wanted to apply the Audience Group filter on itYou cannot apply standard filters such as outlier status, fraud status, merge status, and admin TILL",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "Once scheduled, the recipients will receive emails as per the scheduled frequency with the job details including the destination link of the exported data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once scheduled, the recipients will receive emails as per the scheduled frequency with the job details including the destination link of the exported data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        47,
+        49
+      ],
+      "raw": "> 📘 Note\n>\n> The Notify Recipients dropdown only displays users who belong to the currently active organization (orgUsers) or are internal users. Users created under a different organization, even if they have the correct permissions, will not appear in the recipient list.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe Notify Recipients dropdown only displays users who belong to the currently active organization (orgUsers) or are internal users. Users created under a different organization, even if they have the correct permissions, will not appear in the recipient list.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/aa16acc-Uv54KdWoMjekGZdBu9jNzng3_KTWhoGbUQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/aa16acc-Uv54KdWoMjekGZdBu9jNzng3_KTWhoGbUQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        53,
+        56
+      ],
+      "raw": "> 📘 Note\n>\n> As the export job writes the files in the specified FTP location, It is recommended to periodically check whether the username/password of the FTP location is configured correctly.\\\n> To access files from the FTP location, user should have read access to the FTP location",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteAs the export job writes the files in the specified FTP location, It is recommended to periodically check whether the username/password of the FTP location is configured correctly.To access files from the FTP location, user should have read access to the FTP location",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "# Viewing Export Jobs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Viewing Export Jobs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "After creating an export job, you can view its status on the **Export Schedules** page. Additional search options are available to refine your search.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After creating an export job, you can view its status on the Export Schedules page. Additional search options are available to refine your search.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        62,
+        64
+      ],
+      "raw": "* **Name search**: Use the search box to find a specific export job, by its name.\n* **Filter list by frequency**: Filter jobs by frequency: Once, Daily, Weekly, or Monthly. By default, all frequencies are displayed.\n* **Filter list by status**: Filter jobs by status: All, Active, or Completed. By default, all jobs are displayed.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Name search: Use the search box to find a specific export job, by its name.Filter list by frequency: Filter jobs by frequency: Once, Daily, Weekly, or Monthly. By default, all frequencies are displayed.Filter list by status: Filter jobs by status: All, Active, or Completed. By default, all jobs are displayed.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "The **More** options icon is used to either **Duplicate** a job, **Delete** a job, or **View** the execution log of a job..",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The More options icon is used to either Duplicate a job, Delete a job, or View the execution log of a job..",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/3cd91dbf908d3270bb699694c1169a10d19869d4ee7987e6d7a364715b1bd6ed-Export_schedule_1.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/3cd91dbf908d3270bb699694c1169a10d19869d4ee7987e6d7a364715b1bd6ed-Export_schedule_1.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "A job has one of the following statuses: Yet to Execute, Success, or In Progress.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A job has one of the following statuses: Yet to Execute, Success, or In Progress.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        72,
+        77
+      ],
+      "raw": "| **Icon**        | **Description**                                                                                                                                                                                                   |\n| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Clock icon**  | Indicates that the job is created but has not yet executed.                                                                                                                                                       |\n| **Yellow icon** | Indicates that an execution is currently in progress. A recurring scheduled job can have multiple executions, while a one-time job will have only one.                                                            |\n| **Green icon**  | Indicates the job is successfully executed. For recurring jobs, the icon turns green upon successful completion of the current execution. It will change back to yellow when the next scheduled execution begins. |\n| **Red icon**    | Indicates the job is unable to execute.                                                                                                                                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Icon",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Clock icon",
+            "Indicates that the job is created but has not yet executed."
+          ],
+          [
+            "Yellow icon",
+            "Indicates that an execution is currently in progress. A recurring scheduled job can have multiple executions, while a one-time job will have only one."
+          ],
+          [
+            "Green icon",
+            "Indicates the job is successfully executed. For recurring jobs, the icon turns green upon successful completion of the current execution. It will change back to yellow when the next scheduled execution begins."
+          ],
+          [
+            "Red icon",
+            "Indicates the job is unable to execute."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "##",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        81,
+        86
+      ],
+      "raw": "> 📘 Note\n>\n> * A recurring schedule job can have more than 1 executions where as a one-time schedule will have only one execution\n> * When the job is in progress, you cannot kill or rerun the job\n> * For each successful **FTP** export job, an email is sent to all the chosen recipients with the destination links of the exported files. To download files from the FTP server, select the link in the email, sign in, and download the zip file.\n> * **Download** export jobs aren't emailed. Download the file from the **Execution Log**, as described below.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteA recurring schedule job can have more than 1 executions where as a one-time schedule will have only one executionWhen the job is in progress, you cannot kill or rerun the jobFor each successful FTP export job, an email is sent to all the chosen recipients with the destination links of the exported files. To download files from the FTP server, select the link in the email, sign in, and download the zip file.Download export jobs aren't emailed. Download the file from the Execution Log, as described below.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "To view details of a specific job:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To view details of a specific job:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "1. Click on the **schedule** that you want to see",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click on the schedule that you want to see",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/d5a41f4-fZmsndk_oK3ggNnBVcKb-n8BbUNWhJmqhg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/d5a41f4-fZmsndk_oK3ggNnBVcKb-n8BbUNWhJmqhg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        94,
+        96
+      ],
+      "raw": "2. On the **Overview** tab, you can see the details of the schedule such as schedule name, description, schedule type, FTP tag, frequency, execution date, export data fields, notify recipients, and templates.\n\n3. To see the execution log, click the **Execution** Log tab.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Overview tab, you can see the details of the schedule such as schedule name, description, schedule type, FTP tag, frequency, execution date, export data fields, notify recipients, and templates.To see the execution log, click the Execution Log tab.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "![](https://files.readme.io/0169fe1-auWMH_aldn_gOCem_FvvTDtrV8GBHmpE_Q.png \"auWMH_aldn_gOCem_FvvTDtrV8GBHmpE_Q.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/0169fe1-auWMH_aldn_gOCem_FvvTDtrV8GBHmpE_Q.png",
+        "title": "auWMH_aldn_gOCem_FvvTDtrV8GBHmpE_Q.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/0169fe1-auWMH_aldn_gOCem_FvvTDtrV8GBHmpE_Q.png",
+          "line": 98
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "For a **Download** export schedule, the Execution Log shows a **Download CSV** link for each successful run. Select it to download the file from your browser.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For a Download export schedule, the Execution Log shows a Download CSV link for each successful run. Select it to download the file from your browser.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        102,
+        106
+      ],
+      "raw": "> 📘 Note\n>\n> * Downloading the file requires the **Exports Admin** (`EXPORTS_ADMIN`) permission, granted through your role or user group. Admins with the permission see an active **Download CSV** link. Without it, the export still runs successfully, but the link stays disabled and hovering shows: \"You do not have the permission to perform this action. Please contact your admin to request access.\"\n> * Downloads are permission-gated because exported files can contain sensitive or personally identifiable information (PII).\n> * Download supports files up to 10 MB. For larger exports, use the **FTP** destination instead.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteDownloading the file requires the Exports Admin (EXPORTS_ADMIN) permission, granted through your role or user group. Admins with the permission see an active Download CSV link. Without it, the export still runs successfully, but the link stays disabled and hovering shows: \"You do not have the permission to perform this action. Please contact your admin to request access.\"Downloads are permission-gated because exported files can contain sensitive or personally identifiable information (PII).Download supports files up to 10 MB. For larger exports, use the FTP destination instead.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "4. If an export job fails in the middle for some reason, you can run the job manually by clicking the **Rerun** button. The job will run from the previous successful schedule.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If an export job fails in the middle for some reason, you can run the job manually by clicking the Rerun button. The job will run from the previous successful schedule.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "##",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

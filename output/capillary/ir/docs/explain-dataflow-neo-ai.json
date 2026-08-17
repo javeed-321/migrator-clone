@@ -1,0 +1,266 @@
+{
+  "slug": "docs/explain-dataflow-neo-ai",
+  "source": "https://docs.capillarytech.com/docs/explain-dataflow-neo-ai.md",
+  "url": "https://docs.capillarytech.com/docs/explain-dataflow-neo-ai",
+  "title": "Explain Dataflow Neo Ai",
+  "description": "",
+  "section": "AI-Assisted Dataflow Creation in Neo using Aira Coder",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-22T13:03:23.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 3,
+    "Image": 1,
+    "br": 2,
+    "code": 4
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Summarize a Dataflow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Summarize a Dataflow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "You can ask Aira Coder to explain what a dataflow does. This helps you understand complex flows and validate logic.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can ask Aira Coder to explain what a dataflow does. This helps you understand complex flows and validate logic.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "![](https://files.readme.io/d71f756a94c5c1486a16bfd454b484df73d0821e52f8d66c589a729f8eba4e86-data_flow_6.gif)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/d71f756a94c5c1486a16bfd454b484df73d0821e52f8d66c589a729f8eba4e86-data_flow_6.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/d71f756a94c5c1486a16bfd454b484df73d0821e52f8d66c589a729f8eba4e86-data_flow_6.gif",
+          "line": 11
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Example Prompt 1:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example Prompt 1:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        19
+      ],
+      "raw": "```json Prompt\nexplain this dataflow\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Prompt",
+        "code": "explain this dataflow"
+      },
+      "text": "Prompt",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        64
+      ],
+      "raw": "````json Response\nDataflow Explanation\nThis dataflow is designed to fetch extended field configuration data from the Capillary InTouch API with proper authentication and error handling.\n\nBlock Breakdown\n1. prepareBody (Script Block - Source)\nType: Script Block (Entry Point)\nPurpose: Prepares authentication headers for the API call\nConfiguration:\n- Retrieves the organization ID from incoming request headers (`x-cap-api-auth-org-id`) - Sets up authentication with a hardcoded API token - Returns headers object containing: - `X-CAP-API-AUTH-KEY`: Static authentication token - `X-CAP-API-AUTH-ORG-ID`: Organization ID from incoming request\nFlow: On successful execution (`isSuccess()`), proceeds to `ActualCall` block\n2. ActualCall (APIRequest Block)\nType: API Request Block\nPurpose: Makes the actual GET request to fetch extended field configuration\nConfiguration:\n- Method: GET - URL: `\nhttps://eu.intouch.capillarytech.com/v2/entity/extendedFieldConfig`\n- Uses headers prepared by the `prepareBody` block\nFlow:\n- On success (`isSuccess()`): Routes to `getResponse` block - On error (`hasError()`): Routes to `getError` block\n3. getResponse (Script Block)\nType: Script Block\nPurpose: Processes successful API response\nConfiguration:\n- Retrieves the response body from `ActualCall` block using `getBody(\"ActualCall\")` - Returns the response data in a structured format\nFlow: Terminal block (no further relations)\n4. getError (Script Block)\nType: Script Block\nPurpose: Handles API call failures\nConfiguration:\n- Constructs an error response object with: - `status`: 500 (Internal Server Error) - `success`: false - `message`: Contains the error details from `ActualCall` block\nFlow: Terminal block (no further relations)\nFlow Relationships\n``` prepareBody (Script) ↓ [isSuccess()] ActualCall (APIRequest) ↓ [isSuccess()] ↓ [hasError()] getResponse (Script) getError (Script) ```\n\nOverall Working\nThis dataflow implements a secure API proxy pattern with the following workflow:\n\nAuthentication Setup: The flow begins by preparing authentication credentials, extracting the organization ID from the incoming request and combining it with a static API token.\nAPI Call Execution: The prepared headers are used to make a GET request to the Capillary InTouch API endpoint for extended field configuration.\nConditional Response Handling:\n- Success Path: If the API call succeeds, the response data is extracted and returned to the caller - Error Path: If the API call fails, an error response with status 500 is constructed and returned\nThis pattern ensures proper authentication, clean error handling, and structured response formatting for retrieving extended field configuration data from the Capillary platform.\n````",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Response",
+        "code": "Dataflow Explanation\nThis dataflow is designed to fetch extended field configuration data from the Capillary InTouch API with proper authentication and error handling.\n\nBlock Breakdown\n1. prepareBody (Script Block - Source)\nType: Script Block (Entry Point)\nPurpose: Prepares authentication headers for the API call\nConfiguration:\n- Retrieves the organization ID from incoming request headers (`x-cap-api-auth-org-id`) - Sets up authentication with a hardcoded API token - Returns headers object containing: - `X-CAP-API-AUTH-KEY`: Static authentication token - `X-CAP-API-AUTH-ORG-ID`: Organization ID from incoming request\nFlow: On successful execution (`isSuccess()`), proceeds to `ActualCall` block\n2. ActualCall (APIRequest Block)\nType: API Request Block\nPurpose: Makes the actual GET request to fetch extended field configuration\nConfiguration:\n- Method: GET - URL: `\nhttps://eu.intouch.capillarytech.com/v2/entity/extendedFieldConfig`\n- Uses headers prepared by the `prepareBody` block\nFlow:\n- On success (`isSuccess()`): Routes to `getResponse` block - On error (`hasError()`): Routes to `getError` block\n3. getResponse (Script Block)\nType: Script Block\nPurpose: Processes successful API response\nConfiguration:\n- Retrieves the response body from `ActualCall` block using `getBody(\"ActualCall\")` - Returns the response data in a structured format\nFlow: Terminal block (no further relations)\n4. getError (Script Block)\nType: Script Block\nPurpose: Handles API call failures\nConfiguration:\n- Constructs an error response object with: - `status`: 500 (Internal Server Error) - `success`: false - `message`: Contains the error details from `ActualCall` block\nFlow: Terminal block (no further relations)\nFlow Relationships\n``` prepareBody (Script) ↓ [isSuccess()] ActualCall (APIRequest) ↓ [isSuccess()] ↓ [hasError()] getResponse (Script) getError (Script) ```\n\nOverall Working\nThis dataflow implements a secure API proxy pattern with the following workflow:\n\nAuthentication Setup: The flow begins by preparing authentication credentials, extracting the organization ID from the incoming request and combining it with a static API token.\nAPI Call Execution: The prepared headers are used to make a GET request to the Capillary InTouch API endpoint for extended field configuration.\nConditional Response Handling:\n- Success Path: If the API call succeeds, the response data is extracted and returned to the caller - Error Path: If the API call fails, an error response with status 500 is constructed and returned\nThis pattern ensures proper authentication, clean error handling, and structured response formatting for retrieving extended field configuration data from the Capillary platform."
+      },
+      "text": "Response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "**Example Prompt 2:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example Prompt 2:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        68,
+        70
+      ],
+      "raw": "```json Prompt\nexplain the block 'prepareBody'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Prompt",
+        "code": "explain the block 'prepareBody'"
+      },
+      "text": "Prompt",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        72,
+        105
+      ],
+      "raw": "````json Response\nExplanation of the 'prepareBody' Block\nWhat is the 'prepareBody' Block?\nThe 'prepareBody' block is a Script block in the NEO Dataflow that serves as the entry point (source block) of this workflow. Its primary purpose is to prepare authentication headers required for making an API call to the Capillary InTouch platform.\n\nBlock Configuration Details\nType and Position\nBlock Type: Script Block\nPosition: Starting point of the DAG (x: 320, y: 0)\nSource Block: Yes (marked as `\"source\": true`)\nExecution Strategy: \"and\" (all conditions must be met)\nFunctionality\nThe block executes custom JavaScript code that:\n\nRetrieves Organization ID: Extracts the organization ID from the incoming request's effective headers using `getEffectiveHeaders()['x-cap-api-auth-org-id']`\nSets Authentication Token: Defines a hardcoded authentication token value: `\"Qjc0M0ExMDE0MDBBMTUzRDVFRTVFNDI0N0Q5QzAxOEI=\"`\nReturns Authentication Headers: Creates and returns a headers object containing:\n- `X-CAP-API-AUTH-KEY`: The authentication token - `X-CAP-API-AUTH-ORG-ID`: The extracted organization ID\nOutput Structure\n``` { headers: { 'X-CAP-API-AUTH-KEY': 'Qjc0M0ExMDE0MDBBMTUzRDVFRTVFNDI0N0Q5QzAxOEI=', 'X-CAP-API-AUTH-ORG-ID': } } ```\nRelationship with Other Blocks\nThe prepareBody block has one outgoing relation:\n\nRelation Name: \"6gUJJQOQvV\"\nCondition: `isSuccess()` - executes only if the script completes successfully\nTarget Block: \"ActualCall\" - an API Request block that makes the actual HTTP GET call to fetch extended field configurations\nRole in the Overall Workflow\nThe prepareBody block acts as the authentication preparation layer in this workflow. It ensures that the subsequent API call to the Capillary InTouch platform (`ActualCall` block) has the necessary authentication credentials by:\n\nDynamically extracting the organization context from the incoming request\nCombining it with a static authentication token\nPassing these headers forward to authorize the API request\nThis design pattern separates authentication logic from the actual API call, making the workflow more maintainable and modular.\n````",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Response",
+        "code": "Explanation of the 'prepareBody' Block\nWhat is the 'prepareBody' Block?\nThe 'prepareBody' block is a Script block in the NEO Dataflow that serves as the entry point (source block) of this workflow. Its primary purpose is to prepare authentication headers required for making an API call to the Capillary InTouch platform.\n\nBlock Configuration Details\nType and Position\nBlock Type: Script Block\nPosition: Starting point of the DAG (x: 320, y: 0)\nSource Block: Yes (marked as `\"source\": true`)\nExecution Strategy: \"and\" (all conditions must be met)\nFunctionality\nThe block executes custom JavaScript code that:\n\nRetrieves Organization ID: Extracts the organization ID from the incoming request's effective headers using `getEffectiveHeaders()['x-cap-api-auth-org-id']`\nSets Authentication Token: Defines a hardcoded authentication token value: `\"Qjc0M0ExMDE0MDBBMTUzRDVFRTVFNDI0N0Q5QzAxOEI=\"`\nReturns Authentication Headers: Creates and returns a headers object containing:\n- `X-CAP-API-AUTH-KEY`: The authentication token - `X-CAP-API-AUTH-ORG-ID`: The extracted organization ID\nOutput Structure\n``` { headers: { 'X-CAP-API-AUTH-KEY': 'Qjc0M0ExMDE0MDBBMTUzRDVFRTVFNDI0N0Q5QzAxOEI=', 'X-CAP-API-AUTH-ORG-ID': } } ```\nRelationship with Other Blocks\nThe prepareBody block has one outgoing relation:\n\nRelation Name: \"6gUJJQOQvV\"\nCondition: `isSuccess()` - executes only if the script completes successfully\nTarget Block: \"ActualCall\" - an API Request block that makes the actual HTTP GET call to fetch extended field configurations\nRole in the Overall Workflow\nThe prepareBody block acts as the authentication preparation layer in this workflow. It ensures that the subsequent API call to the Capillary InTouch platform (`ActualCall` block) has the necessary authentication credentials by:\n\nDynamically extracting the organization context from the incoming request\nCombining it with a static authentication token\nPassing these headers forward to authorize the API request\nThis design pattern separates authentication logic from the actual API call, making the workflow more maintainable and modular."
+      },
+      "text": "Response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 107
+        }
+      ]
+    }
+  ]
+}

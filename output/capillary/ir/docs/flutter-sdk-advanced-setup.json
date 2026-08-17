@@ -1,0 +1,298 @@
+{
+  "slug": "docs/flutter-sdk-advanced-setup",
+  "source": "https://docs.capillarytech.com/docs/flutter-sdk-advanced-setup.md",
+  "url": "https://docs.capillarytech.com/docs/flutter-sdk-advanced-setup",
+  "title": "Flutter Sdk Advanced Setup",
+  "description": "",
+  "section": "Flutter SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T06:57:38.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 5,
+    "code": 4,
+    "Callout": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Advanced Platform Setup",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Advanced Platform Setup",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Advanced Android Setup",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Advanced Android Setup",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "If you already have a class that extends Application or you want to use a CMS other than Firebase Remote Configuration, ensure your custom Application class extends `HydraApplication` as shown below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you already have a class that extends Application or you want to use a CMS other than Firebase Remote Configuration, ensure your custom Application class extends HydraApplication as shown below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        24
+      ],
+      "raw": "```kotlin\nimport com.capillary.plugins.hydra.HydraApplication\nimport com.capillary.plugins.hydra.nativeapis.HydraInitializer\n\nclass ExampleApplication : HydraApplication() {\n    override fun onCreate() {\n        super.onCreate()\n        HydraInitializer.initializeUsingFirebaseRemoteConfig(this)\n        // ...\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "kotlin",
+        "title": null,
+        "code": "import com.capillary.plugins.hydra.HydraApplication\nimport com.capillary.plugins.hydra.nativeapis.HydraInitializer\n\nclass ExampleApplication : HydraApplication() {\n    override fun onCreate() {\n        super.onCreate()\n        HydraInitializer.initializeUsingFirebaseRemoteConfig(this)\n        // ...\n    }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        26,
+        28
+      ],
+      "raw": "> 📘 Note\n>\n> You must use one of the two initializers provided by `HydraInitializer`. The above code uses Firebase Remote Configuration.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteYou must use one of the two initializers provided by HydraInitializer. The above code uses Firebase Remote Configuration.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "To get remote configuration details from another CMS, use the other initializer as shown below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To get remote configuration details from another CMS, use the other initializer as shown below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        32,
+        49
+      ],
+      "raw": "```kotlin\nimport com.capillary.plugins.hydra.HydraApplication\nimport com.capillary.plugins.hydra.nativeapis.HydraInitializer\nimport com.capillary.plugins.hydra.nativeapis.HydraRemoteConfig\n\nclass ExampleApplication : HydraApplication() {\n    override fun onCreate() {\n        super.onCreate()\n        val accountId = \"your_account_id\"\n        val baseURL = \"your_base_url\"\n        val sslPublicKey = \"your_ssl_public_key\"\n        val remoteDebugLevel = 4 // LogType.DEBUG\n        val hydraRemoteConfig = HydraRemoteConfig(accountId, baseURL, sslPublicKey, remoteDebugLevel)\n        HydraInitializer.initialize(this, hydraRemoteConfig)\n        // ...\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "kotlin",
+        "title": null,
+        "code": "import com.capillary.plugins.hydra.HydraApplication\nimport com.capillary.plugins.hydra.nativeapis.HydraInitializer\nimport com.capillary.plugins.hydra.nativeapis.HydraRemoteConfig\n\nclass ExampleApplication : HydraApplication() {\n    override fun onCreate() {\n        super.onCreate()\n        val accountId = \"your_account_id\"\n        val baseURL = \"your_base_url\"\n        val sslPublicKey = \"your_ssl_public_key\"\n        val remoteDebugLevel = 4 // LogType.DEBUG\n        val hydraRemoteConfig = HydraRemoteConfig(accountId, baseURL, sslPublicKey, remoteDebugLevel)\n        HydraInitializer.initialize(this, hydraRemoteConfig)\n        // ...\n    }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        51,
+        55
+      ],
+      "raw": "> 📘 Note\n>\n> In both cases, place the initializer immediately after `super.onCreate()`. You can add the rest of your code after that.\n>\n> You also need to update the class name in `AndroidManifest.xml`. Use the full name of the class, including the package name and class name.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteIn both cases, place the initializer immediately after super.onCreate(). You can add the rest of your code after that.You also need to update the class name in AndroidManifest.xml. Use the full name of the class, including the package name and class name.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "# Advanced iOS Setup",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Advanced iOS Setup",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "If you prefer not to use Firebase Remote Configuration, you can initialize the Hydra SDK from `AppDelegate.swift`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you prefer not to use Firebase Remote Configuration, you can initialize the Hydra SDK from AppDelegate.swift.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "Add the following import statement at the top of the `AppDelegate.swift` file:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Add the following import statement at the top of the AppDelegate.swift file:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        63,
+        65
+      ],
+      "raw": "```swift\nimport capillary_hydra_ios\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "import capillary_hydra_ios"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "Then initialize the SDK as shown below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Then initialize the SDK as shown below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        69,
+        84
+      ],
+      "raw": "```swift\noverride func application(\n    _ application: UIApplication,\n    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n) -> Bool {\n    GeneratedPluginRegistrant.register(with: self)\n    let remoteConfig = HydraRemoteConfig(\n        accountId: \"your_account_id\",\n        baseUrl: \"your_base_url\",\n        sslPublicKey: \"your_ssl_public_key\",\n        remoteLogLevel: 4 // Debug level\n    )\n    HydraNativeAPI.shared.initApplication(application, didFinishLaunchingWithOptions: launchOptions, hydraRemoteConfig: remoteConfig!)\n    return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "override func application(\n    _ application: UIApplication,\n    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n) -> Bool {\n    GeneratedPluginRegistrant.register(with: self)\n    let remoteConfig = HydraRemoteConfig(\n        accountId: \"your_account_id\",\n        baseUrl: \"your_base_url\",\n        sslPublicKey: \"your_ssl_public_key\",\n        remoteLogLevel: 4 // Debug level\n    )\n    HydraNativeAPI.shared.initApplication(application, didFinishLaunchingWithOptions: launchOptions, hydraRemoteConfig: remoteConfig!)\n    return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "slug": "docs/authentication-scenarios-and-recommendations",
+  "source": "https://docs.capillarytech.com/docs/authentication-scenarios-and-recommendations.md",
+  "url": "https://docs.capillarytech.com/docs/authentication-scenarios-and-recommendations",
+  "title": "Authentication Scenarios And Recommendations",
+  "description": "",
+  "section": "Identity Access Management",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2025-06-20T08:57:50.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Authentication Scenarios and Recommendations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Authentication Scenarios and Recommendations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        22
+      ],
+      "raw": "| Scenario                                                                   | Description                                                                                                                        | IAM Category             | Recommended Authentication                                           |\n| :------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :----------------------- | :------------------------------------------------------------------- |\n| POS client-to-server integration                                           | POS terminals are directly integrated with Capillary Server. API requests come directly from POS terminal to the Capillary Server. | Machine to Machine (M2M) | Basic authentication using till username and password                |\n| POS server-to-server integration                                           | POS servers are directly integrated with Capillary Server. API requests come directly from POS server to the Capillary Server.     | Machine to Machine (M2M) | OAuth2 Client Credentials Flow using API key and secret              |\n| FTP server-to-server integration                                           | Client systems push files to FTP; Capillary accesses and processes these files via Connect+ or OOB solution.                       | Machine to Machine (M2M) | OAuth2 Client Credentials Flow using API key and secret              |\n| Server-to-server custom integration                                        | Client servers consume Capillary APIs via a wrapper service. Development and maintenance depend on the agreement.                  | Machine to Machine (M2M) | OAuth2 Client Credentials Flow using API key and secret              |\n| Prebuilt server-to-server integrations (Magento, Shopify, SFMC connectors) | Client systems use Capillary plugins to connect with Capillary.                                                                    | Machine to Machine (M2M) | OAuth2 Client Credentials Flow using API key and secret              |\n| Integration via Connect+ dataflow                                          | Dataflows are configured and triggered within Connect+ for integrations.                                                           | Machine to Machine (M2M) | OAuth2 Client Credentials Flow using API key and secret              |\n| First-party mobile/web app with basic OTP-based login                      | Customer-facing mobile or web app with simple OTP or password login.                                                               | Customer IAM             | Capillary Auth Engine (OTP / password-based auth)                    |\n| Third-party apps integrating with Capillary                                | Mobile and Gateway APIs consumed by third-party apps for customer access.                                                          | Customer IAM             | Mobile APIs Auth Service (OTP/password/till login); Non-OAuth2-based |\n| SSO for partner app login                                                  | Users log in once and access multiple partner apps without re-entering credentials.                                                | Customer IAM             | OAuth2 Authorization Code Flow with Ory Hydra (SSO)                  |\n| Customised login with multiple options                                     | Customer-facing apps with custom login flows or third-party IdPs.                                                                  | Customer IAM             | Bring Your Own CIAM                                                  |\n| Advanced security (e.g. adaptive 2FA)                                      | Applications requiring enhanced security controls.                                                                                 | Customer IAM             | Bring Your Own CIAM                                                  |\n| Integration with external Identity Providers (IdP)                         | Customers use their existing IdP setup to authenticate users.                                                                      | Customer IAM             | Bring Your Own CIAM                                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Scenario",
+          "Description",
+          "IAM Category",
+          "Recommended Authentication"
+        ],
+        "rows": [
+          [
+            "POS client-to-server integration",
+            "POS terminals are directly integrated with Capillary Server. API requests come directly from POS terminal to the Capillary Server.",
+            "Machine to Machine (M2M)",
+            "Basic authentication using till username and password"
+          ],
+          [
+            "POS server-to-server integration",
+            "POS servers are directly integrated with Capillary Server. API requests come directly from POS server to the Capillary Server.",
+            "Machine to Machine (M2M)",
+            "OAuth2 Client Credentials Flow using API key and secret"
+          ],
+          [
+            "FTP server-to-server integration",
+            "Client systems push files to FTP; Capillary accesses and processes these files via Connect+ or OOB solution.",
+            "Machine to Machine (M2M)",
+            "OAuth2 Client Credentials Flow using API key and secret"
+          ],
+          [
+            "Server-to-server custom integration",
+            "Client servers consume Capillary APIs via a wrapper service. Development and maintenance depend on the agreement.",
+            "Machine to Machine (M2M)",
+            "OAuth2 Client Credentials Flow using API key and secret"
+          ],
+          [
+            "Prebuilt server-to-server integrations (Magento, Shopify, SFMC connectors)",
+            "Client systems use Capillary plugins to connect with Capillary.",
+            "Machine to Machine (M2M)",
+            "OAuth2 Client Credentials Flow using API key and secret"
+          ],
+          [
+            "Integration via Connect+ dataflow",
+            "Dataflows are configured and triggered within Connect+ for integrations.",
+            "Machine to Machine (M2M)",
+            "OAuth2 Client Credentials Flow using API key and secret"
+          ],
+          [
+            "First-party mobile/web app with basic OTP-based login",
+            "Customer-facing mobile or web app with simple OTP or password login.",
+            "Customer IAM",
+            "Capillary Auth Engine (OTP / password-based auth)"
+          ],
+          [
+            "Third-party apps integrating with Capillary",
+            "Mobile and Gateway APIs consumed by third-party apps for customer access.",
+            "Customer IAM",
+            "Mobile APIs Auth Service (OTP/password/till login); Non-OAuth2-based"
+          ],
+          [
+            "SSO for partner app login",
+            "Users log in once and access multiple partner apps without re-entering credentials.",
+            "Customer IAM",
+            "OAuth2 Authorization Code Flow with Ory Hydra (SSO)"
+          ],
+          [
+            "Customised login with multiple options",
+            "Customer-facing apps with custom login flows or third-party IdPs.",
+            "Customer IAM",
+            "Bring Your Own CIAM"
+          ],
+          [
+            "Advanced security (e.g. adaptive 2FA)",
+            "Applications requiring enhanced security controls.",
+            "Customer IAM",
+            "Bring Your Own CIAM"
+          ],
+          [
+            "Integration with external Identity Providers (IdP)",
+            "Customers use their existing IdP setup to authenticate users.",
+            "Customer IAM",
+            "Bring Your Own CIAM"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,748 @@
+{
+  "slug": "docs/api-request-block",
+  "source": "https://docs.capillarytech.com/docs/api-request-block.md",
+  "url": "https://docs.capillarytech.com/docs/api-request-block",
+  "title": "Api Request Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 15,
+    "list": 4,
+    "Image": 1,
+    "Table": 1,
+    "code": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API Request Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Request Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The API Request Block allows you to make API calls within a dataflow. You can configure it by specifying the HTTP method, API endpoint, headers, query, body, and path parameters. The methods supported are GET, POST, PUT, DELETE, and PATCH.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The API Request Block allows you to make API calls within a dataflow. You can configure it by specifying the HTTP method, API endpoint, headers, query, body, and path parameters. The methods supported are GET, POST, PUT, DELETE, and PATCH.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You can use the API Request Block to invoke the private APIs. When you use this block, ensure that you use the endpoints `https://{host_name}/das/getUserDetails`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the API Request Block to invoke the private APIs. When you use this block, ensure that you use the endpoints https://{host_name}/das/getUserDetails.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        16
+      ],
+      "raw": "**Requirement**\\\nConsider a scenario where, during the creation of a [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/daec5cfa-be66-4d5d-b021-c2f45c3aa322/version/9204edc5-0386-4326-9ef8-9988fe690b64?ruleType=org), you need to retrieve customer details using the **Get Customer Details** API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "RequirementConsider a scenario where, during the creation of a dataflow, you need to retrieve customer details using the Get Customer Details API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        19
+      ],
+      "raw": "**Solution**\\\nYou can add an API Request Block with the following details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SolutionYou can add an API Request Block with the following details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        25
+      ],
+      "raw": "* Method: GET\n* URL: `https://{host}/v2/customers/lookup/customerDetails `\n* Query Parameters:\n  * Key: embed\n  * Value: points, mlp",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Method: GETURL: https://{host}/v2/customers/lookup/customerDetails Query Parameters:Key: embedValue: points, mlp",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Configuring the API Request Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the API Request Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "To configure the API Request block, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the API Request block, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        31,
+        46
+      ],
+      "raw": "1. From the dataflow canvas, click on the connector.\n2. Select the **API Request** block from the pop-up window.\n3. In the **Block name** section, enter the block name.\\\n   **Note**: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n4. In the **Method** section, select a method from the drop-down menu. The available methods are GET, POST, PUT, DELETE, and PATCH.\n5. In the **URL** section, enter the API URL.\\\n   **Syntax**: `https://{host}/{URL}`\n   **Example**: `https://{host}/v2/customers/lookup/customerDetails `\n6. In the **Query Parameters** section, enter the key and its corresponding value. The entries into the **Key** and the **Value** fields depend on the API parameters.\\\n   **Example**: For the API endpoint `https://{host}/v2/customers/lookup/customerDetails`, some of the query parameters are `source`, `embed`, and `identifierName`. The query parameters are set as **Key**, and their corresponding values are provided as **Value**.\n   Consider the parameter `embed`. Some possible values for `embed` are `points`, `subscriptions`, and `mlp`. So, if the **Key** is `embed`, the **Value** can be `points`, `subscriptions`, or `mlp`.\n7. If applicable, in the **Path Parameters** section, enter the **Key** and its corresponding **Value** . The entries into the **Key** and the **Value** fields depend on the API parameters.\\\n   **Example**: For the API endpoint, `https://{host}/api_gateway/loyalty/v1/programs/{programs}/promotions/{promotions}/get`, the path parameters are `program` and `promotion`. Here, `program` and `promotion` are set as **Key**, and their respective values should be provided in the **Value** section.\n8. If applicable, in the **Headers** section, enter the **Key** and its corresponding **Value**. For more information on headers, see [Header Management in Neo](https://docs.capillarytech.com/docs/api-request-block#header-management-in-neo).\n9. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and[ define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n10. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the connector.Select the API Request block from the pop-up window.In the Block name section, enter the block name.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Method section, select a method from the drop-down menu. The available methods are GET, POST, PUT, DELETE, and PATCH.In the URL section, enter the API URL.Syntax: https://{host}/{URL}\nExample: https://{host}/v2/customers/lookup/customerDetails In the Query Parameters section, enter the key and its corresponding value. The entries into the Key and the Value fields depend on the API parameters.Example: For the API endpoint https://{host}/v2/customers/lookup/customerDetails, some of the query parameters are source, embed, and identifierName. The query parameters are set as Key, and their corresponding values are provided as Value.\nConsider the parameter embed. Some possible values for embed are points, subscriptions, and mlp. So, if the Key is embed, the Value can be points, subscriptions, or mlp.If applicable, in the Path Parameters section, enter the Key and its corresponding Value . The entries into the Key and the Value fields depend on the API parameters.Example: For the API endpoint, https://{host}/api_gateway/loyalty/v1/programs/{programs}/promotions/{promotions}/get, the path parameters are program and promotion. Here, program and promotion are set as Key, and their respective values should be provided in the Value section.If applicable, in the Headers section, enter the Key and its corresponding Value. For more information on headers, see Header Management in Neo.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-request-block#header-management-in-neo",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring API Request block\" border={true} caption=\"Configuring API Request block\" src=\"https://files.readme.io/2723631b86d71f8c1f3dc293cd0438826924f4a8db684c94f2f5e3ff9f0c8423-13.02.2025_19.48.10_REC_configuring_API_Request.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring API Request block",
+        "border": "{true}",
+        "caption": "Configuring API Request block",
+        "src": "https://files.readme.io/2723631b86d71f8c1f3dc293cd0438826924f4a8db684c94f2f5e3ff9f0c8423-13.02.2025_19.48.10_REC_configuring_API_Request.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "## Header management in Neo",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Header management in Neo",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "Request headers are key-value pairs in an HTTP request that provide essential information about the request context. They help the server understand how to process the request and respond appropriately.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Request headers are key-value pairs in an HTTP request that provide essential information about the request context. They help the server understand how to process the request and respond appropriately.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "Below is a list of headers available in Neo. Additionally, you can create custom headers according to your requirements.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is a list of headers available in Neo. Additionally, you can create custom headers according to your requirements.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        56,
+        395
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Key\n      </th>\n\n      <th>\n        Description\n      </th>\n\n      <th>\n        Possible Values & Default Value\n      </th>\n\n      <th>\n        Modifiable in the dataflow\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Content-Type**\n      </td>\n\n      <td>\n        The Content-Type header specifies the format of the request or response body. It tells the server or client how to process the transmitted data.\n      </td>\n\n      <td>\n        **Default**: application/json\n\n        Neo includes this header by default. You can override the default value or skip the header. To ignore the header, set its value to an empty string (\"\").\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Accept-Encoding**\n      </td>\n\n      <td>\n        The Accept-Encoding header informs the server about the compression methods supported by the client. This helps reduce the response size and speeds up data transfer.\n      </td>\n\n      <td>\n        **Default**: gzip, deflate, br  \n        Neo includes this header by default.\n      </td>\n\n      <td>\n        No\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **User-Agent**\n      </td>\n\n      <td>\n        The User-Agent header identifies the API client for the server. It enables the server to customise responses based on the client’s software, operating system, or device type.\n      </td>\n\n      <td>\n        **Default**: neo  \n        Neo includes this header by default.\n      </td>\n\n      <td>\n        No\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Referer**\n      </td>\n\n      <td>\n        A header that indicates the source of a request. It helps Neo identify the origin of the request.\n      </td>\n\n      <td>\n        URL of the Neo dataflow that is triggered.\n\n        Neo includes this header by default. You can override the default value or skip the header. To skip the header, set its value to an empty string (\"\").\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Authorization**\n      </td>\n\n      <td>\n        Applicable for API requests that come directly from POS terminal to the Capillary Server. The [Authorization header](https://docs.capillarytech.com/reference/basic-authentication#using-authorization-header) value is constructed using the below format: `Basic <Base64 encoded (username:md5(password))>`\n      </td>\n\n      <td>\n        If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.\n      </td>\n\n      <td>\n        Modifiable in a hierarchical organization using the **OrgContextSwitch** block to switch the dataflow execution context from the parent organization to the child organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-oauth-token**\n      </td>\n\n      <td>\n        A custom authentication header for Capillary internal APIs. Applicable for POS server-to-server integration, FTP server-to-server integration, Server-to-server custom integration and Prebuilt server-to-server integrations. [OAuth](https://docs.capillarytech.com/docs/api-client#oauth-authentication) token generated using the API key and secret.\n      </td>\n\n      <td>\n        If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.\n      </td>\n\n      <td>\n        Modifiable in a hierarchical organization using the **OrgContextSwitch** block to switch the dataflow execution context from the parent organization to the child organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-auth-key**\n      </td>\n\n      <td>\n        A custom authentication header for Capillary internal APIs. It adds an extra security layer to verify API requests and ensures that only authorized clients can access Capillary’s services.\n      </td>\n\n      <td>\n        If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.\n      </td>\n\n      <td>\n        Modifiable in a hierarchical organization using the **OrgContextSwitch** block to switch the dataflow execution context from the parent organization to the child organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-auth-org-id**\n      </td>\n\n      <td>\n        A custom authentication header for Capillary internal APIs. It identifies the organization making the API request.\n      </td>\n\n      <td>\n        If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.\n      </td>\n\n      <td>\n        Modifiable in a hierarchical organization using the **OrgContextSwitch** block to switch the dataflow execution context from the parent organization to the child organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-neo-block-log-level**\n      </td>\n\n      <td>\n        A custom header for Capillary internal APIs that defines the log level for the Neo platform, similar to the logger in the Script block. Logs are generated according to the specified level.\n      </td>\n\n      <td>\n        debug, info, warn, error\n        **Default**: Debug\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-neo-debug-enabled**\n      </td>\n\n      <td>\n        A custom header for Capillary internal APIs, when set to **true**, captures platform logs from all services processing the request, not just Neo.\n      </td>\n\n      <td>\n        True or false **Default**: False\n      </td>\n\n      <td>\n        Yes. You can also use the Dev Console to set or change the value of this header.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-neo-dag-scope**\n      </td>\n\n      <td>\n        A custom header in Capillary’s Neo platform that defines the scope of execution.\n      </td>\n\n      <td>\n        Org, global, parent **Default**: org\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-attribution-entity-code**\n      </td>\n\n      <td>\n        A custom header for Capillary internal APIs used to specify the code associated with a particular entity type.\n      </td>\n\n      <td>\n        If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the [block properties](https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties) overrides the request value.\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-attribution-entity-type**\n      </td>\n\n      <td>\n        A custom header for Capillary internal APIs that specifies the type of entity posting the data.\n      </td>\n\n      <td>\n        If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the [block properties](https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties) overrides the request value.\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-request-id**\n      </td>\n\n      <td>\n        A custom header that uniquely identifies each request. The system uses this header for tracking and logging. This is applicable for Capillary internal APIs.\n      </td>\n\n      <td>\n        If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the [block properties](https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties) overrides the request value.\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-direct-replay**\n      </td>\n\n      <td>\n        A custom header that determines whether the system processes the request synchronously or asynchronously. This is applicable for Capillary internal APIs.\n      </td>\n\n      <td>\n        If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the [block properties](https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties) overrides the request value.\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-neo-sla**\n      </td>\n\n      <td>\n        A custom header to route non-critical or long-running requests to a separate instance optimised for lower-priority processing, ensuring they do not interfere with high-priority, real-time traffic.\n      </td>\n\n      <td>\n        no-sla\n      </td>\n\n      <td>\n        Yes\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **x-cap-api-version**\n      </td>\n\n      <td>\n        A custom header indicating the dataflow status.\n      </td>\n\n      <td>\n        The dataflow's status determines the value of the header:\n\n        * live dataflows return their version number.\n\n        * draft dataflows return the value `Draft`.\n      </td>\n\n      <td>\n        No\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Key",
+          "Description",
+          "Possible Values & Default Value",
+          "Modifiable in the dataflow"
+        ],
+        "rows": [
+          [
+            "Content-Type",
+            "The Content-Type header specifies the format of the request or response body. It tells the server or client how to process the transmitted data.",
+            "Default: application/jsonNeo includes this header by default. You can override the default value or skip the header. To ignore the header, set its value to an empty string (\"\").",
+            "Yes"
+          ],
+          [
+            "Accept-Encoding",
+            "The Accept-Encoding header informs the server about the compression methods supported by the client. This helps reduce the response size and speeds up data transfer.",
+            "Default: gzip, deflate, brNeo includes this header by default.",
+            "No"
+          ],
+          [
+            "User-Agent",
+            "The User-Agent header identifies the API client for the server. It enables the server to customise responses based on the client’s software, operating system, or device type.",
+            "Default: neoNeo includes this header by default.",
+            "No"
+          ],
+          [
+            "Referer",
+            "A header that indicates the source of a request. It helps Neo identify the origin of the request.",
+            "URL of the Neo dataflow that is triggered.Neo includes this header by default. You can override the default value or skip the header. To skip the header, set its value to an empty string (\"\").",
+            "Yes"
+          ],
+          [
+            "Authorization",
+            "Applicable for API requests that come directly from POS terminal to the Capillary Server. The Authorization header value is constructed using the below format: Basic <Base64 encoded (username:md5(password))>",
+            "If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.",
+            "Modifiable in a hierarchical organization using the OrgContextSwitch block to switch the dataflow execution context from the parent organization to the child organization."
+          ],
+          [
+            "x-cap-api-oauth-token",
+            "A custom authentication header for Capillary internal APIs. Applicable for POS server-to-server integration, FTP server-to-server integration, Server-to-server custom integration and Prebuilt server-to-server integrations. OAuth token generated using the API key and secret.",
+            "If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.",
+            "Modifiable in a hierarchical organization using the OrgContextSwitch block to switch the dataflow execution context from the parent organization to the child organization."
+          ],
+          [
+            "x-cap-api-auth-key",
+            "A custom authentication header for Capillary internal APIs. It adds an extra security layer to verify API requests and ensures that only authorized clients can access Capillary’s services.",
+            "If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.",
+            "Modifiable in a hierarchical organization using the OrgContextSwitch block to switch the dataflow execution context from the parent organization to the child organization."
+          ],
+          [
+            "x-cap-api-auth-org-id",
+            "A custom authentication header for Capillary internal APIs. It identifies the organization making the API request.",
+            "If the incoming request to the dataflow includes a value, Neo sets the header with that value. If no value is provided, the header is excluded.",
+            "Modifiable in a hierarchical organization using the OrgContextSwitch block to switch the dataflow execution context from the parent organization to the child organization."
+          ],
+          [
+            "x-cap-neo-block-log-level",
+            "A custom header for Capillary internal APIs that defines the log level for the Neo platform, similar to the logger in the Script block. Logs are generated according to the specified level.",
+            "debug, info, warn, error\nDefault: Debug",
+            "Yes"
+          ],
+          [
+            "x-cap-neo-debug-enabled",
+            "A custom header for Capillary internal APIs, when set to true, captures platform logs from all services processing the request, not just Neo.",
+            "True or false Default: False",
+            "Yes. You can also use the Dev Console to set or change the value of this header."
+          ],
+          [
+            "x-cap-neo-dag-scope",
+            "A custom header in Capillary’s Neo platform that defines the scope of execution.",
+            "Org, global, parent Default: org",
+            "Yes"
+          ],
+          [
+            "x-cap-api-attribution-entity-code",
+            "A custom header for Capillary internal APIs used to specify the code associated with a particular entity type.",
+            "If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the block properties overrides the request value.",
+            "Yes"
+          ],
+          [
+            "x-cap-api-attribution-entity-type",
+            "A custom header for Capillary internal APIs that specifies the type of entity posting the data.",
+            "If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the block properties overrides the request value.",
+            "Yes"
+          ],
+          [
+            "x-cap-request-id",
+            "A custom header that uniquely identifies each request. The system uses this header for tracking and logging. This is applicable for Capillary internal APIs.",
+            "If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the block properties overrides the request value.",
+            "Yes"
+          ],
+          [
+            "x-cap-direct-replay",
+            "A custom header that determines whether the system processes the request synchronously or asynchronously. This is applicable for Capillary internal APIs.",
+            "If the value is in the incoming request, Neo uses it. If not, Neo ignores it. However, setting a value in the block properties overrides the request value.",
+            "Yes"
+          ],
+          [
+            "x-cap-neo-sla",
+            "A custom header to route non-critical or long-running requests to a separate instance optimised for lower-priority processing, ensuring they do not interfere with high-priority, real-time traffic.",
+            "no-sla",
+            "Yes"
+          ],
+          [
+            "x-cap-api-version",
+            "A custom header indicating the dataflow status.",
+            "The dataflow's status determines the value of the header:live dataflows return their version number.draft dataflows return the value Draft.",
+            "No"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication#using-authorization-header",
+          "line": 162
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-client#oauth-authentication",
+          "line": 180
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties",
+          "line": 293
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties",
+          "line": 311
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties",
+          "line": 329
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows#field-values-in-a-block-block-properties",
+          "line": 347
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        397,
+        397
+      ],
+      "raw": "# Handling bulk API call errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling bulk API call errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        399,
+        399
+      ],
+      "raw": "When Neo executes multiple APIs in a single request, it handles the error as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When Neo executes multiple APIs in a single request, it handles the error as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        401,
+        402
+      ],
+      "raw": "* If any individual call fails, the respective API Request Block's response displays `\"msg\": \"failed\"` .\n* Neo continues executing the remaining calls and collects all responses, including the successful ones.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If any individual call fails, the respective API Request Block's response displays \"msg\": \"failed\" .Neo continues executing the remaining calls and collects all responses, including the successful ones.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        404,
+        404
+      ],
+      "raw": "Below is a sample response when Neo executes multiple APIs in a single request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is a sample response when Neo executes multiple APIs in a single request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        406,
+        419
+      ],
+      "raw": "```json Sample Response\n{\n  \"api1Output\": \"1234fjefenjkrfknj4rvjkn\",\n  \"api2Output\": {\n    \"code\": 500,\n    \"message\": \"{\\\"code\\\":500,\\\"message\\\":\\\"UNKNOWN EXCEPTION\\\",\\\"err\\\":\\\"TypeError: Cannot set properties of undefined (setting 'x-cap-neo-error-msg')\\\"}\",\n    \"err\": {\n      \"message\": \"{\\\"code\\\":500,\\\"message\\\":\\\"UNKNOWN EXCEPTION\\\",\\\"err\\\":\\\"TypeError: Cannot set properties of undefined (setting 'x-cap-neo-error-msg')\\\"}\"\n    }\n  },\n  \"api3Output\": \"1234fjefenjkrfknj4rvjkn\",\n  \"msg\": \"failed\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Sample Response",
+        "code": "{\n  \"api1Output\": \"1234fjefenjkrfknj4rvjkn\",\n  \"api2Output\": {\n    \"code\": 500,\n    \"message\": \"{\\\"code\\\":500,\\\"message\\\":\\\"UNKNOWN EXCEPTION\\\",\\\"err\\\":\\\"TypeError: Cannot set properties of undefined (setting 'x-cap-neo-error-msg')\\\"}\",\n    \"err\": {\n      \"message\": \"{\\\"code\\\":500,\\\"message\\\":\\\"UNKNOWN EXCEPTION\\\",\\\"err\\\":\\\"TypeError: Cannot set properties of undefined (setting 'x-cap-neo-error-msg')\\\"}\"\n    }\n  },\n  \"api3Output\": \"1234fjefenjkrfknj4rvjkn\",\n  \"msg\": \"failed\"\n}"
+      },
+      "text": "Sample Response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        421,
+        421
+      ],
+      "raw": "**Explanation**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Explanation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        423,
+        425
+      ],
+      "raw": "* `api1Output, api2Output`, and `api3Output `are the names of the individual API calls.\n* `api1Output `and `api3Output `contains successful responses.\n* `api2Output `contains a 500 error response with detailed metadata.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "api1Output, api2Output, and api3Output are the names of the individual API calls.api1Output and api3Output contains successful responses.api2Output contains a 500 error response with detailed metadata.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        427,
+        427
+      ],
+      "raw": "The `msg `field shows the overall status. It reads \"failed\" because `api2Output `failed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The msg field shows the overall status. It reads \"failed\" because api2Output failed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        429,
+        429
+      ],
+      "raw": "# Using private APIs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using private APIs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        431,
+        431
+      ],
+      "raw": "You can use the API Request block to invoke [private APIs](https://docs.capillarytech.com/reference/private-apis). To use the output in subsequent blocks, add a Script block after the API Request block and use the DAO function [getOut()](https://docs.capillarytech.com/docs/neo-dao-functions#getout) to retrieve the response.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the API Request block to invoke private APIs. To use the output in subsequent blocks, add a Script block after the API Request block and use the DAO function getOut() to retrieve the response.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/private-apis",
+          "line": 431
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions#getout",
+          "line": 431
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        433,
+        433
+      ],
+      "raw": "## Example use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        435,
+        436
+      ],
+      "raw": "**Requirement**\\\nRetrieve a customer's expired points using the private API `getExpiredPointsByCustomerIdAndYear`, and transform the data into a cleaned-up, format with only the fields `customerId`, `year`, `earned`, and `expired` from the output, which is in an array format.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "RequirementRetrieve a customer's expired points using the private API getExpiredPointsByCustomerIdAndYear, and transform the data into a cleaned-up, format with only the fields customerId, year, earned, and expired from the output, which is in an array format.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        438,
+        439
+      ],
+      "raw": "**Solution**\\\nAdd a **Script** block after the **API Request** block. Use the DAO function `getOut()` to extract the output from the API Request block, then transform the array into the required summarised format.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SolutionAdd a Script block after the API Request block. Use the DAO function getOut() to extract the output from the API Request block, then transform the array into the required summarised format.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        441,
+        441
+      ],
+      "raw": "Below is a sample script from the Script block to achieve the same.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is a sample script from the Script block to achieve the same.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        443,
+        521
+      ],
+      "raw": "```json Script block code\nimport dao from \"neo/dao\";\nimport logger from \"neo/logger\";\n//These are some dao methods already imported.\n//Other methods on dao you can use by typing `dao.` and editor will suggest few available methods.\nconst {\n    getBody,\n    getEffectiveHeaders,\n    getIn,\n    getApiRequest,\n    getOut,\n} = dao;\n\n\n\n\nconst script = {\n\n\n    execute: () => {\n      var payload = dao.getOut();\n      logger.info(\"test\"+JSON.stringify(payload));\n      //return payload;\n      //logger.info(JSON.stringify(payload, null, 2));\n        //Write your code here.\n      const result =  transformPointsData(payload);\n      logger.info(JSON.stringify(result, null, 2));\n      return {\n              \"http\": {\n                   \"res\": {\n                       \"json\": result,\n                       \"status\": 200\n                   }\n               }\n }\n    }\n}\n\n\n/**\n * Transforms an array of point-earning records into a summarized format.\n *\n * @param {Array<Object>} inputData The array of original point records.\n * @returns {Array<Object>} The array of transformed objects.\n */\nfunction transformPointsData(inputData) {\n  // Get the current year to compare against the creation year.\n  const currentYear = new Date().getFullYear();\n\n\n  // Use the map function to iterate over each item and transform it.\n  return inputData.map(item => {\n    // Create a Date object from the timestamp (which is in milliseconds).\n    const createdDate = new Date(item.created_on);\n    const createdYear = createdDate.getFullYear();\n\n\n    // Determine the value for 'expired'. If the points were earned in the\n    // current year, 0 points have expired. Otherwise, all earned points\n    // are considered expired for this transformation.\n    const expiredPoints = (currentYear === createdYear) ? 0 : item.earned;\n\n\n    // Return the new object with the desired structure and keys.\n    return {\n      customerId: item.customer_id, // Renaming 'customer_id' to 'customerId'\n      year: createdYear,\n      earned: item.earned,\n      expired: expiredPoints\n    };\n  });\n}\n\n\nexport {\n    script as default\n}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Script block code",
+        "code": "import dao from \"neo/dao\";\nimport logger from \"neo/logger\";\n//These are some dao methods already imported.\n//Other methods on dao you can use by typing `dao.` and editor will suggest few available methods.\nconst {\n    getBody,\n    getEffectiveHeaders,\n    getIn,\n    getApiRequest,\n    getOut,\n} = dao;\n\n\n\n\nconst script = {\n\n\n    execute: () => {\n      var payload = dao.getOut();\n      logger.info(\"test\"+JSON.stringify(payload));\n      //return payload;\n      //logger.info(JSON.stringify(payload, null, 2));\n        //Write your code here.\n      const result =  transformPointsData(payload);\n      logger.info(JSON.stringify(result, null, 2));\n      return {\n              \"http\": {\n                   \"res\": {\n                       \"json\": result,\n                       \"status\": 200\n                   }\n               }\n }\n    }\n}\n\n\n/**\n * Transforms an array of point-earning records into a summarized format.\n *\n * @param {Array<Object>} inputData The array of original point records.\n * @returns {Array<Object>} The array of transformed objects.\n */\nfunction transformPointsData(inputData) {\n  // Get the current year to compare against the creation year.\n  const currentYear = new Date().getFullYear();\n\n\n  // Use the map function to iterate over each item and transform it.\n  return inputData.map(item => {\n    // Create a Date object from the timestamp (which is in milliseconds).\n    const createdDate = new Date(item.created_on);\n    const createdYear = createdDate.getFullYear();\n\n\n    // Determine the value for 'expired'. If the points were earned in the\n    // current year, 0 points have expired. Otherwise, all earned points\n    // are considered expired for this transformation.\n    const expiredPoints = (currentYear === createdYear) ? 0 : item.earned;\n\n\n    // Return the new object with the desired structure and keys.\n    return {\n      customerId: item.customer_id, // Renaming 'customer_id' to 'customerId'\n      year: createdYear,\n      earned: item.earned,\n      expired: expiredPoints\n    };\n  });\n}\n\n\nexport {\n    script as default\n}\n"
+      },
+      "text": "Script block code",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

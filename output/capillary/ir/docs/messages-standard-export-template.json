@@ -1,0 +1,323 @@
+{
+  "slug": "docs/messages-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/messages-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/messages-standard-export-template",
+  "title": "Messages Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Messages Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Messages Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This template is based on the **nsadmin** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template is based on the nsadmin fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The template lets you export all the communications sent to customers. This is the only template through which you can get both transaction and campaign messages together.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The template lets you export all the communications sent to customers. This is the only template through which you can get both transaction and campaign messages together.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        22
+      ],
+      "raw": "| Measure                  | Description                                                                                                                                    |\n| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |\n| Auto Update Time Nsadmin | Date and time when the corresponding record in the nsadmin table available at the source was last updated. It is in the Unix timestamp format. |\n| Client Context Id        | The context id to which the message belongs. If the message is triggered by campaigns, it will be the communication details id.                |\n| Client Id                | Identifier of the client that triggered the message, such as campaigns. Each module has a unique static id.                                    |\n| Message                  | Actual message sent to NS Admin.                                                                                                               |\n| Message Count            | Number of messages sent to NS Admin.                                                                                                           |\n| Nsadmin Id               | Unique id of the message as available in the nsadmin table.                                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Auto Update Time Nsadmin",
+            "Date and time when the corresponding record in the nsadmin table available at the source was last updated. It is in the Unix timestamp format."
+          ],
+          [
+            "Client Context Id",
+            "The context id to which the message belongs. If the message is triggered by campaigns, it will be the communication details id."
+          ],
+          [
+            "Client Id",
+            "Identifier of the client that triggered the message, such as campaigns. Each module has a unique static id."
+          ],
+          [
+            "Message",
+            "Actual message sent to NS Admin."
+          ],
+          [
+            "Message Count",
+            "Number of messages sent to NS Admin."
+          ],
+          [
+            "Nsadmin Id",
+            "Unique id of the message as available in the nsadmin table."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        26,
+        40
+      ],
+      "raw": "| Dimension Name                                                                                      | Description                                                                                                                                               |\n| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                   | Date attributes related to the communication.                                                                                                             |\n| [Nsadmin Priority](https://docs.capillarytech.com/docs/dimension-tables#nsadmin-priority)           | Identifier of the nsadmin message priority, such as high or low priority.                                                                                 |\n| [Campaign](https://docs.capillarytech.com/docs/dimension-tables#campaigns)                          | Captures the campaign details for which the communication occurred.                                                                                       |\n| [Communication Channel](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) | Indicates the channel used for communicating with the customer. These include SMS, email, voicemail, WeChat, Facebook, Viber, etc.                        |\n| [Delivery Status](https://docs.capillarytech.com/docs/dimension-tables#campaign-delivery-status)    | Identifier assigned to the nsadmin message delivery status. These include delayed delivery, clicked, opened, received, read, sending, sent, blocked, etc. |\n| [Gateway Account](https://docs.capillarytech.com/docs/dimension-tables#gateway)                     | Identifier for the gateway account used for the communication.                                                                                            |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                    | Latest date when the data is updated.                                                                                                                     |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)                    | Latest time when the data is updated.                                                                                                                     |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                            | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc.                                                           |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                   | Segment details of the customers such as valued customer, lapsed customer.                                                                                |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)                 | User attributes such as total visits, recent view.                                                                                                        |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                   | Time attributes related to the communication.                                                                                                             |\n| [Communication Client](https://docs.capillarytech.com/docs/dimension-tables#communication-client)   | Identifier of the client associated with the communication.                                                                                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Date",
+            "Date attributes related to the communication."
+          ],
+          [
+            "Nsadmin Priority",
+            "Identifier of the nsadmin message priority, such as high or low priority."
+          ],
+          [
+            "Campaign",
+            "Captures the campaign details for which the communication occurred."
+          ],
+          [
+            "Communication Channel",
+            "Indicates the channel used for communicating with the customer. These include SMS, email, voicemail, WeChat, Facebook, Viber, etc."
+          ],
+          [
+            "Delivery Status",
+            "Identifier assigned to the nsadmin message delivery status. These include delayed delivery, clicked, opened, received, read, sending, sent, blocked, etc."
+          ],
+          [
+            "Gateway Account",
+            "Identifier for the gateway account used for the communication."
+          ],
+          [
+            "Latest Updated Date",
+            "Latest date when the data is updated."
+          ],
+          [
+            "Latest Updated Time",
+            "Latest time when the data is updated."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers such as valued customer, lapsed customer."
+          ],
+          [
+            "User Attributes",
+            "User attributes such as total visits, recent view."
+          ],
+          [
+            "Time",
+            "Time attributes related to the communication."
+          ],
+          [
+            "Communication Client",
+            "Identifier of the client associated with the communication."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 28
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#nsadmin-priority",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaigns",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#communication-channel",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaign-delivery-status",
+          "line": 32
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#gateway",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 35
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 38
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 39
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#communication-client",
+          "line": 40
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1146 @@
+{
+  "slug": "docs/initialise-ios-sdk",
+  "source": "https://docs.capillarytech.com/docs/initialise-ios-sdk.md",
+  "url": "https://docs.capillarytech.com/docs/initialise-ios-sdk",
+  "title": "Initialise Ios Sdk",
+  "description": "",
+  "section": "iOS SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 25,
+    "Callout": 3,
+    "list": 2,
+    "code": 17,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Initialise SDK",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Initialise SDK",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This section provides information on initialisation of the iOS SDK.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section provides information on initialisation of the iOS SDK.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "> 📘 A sample application [Hydra Sample App](https://github.com/Capillary/HydraSampleApp) is available for testing framework integration and APIs.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "A sample application Hydra Sample App is available for testing framework integration and APIs.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "To initialise the Capillary iOS SDK, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To initialise the Capillary iOS SDK, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        111
+      ],
+      "raw": "1. Open the AppDelegate file in your Xcode project.\n\n2. Locate the method `application(_:didFinishLaunchingWithOptions:)`. If not available, use the code below and create the method.\n\n   ```swift\n   optional func application(\n       _ application: UIApplication,\n       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil\n   ) -> Bool\n   ```\n\n3. Add the below code to the method and create the HydraCore instance. You need to create an instance of the SDK for each application separately.\n\n   ```swift\n   static public func generate(with configuration: ConfigurationGenerator,\n                                   geoData: GeographicDataGenerator? = nil,\n                                   supportsPushNotifications: Bool = false,\n                                   deviceScreenInfo: DeviceScreenInfo? = nil) throws -> Hydra\n   ```\n\n   The table below provides an overview of the parameters, their corresponding types, descriptions, and whether they are mandatory or optional.\n\n   | Parameter                 | Type                    | Description                                                      | Mandatory/Optional |\n   | ------------------------- | ----------------------- | ---------------------------------------------------------------- | ------------------ |\n   | HydraConfiguration        | ConfigurationGenerator  | An object of class conforming to ConfigurationGenerator protocol | Mandatory          |\n   | GeoData                   | GeographicDataGenerator | User's geographic details                                        | Optional           |\n   | supportsPushNotifications | Bool                    | Device's push notification settings                              | Mandatory          |\n   | DeviceScreenInfo          | DeviceScreenInfo        | Device screen size                                               | Optional           |\n\n4. Retrieve the parameter values for the required configuration (HydraConfiguration, GeoData, and DeviceScreenInfo). Use the below code snippets:\n\n   1. **HydraConfiguration** (Mandatory)\n\n      ```swift\n      public protocol ConfigurationGenerator {\n          var accountID: String {get set}\n          var customerId: String {get set}\n          var server: ServerConfig {get set}\n      ```\n\n      | Parameter  | Type         | Description             | Mandatory/Optional |\n      | ---------- | ------------ | ----------------------- | ------------------ |\n      | accountID  | String       | Account ID of partner   | Mandatory          |\n      | customerId | String       | Phone/email/external ID | Mandatory          |\n      | server     | ServerConfig | Server configuration    | Optional           |\n\n   2. **GeoData**(Optional)\n\n      This is optional and needs to be passed only if the below values have to be sent to the SDK.\n\n      ```swift\n      public protocol GeographicDataGenerator {\n          var country: String? {get set}\n          var city: String? {get set}\n          var countryCode: String? {get set}\n          var timeZone: String {get set}\n      }\n\n      ```\n\n   3. **DeviceScreenInfo**(Optional)\n\n      This is optional and needs to be passed only if the below values have to be sent to the SDK.\n\n      ```swift\n      public protocol DeviceScreenInfoGenerator {\n          var screenWidth: Int {get set}\n          var screenHeight: Int {get set}\n      }\n\n      ```\n\n      | Parameter    | Type | Description          | Mandatory/Optional |\n      | ------------ | ---- | -------------------- | ------------------ |\n      | screenWidth  | Int  | Device screen width  | Mandatory          |\n      | screenHeight | Int  | Device screen height | Mandatory          |\n\n5. Initialise the SDK. See the below example:\n\n   ```swift\n     do {\n               let config = HydraConfiguration(accountID: \"account-id\", customerId: \"customer-id\", server: .server1)\n               let geoData = GeoData(country: \"country\", countryCode: \"country-code\", city: \"city\", timeZone: \"timezone\")\n               let deviceInfo = DeviceScreenInfo(screenHeight: 00, screenWidth: 00)\n               let supportsPushNotifications = true\n               \n               Hydra.generate(with: config,\n                              geoData: geoData,\n                              supportsPushNotifications: supportsPushNotifications,\n                              deviceScreenInfo: deviceInfo)\n           } catch let error {\n               print(\"Failed to initialise Hydra SDK\")\n           }\n\n   ```\n\n6. Placeholder",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the AppDelegate file in your Xcode project.Locate the method application(_:didFinishLaunchingWithOptions:). If not available, use the code below and create the method.optional func application(\n    _ application: UIApplication,\n    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil\n) -> BoolAdd the below code to the method and create the HydraCore instance. You need to create an instance of the SDK for each application separately.static public func generate(with configuration: ConfigurationGenerator,\n                                geoData: GeographicDataGenerator? = nil,\n                                supportsPushNotifications: Bool = false,\n                                deviceScreenInfo: DeviceScreenInfo? = nil) throws -> HydraThe table below provides an overview of the parameters, their corresponding types, descriptions, and whether they are mandatory or optional.ParameterTypeDescriptionMandatory/OptionalHydraConfigurationConfigurationGeneratorAn object of class conforming to ConfigurationGenerator protocolMandatoryGeoDataGeographicDataGeneratorUser's geographic detailsOptionalsupportsPushNotificationsBoolDevice's push notification settingsMandatoryDeviceScreenInfoDeviceScreenInfoDevice screen sizeOptionalRetrieve the parameter values for the required configuration (HydraConfiguration, GeoData, and DeviceScreenInfo). Use the below code snippets:HydraConfiguration (Mandatory)public protocol ConfigurationGenerator {\n    var accountID: String {get set}\n    var customerId: String {get set}\n    var server: ServerConfig {get set}ParameterTypeDescriptionMandatory/OptionalaccountIDStringAccount ID of partnerMandatorycustomerIdStringPhone/email/external IDMandatoryserverServerConfigServer configurationOptionalGeoData(Optional)This is optional and needs to be passed only if the below values have to be sent to the SDK.public protocol GeographicDataGenerator {\n    var country: String? {get set}\n    var city: String? {get set}\n    var countryCode: String? {get set}\n    var timeZone: String {get set}\n}\nDeviceScreenInfo(Optional)This is optional and needs to be passed only if the below values have to be sent to the SDK.public protocol DeviceScreenInfoGenerator {\n    var screenWidth: Int {get set}\n    var screenHeight: Int {get set}\n}\nParameterTypeDescriptionMandatory/OptionalscreenWidthIntDevice screen widthMandatoryscreenHeightIntDevice screen heightMandatoryInitialise the SDK. See the below example:  do {\n            let config = HydraConfiguration(accountID: \"account-id\", customerId: \"customer-id\", server: .server1)\n            let geoData = GeoData(country: \"country\", countryCode: \"country-code\", city: \"city\", timeZone: \"timezone\")\n            let deviceInfo = DeviceScreenInfo(screenHeight: 00, screenWidth: 00)\n            let supportsPushNotifications = true\n            \n            Hydra.generate(with: config,\n                           geoData: geoData,\n                           supportsPushNotifications: supportsPushNotifications,\n                           deviceScreenInfo: deviceInfo)\n        } catch let error {\n            print(\"Failed to initialise Hydra SDK\")\n        }\nPlaceholder",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "The SDK also allows to set of additional parameters at a later stage, after the SDK has been initialized. You can set the following parameters:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The SDK also allows to set of additional parameters at a later stage, after the SDK has been initialized. You can set the following parameters:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        115,
+        118
+      ],
+      "raw": "* Customer Id\n* Device Token\n* InterfaceId/FCM Token\n* Notification support ie Users notification settings status",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer IdDevice TokenInterfaceId/FCM TokenNotification support ie Users notification settings status",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "## Updating customer Id",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating customer Id",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        122,
+        122
+      ],
+      "raw": "To set a customer Id or to update a customer ID, use the below API. Whenever the customer Id changes in the app, the same must be updated in the SDK.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set a customer Id or to update a customer ID, use the below API. Whenever the customer Id changes in the app, the same must be updated in the SDK.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        124,
+        126
+      ],
+      "raw": "```swift\npublic func update(customerID id:String)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func update(customerID id:String)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        130,
+        132
+      ],
+      "raw": "```swift\nhydraCore.update(customerID: \"customer-id\")\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.update(customerID: \"customer-id\")"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "## Updating device token",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating device token",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "You need to update the device's push token to ensure continued receipt of push notifications.  use the below API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You need to update the device's push token to ensure continued receipt of push notifications.  use the below API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        138,
+        140
+      ],
+      "raw": "```swift\npublic func update(deviceToken id: String)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func update(deviceToken id: String)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        144,
+        146
+      ],
+      "raw": "```swift\nhydraCore.update(deviceToken: \"device-token\")\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.update(deviceToken: \"device-token\")"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "If you are using Firebase for receiving push notifications, use the below API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you are using Firebase for receiving push notifications, use the below API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        150,
+        152
+      ],
+      "raw": "```swift\npublic func update((interfaceID id: String)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func update((interfaceID id: String)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "## Updating interfaceId/FCM token",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating interfaceId/FCM token",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "For the application to receive remote notifications properly, you must update the Firebase Cloud Messaging (FCM) token whenever necessary. Use the below API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For the application to receive remote notifications properly, you must update the Firebase Cloud Messaging (FCM) token whenever necessary. Use the below API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        158,
+        160
+      ],
+      "raw": "```swift\npublic func update(interfaceID id: String) \n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func update(interfaceID id: String) "
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        164,
+        166
+      ],
+      "raw": "```swift\nhydraCore.update(interfaceID: \"FCM-Token\")\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.update(interfaceID: \"FCM-Token\")"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "## Updating notification support",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating notification support",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "You can enable or disable the support for notifications in your application. Use the below API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can enable or disable the support for notifications in your application. Use the below API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        172,
+        174
+      ],
+      "raw": "```swift\npublic func update(notificationSupport status: Bool\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func update(notificationSupport status: Bool"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        176,
+        176
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        178,
+        180
+      ],
+      "raw": "```swift\nhydraCore.update(notificationSupport: true)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.update(notificationSupport: true)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "## Updating promotional push notification support",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating promotional push notification support",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        184,
+        184
+      ],
+      "raw": "SDK have defined a API -",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SDK have defined a API -",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        186,
+        188
+      ],
+      "raw": "```swift\nfunc setPromotionalPushOpted(status: Bool = false)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "func setPromotionalPushOpted(status: Bool = false)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "This API can be utilised to set promotional push notification opt status as below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be utilised to set promotional push notification opt status as below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        194,
+        196
+      ],
+      "raw": "```swift\nUserDefaults.standard.setPromotionalPushOpted(status: Bool = false)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "UserDefaults.standard.setPromotionalPushOpted(status: Bool = false)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "## Updating transactional push notification support",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating transactional push notification support",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "SDK have defined a API -",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SDK have defined a API -",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        202,
+        204
+      ],
+      "raw": "```swift\nfunc setTransactionalPushOpted(status: Bool = false) \n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "func setTransactionalPushOpted(status: Bool = false) "
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "This API can be utilised to set transactional push notification opt status as below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be utilised to set transactional push notification opt status as below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        210,
+        212
+      ],
+      "raw": "```swift\nUserDefaults.standard.setTransactionalPushOpted(status: Bool = false)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "UserDefaults.standard.setTransactionalPushOpted(status: Bool = false)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "## Updating console log level",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating console log level",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "Capillary SDK has a logging mechanism that enables the application to view all the SDK logs. The SDK logs statements at various levels and allows the application to determine the extent of logs it wishes to observe. The application can print records as per its requirements, enabling efficient monitoring and debugging capabilities.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary SDK has a logging mechanism that enables the application to view all the SDK logs. The SDK logs statements at various levels and allows the application to determine the extent of logs it wishes to observe. The application can print records as per its requirements, enabling efficient monitoring and debugging capabilities.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        218,
+        224
+      ],
+      "raw": "| Level   | Description                                                                                                                                          |\n| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |\n| error   | Error messages indicate a problem that has occurred, but the application may continue to run.                                                        |\n| warning | Warning messages indicate a potential issue that might lead to problems in the future or unexpected behaviour, but the application continues to run. |\n| info    | Info messages provide general information about the application's operation.                                                                         |\n| debug   | Debug messages provide detailed information about the application's operation, which can be useful for debugging problems.                           |\n| none    | SDK will not print any logs on the console                                                                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Level",
+          "Description"
+        ],
+        "rows": [
+          [
+            "error",
+            "Error messages indicate a problem that has occurred, but the application may continue to run."
+          ],
+          [
+            "warning",
+            "Warning messages indicate a potential issue that might lead to problems in the future or unexpected behaviour, but the application continues to run."
+          ],
+          [
+            "info",
+            "Info messages provide general information about the application's operation."
+          ],
+          [
+            "debug",
+            "Debug messages provide detailed information about the application's operation, which can be useful for debugging problems."
+          ],
+          [
+            "none",
+            "SDK will not print any logs on the console"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        226,
+        226
+      ],
+      "raw": "API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        228,
+        230
+      ],
+      "raw": "```swift\nfunc updateConsoleLogLevel(level: LogLevel)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "func updateConsoleLogLevel(level: LogLevel)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "> 📘 By default, the SDK sets the console log level at `debug`.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "By default, the SDK sets the console log level at debug.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        236,
+        238
+      ],
+      "raw": "```swift\nLogger.updateLogLevel(level: .critical)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "Logger.updateLogLevel(level: .critical)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "## Updating remote log level",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating remote log level",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "Hydra SDK provides support for Remote Logging Mechanism allowing the application to sync the logs with the server.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Hydra SDK provides support for Remote Logging Mechanism allowing the application to sync the logs with the server.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "The Remote Logger module will sync all the logs with levels greater than or equal to the remote log level set by the application. Below API is exposed by SDK for setting the level of remote logs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Remote Logger module will sync all the logs with levels greater than or equal to the remote log level set by the application. Below API is exposed by SDK for setting the level of remote logs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        246,
+        248
+      ],
+      "raw": "```swift\nfunc updateRemoteLogLevel(level: LogLevel)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "func updateRemoteLogLevel(level: LogLevel)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        250,
+        250
+      ],
+      "raw": "Below are different log levels.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below are different log levels.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        252,
+        258
+      ],
+      "raw": "| Level   | Description                                          |\n| ------- | ---------------------------------------------------- |\n| error   | SDK will sync only **error** level logs              |\n| warning | SDK will sync only **warning and error** level logs  |\n| info    | SDK will sync **info, warning and error** level logs |\n| debug   | SDK will sync **all the logs** with the server       |\n| none    | SDK will **not sync any logs** with server           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Level",
+          "Description"
+        ],
+        "rows": [
+          [
+            "error",
+            "SDK will sync only error level logs"
+          ],
+          [
+            "warning",
+            "SDK will sync only warning and error level logs"
+          ],
+          [
+            "info",
+            "SDK will sync info, warning and error level logs"
+          ],
+          [
+            "debug",
+            "SDK will sync all the logs with the server"
+          ],
+          [
+            "none",
+            "SDK will not sync any logs with server"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        260,
+        260
+      ],
+      "raw": "Example: This is how the remote log level can be set",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: This is how the remote log level can be set",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        262,
+        264
+      ],
+      "raw": "```swift\nLogger.updateLogLevel(level: .critical)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "Logger.updateLogLevel(level: .critical)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        266,
+        266
+      ],
+      "raw": "> 📘 By default, the SDK sets the remote log level at `none`.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "By default, the SDK sets the remote log level at none.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

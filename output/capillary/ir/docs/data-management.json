@@ -1,0 +1,435 @@
+{
+  "slug": "docs/data-management",
+  "source": "https://docs.capillarytech.com/docs/data-management.md",
+  "url": "https://docs.capillarytech.com/docs/data-management",
+  "title": "Data Management",
+  "description": "",
+  "section": "Explore Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:25:07.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 10,
+    "Callout": 1,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Data Management",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Data Management",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Templates for data reconciliation, PII cleanup, customer status updates, and triggering Databricks jobs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Templates for data reconciliation, PII cleanup, customer status updates, and triggering Databricks jobs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Data management templates handle data quality, compliance, reconciliation, and administrative setup within the Capillary platform. Each template provides a pre-configured block sequence for a specific use case. Select a template, configure the block details for your environment, and deploy the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Data management templates handle data quality, compliance, reconciliation, and administrative setup within the Capillary platform. Each template provides a pre-configured block sequence for a specific use case. Select a template, configure the block details for your environment, and deploy the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following templates are available for data management.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following templates are available for data management.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Data reconciliation (SFTP)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Data reconciliation (SFTP)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Compares source data from an FTP or SFTP location against the data in the Insights+ backend to identify events that were missed during ingestion into Capillary. The template marks missing records in the output file and stores the results in a configured directory for further action.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Compares source data from an FTP or SFTP location against the data in the Insights+ backend to identify events that were missed during ingestion into Capillary. The template marks missing records in the output file and stores the results in a configured directory for further action.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "In the output file, the template adds a column called `CAP_API_STATUS`. Missing records are marked with 0 and existing records are marked with 1. You can use the output file with a transaction add or customer add template to re-ingest the missing records.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the output file, the template adds a column called CAP_API_STATUS. Missing records are marked with 0 and existing records are marked with 1. You can use the output file with a transaction add or customer add template to re-ingest the missing records.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        25
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note:**\n\n  Data in the Insights+ backend has a one-day delay because the ETL process runs once every night. Schedule the reconciliation trigger at least 12 to 24 hours after the ETL completes to ensure new data is not incorrectly marked as missing.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Note:Data in the Insights+ backend has a one-day delay because the ETL process runs once every night. Schedule the reconciliation trigger at least 12 to 24 hours after the ETL completes to ensure new data is not incorrectly marked as missing.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 8,
+          "lines": [
+            22,
+            22
+          ],
+          "raw": "  **Note:**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note:",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 9,
+          "lines": [
+            24,
+            24
+          ],
+          "raw": "  Data in the Insights+ backend has a one-day delay because the ETL process runs once every night. Schedule the reconciliation trigger at least 12 to 24 hours after the ETL completes to ensure new data is not incorrectly marked as missing.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Data in the Insights+ backend has a one-day delay because the ETL process runs once every night. Schedule the reconciliation trigger at least 12 to 24 hours after the ETL completes to ensure new data is not incorrectly marked as missing.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "**Use case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "On January 1st, 2022, 100 transaction events were expected to be recorded in the Capillary platform. Due to an integration issue, only 90 events were successfully ingested, leaving 10 missing. Using this template, the brand compares the source data file against the Insights+ backend, identifies the 10 missing events, and uses the reconciliation output to re-ingest them without requiring a full data export from the platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "On January 1st, 2022, 100 transaction events were expected to be recorded in the Capillary platform. Due to an integration issue, only 90 events were successfully ingested, leaving 10 missing. Using this template, the brand compares the source data file against the Insights+ backend, identifies the 10 missing events, and uses the reconciliation output to re-ingest them without requiring a full data export from the platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "### Block configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Block configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "The following table lists the blocks in the Data reconciliation (SFTP) template, describes what each block does, and provides the configured values for each field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the blocks in the Data reconciliation (SFTP) template, describes what each block does, and provides the configured values for each field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        47
+      ],
+      "raw": "| Block Name                                                                                                                                                 | Configuration Field | Configured Value                 |\n| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------------------- |\n| **[Connect-to-source](https://docs.capillarytech.com/docs/credential_aware_ftp_listing-block)**<br />Type: `credential_aware_ftp_listing`                  | Host                | `data.capillarydata.com`         |\n|                                                                                                                                                            | Username            | `null`                           |\n|                                                                                                                                                            | Password            | Redacted                         |\n|                                                                                                                                                            | Source path         | `/tmp/`                          |\n|                                                                                                                                                            | Filename pattern    | `.*.csv`. Matches all CSV files. |\n|                                                                                                                                                            | Processed path      | `/`                              |\n|                                                                                                                                                            | Port                | `21`                             |\n| **[Ok-file](https://docs.capillarytech.com/docs/ok_file_3-block)**<br />Type: `ok_file_3`                                                                  | —                   | —                                |\n| **Map-fields-for-reconciliation**<br />Type: `diff_tool`                                                                                                   | —                   | —                                |\n| **[Filter-data](https://docs.capillarytech.com/docs/filter_on_condition-block)**<br />Type: `filter_on_condition`                                          | Filter condition    | `${header_value:notNull()}`      |\n| **[Reconciliation-job](https://docs.capillarytech.com/docs/databricks_job_trigger_and_status_check-block)**<br />Type: `databricks_job_trigger_and_status` | —                   | —                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Block Name",
+          "Configuration Field",
+          "Configured Value"
+        ],
+        "rows": [
+          [
+            "Connect-to-sourceType: credential_aware_ftp_listing",
+            "Host",
+            "data.capillarydata.com"
+          ],
+          [
+            "",
+            "Username",
+            "null"
+          ],
+          [
+            "",
+            "Password",
+            "Redacted"
+          ],
+          [
+            "",
+            "Source path",
+            "/tmp/"
+          ],
+          [
+            "",
+            "Filename pattern",
+            ".*.csv. Matches all CSV files."
+          ],
+          [
+            "",
+            "Processed path",
+            "/"
+          ],
+          [
+            "",
+            "Port",
+            "21"
+          ],
+          [
+            "Ok-fileType: ok_file_3",
+            "—",
+            "—"
+          ],
+          [
+            "Map-fields-for-reconciliationType: diff_tool",
+            "—",
+            "—"
+          ],
+          [
+            "Filter-dataType: filter_on_condition",
+            "Filter condition",
+            "${header_value:notNull()}"
+          ],
+          [
+            "Reconciliation-jobType: databricks_job_trigger_and_status",
+            "—",
+            "—"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 37
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 44
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 45
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 46
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 47
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/credential_aware_ftp_listing-block",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/ok_file_3-block",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/filter_on_condition-block",
+          "line": 46
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/databricks_job_trigger_and_status_check-block",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 49
+        }
+      ]
+    }
+  ]
+}

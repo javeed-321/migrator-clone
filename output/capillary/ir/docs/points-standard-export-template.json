@@ -1,0 +1,1154 @@
+{
+  "slug": "docs/points-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/points-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/points-standard-export-template",
+  "title": "Points Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-06T09:10:37.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 4,
+    "list": 1,
+    "Callout": 2,
+    "Table": 6,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Points Standard Export Templates",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Standard Export Templates",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "There are 3 export templates for points data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are 3 export templates for points data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Points",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The Points template is based on the **[Points](https://docs.capillarytech.com/docs/points-fact-table)** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Points template is based on the Points fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        17
+      ],
+      "raw": "* Use this template to export data for points-related events, such as points issuance and points deduction (redeemed, expired, and returned).\n* The export includes only the detailed breakdown of deducted points, not the summarized totals.\n* By default, the points template includes only redemption types \"REDEEMABLE\" and \"NOT APPLICABLE (deducted)\". Redemption types such as \"NOT CAPTURED\" are not included in exported data. <Anchor label=\"Create a custom export template\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/custom-templates#/create-custom-export-template\">Create a custom export template</Anchor> to export these types.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use this template to export data for points-related events, such as points issuance and points deduction (redeemed, expired, and returned).The export includes only the detailed breakdown of deducted points, not the summarized totals.By default, the points template includes only redemption types \"REDEEMABLE\" and \"NOT APPLICABLE (deducted)\". Redemption types such as \"NOT CAPTURED\" are not included in exported data. Create a custom export template to export these types.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/custom-templates#/create-custom-export-template",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/custom-templates#/create-custom-export-template",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "> 📘 **Note**\n>\n> Points redeemed are tagged to a transaction only if the transaction and the points redemption occur within a ±15-minute window.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotePoints redeemed are tagged to a transaction only if the transaction and the points redemption occur within a ±15-minute window.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        25
+      ],
+      "raw": "> ⚠️ **Important**\n>\n> The Points table records all point events. However, the allocated\\_points field in the bill\\_lineitems table includes only redeemable points and is updated only when the latest\\_updated\\_date changes. If a redemption or points update occurs after the ETL cutoff and the latest\\_updated\\_date is not updated, the revised points may not appear in subsequent exports. As a result, exports can contain outdated allocated\\_points values even after internal corrections. To avoid missing updated points data, ensure that you export records with the latest latest\\_updated\\_date values.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️"
+      },
+      "text": "ImportantThe Points table records all point events. However, the allocated_points field in the bill_lineitems table includes only redeemable points and is updated only when the latest_updated_date changes. If a redemption or points update occurs after the ETL cutoff and the latest_updated_date is not updated, the revised points may not appear in subsequent exports. As a result, exports can contain outdated allocated_points values even after internal corrections. To avoid missing updated points data, ensure that you export records with the latest latest_updated_date values.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        47
+      ],
+      "raw": "| Measure Name               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |\n| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| allocated\\_points          | Points awarded for a specific event. The points are awarded either at the bill level, line item level, or customer level. In bill\\_lineitems, allocated\\_points includes only redeemable points and is updated only when latest\\_updated\\_date changes. If latest\\_updated\\_date does not advance after a redemption or points update, the exported value may not reflect the most recent points. Always verify latest\\_updated\\_date to ensure you are exporting current data.                                                                            |\n| auto\\_update\\_time\\_pa     | Date and time when the Points Awarded table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |\n| auto\\_update\\_time\\_pabp   | Date and time when the Points Awarded Bill Promotion table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| auto\\_update\\_time\\_pacp   | Date and time when the Points Awarded Customer Promotion table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                          |\n| auto\\_update\\_time\\_pal    | Date and time when the Points Awarded Line item table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |\n| auto\\_update\\_time\\_palp   | Date and time when the Points Awarded Line item Promotion table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                         |\n| auto\\_update\\_time\\_pd     | Date and time when the Points Deductions table was last updated (Unix timestamp).                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |\n| awarded\\_ref\\_id           | Identifier that is created when a point is awarded.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |\n| bill\\_id                   | Loyalty log id or bill id is a unique identifier for a transaction for which the points are awarded or redeemed.<br />It is populated (primarily for transactional point award entries) from PA, PAL, PALP, PABP tables on the source side. This id has reference to the particular bill where points are awarded or redeemed.<br />Note:<br />PA - Points Awarded<br />PAL - Points Awarded Line Items<br />PALP-Points Awarded Line Item Promotion<br />PABP -Points Awarded Bill Promotion.                                                             |\n| bill\\_number               | The system-generated bill number for which the points are awarded or redeemed.<br />bill\\_number is populated if there is a valid bill\\_id populated in source loyalty side or else empty or null is populated as bill\\_number.<br /><br />**Note:** For records where bill\\_id = -1 (not linked to a transaction), the bill\\_number field may be 0, NULL, or blank depending on processing history. All these values represent 'no bill number.' When grouping or deduplicating on bill\\_number, treat 0, NULL, and blank as equivalent for such records. |\n| deducted\\_points           | Number of redeemed, returned, or expired points which are deducted from the total points.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |\n| event\\_id                  | It is the id of the event occurrence and is populated from PA, PAL, PALP, PABP, PACP and PD tables on the source side.<br />Note:<br />PA - Points Awarded<br />PAL - Points Awarded Line Items<br />PALP-Points Awarded Lineitem Promotion<br />PABP -Points Awarded Bill Promotion<br />PACP -Points Awarded customer Promotion<br />PD - Points Deducted.                                                                                                                                                                                               |\n| Redemption Bill Id         | Loyalty log ID or bill ID for which the points are redeemed. The billing ID is generated by Capillary's system.                                                                                                                                                                                                                                                                                                                                                                                                                                            |\n| Bill Lineitem Id           | It is the id against each line item where points are awarded.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| Redemption Bill Number     | Bill number for which the points are redeemed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |\n| deduction\\_currency\\_value | Holds the currency value of the deducted points.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| Deduction Summary id       | Deducted points related to a single event are grouped using a deduction summary ID for analysis.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "allocated_points",
+            "Points awarded for a specific event. The points are awarded either at the bill level, line item level, or customer level. In bill_lineitems, allocated_points includes only redeemable points and is updated only when latest_updated_date changes. If latest_updated_date does not advance after a redemption or points update, the exported value may not reflect the most recent points. Always verify latest_updated_date to ensure you are exporting current data."
+          ],
+          [
+            "auto_update_time_pa",
+            "Date and time when the Points Awarded table was last updated (Unix timestamp)."
+          ],
+          [
+            "auto_update_time_pabp",
+            "Date and time when the Points Awarded Bill Promotion table was last updated (Unix timestamp)."
+          ],
+          [
+            "auto_update_time_pacp",
+            "Date and time when the Points Awarded Customer Promotion table was last updated (Unix timestamp)."
+          ],
+          [
+            "auto_update_time_pal",
+            "Date and time when the Points Awarded Line item table was last updated (Unix timestamp)."
+          ],
+          [
+            "auto_update_time_palp",
+            "Date and time when the Points Awarded Line item Promotion table was last updated (Unix timestamp)."
+          ],
+          [
+            "auto_update_time_pd",
+            "Date and time when the Points Deductions table was last updated (Unix timestamp)."
+          ],
+          [
+            "awarded_ref_id",
+            "Identifier that is created when a point is awarded."
+          ],
+          [
+            "bill_id",
+            "Loyalty log id or bill id is a unique identifier for a transaction for which the points are awarded or redeemed.It is populated (primarily for transactional point award entries) from PA, PAL, PALP, PABP tables on the source side. This id has reference to the particular bill where points are awarded or redeemed.Note:PA - Points AwardedPAL - Points Awarded Line ItemsPALP-Points Awarded Line Item PromotionPABP -Points Awarded Bill Promotion."
+          ],
+          [
+            "bill_number",
+            "The system-generated bill number for which the points are awarded or redeemed.bill_number is populated if there is a valid bill_id populated in source loyalty side or else empty or null is populated as bill_number.Note: For records where bill_id = -1 (not linked to a transaction), the bill_number field may be 0, NULL, or blank depending on processing history. All these values represent 'no bill number.' When grouping or deduplicating on bill_number, treat 0, NULL, and blank as equivalent for such records."
+          ],
+          [
+            "deducted_points",
+            "Number of redeemed, returned, or expired points which are deducted from the total points."
+          ],
+          [
+            "event_id",
+            "It is the id of the event occurrence and is populated from PA, PAL, PALP, PABP, PACP and PD tables on the source side.Note:PA - Points AwardedPAL - Points Awarded Line ItemsPALP-Points Awarded Lineitem PromotionPABP -Points Awarded Bill PromotionPACP -Points Awarded customer PromotionPD - Points Deducted."
+          ],
+          [
+            "Redemption Bill Id",
+            "Loyalty log ID or bill ID for which the points are redeemed. The billing ID is generated by Capillary's system."
+          ],
+          [
+            "Bill Lineitem Id",
+            "It is the id against each line item where points are awarded."
+          ],
+          [
+            "Redemption Bill Number",
+            "Bill number for which the points are redeemed."
+          ],
+          [
+            "deduction_currency_value",
+            "Holds the currency value of the deducted points."
+          ],
+          [
+            "Deduction Summary id",
+            "Deducted points related to a single event are grouped using a deduction summary ID for analysis."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 40
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        51,
+        70
+      ],
+      "raw": "| Dimension Name                                                                                 | Description                                                                                                                                                     |\n| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                              | Date attributes.                                                                                                                                                |\n| [points\\_promotion](https://docs.capillarytech.com/docs/dimension-tables#points-promotion)     | Contains the promotion name against which the points were allocated/redeemed/expired (the event type)<br />Refers to the id column of points\\_promotions table. |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                              | Measures the timestamp when the event has occurred, it captures up to minutes.                                                                                  |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                       | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc.                                                                 |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)              | The segment to which the user belongs.                                                                                                                          |\n| [points\\_event\\_type](https://docs.capillarytech.com/docs/dimension-tables#points-events-type) | Specifies if the points were awarded or deducted.                                                                                                               |\n| [Store Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)              | The store where the points were awarded or deducted.                                                                                                            |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)            | The concept where the points were awarded or deducted.                                                                                                          |\n| [OU Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                 | The Organisation Unit where the points were awarded or deducted.                                                                                                |\n| [deduction\\_type](https://docs.capillarytech.com/docs/dimension-tables#deduction-type)         | Gives information about the type of points deduction.                                                                                                           |\n| [awarded\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                     | Date when points are awarded to the customer.                                                                                                                   |\n| [awarded\\_zone\\_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till)          | Captures the till\\_id of the zone where points were awarded.                                                                                                    |\n| [latest\\_updated\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)             | Date when the records were last updated.                                                                                                                        |\n| [latest\\_updated\\_time](https://docs.capillarytech.com/docs/dimension-tables#time)             | Time when the records were last updated.                                                                                                                        |\n| [category](https://docs.capillarytech.com/docs/dimension-tables#points-category)               | Type of points which are awarded/deducted.                                                                                                                      |\n| [awarded\\_expiry\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)             | Date when the points are supposed to expire.                                                                                                                    |\n| [Awarded Program](https://docs.capillarytech.com/docs/dimension-tables#program)                | It is the Loyalty program id.                                                                                                                                   |\n| [Event Program](https://docs.capillarytech.com/docs/dimension-tables#program)                  | Identifier of the loyalty program associated with the points event.                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Date",
+            "Date attributes."
+          ],
+          [
+            "points_promotion",
+            "Contains the promotion name against which the points were allocated/redeemed/expired (the event type)Refers to the id column of points_promotions table."
+          ],
+          [
+            "Time",
+            "Measures the timestamp when the event has occurred, it captures up to minutes."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "The segment to which the user belongs."
+          ],
+          [
+            "points_event_type",
+            "Specifies if the points were awarded or deducted."
+          ],
+          [
+            "Store Hierarchy",
+            "The store where the points were awarded or deducted."
+          ],
+          [
+            "Concept Hierarchy",
+            "The concept where the points were awarded or deducted."
+          ],
+          [
+            "OU Hierarchy",
+            "The Organisation Unit where the points were awarded or deducted."
+          ],
+          [
+            "deduction_type",
+            "Gives information about the type of points deduction."
+          ],
+          [
+            "awarded_date",
+            "Date when points are awarded to the customer."
+          ],
+          [
+            "awarded_zone_till",
+            "Captures the till_id of the zone where points were awarded."
+          ],
+          [
+            "latest_updated_date",
+            "Date when the records were last updated."
+          ],
+          [
+            "latest_updated_time",
+            "Time when the records were last updated."
+          ],
+          [
+            "category",
+            "Type of points which are awarded/deducted."
+          ],
+          [
+            "awarded_expiry_date",
+            "Date when the points are supposed to expire."
+          ],
+          [
+            "Awarded Program",
+            "It is the Loyalty program id."
+          ],
+          [
+            "Event Program",
+            "Identifier of the loyalty program associated with the points event."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 54
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 53
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#points-promotion",
+          "line": 54
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 55
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 56
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 57
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#points-events-type",
+          "line": 58
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 60
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 61
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#deduction-type",
+          "line": 62
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 63
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 64
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 65
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 66
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#points-category",
+          "line": 67
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 68
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#program",
+          "line": 69
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#program",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "# Points Redemption Summary",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Redemption Summary",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "The Points Redemption Summary template is based on the  **[Points Redemption Summary](https://docs.capillarytech.com/docs/points-fact-table)** fact. The template lets your export the details of the points redemption done by the customers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Points Redemption Summary template is based on the  Points Redemption Summary fact. The template lets your export the details of the points redemption done by the customers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        78,
+        91
+      ],
+      "raw": "| Measure Name              | Description                                                                                                                                                                                                                                                        |\n| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| Points Category Id        | It refers to the Point category Id column of PRS table. This id comes from points\\_category source table, which indicates whether the points category is main, delayed accrual, trigger based or trackers. In case of Group Redemption, this ID will be set to -1. |\n| Points Redeemed           | Total points redeemed in a particular redemption. The value is populated from the points\\_redemption\\_summary table available at the source.                                                                                                                       |\n| Source Type               | Source from where the redemption data is collected (API or redemption data import).                                                                                                                                                                                |\n| Reference Id              | -                                                                                                                                                                                                                                                                  |\n| Redemption Bill Id        | Identifier for a transaction (loyalty log id or bill id) for which the points are redeemed. It is generated by Capillary.                                                                                                                                          |\n| Redemption Bill Number    | Bill number for which the points are redeemed. If the source data does not provide this number, the system shows 'Not Captured'.                                                                                                                                   |\n| Notes                     | Any additional information or comments provided during the redemption process.                                                                                                                                                                                     |\n| Points Redemption Time    | Time when the points were redeemed, populated from the points\\_redemption\\_summary table available at the source.                                                                                                                                                  |\n| Auto Update Time          | Date and time when the corresponding record in the points redemption summary table available at the source was last updated. It is in the Unix timestamp format.                                                                                                   |\n| Redemption Id             | A unique 6-character long string for each redemption or reversal request, auto-generated by the Loyalty System.                                                                                                                                                    |\n| External Reference Number | Refers to the number, unique to each org, linked to the Points Redemption Summary (PRS) table. It is populated from the API Payload.                                                                                                                               |\n| Event Id                  | Unique identifier of the points redemption event, correlating to Deduction\\_Summary\\_Id in the Points Fact table.                                                                                                                                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Points Category Id",
+            "It refers to the Point category Id column of PRS table. This id comes from points_category source table, which indicates whether the points category is main, delayed accrual, trigger based or trackers. In case of Group Redemption, this ID will be set to -1."
+          ],
+          [
+            "Points Redeemed",
+            "Total points redeemed in a particular redemption. The value is populated from the points_redemption_summary table available at the source."
+          ],
+          [
+            "Source Type",
+            "Source from where the redemption data is collected (API or redemption data import)."
+          ],
+          [
+            "Reference Id",
+            "-"
+          ],
+          [
+            "Redemption Bill Id",
+            "Identifier for a transaction (loyalty log id or bill id) for which the points are redeemed. It is generated by Capillary."
+          ],
+          [
+            "Redemption Bill Number",
+            "Bill number for which the points are redeemed. If the source data does not provide this number, the system shows 'Not Captured'."
+          ],
+          [
+            "Notes",
+            "Any additional information or comments provided during the redemption process."
+          ],
+          [
+            "Points Redemption Time",
+            "Time when the points were redeemed, populated from the points_redemption_summary table available at the source."
+          ],
+          [
+            "Auto Update Time",
+            "Date and time when the corresponding record in the points redemption summary table available at the source was last updated. It is in the Unix timestamp format."
+          ],
+          [
+            "Redemption Id",
+            "A unique 6-character long string for each redemption or reversal request, auto-generated by the Loyalty System."
+          ],
+          [
+            "External Reference Number",
+            "Refers to the number, unique to each org, linked to the Points Redemption Summary (PRS) table. It is populated from the API Payload."
+          ],
+          [
+            "Event Id",
+            "Unique identifier of the points redemption event, correlating to Deduction_Summary_Id in the Points Fact table."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        95,
+        107
+      ],
+      "raw": "| Dimension Name                                                                          | Description                                                                        |\n| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)        | Date when the data corresponding to this event/row is changed in the source table. |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)        | Time when the data corresponding to this event/row is changed in the source table. |\n| [Program](https://docs.capillarytech.com/docs/dimension-tables#program)                 | Loyalty program associated with the points redemption.                             |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                | Identifier of the user, set internally by Capillary.                               |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)       | The segment to which the user belongs.                                             |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)     | Attributes of the user.                                                            |\n| [Store Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)       | The store where points redemption occurred.                                        |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)     | The concept where the points redemption occurred.                                  |\n| [Ou Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)          | The Organisation Unit where the points redemption occurred.                        |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                       | Date of the points redemption.                                                     |\n| [Redemption Type](https://docs.capillarytech.com/docs/dimension-tables#redemption-type) | Indicates the type of redemption.                                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Latest Updated Date",
+            "Date when the data corresponding to this event/row is changed in the source table."
+          ],
+          [
+            "Latest Updated Time",
+            "Time when the data corresponding to this event/row is changed in the source table."
+          ],
+          [
+            "Program",
+            "Loyalty program associated with the points redemption."
+          ],
+          [
+            "User",
+            "Identifier of the user, set internally by Capillary."
+          ],
+          [
+            "User Segments",
+            "The segment to which the user belongs."
+          ],
+          [
+            "User Attributes",
+            "Attributes of the user."
+          ],
+          [
+            "Store Hierarchy",
+            "The store where points redemption occurred."
+          ],
+          [
+            "Concept Hierarchy",
+            "The concept where the points redemption occurred."
+          ],
+          [
+            "Ou Hierarchy",
+            "The Organisation Unit where the points redemption occurred."
+          ],
+          [
+            "Date",
+            "Date of the points redemption."
+          ],
+          [
+            "Redemption Type",
+            "Indicates the type of redemption."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 97
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 98
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#program",
+          "line": 99
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 100
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 101
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 102
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 103
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 104
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 105
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 106
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#redemption-type",
+          "line": 107
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 109
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "# Points Expiry Reminder Info",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points Expiry Reminder Info",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "The Points Expiry Reminder template is based on the [**Points Expiry Reminder Info**](https://docs.capillarytech.com/docs/points-fact-table) fact. The fact lets you export the details of points expiry reminders sent to customers through Loyalty Engine. These are automated reminders configured for points expiry.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Points Expiry Reminder template is based on the Points Expiry Reminder Info fact. The fact lets you export the details of points expiry reminders sent to customers through Loyalty Engine. These are automated reminders configured for points expiry.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        117,
+        122
+      ],
+      "raw": "| Measure Name                        | Description                                                                                      |\n| ----------------------------------- | ------------------------------------------------------------------------------------------------ |\n| Points Expiring                     | The number of points that are going to expire for which reminder will be sent.                   |\n| Reminded Before Days                | The number of days before which reminder needs to be sent for the points expiring.               |\n| Auto Update Time Point Exp Reminder | Date and time when the points\\_reminder\\_expiry\\_info Fact is recently updated (Unix timestamp). |\n| Reminder Id                         | Primary key of expiry\\_reminder\\_sent\\_stats\\_customer\\_level table.                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Points Expiring",
+            "The number of points that are going to expire for which reminder will be sent."
+          ],
+          [
+            "Reminded Before Days",
+            "The number of days before which reminder needs to be sent for the points expiring."
+          ],
+          [
+            "Auto Update Time Point Exp Reminder",
+            "Date and time when the points_reminder_expiry_info Fact is recently updated (Unix timestamp)."
+          ],
+          [
+            "Reminder Id",
+            "Primary key of expiry_reminder_sent_stats_customer_level table."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        124,
+        124
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        126,
+        136
+      ],
+      "raw": "| Dimension Name                                                                                       | Description                                                                                                                                                                                                                         |\n| ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                             | User identifier for the user to whom points have expired. This is an integer set internally by capillary.                                                                                                                           |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                    | The segment to which the user belongs                                                                                                                                                                                               |\n| [expiry\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                            | Date when the allocated points are supposed to expire.                                                                                                                                                                              |\n| [expiry\\_time](https://docs.capillarytech.com/docs/dimension-tables#time)                            | Time when the allocated points are supposed to expire.                                                                                                                                                                              |\n| [communication\\_channel](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) | This refers to the communication\\_channel table and the id is a unique id for different communication channels.<br /><br />More details here : [communication\\_channel](https://docs.capillarytech.com/docs/communication-channels) |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                    | Measures the date when the event has occurred. In this case event is point expiry.                                                                                                                                                  |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                    | Measures the time when the event has occurred. In this case event is point expiry.                                                                                                                                                  |\n| [latest\\_updated\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                   | Date when the records were last updated.                                                                                                                                                                                            |\n| [latest\\_updated\\_time](https://docs.capillarytech.com/docs/dimension-tables#time)                   | Time when the records were last updated                                                                                                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "User",
+            "User identifier for the user to whom points have expired. This is an integer set internally by capillary."
+          ],
+          [
+            "User Segments",
+            "The segment to which the user belongs"
+          ],
+          [
+            "expiry_date",
+            "Date when the allocated points are supposed to expire."
+          ],
+          [
+            "expiry_time",
+            "Time when the allocated points are supposed to expire."
+          ],
+          [
+            "communication_channel",
+            "This refers to the communication_channel table and the id is a unique id for different communication channels.More details here : communication_channel"
+          ],
+          [
+            "Date",
+            "Measures the date when the event has occurred. In this case event is point expiry."
+          ],
+          [
+            "Time",
+            "Measures the time when the event has occurred. In this case event is point expiry."
+          ],
+          [
+            "latest_updated_date",
+            "Date when the records were last updated."
+          ],
+          [
+            "latest_updated_time",
+            "Time when the records were last updated"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 132
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 128
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 129
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 130
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 131
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#communication-channel",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/communication-channels",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 133
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 134
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 135
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 136
+        }
+      ]
+    }
+  ]
+}

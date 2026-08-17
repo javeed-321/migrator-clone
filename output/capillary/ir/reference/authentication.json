@@ -1,0 +1,275 @@
+{
+  "slug": "reference/authentication",
+  "source": "https://docs.capillarytech.com/reference/authentication.md",
+  "url": "https://docs.capillarytech.com/reference/authentication",
+  "title": "Authentication",
+  "description": "",
+  "section": "Authentication",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "list": 1,
+    "Callout": 1,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Authentication",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Authentication",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you information regarding the authentications used in API Capillary APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you information regarding the authentications used in API Capillary APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Capillary supports three types of authentication:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary supports three types of authentication:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        18
+      ],
+      "raw": "1. **OAuth**\\\n   This auth flow is used when the API requests are made from a program or service running on a server. This flow uses an access token to authenticate an API request. You can enable oAuth from InTouch as mentioned in the respective section below.\n2. **Basic auth**\\\n   This is used where POS terminals are directly integrated with Capillary server. This flow uses Till ID and MD5 hash encoded password to authenticate an API request. Find more details in the section below.\n3. **Authentication for end-customer web and mobile apps**\\\n   This is used for end-customer authentication where you want end-customers to login to a mobile or web application built on Capillary CDP.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "OAuthThis auth flow is used when the API requests are made from a program or service running on a server. This flow uses an access token to authenticate an API request. You can enable oAuth from InTouch as mentioned in the respective section below.Basic authThis is used where POS terminals are directly integrated with Capillary server. This flow uses Till ID and MD5 hash encoded password to authenticate an API request. Find more details in the section below.Authentication for end-customer web and mobile appsThis is used for end-customer authentication where you want end-customers to login to a mobile or web application built on Capillary CDP.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "> 📘 It is mandatory to use only store-specific Till/Store Center credentials as API response depends on this identification.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "It is mandatory to use only store-specific Till/Store Center credentials as API response depends on this identification.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## When to use Basic & OAuth?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use Basic & OAuth?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        27
+      ],
+      "raw": "| Authentication Type | Description                                                                                                                                                                                                                                                                                                                                                |\n| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Basic**           | Can be used for POS integrations where API requests come to the Capillary server directly from POS front end or POS store server.                                                                                                                                                                                                                          |\n| **oAuth**           | Shall be used for backend integrations (from one backend to another backend). For example, POS integrations where API requests come to the Capillary server from an API gateway or a central server; FTP integrations where backend service needs to be authenticated; 3rd party integration where API requests come to Capillary from a backend platform. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Authentication Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Basic",
+            "Can be used for POS integrations where API requests come to the Capillary server directly from POS front end or POS store server."
+          ],
+          [
+            "oAuth",
+            "Shall be used for backend integrations (from one backend to another backend). For example, POS integrations where API requests come to the Capillary server from an API gateway or a central server; FTP integrations where backend service needs to be authenticated; 3rd party integration where API requests come to Capillary from a backend platform."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "## Authentication scenarios and recommended authentication",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Authentication scenarios and recommended authentication",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        31,
+        155
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Scenario\n      </th>\n\n      <th>\n        Description\n      </th>\n\n      <th>\n        Authentication \n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        POS client-to-server integration\n      </td>\n\n      <td>\n        POS terminals are directly integrated with Capillary server. API requests come directly from POS terminal to the Capillary Server.\n      </td>\n\n      <td>\n        Basic authentication using till username and password\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        POS server-to-server integration\n      </td>\n\n      <td>\n        POS servers are directly integrated with Capillary Server.  API requests come directly from POS server to the Capillary Server.\n      </td>\n\n      <td>\n        oAuth2 client credentials flow using API key and secret\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        FTP server-to-server integration\n      </td>\n\n      <td>\n        Client  systems are configured to  Push files to an FTP and Capillary access the is  and Capillary will access and process files from FTP. (process - Via connect+ or OOB solution).\n      </td>\n\n      <td>\n        oAuth2 client credentials flow using API key and secret\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Server-to-server custom integration\n      </td>\n\n      <td>\n        Client server will consume capillary API via. wrapper service. Development and maintenance is subjective to the deal.\n      </td>\n\n      <td>\n        oAuth2 client credentials flow using API key and secret\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Prebuilt server-to-server integrations (Magento, Shopify, SFMC connectors)\n      </td>\n\n      <td>\n        In this, client-systems would consume Capillary Plugin to communicate with Capillary.\n      </td>\n\n      <td>\n        oAuth2 client credentials flow using API key and secret\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        End customer apps integration\n      </td>\n\n      <td>\n        These are third-party apps and consumes Mobile APIs and Gateway APIs to communicate with Capillary.\n      </td>\n\n      <td>\n        Mobile APIs auth service,\\\n        using  \n\n        * username & password/otp;  \n        * till username & password  \n\n        Custom & non-standard (non oAuth2 or OIDC) authorization  \n\n        * No social login options supported\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n         End-customer IAM (CIAM) in Partner Apps\n      </td>\n\n      <td>\n        Enable clients of Capillary’s direct customers to be able to access data in the Capillary Platform. Allow users to use the Customer’s login credentials to provide access to the 3rd Party clients to access data on behalf of the customer.\n      </td>\n\n      <td>\n        OAuth 2.0 Authorization Code Flow and SSO\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Scenario",
+          "Description",
+          "Authentication"
+        ],
+        "rows": [
+          [
+            "POS client-to-server integration",
+            "POS terminals are directly integrated with Capillary server. API requests come directly from POS terminal to the Capillary Server.",
+            "Basic authentication using till username and password"
+          ],
+          [
+            "POS server-to-server integration",
+            "POS servers are directly integrated with Capillary Server.  API requests come directly from POS server to the Capillary Server.",
+            "oAuth2 client credentials flow using API key and secret"
+          ],
+          [
+            "FTP server-to-server integration",
+            "Client  systems are configured to  Push files to an FTP and Capillary access the is  and Capillary will access and process files from FTP. (process - Via connect+ or OOB solution).",
+            "oAuth2 client credentials flow using API key and secret"
+          ],
+          [
+            "Server-to-server custom integration",
+            "Client server will consume capillary API via. wrapper service. Development and maintenance is subjective to the deal.",
+            "oAuth2 client credentials flow using API key and secret"
+          ],
+          [
+            "Prebuilt server-to-server integrations (Magento, Shopify, SFMC connectors)",
+            "In this, client-systems would consume Capillary Plugin to communicate with Capillary.",
+            "oAuth2 client credentials flow using API key and secret"
+          ],
+          [
+            "End customer apps integration",
+            "These are third-party apps and consumes Mobile APIs and Gateway APIs to communicate with Capillary.",
+            "Mobile APIs auth service,usingusername & password/otp;till username & passwordCustom & non-standard (non oAuth2 or OIDC) authorizationNo social login options supported"
+          ],
+          [
+            "End-customer IAM (CIAM) in Partner Apps",
+            "Enable clients of Capillary’s direct customers to be able to access data in the Capillary Platform. Allow users to use the Customer’s login credentials to provide access to the 3rd Party clients to access data on behalf of the customer.",
+            "OAuth 2.0 Authorization Code Flow and SSO"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

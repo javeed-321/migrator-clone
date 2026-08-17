@@ -1,0 +1,426 @@
+{
+  "slug": "reference/coupon-1",
+  "source": "https://docs.capillarytech.com/reference/coupon-1.md",
+  "url": "https://docs.capillarytech.com/reference/coupon-1",
+  "title": "Coupon 1",
+  "description": "",
+  "section": "Coupon",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Coupon (V1.1 APIs)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Coupon (V1.1 APIs)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Coupon represents store promotions or discounts created through Capillary Campaign Manager. A single campaign could contain one or more coupons or coupon series. Coupons are issued to loyalty or non-loyalty customers through SMS or email.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Coupon represents store promotions or discounts created through Capillary Campaign Manager. A single campaign could contain one or more coupons or coupon series. Coupons are issued to loyalty or non-loyalty customers through SMS or email.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You cannot create new coupons using coupon APIs. You can just send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id for making API calls.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You cannot create new coupons using coupon APIs. You can just send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id for making API calls.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The coupon entity allows you to perform the following tasks:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The coupon entity allows you to perform the following tasks:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        18
+      ],
+      "raw": "* Issue coupons to customers\n* Resend a specific coupon to the respective customer\n* Retrieve details of a specific coupon/coupon series\n* Check whether a customer can redeem a specific coupon and redeem the coupon",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Issue coupons to customersResend a specific coupon to the respective customerRetrieve details of a specific coupon/coupon seriesCheck whether a customer can redeem a specific coupon and redeem the coupon",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "### Success Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Success Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        22,
+        25
+      ],
+      "raw": "| Code | Description                        |\n| ---- | ---------------------------------- |\n| 700  | Coupon processed successfully      |\n| 700  | Coupon series fetched successfully |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "700",
+            "Coupon processed successfully"
+          ],
+          [
+            "700",
+            "Coupon series fetched successfully"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "### Error Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Error Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        80
+      ],
+      "raw": "| Code | Description                                                                                    |\n| ---- | ---------------------------------------------------------------------------------------------- |\n| 701  | Unable to find the customer. Please enter correct mobile number/email id/external id           |\n| 702  | Coupon code is invalid                                                                         |\n| 703  | Coupon not issued to this customer                                                             |\n| 704  | Unable to send coupon to the customer’s mobile number                                          |\n| 705  | Invalid coupon code and validation code                                                        |\n| 706  | Unable to redeem coupon                                                                        |\n| 707  | Coupon series id is invalid                                                                    |\n| 709  | Unable to redeem coupon                                                                        |\n| 710  | Coupon cannot be redeemed by this customer                                                     |\n| 711  | Coupon is redeemed already                                                                     |\n| 712  | Unable to redeem. Either coupon series or campaign might have expired                          |\n| 713  | Coupon has expired                                                                             |\n| 714  | Unable to redeem. Maximum redemptions allowed for this campaign are already reached            |\n| 715  | Unable to redeem. The coupon is not valid for this organization                                |\n| 716  | Unable to redeem. Cannot redeem same coupon multiple times                                     |\n| 718  | Unable to redeem. Please enter transaction number must be entered to redeem                    |\n| 719  | Coupon code does not exist                                                                     |\n| 720  | Unable to redeem. This is just a trial coupon and cannot be redeemed                           |\n| 721  | Unable to issue/redeem coupon. Customer is invalid                                             |\n| 722  | Unable to issue coupon                                                                         |\n| 723  | Unable to redeem. The coupon cannot be used by this customer                                   |\n| 724  | Unable to send message                                                                         |\n| 725  | Unable to redeem coupon. Please provide validation code to redeem                              |\n| 726  | Validation not required                                                                        |\n| 728  | Unable to redeem. Maximum number of coupon redemptions allowed has already been reached        |\n| 729  | Invalid redemption date range for the coupon series                                            |\n| 730  | Unknown error                                                                                  |\n| 732  | No Missed call received from the customer                                                      |\n| 733  | Transaction amount invalid                                                                     |\n| 735  | Unable to redeem coupon. The coupon cannot be redeemed at this store                           |\n| 736  | Unable to redeem coupon. Maximum number of coupon redemptions allowed has already been reached |\n| 738  | Cannot redeem the coupon. Please wait for `<X>` days to redeem this coupon again               |\n| 739  | Unable to redeem. Make sure that the redemption date you have entered is valid                 |\n| 740  | Unable to process. Customer is marked as fraud                                                 |\n| 742  | Coupon issual or redemption is blocked for this customer                                       |\n| 750  | Unable to process. Customer is marked as fraud                                                 |\n| 786  | Unable to process coupon. Please try again later                                               |\n| 787  | Unable to process coupon. Please try again later                                               |\n| 788  | Configuration is invalid. Please report to Capillary Support                                   |\n| 789  | Unable to process coupon. Please try again later                                               |\n| 790  | Unable to process coupon. Please try again later                                               |\n| 791  | Unable to process coupon. Please try again later                                               |\n| 792  | Unable to process coupon. Please try again later                                               |\n| 793  | Unable to process coupon. Please try again later                                               |\n| 794  | Unable to process coupon. Please try again later                                               |\n| 795  | Configuration is invalid. Please report to Capillary Support                                   |\n| 796  | Unable to process coupon. Please try again later                                               |\n| 797  | Unable to process coupon. Please try again later                                               |\n| 798  | Unable to process coupon. Please try again later                                               |\n| 799  | Configuration is invalid. Please report to Capillary Support                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "701",
+            "Unable to find the customer. Please enter correct mobile number/email id/external id"
+          ],
+          [
+            "702",
+            "Coupon code is invalid"
+          ],
+          [
+            "703",
+            "Coupon not issued to this customer"
+          ],
+          [
+            "704",
+            "Unable to send coupon to the customer’s mobile number"
+          ],
+          [
+            "705",
+            "Invalid coupon code and validation code"
+          ],
+          [
+            "706",
+            "Unable to redeem coupon"
+          ],
+          [
+            "707",
+            "Coupon series id is invalid"
+          ],
+          [
+            "709",
+            "Unable to redeem coupon"
+          ],
+          [
+            "710",
+            "Coupon cannot be redeemed by this customer"
+          ],
+          [
+            "711",
+            "Coupon is redeemed already"
+          ],
+          [
+            "712",
+            "Unable to redeem. Either coupon series or campaign might have expired"
+          ],
+          [
+            "713",
+            "Coupon has expired"
+          ],
+          [
+            "714",
+            "Unable to redeem. Maximum redemptions allowed for this campaign are already reached"
+          ],
+          [
+            "715",
+            "Unable to redeem. The coupon is not valid for this organization"
+          ],
+          [
+            "716",
+            "Unable to redeem. Cannot redeem same coupon multiple times"
+          ],
+          [
+            "718",
+            "Unable to redeem. Please enter transaction number must be entered to redeem"
+          ],
+          [
+            "719",
+            "Coupon code does not exist"
+          ],
+          [
+            "720",
+            "Unable to redeem. This is just a trial coupon and cannot be redeemed"
+          ],
+          [
+            "721",
+            "Unable to issue/redeem coupon. Customer is invalid"
+          ],
+          [
+            "722",
+            "Unable to issue coupon"
+          ],
+          [
+            "723",
+            "Unable to redeem. The coupon cannot be used by this customer"
+          ],
+          [
+            "724",
+            "Unable to send message"
+          ],
+          [
+            "725",
+            "Unable to redeem coupon. Please provide validation code to redeem"
+          ],
+          [
+            "726",
+            "Validation not required"
+          ],
+          [
+            "728",
+            "Unable to redeem. Maximum number of coupon redemptions allowed has already been reached"
+          ],
+          [
+            "729",
+            "Invalid redemption date range for the coupon series"
+          ],
+          [
+            "730",
+            "Unknown error"
+          ],
+          [
+            "732",
+            "No Missed call received from the customer"
+          ],
+          [
+            "733",
+            "Transaction amount invalid"
+          ],
+          [
+            "735",
+            "Unable to redeem coupon. The coupon cannot be redeemed at this store"
+          ],
+          [
+            "736",
+            "Unable to redeem coupon. Maximum number of coupon redemptions allowed has already been reached"
+          ],
+          [
+            "738",
+            "Cannot redeem the coupon. Please wait for <X> days to redeem this coupon again"
+          ],
+          [
+            "739",
+            "Unable to redeem. Make sure that the redemption date you have entered is valid"
+          ],
+          [
+            "740",
+            "Unable to process. Customer is marked as fraud"
+          ],
+          [
+            "742",
+            "Coupon issual or redemption is blocked for this customer"
+          ],
+          [
+            "750",
+            "Unable to process. Customer is marked as fraud"
+          ],
+          [
+            "786",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "787",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "788",
+            "Configuration is invalid. Please report to Capillary Support"
+          ],
+          [
+            "789",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "790",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "791",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "792",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "793",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "794",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "795",
+            "Configuration is invalid. Please report to Capillary Support"
+          ],
+          [
+            "796",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "797",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "798",
+            "Unable to process coupon. Please try again later"
+          ],
+          [
+            "799",
+            "Configuration is invalid. Please report to Capillary Support"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "slug": "docs/slab-change-log-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/slab-change-log-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/slab-change-log-standard-export-template",
+  "title": "Slab Change Log Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-22T14:06:28.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Slab Change Log Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Slab Change Log Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The slab change log template is based on the **slab\\_change\\_log** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The slab change log template is based on the slab_change_log fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This template lets you export the entire slab history of the customer. You can also get the slab change in a specific duration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template lets you export the entire slab history of the customer. You can also get the slab change in a specific duration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        24
+      ],
+      "raw": "| Measure                       | Description                                                                                                                                                                                                                   |\n| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Auto Update Time Slab Upgrade | Date and time when the slab upgrade table is available at the source was last updated. It is in the Unix timestamp format.                                                                                                    |\n| Event Date Time               | Date and time in Unix timestamp when a slab is changed                                                                                                                                                                        |\n| Event Source Id               | Unique id of the event source.                                                                                                                                                                                                |\n| Notes                         | Reason why the slab is changed.                                                                                                                                                                                               |\n| Slab Name                     | Name of the slab or tier.                                                                                                                                                                                                     |\n| User Id                       | Unique id of a customer.                                                                                                                                                                                                      |\n| Id                            | Unique id of slab upgrade history table.                                                                                                                                                                                      |\n| Repeat Status.                | Indicates whether a transaction is a repeat sale for the customer. This KPI uses standardized logic based on the repeat\\_status field and includes all slabs. The logic is now aligned across both export and report outputs. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Auto Update Time Slab Upgrade",
+            "Date and time when the slab upgrade table is available at the source was last updated. It is in the Unix timestamp format."
+          ],
+          [
+            "Event Date Time",
+            "Date and time in Unix timestamp when a slab is changed"
+          ],
+          [
+            "Event Source Id",
+            "Unique id of the event source."
+          ],
+          [
+            "Notes",
+            "Reason why the slab is changed."
+          ],
+          [
+            "Slab Name",
+            "Name of the slab or tier."
+          ],
+          [
+            "User Id",
+            "Unique id of a customer."
+          ],
+          [
+            "Id",
+            "Unique id of slab upgrade history table."
+          ],
+          [
+            "Repeat Status.",
+            "Indicates whether a transaction is a repeat sale for the customer. This KPI uses standardized logic based on the repeat_status field and includes all slabs. The logic is now aligned across both export and report outputs."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        28,
+        45
+      ],
+      "raw": "| Dimension Name                                                                                                   | Description                                                                                     |\n| ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                | Date attributes of the payment.                                                                 |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                | Time attributes of the payment.                                                                 |\n| [Customer Slab](https://docs.capillarytech.com/docs/dimension-tables#customer-slab)                              | Slab details to which the customer belongs.                                                     |\n| [Scd Type](https://docs.capillarytech.com/docs/dimension-tables#scd-type)                                        | Captures the SCD type used for customer segmentation.                                           |\n| [Previous Customer Slab](https://docs.capillarytech.com/docs/dimension-tables#customer-slab)                     | Gives the details of the customer slab before the change.                                       |\n| [Store Hierarchy (zone till)](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                    | Identifier for the store, till id.                                                              |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                              | Identifier for the concept.                                                                     |\n| [Ou Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                   | Identifier for the organization unit.                                                           |\n| [Slab Upgrade Event Type](https://docs.capillarytech.com/docs/dimension-tables#upgrade-event-type)               | Captures event that caused the customer's slab upgrade.                                         |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                 | Latest date when the data is updated.                                                           |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                 | Latest time when the data is updated.                                                           |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                         | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc. |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                | Segment details of the customers such as valued customer, lapsed customer.                      |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)                              | User attributes such as total visits, recent view.                                              |\n| [Slab Change Action](https://docs.capillarytech.com/docs/dimension-tables#slab-change-action-slab_change_action) | Captures the action associated with the customer's slab change.                                 |\n| [Slab Change Source](https://docs.capillarytech.com/docs/dimension-tables#slab-change-source-slab_change_source) | Captures the source associated with the customer's slab change.                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Date",
+            "Date attributes of the payment."
+          ],
+          [
+            "Time",
+            "Time attributes of the payment."
+          ],
+          [
+            "Customer Slab",
+            "Slab details to which the customer belongs."
+          ],
+          [
+            "Scd Type",
+            "Captures the SCD type used for customer segmentation."
+          ],
+          [
+            "Previous Customer Slab",
+            "Gives the details of the customer slab before the change."
+          ],
+          [
+            "Store Hierarchy (zone till)",
+            "Identifier for the store, till id."
+          ],
+          [
+            "Concept Hierarchy",
+            "Identifier for the concept."
+          ],
+          [
+            "Ou Hierarchy",
+            "Identifier for the organization unit."
+          ],
+          [
+            "Slab Upgrade Event Type",
+            "Captures event that caused the customer's slab upgrade."
+          ],
+          [
+            "Latest Updated Date",
+            "Latest date when the data is updated."
+          ],
+          [
+            "Latest Updated Time",
+            "Latest time when the data is updated."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers such as valued customer, lapsed customer."
+          ],
+          [
+            "User Attributes",
+            "User attributes such as total visits, recent view."
+          ],
+          [
+            "Slab Change Action",
+            "Captures the action associated with the customer's slab change."
+          ],
+          [
+            "Slab Change Source",
+            "Captures the source associated with the customer's slab change."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#customer-slab",
+          "line": 32
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#scd-type",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#customer-slab",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 35
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#upgrade-event-type",
+          "line": 38
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 39
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 41
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 42
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 43
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#slab-change-action-slab_change_action",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#slab-change-source-slab_change_source",
+          "line": 45
+        }
+      ]
+    }
+  ]
+}

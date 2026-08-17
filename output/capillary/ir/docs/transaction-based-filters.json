@@ -1,0 +1,1112 @@
+{
+  "slug": "docs/transaction-based-filters",
+  "source": "https://docs.capillarytech.com/docs/transaction-based-filters.md",
+  "url": "https://docs.capillarytech.com/docs/transaction-based-filters",
+  "title": "Transaction Based Filters",
+  "description": "",
+  "section": "About Audience Group Filters",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-30T07:22:15.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Could not parse expression with acorn",
+  "components": {
+    "boilerplate": 1,
+    "heading": 11,
+    "Callout": 2,
+    "paragraph": 16,
+    "Image": 10,
+    "Table": 11,
+    "list": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transaction Based Filters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transaction Based Filters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        13
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ### Note\n\n  The Extended Fields filters are not available by default. If you want to use these filters while creating audiences, raise a Jira ticket to the PST ticket to have the required transaction extended fields onboarded for your organization.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Transacted date & time",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transacted date & time",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Fetches customers based on their total purchase time. For example, you can get customers who have shopped during the Christmas season (say 20-12-2021 to 30-12-2021). You can apply advanced filters to get a very specific list, say customers who made transactions done on a specific day, time, zone or store.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fetches customers based on their total purchase time. For example, you can get customers who have shopped during the Christmas season (say 20-12-2021 to 30-12-2021). You can apply advanced filters to get a very specific list, say customers who made transactions done on a specific day, time, zone or store.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8feb3de-BE59Pb4N3YvyKqu-mVzwmSkahwlkB6HySA.png\" align=\"center\" width=\"80%\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8feb3de-BE59Pb4N3YvyKqu-mVzwmSkahwlkB6HySA.png",
+        "align": "center",
+        "width": "80%",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        251
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Duration\\*\n      </td>\n\n      <td>\n        This lets you filter customers who transacted in a specific period.\n\n        You can select duration either by <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days\">relative days</Anchor> or <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates\">specific days</Anchor>.\n\n        For more details, see Date in [Common filter options (in filters)](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Day\n      </td>\n\n      <td>\n        From the chosen duration, you can filter further to get customers who shopped on a specific day (Monday - Sunday).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hours\n      </td>\n\n      <td>\n        From the chosen duration, you can get customers who purchased in a specific time range. For example, get customers who shopped between 1-12-2018 to 31-12-2018 between 17:00 - 20:00 (4 pm to 8 pm).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Store/Zone/Concept\n      </td>\n\n      <td>\n        You can get the customers who shopped in a specific store(s) or zone(s).\n\n        You can select stores either by uploading store ids (upload list), fetching manually by entering values, or through store attributes such as external id, name, country, channel, billable and other attributes.\n\n        For more details on how to select stores, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy).\n\n        - _Sample Scenario_\\*:  Select customers who shopped in all billable stores in India during Jan 1, 2022 - May 31, 2022 (The values specified in the example might differ from org to org).\n\n          **Note**:  The `Transacted Stores` filter displays only stores that have transaction (bill) records within the selected scope, such as the date range, organizational unit. Stores with no transactions in the selected scope are not shown in the `Transacted Stores` filter dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\n      </td>\n\n      <td>\n        You can get the customers whose transactions are in the selected range.<br />You can either include or exclude a given condition.\n\n        You can select the quantity using the operators _Greater than equal_, _Less than equal_, _Equals_, and _In the range of_ (this also considers the minimum and maximum points mentioned).\n\n        For more details, see [points range](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/points).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Date\n      </td>\n\n      <td>\n        Filters customers whose order delivery date is either specific dates or relative days.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Time\n      </td>\n\n      <td>\n        Filters customers whose order delivery time is between 00 hours to 23 hours in a day. You can select the time range using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Booking Type\n      </td>\n\n      <td>\n        Filters customers with the order booking type that is mentioned in the list of options. You can select multiple booking types using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Buyer Type\n      </td>\n\n      <td>\n        Filters customers with buyer type options such as retail, wholesale, and others.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Cashier Name\n      </td>\n\n      <td>\n        Filters customers with the name of the cashier during the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Membership Card Present\n      </td>\n\n      <td>\n        Filters customers having and not having a membership card during transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ordered Till\n      </td>\n\n      <td>\n        Filters customers who purchased till selected order id (unique id for order identification).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Channel\n      </td>\n\n      <td>\n        Filters customers who purchased using the order channels such as app, store, web, store, and more\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Date\n      </td>\n\n      <td>\n        Filters customers who purchased on a specific date. You can select multiple dates using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Time\n      </td>\n\n      <td>\n        Filters customers who purchased at a specific time. You can select multiple order times using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Promotion Code\n      </td>\n\n      <td>\n        Filters customers who purchased using specific promotion codes.  You can select multiple promotion codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ship Country\n      </td>\n\n      <td>\n        Filters customers who purchased using the specific shipping countries. You can select multiple shipping countries using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        External Coupon Code\n      </td>\n\n      <td>\n        Filters customers who purchased using external coupon code. You can select multiple coupon codes using the checkbox\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Source Type\n      </td>\n\n      <td>\n        Filters customers who purchased using different information source types such as e-commerce, instore, newsletter, campaign, and more. You can select the source type option using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Tax Code\n      </td>\n\n      <td>\n        Filters customers who purchased using tax code present in the order details. You can select multiple tax codes using the checkbox.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        253,
+        253
+      ],
+      "raw": "## Visit count",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Visit count",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        255,
+        255
+      ],
+      "raw": "Fetches customers based on the visit count - the number of transactions on unique days.  You can further filter by purchased store and duration using advanced filters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fetches customers based on the visit count - the number of transactions on unique days.  You can further filter by purchased store and duration using advanced filters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        257,
+        257
+      ],
+      "raw": "<Image src=\"https://files.readme.io/b60fa5e-UML0fyFqenrxuUIo9RUQCnlL4hYc_kIepA.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b60fa5e-UML0fyFqenrxuUIo9RUQCnlL4hYc_kIepA.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        259,
+        321
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Visit Count\\*\n      </td>\n\n      <td>\n        You can get the customer's details based on the count of visits and the number of transactions in a specific period of time.\n\n        You can select the range using the operators _Greater than equal_, _Less than equal_, _Equals_, and _In the range of_ (this also considers the minimum and maximum visit count mentioned).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Duration\n      </td>\n\n      <td>\n        Considers the customers’ details based on the total transactions done in the specified period.\n\n        You can choose duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hour\n      </td>\n\n      <td>\n        For the chosen duration, you can get customers who visited in a specific time range. For example, get customers who visited between 1-12-2018 to 31-12-2018 between 17:00 - 20:00 (4 pm to 8 pm)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Store Hierarchy\n      </td>\n\n      <td>\n        This option lets you filter customers by store(s) at which the activity is done. You can also select stores by zones and concepts.\n\n        You can select the registered customer by using the hierarchy as a store, zone, and concept.\n\n        For details on how to configure, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        323,
+        323
+      ],
+      "raw": "## No of transaction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "No of transaction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        325,
+        325
+      ],
+      "raw": "Filters customers based on the number of transactions during a specific duration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Filters customers based on the number of transactions during a specific duration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        327,
+        327
+      ],
+      "raw": "<Image src=\"https://files.readme.io/9803626-Z0BAHctqv-ZgziG-yf4lShEqktI385QyWQ.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/9803626-Z0BAHctqv-ZgziG-yf4lShEqktI385QyWQ.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        329,
+        563
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Transaction Count\\*\n      </td>\n\n      <td>\n        You can get the customer's details based on the number of transactions in a specific period of time.\n\n        You can select the range using the operators _Greater than equal_, _Less than equal_, _Equals_, and _In the range of_ (this also considers the minimum and maximum transaction count mentioned).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Duration\n      </td>\n\n      <td>\n        Let you filter customers based on the number of transactions during a defined period.\n\n        You can choose duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hours\n      </td>\n\n      <td>\n        Let you fetch customers based on the number of transactions during a specific time range.\n\n        For example, you can get customers who made at least 10 transactions in the last one month only during the peak hours (say 15:00 - 20:00).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Store Hierarchy\n      </td>\n\n      <td>\n        This option lets you filter customers by store(s) at which the activity is done. You can also select stores by zones and concepts.<br />For details on how to configure, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\n      </td>\n\n      <td>\n        You can get the customer's details based on the quantity of the shopping.\n\n        You can select the range using the operators _Greater than equal_, _Less than equal_, _Equals_, and _In the range of_ (this also considers the minimum and maximum quantity mentioned).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Date\n      </td>\n\n      <td>\n        Filters customers whose order delivery date is either specific dates or relative days.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Time\n      </td>\n\n      <td>\n        Filters customers whose order delivery time is between 00 hours to 23 hours in a day. You can select the time range using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Booking Type\n      </td>\n\n      <td>\n        Filters customers with the order booking type that is mentioned in the list of options. You can select multiple booking types using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Buyer Type\n      </td>\n\n      <td>\n        Filters customers with buyer-type options such as retail, wholesale, and others.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Cashier Name\n      </td>\n\n      <td>\n        Filters customers with the name of the cashier during the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Membership Card Present\n      </td>\n\n      <td>\n        Filters customers having and not having a membership card during transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ordered Till\n      </td>\n\n      <td>\n        Filters customers who purchased till selected order id (unique id for order identification).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Channel\n      </td>\n\n      <td>\n        Filters customers who purchased using the order channels such as app, store, web, store, and more.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Date\n      </td>\n\n      <td>\n        Filters customers who purchased on a specific date. You can select multiple dates using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Time\n      </td>\n\n      <td>\n        Filters customers who purchased at a specific time. You can select multiple order times using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Promotion Code\n      </td>\n\n      <td>\n        Filters customers who purchased using specific promotion codes.  You can select multiple promotion codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ship Country\n      </td>\n\n      <td>\n        Filters customers who purchased using the specific shipping countries. You can select multiple shipping countries using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        External Coupon Code\n      </td>\n\n      <td>\n        Filters customers who purchased using external coupon code. You can select multiple coupon codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Source Type\n      </td>\n\n      <td>\n        Filters customers who purchased using different information source types such as e-commerce, instore, newsletter, campaign, and more. You can select the source type option using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Tax Code\n      </td>\n\n      <td>\n        Filters customers who purchased using tax code present in the order details. You can select multiple tax codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Amount\n      </td>\n\n      <td>\n        You can get the customer's details based on the bill amount.\n\n        You can select the range using the operators _Greater than equal_, _Less than equal_, _Equals_, and _In the range of_ (this also considers the minimum and maximum amount mentioned).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        565,
+        568
+      ],
+      "raw": "**Important Limitations:**\n• This filter only counts customers who have transaction records (bills) in the system\n• Customers with zero transactions will not be included in the count, as they have no entries in the bill\\_summary table\n• To identify customers with no transaction history, use EXCLUDE filter and filter users who have the number of transactions greater than or equal to 1.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important Limitations:\n• This filter only counts customers who have transaction records (bills) in the system\n• Customers with zero transactions will not be included in the count, as they have no entries in the bill_summary table\n• To identify customers with no transaction history, use EXCLUDE filter and filter users who have the number of transactions greater than or equal to 1.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        570,
+        570
+      ],
+      "raw": "## Transacted stores/zones/concepts",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transacted stores/zones/concepts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        572,
+        572
+      ],
+      "raw": "Fetches customers who shopped in a specific store(s), zone(s). You can also choose stores by specific attributes in zone or concept.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fetches customers who shopped in a specific store(s), zone(s). You can also choose stores by specific attributes in zone or concept.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        574,
+        574
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8e06a34-gdVzGNYG8uIRJqltfLyrxFEQ73wMnWt2LA.jpg\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8e06a34-gdVzGNYG8uIRJqltfLyrxFEQ73wMnWt2LA.jpg",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        576,
+        666
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n\n      </th>\n\n      <th>\n\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n        For details on how to configure, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        When shopped\\*\n      </td>\n\n      <td>\n        - **Last**: Fetches customers based on their recent shopping criteria.\n        - **Ever**: Fetches customers based on their entire shopping criteria.\n        - **First**: Fetches customers based on their first shopping criteria.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Shopped from (store/zone/concept)\\*\n      </td>\n\n      <td>\n        You can get the customers who shopped at a specific store(s), zone(s), or concept(s).\n\n        For details on how to configure, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy).\n\n        - _Example_\\*: Customers who shopped in all billable stores in India during Dec 1, 2021 - Dec 31, 2021 (The values specified in the example might differ from org to org).\n\n        Here is the config:\n\n        Include customers whoever shopped from the store based on attributes with attribute {select Is billable, and Store Country} > select Is billable > store country - India > Click +/- Fields and select specific dates  between 1-12-2018 and 31-12-2018.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Date (Duration filter)\n      </td>\n\n      <td>\n        You can further filter customers by transacted period.\n\n        You can select duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n\n        Click on the above links for more details.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Day\n      </td>\n\n      <td>\n        This lets you filter customers by shopped day.<br />You can choose one or more days of a week (Monday - Sunday).\n\n        For example, you can get customers who shopped on Saturday or Sunday in April.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hours\n      </td>\n\n      <td>\n        For the chosen duration, you can get customers who purchased in a specific time range. For example, get customers who shopped between Dec 1, 2022 to Dec 31, 2022 between 17:00 - 20:00 (4 pm to 8 pm).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        668,
+        668
+      ],
+      "raw": "## Days not visited since",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Days not visited since",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        670,
+        670
+      ],
+      "raw": "Fetches customers who have not visited stores in the last x days after the first, second or last visit.<br />For example, you can get customers who have not visited in the last 30 days after their 1st visit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fetches customers who have not visited stores in the last x days after the first, second or last visit.<br />For example, you can get customers who have not visited in the last 30 days after their 1st visit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 670
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        672,
+        672
+      ],
+      "raw": "<Image src=\"https://files.readme.io/a6ba2e0-scAUzStnhomLXF_a3TSlRJBQjQFulKX28Q.jpg\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/a6ba2e0-scAUzStnhomLXF_a3TSlRJBQjQFulKX28Q.jpg",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        674,
+        717
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Not visited  in the last\\*\n      </td>\n\n      <td>\n        You can get customers who have not visited for more than x days from the first visit, second visit, or last visit.\n\n        You can select the days range using the operators\n\n        - _Equals_: Fetches customers who have not visited for a specific number of days from _Days after_. For example, fetch customers who have not visited for 90 days from the first visit date.\n        - _Greater than Equals_: Fetches customers who have not visited for 30 days or more from the last visit date.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Days after\\*\n      </td>\n\n      <td>\n        The start date consider for not visited since.\n\n        - **First visit**: Fetches customers who have not visited in the specified duration excluding their first visit.\n        - **Second**: Fetches customers who have not visited in the specified duration excluding their first and second visits.\n        - **Last visit**: Fetches customers who have not visited in the specified duration after their recent visit.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        719,
+        719
+      ],
+      "raw": "## Total transaction amount",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Total transaction amount",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        721,
+        725
+      ],
+      "raw": "<Callout icon=\"⚠️\" theme=\"warning\">\n  **Important**\n\n  If your audience filter is configured to exclude outlier bills, those transactions are not included when calculating the lifetime transaction amount. As a result, customers whose total spend meets the eligibility threshold only when outlier bills are included may not qualify for the campaign if their qualifying spend falls below the configured threshold.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️",
+        "theme": "warning"
+      },
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [],
+      "notes": [
+        "theme=\"warning\" — the canonical spelling is \"warn\"",
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        727,
+        727
+      ],
+      "raw": "Filters customers based on a specific transaction amount during a particular period.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Filters customers based on a specific transaction amount during a particular period.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        729,
+        729
+      ],
+      "raw": "<Image src=\"https://files.readme.io/b34645b-evNDp2COp7Q83crjtuJragRMNaD_Z5VH_A.jpg\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b34645b-evNDp2COp7Q83crjtuJragRMNaD_Z5VH_A.jpg",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        731,
+        979
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Transaction amount\\*\n      </td>\n\n      <td>\n        This lets you filter the customers based on their transaction amount.\n\n        You can select the transaction amount range using the operators\n\n        - **Greater than equal**: Filters customers whose transaction amount is greater than or equal to the value you specify.\n        - **Less than equal**: Filters customers whose transaction amount is less than or equal to the value you specify.\n        - **Equals**: Filters customers whose transaction amount is equal to the value you specify\n        - **In range of**: Filters customers whose transaction amount is in between the values you specify.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Duration\\*\n      </td>\n\n      <td>\n        Let you filter the transaction amount for a defined period.\n\n        You can choose the duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n\n        Click on the links to know more.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Day\n      </td>\n\n      <td>\n        From the chosen duration, you can filter further to get customers based on the purchase amount on a specific day (Monday - Sunday)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hours\n      </td>\n\n      <td>\n        For the chosen duration, you can get customers based on the purchase amount in a specific time range.\n\n        For example, get customers whose purchase amount between 1-12-2018 to 31-12-2018 between 17:00 - 20:00 (4 pm to 8 pm) is $300.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Store/Zone\n      </td>\n\n      <td>\n        You can get the customers with total transacted amount at a specific store(s), zone(s), or concept(s).\n\n        - _Example_\\*: Customers who shopped in all billable stores in India during Dec 1, 2021 - Dec 31, 2021 (The values specified in the example might differ from org to org).\n\n        For details on how to choose stores, see [Store filter](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\n      </td>\n\n      <td>\n        You can get the customer's details based on the quantity of shopping.\n\n        You can select the quantity using the operators\n\n        - Greater than equal: Filters customers whose shopping quantity is greater than or equal to the value you specify.\n        - Less than equal: Filters customers whose shopping quantity is less than or equal to the value you specify.\n        - Equals: Filters customers whose shopping quantity is equal to the value you specify.\n        - In range of: Filters customers whose shopping quantity is in between the values you specify.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Date\n      </td>\n\n      <td>\n        Filters customers whose order delivery date is either specific dates or relative days.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Time\n      </td>\n\n      <td>\n        Filters customers whose order delivery time is between 00 hours to 23 hours in a day. You can select the time range using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Booking Type\n      </td>\n\n      <td>\n        Filters customers with the item booking type that is mentioned in the list of options. You can select multiple booking types using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Buyer Type\n      </td>\n\n      <td>\n        Filters customers with buyer-type options such as retail, wholesale, and others.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Cashier Name\n      </td>\n\n      <td>\n        Filters customers with the name of the cashier during the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Membership Card Present\n      </td>\n\n      <td>\n        Filters customers having and not having a membership card during transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ordered Till\n      </td>\n\n      <td>\n        Filters customers who purchased till selected order id (unique id for order identification).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Channel\n      </td>\n\n      <td>\n        Filters customers who purchased using the order channels such as app, store, web, store, and more.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Date\n      </td>\n\n      <td>\n        Filters customers who purchased on a specific date. You can select multiple dates using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Time\n      </td>\n\n      <td>\n        Filters customers who purchased at a specific time. You can select multiple order times using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Promotion Code\n      </td>\n\n      <td>\n        Filters customers who purchased using specific promotion codes.  You can select multiple promotion codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ship Country\n      </td>\n\n      <td>\n        Filters customers who purchased using the specific shipping countries. You can select multiple shipping countries using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        External Coupon Code\n      </td>\n\n      <td>\n        Filters customers who purchased using external coupon code. You can select multiple coupon codes using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Source Type\n      </td>\n\n      <td>\n        Filters customers who purchased using different information source types such as e-commerce, instore, newsletter, campaign, and more. You can select the source type option using the drop-down menu.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Tax Code\n      </td>\n\n      <td>\n        Filters customers who purchased using tax code present in the order details. You can select multiple tax codes using the checkbox.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        981,
+        981
+      ],
+      "raw": "## Returned bills",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Returned bills",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        983,
+        983
+      ],
+      "raw": "Fetches customers based on the number of transactions returned during a specific duration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fetches customers based on the number of transactions returned during a specific duration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        985,
+        985
+      ],
+      "raw": "<Image src=\"https://files.readme.io/90bbd74-download.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/90bbd74-download.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        987,
+        1028
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Return Amount/Count\\*\n      </td>\n\n      <td>\n        Filter customers by the sum of returned transaction amount or count.\n\n        - Greater than equal: Filters customers whose return transaction amount/count is greater than or equal to the value you specify.\n        - **Less than equal**: Filters customers whose return transaction amount/count is less than or equal to the value you specify.\n        - **Equals**: Filters customers whose return transaction amount/count is equal to the value you specify.\n        - **In range of**: Filters customers whose return transaction amount/count is in between the values you specify.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Duration\\*\n      </td>\n\n      <td>\n        Let you filter return amount or return count for a specified period.\n\n        You can choose duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        1030,
+        1030
+      ],
+      "raw": "## Shopped for a product/category/attribute",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Shopped for a product/category/attribute",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        1032,
+        1032
+      ],
+      "raw": "This filters customers who bought items of selected categories or product attribute, a defined number of times.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This filters customers who bought items of selected categories or product attribute, a defined number of times.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        1034,
+        1034
+      ],
+      "raw": "Example: Filter users who have bought Yogurt more than 3 times distinctively in July.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: Filter users who have bought Yogurt more than 3 times distinctively in July.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        1036,
+        1036
+      ],
+      "raw": "The following table shows the number of Yogurt purchases by Zoha and Prem on different days.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table shows the number of Yogurt purchases by Zoha and Prem on different days.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        1038,
+        1120
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\",\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Name\n      </th>\n\n      <th>\n        Jul 7\n      </th>\n\n      <th>\n        Jul 10\n      </th>\n\n      <th>\n        Jul 11\n      </th>\n\n      <th>\n        Jul 13\n      </th>\n\n      <th>\n        Jul 25\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Zoha\n      </td>\n\n      <td>\n        1\n      </td>\n\n      <td>\n        3\n      </td>\n\n      <td>\n        -\n      </td>\n\n      <td>\n        -\n      </td>\n\n      <td>\n        -\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Prem\n      </td>\n\n      <td>\n        -\n      </td>\n\n      <td>\n        1\n      </td>\n\n      <td>\n        2\n      </td>\n\n      <td>\n        3\n      </td>\n\n      <td>\n        1\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\",\"left\",\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 38,
+      "lines": [
+        1122,
+        1122
+      ],
+      "raw": "In this, Prem will be selected as we want a user who has done more than 4 transactions distinctively that have a Yogurt item in the bill in the selected time range.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this, Prem will be selected as we want a user who has done more than 4 transactions distinctively that have a Yogurt item in the bill in the selected time range.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        1124,
+        1124
+      ],
+      "raw": "<Image src=\"https://files.readme.io/1c336eb-hI7dMImCE3ARU2B_jmyNzPiVAzDAjg6BjA.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/1c336eb-hI7dMImCE3ARU2B_jmyNzPiVAzDAjg6BjA.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        1126,
+        1290
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Product filter\\*\n      </td>\n\n      <td>\n        This lets you filter customers by products purchased.\n\n        You can select products by _Parent Category_, _Category_, or _Item code_.  For details on each of these options, see [Product filters](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/product-filter).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\\*\n      </td>\n\n      <td>\n        - Greater than equal: Filters customers whose shopping quantity is greater than or equal to the value you specify.\n        - Less than equal: Filters customers whose shopping quantity is less than or equal to the value you specify.\n        - Equals: Filters customers whose shopping quantity is equal to the value you specify.\n        - In range of: Filters customers whose shopping quantity is in between the values you specify.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Date\n      </td>\n\n      <td>\n        Lets you filter customers based on the number of transactions during a defined period. You can choose duration either by specific dates or by relative days.\n\n        You can choose either Lifetime, or a specific duration - [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days), and [Specific days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Date\n      </td>\n\n      <td>\n        Filters customers whose order was delivered in a specific duration. You can select the duration using specific dates or relative days.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Time\n      </td>\n\n      <td>\n        Filters customers whose orders were delivered during specific hours of the day. You can select the time range using the drop-down box.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Buyer Type\n      </td>\n\n      <td>\n        Filters customers with buyer type options such as free, subscription, paid and non-subscription.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Membership Card Present\n      </td>\n\n      <td>\n        Filters customers based on the availability of membership cards during transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Channel\n      </td>\n\n      <td>\n        Filters customers based on the transacted channel. For example, app, store, web, store, and more.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ship Country\n      </td>\n\n      <td>\n        Filters customers who used a specific shipping country for delivery. You can select multiple shipping countries using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Source Type\n      </td>\n\n      <td>\n        Filters customers based on the source they transacted with such as e-commerce, InStore, newsletter, campaign, and more. You can select the source type option using the drop-down box.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\n      </td>\n\n      <td>\n        - Greater than equal: Filters customers whose shopping quantity is greater than or equal to the value you specify.\n        - Less than equal: Filters customers whose shopping quantity is less than or equal to the value you specify.\n        - Equals: Filters customers whose shopping quantity is equal to the value you specify.\n        - In range of: Filters customers whose shopping quantity is in between the values you specify.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line item type\n      </td>\n\n      <td>\n        Filters out the customers on the basis of the line item such as combo parent, combo item, add on item, split.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Special line item type\n      </td>\n\n      <td>\n        Filters out the customers on the basis of the special line items (such as processing fee, free item) in those transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line item cashier discount reason\n      </td>\n\n      <td>\n        Filters out the customers on the basis of the reason entered for line item level discount at the cashier. Cashier discount could be due to damage, bulk customer, incorrect label, wrong scan, member discount, etc.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 41,
+      "lines": [
+        1292,
+        1292
+      ],
+      "raw": "## Payment modes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Payment modes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        1294,
+        1294
+      ],
+      "raw": "This filter lets you build a group with customers who paid a specific amount through a selected payment mode (cash, credit card, gift card, points or coupon redemption, and other options). You can use advanced filter options such as date, day, and hour for more specific results.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This filter lets you build a group with customers who paid a specific amount through a selected payment mode (cash, credit card, gift card, points or coupon redemption, and other options). You can use advanced filter options such as date, day, and hour for more specific results.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        1296,
+        1296
+      ],
+      "raw": "<Image src=\"https://files.readme.io/978c821-TmkhQovLcsmXE4I4XpOfRbCgeNI8-jmguw.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/978c821-TmkhQovLcsmXE4I4XpOfRbCgeNI8-jmguw.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 44,
+      "lines": [
+        1298,
+        1371
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Payment amount\\*\n      </td>\n\n      <td>\n        This option lets you get customers who paid using selected payment modes such as cash, credit card, gift card, points, or coupon redemption (select manually from the list) for a specific amount.\n\n        - Greater than equal: Lets you select an amount greater than or equal to a specific value. For example, you can get customers who paid $100 or more through cash.\n        - Less than equal: Lets you select an amount less than or equal to a specific value. For example, you can get customers who paid $100 or less through the gift card.\n        - Equal: Lets you select an amount equal to a specific value. For example, you can get customers who paid exactly $100 through a credit card.\n        - In range of: Lets you select an amount between a specific value range. For example, you can get customers who paid an amount between $100-$200 ( in the range of $100 to $200) through cash.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Date\n      </td>\n\n      <td>\n        Let you filter transactions of a defined period.\n\n        You can choose duration either by [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Day\n      </td>\n\n      <td>\n        This option lets you further filter transactions of a specific day(s) of a week (from Monday to Sunday).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hours\n      </td>\n\n      <td>\n        This lets you further filter transactions by sopped time (from 00 to 23 hours). For example,  you can get customers who paid an amount greater than or equal to 100 through credit cards between 18:00 hours to 19:00 hours.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Store Hierarchy\n      </td>\n\n      <td>\n        This option lets you filter customers by store(s) at which the activity is done. You can also select stores by zones and concepts.\n\n        You can select the registered customer by using the hierarchy as a store, zone, and concept. For details, see [Store hierarchy](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/store-hierarchy).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 45,
+      "lines": [
+        1373,
+        1373
+      ],
+      "raw": "## Shopped for distinct product/category/attribute",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Shopped for distinct product/category/attribute",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        1375,
+        1375
+      ],
+      "raw": "This filters customers who bought items of selected categories or product attributes for a defined number of times.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This filters customers who bought items of selected categories or product attributes for a defined number of times.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        1377,
+        1377
+      ],
+      "raw": "Example: Filter customers who have bought soaps more than 3 times distinctively in July. Consider",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: Filter customers who have bought soaps more than 3 times distinctively in July. Consider",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        1379,
+        1380
+      ],
+      "raw": "* Zoha purchased 1 soap in July 1, and 3 soaps on July 11 - total 2 times\n* Jim purchased 1 soap on July 1, 3 on July 11, 1 on July 17, and 1 on July 25 - total 4 times",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Zoha purchased 1 soap in July 1, and 3 soaps on July 11 - total 2 timesJim purchased 1 soap on July 1, 3 on July 11, 1 on July 17, and 1 on July 25 - total 4 times",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        1382,
+        1382
+      ],
+      "raw": "Jim will be selected as he has purchased more than 3 purchased soaps more than three times in July.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Jim will be selected as he has purchased more than 3 purchased soaps more than three times in July.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        1384,
+        1384
+      ],
+      "raw": "<Image src=\"https://files.readme.io/bb7debb-oMSyGinklb0aKN5BC_EMgY4a-3m-Nwmelw.png\" align=\"center\" width=\"smart\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/bb7debb-oMSyGinklb0aKN5BC_EMgY4a-3m-Nwmelw.png",
+        "align": "center",
+        "width": "smart",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        1386,
+        1550
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Filter\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Product\\*\n      </td>\n\n      <td>\n        Select products that you want to include. For example, customers who purchased products from the Electronics category.\n\n        You can select products by Parent category, **Category**, or **Item code**  . For details on how to configure each option, see [Product filter](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/product-filter).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Quantity\\*\n      </td>\n\n      <td>\n        This lets you filter out customers based on the quantity of items purchased. For example,  customers who purchased at least six products from the \\_Electronics\\_category.\n\n        You can use the operators Greater than equal, less than equal, equal, and in range of.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Date\n      </td>\n\n      <td>\n        This lets you further filter customers by purchased date.\n\n        You can either choose [lifetime ](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/lifetime)or specific duration - [Specific dates](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/specific-dates) or [Relative days](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/relative-days).\n\n        Lifetime will consider transactions of the customer from the time of enrolling into the loyalty program.\n\n        For other date filter options, see [Date filter](https://docs.capillarytech.com/docs/common-filter-optionsin-filters#/date-filter).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Date\n      </td>\n\n      <td>\n        This lets you consider transactions that were delivered in a specific duration. You can select the duration using specific dates or relative days.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Delivery Time\n      </td>\n\n      <td>\n        This lets you consider transactions that were delivered during specific hours of the day. You can select the time range using the drop-down box.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Buyer Type\n      </td>\n\n      <td>\n        Filters customers with buyer-type options such as free, subscription, paid, and non-subscription.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Membership Card Present\n      </td>\n\n      <td>\n        Filters customers based on the availability of membership cards during transactions.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Order Channel\n      </td>\n\n      <td>\n        Filters customers based on the transacted channel. For example, app, store, web, store, and more.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Ship Country\n      </td>\n\n      <td>\n        Filters customers who used a specific shipping country for delivery. You can select multiple shipping countries using the checkbox.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Source Type\n      </td>\n\n      <td>\n        Filters customers based on the source they transacted with such as e-commerce, InStore, newsletter, campaign, and more. You can select the source type option using the drop-down box.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line item type\n      </td>\n\n      <td>\n        Filters out the customers on the basis of the line item type such as combo parent, combo item, add on item, and split.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Special line item type\n      </td>\n\n      <td>\n        Considers transactions of a specific special line-item type such as a free item. These are custom values and might differ from org to org.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Line item cashier discount reason\n      </td>\n\n      <td>\n        Considers transactions that have a specific reason entered for line item level discount at the cashier. Cashier discount could be due to damage, bulk customer, incorrect label, wrong scan, member discount, etc.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        1552,
+        1552
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 1552
+        }
+      ]
+    }
+  ]
+}

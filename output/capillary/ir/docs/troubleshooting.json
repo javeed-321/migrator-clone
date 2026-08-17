@@ -1,0 +1,767 @@
+{
+  "slug": "docs/troubleshooting",
+  "source": "https://docs.capillarytech.com/docs/troubleshooting.md",
+  "url": "https://docs.capillarytech.com/docs/troubleshooting",
+  "title": "Troubleshooting",
+  "description": "",
+  "section": "Connect+",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:51:33.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 26,
+    "list": 8
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Troubleshooting",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Troubleshooting",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Common errors by block, how to use error logs, and links to the error documentation reference.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Common errors by block, how to use error logs, and links to the error documentation reference.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Use this page to diagnose and resolve common issues in Connect+. Each section describes the symptom, the likely cause, and the steps to fix it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this page to diagnose and resolve common issues in Connect+. Each section describes the symptom, the likely cause, and the steps to fix it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "### Dataflow does not pick up files",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Dataflow does not pick up files",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Symptom:** The dataflow runs but no files are processed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The dataflow runs but no files are processed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Likely cause:** The filename pattern in the Connect-to-source block does not match the files in the source directory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The filename pattern in the Connect-to-source block does not match the files in the source directory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        24
+      ],
+      "raw": "1. Open the Connect-to-source block configuration.\n2. Check the **Filename pattern** field. Ensure the pattern matches the actual file names in the source directory. For example, use `.*.csv` to match all CSV files.\n3. Verify the **Source directory** path is correct.\n4. Save and re-run the dataflow.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the Connect-to-source block configuration.Check the Filename pattern field. Ensure the pattern matches the actual file names in the source directory. For example, use .*.csv to match all CSV files.Verify the Source directory path is correct.Save and re-run the dataflow.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "### SFTP connection fails",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "SFTP connection fails",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "**Symptom:** The dataflow fails at the Connect-to-source block with a connection error.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The dataflow fails at the Connect-to-source block with a connection error.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "**Likely cause:** Incorrect credentials or Multi-Factor Authentication is turned on for the SFTP account.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: Incorrect credentials or Multi-Factor Authentication is turned on for the SFTP account.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        34,
+        36
+      ],
+      "raw": "1. Verify the hostname, username, and password in the Connect-to-source block.\n2. Confirm the port is set to `22`.\n3. Check whether Multi-Factor Authentication is turned on for the SFTP account. Connect+ does not support MFA. Contact your SFTP administrator to turn it off.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Verify the hostname, username, and password in the Connect-to-source block.Confirm the port is set to 22.Check whether Multi-Factor Authentication is turned on for the SFTP account. Connect+ does not support MFA. Contact your SFTP administrator to turn it off.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "### JSLT transformation produces no output",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "JSLT transformation produces no output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "**Symptom:** The Transform-data block runs but passes no data to the next block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The Transform-data block runs but passes no data to the next block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "**Likely cause:** The JSLT expression does not match the field names in the input JSON.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The JSLT expression does not match the field names in the input JSON.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        46,
+        48
+      ],
+      "raw": "1. Check the field names in your CSV against the field references in the JSLT expression. Field names are case-sensitive.\n2. If your API expects a single object, ensure you are not using `for (.)` in the expression.\n3. If your API expects an array, ensure the expression starts with `for (.)` and the **Request split path** in the Connect-to-destination block is set to `$.*`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check the field names in your CSV against the field references in the JSLT expression. Field names are case-sensitive.If your API expects a single object, ensure you are not using for (.) in the expression.If your API expects an array, ensure the expression starts with for (.) and the Request split path in the Connect-to-destination block is set to $.*.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "### API returns 5XX errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "API returns 5XX errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "**Symptom:** The Connect-to-destination block fails with 5XX error codes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The Connect-to-destination block fails with 5XX error codes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "**Likely cause:** The target API is temporarily unavailable or the request payload is malformed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The target API is temporarily unavailable or the request payload is malformed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        58,
+        60
+      ],
+      "raw": "1. Check the **Recoverable error codes** field in the Connect-to-destination block. Ensure `521`, `502`, `503`, and `504` are included.\n2. Increase the **Maximum retries** value to give the API more time to recover.\n3. Review the **Parse path map** to ensure error codes and messages are being extracted correctly from the response.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check the Recoverable error codes field in the Connect-to-destination block. Ensure 521, 502, 503, and 504 are included.Increase the Maximum retries value to give the API more time to recover.Review the Parse path map to ensure error codes and messages are being extracted correctly from the response.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "### API returns 429 errors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "API returns 429 errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "**Symptom:** The Connect-to-destination block fails with a `429` error.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The Connect-to-destination block fails with a 429 error.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "**Likely cause:** The dataflow is sending requests faster than the API rate limit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The dataflow is sending requests faster than the API rate limit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        70,
+        71
+      ],
+      "raw": "1. Ensure `429` is listed in the **Yielding error codes** field in the Connect-to-destination block. This pauses the dataflow and retries after a delay.\n2. Reduce the **Rate** value to send fewer requests per minute.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Ensure 429 is listed in the Yielding error codes field in the Connect-to-destination block. This pauses the dataflow and retries after a delay.Reduce the Rate value to send fewer requests per minute.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "### Authentication fails at the destination",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Authentication fails at the destination",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "**Symptom:** The Connect-to-destination block fails with a `401` or `403` error.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: The Connect-to-destination block fails with a 401 or 403 error.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "**Likely cause:** The client key or client secret is incorrect or has expired.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The client key or client secret is incorrect or has expired.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        81,
+        83
+      ],
+      "raw": "1. Open the Connect-to-destination block configuration.\n2. Verify the **Client key** and **Client secret** fields are set to the correct Extension Configuration values.\n3. Confirm the credentials in Extension Configurations are valid and have not expired.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the Connect-to-destination block configuration.Verify the Client key and Client secret fields are set to the correct Extension Configuration values.Confirm the credentials in Extension Configurations are valid and have not expired.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "### Filter block passes no records",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Filter block passes no records",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "**Symptom:** No records reach the blocks downstream of the filter block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: No records reach the blocks downstream of the filter block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "**Likely cause:** The filter condition does not match any records in the data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The filter condition does not match any records in the data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        93,
+        95
+      ],
+      "raw": "1. Open the filter block configuration.\n2. Review the **Filter condition** expression. Check the field name and value against the actual data. For example, `${source:equals('INSTORE')}` only passes records where the `source` field is exactly `INSTORE`.\n3. Confirm the field name in the expression matches the column header in the source CSV exactly, including case.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the filter block configuration.Review the Filter condition expression. Check the field name and value against the actual data. For example, ${source:equals('INSTORE')} only passes records where the source field is exactly INSTORE.Confirm the field name in the expression matches the column header in the source CSV exactly, including case.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "### Records fail after CSV conversion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Records fail after CSV conversion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "**Symptom:** Records are malformed or missing fields after the Convert-CSV-to-JSON block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Symptom: Records are malformed or missing fields after the Convert-CSV-to-JSON block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        101,
+        101
+      ],
+      "raw": "**Likely cause:** The **Sort headers** field does not match the column names in the source CSV.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Likely cause: The Sort headers field does not match the column names in the source CSV.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "**Fix:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Fix:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        105,
+        107
+      ],
+      "raw": "1. Open the Convert-CSV-to-JSON block configuration.\n2. Check the **Sort headers** field. Ensure the column names match the headers in the source CSV exactly, including case and order.\n3. Verify the **Delimiter** matches the delimiter used in the source CSV file.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the Convert-CSV-to-JSON block configuration.Check the Sort headers field. Ensure the column names match the headers in the source CSV exactly, including case and order.Verify the Delimiter matches the delimiter used in the source CSV file.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

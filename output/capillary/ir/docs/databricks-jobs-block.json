@@ -1,0 +1,382 @@
+{
+  "slug": "docs/databricks-jobs-block",
+  "source": "https://docs.capillarytech.com/docs/databricks-jobs-block.md",
+  "url": "https://docs.capillarytech.com/docs/databricks-jobs-block",
+  "title": "Databricks Jobs Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-07T13:02:36.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "Callout": 1,
+    "paragraph": 5,
+    "list": 1,
+    "Table": 1,
+    "Image": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Databricks (Jobs) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Databricks (Jobs) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        13
+      ],
+      "raw": "<Callout icon=\"❗️\" theme=\"error\">\n  ###\n\n  This block will be deprecated in future releases.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️",
+        "theme": "error"
+      },
+      "text": "This block will be deprecated in future releases.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 2,
+          "lines": [
+            10,
+            10
+          ],
+          "raw": "  ###",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 3,
+          "text": "",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 3,
+          "lines": [
+            12,
+            12
+          ],
+          "raw": "  This block will be deprecated in future releases.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This block will be deprecated in future releases.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The `databricks_job_trigger_and_status_check` block triggers a pre-existing Databricks notebook job and monitors its completion status. It acts as a transformation block in a Connect+ dataflow, validating and processing incoming data before passing it to downstream blocks. The block authenticates with the Databricks API using a personal access token, stores processed files at a specified path, and retries status checks until the job completes or reaches the maximum retry limit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The databricks_job_trigger_and_status_check block triggers a pre-existing Databricks notebook job and monitors its completion status. It acts as a transformation block in a Connect+ dataflow, validating and processing incoming data before passing it to downstream blocks. The block authenticates with the Databricks API using a personal access token, stores processed files at a specified path, and retries status checks until the job completes or reaches the maximum retry limit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Use this block when your dataflow needs to trigger a Databricks job and wait for it to complete before downstream processing continues. This block triggers the job only.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow needs to trigger a Databricks job and wait for it to complete before downstream processing continues. This block triggers the job only.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "**Note**: To run a custom Databricks job and return the results to Connect+ for use in downstream blocks, use the Databricks (Validation) block instead.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: To run a custom Databricks job and return the results to Connect+ for use in downstream blocks, use the Databricks (Validation) block instead.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        30
+      ],
+      "raw": "* [The Databricks job ID](https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id)\n* A Databricks personal access token registered in Connect+\n* The Databricks API URL\n* A file path where Databricks stores its output files",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The Databricks job IDA Databricks personal access token registered in Connect+The Databricks API URLA file path where Databricks stores its output files",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        41
+      ],
+      "raw": "| Field name                          | Required | Description                                                                                                                                                                          |\n| :---------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Block name**                      | No       | A name for the block instance. The name must be alphanumeric. There is no character limit.                                                                                           |\n| **Job ID**                          | Yes      | The [ID of the Databricks job](https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id) to trigger.                                     |\n| **Max Retries**                     | Yes      | The maximum number of times the system checks the job status before marking the file as failed.                                                                                      |\n| **dataBricks Processed Files Path** | Yes      | The destination file path where Databricks stores the output files after executing the job, regardless of whether the job succeeds or fails.<br />For example, `/processed/output/`. |\n| **dataBricksToken**                 | Yes      | The personal access token used to authenticate with the Databricks API. Select the token from the dropdown.                                                                          |\n| **dataBricksUrl**                   | Yes      | The Databricks API URL used to trigger and monitor the job.                                                                                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Job ID",
+            "Yes",
+            "The ID of the Databricks job to trigger."
+          ],
+          [
+            "Max Retries",
+            "Yes",
+            "The maximum number of times the system checks the job status before marking the file as failed."
+          ],
+          [
+            "dataBricks Processed Files Path",
+            "Yes",
+            "The destination file path where Databricks stores the output files after executing the job, regardless of whether the job succeeds or fails.For example, /processed/output/."
+          ],
+          [
+            "dataBricksToken",
+            "Yes",
+            "The personal access token used to authenticate with the Databricks API. Select the token from the dropdown."
+          ],
+          [
+            "dataBricksUrl",
+            "Yes",
+            "The Databricks API URL used to trigger and monitor the job."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "<Image src=\"https://files.readme.io/429301c34bd54599896985499d6a00a5a7302657f2f37cd8d2d9c971ddc211ac-Screenshot_2026-04-21_at_3.38.35_PM.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/429301c34bd54599896985499d6a00a5a7302657f2f37cd8d2d9c971ddc211ac-Screenshot_2026-04-21_at_3.38.35_PM.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 45
+        }
+      ]
+    }
+  ]
+}

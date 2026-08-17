@@ -1,0 +1,344 @@
+{
+  "slug": "docs/sftp-listing-block",
+  "source": "https://docs.capillarytech.com/docs/sftp-listing-block.md",
+  "url": "https://docs.capillarytech.com/docs/sftp-listing-block",
+  "title": "Sftp Listing Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:49:04.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "Callout": 1,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# SFTP (Listing) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "SFTP (Listing) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        11
+      ],
+      "raw": "<Callout icon=\"❗️\">\n  This block will be removed in the future releases.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "This block will be removed in the future releases.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 2,
+          "lines": [
+            10,
+            10
+          ],
+          "raw": "  This block will be removed in the future releases.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This block will be removed in the future releases.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The `credential_aware_ftp_listing` block polls an SFTP server and fetches source files matching a defined filename pattern as a source block in a Connect+ dataflow. It uses credential-based authentication to connect to the server and moves processed files to a designated directory for reconciliation purposes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The credential_aware_ftp_listing block polls an SFTP server and fetches source files matching a defined filename pattern as a source block in a Connect+ dataflow. It uses credential-based authentication to connect to the server and moves processed files to a designated directory for reconciliation purposes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Use this block instead of `sftp_read` when server credentials are managed centrally and selected from a dropdown rather than entered manually. It is commonly used in reconciliation dataflows.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block instead of sftp_read when server credentials are managed centrally and selected from a dropdown rather than entered manually. It is commonly used in reconciliation dataflows.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        24
+      ],
+      "raw": "* SFTP server credentials already registered in Connect+\n* A source directory and a processed directory on the SFTP server",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "SFTP server credentials already registered in Connect+A source directory and a processed directory on the SFTP server",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        165
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Hostname**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The hostname of the SFTP server to connect to. Select the hostname from the dropdown. The list shows all values configured in the [Extension Configuration ](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager)section of the Dev Console.  \n        **For example**: data.capillarydata.com.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Username**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The username used to authenticate with the SFTP server. Select the username from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.  \n        **For example**: sftp_user.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Password**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The password used to authenticate with the SFTP server. Select the password from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.\n        For example, sftp_password.\n        **Note**: When creating a password configuration in the Extension Configuration section of the Dev Console, set Is Secret to make it available in the dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Source Directory**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The directory path on the SFTP server where the source files are located. Select the source directory from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.  \n        For example, /APAC2Cluster/A_Connect.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Filename Pattern**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The regex pattern used to match source files on the SFTP server. Select `*.csv` or `.*`.  \n        Default value: `*.csv`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Processed Directory**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The directory path on the SFTP server where processed files are moved after download. Select the processed directory from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager)  section of the Dev Console.  \n        For example, /APAC2Cluster/A_Connect.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Port**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The port number used to connect to the SFTP server. Default value: `22`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Hostname",
+            "Yes",
+            "The hostname of the SFTP server to connect to. Select the hostname from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example: data.capillarydata.com."
+          ],
+          [
+            "Username",
+            "Yes",
+            "The username used to authenticate with the SFTP server. Select the username from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example: sftp_user."
+          ],
+          [
+            "Password",
+            "Yes",
+            "The password used to authenticate with the SFTP server. Select the password from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.\nFor example, sftp_password.\nNote: When creating a password configuration in the Extension Configuration section of the Dev Console, set Is Secret to make it available in the dropdown."
+          ],
+          [
+            "Source Directory",
+            "Yes",
+            "The directory path on the SFTP server where the source files are located. Select the source directory from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example, /APAC2Cluster/A_Connect."
+          ],
+          [
+            "Filename Pattern",
+            "Yes",
+            "The regex pattern used to match source files on the SFTP server. Select *.csv or .*.Default value: *.csv."
+          ],
+          [
+            "Processed Directory",
+            "Yes",
+            "The directory path on the SFTP server where processed files are moved after download. Select the processed directory from the dropdown. The list shows all values configured in the Extension Configuration  section of the Dev Console.For example, /APAC2Cluster/A_Connect."
+          ],
+          [
+            "Port",
+            "Yes",
+            "The port number used to connect to the SFTP server. Default value: 22."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 70
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 85
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 116
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 146
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/9cf1dc65b2e5ea6330b054b286e9f541218ff10fbdc8fa1883e936d3756aa876-credential.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/9cf1dc65b2e5ea6330b054b286e9f541218ff10fbdc8fa1883e936d3756aa876-credential.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1499 @@
+{
+  "slug": "docs/configure-notification-center_ios",
+  "source": "https://docs.capillarytech.com/docs/configure-notification-center_ios.md",
+  "url": "https://docs.capillarytech.com/docs/configure-notification-center_ios",
+  "title": "Configure Notification Center Ios",
+  "description": "",
+  "section": "iOS SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 23,
+    "paragraph": 37,
+    "list": 9,
+    "Image": 2,
+    "code": 11,
+    "thematicBreak": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Notification Inbox",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Notification Inbox",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides information about notification inbox and how to configure it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides information about notification inbox and how to configure it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The Hydra SDK provides a Notification Inbox feature, allowing users to view a history of relevant push notifications received within the app. This uses the HydraInboxCore and HydraInboxUI frameworks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Hydra SDK provides a Notification Inbox feature, allowing users to view a history of relevant push notifications received within the app. This uses the HydraInboxCore and HydraInboxUI frameworks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The Notification Inbox helps with the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Notification Inbox helps with the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        28
+      ],
+      "raw": "* **Centralized Management:** Users access a centralized hub for all push notifications, ensuring organization and control over their app interactions.\n* **Enhanced Accessibility:** Notifications are no longer buried in cluttered bars; users can manage them efficiently, leading to a seamless experience.\n* **Increased Engagement:** Clear and accessible notifications promote active engagement, allowing users to respond promptly to social interactions, promotions, and achievements.\n* **Improved customer satisfaction:** The Notification Inbox will help to improve customer satisfaction by making the app more useful and engaging\n* **Metrics**: Enables to track the number of users who open the Notification Inbox, the number of push notifications that are viewed in the Notification Inbox, and the number of push notifications that are deleted from the Notification Inbox\n\n  ## Use Case: Retail Loyalty Program\n\n  **Scenario:**\\\n  A retail company operates a loyalty program where customers earn points for each purchase. This program offers exclusive promotions and discounts to reward loyal customers. The app sends push notifications to users, notifying them of earned points and offering special discounts.\n  **Issue:**\n  Many users miss out on these discounts due to cluttered notification bars filled with messages from various apps. They frequently clear their notification bars without noticing the discounts, resulting in missed opportunities.\n  **Solution:**\n  Introducing a Notification Center within the app resolves this issue. Users can conveniently access all loyalty program notifications in one location. Here, they can easily view their accumulated points and available discounts. This streamlined approach enhances user engagement and loyalty.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Centralized Management: Users access a centralized hub for all push notifications, ensuring organization and control over their app interactions.Enhanced Accessibility: Notifications are no longer buried in cluttered bars; users can manage them efficiently, leading to a seamless experience.Increased Engagement: Clear and accessible notifications promote active engagement, allowing users to respond promptly to social interactions, promotions, and achievements.Improved customer satisfaction: The Notification Inbox will help to improve customer satisfaction by making the app more useful and engagingMetrics: Enables to track the number of users who open the Notification Inbox, the number of push notifications that are viewed in the Notification Inbox, and the number of push notifications that are deleted from the Notification InboxUse Case: Retail Loyalty ProgramScenario:A retail company operates a loyalty program where customers earn points for each purchase. This program offers exclusive promotions and discounts to reward loyal customers. The app sends push notifications to users, notifying them of earned points and offering special discounts.\nIssue:\nMany users miss out on these discounts due to cluttered notification bars filled with messages from various apps. They frequently clear their notification bars without noticing the discounts, resulting in missed opportunities.\nSolution:\nIntroducing a Notification Center within the app resolves this issue. Users can conveniently access all loyalty program notifications in one location. Here, they can easily view their accumulated points and available discounts. This streamlined approach enhances user engagement and loyalty.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        32,
+        40
+      ],
+      "raw": "1. **Notification Management:**\\\n   The Inbox relies on the core SDK and push handling.  To enable and support the Notification Center's functionality, developers must integrate two frameworks.\n   * HydraPushNotification\n   * HydraPushNotificationServiceExtension\\\n     Ensure they are initialized and push delegate methods are forwarded correctly.\n2. **App Groups (Mandatory):**\\\n   The Inbox feature requires App Groups to be configured correctly to allow data sharing (notification storage) between the main app and the Notification Service Extension (which often saves the incoming notification).\n\n   > ❗️ Make sure that the same App Group ID is enabled for all the targets where the Capillary SDK is utilized.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Notification Management:The Inbox relies on the core SDK and push handling.  To enable and support the Notification Center's functionality, developers must integrate two frameworks.HydraPushNotificationHydraPushNotificationServiceExtensionEnsure they are initialized and push delegate methods are forwarded correctly.App Groups (Mandatory):The Inbox feature requires App Groups to be configured correctly to allow data sharing (notification storage) between the main app and the Notification Service Extension (which often saves the incoming notification).❗️ Make sure that the same App Group ID is enabled for all the targets where the Capillary SDK is utilized.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "### Set up App group ID",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Set up App group ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "To set up an App Group ID for the main application, from **TARGETS**, select your App Target, navigate to the **Signing & Capabilities** tab and perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up an App Group ID for the main application, from TARGETS, select your App Target, navigate to the Signing & Capabilities tab and perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "i.  Enable **App Groups** for your app target and choose an App Group ID. If you don't have one, create a new one with the format `group.{your_bundle_id}.hydra`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "i.  Enable App Groups for your app target and choose an App Group ID. If you don't have one, create a new one with the format group.{your_bundle_id}.hydra.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "ii. Enable **Background mode** and select/enable **Remote Notification**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "ii. Enable Background mode and select/enable Remote Notification.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "iii. Turn on the **Push Notifications** capability for your app.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "iii. Turn on the Push Notifications capability for your app.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/fad705a-iOS_SDK_App_group_identifier.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/fad705a-iOS_SDK_App_group_identifier.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "To set up an App Group ID for the Push Notification Extension Target, from **TARGETS**, select your App Target, navigate to the **Signing & Capabilities** tab and perform the changes as shown in the image below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up an App Group ID for the Push Notification Extension Target, from TARGETS, select your App Target, navigate to the Signing & Capabilities tab and perform the changes as shown in the image below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/01c6356-Push_notification_extension_target.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/01c6356-Push_notification_extension_target.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "**NOTE:** The App Group ID must precisely match the name of the main application.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "NOTE: The App Group ID must precisely match the name of the main application.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "# Initialisation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Initialisation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "Initialize `InboxCore` and `InboxUICore` after `HydraCore` and `NotificationCore`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Initialize InboxCore and InboxUICore after HydraCore and NotificationCore.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        64,
+        124
+      ],
+      "raw": "```\n// In your AppDelegate\n\nimport HydraInboxCore\nimport HydraInboxUI\n\nclass AppDelegate: UIResponder, UIApplicationDelegate {\n\n    var hydraSDK: Hydra?\n    let notificationCore = NotificationCore.shared\n    var inAppCore: InAppMessagingCore?\n    var inboxCore: InboxCore?\n    var inboxUI: InboxUICore?\n\n    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n\n        // --- Initialize Hydra Core, Notification Core, In-App Messaging --- \n        // ... (as shown before) ...\n\n        // --- Initialize Inbox Core ---\n        if let config = hydraSDK?.configuration() { \n            let inboxCoreConfig = InboxCoreConfiguration(\n                hydraConfig: config,\n                maximumNotificationCount: 200 // Optional: Max messages stored per user\n            )\n            do {\n                inboxCore = try InboxCore(\n                    with: inboxCoreConfig,\n                    configuredFor: .dev // Match environment\n                )\n                print(\"Hydra Inbox Core Initialized Successfully!\")\n                \n                // --- Initialize Inbox UI ---\n                // Configure UI (Default example)\n                let inboxUIConfig = HydraInboxUIConfiguration(\n                    unreadMessageConfigType: .defaultUnreadConfiguration, // Style for unread items\n                    readMessageConfigType: .defaultReadConfiguration,   // Style for read items\n                    // Optional: Configure empty state text/font\n                    // notificationsNotFoundConfiguration: HydraInboxEmptyNotificationsConfiguration(...), \n                    placeholderImage: UIImage(named: \"notification-placeholder\") // Optional\n                )\n                \n                inboxUI = InboxUICore(with: inboxCore!, configuration: inboxUIConfig)\n                print(\"Hydra Inbox UI Initialized Successfully!\")\n                \n            } catch let error {\n                print(\"Error Initializing Hydra Inbox Core/UI: \\(error.localizedDescription)\")\n            }\n        } else {\n             print(\"Error: Cannot initialize Inbox without HydraCore config.\")\n        }\n        \n        // --- Rest of AppDelegate setup ---\n        // ...\n\n        return true\n    }\n    \n    // ... other AppDelegate methods\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "// In your AppDelegate\n\nimport HydraInboxCore\nimport HydraInboxUI\n\nclass AppDelegate: UIResponder, UIApplicationDelegate {\n\n    var hydraSDK: Hydra?\n    let notificationCore = NotificationCore.shared\n    var inAppCore: InAppMessagingCore?\n    var inboxCore: InboxCore?\n    var inboxUI: InboxUICore?\n\n    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {\n\n        // --- Initialize Hydra Core, Notification Core, In-App Messaging --- \n        // ... (as shown before) ...\n\n        // --- Initialize Inbox Core ---\n        if let config = hydraSDK?.configuration() { \n            let inboxCoreConfig = InboxCoreConfiguration(\n                hydraConfig: config,\n                maximumNotificationCount: 200 // Optional: Max messages stored per user\n            )\n            do {\n                inboxCore = try InboxCore(\n                    with: inboxCoreConfig,\n                    configuredFor: .dev // Match environment\n                )\n                print(\"Hydra Inbox Core Initialized Successfully!\")\n                \n                // --- Initialize Inbox UI ---\n                // Configure UI (Default example)\n                let inboxUIConfig = HydraInboxUIConfiguration(\n                    unreadMessageConfigType: .defaultUnreadConfiguration, // Style for unread items\n                    readMessageConfigType: .defaultReadConfiguration,   // Style for read items\n                    // Optional: Configure empty state text/font\n                    // notificationsNotFoundConfiguration: HydraInboxEmptyNotificationsConfiguration(...), \n                    placeholderImage: UIImage(named: \"notification-placeholder\") // Optional\n                )\n                \n                inboxUI = InboxUICore(with: inboxCore!, configuration: inboxUIConfig)\n                print(\"Hydra Inbox UI Initialized Successfully!\")\n                \n            } catch let error {\n                print(\"Error Initializing Hydra Inbox Core/UI: \\(error.localizedDescription)\")\n            }\n        } else {\n             print(\"Error: Cannot initialize Inbox without HydraCore config.\")\n        }\n        \n        // --- Rest of AppDelegate setup ---\n        // ...\n\n        return true\n    }\n    \n    // ... other AppDelegate methods\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        126,
+        126
+      ],
+      "raw": "## Initialisation Details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Initialisation Details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "### InboxCoreConfiguration:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "InboxCoreConfiguration:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        130,
+        131
+      ],
+      "raw": "* hydraConfig: The shared `HydraConfiguration` instance.\n* maximumNotificationCount (Optional Int): Limits the number of notifications stored locally per user. Defaults to 250 if not provided",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "hydraConfig: The shared HydraConfiguration instance.maximumNotificationCount (Optional Int): Limits the number of notifications stored locally per user. Defaults to 250 if not provided",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        133,
+        133
+      ],
+      "raw": "### HydraInboxUIConfiguration:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "HydraInboxUIConfiguration:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        135,
+        140
+      ],
+      "raw": "* `unreadMessageConfigType` / `readMessageConfigType`: Define the appearance of list items. Options:\n  * `.defaultUnreadConfiguration` / `.defaultReadConfiguration`: Use the SDK’s default styling.\n  * `.customConfiguration`(`HydraInboxMessageConfigurator`): Provide your own object conforming to `HydraInboxMessageConfigurator` to customize fonts, colors, borders, etc. (see `HydraInboxMessageUIConfiguration` struct for properties).\n  * `.customReactNativeConfiguration`(`HydraInboxMessageReactNativeUIConfigurator`): Provide configuration using string representations (e.g., hex colors) suitable for cross-platform frameworks.\n* `notificationsNotFoundConfiguration` (Optional `HydraInboxEmptyNotificationsConfigurator`): Customize the text and font displayed when the inbox is empty.\n* `placeholderImage` (Optional `UIImage`): Image shown while notification images are loading.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "unreadMessageConfigType / readMessageConfigType: Define the appearance of list items. Options:.defaultUnreadConfiguration / .defaultReadConfiguration: Use the SDK’s default styling..customConfiguration(HydraInboxMessageConfigurator): Provide your own object conforming to HydraInboxMessageConfigurator to customize fonts, colors, borders, etc. (see HydraInboxMessageUIConfiguration struct for properties)..customReactNativeConfiguration(HydraInboxMessageReactNativeUIConfigurator): Provide configuration using string representations (e.g., hex colors) suitable for cross-platform frameworks.notificationsNotFoundConfiguration (Optional HydraInboxEmptyNotificationsConfigurator): Customize the text and font displayed when the inbox is empty.placeholderImage (Optional UIImage): Image shown while notification images are loading.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "# Displaying the Notification Center",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Displaying the Notification Center",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "The `HydraInboxUI` framework provides a pre-built view controller.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The HydraInboxUI framework provides a pre-built view controller.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        146,
+        184
+      ],
+      "raw": "```\n// Example: In a UIViewController that has a button to open the inbox\n\nimport UIKit\nimport HydraInboxUI // Import HydraInboxUI\n\nclass HomeViewController: UIViewController {\n\n    // Assuming you have access to the initialized inboxUI instance \n    // (e.g., via AppDelegate singleton or dependency injection)\n    var inboxUI: InboxUICore? \n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        // Get the inboxUI instance (example using AppDelegate)\n        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {\n            self.inboxUI = appDelegate.inboxUI\n        }\n    }\n\n    @IBAction func inboxButtonTapped(_ sender: Any) {\n        guard let inboxUI = self.inboxUI, let navController = self.navigationController else {\n            print(\"Inbox UI not available or not embedded in a Navigation Controller\")\n            return\n        }\n        \n        // Option 1: Let the SDK push the view controller\n        inboxUI.showNotificationCenter(with: navController)\n        \n        // Option 2: Get the view controller and push it manually\n        // let inboxVC = inboxUI.getNotificationCenter()\n        // navController.pushViewController(inboxVC, animated: true)\n        \n        // Option 3: Get the SwiftUI View (if integrating into a SwiftUI hierarchy)\n        // let inboxSwiftUIView = inboxUI.notificationCenterSwiftUIView()\n        // // Embed inboxSwiftUIView in your SwiftUI view...\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "// Example: In a UIViewController that has a button to open the inbox\n\nimport UIKit\nimport HydraInboxUI // Import HydraInboxUI\n\nclass HomeViewController: UIViewController {\n\n    // Assuming you have access to the initialized inboxUI instance \n    // (e.g., via AppDelegate singleton or dependency injection)\n    var inboxUI: InboxUICore? \n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        // Get the inboxUI instance (example using AppDelegate)\n        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {\n            self.inboxUI = appDelegate.inboxUI\n        }\n    }\n\n    @IBAction func inboxButtonTapped(_ sender: Any) {\n        guard let inboxUI = self.inboxUI, let navController = self.navigationController else {\n            print(\"Inbox UI not available or not embedded in a Navigation Controller\")\n            return\n        }\n        \n        // Option 1: Let the SDK push the view controller\n        inboxUI.showNotificationCenter(with: navController)\n        \n        // Option 2: Get the view controller and push it manually\n        // let inboxVC = inboxUI.getNotificationCenter()\n        // navController.pushViewController(inboxVC, animated: true)\n        \n        // Option 3: Get the SwiftUI View (if integrating into a SwiftUI hierarchy)\n        // let inboxSwiftUIView = inboxUI.notificationCenterSwiftUIView()\n        // // Embed inboxSwiftUIView in your SwiftUI view...\n    }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        186,
+        186
+      ],
+      "raw": "**Design Reference:** For detailed design and mockups, refer to the [Figma design](https://www.figma.com/design/XZHO6EOIeb4RnPFdhcTIkp/SDK-%7C-Notification-centre-enhancements?node-id=74-33608\\&node-type=FRAME\\&t=NvJcBai6WEcb6Pv1-0) .",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Design Reference: For detailed design and mockups, refer to the Figma design .",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        188,
+        188
+      ],
+      "raw": "# **Handling Interactions**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling Interactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "Similar to In-App Messaging, user interactions within the default Notification Center UI (tapping a notification to view details/perform primary action, tapping CTA buttons, deleting notifications) are **handled automatically by the`HydraInboxUI` framework**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Similar to In-App Messaging, user interactions within the default Notification Center UI (tapping a notification to view details/perform primary action, tapping CTA buttons, deleting notifications) are handled automatically by theHydraInboxUI framework.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        192,
+        196
+      ],
+      "raw": "* It uses the underlying `InboxCore` instance to:\n  * Mark notifications as read (handleNotification(action: .read)).\n  * Delete notifications (`handleNotification(action: .delete)` or `handleDeleteAllNotifications`).\n  * Trigger CTA actions (`performNotificationAction` or `performNotificationExpandableCtaAction`).\n* The UI automatically refreshes when data changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "It uses the underlying InboxCore instance to:Mark notifications as read (handleNotification(action: .read)).Delete notifications (handleNotification(action: .delete) or handleDeleteAllNotifications).Trigger CTA actions (performNotificationAction or performNotificationExpandableCtaAction).The UI automatically refreshes when data changes.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "# **Updating UI for Unread Count (e.g., Badge on a Bell Icon)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Updating UI for Unread Count (e.g., Badge on a Bell Icon)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "You often need to display an indicator (like a badge) when there are unread notifications.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You often need to display an indicator (like a badge) when there are unread notifications.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        202,
+        260
+      ],
+      "raw": "1. **Fetch Count:** `Use inboxCore.getUnreadNotificationCount { ... }` to get the current count asynchronously.\n2. **Listen for Changes:** Implement the `HydraInboxUIProtocol` and set your class as the delegate using `inboxUI.setHydraInboxUIDelegate(delegate: self)`. The `refreshNotificationList()` method will be called whenever the inbox data changes (new message, read, delete).\n\n   ```\n   // Example: In your HomeViewController (or wherever the bell icon is)\n   import HydraInboxCore // Import Core for the protocol\n\n   class HomeViewController: UIViewController, HydraInboxUIProtocol {\n\n       @IBOutlet weak var inboxBadgeLabel: UILabel! // Example UI element\n       @IBOutlet weak var inboxButton: UIButton!\n       \n       var inboxUI: InboxUICore? \n       var inboxCore: InboxCore? // Need core instance to fetch count\n\n       override func viewDidLoad() {\n           super.viewDidLoad()\n           if let appDelegate = UIApplication.shared.delegate as? AppDelegate {\n               self.inboxUI = appDelegate.inboxUI\n               self.inboxCore = appDelegate.inboxCore\n               \n               // Set self as the delegate to listen for changes\n               self.inboxUI?.setHydraInboxUIDelegate(delegate: self)\n           }\n           updateInboxBadge()\n       }\n       \n       override func viewWillAppear(_ animated: Bool) {\n           super.viewWillAppear(animated)\n           // Refresh badge when view appears, in case changes happened while away\n           updateInboxBadge()\n       }\n\n       func updateInboxBadge() {\n           inboxCore?.getUnreadNotificationCount { [weak self] count in\n               DispatchQueue.main.async {\n                   self?.inboxBadgeLabel.isHidden = (count == 0)\n                   self?.inboxBadgeLabel.text = \"\\(count)\"\n                   // Add animation or other UI updates as needed\n               }\n           }\n       }\n\n       // MARK: - HydraInboxUIProtocol Delegate\n\n       func refreshNotificationList() {\n           // This method is called by the SDK when inbox data changes.\n           // Update the badge count.\n           print(\"Inbox delegate received refreshNotificationList call.\")\n           updateInboxBadge()\n       }\n       \n       @IBAction func inboxButtonTapped(_ sender: Any) {\n          // ... (Show inbox code from previous example) ...\n          // Optionally, mark badge as 0 immediately when opened\n          // inboxBadgeLabel.isHidden = true \n       }\n   }\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Fetch Count: Use inboxCore.getUnreadNotificationCount { ... } to get the current count asynchronously.Listen for Changes: Implement the HydraInboxUIProtocol and set your class as the delegate using inboxUI.setHydraInboxUIDelegate(delegate: self). The refreshNotificationList() method will be called whenever the inbox data changes (new message, read, delete).// Example: In your HomeViewController (or wherever the bell icon is)\nimport HydraInboxCore // Import Core for the protocol\n\nclass HomeViewController: UIViewController, HydraInboxUIProtocol {\n\n    @IBOutlet weak var inboxBadgeLabel: UILabel! // Example UI element\n    @IBOutlet weak var inboxButton: UIButton!\n    \n    var inboxUI: InboxUICore? \n    var inboxCore: InboxCore? // Need core instance to fetch count\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {\n            self.inboxUI = appDelegate.inboxUI\n            self.inboxCore = appDelegate.inboxCore\n            \n            // Set self as the delegate to listen for changes\n            self.inboxUI?.setHydraInboxUIDelegate(delegate: self)\n        }\n        updateInboxBadge()\n    }\n    \n    override func viewWillAppear(_ animated: Bool) {\n        super.viewWillAppear(animated)\n        // Refresh badge when view appears, in case changes happened while away\n        updateInboxBadge()\n    }\n\n    func updateInboxBadge() {\n        inboxCore?.getUnreadNotificationCount { [weak self] count in\n            DispatchQueue.main.async {\n                self?.inboxBadgeLabel.isHidden = (count == 0)\n                self?.inboxBadgeLabel.text = \"\\(count)\"\n                // Add animation or other UI updates as needed\n            }\n        }\n    }\n\n    // MARK: - HydraInboxUIProtocol Delegate\n\n    func refreshNotificationList() {\n        // This method is called by the SDK when inbox data changes.\n        // Update the badge count.\n        print(\"Inbox delegate received refreshNotificationList call.\")\n        updateInboxBadge()\n    }\n    \n    @IBAction func inboxButtonTapped(_ sender: Any) {\n       // ... (Show inbox code from previous example) ...\n       // Optionally, mark badge as 0 immediately when opened\n       // inboxBadgeLabel.isHidden = true \n    }\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        262,
+        262
+      ],
+      "raw": "# **Building a Custom Inbox UI**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Building a Custom Inbox UI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        264,
+        264
+      ],
+      "raw": "If the pre-built `HydraInboxUI` doesn’t meet your needs, you can build a completely custom UI using only `HydraInboxCore`:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the pre-built HydraInboxUI doesn’t meet your needs, you can build a completely custom UI using only HydraInboxCore:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        266,
+        273
+      ],
+      "raw": "1. Initialize `InboxCore` as shown before.\n2. Fetch Data: Use `inboxCore.getNotifications { ... }` to get the `[HydraNotificationPayload]` array.\n3. Display Data: Use the fetched data to populate your custom `UITableView`, `UICollectionView`, or SwiftUI `List`.\n4. Handle Actions: In your custom UI, when a user taps or swipes:\n   * Call `inboxCore.performNotificationAction(notification:)` for taps on the main item.\n   * Call `inboxCore.performNotificationExpandableCtaAction(notification:cta:)` for secondary button taps.\n   * Call `inboxCore.handleNotification(notification:action:completion:)` with `.read` when a notification is viewed/tapped, and with `.delete` when deleted.\n5. **Refresh UI:** Use the `HydraInboxUIProtocol` delegate (`setHydraInboxUIDelegate`) to listen for `refreshNotificationList()` calls and update your custom UI accordingly. Fetch the latest data using `getNotifications` within the delegate method.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Initialize InboxCore as shown before.Fetch Data: Use inboxCore.getNotifications { ... } to get the [HydraNotificationPayload] array.Display Data: Use the fetched data to populate your custom UITableView, UICollectionView, or SwiftUI List.Handle Actions: In your custom UI, when a user taps or swipes:Call inboxCore.performNotificationAction(notification:) for taps on the main item.Call inboxCore.performNotificationExpandableCtaAction(notification:cta:) for secondary button taps.Call inboxCore.handleNotification(notification:action:completion:) with .read when a notification is viewed/tapped, and with .delete when deleted.Refresh UI: Use the HydraInboxUIProtocol delegate (setHydraInboxUIDelegate) to listen for refreshNotificationList() calls and update your custom UI accordingly. Fetch the latest data using getNotifications within the delegate method.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        275,
+        275
+      ],
+      "raw": "# API Usage",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Usage",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        277,
+        277
+      ],
+      "raw": "## HydraInboxCore",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "HydraInboxCore",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        279,
+        279
+      ],
+      "raw": "### **getUnreadNotificationCount()**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "getUnreadNotificationCount()",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        281,
+        281
+      ],
+      "raw": "Use this API to retrieve the count of unread notifications using the instance of **InboxCore**. This method returns an integer value.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to retrieve the count of unread notifications using the instance of InboxCore. This method returns an integer value.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        283,
+        283
+      ],
+      "raw": "**Example:** In the example below, we have set a badge icon on the bell image if there is one or more unread notification(s):",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: In the example below, we have set a badge icon on the bell image if there is one or more unread notification(s):",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        285,
+        299
+      ],
+      "raw": "```\nguard let inboxCore Application Manager sharedObj inboxCore else\n{\n  return\n}\nif inboxCore getUnread NotificationCount() > 0\n{\nnotificationButton setImage Ullmage system Name: \"bell.badge\" for normal\n} \nelse \n{\n  notificationButton setImage Ullmage system Name: \"bell\" for normal\n}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "guard let inboxCore Application Manager sharedObj inboxCore else\n{\n  return\n}\nif inboxCore getUnread NotificationCount() > 0\n{\nnotificationButton setImage Ullmage system Name: \"bell.badge\" for normal\n} \nelse \n{\n  notificationButton setImage Ullmage system Name: \"bell\" for normal\n}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        301,
+        301
+      ],
+      "raw": "### **getNotifications()**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "getNotifications()",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "Use this API to get the available notifications. This method returns an array of **HydraNotificationPayload** objects. The configuration provided while initializing the InboxCore instance is used. For more information, refer to the [HydraInboxCoreConfigGenerator](https://docs.capillarytech.com/docs/configure-notification-center_ios#hydrainboxcore) section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to get the available notifications. This method returns an array of HydraNotificationPayload objects. The configuration provided while initializing the InboxCore instance is used. For more information, refer to the HydraInboxCoreConfigGenerator section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-notification-center_ios#hydrainboxcore",
+          "line": 303
+        }
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        307,
+        309
+      ],
+      "raw": "```swift\nval notifications: List<HydraNotificationPayload> = inboxCore.getNotifications()\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "val notifications: List<HydraNotificationPayload> = inboxCore.getNotifications()"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "## **handleNotification(notification: HydraNotificationPayload, action: HydraNotificationAction)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "handleNotification(notification: HydraNotificationPayload, action: HydraNotificationAction)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "This API communicates the action taken on the notification to the SDK. The action should be an enum of type **HydraNotificationAction**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API communicates the action taken on the notification to the SDK. The action should be an enum of type HydraNotificationAction.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        315,
+        315
+      ],
+      "raw": "There are two type of actions:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are two type of actions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        317,
+        318
+      ],
+      "raw": "* Use `.read` when the user clicks on the notification, and\n* `.delete` when the user wants to delete the notification.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use .read when the user clicks on the notification, and.delete when the user wants to delete the notification.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        320,
+        320
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        322,
+        324
+      ],
+      "raw": "```swift\ninboxCore.handleNotification(notification.notification, HydraNotificationAction.READ)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "inboxCore.handleNotification(notification.notification, HydraNotificationAction.READ)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        326,
+        326
+      ],
+      "raw": "#### **handleDeleteAllNotifications()**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "handleDeleteAllNotifications()",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        328,
+        328
+      ],
+      "raw": "This API deletes all notifications associated with the current user from the database. Returns `true` if all notifications were deleted successfully, otherwise `false`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API deletes all notifications associated with the current user from the database. Returns true if all notifications were deleted successfully, otherwise false.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        330,
+        330
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        332,
+        338
+      ],
+      "raw": "```swift\nif (inboxCore.handleDeleteAllNotifications()) {\n    Logger.info(\"Delete all notifications succeeded\")\n} else {\n    Logger.error(\"Delete all notifications failed\")\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "if (inboxCore.handleDeleteAllNotifications()) {\n    Logger.info(\"Delete all notifications succeeded\")\n} else {\n    Logger.error(\"Delete all notifications failed\")\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        340,
+        340
+      ],
+      "raw": "### **performNotificationAction(notification: HydraNotificationPayload)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "performNotificationAction(notification: HydraNotificationPayload)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        342,
+        342
+      ],
+      "raw": "Use this API to perform the action associated with the notification when the user clicks on it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to perform the action associated with the notification when the user clicks on it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        344,
+        344
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        346,
+        348
+      ],
+      "raw": "```swift\ninboxCore.performNotificationAction(notification.notification)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "inboxCore.performNotificationAction(notification.notification)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        350,
+        350
+      ],
+      "raw": "### **setHydraInboxUIDelegate(delegate: HydraInboxUIProtocol?)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "setHydraInboxUIDelegate(delegate: HydraInboxUIProtocol?)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        352,
+        352
+      ],
+      "raw": "Use this API to set the delegate of **InboxCore**. The delegate is notified of changes in the database, such as insertion, deletion, or updates of notifications. The view displaying the Notification Center should implement the **HydraInboxUIProtocol** and use this method.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to set the delegate of InboxCore. The delegate is notified of changes in the database, such as insertion, deletion, or updates of notifications. The view displaying the Notification Center should implement the HydraInboxUIProtocol and use this method.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        354,
+        354
+      ],
+      "raw": "The Notification Center view can implement the `func refreshNotificationList()` to update the UI and refresh the notifications.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Notification Center view can implement the func refreshNotificationList() to update the UI and refresh the notifications.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        356,
+        356
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        358,
+        371
+      ],
+      "raw": "```swift\n\n\nextension NotificationListViewModel: HydraInboxUIProtocol\n\n{ func refreshNotificationList()\n                                                         \n{\nDispatchQueue.main.async\n  { [weak self] in self?.refresh()\n}\n}\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "\n\nextension NotificationListViewModel: HydraInboxUIProtocol\n\n{ func refreshNotificationList()\n                                                         \n{\nDispatchQueue.main.async\n  { [weak self] in self?.refresh()\n}\n}\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        373,
+        373
+      ],
+      "raw": "## **HydraInboxUI**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "HydraInboxUI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        375,
+        375
+      ],
+      "raw": "To show Notification Center, an Application Developer can use either",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To show Notification Center, an Application Developer can use either",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        377,
+        379
+      ],
+      "raw": "* `showNotificationCenter(with navigationController: UINavigationController)`\\\n  OR\n* `getNotificationCenter() `API",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "showNotificationCenter(with navigationController: UINavigationController)ORgetNotificationCenter() API",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        381,
+        381
+      ],
+      "raw": "#### **showNotificationCenter(with navigationController: UINavigationController)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "showNotificationCenter(with navigationController: UINavigationController)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        383,
+        383
+      ],
+      "raw": "Use this API to push Notification Center created by the SDK in the given navigationController.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to push Notification Center created by the SDK in the given navigationController.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        385,
+        385
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        387,
+        389
+      ],
+      "raw": "```swift\ninboxUI.showNotificationCenter(with = navigationController)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "inboxUI.showNotificationCenter(with = navigationController)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        391,
+        391
+      ],
+      "raw": "### **getNotificationCenter()**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "getNotificationCenter()",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        393,
+        393
+      ],
+      "raw": "Use this API to obtain the Notification Center created by the SDK. The application can then decide whether to push or present this Notification Center.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to obtain the Notification Center created by the SDK. The application can then decide whether to push or present this Notification Center.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        395,
+        395
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        397,
+        400
+      ],
+      "raw": "```swift\nval notificationCenterViewController = inboxUI.getNotificationCenter()\nnavigationController.pushViewController(notificationCenterViewController, animated = true)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "val notificationCenterViewController = inboxUI.getNotificationCenter()\nnavigationController.pushViewController(notificationCenterViewController, animated = true)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        402,
+        402
+      ],
+      "raw": "#### **setHydraInboxUIDelegate(delegate: HydraInboxUIProtocol)**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "setHydraInboxUIDelegate(delegate: HydraInboxUIProtocol)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        404,
+        404
+      ],
+      "raw": "Use this API to set the delegate of **InboxUICore**. This delegate is also passed internally to the **InboxCore** delegate. By doing so, changes notified by **InboxCore** are directly passed to this delegate.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to set the delegate of InboxUICore. This delegate is also passed internally to the InboxCore delegate. By doing so, changes notified by InboxCore are directly passed to this delegate.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        406,
+        406
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        408,
+        408
+      ],
+      "raw": "For instance, if you have a bell icon on the Home screen that should show a badge when there are unread notifications, set the delegate of **InboxUICore** on the Home screen using this method. Implement the **refreshNotificationList()** method in the Home screen to update the bell icon accordingly:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For instance, if you have a bell icon on the Home screen that should show a badge when there are unread notifications, set the delegate of InboxUICore on the Home screen using this method. Implement the refreshNotificationList() method in the Home screen to update the bell icon accordingly:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        410,
+        436
+      ],
+      "raw": "```swift\noverride func viewWillAppear(_ animated: Bool) {\n        super.viewWillAppear(animated)\n        updateNotificationBellIcon()\n       self.inboxUI.setInboxUIDelegate(delegate: self)\n}\n@objc private func updateNotificationBellIcon() {\n        guard let inboxCore = ApplicationManager.sharedObj.inboxCore else {\n            return\n        }\n        if inboxCore.getUnreadNotificationCount() > 0 {\n            notificationButton.setImage(UIImage(systemName: \"bell.badge\"), for: .normal)\n        } else {\n            notificationButton.setImage(UIImage(systemName: \"bell\"), for: .normal)\n        }\n    }\n\n\nextension HomeViewController: HydraInboxUIProtocol {\n    func refreshNotificationList() {\n        DispatchQueue.main.async { [weak self] in\n            self?.updateNotificationBellIcon()\n        }\n    }\n}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "override func viewWillAppear(_ animated: Bool) {\n        super.viewWillAppear(animated)\n        updateNotificationBellIcon()\n       self.inboxUI.setInboxUIDelegate(delegate: self)\n}\n@objc private func updateNotificationBellIcon() {\n        guard let inboxCore = ApplicationManager.sharedObj.inboxCore else {\n            return\n        }\n        if inboxCore.getUnreadNotificationCount() > 0 {\n            notificationButton.setImage(UIImage(systemName: \"bell.badge\"), for: .normal)\n        } else {\n            notificationButton.setImage(UIImage(systemName: \"bell\"), for: .normal)\n        }\n    }\n\n\nextension HomeViewController: HydraInboxUIProtocol {\n    func refreshNotificationList() {\n        DispatchQueue.main.async { [weak self] in\n            self?.updateNotificationBellIcon()\n        }\n    }\n}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        438,
+        438
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "slug": "docs/filter-hidden-block",
+  "source": "https://docs.capillarytech.com/docs/filter-hidden-block.md",
+  "url": "https://docs.capillarytech.com/docs/filter-hidden-block",
+  "title": "Filter Hidden Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:41:22.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "Callout": 1,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Filter (Hidden) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Filter (Hidden) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        11
+      ],
+      "raw": "<Callout icon=\"❗️\">\n  This block will be deprecated in future releases.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "This block will be deprecated in future releases.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 2,
+          "lines": [
+            10,
+            10
+          ],
+          "raw": "  This block will be deprecated in future releases.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "This block will be deprecated in future releases.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The `filter_on_condition_hidden` block filters data based on conditions before it is processed by downstream blocks. It acts as a transformation block in a Connect+ dataflow, evaluating each record against a defined expression and passing only the records that satisfy the condition. The block uses JSON expression to define filter conditions based on header values.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The filter_on_condition_hidden block filters data based on conditions before it is processed by downstream blocks. It acts as a transformation block in a Connect+ dataflow, evaluating each record against a defined expression and passing only the records that satisfy the condition. The block uses JSON expression to define filter conditions based on header values.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Use this block in dataflows where records carry an internal boolean-style flag, and you want to pass only records where the flag is `true` or not set.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block in dataflows where records carry an internal boolean-style flag, and you want to pass only records where the flag is true or not set.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        24
+      ],
+      "raw": "* Identified the header field and value to filter on\n* Familiarity with JSON expression",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Identified the header field and value to filter onFamiliarity with JSON expression",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        76
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        A name for the block instance. For example, `Filter_Hidden_Block`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Filter Condition**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The expression used to filter records. Only records that satisfy the condition are passed downstream.  \n        Default value: `${header_value:equals('true'):or(${header_value:isEmpty()})}`.  \n        For example, use `${header_value:equals('true')}` to pass only records where the header value is `true`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. For example, Filter_Hidden_Block."
+          ],
+          [
+            "Filter Condition",
+            "No",
+            "The expression used to filter records. Only records that satisfy the condition are passed downstream.Default value: ${header_value:equals('true'):or(${header_value:isEmpty()})}.For example, use ${header_value:equals('true')} to pass only records where the header value is true."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

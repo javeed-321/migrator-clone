@@ -1,0 +1,1877 @@
+{
+  "slug": "docs/extended-fields",
+  "source": "https://docs.capillarytech.com/docs/extended-fields.md",
+  "url": "https://docs.capillarytech.com/docs/extended-fields",
+  "title": "Extended Fields",
+  "description": "",
+  "section": "Set up Data Fields",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-16T09:44:32.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `,` (U+002C) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 22,
+    "paragraph": 36,
+    "list": 19,
+    "Table": 4,
+    "Image": 8,
+    "Callout": 1,
+    "br": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Extended Fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Extended Fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Extended fields are configurable, system-recognized fields designed to capture structured information specific to certain business verticals, such as food and beverage, hospitality, aviation, and retail. Unlike free-form custom fields, extended fields enforce data consistency through controlled inputs, making them ideal for operational and analytical use.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Extended fields are configurable, system-recognized fields designed to capture structured information specific to certain business verticals, such as food and beverage, hospitality, aviation, and retail. Unlike free-form custom fields, extended fields enforce data consistency through controlled inputs, making them ideal for operational and analytical use.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Important:** When you onboard an extended field as Integer type for bill or lineitem entities, the system converts null values from the source to 0 during ETL transformation. This helps with numeric aggregations but means null values are not preserved. If you need to retain nulls, onboard the field as String type instead.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important: When you onboard an extended field as Integer type for bill or lineitem entities, the system converts null values from the source to 0 during ETL transformation. This helps with numeric aggregations but means null values are not preserved. If you need to retain nulls, onboard the field as String type instead.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Each extended field is predefined with attributes such as:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each extended field is predefined with attributes such as:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        21
+      ],
+      "raw": "* Field ID\n* Name\n* Entity type (Example: customer, transaction, transaction line item)\n* Label name\n* Data type (Example: integer, double, enum, string)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Field IDNameEntity type (Example: customer, transaction, transaction line item)Label nameData type (Example: integer, double, enum, string)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "### Key characteristics",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Key characteristics",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        32
+      ],
+      "raw": "* **Standardization**: Extended fields help standardize data capture across brands or organizations, reducing inconsistency often seen with custom fields.\n* **Controlled input**: Developers define field names, data types, enum values, and applicable scopes. Validation rules help maintain clean, usable data.\n* **Rule-based value capture**: Values for extended fields can be captured and validated based on predefined rules. These rules include:\n  * **Logical expressions**: Simple boolean conditions that dictate value acceptance.\n  * **Regular expressions (regex)**: Sophisticated patterns that validate data format and content (For example, ensuring an IMEI or a Global Unique Identifier (GUID) adheres to a specific structure). This ensures data conforms to exact specifications from the point of entry.\n* **Vertical-specific data capture**: Extended fields are created for specific business verticals like food and beverage, hospitality, aviation, or jewelry. This allows businesses to capture unique attributes relevant to their industry.\n* **Reporting-friendly**: Since the values are consistent and structured, extended fields are readily available for reporting, filtering, and analytics.\n* **Null value handling for Integer fields**: For bill or lineitem entities, if you use Integer type extended fields, the system converts null values to 0 during ETL transformation. This supports numeric aggregations but does not preserve nulls. To retain null values, use String type for the extended field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Standardization: Extended fields help standardize data capture across brands or organizations, reducing inconsistency often seen with custom fields.Controlled input: Developers define field names, data types, enum values, and applicable scopes. Validation rules help maintain clean, usable data.Rule-based value capture: Values for extended fields can be captured and validated based on predefined rules. These rules include:Logical expressions: Simple boolean conditions that dictate value acceptance.Regular expressions (regex): Sophisticated patterns that validate data format and content (For example, ensuring an IMEI or a Global Unique Identifier (GUID) adheres to a specific structure). This ensures data conforms to exact specifications from the point of entry.Vertical-specific data capture: Extended fields are created for specific business verticals like food and beverage, hospitality, aviation, or jewelry. This allows businesses to capture unique attributes relevant to their industry.Reporting-friendly: Since the values are consistent and structured, extended fields are readily available for reporting, filtering, and analytics.Null value handling for Integer fields: For bill or lineitem entities, if you use Integer type extended fields, the system converts null values to 0 during ETL transformation. This supports numeric aggregations but does not preserve nulls. To retain null values, use String type for the extended field.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "### Entity types",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Entity types",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "Entity types define the specific categories of objects or records to which an extended field can be attached. The supported entity types are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Entity types define the specific categories of objects or records to which an extended field can be attached. The supported entity types are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        38,
+        46
+      ],
+      "raw": "* customer\n* regular\\_transaction\n* return\\_transaction\n* not\\_interested\\_transaction\n* not\\_interested\\_return\\_transaction\n* regular\\_lineitem\n* return\\_lineitem\n* not\\_interested\\_lineitem\n* not\\_interested\\_return\\_lineitem",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "customerregular_transactionreturn_transactionnot_interested_transactionnot_interested_return_transactionregular_lineitemreturn_lineitemnot_interested_lineitemnot_interested_return_lineitem",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "### Supported data types",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Supported data types",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "The following data types are supported for extended fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following data types are supported for extended fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        52,
+        69
+      ],
+      "raw": "| Data type         | Description                                                                                                                                                                                                                                                                                                                          |\n| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| `INTEGER`         | Whole number values (no decimals). For bill or lineitem entities, null values are converted to `0` during ETL.                                                                                                                                                                                                                       |\n| `STRING`          | Free-form text values.                                                                                                                                                                                                                                                                                                               |\n| `DOUBLE`          | Decimal number values.                                                                                                                                                                                                                                                                                                               |\n| `DATE`            | Date values in `YYYY-MM-DD` format.                                                                                                                                                                                                                                                                                                  |\n| `DATETIME`        | Date and time values. Supports ISO 8601 format with timezone offset. See [Supported date formats](#supported-date-formats-in-extended-fields).                                                                                                                                                                                       |\n| `STANDARD_STRING` | Text values restricted to a predefined system-level set.                                                                                                                                                                                                                                                                             |\n| `STANDARD_ENUM`   | Enumeration restricted to predefined system-level values (for example, `gender`).                                                                                                                                                                                                                                                    |\n| `CUSTOM_ENUM`     | Enumeration with values defined by the organization. Only organizations mapped to the field can use it.                                                                                                                                                                                                                              |\n| `COUNTRY`         | Country selection from a system-defined list.                                                                                                                                                                                                                                                                                        |\n| `CURRENCY`        | Currency selection from a system-defined list.                                                                                                                                                                                                                                                                                       |\n| `LANGUAGE`        | Language selection from a system-defined list.                                                                                                                                                                                                                                                                                       |\n| `ASSOCIATE_USER`  | Reference to an associated user in the system.                                                                                                                                                                                                                                                                                       |\n| `ORG_ENTITY`      | Reference to an organization-level entity.                                                                                                                                                                                                                                                                                           |\n| `CARD`            | Reference to a card record.                                                                                                                                                                                                                                                                                                          |\n| `STRING_SET`      | A set of unique string values.                                                                                                                                                                                                                                                                                                       |\n| `LIST`            | An ordered list of values. Each LIST field has metadata defining the element type (`TEXT`, `INTEGER`, or `DECIMAL`), optional allowed values, and optional minimum and maximum item counts. Values are passed as a comma-separated string (for example, `\"RED,GREEN,BLUE\"`) or a JSON array (for example, `[\"RED\",\"GREEN\",\"BLUE\"]`). |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Data type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "INTEGER",
+            "Whole number values (no decimals). For bill or lineitem entities, null values are converted to 0 during ETL."
+          ],
+          [
+            "STRING",
+            "Free-form text values."
+          ],
+          [
+            "DOUBLE",
+            "Decimal number values."
+          ],
+          [
+            "DATE",
+            "Date values in YYYY-MM-DD format."
+          ],
+          [
+            "DATETIME",
+            "Date and time values. Supports ISO 8601 format with timezone offset. See Supported date formats."
+          ],
+          [
+            "STANDARD_STRING",
+            "Text values restricted to a predefined system-level set."
+          ],
+          [
+            "STANDARD_ENUM",
+            "Enumeration restricted to predefined system-level values (for example, gender)."
+          ],
+          [
+            "CUSTOM_ENUM",
+            "Enumeration with values defined by the organization. Only organizations mapped to the field can use it."
+          ],
+          [
+            "COUNTRY",
+            "Country selection from a system-defined list."
+          ],
+          [
+            "CURRENCY",
+            "Currency selection from a system-defined list."
+          ],
+          [
+            "LANGUAGE",
+            "Language selection from a system-defined list."
+          ],
+          [
+            "ASSOCIATE_USER",
+            "Reference to an associated user in the system."
+          ],
+          [
+            "ORG_ENTITY",
+            "Reference to an organization-level entity."
+          ],
+          [
+            "CARD",
+            "Reference to a card record."
+          ],
+          [
+            "STRING_SET",
+            "A set of unique string values."
+          ],
+          [
+            "LIST",
+            "An ordered list of values. Each LIST field has metadata defining the element type (TEXT, INTEGER, or DECIMAL), optional allowed values, and optional minimum and maximum item counts. Values are passed as a comma-separated string (for example, \"RED,GREEN,BLUE\") or a JSON array (for example, [\"RED\",\"GREEN\",\"BLUE\"])."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "### Properties of extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Properties of extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        73,
+        75
+      ],
+      "raw": "* Combination of name and entity type for extended fields must be unique.\n* Extended fields are not case-sensitive.\n* For Integer type extended fields on bill or lineitem entities, null values from the source are converted to 0 during ETL transformation. If you need to preserve nulls, use String type for the extended field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Combination of name and entity type for extended fields must be unique.Extended fields are not case-sensitive.For Integer type extended fields on bill or lineitem entities, null values from the source are converted to 0 during ETL transformation. If you need to preserve nulls, use String type for the extended field.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "### Mapping of extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Mapping of extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "Extended fields are mapped to vertical IDs that represent business domains. These vertical IDs are further linked to organization IDs, enabling standardized field usage across organizations within the same vertical.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Extended fields are mapped to vertical IDs that represent business domains. These vertical IDs are further linked to organization IDs, enabling standardized field usage across organizations within the same vertical.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "The following diagram illustrates the mapping.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following diagram illustrates the mapping.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"smart\" src=\"https://files.readme.io/36f8462-ZWDw6OuJQNhrsbLCLQt7UY4EBgvDDsWNkg.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "smart",
+        "src": "https://files.readme.io/36f8462-ZWDw6OuJQNhrsbLCLQt7UY4EBgvDDsWNkg.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "### Verticals and vertical IDs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Verticals and vertical IDs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "A vertical is a group that defines the nature of the business. An organization can have multiple verticals mapped to it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A vertical is a group that defines the nature of the business. An organization can have multiple verticals mapped to it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "For example, if an organization ABC sells fitness items and apparel, and another organization XYZ sells stationery and sports items, both organizations have one common vertical—sports.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, if an organization ABC sells fitness items and apparel, and another organization XYZ sells stationery and sports items, both organizations have one common vertical—sports.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "Verticals have the following properties:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Verticals have the following properties:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        93,
+        94
+      ],
+      "raw": "* Each vertical is mapped to the relevant set of extended fields.\n* The vertical name should be unique across the table.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Each vertical is mapped to the relevant set of extended fields.The vertical name should be unique across the table.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "### Mapping extended fields and vertical IDs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Mapping extended fields and vertical IDs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "The following properties apply to mapping extended fields and vertical IDs:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following properties apply to mapping extended fields and vertical IDs:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        100,
+        102
+      ],
+      "raw": "* Each extended field can be mapped to only one vertical ID.\n* One vertical ID can be mapped to multiple extended fields.\n* An extended field with vertical ID `-1` is available for all organizations. These are global fields and can be used by any organization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Each extended field can be mapped to only one vertical ID.One vertical ID can be mapped to multiple extended fields.An extended field with vertical ID -1 is available for all organizations. These are global fields and can be used by any organization.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "### Mapping vertical IDs and organizations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Mapping vertical IDs and organizations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "Here are the properties of vertical ID and organization ID mapping:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Here are the properties of vertical ID and organization ID mapping:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        108,
+        110
+      ],
+      "raw": "* Organizations and Verticals have a many-to-many mapping.\n* An organization cannot use an extended field that is not within the Verticals associated with it.\n* Any organization can use extended fields with the Vertical ID `-1`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Organizations and Verticals have a many-to-many mapping.An organization cannot use an extended field that is not within the Verticals associated with it.Any organization can use extended fields with the Vertical ID -1.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "### Validation rules",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Validation rules",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "A validation rule can contain a logical or regex expression that evaluates the extended field values. Validation rules verify whether a field value meets the defined standards before saving it to the database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A validation rule can contain a logical or regex expression that evaluates the extended field values. Validation rules verify whether a field value meets the defined standards before saving it to the database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "That is, if a rule is applied on an extended field, a validation check is performed whenever the field value is received. Once the field value is validated successfully, it will be saved to the database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "That is, if a rule is applied on an extended field, a validation check is performed whenever the field value is received. Once the field value is validated successfully, it will be saved to the database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "Examples of logical rules: >, <, >=, <=, =",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Examples of logical rules: >, <, >=, <=, =",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "You first create rules (>, <) and then map each rule to the extended fields. Following are the properties of validation rules:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You first create rules (>, <) and then map each rule to the extended fields. Following are the properties of validation rules:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        122,
+        123
+      ],
+      "raw": "* Multiple rules can be applied to an extended field\n* One rule can be applied to different fields",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Multiple rules can be applied to an extended fieldOne rule can be applied to different fields",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "#### Configuration: CONF\\_ENABLE\\_TRANSACTION\\_EXTENDEDFIELD\\_SYNC\\_VALIDATOR",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Configuration: CONF_ENABLE_TRANSACTION_EXTENDEDFIELD_SYNC_VALIDATOR",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "This configuration controls whether extended field values are validated and persisted reliably during transaction processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This configuration controls whether extended field values are validated and persisted reliably during transaction processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        129,
+        136
+      ],
+      "raw": "* **When enabled (recommended):**\n  * Extended field values are validated and saved as expected.\n  * Data entered through API requests is correctly stored and appears in user interfaces, such as Member Care profiles.\n\n* **When disabled:**\n  * Extended field values may not be saved if a validation conflict occurs during processing.\n  * In some cases, extended fields may be missing from Member Care profiles, even if the API request contains the correct data.\n  * This can result in incomplete or missing information for users.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When enabled (recommended):Extended field values are validated and saved as expected.Data entered through API requests is correctly stored and appears in user interfaces, such as Member Care profiles.When disabled:Extended field values may not be saved if a validation conflict occurs during processing.In some cases, extended fields may be missing from Member Care profiles, even if the API request contains the correct data.This can result in incomplete or missing information for users.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        138,
+        139
+      ],
+      "raw": "**Recommendation:**\nEnable CONF\\_ENABLE\\_TRANSACTION\\_EXTENDEDFIELD\\_SYNC\\_VALIDATOR to ensure extended field values are consistently validated and saved. Disabling this configuration may cause data loss or missing fields in user-facing applications.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Recommendation:\nEnable CONF_ENABLE_TRANSACTION_EXTENDEDFIELD_SYNC_VALIDATOR to ensure extended field values are consistently validated and saved. Disabling this configuration may cause data loss or missing fields in user-facing applications.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        141,
+        141
+      ],
+      "raw": "### Other validations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Other validations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        143,
+        143
+      ],
+      "raw": "In addition to rule validation, we also perform scope validation that is defined in the database tables.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In addition to rule validation, we also perform scope validation that is defined in the database tables.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        145,
+        147
+      ],
+      "raw": "* Only organizations mapped to them can use extended fields with custom enumeration values.\n* An organization can use only extended fields that are mapped to it through vertical identifiers.\n* Any organization can use extended fields with vertical identifier mapping of `-1`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Only organizations mapped to them can use extended fields with custom enumeration values.An organization can use only extended fields that are mapped to it through vertical identifiers.Any organization can use extended fields with vertical identifier mapping of -1.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "## Creating extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "To create an extended field, contact the Capillary support team. Extended fields are available in your organization by default. You can hide unused extended fields in the user interface (UI).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create an extended field, contact the Capillary support team. Extended fields are available in your organization by default. You can hide unused extended fields in the user interface (UI).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "## Viewing extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Viewing extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "To view the default extended fields for your organization, do the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To view the default extended fields for your organization, do the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "1. In InTouch, navigate to **Settings** > **Master Data Management** > **Data Model** > **Extended Fields**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In InTouch, navigate to Settings > Master Data Management > Data Model > Extended Fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/90345f2-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/90345f2-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "2. To view all extended fields, click **All Extended Fields**. Expand the verticals to see the extended fields available for your organization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To view all extended fields, click All Extended Fields. Expand the verticals to see the extended fields available for your organization.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/aabb2dc-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/aabb2dc-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 53,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "## Updating extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Updating extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "You can update an extended field to show/hide it, set the position on the UI, choose whether mandatory or optional, and add enum values. The extended field format is `longtext`, which supports up to 4GB of text.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can update an extended field to show/hide it, set the position on the UI, choose whether mandatory or optional, and add enum values. The extended field format is longtext, which supports up to 4GB of text.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "To update,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To update,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "1. Click the extended field to edit in the **Enabled Extended Fields** tab.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click the extended field to edit in the Enabled Extended Fields tab.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/c2d3113-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/c2d3113-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        175,
+        176
+      ],
+      "raw": "2. Update the extended field as required.\\\n   The screenshot shows the editable values for extended fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Update the extended field as required.The screenshot shows the editable values for extended fields.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"55% \" src=\"https://files.readme.io/14951f8abbb679b18a229acbdef10463b659933f5dcf8932f87ddf8e4bec4549-Update_extended_fields.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "55% ",
+        "src": "https://files.readme.io/14951f8abbb679b18a229acbdef10463b659933f5dcf8932f87ddf8e4bec4549-Update_extended_fields.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        180,
+        180
+      ],
+      "raw": "The table shows the editable values with their descriptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table shows the editable values with their descriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        182,
+        307
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Insert Enum Values (applicable for fields with  `enum` datatype)\n      </td>\n\n      <td>\n        Enter each supported value for the field and click **Add**.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        New Enum Values (applicable for fields with `enum` datatype)\n      </td>\n\n      <td>\n        Click the value to select and click **Remove**, to remove any value from the list.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hide Display\n      </td>\n\n      <td>\n        Select the **Hide Display** checkbox to hide the extended field from InTouch.  \n        **Note**:  This field is currently not used.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is Mandatory\n      </td>\n\n      <td>\n        Select the **Is Mandatory** checkbox to make the extended field mandatory.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is Updatable\n      </td>\n\n      <td>\n        Select the **Is Updatable** checkbox to allow updating the extended field values once entered.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Position\n      </td>\n\n      <td>\n        Enter the position of the extended field on the InStore UI. Use `1` for the top, `2` for the second, and so on.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Default Value\n      </td>\n\n      <td>\n        Enter the default value for the extended field.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Enable audit trail\n      </td>\n\n      <td>\n        Select the checkbox to enable audit logging for the extended field. By default, you can enable audit logging for up to five extended fields. To increase this limit, raise a ticket with PST to update the configuration value `PRODUCT_CONF_ORG_AUDITABLE_EXTENDED_FIELDS_LIMIT`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is it PII data\n      </td>\n\n      <td>\n        Select the **Is it PII data** to classify the extended field as [PII data](https://docs.capillarytech.com/docs/pii-configuration#/).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Reject txn on invalid value\n      </td>\n\n      <td>\n        Select **Reject txn on invalid value** checkbox to reject the transaction if the values are invalid.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is it PSI data\n      </td>\n\n      <td>\n        Select the **Is PSI Data** checkbox to classify the extended field as [PSI data](https://docs.capillarytech.com/docs/classify-potentially-sensitive-information-psi#/).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 62,
+      "lines": [
+        309,
+        309
+      ],
+      "raw": "4. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "The system updates the extended field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system updates the extended field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "### View extended fields of a vertical",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "View extended fields of a vertical",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        315,
+        315
+      ],
+      "raw": "To view extended fields of a vertical, click the respective + **icon**. For example, if you want to view the Generic section, click the plus icon.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To view extended fields of a vertical, click the respective + icon. For example, if you want to view the Generic section, click the plus icon.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        317,
+        317
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"smart\" src=\"https://files.readme.io/082f850-Extended_field_overview.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "smart",
+        "src": "https://files.readme.io/082f850-Extended_field_overview.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 67,
+      "lines": [
+        319,
+        464
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        FIELD\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Name\n      </td>\n\n      <td>\n        Name of the extended field as created in the DB\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Entity Type\n      </td>\n\n      <td>\n        Type of the field\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Label\n      </td>\n\n      <td>\n        Name of the field as it appears on the UI\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Data Type\n      </td>\n\n      <td>\n        The data type of the field\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Enum Values\n      </td>\n\n      <td>\n        Supported values of the field (if applicable)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is Mandatory\n      </td>\n\n      <td>\n        Indicates if the extended field is mandatory. This field applies to client-side applications like Instore and does not undergo any server-side validation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is Updatable\n      </td>\n\n      <td>\n        Indicates if the extended field is updatable. This field applies to client-side applications like Instore and does not undergo any server-side validation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Hide Display\n      </td>\n\n      <td>\n        Indicates if extended field is configured to hide from the client application. This field applies to client-side applications like Instore and does not undergo any server-side validation.  \n        **Note**: This field is currently not used.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Position\n      </td>\n\n      <td>\n        Displays the position set for the extended field. This field applies to client-side applications like Instore and does not undergo any server-side validation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Default value\n      </td>\n\n      <td>\n        Displays the default value of the extended field. This field applies to client-side applications like Instore and does not undergo any server-side validation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is Audit trail enabled\n      </td>\n\n      <td>\n        Indicates if audit logging of the extended field is enabled.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is PII data\n      </td>\n\n      <td>\n        Indicates if the extended field is classified as PII data.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is PSI data\n      </td>\n\n      <td>\n        Indicates if the extended field is classified as PSI data. Refer to the PSI data documentation for more [information on classifying PSI data](https://docs.capillarytech.com/docs/classify-potentially-sensitive-information-psi).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 68,
+      "lines": [
+        466,
+        466
+      ],
+      "raw": "## Enabling and disabling extended fields for a vertical",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Enabling and disabling extended fields for a vertical",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        468,
+        468
+      ],
+      "raw": "You can add or remove extended fields for a vertical. Do this from the **Extended Fields Vertical Mapping** tab. The **Disabled Verticals** section lists verticals that are available to your organization. The **Enabled Verticals** section lists verticals that are enabled for your organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can add or remove extended fields for a vertical. Do this from the Extended Fields Vertical Mapping tab. The Disabled Verticals section lists verticals that are available to your organization. The Enabled Verticals section lists verticals that are enabled for your organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        470,
+        470
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"85% \" src=\"https://files.readme.io/cfc82df97295921011906a4e2206ff9965efe6f0e47093cd75beabe82547750d-Screenshot_2025-07-31_at_12.24.46_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "85% ",
+        "src": "https://files.readme.io/cfc82df97295921011906a4e2206ff9965efe6f0e47093cd75beabe82547750d-Screenshot_2025-07-31_at_12.24.46_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 71,
+      "lines": [
+        472,
+        472
+      ],
+      "raw": "To enable a vertical,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable a vertical,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        474,
+        476
+      ],
+      "raw": "1. From the **Extended Fields Vertical Mapping** tab, from the list of verticals under **Disabled Verticals**, select a vertical to enable to your organization.\n2. Click **add >>**.\n3. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the Extended Fields Vertical Mapping tab, from the list of verticals under Disabled Verticals, select a vertical to enable to your organization.Click add >>.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        478,
+        478
+      ],
+      "raw": "The extended fields for the vertical are enabled for your organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The extended fields for the vertical are enabled for your organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        480,
+        480
+      ],
+      "raw": "To disable a vertical,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To disable a vertical,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        482,
+        484
+      ],
+      "raw": "1. From the **Extended Fields Vertical Mapping** tab, from the list of verticals under **Enabled Verticals**, select a vertical to disable to your organization.\n2. Click  **<< remove**.\n3. Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the Extended Fields Vertical Mapping tab, from the list of verticals under Enabled Verticals, select a vertical to disable to your organization.Click  << remove.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        486,
+        486
+      ],
+      "raw": "The extended fields for the vertical are disabled for your organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The extended fields for the vertical are disabled for your organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        488,
+        488
+      ],
+      "raw": "## Transformation Stats",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transformation Stats",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        490,
+        490
+      ],
+      "raw": "This feature is no longer in use and is marked as deprecated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This feature is no longer in use and is marked as deprecated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        492,
+        492
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/ccdecfaaeb51683f02c21f0a710076eb5ed95a6710418a469321f42ac8c97e1a-Screenshot_2025-07-31_at_11.06.08_AM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/ccdecfaaeb51683f02c21f0a710076eb5ed95a6710418a469321f42ac8c97e1a-Screenshot_2025-07-31_at_11.06.08_AM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 80,
+      "lines": [
+        494,
+        494
+      ],
+      "raw": "## Supported date formats in extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Supported date formats in extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        496,
+        496
+      ],
+      "raw": "Extended fields support the following date formats:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Extended fields support the following date formats:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        498,
+        500
+      ],
+      "raw": "* yyyy-MM-dd\n* yyyy-MM-ddTHH:mm:ssZ (ISO 8601 with Z for UTC timezone)\n* yyyy-MM-ddTHH:mm:ss+hh:mm (ISO 8601 with offset)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "yyyy-MM-ddyyyy-MM-ddTHH:mm:ssZ (ISO 8601 with Z for UTC timezone)yyyy-MM-ddTHH:mm:ss+hh:mm (ISO 8601 with offset)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        502,
+        502
+      ],
+      "raw": "The table below explains the behaviour using an example specific to the India cluster.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below explains the behaviour using an example specific to the India cluster.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        504,
+        509
+      ],
+      "raw": "| **Input Format**            | **Example Value**             | **Interpretation**             | **Saved in DB (UTC)**           | **Shown in Member Care**    |\n| --------------------------- | ----------------------------- | ------------------------------ | ------------------------------- | --------------------------- |\n| `yyyy-MM-dd`                | `\"1986-07-15\"`                | Time assumed as `00:00:00` UTC | `1986-07-15T00:00:00.000+00:00` | `1986-07-15T05:30:00+05:30` |\n| `yyyy-MM-ddTHH:mm:ssZ`      | `\"1986-07-15T00:00:00Z\"`      | Exact UTC timestamp            | `1986-07-15T00:00:00.000+00:00` | `1986-07-15T05:30:00+05:30` |\n| `yyyy-MM-ddTHH:mm:ssZ`      | `\"1986-07-15T14:30:00Z\"`      | Exact UTC timestamp            | `1986-07-15T14:30:00.000+00:00` | `1986-07-15T20:00:00+05:30` |\n| `yyyy-MM-ddTHH:mm:ss+05:30` | `\"1986-07-15T14:30:00+05:30\"` | Local time with offset         | `1986-07-15T09:00:00.000+00:00` | `1986-07-15T14:30:00+05:30` |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Input Format",
+          "Example Value",
+          "Interpretation",
+          "Saved in DB (UTC)",
+          "Shown in Member Care"
+        ],
+        "rows": [
+          [
+            "yyyy-MM-dd",
+            "\"1986-07-15\"",
+            "Time assumed as 00:00:00 UTC",
+            "1986-07-15T00:00:00.000+00:00",
+            "1986-07-15T05:30:00+05:30"
+          ],
+          [
+            "yyyy-MM-ddTHH:mm:ssZ",
+            "\"1986-07-15T00:00:00Z\"",
+            "Exact UTC timestamp",
+            "1986-07-15T00:00:00.000+00:00",
+            "1986-07-15T05:30:00+05:30"
+          ],
+          [
+            "yyyy-MM-ddTHH:mm:ssZ",
+            "\"1986-07-15T14:30:00Z\"",
+            "Exact UTC timestamp",
+            "1986-07-15T14:30:00.000+00:00",
+            "1986-07-15T20:00:00+05:30"
+          ],
+          [
+            "yyyy-MM-ddTHH:mm:ss+05:30",
+            "\"1986-07-15T14:30:00+05:30\"",
+            "Local time with offset",
+            "1986-07-15T09:00:00.000+00:00",
+            "1986-07-15T14:30:00+05:30"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        511,
+        528
+      ],
+      "raw": "> 📘 Note\n>\n> DateTime and Timestamp extended fields require an explicit timezone offset\n>\n> If you send a DateTime or Timestamp extended field value as a raw epoch millisecond\n> integer (for example, `1769889600000`), the system treats it as UTC and converts it\n> to the server timezone for ruleset evaluation. This can cause a significant time shift\n> and result in incorrect promotion evaluation.\n>\n> Always send DateTime and Timestamp values in ISO 8601 format with an explicit timezone offset.\n>\n> | Format               | Example                                    | Behaviour                                                   |\n> | -------------------- | ------------------------------------------ | ----------------------------------------------------------- |\n> | Epoch (no offset)    | `\"show_time\": 1769889600000`               | Treated as UTC → converted to server timezone → time shifts |\n> | ISO 8601 with offset | `\"show_time\": \"2026-01-31T20:00:00-06:00\"` | Interpreted as local time, no conversion applied            |\n>\n> This applies **only** to DateTime and Timestamp extended fields. Date-type extended\n> fields follow a separate configuration (`CONF_DATE_EF_TZ_FIX_ENABLED`).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteDateTime and Timestamp extended fields require an explicit timezone offsetIf you send a DateTime or Timestamp extended field value as a raw epoch millisecond\ninteger (for example, 1769889600000), the system treats it as UTC and converts it\nto the server timezone for ruleset evaluation. This can cause a significant time shift\nand result in incorrect promotion evaluation.Always send DateTime and Timestamp values in ISO 8601 format with an explicit timezone offset.FormatExampleBehaviourEpoch (no offset)\"show_time\": 1769889600000Treated as UTC → converted to server timezone → time shiftsISO 8601 with offset\"show_time\": \"2026-01-31T20:00:00-06:00\"Interpreted as local time, no conversion appliedThis applies only to DateTime and Timestamp extended fields. Date-type extended\nfields follow a separate configuration (CONF_DATE_EF_TZ_FIX_ENABLED).",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        530,
+        530
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 530
+        }
+      ]
+    },
+    {
+      "i": 87,
+      "lines": [
+        532,
+        532
+      ],
+      "raw": "## Creating reports using extended fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating reports using extended fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        534,
+        534
+      ],
+      "raw": "To display the extended fields on Insights and use this data to create reports, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To display the extended fields on Insights and use this data to create reports, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        536,
+        537
+      ],
+      "raw": "* Create a JIRA ticket to the Sustenance team and create a vertical-level field on the Capillary platform.\n* Create a JIRA ticket to the Insights team and create an audience filter for the extended field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create a JIRA ticket to the Sustenance team and create a vertical-level field on the Capillary platform.Create a JIRA ticket to the Insights team and create an audience filter for the extended field.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        539,
+        539
+      ],
+      "raw": "## Configuring org extended fields through API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring org extended fields through API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        541,
+        541
+      ],
+      "raw": "You can configure extended fields for your organization through the Configure organization extended fields API. See the [API documentation](https://docs.capillarytech.com/reference/configure-org-extended-field).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can configure extended fields for your organization through the Configure organization extended fields API. See the API documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/configure-org-extended-field",
+          "line": 541
+        }
+      ]
+    },
+    {
+      "i": 92,
+      "lines": [
+        543,
+        543
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 543
+        }
+      ]
+    }
+  ]
+}

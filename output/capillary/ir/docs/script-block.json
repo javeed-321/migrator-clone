@@ -1,0 +1,816 @@
+{
+  "slug": "docs/script-block",
+  "source": "https://docs.capillarytech.com/docs/script-block.md",
+  "url": "https://docs.capillarytech.com/docs/script-block",
+  "title": "Script Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 18,
+    "list": 9,
+    "code": 3,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Script Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Script Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The **Script Block** in a dataflow allows you to execute custom JavaScript code. You can use the **Script Block** to modify the dataflow to meet specific requirements, such as altering the request payload format to match an API’s expectations or applying logic to transform and enrich API responses. **Access to data** is managed through   [Data Access Object (DAO) functions](https://docs.capillarytech.com/docs/neo-dao-functions) and the **Business logic** can be defined using JavaScript methods.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Script Block in a dataflow allows you to execute custom JavaScript code. You can use the Script Block to modify the dataflow to meet specific requirements, such as altering the request payload format to match an API’s expectations or applying logic to transform and enrich API responses. Access to data is managed through   Data Access Object (DAO) functions and the Business logic can be defined using JavaScript methods.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Using the Script block, you can define and execute custom functions such as transforming API responses and modifying the request payload based on your requirements. It supports both single-line statements in the form of expressions and complex scripts to implement business logic.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Using the Script block, you can define and execute custom functions such as transforming API responses and modifying the request payload based on your requirements. It supports both single-line statements in the form of expressions and complex scripts to implement business logic.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        16
+      ],
+      "raw": "**Requirement**:\\\nConsider a scenario where you need to add multiple execution paths after a validation block in a dataflow for an airline brand. The validation block validates the input against a schema in the Schema block. The result of this validation can be either **success** or **failure**, and you need to define separate execution paths for each outcome:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement:Consider a scenario where you need to add multiple execution paths after a validation block in a dataflow for an airline brand. The validation block validates the input against a schema in the Schema block. The result of this validation can be either success or failure, and you need to define separate execution paths for each outcome:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        19
+      ],
+      "raw": "1. **If the validation succeeds**: The system should retrieve customer details to proceed with issuing loyalty points.\n2. **If the validation fails**: The system should return appropriate error messages and codes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the validation succeeds: The system should retrieve customer details to proceed with issuing loyalty points.If the validation fails: The system should return appropriate error messages and codes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "**Solution**\\\nTo handle these scenarios, you can add Script blocks after the [Schema block](https://docs.capillarytech.com/docs/json-schema-block). These scripts will manage the success and failure paths.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SolutionTo handle these scenarios, you can add Script blocks after the Schema block. These scripts will manage the success and failure paths.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/json-schema-block",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## For a successful validation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "For a successful validation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "When the validation succeeds, use the Script block to prepare the request for fetching customer details. This involves the following steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When the validation succeeds, use the Script block to prepare the request for fetching customer details. This involves the following steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        41
+      ],
+      "raw": "1. Remove Unnecessary Headers:\\\n   Certain headers can cause errors if they contain invalid values. Remove the following headers:\n   * `X-cap-neo-test-variant-id`\n   * `X-cap-api-attribution-entity-type`\n   * `x-cap-api-attribution-entity-code`\n   * `x-cap-api-attribution-till-code`\n2. Format Query Parameters:\\\n   Format the parameters to match the expected input of the Get Customer Details API:\n   * Set `FFN` as `externalId` to align with the API’s input format.\n   * If the `source` parameter is missing, set it to `INSTORE`.\n3. Send the Request:\\\n   Include the following headers and query parameters in the API request:\n   * `identifierName` (e.g., `externalId` or `FFN`)\n   * `source` (e.g., `INSTORE`)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Remove Unnecessary Headers:Certain headers can cause errors if they contain invalid values. Remove the following headers:X-cap-neo-test-variant-idX-cap-api-attribution-entity-typex-cap-api-attribution-entity-codex-cap-api-attribution-till-codeFormat Query Parameters:Format the parameters to match the expected input of the Get Customer Details API:Set FFN as externalId to align with the API’s input format.If the source parameter is missing, set it to INSTORE.Send the Request:Include the following headers and query parameters in the API request:identifierName (e.g., externalId or FFN)source (e.g., INSTORE)",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "Below is an example of the script you can use in the Script block for the validation success scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is an example of the script you can use in the Script block for the validation success scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        45,
+        82
+      ],
+      "raw": "```json\nimport dao from \"neo/dao\";\n\n\nconst {\n    getEffectiveHeaders,\n    getApiRequest\n} = dao;\n\n\nconst script = {\n    execute: () => {\n        const requestQueryParams = getApiRequest().queryParams;\n       \n        let requestHeaders = getEffectiveHeaders();\n        // Remove these headers because customer lookup api will throw error incase invalid values are passed here\n        delete requestHeaders[\"x-cap-neo-test-variant-id\"];\n        delete requestHeaders[\"x-cap-api-attribution-entity-type\"];\n        delete requestHeaders[\"x-cap-api-attribution-entity-code\"];\n        delete requestHeaders[\"x-cap-api-attribution-till-code\"];\n\n\n        let queryParameters = {\n            \"identifierName\" : \"externalId\",\n            \"identifierValue\" : requestQueryParams.FFN,\n            \"source\" : requestQueryParams.source ? requestQueryParams.source.toUpperCase() : \"INSTORE\"\n        }\n        return {\n            headers : requestHeaders,\n            queryParams : queryParameters\n        };\n    }\n}\n\n\nexport {script as default}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "import dao from \"neo/dao\";\n\n\nconst {\n    getEffectiveHeaders,\n    getApiRequest\n} = dao;\n\n\nconst script = {\n    execute: () => {\n        const requestQueryParams = getApiRequest().queryParams;\n       \n        let requestHeaders = getEffectiveHeaders();\n        // Remove these headers because customer lookup api will throw error incase invalid values are passed here\n        delete requestHeaders[\"x-cap-neo-test-variant-id\"];\n        delete requestHeaders[\"x-cap-api-attribution-entity-type\"];\n        delete requestHeaders[\"x-cap-api-attribution-entity-code\"];\n        delete requestHeaders[\"x-cap-api-attribution-till-code\"];\n\n\n        let queryParameters = {\n            \"identifierName\" : \"externalId\",\n            \"identifierValue\" : requestQueryParams.FFN,\n            \"source\" : requestQueryParams.source ? requestQueryParams.source.toUpperCase() : \"INSTORE\"\n        }\n        return {\n            headers : requestHeaders,\n            queryParams : queryParameters\n        };\n    }\n}\n\n\nexport {script as default}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "## For a failed validation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "For a failed validation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "If the validation fails, use the Script block to generate a structured error response by,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the validation fails, use the Script block to generate a structured error response by,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        88,
+        90
+      ],
+      "raw": "* Retrieving validation errors\n* Transforming the error into JSON format with the appropriate error code and message\n* Returning an HTTP response with error details",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Retrieving validation errorsTransforming the error into JSON format with the appropriate error code and messageReturning an HTTP response with error details",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "Below is an example of the script in the Script block to handle the failure scenario.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is an example of the script in the Script block to handle the failure scenario.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        94,
+        137
+      ],
+      "raw": "```json\nimport dao from \"neo/dao\";\n\n\nconst {\n    getIn,\n    getEffectiveHeaders\n} = dao;\n\n\nconst script = {\n\n\n    execute: () => {\n\n\n        const validationErrors = getIn()?.err;\n        const errorArr = validationErrors.map((currErr) => {\n            return {\n                \"status\": false,\n                \"code\": 6001,\n                \"message\" : currErr.message,\n                \"path\" : currErr.instancePath\n            }\n        })\n        return {\n           http: {\n               \"res\": {\n                    status : 400,\n                    \"json\": {\n                        \"errors\" : errorArr\n                    }\n               }\n           }\n        }\n    }\n\n\n}\n\n\nexport {script as default}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "import dao from \"neo/dao\";\n\n\nconst {\n    getIn,\n    getEffectiveHeaders\n} = dao;\n\n\nconst script = {\n\n\n    execute: () => {\n\n\n        const validationErrors = getIn()?.err;\n        const errorArr = validationErrors.map((currErr) => {\n            return {\n                \"status\": false,\n                \"code\": 6001,\n                \"message\" : currErr.message,\n                \"path\" : currErr.instancePath\n            }\n        })\n        return {\n           http: {\n               \"res\": {\n                    status : 400,\n                    \"json\": {\n                        \"errors\" : errorArr\n                    }\n               }\n           }\n        }\n    }\n\n\n}\n\n\nexport {script as default}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        139,
+        139
+      ],
+      "raw": "Refer to this example [dataflow ](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/daec5cfa-be66-4d5d-b021-c2f45c3aa322/version/9204edc5-0386-4326-9ef8-9988fe690b64?ruleType=org) to understand how it is configured for a use case. Make sure that you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow  to understand how it is configured for a use case. Make sure that you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        141,
+        141
+      ],
+      "raw": "# Configuring Script block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Script block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        143,
+        143
+      ],
+      "raw": "To configure the Script block, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Script block, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        145,
+        169
+      ],
+      "raw": "1. From the dataflow canvas, click on the connector.\n2. Select the Script block from the pop-up window.\n3. In the **Block name** section, enter the block name.\\\n   **Note**: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n4. In the **Script** section, write a script to meet your requirements. You can also use the **autocomplete feature** to select a DAO function and block name from the dropdown list. To do this:\n\n   1. Start typing a DAO function within the execute object to trigger the autocomplete dropdown for DAO functions.\n\n      <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/a7cf612387baa18e16a313ae794ff3131c3fbceefaf81fced52faebe68fac71b-Screenshot_2025-07-04_at_6.57.51_PM.png\" />\n\n   2. Select the required DAO function from the drop-down list or click on `tab` to select the highlighted function. You can hover over the DAO function to view its syntax, parameters, and usage examples.\n\n      <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/8db37e60f04014ace938055ab8f51601f22e615471efb994d2e0df6ea83739cf-Screenshot_2025-07-04_at_7.00.31_PM.png\" />\n\n   3. Start typing an open parenthesis `(` to trigger the autocomplete dropdown for block names. The dropdown lists the block name and the block type in the following format: `blockName (Block Type)`.\n\n      <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/0564b32c710d2cc852839b33e42778dc8319c23f783b9263d39e3975ac0d4c74-Screenshot_2025-07-04_at_6.58.50_PM.png\" />\n\n   4. Select the required block name from the drop-down list or click on `tab` to select the highlighted block name. You can use the arrows on the page indicator to choose a specific block if there are multiple block of the same type.\n\n   > 📘 Note\n   >\n   > The DAO object is already defined in the script block and it is not required to prefix function names with `dao.`. You can use the function name directly.\n5. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n6. Select **Done** to save the changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the connector.Select the Script block from the pop-up window.In the Block name section, enter the block name.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Script section, write a script to meet your requirements. You can also use the autocomplete feature to select a DAO function and block name from the dropdown list. To do this:Start typing a DAO function within the execute object to trigger the autocomplete dropdown for DAO functions.Select the required DAO function from the drop-down list or click on tab to select the highlighted function. You can hover over the DAO function to view its syntax, parameters, and usage examples.Start typing an open parenthesis ( to trigger the autocomplete dropdown for block names. The dropdown lists the block name and the block type in the following format: blockName (Block Type).Select the required block name from the drop-down list or click on tab to select the highlighted block name. You can use the arrows on the page indicator to choose a specific block if there are multiple block of the same type.📘 NoteThe DAO object is already defined in the script block and it is not required to prefix function names with dao.. You can use the function name directly.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Select Done to save the changes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 168
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 168
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 168
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring the Script block\" border={true} caption=\"Configuring the Script block\" src=\"https://files.readme.io/ac4f8046ae3f6183b60aa20bbde812db274317b93910ba26510165c3968a069b-13.02.2025_19.37.05_REC_configuring_script.gif\" width=\"80% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring the Script block",
+        "border": "{true}",
+        "caption": "Configuring the Script block",
+        "src": "https://files.readme.io/ac4f8046ae3f6183b60aa20bbde812db274317b93910ba26510165c3968a069b-13.02.2025_19.37.05_REC_configuring_script.gif",
+        "width": "80% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "# Using Script block to define reusable logic",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using Script block to define reusable logic",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "You can reuse common logic by writing it in a Script block and <Anchor label=\"adding the block to the library\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/block-libraries#/adding-a-block-to-a-version\">adding the block to the library</Anchor>. The Script block containing the reusable logic is called a **Helper Function block**. You can <Anchor label=\"execute the helper function block\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/block-libraries#/executing-the-helper-function-block\">execute the helper function block</Anchor> using the DAO function, [executeBlock](https://docs.capillarytech.com/docs/neo-dao-functions#/executeblock).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can reuse common logic by writing it in a Script block and adding the block to the library. The Script block containing the reusable logic is called a Helper Function block. You can execute the helper function block using the DAO function, executeBlock.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/adding-a-block-to-a-version",
+          "line": 175
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/executing-the-helper-function-block",
+          "line": 175
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/adding-a-block-to-a-version",
+          "line": 175
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/executing-the-helper-function-block",
+          "line": 175
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions#/executeblock",
+          "line": 175
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "The helper function blocks are useful for handling repetitive tasks such as validations, calculations, and data transformations. You can pass input values to these blocks during execution. The block uses those inputs and returns a response based on its logic. The input values (arguments) are passed using the DAO function [getFunctionArguments](https://docs.capillarytech.com/docs/neo-dao-functions#/getfunctionarguments).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The helper function blocks are useful for handling repetitive tasks such as validations, calculations, and data transformations. You can pass input values to these blocks during execution. The block uses those inputs and returns a response based on its logic. The input values (arguments) are passed using the DAO function getFunctionArguments.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions#/getfunctionarguments",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "## Common use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Common use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        181,
+        181
+      ],
+      "raw": "**Validations**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Validations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        183,
+        185
+      ],
+      "raw": "* Mobile number format check\n* Email validation\n* Required field checks",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mobile number format checkEmail validationRequired field checks",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "**Calculations**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Calculations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        189,
+        191
+      ],
+      "raw": "* Tax or price calculations\n* Currency conversion\n* Statistical functions",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Tax or price calculationsCurrency conversionStatistical functions",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        193,
+        193
+      ],
+      "raw": "**Data Transformations**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Data Transformations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        195,
+        196
+      ],
+      "raw": "* Field normalization\n* Format conversion",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Field normalizationFormat conversion",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "**Utilities**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Utilities",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        200,
+        202
+      ],
+      "raw": "* Logging and auditing\n* Common business logic\n* Conditional routing",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Logging and auditingCommon business logicConditional routing",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "## Example: Helper function block to validate a mobile number",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example: Helper function block to validate a mobile number",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "To reuse common logic like validating a mobile number, you can create a **Helper function block** (Script block that contains this reusable logic) and add it to the block library.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To reuse common logic like validating a mobile number, you can create a Helper function block (Script block that contains this reusable logic) and add it to the block library.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "The following example defines a helper function block named `validateMobileNumber`. This block checks whether the provided mobile number follows a valid format.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following example defines a helper function block named validateMobileNumber. This block checks whether the provided mobile number follows a valid format.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "#### What the script does",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "What the script does",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        212,
+        218
+      ],
+      "raw": "* Uses `dao.getFunctionArguments()` to get the input arguments.\n* Extracts the first argument and stores it in `mobileNumber`.\n* Validates the number using a regular expression: it must start with a `+` and be followed by exactly 10 digits.\n* Returns an object with:\n\n  * `isValid`: a boolean indicating if the number is valid.\n  * `message`: a confirmation message.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Uses dao.getFunctionArguments() to get the input arguments.Extracts the first argument and stores it in mobileNumber.Validates the number using a regular expression: it must start with a + and be followed by exactly 10 digits.Returns an object with:isValid: a boolean indicating if the number is valid.message: a confirmation message.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        220,
+        235
+      ],
+      "raw": "```json Sample helper function to validate mobile number\n// Block Library Block Implementation\nconst validateMobileNumber = {\n  execute: () => {\n    // Access the mobile number argument\n    const args = dao.getFunctionArguments();\n    const mobileNumber = args[0]; // First argument passed to executeBlock\n    \n    // Perform validation\n    return {\n      isValid: /^\\+[0-9]{10}$/.test(mobileNumber),\n      message: \"Valid mobile number\"\n    };\n  }\n};\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Sample helper function to validate mobile number",
+        "code": "// Block Library Block Implementation\nconst validateMobileNumber = {\n  execute: () => {\n    // Access the mobile number argument\n    const args = dao.getFunctionArguments();\n    const mobileNumber = args[0]; // First argument passed to executeBlock\n    \n    // Perform validation\n    return {\n      isValid: /^\\+[0-9]{10}$/.test(mobileNumber),\n      message: \"Valid mobile number\"\n    };\n  }\n};"
+      },
+      "text": "Sample helper function to validate mobile number",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

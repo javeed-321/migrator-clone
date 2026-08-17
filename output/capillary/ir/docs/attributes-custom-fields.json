@@ -1,0 +1,253 @@
+{
+  "slug": "docs/attributes-custom-fields",
+  "source": "https://docs.capillarytech.com/docs/attributes-custom-fields.md",
+  "url": "https://docs.capillarytech.com/docs/attributes-custom-fields",
+  "title": "Attributes Custom Fields",
+  "description": "",
+  "section": "Profile : Current Transaction",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:04:18.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `=` (U+003D) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 3,
+    "Table": 3,
+    "thematicBreak": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Attributes - Custom Fields (Transaction)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Attributes - Custom Fields (Transaction)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        10
+      ],
+      "raw": "**Custom Fields :** Custom fields are columns that store special or custom information related to customers, transactions, transaction line items, coupons, categories, and so on.\\\nTo know more about the creation of Custom Fields [click here](https://docs.capillarytech.com/docs/data-fields#create-new-custom-fields)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Custom Fields : Custom fields are columns that store special or custom information related to customers, transactions, transaction line items, coupons, categories, and so on.To know more about the creation of Custom Fields click here",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/data-fields#create-new-custom-fields",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        12,
+        12
+      ],
+      "raw": "## **customFieldValueExcludes**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "customFieldValueExcludes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        19
+      ],
+      "raw": "**Profile** : currentCustomer\\\n**Attribute**: customFieldValueExcludes()\\\n**Sub-Attribute**: Custom-Field Name and Custom Field Value\\\n**Data Type**: Boolean\\\n**Meaning:** returns False if the input custom field value matches with the bill's custom fields.\\\n**Syntax: currentTxn.customFieldValueExcludes(“custom Field Name”,”Custom Field Value”)**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentCustomerAttribute: customFieldValueExcludes()Sub-Attribute: Custom-Field Name and Custom Field ValueData Type: BooleanMeaning: returns False if the input custom field value matches with the bill's custom fields.Syntax: currentTxn.customFieldValueExcludes(“custom Field Name”,”Custom Field Value”)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        21,
+        23
+      ],
+      "raw": "| Example: Write an expression to check if the current customer transaction value is between 500 to 999 and the current Transaction line item does not contain Tshirt of Medium size, plus the discount on it is zero. |\n| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Expression: ((currentTxn.value>=500&&(currentTxn.value)<=999)&&(currentTxn.customFieldValueExcludes(\"Tshirt\",\"Medium\"))&&(currentTxn.discount==0))                                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: Write an expression to check if the current customer transaction value is between 500 to 999 and the current Transaction line item does not contain Tshirt of Medium size, plus the discount on it is zero."
+        ],
+        "rows": [
+          [
+            "Expression: ((currentTxn.value>=500&&(currentTxn.value)<=999)&&(currentTxn.customFieldValueExcludes(\"Tshirt\",\"Medium\"))&&(currentTxn.discount==0))"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        25,
+        27
+      ],
+      "raw": "| Example: Write a rule to return false if the current transaction line item contains commodity of brand i.e custom field “Brand” and custom field value “Puma” |\n| :------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| Expression: currentTxn.customFieldValueExcludes(“Brand”,”Puma”)                                                                                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: Write a rule to return false if the current transaction line item contains commodity of brand i.e custom field “Brand” and custom field value “Puma”"
+        ],
+        "rows": [
+          [
+            "Expression: currentTxn.customFieldValueExcludes(“Brand”,”Puma”)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "## **customFieldValueIncludes**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "customFieldValueIncludes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        33,
+        39
+      ],
+      "raw": "**Profile** : currentCustomer\\\n**Attribute**: customFieldValueIncludes()\\\n**Sub-Attribute**: Custom-Field NAME and Custom Field Value\\\n**Data Type:** Boolean\\\n**Meaning**: returns True if the input custom field value matches with the bill's custom fields.\\\n**Syntax: currentTxn.customFieldValueIncludes(“custom Field Name”,”Custom Field Value”)**\\\nExample: currentTxn.customFieldValueIncludes(“category”,”GOLD”)\\*\\*\\*\\* here, the custom field name is Category and the custom Field Value is GOLD.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentCustomerAttribute: customFieldValueIncludes()Sub-Attribute: Custom-Field NAME and Custom Field ValueData Type: BooleanMeaning: returns True if the input custom field value matches with the bill's custom fields.Syntax: currentTxn.customFieldValueIncludes(“custom Field Name”,”Custom Field Value”)Example: currentTxn.customFieldValueIncludes(“category”,”GOLD”)**** here, the custom field name is Category and the custom Field Value is GOLD.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        41,
+        43
+      ],
+      "raw": "| Example: Write a rule to return TRUE if the current transaction line item contains commodity of brand and particular Value i.e. custom field “Brand” and custom field value “Puma” |\n| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Expression: currentTxn.customFieldValueIncludes(“Brand”,”Puma”)                                                                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: Write a rule to return TRUE if the current transaction line item contains commodity of brand and particular Value i.e. custom field “Brand” and custom field value “Puma”"
+        ],
+        "rows": [
+          [
+            "Expression: currentTxn.customFieldValueIncludes(“Brand”,”Puma”)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+---
+updatedAt: 2026-03-04T06:04:18.000Z
+---
+
+Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.
+
+# Duplicate a Loyalty Promotion
+
+Duplicating a promotion creates an exact copy, including all its activities, qualifying conditions, and limits, and saves it as a new draft. Duplicate a promotion to save time and ensure consistency when you launch a new promotion that's similar to a previous one. You can then make any necessary adjustments before you submit it for approval.
+
+To duplicate a loyalty promotion, follow these steps:
+
+1. In the promotion list view, navigate to the loyalty promotion to duplicate.
+
+2. Hover over the three-dot menu and select **Duplicate.**
+
+3. [Configure the new loyalty promotion.](https://docs.capillarytech.com/docs/loyalty-promotions-creating-a-loyalty-promotion)
+
+<Image border={true} width="80%" src="https://files.readme.io/c29a6026964770a362c91feec62ed56ad41bf1e4cfa50ce59e3b1598e14108c5-image.png" className="border" />
+
+**You have now created an exact copy of a promotion, which is available as a new draft ready for you to modify and launch.**
+
+> 📘 Note
+>
+> You cannot edit the date of a loyalty promotion once it is duplicated.

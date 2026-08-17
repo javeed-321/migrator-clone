@@ -1,0 +1,1013 @@
+{
+  "slug": "reference/scim",
+  "source": "https://docs.capillarytech.com/reference/scim.md",
+  "url": "https://docs.capillarytech.com/reference/scim",
+  "title": "Scim",
+  "description": "",
+  "section": "Scim",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-07-12T22:56:58.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 32,
+    "Table": 2,
+    "list": 3,
+    "Image": 2,
+    "Callout": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# SCIM",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "SCIM",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "System for Cross-domain Identity Management (SCIM) is an open standard protocol that lets your identity provider (IdP), such as Microsoft Entra ID (Azure AD), Okta, or Google Workspace, automatically create, update, and deactivate user accounts in Capillary. Instead of managing users manually in two separate systems, SCIM keeps them in sync.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "System for Cross-domain Identity Management (SCIM) is an open standard protocol that lets your identity provider (IdP), such as Microsoft Entra ID (Azure AD), Okta, or Google Workspace, automatically create, update, and deactivate user accounts in Capillary. Instead of managing users manually in two separate systems, SCIM keeps them in sync.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Why SCIM matters for Capillary",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Why SCIM matters for Capillary",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Today, Capillary supports three ways to provision users manually:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Today, Capillary supports three ways to provision users manually:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        19
+      ],
+      "raw": "| Method                        | Limit               | Typical wait time |\n| ----------------------------- | ------------------- | ----------------- |\n| UI invite                     | 10 users at a time  | Minutes to hours  |\n| CSV upload                    | 200 users at a time | Hours to a day    |\n| Capillary Access Team request | Unlimited           | 1 to 3 days       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Method",
+          "Limit",
+          "Typical wait time"
+        ],
+        "rows": [
+          [
+            "UI invite",
+            "10 users at a time",
+            "Minutes to hours"
+          ],
+          [
+            "CSV upload",
+            "200 users at a time",
+            "Hours to a day"
+          ],
+          [
+            "Capillary Access Team request",
+            "Unlimited",
+            "1 to 3 days"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Manual provisioning creates real problems at enterprise scale. A new employee joins but can't access Capillary for days. A former employee's account stays active long after they leave. A role change requires coordinating updates in two separate systems, with no guarantee that they will stay consistent.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Manual provisioning creates real problems at enterprise scale. A new employee joins but can't access Capillary for days. A former employee's account stays active long after they leave. A role change requires coordinating updates in two separate systems, with no guarantee that they will stay consistent.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "With SCIM, your IdP becomes the single source of truth. Changes you make in your directory, adding a user, updating a role, removing someone, are automatically reflected in Capillary. No tickets. No waiting. No forgotten accounts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With SCIM, your IdP becomes the single source of truth. Changes you make in your directory, adding a user, updating a role, removing someone, are automatically reflected in Capillary. No tickets. No waiting. No forgotten accounts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "## A real example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "A real example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "**Without SCIM**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Without SCIM",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "A retail brand hires a new loyalty analyst. Someone from the brand emails Capillary support to create her account and assign the right role. Capillary creates it manually maybe two days later. When she eventually leaves the company, no one remembers to inform Capillary. Her account stays active with full access, she no longer needs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A retail brand hires a new loyalty analyst. Someone from the brand emails Capillary support to create her account and assign the right role. Capillary creates it manually maybe two days later. When she eventually leaves the company, no one remembers to inform Capillary. Her account stays active with full access, she no longer needs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "**With SCIM**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With SCIM",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "The brand's IT admin adds her to Azure AD and assigns her to the \"Loyalty Analyst\" group. That's it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The brand's IT admin adds her to Azure AD and assigns her to the \"Loyalty Analyst\" group. That's it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "Capillary receives this automatically, creates her account, and gives her the right access. She can log in on the same day.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary receives this automatically, creates her account, and gives her the right access. She can log in on the same day.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "Six months later, she moves into a Campaign Manager role. The brand updates it in Azure AD. Her access to Capillary updates on its own.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Six months later, she moves into a Campaign Manager role. The brand updates it in Azure AD. Her access to Capillary updates on its own.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "When she eventually leaves, the brand removes her from Azure AD. Her Capillary access is gone immediately.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When she eventually leaves, the brand removes her from Azure AD. Her Capillary access is gone immediately.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "No emails. No tickets. No waiting. No forgotten accounts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "No emails. No tickets. No waiting. No forgotten accounts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "## How SCIM works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How SCIM works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "Setting up SCIM involves four stages. Each one builds on the previous:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setting up SCIM involves four stages. Each one builds on the previous:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "**Stage 1: Generate a SCIM token**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Stage 1: Generate a SCIM token",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "You start by generating a Bearer token for your Capillary organization. This token is the password your IdP uses to authenticate every request it makes to Capillary. Without it, your IdP has no way to talk to Capillary.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You start by generating a Bearer token for your Capillary organization. This token is the password your IdP uses to authenticate every request it makes to Capillary. Without it, your IdP has no way to talk to Capillary.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "Call [Create SCIM Token](https://docs.capillarytech.com/reference/create-scim-token) to generate the token. It is returned only once, store it securely immediately, as you can't retrieve it again. Only one active token can exist per organization at a time.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Call Create SCIM Token to generate the token. It is returned only once, store it securely immediately, as you can't retrieve it again. Only one active token can exist per organization at a time.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-scim-token",
+          "line": 51
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "**Stage 2: Connect your IdP to Capillary**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Stage 2: Connect your IdP to Capillary",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "In your IdP's provisioning settings, enter the Capillary SCIM endpoint URL and the bearer token. Your IdP uses these to locate Capillary and authenticate every request it sends. After configuration, your IdP automatically syncs user changes, new hires, role updates, and departures to Capillary.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In your IdP's provisioning settings, enter the Capillary SCIM endpoint URL and the bearer token. Your IdP uses these to locate Capillary and authenticate every request it sends. After configuration, your IdP automatically syncs user changes, new hires, role updates, and departures to Capillary.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "Enter the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Enter the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        59,
+        61
+      ],
+      "raw": "* **SCIM base URL:** This is the address your IdP sends every SCIM request to for creating a user, updating one, or managing a group; all get sent to this same URL. Which exact address you use depends on where your organization's data is hosted, its \"region.\" For example, use `https://eu.intouch.capillarytech.com/launchpad/api/v2` if your organization is in the EU data center, or `https://apac2.intouch.capillarytech.com/launchpad/api/v2` for APAC. This URL doesn't change between organizations within the same region, every EU organization uses the same EU base URL. What actually tells Capillary which organization is making the request is the SCIM token in the next field, not the URL.\n* **Authentication method:** HTTP Header\n* **Authorization header value:** `Bearer <your-token>`",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "SCIM base URL: This is the address your IdP sends every SCIM request to for creating a user, updating one, or managing a group; all get sent to this same URL. Which exact address you use depends on where your organization's data is hosted, its \"region.\" For example, use https://eu.intouch.capillarytech.com/launchpad/api/v2 if your organization is in the EU data center, or https://apac2.intouch.capillarytech.com/launchpad/api/v2 for APAC. This URL doesn't change between organizations within the same region, every EU organization uses the same EU base URL. What actually tells Capillary which organization is making the request is the SCIM token in the next field, not the URL.Authentication method: HTTP HeaderAuthorization header value: Bearer <your-token>",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "**Testing the connection:** Most IdPs show a **Test Connection** button before letting you save this configuration. Clicking it sends a read-only check to Capillary to confirm the URL is reachable and the token is valid. Once the test succeeds, save the configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Testing the connection: Most IdPs show a Test Connection button before letting you save this configuration. Clicking it sends a read-only check to Capillary to confirm the URL is reachable and the token is valid. Once the test succeeds, save the configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "<Image src=\"https://files.readme.io/6ed24e50098c0b6ccbab207af23628768b33c08679413b447d3e15edef48abef-Screenshot_2026-06-16_at_5.17.43_PM.png\" align=\"center\" width=\"80%\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/6ed24e50098c0b6ccbab207af23628768b33c08679413b447d3e15edef48abef-Screenshot_2026-06-16_at_5.17.43_PM.png",
+        "align": "center",
+        "width": "80%",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "&#x20;**How your IdP knows what to do:** You won't need to configure anything beyond the URL and token above. SCIM is a standard protocol, so your IdP already knows what action to take for every kind of change. For example, it automatically creates a user when someone's hired, updates a user's details when their profile changes, and adds or removes them from a group when their role changes. Capillary, in turn, understands and responds to all of these standard SCIM actions. This is what makes step 3 (auto user sync) and step 4 (role assignment) work without any extra setup.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How your IdP knows what to do: You won't need to configure anything beyond the URL and token above. SCIM is a standard protocol, so your IdP already knows what action to take for every kind of change. For example, it automatically creates a user when someone's hired, updates a user's details when their profile changes, and adds or removes them from a group when their role changes. Capillary, in turn, understands and responds to all of these standard SCIM actions. This is what makes step 3 (auto user sync) and step 4 (role assignment) work without any extra setup.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "**Stage 3: User sync happens automatically**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Stage 3: User sync happens automatically",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "From here, your IdP drives everything. Whenever a user is added, updated, or removed in your directory, your IdP calls Capillary's user APIs automatically:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "From here, your IdP drives everything. Whenever a user is added, updated, or removed in your directory, your IdP calls Capillary's user APIs automatically:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        73,
+        76
+      ],
+      "raw": "* It first calls **Get User by Filter** to check whether the user already exists in Capillary.\n* If the user doesn't exist, it calls **Create User** to provision them.\n* If the user already exists and their details have changed, it calls the update API to sync the changes.\n* If the user is removed from your directory, it calls the deactivate API to revoke their access.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "It first calls Get User by Filter to check whether the user already exists in Capillary.If the user doesn't exist, it calls Create User to provision them.If the user already exists and their details have changed, it calls the update API to sync the changes.If the user is removed from your directory, it calls the deactivate API to revoke their access.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "You don't call these APIs yourself during normal operation; your IdP does. However, you can also call them directly, for example, to confirm that a user was provisioned or to look up a specific user's current status.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You don't call these APIs yourself during normal operation; your IdP does. However, you can also call them directly, for example, to confirm that a user was provisioned or to look up a specific user's current status.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        80,
+        84
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ### Note\n\n  User creation in SCIM is asynchronous, meaning Capillary confirms the request immediately but provisions the user in Intouch in the background. The user appears in the Get Users list only after this completes; in practice, this takes only a few seconds.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteUser creation in SCIM is asynchronous, meaning Capillary confirms the request immediately but provisions the user in Intouch in the background. The user appears in the Get Users list only after this completes; in practice, this takes only a few seconds.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 33,
+          "lines": [
+            81,
+            81
+          ],
+          "raw": "  ### Note",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 3,
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 34,
+          "lines": [
+            83,
+            83
+          ],
+          "raw": "  User creation in SCIM is asynchronous, meaning Capillary confirms the request immediately but provisions the user in Intouch in the background. The user appears in the Get Users list only after this completes; in practice, this takes only a few seconds.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "User creation in SCIM is asynchronous, meaning Capillary confirms the request immediately but provisions the user in Intouch in the background. The user appears in the Get Users list only after this completes; in practice, this takes only a few seconds.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "**Stage 4: Role assignment via groups**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Stage 4: Role assignment via groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "In Capillary's SCIM model, a group represents a role.  You create a group and give it a name that matches an existing role in your Capillary organization for example, `org_level` or `MC AGENT`. When your IdP adds a user to that group, Capillary automatically assigns them that role in Intouch. When the user is removed from the group, the role is revoked.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In Capillary's SCIM model, a group represents a role.  You create a group and give it a name that matches an existing role in your Capillary organization for example, org_level or MC AGENT. When your IdP adds a user to that group, Capillary automatically assigns them that role in Intouch. When the user is removed from the group, the role is revoked.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "**Note:** Before creating groups, make sure the Capillary roles you want to manage via SCIM already exist in your organization. To create a role in Capillary org, go to **Organization settings** > **Roles & Privileges** > Add role in Capillary, then map the required permission sets to it using the POST `/launchpad/api/v1/orgs/roles/add` endpoint.&#x20;",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Before creating groups, make sure the Capillary roles you want to manage via SCIM already exist in your organization. To create a role in Capillary org, go to Organization settings > Roles & Privileges > Add role in Capillary, then map the required permission sets to it using the POST /launchpad/api/v1/orgs/roles/add endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "A group `displayName` must exactly match an existing role name. If no matching role is found, the request returns a 400 error. For example, if the role is named `MC AGENT`, the group name must also be `MC AGENT` , a group named `mcagent` or `mc agent` will not match and the group creation will fail.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A group displayName must exactly match an existing role name. If no matching role is found, the request returns a 400 error. For example, if the role is named MC AGENT, the group name must also be MC AGENT , a group named mcagent or mc agent will not match and the group creation will fail.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "Call [Create Group](https://docs.capillarytech.com/reference/create-group) for each role, passing the role name as the `displayName`. From that point on, adding a user to a group in your IdP assigns them that role in Capillary. Removing them revokes it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Call Create Group for each role, passing the role name as the displayName. From that point on, adding a user to a group in your IdP assigns them that role in Capillary. Removing them revokes it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-group",
+          "line": 94
+        }
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "This means you manage who has which role entirely from your IdP. Capillary reflects it automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This means you manage who has which role entirely from your IdP. Capillary reflects it automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "## Token lifecycle",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Token lifecycle",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "Each organization has at most one active SCIM token. To rotate a token:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each organization has at most one active SCIM token. To rotate a token:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        102,
+        106
+      ],
+      "raw": "1. Call [Revoke SCIM Token](https://docs.capillarytech.com/reference/revoke-scim-token) to invalidate the current token.\n2. Call [Create SCIM Token](create-scim-token) to generate a new one.\n3. Update the token value in your IdP's provisioning configuration.\n\n   **Note:** If you revoke a token without immediately replacing it, your IdP loses the ability to provision users until you generate a new token and update your IdP settings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call Revoke SCIM Token to invalidate the current token.Call Create SCIM Token to generate a new one.Update the token value in your IdP's provisioning configuration.Note: If you revoke a token without immediately replacing it, your IdP loses the ability to provision users until you generate a new token and update your IdP settings.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/revoke-scim-token",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "## API reference",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "API reference",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        110,
+        119
+      ],
+      "raw": "| API                                                                                       | Method | Description                                                                           |\n| ----------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------- |\n| [Create SCIM Token](https://docs.capillarytech.com/reference/create-scim-token)           | POST   | Generates a bearer token for your organization. Returned once — store it immediately. |\n| [Revoke SCIM Token](https://docs.capillarytech.com/reference/revoke-scim-token)           | PUT    | Revokes the active token. Required before generating a new one.                       |\n| [Create User](https://docs.capillarytech.com/reference/create-user)                       | POST   | Creates a user in Capillary when they're added in your directory.                     |\n| [Get List of Users](https://docs.capillarytech.com/reference/get-list-of-user)            | GET    | Returns all users provisioned in your organization.                                   |\n| [Get User by Filter](https://docs.capillarytech.com/reference/get-users-by-filter-name)   | GET    | Checks whether a specific user exists. Your IdP calls this before creating a user.    |\n| [Get User by SCIM ID](https://docs.capillarytech.com/reference/get-users-by-scim-id)      | GET    | Returns a single user by numeric ID or `scim-{timestamp}` ID.                         |\n| [Create Group](https://docs.capillarytech.com/reference/create-group)                     | POST   | Creates a group that maps to a Capillary role.                                        |\n| [Add or Remove Group Members](https://docs.capillarytech.com/reference/add-group-members) | PATCH  | Adds or removes users from a group, triggering role assignment or revocation.         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "API",
+          "Method",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Create SCIM Token",
+            "POST",
+            "Generates a bearer token for your organization. Returned once — store it immediately."
+          ],
+          [
+            "Revoke SCIM Token",
+            "PUT",
+            "Revokes the active token. Required before generating a new one."
+          ],
+          [
+            "Create User",
+            "POST",
+            "Creates a user in Capillary when they're added in your directory."
+          ],
+          [
+            "Get List of Users",
+            "GET",
+            "Returns all users provisioned in your organization."
+          ],
+          [
+            "Get User by Filter",
+            "GET",
+            "Checks whether a specific user exists. Your IdP calls this before creating a user."
+          ],
+          [
+            "Get User by SCIM ID",
+            "GET",
+            "Returns a single user by numeric ID or scim-{timestamp} ID."
+          ],
+          [
+            "Create Group",
+            "POST",
+            "Creates a group that maps to a Capillary role."
+          ],
+          [
+            "Add or Remove Group Members",
+            "PATCH",
+            "Adds or removes users from a group, triggering role assignment or revocation."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-scim-token",
+          "line": 112
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/revoke-scim-token",
+          "line": 113
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-user",
+          "line": 114
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-list-of-user",
+          "line": 115
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-users-by-filter-name",
+          "line": 116
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-users-by-scim-id",
+          "line": 117
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-group",
+          "line": 118
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-group-members",
+          "line": 119
+        }
+      ]
+    },
+    {
+      "i": 45,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "<Image src=\"https://files.readme.io/d619c375bac0e2139a65fa202ff430861839e6f5d1f4a4bd5d988687476de8fc-scim-provisioning-flow.jpeg\" border={true} framed={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/d619c375bac0e2139a65fa202ff430861839e6f5d1f4a4bd5d988687476de8fc-scim-provisioning-flow.jpeg",
+        "border": "{true}",
+        "framed": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 123
+        }
+      ]
+    }
+  ]
+}

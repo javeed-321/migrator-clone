@@ -1,0 +1,1488 @@
+{
+  "slug": "docs/databricks-validation-block",
+  "source": "https://docs.capillarytech.com/docs/databricks-validation-block.md",
+  "url": "https://docs.capillarytech.com/docs/databricks-validation-block",
+  "title": "Databricks Validation Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T14:21:56.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 17,
+    "paragraph": 38,
+    "Image": 4,
+    "list": 16,
+    "Table": 1,
+    "code": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Databricks (Validation) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Databricks (Validation) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configuration reference for the Data Validation block — runs a Databricks notebook to clean, validate, and transform source data before ingestion.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration reference for the Data Validation block — runs a Databricks notebook to clean, validate, and transform source data before ingestion.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The Data Validation block ensures data quality by cleaning, validating, and preparing information before moving to the next step in a workflow. Typically, it acts as a middle step, placed after a source or decrypt block and before an API call block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Validation block ensures data quality by cleaning, validating, and preparing information before moving to the next step in a workflow. Typically, it acts as a middle step, placed after a source or decrypt block and before an API call block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The block runs a Databricks job, identified by its job ID, to process incoming data. The job reads the input file retrieved from the source block, converts it into a temporary table, applies the required validations and transformations, and writes the results to an output table. The output table then serves as the data source for field mapping in subsequent blocks. This block triggers the job and returns the results to Connect+.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The block runs a Databricks job, identified by its job ID, to process incoming data. The job reads the input file retrieved from the source block, converts it into a temporary table, applies the required validations and transformations, and writes the results to an output table. The output table then serves as the data source for field mapping in subsequent blocks. This block triggers the job and returns the results to Connect+.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Note**: To only trigger a Databricks job, use the Databricks (Jobs) block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: To only trigger a Databricks job, use the Databricks (Jobs) block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/af67b63d0f461a9f7494d507a07dadb7d12194143ec7f1d18e03b1f151d44808-Data_Flow_Processing_1.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/af67b63d0f461a9f7494d507a07dadb7d12194143ec7f1d18e03b1f151d44808-Data_Flow_Processing_1.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Key capabilities",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Key capabilities",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "The Data Validation block prepares your data before it moves downstream. You can use it to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Validation block prepares your data before it moves downstream. You can use it to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        35
+      ],
+      "raw": "* **Filter data:**  Keep only the records that meet specific conditions.\n\n* **Remove duplicates**: Eliminate repeated records to retain only one copy.\n\n* **Fill missing values**: Add default or random values in required fields to prevent errors later in the workflow.\n\n* **Add missing details**: Retrieve additional information from other Databricks tables.\n\n* **Rename headers**: Update column names to match the format required by subsequent steps.\n\n* **Apply custom rules**: Define validation logic in Databricks, such as validating formats or ensuring uniqueness.\n\n* **Transform data**: Adjust fields, standardize formats, or reorganize records.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Filter data:  Keep only the records that meet specific conditions.Remove duplicates: Eliminate repeated records to retain only one copy.Fill missing values: Add default or random values in required fields to prevent errors later in the workflow.Add missing details: Retrieve additional information from other Databricks tables.Rename headers: Update column names to match the format required by subsequent steps.Apply custom rules: Define validation logic in Databricks, such as validating formats or ensuring uniqueness.Transform data: Adjust fields, standardize formats, or reorganize records.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "## Process Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Process Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "The Data Validation block uses Databricks to apply the capabilities listed above. The workflow follows these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Validation block uses Databricks to apply the capabilities listed above. The workflow follows these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        41,
+        53
+      ],
+      "raw": "1. **File is read** – Connect+ retrieves the input file from a source such as SFTP. If the file is encrypted, it is decrypted first.\n\n2. **Databricks job runs**\n\n   1. **Temporary table is created** – The file is automatically converted into a temporary table in Databricks. Example: A CSV file with 10,000 rows and 5 columns is converted into a temporary table with the same structure.\n\n   2. **Databricks job runs** – You create a Databricks notebook with your validation and transformation rules. Spark SQL applies these rules to the temporary table.\n\n   3. **Output table is generated** – The cleaned, transformed, and validated data is saved to a new temporary output table.\n\n3. **Data returns to Connect+** – Connect+ retrieves the processed data from the output table and continues the workflow, such as sending it to an API.\n\n4. **Tables are deleted** – Both the input and output temporary tables are automatically deleted after 10 days, ensuring the block is used for preparation and not storage.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "File is read – Connect+ retrieves the input file from a source such as SFTP. If the file is encrypted, it is decrypted first.Databricks job runsTemporary table is created – The file is automatically converted into a temporary table in Databricks. Example: A CSV file with 10,000 rows and 5 columns is converted into a temporary table with the same structure.Databricks job runs – You create a Databricks notebook with your validation and transformation rules. Spark SQL applies these rules to the temporary table.Output table is generated – The cleaned, transformed, and validated data is saved to a new temporary output table.Data returns to Connect+ – Connect+ retrieves the processed data from the output table and continues the workflow, such as sending it to an API.Tables are deleted – Both the input and output temporary tables are automatically deleted after 10 days, ensuring the block is used for preparation and not storage.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "## Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "The Data Validation block provides multiple options for improving data quality, enriching records and ensuring that only valid and complete information progresses through a workflow. Below are its key applications:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Validation block provides multiple options for improving data quality, enriching records and ensuring that only valid and complete information progresses through a workflow. Below are its key applications:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "### Use Case 1: Validate Customer Status Before Processing Transactions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 1: Validate Customer Status Before Processing Transactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "A retail brand wants to award loyalty points only for purchases made by active customers. However, transaction files often include records from inactive or deleted customers, leading to incorrect point allocation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A retail brand wants to award loyalty points only for purchases made by active customers. However, transaction files often include records from inactive or deleted customers, leading to incorrect point allocation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "**Solution** Use the Data Validation block to check the customer status before processing transactions. Configure a Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to check the customer status before processing transactions. Configure a Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        65,
+        67
+      ],
+      "raw": "* Confirms whether the customer is active.\n\n* Rejects transactions from inactive or deleted customers with an error reason.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Confirms whether the customer is active.Rejects transactions from inactive or deleted customers with an error reason.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "After validation, only eligible transactions proceed for point allocation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After validation, only eligible transactions proceed for point allocation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "### Use Case 2: Retrotagging for Late Enrollments",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 2: Retrotagging for Late Enrollments",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "Customers sometimes make purchases before enrolling in the loyalty program. When they sign up later, the brand wants to link the past purchases to the customer’s new account and award points retroactively.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customers sometimes make purchases before enrolling in the loyalty program. When they sign up later, the brand wants to link the past purchases to the customer’s new account and award points retroactively.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "**Solution** Use the Data Validation block to retrotag earlier transactions. Configure a Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to retrotag earlier transactions. Configure a Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        77,
+        79
+      ],
+      "raw": "* Matches past purchases with the newly created member profile.\n\n* Tags earlier visits against the correct customer account.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Matches past purchases with the newly created member profile.Tags earlier visits against the correct customer account.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "The validated data is then forwarded for point allocation, ensuring customers are rewarded fairly.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The validated data is then forwarded for point allocation, ensuring customers are rewarded fairly.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "### Use Case 3: Enrich Customer Data with Required Identifiers or Append Missing Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 3: Enrich Customer Data with Required Identifiers or Append Missing Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "A brand’s transaction files often include basic details such as LoyaltyID or points, but miss Capillary identifiers like `user_id` or `bill_id`. In some cases, files include only a mobile number, while downstream API calls require the first and last names.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand’s transaction files often include basic details such as LoyaltyID or points, but miss Capillary identifiers like user_id or bill_id. In some cases, files include only a mobile number, while downstream API calls require the first and last names.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "**Solution** Use the Data Validation block to enrich incomplete records. Configure a Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to enrich incomplete records. Configure a Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        89,
+        91
+      ],
+      "raw": "* Looks up missing Capillary identifiers, for example, `user_id`, `bill_id,` and missing information like `first and last name` from other Databricks tables.\n\n* Validates that the customer exists and is active.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Looks up missing Capillary identifiers, for example, user_id, bill_id, and missing information like first and last name from other Databricks tables.Validates that the customer exists and is active.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "This produces a complete dataset ready for transaction processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This produces a complete dataset ready for transaction processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "### Use Case 4: Perform Reconciliation and Audit Checks Before Storing Transactions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 4: Perform Reconciliation and Audit Checks Before Storing Transactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "Before storing transactions, a retail brand needs to verify store IDs, avoid duplicate entries, and identify suspiciously large bill amounts. Without these checks, errors and fraud may affect reporting and rewards.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before storing transactions, a retail brand needs to verify store IDs, avoid duplicate entries, and identify suspiciously large bill amounts. Without these checks, errors and fraud may affect reporting and rewards.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "**Solution** Use the Data Validation block to perform reconciliation and audit checks. Configure a Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to perform reconciliation and audit checks. Configure a Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        101,
+        105
+      ],
+      "raw": "* Confirms store IDs exist in the system.\n\n* Rejects transactions already recorded.\n\n* Flags transactions with unusually high values for further review.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Confirms store IDs exist in the system.Rejects transactions already recorded.Flags transactions with unusually high values for further review.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "The cleaned data then continues to the next block for storage or processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The cleaned data then continues to the next block for storage or processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "### Use Case 5: Filter Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 5: Filter Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "A retail brand imports a transaction file containing 10,000 records. However, only bills greater than 1,000 rupees are eligible for loyalty points. Without filtering, unnecessary records slow down processing and API calls.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A retail brand imports a transaction file containing 10,000 records. However, only bills greater than 1,000 rupees are eligible for loyalty points. Without filtering, unnecessary records slow down processing and API calls.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "**Solution** Use the Data Validation block to filter input data. Configure a Databricks job that selects rows with a transaction value greater than `1000 rupees.`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to filter input data. Configure a Databricks job that selects rows with a transaction value greater than 1000 rupees.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "Only qualifying records are returned to Connect+ for further processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Only qualifying records are returned to Connect+ for further processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        117,
+        117
+      ],
+      "raw": "### Use Case 6: Fill Missing Values",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 6: Fill Missing Values",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "Input files sometimes contain `null` values in mandatory fields such as transaction dates. These gaps cause errors in subsequent API calls.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input files sometimes contain null values in mandatory fields such as transaction dates. These gaps cause errors in subsequent API calls.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "**Solution** Use the Data Validation block to fill missing values. Configure a Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Data Validation block to fill missing values. Configure a Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        123,
+        125
+      ],
+      "raw": "* Replaces nulls in required fields with default values.\n\n* Ensures mandatory fields are always populated before forwarding the data.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Replaces nulls in required fields with default values.Ensures mandatory fields are always populated before forwarding the data.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "This prevents failures during downstream processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This prevents failures during downstream processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "### Use Case 7: Cleaning Customer Data Before Loyalty Points Allocation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Case 7: Cleaning Customer Data Before Loyalty Points Allocation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        131,
+        131
+      ],
+      "raw": "A retail brand uses Capillary’s loyalty platform to allocate points by importing customer data from an external system. However, the incoming file often includes duplicate records and rows with missing mobile numbers, which impacts point allocation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A retail brand uses Capillary’s loyalty platform to allocate points by importing customer data from an external system. However, the incoming file often includes duplicate records and rows with missing mobile numbers, which impacts point allocation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        133,
+        133
+      ],
+      "raw": "**Solution** Use the **Validation** block in Capillary to clean the data before processing it. Configure a custom Databricks job that:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution Use the Validation block in Capillary to clean the data before processing it. Configure a custom Databricks job that:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        135,
+        136
+      ],
+      "raw": "* Removes duplicate customer records based on email address or mobile number.\n* Eliminates rows where the mobile number is missing.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Removes duplicate customer records based on email address or mobile number.Eliminates rows where the mobile number is missing.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "Provide the Databricks job ID in the Validation block configuration. After validation and cleaning, Capillary forwards the processed data to the next blocks for loyalty points allocation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Provide the Databricks job ID in the Validation block configuration. After validation and cleaning, Capillary forwards the processed data to the next blocks for loyalty points allocation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "# Configuring the Data Validation Block Interface",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the Data Validation Block Interface",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "## Pre-requisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Pre-requisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        144,
+        146
+      ],
+      "raw": "* Access to the database for your organisation's group. To get access, create a ticket for the Capillary Access team.\n* Name of the target database.\n* A Databricks job created in the notebook cluster where your organisation resides. The job ID must exist before configuring this block.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Access to the database for your organisation's group. To get access, create a ticket for the Capillary Access team.Name of the target database.A Databricks job created in the notebook cluster where your organisation resides. The job ID must exist before configuring this block.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        150,
+        154
+      ],
+      "raw": "| Field name                      | Required | Description                                                                                                                                                                        |\n| :------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Block name**                  | No       | A name for the block instance.                                                                                                                                                     |\n| **DataBricks JobId**            | Yes      | The [ID of the Databricks job](https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id) to trigger. Select the job from the dropdown. |\n| **Is Data Validation enabled?** | Yes      | Enables or disables the data validation block. Select `true` to activate validation or `false` to skip it. Default value: `false`.                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance."
+          ],
+          [
+            "DataBricks JobId",
+            "Yes",
+            "The ID of the Databricks job to trigger. Select the job from the dropdown."
+          ],
+          [
+            "Is Data Validation enabled?",
+            "Yes",
+            "Enables or disables the data validation block. Select true to activate validation or false to skip it. Default value: false."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/databricks-validation-block#creating-a-databricks-job-and-job-id",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "i": 54,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/a15fe935ea33a82ba627f824d27c1aaae807fc5dd3e23a60a166d2adb9aed04e-databricks.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/a15fe935ea33a82ba627f824d27c1aaae807fc5dd3e23a60a166d2adb9aed04e-databricks.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "## Creating a Databricks Job and Job ID",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a Databricks Job and Job ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        160,
+        164
+      ],
+      "raw": "1. Log in to the Databricks portal.\n2. From the drop-down menu in the top right corner, select your workspace. Your workspace is named `notebook-cluster in which your organisation exists`. **Example**: `notebook-eucrm`, where `eurcrm` is the cluster in which the organisation exists.\n\n   <Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/b8e742c7e9322ab645eefa8689be0f1bf39aa352106a03a5213fb5beb798e718-e16be40673fed0acdaf7a3375ea2a6e844327de14ac80ab4b63b42733275fc5f-landing_page_databricks.png\" className=\"border\" />\n3. From the left pane, click **Workspace** > **Create** > **Notebook**. Write a Databricks notebook for the required validation and transformation. Note: A complex Databricks job might slow down the workflow.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Log in to the Databricks portal.From the drop-down menu in the top right corner, select your workspace. Your workspace is named notebook-cluster in which your organisation exists. Example: notebook-eucrm, where eurcrm is the cluster in which the organisation exists.From the left pane, click Workspace > Create > Notebook. Write a Databricks notebook for the required validation and transformation. Note: A complex Databricks job might slow down the workflow.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        166,
+        166
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/c948c30690c25daa0e64b14fd6cebd8b56544079e7520e6c1924d998d3ada16f-74a2ce6b803a0a8f7b5c7fdfb0c84596e2652f4bf7aff0e4ee3bbb877452cf33-Notebook_Instruction_Steps.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/c948c30690c25daa0e64b14fd6cebd8b56544079e7520e6c1924d998d3ada16f-74a2ce6b803a0a8f7b5c7fdfb0c84596e2652f4bf7aff0e4ee3bbb877452cf33-Notebook_Instruction_Steps.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        168,
+        171
+      ],
+      "raw": "4. From the left pane, click **Workflows**> **Create job**. The job ID is created. Use the Job ID in the **DataBricks JobId** field of the Data Validation block.\n\n   <Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/1903ae57c5e6e93545431f32976a05b65bbc862789a5678e38009051287becc8-faaa75ab41be9a1cf9dc4be2f7d8b7c52695574da980ba8161bc0856b1eb6085-JobId.png\" className=\"border\" />\n5. Create a job and add a task. **Note**: In the **Path** field, give the path of your Databricks Notebook.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the left pane, click Workflows> Create job. The job ID is created. Use the Job ID in the DataBricks JobId field of the Data Validation block.Create a job and add a task. Note: In the Path field, give the path of your Databricks Notebook.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/07f4b1408fe14c49559a66210d7fae51f4cf29e7c3afdabed526444a4e14cafa-b11484cf586f28a388fec773104944fd92e2f5126ef8fbbba9dc4620167a41ce-Interactive_Guide_Steps.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/07f4b1408fe14c49559a66210d7fae51f4cf29e7c3afdabed526444a4e14cafa-b11484cf586f28a388fec773104944fd92e2f5126ef8fbbba9dc4620167a41ce-Interactive_Guide_Steps.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "## Creating the Databricks Notebook Script",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating the Databricks Notebook Script",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "You can create a Databricks script to transform and validate the data as per your requirements. The following code should be included in your script.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can create a Databricks script to transform and validate the data as per your requirements. The following code should be included in your script.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "Use the following line to write data to the output table. You can change the name of the DataFrame in your script, but the rest of the code must remain unchanged. Here, `renamed_df` is the Dataframe name.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the following line to write data to the output table. You can change the name of the DataFrame in your script, but the rest of the code must remain unchanged. Here, renamed_df is the Dataframe name.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        181,
+        189
+      ],
+      "raw": "```json Mandatory code that cannot be modified\ninput_table = dbutils.widgets.get(\"inputTable\")\noutput_table = dbutils.widgets.get(\"outputTable\")\ndatabase_name = dbutils.widgets.get(\"database_name\")\n\n# Define full table names\ninput_table_name = f\"{database_name}.{input_table}\"\noutput_table_name = f\"{database_name}.{output_table}\"\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Mandatory code that cannot be modified",
+        "code": "input_table = dbutils.widgets.get(\"inputTable\")\noutput_table = dbutils.widgets.get(\"outputTable\")\ndatabase_name = dbutils.widgets.get(\"database_name\")\n\n# Define full table names\ninput_table_name = f\"{database_name}.{input_table}\"\noutput_table_name = f\"{database_name}.{output_table}\""
+      },
+      "text": "Mandatory code that cannot be modified",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "Use the following line to write data to the output table. You can change the name of the DataFrame in your script, but the rest of the code must remain unchanged. Here, `renamed_df` is the Dataframe name.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the following line to write data to the output table. You can change the name of the DataFrame in your script, but the rest of the code must remain unchanged. Here, renamed_df is the Dataframe name.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        193,
+        195
+      ],
+      "raw": "```json Script to write into output table\nrenamed_df.write.mode(\"overwrite\").format(\"delta\").saveAsTable(output_table_name)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Script to write into output table",
+        "code": "renamed_df.write.mode(\"overwrite\").format(\"delta\").saveAsTable(output_table_name)"
+      },
+      "text": "Script to write into output table",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "**Note**: Use the `delta` format to store data into the output table",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Use the delta format to store data into the output table",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "The following is a sample Databricks notebook script. The script fetches all the rows from the input table where the value of `id` is less than or equal to 30.  These rows are written into the output table, and the columns  `id` and `name`  are renamed to `customer_id` and `customer_name`, respectively.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following is a sample Databricks notebook script. The script fetches all the rows from the input table where the value of id is less than or equal to 30.  These rows are written into the output table, and the columns  id and name  are renamed to customer_id and customer_name, respectively.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        201,
+        228
+      ],
+      "raw": "```python Sample Databricks Job\nimport json\nfrom pyspark.sql import SparkSession\n\n# Initialize Spark\nspark = SparkSession.builder.appName(\"Databricks S3 to Table\").getOrCreate()\n\n# Step 1: Read Job Parameters from notebook_params\ninput_table = dbutils.widgets.get(\"inputTable\")\noutput_table = dbutils.widgets.get(\"outputTable\")\ndatabase_name = dbutils.widgets.get(\"database_name\")\n\n# Define full table names\ninput_table_name = f\"{database_name}.{input_table}\"\noutput_table_name = f\"{database_name}.{output_table}\"\n\n# Read data from the input table - This query selects all rows from the table where the `id` column is less than or equal to 30.\ndf = spark.sql(f\"SELECT * FROM {input_table_name} WHERE id <= 30\")\n\n#  Perform the required transformation - Here, rename columns to customer_id and customer_name\nrenamed_df = (\n    df.withColumnRenamed(\"id\", \"customer_id\")\n      .withColumnRenamed(\"name\", \"customer_name\")\n)  # Add more columns as needed\n\n# Write the transformed data to the output table. It is mandatory to write the transformed data into the output table. Here, the data is written to the output table in Delta format.\nrenamed_df.write.mode(\"overwrite\").format(\"delta\").saveAsTable(output_table_name)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "python",
+        "title": "Sample Databricks Job",
+        "code": "import json\nfrom pyspark.sql import SparkSession\n\n# Initialize Spark\nspark = SparkSession.builder.appName(\"Databricks S3 to Table\").getOrCreate()\n\n# Step 1: Read Job Parameters from notebook_params\ninput_table = dbutils.widgets.get(\"inputTable\")\noutput_table = dbutils.widgets.get(\"outputTable\")\ndatabase_name = dbutils.widgets.get(\"database_name\")\n\n# Define full table names\ninput_table_name = f\"{database_name}.{input_table}\"\noutput_table_name = f\"{database_name}.{output_table}\"\n\n# Read data from the input table - This query selects all rows from the table where the `id` column is less than or equal to 30.\ndf = spark.sql(f\"SELECT * FROM {input_table_name} WHERE id <= 30\")\n\n#  Perform the required transformation - Here, rename columns to customer_id and customer_name\nrenamed_df = (\n    df.withColumnRenamed(\"id\", \"customer_id\")\n      .withColumnRenamed(\"name\", \"customer_name\")\n)  # Add more columns as needed\n\n# Write the transformed data to the output table. It is mandatory to write the transformed data into the output table. Here, the data is written to the output table in Delta format.\nrenamed_df.write.mode(\"overwrite\").format(\"delta\").saveAsTable(output_table_name)"
+      },
+      "text": "Sample Databricks Job",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        230,
+        230
+      ],
+      "raw": "# FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "1. Where should I create the Databricks job?",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Where should I create the Databricks job?",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "Answer: You must create the Databricks job in the notebook cluster where your organisation resides.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Answer: You must create the Databricks job in the notebook cluster where your organisation resides.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "2. What kind of transformations can I perform using this block?",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "What kind of transformations can I perform using this block?",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "Answer: You can remove duplicates, drop empty rows/columns, standardise headers, or apply custom logic such as formatting phone numbers or merging columns.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Answer: You can remove duplicates, drop empty rows/columns, standardise headers, or apply custom logic such as formatting phone numbers or merging columns.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "3. What should the Databricks job contain?",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "What should the Databricks job contain?",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "Answer: The job should read the input table, apply transformation or validation logic, and write the results to the output table. Subsequent blocks then use the output table for field mapping.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Answer: The job should read the input table, apply transformation or validation logic, and write the results to the output table. Subsequent blocks then use the output table for field mapping.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "4. Can I write a complex Databricks job to achieve my transformation?",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Can I write a complex Databricks job to achieve my transformation?",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        246,
+        246
+      ],
+      "raw": "Answer: You can write a complex Databricks job, but it can slow down the workflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Answer: You can write a complex Databricks job, but it can slow down the workflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        248,
+        248
+      ],
+      "raw": "5. How are spaces and hyphens in the header names handled?",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "How are spaces and hyphens in the header names handled?",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        250,
+        251
+      ],
+      "raw": "Answer: The spaces ( ) and hyphens (-) in the header names are converted to underscores (\\_).\n**Example**: If the header name is `Customer ID` it is converted into `Customer_ID`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Answer: The spaces ( ) and hyphens (-) in the header names are converted to underscores (_).\nExample: If the header name is Customer ID it is converted into Customer_ID.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

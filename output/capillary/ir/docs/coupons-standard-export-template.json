@@ -1,0 +1,504 @@
+{
+  "slug": "docs/coupons-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/coupons-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/coupons-standard-export-template",
+  "title": "Coupons Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "list": 1,
+    "Callout": 1,
+    "br": 2,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Coupons Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Coupons Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The coupons template is based on the **[Coupons](https://docs.capillarytech.com/docs/coupons-fact-table)** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The coupons template is based on the Coupons fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/coupons-fact-table",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The template lets you export details of:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The template lets you export details of:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        14
+      ],
+      "raw": "* Coupons issued at customer level and transaction level;\n* Transaction numbers along with coupon details, redeemed and expired coupons, and coupon level custom fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Coupons issued at customer level and transaction level;Transaction numbers along with coupon details, redeemed and expired coupons, and coupon level custom fields.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        19
+      ],
+      "raw": "> 📘 Note\n>\n> * While using the coupons template, you need to select custom fields manually.\n> * Coupons that are issued or redeemed will be tagged to a transaction, only if both the transaction and coupon issual or redemption occurs within the span of  +/- 15 minutes.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteWhile using the coupons template, you need to select custom fields manually.Coupons that are issued or redeemed will be tagged to a transaction, only if both the transaction and coupon issual or redemption occurs within the span of  +/- 15 minutes.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        25,
+        34
+      ],
+      "raw": "| Measure Name             | Description                                                                        |\n| ------------------------ | ---------------------------------------------------------------------------------- |\n| Bill Id                  | Identifier key for the bill against which the coupons have been issued or redeemed |\n| Redemption Bill Amount   | Total transaction amount of the bill against which coupon has been redeemed        |\n| Issual Coupon Id         | Unique Id assigned to the coupon which has been issued                             |\n| Used Bill Number         | Bill\\_number  used while the redeeming the coupon                                  |\n| Auto Update Time Coupons | Date and time when the coupons table is recently updated (Unix timestamp)          |\n| Coupon Code Src          | It is same as coupon code                                                          |\n| Coupon Code              | A unique id generated for the coupons                                              |\n| Event Id                 | A unique id generated for the coupon's event by capillary system                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Bill Id",
+            "Identifier key for the bill against which the coupons have been issued or redeemed"
+          ],
+          [
+            "Redemption Bill Amount",
+            "Total transaction amount of the bill against which coupon has been redeemed"
+          ],
+          [
+            "Issual Coupon Id",
+            "Unique Id assigned to the coupon which has been issued"
+          ],
+          [
+            "Used Bill Number",
+            "Bill_number  used while the redeeming the coupon"
+          ],
+          [
+            "Auto Update Time Coupons",
+            "Date and time when the coupons table is recently updated (Unix timestamp)"
+          ],
+          [
+            "Coupon Code Src",
+            "It is same as coupon code"
+          ],
+          [
+            "Coupon Code",
+            "A unique id generated for the coupons"
+          ],
+          [
+            "Event Id",
+            "A unique id generated for the coupon's event by capillary system"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        38,
+        60
+      ],
+      "raw": "| Dimension Name                                                                                                                                                    | Description                                                                                                |\n| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |\n| [coupon\\_event\\_type](https://docs.capillarytech.com/docs/dimension-tables#redeemed-status-redeemed_status)                                                       | Identifier for the coupons event type, such as issuance or redemption.                                     |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                                                                          | Identifier of the user involved in the coupon event, set internally by Capillary.                          |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                                                                 | Segment details of the customers involved in the coupon event, such as valued customer or lapsed customer. |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                                                 | Date attributes of the coupon issuance or redemption.                                                      |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                                                 | Time attributes of the coupon issuance or redemption.                                                      |\n| [Store Hierarchy (zone till)](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                     | Identifier for the store, till id.                                                                         |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                               | Identifier for the concept associated with the coupon event.                                               |\n| [OU Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                                    | Identifier for the organization unit where the coupon event occurred.                                      |\n| [coupon\\_series](https://docs.capillarytech.com/docs/dimension-tables#coupon-series-coupon_series)                                                                | Coupon series against which the coupon has been issued or redeemed.                                        |\n| [expiry\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                                         | Date when the coupon is set to expire.                                                                     |\n| [issual\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                                         | Date when the coupon has been issued.                                                                      |\n| [issual\\_time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                                         | Time when the coupon has been issued.                                                                      |\n| [issual\\_type](https://docs.capillarytech.com/docs/dimension-tables#coupon-issual-type-coupon_issual_type)                                                        | Captures the issuance type, with possible values such as store or customer.                                |\n| [campaign\\_group](https://docs.capillarytech.com/docs/dimension-tables#campaign-group)                                                                            | Identifier for the campaign group associated with the coupon issuance.                                     |\n| [campaign](https://docs.capillarytech.com/docs/dimension-tables#campaigns)                                                                                        | Identifier for the campaign under which the coupon is issued.                                              |\n| [Issual Zone Till](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                                                                                | Captures the store till where the coupon has been issued.                                                  |\n| [entry\\_type](https://docs.capillarytech.com/docs/dimension-tables#entry-type-entry_type)                                                                         | Captures whether the coupon entry is manual or through Intouch.                                            |\n| [latest\\_updated\\_date](https://docs.capillarytech.com/docs/dimension-tables#date)                                                                                | Latest date when the data is updated.                                                                      |\n| [latest\\_updated\\_time](https://docs.capillarytech.com/docs/dimension-tables#time)                                                                                | Latest time when the data is updated.                                                                      |\n| [is\\_coupon\\_redemptions\\_active](https://docs.capillarytech.com/docs/dimension-tables?isFramePreview=true#coupon-redemption-status-is_coupon_redemptions_active) | Indicates whether redemptions are currently enabled for this coupon.                                       |\n| [is\\_coupon\\_issued\\_active](https://docs.capillarytech.com/docs/dimension-tables?isFramePreview=true#coupon-status-is_coupon_issued_active)                      | Indicates whether the issued coupon is currently active.                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "coupon_event_type",
+            "Identifier for the coupons event type, such as issuance or redemption."
+          ],
+          [
+            "User",
+            "Identifier of the user involved in the coupon event, set internally by Capillary."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers involved in the coupon event, such as valued customer or lapsed customer."
+          ],
+          [
+            "Date",
+            "Date attributes of the coupon issuance or redemption."
+          ],
+          [
+            "Time",
+            "Time attributes of the coupon issuance or redemption."
+          ],
+          [
+            "Store Hierarchy (zone till)",
+            "Identifier for the store, till id."
+          ],
+          [
+            "Concept Hierarchy",
+            "Identifier for the concept associated with the coupon event."
+          ],
+          [
+            "OU Hierarchy",
+            "Identifier for the organization unit where the coupon event occurred."
+          ],
+          [
+            "coupon_series",
+            "Coupon series against which the coupon has been issued or redeemed."
+          ],
+          [
+            "expiry_date",
+            "Date when the coupon is set to expire."
+          ],
+          [
+            "issual_date",
+            "Date when the coupon has been issued."
+          ],
+          [
+            "issual_time",
+            "Time when the coupon has been issued."
+          ],
+          [
+            "issual_type",
+            "Captures the issuance type, with possible values such as store or customer."
+          ],
+          [
+            "campaign_group",
+            "Identifier for the campaign group associated with the coupon issuance."
+          ],
+          [
+            "campaign",
+            "Identifier for the campaign under which the coupon is issued."
+          ],
+          [
+            "Issual Zone Till",
+            "Captures the store till where the coupon has been issued."
+          ],
+          [
+            "entry_type",
+            "Captures whether the coupon entry is manual or through Intouch."
+          ],
+          [
+            "latest_updated_date",
+            "Latest date when the data is updated."
+          ],
+          [
+            "latest_updated_time",
+            "Latest time when the data is updated."
+          ],
+          [
+            "is_coupon_redemptions_active",
+            "Indicates whether redemptions are currently enabled for this coupon."
+          ],
+          [
+            "is_coupon_issued_active",
+            "Indicates whether the issued coupon is currently active."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#redeemed-status-redeemed_status",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 41
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 42
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 43
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 46
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 47
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#coupon-series-coupon_series",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 49
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 50
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 51
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#coupon-issual-type-coupon_issual_type",
+          "line": 52
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaign-group",
+          "line": 53
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaigns",
+          "line": 54
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 55
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#entry-type-entry_type",
+          "line": 56
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 57
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 58
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables?isFramePreview=true#coupon-redemption-status-is_coupon_redemptions_active",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables?isFramePreview=true#coupon-status-is_coupon_issued_active",
+          "line": 60
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 62
+        }
+      ]
+    }
+  ]
+}

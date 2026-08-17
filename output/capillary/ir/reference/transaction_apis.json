@@ -1,0 +1,407 @@
+{
+  "slug": "reference/transaction_apis",
+  "source": "https://docs.capillarytech.com/reference/transaction_apis.md",
+  "url": "https://docs.capillarytech.com/reference/transaction_apis",
+  "title": "Transaction Apis",
+  "description": "",
+  "section": "Transaction (V2)",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 10,
+    "list": 4,
+    "Table": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transaction (V2)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transaction (V2)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "A transaction represents a purchase or return event.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A transaction represents a purchase or return event.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Transactions are classified into the following types:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Transactions are classified into the following types:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        33
+      ],
+      "raw": "* **Regular:**\n  A standard sale recorded at the PoS. A regular transaction can be:\n* * Loyalty\n  * Non-loyalty\n  * Not-interested\n* **Return:**\n  A transaction that reverses a previous sale at the PoS.\n\n  A return must reference an existing bill identifier. Because of this dependency, only loyalty and non-loyalty transactions can be returned through APIs.\n\n  For implementation details, see the Transaction Return API.\n* **Mixed:**\n  A transaction that combines a new sale and a return from a previous bill in the same billing flow.\n\n  In a mixed transaction:\n\n  * The system creates a new bill for the current purchase.\n  * The system creates a return entry against the original bill for the returned items.\n  * The new bill acts as the parent reference for the overall transaction context.\n\n  Use a mixed transaction when a customer purchases new items and returns items from an earlier bill during the same checkout.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Regular:\nA standard sale recorded at the PoS. A regular transaction can be:LoyaltyNon-loyaltyNot-interestedReturn:\nA transaction that reverses a previous sale at the PoS.A return must reference an existing bill identifier. Because of this dependency, only loyalty and non-loyalty transactions can be returned through APIs.For implementation details, see the Transaction Return API.Mixed:\nA transaction that combines a new sale and a return from a previous bill in the same billing flow.In a mixed transaction:The system creates a new bill for the current purchase.The system creates a return entry against the original bill for the returned items.The new bill acts as the parent reference for the overall transaction context.Use a mixed transaction when a customer purchases new items and returns items from an earlier bill during the same checkout.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "#### Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        37,
+        38
+      ],
+      "raw": "Before using transaction APIs, understand the transaction configurations of your organization. You can see the transaction related settings on InTouch.\\\n**Intouch > Settings > Systems and Deployment > Intouch PoS Configuration > Billing**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before using transaction APIs, understand the transaction configurations of your organization. You can see the transaction related settings on InTouch.Intouch > Settings > Systems and Deployment > Intouch PoS Configuration > Billing",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        40,
+        43
+      ],
+      "raw": "* Mandatory parameters required to submit a transaction.\n* Scope of transaction number uniqueness (store level or TILL level) and duration for which repetition is not allowed (20 days, 30 days etc.).\n* Maximum and minimum amount allowed per transaction.\n* Maximum and minimum amount allowed per line-item.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mandatory parameters required to submit a transaction.Scope of transaction number uniqueness (store level or TILL level) and duration for which repetition is not allowed (20 days, 30 days etc.).Maximum and minimum amount allowed per transaction.Maximum and minimum amount allowed per line-item.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "For information on how the system handles different timezones, see [Handling different timezone](https://docs.capillarytech.com/reference/timezone-in-api-response).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For information on how the system handles different timezones, see Handling different timezone.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/timezone-in-api-response",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "The `transaction/add` API lets you do the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The transaction/add API lets you do the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        49,
+        52
+      ],
+      "raw": "* Supports transactions with Product Variant and Product Bundle details.\n* Adds product variant to the database when a new variant product is passed with an existing base product.\n* Adds base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant .\n* Adds custom field and extended field details both at the transaction and line-item level.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Supports transactions with Product Variant and Product Bundle details.Adds product variant to the database when a new variant product is passed with an existing base product.Adds base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant .Adds custom field and extended field details both at the transaction and line-item level.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "**Variant Product**: A same product having different variations in terms of common properties such as size, and color.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Variant Product: A same product having different variations in terms of common properties such as size, and color.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "**Product Bundle**: A group of items that are sold as a single pack. This can include Combo items (Example: pack of 2, combo offers), Split items (Example: a necklace having gold rate, store rate, making charge, wastage charge and so on) and add-on items (Example: Pizza with extra cheese, and personalized toppings).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Product Bundle: A group of items that are sold as a single pack. This can include Combo items (Example: pack of 2, combo offers), Split items (Example: a necklace having gold rate, store rate, making charge, wastage charge and so on) and add-on items (Example: Pizza with extra cheese, and personalized toppings).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "The maximum size for storing transaction data is MEDIUMTEXT (16,777,215 bytes or 16 MiB).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The maximum size for storing transaction data is MEDIUMTEXT (16,777,215 bytes or 16 MiB).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "#### Configuring Future Billing Date Limit",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Configuring Future Billing Date Limit",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "By default, transactions with billing dates more than 1 day in the future are rejected with error code 643. You can configure this limit per organization using the `CONF_MAX_TRANSACTION_FUTURE_DAYS` configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, transactions with billing dates more than 1 day in the future are rejected with error code 643. You can configure this limit per organization using the CONF_MAX_TRANSACTION_FUTURE_DAYS configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        64,
+        69
+      ],
+      "raw": "| Setting            | Value                              |\n| ------------------ | ---------------------------------- |\n| Configuration name | `CONF_MAX_TRANSACTION_FUTURE_DAYS` |\n| Default value      | 1 day                              |\n| Minimum value      | 1 day                              |\n| Maximum value      | 45 days                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Setting",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Configuration name",
+            "CONF_MAX_TRANSACTION_FUTURE_DAYS"
+          ],
+          [
+            "Default value",
+            "1 day"
+          ],
+          [
+            "Minimum value",
+            "1 day"
+          ],
+          [
+            "Maximum value",
+            "45 days"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "**Behavior:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Behavior:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        73,
+        75
+      ],
+      "raw": "* If the configuration is not set, the system defaults to 1 day.\n* If the configuration value is invalid (non-numeric, zero, or negative), the system defaults to 1 day.\n* If the configuration value exceeds 45, it is capped at 45 days.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the configuration is not set, the system defaults to 1 day.If the configuration value is invalid (non-numeric, zero, or negative), the system defaults to 1 day.If the configuration value exceeds 45, it is capped at 45 days.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        77,
+        79
+      ],
+      "raw": "> 📘 Note\n>\n> At present, this is applicable only for USHC cluster. To enable this configuration for your organization, raise a JIRA ticket to the Capillary Product Support team.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteAt present, this is applicable only for USHC cluster. To enable this configuration for your organization, raise a JIRA ticket to the Capillary Product Support team.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "slug": "docs/call-tasks-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/call-tasks-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/call-tasks-standard-export-template",
+  "title": "Call Tasks Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Call Tasks Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Call Tasks Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This template is based on **call\\_task\\_customer\\_status** fact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template is based on call_task_customer_status fact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The template lets you export all the call tasks created at the POS for cashiers to process. The tasks could be call customers for birthday wishes that will get populated every day for the cashier to process. These tasks have a specific validity within which these needs to be closed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The template lets you export all the call tasks created at the POS for cashiers to process. The tasks could be call customers for birthday wishes that will get populated every day for the cashier to process. These tasks have a specific validity within which these needs to be closed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        18
+      ],
+      "raw": "| Measure                      | Description                                                                                                                                        |\n| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Auto Update Time Task Status | Date and time when the corresponding record in the task status table available at the source was last updated. It is in the Unix timestamp format. |\n| Call Task Id                 | Unique id associated to the call task.                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Auto Update Time Task Status",
+            "Date and time when the corresponding record in the task status table available at the source was last updated. It is in the Unix timestamp format."
+          ],
+          [
+            "Call Task Id",
+            "Unique id associated to the call task."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        22,
+        40
+      ],
+      "raw": "| Dimension Name                                                                                         | Description                                                                                     |\n| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |\n| [Store Hierarchy (zone till)](https://docs.capillarytech.com/docs/dimension-tables#zone-till)          | Identifier for the store, till id.                                                              |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                    | Identifier for the concept.                                                                     |\n| [Ou Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                         | Identifier for the organization unit.                                                           |\n| [Task](https://docs.capillarytech.com/docs/dimension-tables#tasks)                                     | Provides details about the task, including the task type, task description, etc.                |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                               | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc. |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                      | Segment details of the customers such as valued customer, lapsed customer.                      |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)                    | User attributes such as total visits, recent view.                                              |\n| [Updated By User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                    | Details of the user who updated the call task status.                                           |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                      | Date attributes of the call task.                                                               |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                      | Time attributes of the call task.                                                               |\n| [Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                              | Captures the date when the date has been updated.                                               |\n| [Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)                              | Captures the time when the date has been updated.                                               |\n| [Internal Status](https://docs.capillarytech.com/docs/dimension-tables#internal-status)                | Identifier for the internal status of the call task, such as open and closed task.              |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                       | Latest date when the data is updated.                                                           |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)                       | Latest time when the data is updated.                                                           |\n| [Campaign](https://docs.capillarytech.com/docs/dimension-tables#campaigns)                             | Identifier of the campaign associated with the call task.                                       |\n| [Campaign Message](https://docs.capillarytech.com/docs/dimension-tables#campaign-message-campaign_msg) | Identifier of the campaign message associated with the call task.                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Store Hierarchy (zone till)",
+            "Identifier for the store, till id."
+          ],
+          [
+            "Concept Hierarchy",
+            "Identifier for the concept."
+          ],
+          [
+            "Ou Hierarchy",
+            "Identifier for the organization unit."
+          ],
+          [
+            "Task",
+            "Provides details about the task, including the task type, task description, etc."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers such as valued customer, lapsed customer."
+          ],
+          [
+            "User Attributes",
+            "User attributes such as total visits, recent view."
+          ],
+          [
+            "Updated By User",
+            "Details of the user who updated the call task status."
+          ],
+          [
+            "Date",
+            "Date attributes of the call task."
+          ],
+          [
+            "Time",
+            "Time attributes of the call task."
+          ],
+          [
+            "Updated Date",
+            "Captures the date when the date has been updated."
+          ],
+          [
+            "Updated Time",
+            "Captures the time when the date has been updated."
+          ],
+          [
+            "Internal Status",
+            "Identifier for the internal status of the call task, such as open and closed task."
+          ],
+          [
+            "Latest Updated Date",
+            "Latest date when the data is updated."
+          ],
+          [
+            "Latest Updated Time",
+            "Latest time when the data is updated."
+          ],
+          [
+            "Campaign",
+            "Identifier of the campaign associated with the call task."
+          ],
+          [
+            "Campaign Message",
+            "Identifier of the campaign message associated with the call task."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 24
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 25
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 26
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#tasks",
+          "line": 27
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 28
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 32
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 35
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#internal-status",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 37
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 38
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaigns",
+          "line": 39
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#campaign-message-campaign_msg",
+          "line": 40
+        }
+      ]
+    }
+  ]
+}

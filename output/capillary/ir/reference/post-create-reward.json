@@ -1,0 +1,1499 @@
+{
+  "slug": "reference/post-create-reward",
+  "source": "https://docs.capillarytech.com/reference/post-create-reward.md",
+  "url": "https://docs.capillarytech.com/reference/post-create-reward",
+  "title": "Post Create Reward",
+  "description": "",
+  "section": "Reward Catalog Management",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-03T07:20:44.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 1,
+    "CodeTabs": 2,
+    "list": 2,
+    "Table": 3,
+    "br": 1,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create Reward",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create Reward",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API creates a new reward in Capillary. You can define various attributes for the reward, such as type, priority, category, redemption type, and vendor details. The API supports adding custom fields, rich-text content, and mapping the reward to specific loyalty programs, tiers, segments, or supplementary programs for catalog personalization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API creates a new reward in Capillary. You can define various attributes for the reward, such as type, priority, category, redemption type, and vendor details. The API supports adding custom fields, rich-text content, and mapping the reward to specific loyalty programs, tiers, segments, or supplementary programs for catalog personalization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        1457
+      ],
+      "raw": "```curl Sample request\ncurl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/create' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaHzI3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=QnNsjQy2xw_5IexMyp1lVPVBlGdYOX.2APjTsu0a.2Y-1763380682991-0.0.1.1-604800000' \\\n--data '{\n    /******** Mandatory parameters *********/\n    \"startTime\": \"2025-09-16T05:15:00Z\",\n    \"endTime\": \"2025-09-31T06:00:00Z\",\n    \"type\": \"VOUCHER\",\n    \"brandId\": 61,\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"languageSpecificInfo\": [ //mandatory\n        {\n            \"languageCode\": \"en\", //mandatory\n            \"name\": \"UAT Reward 11\", //mandatory\n            \"description\": \"Test Reward for UAT Team\",\n            \"enabled\": true, //mandatory\n            \"richContentRO\": {\n                \"UAT_RCT_1\": {\n                    \"content\": \"Rich Content Text for UAT\",\n                    \"isEnabled\": true\n                }\n            }//,\n            // \"customFields\": { \"UAT_CF_9\": \"EV1\" }\n        }\n    ],\n    /******** Non Mandatory Parameters ********/\n    \"enabled\": true,\n    \"priority\": \"1\",\n    // \"tier\": \"Emerald\",\n    // \"intouchPoints\": 100, Use payments config block instead\n    \"intouchSeriesId\": \"844312\",\n    \"categories\": [\n        486\n    ],\n    // \"vendorRedemption\": \"2846\",\n    \"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            // \"conversionRatio\":0.33,\n            \"points\": 100\n        }\n    ]//,\n    // \"restrictions\": {\n    //     \"rewardLevel\": [\n    //         {\n    //             \"kpi\": \"REDEMPTION_VALUE\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"WEEKS\",\n    //             \"weekStartDay\": \"TUESDAY\",\n    //             \"limit\": 2\n    //         }\n    //     ],\n    //     \"customerLevel\": [\n    //         {\n    //             \"kpi\": \"REDEMPTION_VALUE\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"DAYS\",\n    //             \"startOfCycle\": \"2025-07-31T00:00:00Z\",\n    //             \"limit\": 2,\n    //             \"interval\": 2\n    //         },\n    //         {\n    //             \"kpi\": \"QUANTITY\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"MONTHS\",\n    //             \"limit\": 6\n    //         }\n    //     ]\n    // }\n}\n```\n```json With rank\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n  \n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With image support\n{\n    \"startTime\": \"2025-02-06T07:43:30.00Z\",\n    \"endTime\": \"2026-11-29T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\": 3,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 1,\n    \"intouchSeriesId\": \"6538e3ac60ce5c504144bb07\",\n    \"tier\": \"SILVER\",\n    \"geography\": [\n        {\n            \"countryId\": 7\n        }\n    ],\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true,\n            \"images\": [\n                {\n                    \"name\": \"imagename1\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\",\n                },\n                {\n                    \"name\": \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                },\n                {\n                    \"name\": \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                }\n            ],\n            \"videos\": [\n                {\n                    \"name\": \"videoname1\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\",\n                    \"isExternal\": false\n                },\n                {\n                    \"name\": \"videoname1\",\n                    \"url\": \"https://www.youtube.com/watch?v=a_aSgmOqgrA\",\n                    \"isExternal\": true\n                }\n            ]\n        }\n    ],\n    \"categories\": [\n        5\n    ],\n    \"redemptionType\": \"CART_PROMOTION\",\n    \"communications\": [\n        4\n    ],\n    \"owners\": [\n        {\n            \"ownerType\": \"LOYALTY_PROGRAM\",\n            \"ownerId\": \"123\"\n        }\n    ]\n}\n```\n```json With multi lingual custom field\n{\n    \"startTime\": \"2025-03-07T08:53:49.00Z\",\n    \"endTime\": \"2026-03-14T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\": \"8\",\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 3,\n    \"intouchSeriesId\": \"73684275\",\n    \"tier\": \"GOLD\",\n    \"geography\":\n    [\n        {\n            \"countryId\": \"14\"\n        }\n    ],\n    \"languageSpecificInfo\":\n    [\n        {\n            \"name\": \" INTOUCH Enabledsdqwerty\",\n            \"description\": \"Description\",\n            \"termNConditions\": \"ABC\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"languageCode\": \"en\",\n             \"customFields\":{\n                \"mandatory - CF1\": \"englishvalue1\"\n            }\n        },\n        {\n            \"name\": \" INTOUCH Enabledsdoiu\",\n            \"description\": \"Description\",\n           \t\"termNConditions\": \"ABCD\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"languageCode\": \"fr\",\n             \"customFields\":{\n                \"mandatory - CF1\": \"frenchvalue1\",\n                \"mandatory - CF2\":\"frenchvalue2\"\n            }\n        }\n    ],\n    \"customFields\":{\n        \"mandatory - CF1\": \"rewardvalue1\",\n        \"mandatory - CF2\": \"rewardvalue2\"\n    },\n    \"categories\":\n    [\n        \"11\"\n    ],\n    \"rewardRank\":\"1\",        \n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"communications\":\n    [\n        \"11\"\n    ],\n    \"vendorRedemption\": null,\n    \"group\": null,\n    \"label\": null\n}\n```\n```Text With revenue metadata\n\n{\n    \"startTime\": \"2025-03-07T17:04:30.00Z\",\n    \"endTime\": \"2026-10-31T05:39:49.00Z\",\n    \"rewardRevenueMeta\" : [\n        {\n            \"commissionParticipant\": \"BRAND\",\n            \"commissionRate\": \"1.0\",\n            \"cycleStartDate\": \"2025-03-07T17:04:30.000Z\",\n            \"cycleEndDate\": \"2026-02-06T07:43:30.000Z\"\n        },\n        {\n            \"commissionParticipant\": \"AFFILIATE\",\n            \"commissionRate\": \"1.2\",\n            \"cycleStartDate\": \"2025-03-07T17:04:30.000Z\",\n            \"cycleEndDate\": \"2026-02-06T07:43:30.000Z\"\n        }\n    ],\n    \"rewardRevenueDefaults\": [\n        {\n            \"commissionParticipant\": \"AFFILIATE\",\n            \"defaultValue\": \"1.1\"\n        },\n        {\n            \"commissionParticipant\": \"END_CUSTOMER\",\n            \"defaultValue\": \"1.3\"\n        },\n        {\n            \"commissionParticipant\": \"END_CUSTOMER\",\n            \"defaultValue\": \"1.3\"\n        }\n    ],\n      \"type\": \"VOUCHER\",\n  \"brandId\": 3,\n  \"priority\": 1,\n  \"enabled\": true,\n  \"intouchPoints\": 1,\n  \"intouchSeriesId\": \"1135336\",\n  \"tier\": \"SILVER\",\n  \"geography\": [\n    {\n      \"countryId\": 7\n    }\n  ],\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \" INTOUCH Enabled\",\n      \"description\": \"Description\",\n      \"termNConditionsId\": \"EXDR12987R\",\n      \"imageId\": \"EXDR12987U\",\n      \"thumbnailId\": \"EXDR12987T\",\n      \"enabled\": true\n    }\n  ],\n  \"categories\": [\n    5\n  ],\n  \"redemptionType\": \"INTOUCH_REWARD\",\n  \"communications\": [\n    4\n  ],\n  \"owners\":[{\n      \"ownerType\":\"LOYALTY_PROGRAM\",\n      \"ownerId\":\"123\"\n      }\n  ]\n  \n}\n```\n```json With payment mode info\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            \"points\":100\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With segment information\n {\n\"startTime\": \"2027-10-03T07:47:33Z\",\n  \"endTime\": \"2030-07-10T09:48:34Z\",\n  \"type\": \"FREE_VOUCHER\",\n  \"brandId\": 3,\n  \"priority\": 1,\n  \"enabled\": true,\n  \"intouchPoints\": 0,\n  \"intouchSeriesId\": \"1137472\",\n  \"tier\": \"SILVER\",\n  \"geography\": [\n    {\n      \"countryId\": 7\n    }\n  ],\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \" English\",\n      \"description\": \"Description\",\n      \"termNConditionsId\": \"EXDR12987R\",\n      \"imageId\": \"EXDR12987U\",\n      \"thumbnailId\": \"EXDR12987T\",\n      \"enabled\": true\n    }\n  ],\n  \"categories\": [\n    5\n  ],\n  \"redemptionType\": \"INTOUCH_REWARD\",\n  \"communications\": [\n    4\n  ]\n   ,\n \"segment\":[\n    {\n    \"segmentId\":\"6134\",\n    \"partitionId\": [\"2669\"]\n    },\n    {\n    \"segmentId\":\"6136\",\n    \"partitionId\": [\"2675\"]\n    }\n  ]\n}\n```\n```json With linking reward to multiple group\n\n    \"startTime\": \"2024-07-17T11:00:00.000Z\",\n    \"endTime\": \"2025-07-11T14:43:00.000Z\",\n    \"priority\": 1,\n    \"groups\" : [\n        {\n            \"groupName\":\"groupName012\",\n            \"groupRank\": 8\n        },\n        {\n            \"groupName\":\"groupName013\"\n            // \"groupRank\": 6\n        }\n    ],\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            \"points\":100\n        }\n    ],\n\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"350219\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With multiple payment mode info\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS\",\n            \"points\": 150\n        },\n        {\n            \"paymentMode\": \"CASH\",\n            \"cash\": 500\n        },\n        {\n            \"paymentMode\": \"POINTS_CASH\",\n          \t\"points\": 200,\n            \"cash\": 500\n        },\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Payment mode as \"POINTS\"\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS\",\n            \"points\": 150\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Payment mode as \"CASH\"\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"CASH\",\n            \"cash\": 300\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Payment mode as \"POINTS_CASH\"\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS_CASH\",\n            \"points\": 300,\n          \t\"cash\": 200\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Payment mode as \"CONV_RATIO\"\n{\n    \"name\": \"testreward1poitu\",\n    \"description\": \"testreward11\",\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\": 0.33\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Payment mode as \"FREE\"\n{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"FREE\"\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With REDEMPTION_VALUE\n{\n    \"startTime\": \"2024-08-26T06:29:00.000Z\",\n    \"endTime\": \"2025-07-11T14:43:00.000Z\",\n    \"priority\": 1,\n  \n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1 \n        }\n    ],\n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\": 0.33\n        }\n    ],\n\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```json With Labels\n{\n    \"startTime\": \"2025-11-28T13:56:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 1,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 0,\n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\",\n    \"labels\":[12751,5462]\n}\n```\n```json With Cards\n{\n    \"startTime\": \"2025-11-28T13:56:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 1,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 0,\n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\",\n    \"cardSeries\":[\"26NOV2024TRYLEN17\",\"26NOV2024TRYLEN18\"]\n}\n```\n```Text with group and label (advanced filtering - old UI)\n{\n    \"startTime\": \"2025-01-16T10:10:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 61,\n    \"priority\": 1,\n    \"group\":\"testgoupfilter\",\n    \"label\":\"testlabel\",\n\n    \"enabled\": true,\n    \n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\"\n    \n    \n}\n```\n```curl With KPI as Quantity\n{\n    \"startTime\": \"2025-01-27T08:07:05Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"redemptionType\": \"MILES\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n   \n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\":0.33\n        }\n    ],\n \n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testcreate1\",\n            \"description\": \"testcreate1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```curl With KPI as Redemption Value\n{\n    \"startTime\": \"2025-01-27T08:22:20Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"redemptionType\": \"MILES\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \n    \n    \n    \n    \n    \n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\":0.33\n        }\n    ],\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testcreate1\",\n            \"description\": \"testcreate1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}\n```\n```Text With frequency restriction\n{\n    \"intouchPoints\": 0,\n    \"redemptionType\": \"AUCTION\",\n    \"type\": \"FREE_VOUCHER\",\n    \"restrictions\": {\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"WEEKS\",\n                \"weekStartDay\": \"TUESDAY\",\n                \"limit\": 2\n            }\n        ],\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"DAYS\",\n                \"startOfCycle\": \"2025-06-24T13:00:00Z\",\n                \"limit\": 2,\n                \"interval\": 2\n                \n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"limit\": 6\n            }\n        ]\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"english rewardName\",\n            \"description\": \"hello\",\n            \"enabled\": true\n        }   \n    ],\n    \"brandId\": 61,\n    \"enabled\": true,\n    \"startTime\": 1742284015000,\n    \"endTime\": 1759564015000    \n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample request",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ],
+      "tabs": [
+        {
+          "lang": "curl",
+          "title": "Sample request",
+          "code": "curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/create' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic bWFkaHzI3MjU2YQ==' \\\n--header 'Cookie: _cfuvid=QnNsjQy2xw_5IexMyp1lVPVBlGdYOX.2APjTsu0a.2Y-1763380682991-0.0.1.1-604800000' \\\n--data '{\n    /******** Mandatory parameters *********/\n    \"startTime\": \"2025-09-16T05:15:00Z\",\n    \"endTime\": \"2025-09-31T06:00:00Z\",\n    \"type\": \"VOUCHER\",\n    \"brandId\": 61,\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"languageSpecificInfo\": [ //mandatory\n        {\n            \"languageCode\": \"en\", //mandatory\n            \"name\": \"UAT Reward 11\", //mandatory\n            \"description\": \"Test Reward for UAT Team\",\n            \"enabled\": true, //mandatory\n            \"richContentRO\": {\n                \"UAT_RCT_1\": {\n                    \"content\": \"Rich Content Text for UAT\",\n                    \"isEnabled\": true\n                }\n            }//,\n            // \"customFields\": { \"UAT_CF_9\": \"EV1\" }\n        }\n    ],\n    /******** Non Mandatory Parameters ********/\n    \"enabled\": true,\n    \"priority\": \"1\",\n    // \"tier\": \"Emerald\",\n    // \"intouchPoints\": 100, Use payments config block instead\n    \"intouchSeriesId\": \"844312\",\n    \"categories\": [\n        486\n    ],\n    // \"vendorRedemption\": \"2846\",\n    \"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            // \"conversionRatio\":0.33,\n            \"points\": 100\n        }\n    ]//,\n    // \"restrictions\": {\n    //     \"rewardLevel\": [\n    //         {\n    //             \"kpi\": \"REDEMPTION_VALUE\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"WEEKS\",\n    //             \"weekStartDay\": \"TUESDAY\",\n    //             \"limit\": 2\n    //         }\n    //     ],\n    //     \"customerLevel\": [\n    //         {\n    //             \"kpi\": \"REDEMPTION_VALUE\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"DAYS\",\n    //             \"startOfCycle\": \"2025-07-31T00:00:00Z\",\n    //             \"limit\": 2,\n    //             \"interval\": 2\n    //         },\n    //         {\n    //             \"kpi\": \"QUANTITY\",\n    //             \"windowType\": \"FIXED\",\n    //             \"repeatFrequencyType\": \"MONTHS\",\n    //             \"limit\": 6\n    //         }\n    //     ]\n    // }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With rank",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n  \n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With image support",
+          "code": "{\n    \"startTime\": \"2025-02-06T07:43:30.00Z\",\n    \"endTime\": \"2026-11-29T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\": 3,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 1,\n    \"intouchSeriesId\": \"6538e3ac60ce5c504144bb07\",\n    \"tier\": \"SILVER\",\n    \"geography\": [\n        {\n            \"countryId\": 7\n        }\n    ],\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true,\n            \"images\": [\n                {\n                    \"name\": \"imagename1\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\",\n                },\n                {\n                    \"name\": \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                },\n                {\n                    \"name\": \"imagename2\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\"\n                }\n            ],\n            \"videos\": [\n                {\n                    \"name\": \"videoname1\",\n                    \"id\": \"9b648b66-5700-4c6d-84ea-01ddf73927c6\",\n                    \"isExternal\": false\n                },\n                {\n                    \"name\": \"videoname1\",\n                    \"url\": \"https://www.youtube.com/watch?v=a_aSgmOqgrA\",\n                    \"isExternal\": true\n                }\n            ]\n        }\n    ],\n    \"categories\": [\n        5\n    ],\n    \"redemptionType\": \"CART_PROMOTION\",\n    \"communications\": [\n        4\n    ],\n    \"owners\": [\n        {\n            \"ownerType\": \"LOYALTY_PROGRAM\",\n            \"ownerId\": \"123\"\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With multi lingual custom field",
+          "code": "{\n    \"startTime\": \"2025-03-07T08:53:49.00Z\",\n    \"endTime\": \"2026-03-14T05:39:49.00Z\",\n    \"type\": \"POINTS\",\n    \"brandId\": \"8\",\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 3,\n    \"intouchSeriesId\": \"73684275\",\n    \"tier\": \"GOLD\",\n    \"geography\":\n    [\n        {\n            \"countryId\": \"14\"\n        }\n    ],\n    \"languageSpecificInfo\":\n    [\n        {\n            \"name\": \" INTOUCH Enabledsdqwerty\",\n            \"description\": \"Description\",\n            \"termNConditions\": \"ABC\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"languageCode\": \"en\",\n             \"customFields\":{\n                \"mandatory - CF1\": \"englishvalue1\"\n            }\n        },\n        {\n            \"name\": \" INTOUCH Enabledsdoiu\",\n            \"description\": \"Description\",\n           \t\"termNConditions\": \"ABCD\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"imageId\": \"EXDR12987U\",\n            \"enabled\": true,\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"languageCode\": \"fr\",\n             \"customFields\":{\n                \"mandatory - CF1\": \"frenchvalue1\",\n                \"mandatory - CF2\":\"frenchvalue2\"\n            }\n        }\n    ],\n    \"customFields\":{\n        \"mandatory - CF1\": \"rewardvalue1\",\n        \"mandatory - CF2\": \"rewardvalue2\"\n    },\n    \"categories\":\n    [\n        \"11\"\n    ],\n    \"rewardRank\":\"1\",        \n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"communications\":\n    [\n        \"11\"\n    ],\n    \"vendorRedemption\": null,\n    \"group\": null,\n    \"label\": null\n}"
+        },
+        {
+          "lang": "Text",
+          "title": "With revenue metadata",
+          "code": "\n{\n    \"startTime\": \"2025-03-07T17:04:30.00Z\",\n    \"endTime\": \"2026-10-31T05:39:49.00Z\",\n    \"rewardRevenueMeta\" : [\n        {\n            \"commissionParticipant\": \"BRAND\",\n            \"commissionRate\": \"1.0\",\n            \"cycleStartDate\": \"2025-03-07T17:04:30.000Z\",\n            \"cycleEndDate\": \"2026-02-06T07:43:30.000Z\"\n        },\n        {\n            \"commissionParticipant\": \"AFFILIATE\",\n            \"commissionRate\": \"1.2\",\n            \"cycleStartDate\": \"2025-03-07T17:04:30.000Z\",\n            \"cycleEndDate\": \"2026-02-06T07:43:30.000Z\"\n        }\n    ],\n    \"rewardRevenueDefaults\": [\n        {\n            \"commissionParticipant\": \"AFFILIATE\",\n            \"defaultValue\": \"1.1\"\n        },\n        {\n            \"commissionParticipant\": \"END_CUSTOMER\",\n            \"defaultValue\": \"1.3\"\n        },\n        {\n            \"commissionParticipant\": \"END_CUSTOMER\",\n            \"defaultValue\": \"1.3\"\n        }\n    ],\n      \"type\": \"VOUCHER\",\n  \"brandId\": 3,\n  \"priority\": 1,\n  \"enabled\": true,\n  \"intouchPoints\": 1,\n  \"intouchSeriesId\": \"1135336\",\n  \"tier\": \"SILVER\",\n  \"geography\": [\n    {\n      \"countryId\": 7\n    }\n  ],\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \" INTOUCH Enabled\",\n      \"description\": \"Description\",\n      \"termNConditionsId\": \"EXDR12987R\",\n      \"imageId\": \"EXDR12987U\",\n      \"thumbnailId\": \"EXDR12987T\",\n      \"enabled\": true\n    }\n  ],\n  \"categories\": [\n    5\n  ],\n  \"redemptionType\": \"INTOUCH_REWARD\",\n  \"communications\": [\n    4\n  ],\n  \"owners\":[{\n      \"ownerType\":\"LOYALTY_PROGRAM\",\n      \"ownerId\":\"123\"\n      }\n  ]\n  \n}"
+        },
+        {
+          "lang": "json",
+          "title": "With payment mode info",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            \"points\":100\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With segment information",
+          "code": " {\n\"startTime\": \"2027-10-03T07:47:33Z\",\n  \"endTime\": \"2030-07-10T09:48:34Z\",\n  \"type\": \"FREE_VOUCHER\",\n  \"brandId\": 3,\n  \"priority\": 1,\n  \"enabled\": true,\n  \"intouchPoints\": 0,\n  \"intouchSeriesId\": \"1137472\",\n  \"tier\": \"SILVER\",\n  \"geography\": [\n    {\n      \"countryId\": 7\n    }\n  ],\n  \"languageSpecificInfo\": [\n    {\n      \"languageCode\": \"en\",\n      \"name\": \" English\",\n      \"description\": \"Description\",\n      \"termNConditionsId\": \"EXDR12987R\",\n      \"imageId\": \"EXDR12987U\",\n      \"thumbnailId\": \"EXDR12987T\",\n      \"enabled\": true\n    }\n  ],\n  \"categories\": [\n    5\n  ],\n  \"redemptionType\": \"INTOUCH_REWARD\",\n  \"communications\": [\n    4\n  ]\n   ,\n \"segment\":[\n    {\n    \"segmentId\":\"6134\",\n    \"partitionId\": [\"2669\"]\n    },\n    {\n    \"segmentId\":\"6136\",\n    \"partitionId\": [\"2675\"]\n    }\n  ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With linking reward to multiple group",
+          "code": "\n    \"startTime\": \"2024-07-17T11:00:00.000Z\",\n    \"endTime\": \"2025-07-11T14:43:00.000Z\",\n    \"priority\": 1,\n    \"groups\" : [\n        {\n            \"groupName\":\"groupName012\",\n            \"groupRank\": 8\n        },\n        {\n            \"groupName\":\"groupName013\"\n            // \"groupRank\": 6\n        }\n    ],\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"POINTS\",\n            \"points\":100\n        }\n    ],\n\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"350219\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With multiple payment mode info",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS\",\n            \"points\": 150\n        },\n        {\n            \"paymentMode\": \"CASH\",\n            \"cash\": 500\n        },\n        {\n            \"paymentMode\": \"POINTS_CASH\",\n          \t\"points\": 200,\n            \"cash\": 500\n        },\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Payment mode as \"POINTS\"",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS\",\n            \"points\": 150\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Payment mode as \"CASH\"",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"CASH\",\n            \"cash\": 300\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Payment mode as \"POINTS_CASH\"",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"POINTS_CASH\",\n            \"points\": 300,\n          \t\"cash\": 200\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"INTOUCH_REWARD\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Payment mode as \"CONV_RATIO\"",
+          "code": "{\n    \"name\": \"testreward1poitu\",\n    \"description\": \"testreward11\",\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\": 0.33\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Payment mode as \"FREE\"",
+          "code": "{\n    \"startTime\": \"2025-09-26T20:00:00Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1\n        }\n    ],\n\"paymentConfigs\": [\n        {\n            \"paymentMode\": \"FREE\"\n        }\n    ],\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"intouchSeriesId\": \"301233\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \"supplementaryCriteriaRO\": [\n        {\n            \"loyaltyProgramId\": 469,\n            \"tierIds\": null,\n            \"partnerProgramIds\": [\n                48\n            ]\n        },\n        {\n            \"loyaltyProgramId\": 690,\n            \"tierIds\": null,\n            \"partnerProgramIds\": null\n        }\n    ],\n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With REDEMPTION_VALUE",
+          "code": "{\n    \"startTime\": \"2024-08-26T06:29:00.000Z\",\n    \"endTime\": \"2025-07-11T14:43:00.000Z\",\n    \"priority\": 1,\n  \n    \"type\": \"VOUCHER\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \"intouchPoints\": 500,\n    \"geography\": [\n        {\n            \"countryId\": 1 \n        }\n    ],\n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\": 0.33\n        }\n    ],\n\n    \"categories\": [\n        4\n    ],\n    \"rewardRank\":\"1\",\n    \"redemptionType\": \"MILES\",\n    \"vendorRedemption\": null,\n    \"communications\": [\n        \"1\"\n    ],\n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 50,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"customFields\": {\n        \"CF1\": \"Custom field 1\"\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testreward1\",\n            \"description\": \"testreward1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Labels",
+          "code": "{\n    \"startTime\": \"2025-11-28T13:56:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 1,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 0,\n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\",\n    \"labels\":[12751,5462]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With Cards",
+          "code": "{\n    \"startTime\": \"2025-11-28T13:56:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 1,\n    \"priority\": 1,\n    \"enabled\": true,\n    \"intouchPoints\": 0,\n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\",\n    \"cardSeries\":[\"26NOV2024TRYLEN17\",\"26NOV2024TRYLEN18\"]\n}"
+        },
+        {
+          "lang": "Text",
+          "title": "with group and label (advanced filtering - old UI)",
+          "code": "{\n    \"startTime\": \"2025-01-16T10:10:00.000Z\",\n    \"endTime\": \"2026-11-28T14:10:00.000Z\",\n    \"type\": \"FREE_VOUCHER\",\n    \"brandId\": 61,\n    \"priority\": 1,\n    \"group\":\"testgoupfilter\",\n    \"label\":\"testlabel\",\n\n    \"enabled\": true,\n    \n    \"tier\": \"PLATINUM\",\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \" INTOUCH Enabled\",\n            \"description\": \"Description\",\n            \"termNConditionsId\": \"EXDR12987R\",\n            \"imageId\": \"EXDR12987U\",\n            \"thumbnailId\": \"EXDR12987T\",\n            \"enabled\": true\n        }\n    ],\n    \"redemptionType\": \"PHYSICAL_REWARD\"\n    \n    \n}"
+        },
+        {
+          "lang": "curl",
+          "title": "With KPI as Quantity",
+          "code": "{\n    \"startTime\": \"2025-01-27T08:07:05Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"redemptionType\": \"MILES\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n   \n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\":0.33\n        }\n    ],\n \n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testcreate1\",\n            \"description\": \"testcreate1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "curl",
+          "title": "With KPI as Redemption Value",
+          "code": "{\n    \"startTime\": \"2025-01-27T08:22:20Z\",\n    \"endTime\": \"2026-10-31T11:59:30Z\",\n    \"priority\": 1,\n    \"type\": \"VOUCHER\",\n    \"redemptionType\": \"MILES\",\n    \"brandId\": \"1\",\n    \"enabled\": true,\n    \n    \n    \n    \n    \n    \n\n\"paymentConfigs\": [\n       {\n            \"paymentMode\": \"CONV_RATIO\",\n            \"conversionRatio\":0.33\n        }\n    ],\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \"restrictions\": {\n        \"customerLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"DAYS\",\n                \"interval\": \"30\"\n            },\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 1000,\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"interval\": \"12\"\n            }\n        ],\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"REDEMPTION_VALUE\",\n                \"limit\": 10000,\n                \"repeatFrequencyType\": \"NO_LIMIT\"\n            }\n        ]\n    },\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"testcreate1\",\n            \"description\": \"testcreate1\",\n            \"imageId\": \"bef4d522-2cf8-4fea-8087-376c449d5c85\",\n            \"termNConditions\": \"t&c\",\n            \"thumbnailId\": \"c886f064-2b3f-4c19-9e86-7f7e5ab5ae04\",\n            \"termNConditionsId\": \"820a3d7f-2601-405b-9f56-4a3ba8e9df73\",\n            \"enabled\": true\n        }\n    ],\n    \"isactive\" : true\n}"
+        },
+        {
+          "lang": "Text",
+          "title": "With frequency restriction",
+          "code": "{\n    \"intouchPoints\": 0,\n    \"redemptionType\": \"AUCTION\",\n    \"type\": \"FREE_VOUCHER\",\n    \"restrictions\": {\n        \"rewardLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"WEEKS\",\n                \"weekStartDay\": \"TUESDAY\",\n                \"limit\": 2\n            }\n        ],\n        \"customerLevel\": [\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"DAYS\",\n                \"startOfCycle\": \"2025-06-24T13:00:00Z\",\n                \"limit\": 2,\n                \"interval\": 2\n                \n            },\n            {\n                \"kpi\": \"QUANTITY\",\n                \"windowType\": \"FIXED\",\n                \"repeatFrequencyType\": \"MONTHS\",\n                \"limit\": 6\n            }\n        ]\n    },\n    \"languageSpecificInfo\": [\n        {\n            \"languageCode\": \"en\",\n            \"name\": \"english rewardName\",\n            \"description\": \"hello\",\n            \"enabled\": true\n        }   \n    ],\n    \"brandId\": 61,\n    \"enabled\": true,\n    \"startTime\": 1742284015000,\n    \"endTime\": 1759564015000    \n}"
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        1459,
+        1459
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        1461,
+        1462
+      ],
+      "raw": "* Authentication: Basic or OAuth authentication.\n* Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authentication.Default access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        1464,
+        1464
+      ],
+      "raw": "# Body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        1466,
+        3135
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Type\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        .startTime\n      </td>\n\n      <td>\n        datetime\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Indicates the start date and time of the reward. It can be set to the present, a future date, or up to 10 years in the past, but cannot be modified once the reward is live. The timestamp must be in UTC format: `YYYY-MM-DDTHH:MM:SSZ` (for example: `2024-11-01T06:00:00Z`). It also accepts Unix Epoch values (for example: `2024-11-01T06:00:00Z` → `1730440800`).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .endTime\n      </td>\n\n      <td>\n        datetime\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Indicates the end date and time of the reward. It can be set to the present, a future date, or up to 10 years in the past, and remains editable even after the reward is live. The timestamp must be in UTC format: `YYYY-MM-DDTHH:MM:SSZ` (for example: `2026-11-01T06:00:00Z`). It also accepts Unix Epoch values (for example: `2026-11-01T06:00:00Z` → `1782597600`).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .priority\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Specifies the order in which rewards are applied. Lower numbers have higher priority. By default, the priority value is 0.\u000b Promotions with priority 0 are applied first. Example\u000b If there are three reward—A (priority 0), B (priority 1), and C (priority 2) The order of application will be: Reward A(priority 0)\u000b Reward A (priority 1)\u000b Reward C (priority 2)\u000b\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .type\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Indicates the type of the reward. Supported values: `POINTS`, `PHYSICAL_VOUCHER`, `FREE_VOUCHER`, `VOUCHER`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .group\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines a group to the reward and helps to filter the rewards based on the group name. The maximum number of characters allowed is 255.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .rewardExternalId\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        An external identifier you assign to map this reward to a third-party offer or partner system ID. Must be alphanumeric and unique per brand. If a duplicate value is submitted, the request fails with error code 6081.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .label\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines a label to the reward and helps to filter the rewards based on the label name. The maximum number of characters allowed is 255.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .brandId\n      </td>\n\n      <td>\n        long\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Indicates the unique identifier of the  brand. To retrieve the `brandId`, use the [Retrieve Brand ID](https://docs.capillarytech.com/reference/retrieve-brand-id#/) API\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .enabled\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates if the reward is enabled. Supported values : `true` , `false`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .intouchPoints\n      </td>\n\n      <td>\n        int\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the number of points required to redeem the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .intouchSeriesId\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier of the Coupon series ID or cart promotion ID when intouch reward is selected. (Coupon should be active*). NOTE: If the redemptionType provided is handled by an external vendor, the intouchSeriesId field must be null.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .tier\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the tier level, e.g., \"SILVER\". The maximum character limit is 255 characters. Note: Blank input resets the field to null.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .geography\n      </td>\n\n      <td>\n        Array of objects\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines Geographic details, including countryId for restriction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..countryId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the ID of the country. Must be a positive value.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..cityId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the ID of the city.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..areaId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the ID of the area.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..longitude\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the longitude coordinate.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..latitude\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates thelatitude coordinate.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .paymentConfigs\n      </td>\n\n      <td>\n        Array of objects\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the list of payment mode supported by the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..paymentMode\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the type of payment mode supported to redeem the reward. Supported values: `POINTS`, `FREE`, `CASH`, `POINTS_CASH`, `CONV_RATIO`. Multiple payments are not supported within `FREE` and `CONV_RATIO` modes.\n        **Note**: The same payment method cannot be used twice to create a reward. For example, only the first entry will be considered if you use `POINTS` twice as a payment mode.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...cash\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the total amount in cash required to redeem the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...points\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the total amount in points required to redeem the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .groups\n      </td>\n\n      <td>\n        Array of objects\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates an array containing information about groups and rewards associated with reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..groupName\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the group name assigned to a set of rewards to organize them based on common themes or purposes.\u000bEg. `electronics` , `clothing`\u000b\u000bThe maximum character limit is 255 characters.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..groupRank\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the priority level assigned to a reward group to determine its display order in the reward catalog.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .rewardRank\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the priority level assigned to an individual reward within a group to which determines which one is applied first.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .categories\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the metadata for the reward to categorize different rewards in different categories for end users. It can be null.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .redemptionType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Defines the type of intouch reward or vendor reward. Supported values: `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VOUCHER`, `CASH_BACK`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `INTOUCH_REWARD`, `CARD_DISC`. Notes: 1. If redemptionType is `MILES`, Payment config is mandatory. 2. `CONV_RATIO` mode is supported only for `CHARITY`, `MILES`, `CASH_WALLET`, `SWEEPSTAKES`, `AUCTION`, `GIFT_CARD`, `PHYSICAL_REWARD` type of redemption types. 3. If redemptionType is `FREE_VOUCHER` and payment mode is set, no points will be deducted. 4. For the `INTOUCH_REWARD` and `CART_PROMOTION` redemption type, a numeric `intouchSeriesId` is mandatory. 5. For the `VENDOR_INTOUCH_REWARD` redemption type, both a numeric `intouchSeriesId` and a valid `vendorRedemption` are mandatory. 6. For `INTOUCH_REWARD` redemption type, `intouchSeriesId` is mandatory.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .vendorRedemption\n      </td>\n\n      <td>\n        long\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the reward configured for a particular vendor. NOTE: If the `redemptionType` provided does not support vendor flow (i.e., when redemption is handled by an external vendor), the `vendorRedemption` field must be null.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .communications\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the communication IDs related to the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .supplementaryCriteriaRO\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates Tier/subscription programs for which the reward is being created.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..loyaltyProgramId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier of the loyalty program.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..tierIds\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier of the tier.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..partnerProgramIds\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier of the partner program.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .languageSpecificInfo\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Enables the display of reward level information specified in this object in the desired language. Note: There is no limit on the number of languages a user can define for custom fields. Prerequisite: If the desired language is not available in the system, raise a ticket to the Capillary support team to have it added.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..languageCode\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the ISO code for the language. For ex: `FR`-French, `JA`-Japanese etc. Character limit of `languageCode` is 255 characters. `languageCodes` can have space. `languageCode` has to be Unique.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..name\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the name of the reward in the specified language. Character limit of `name` is 255 characters.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..description\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the description of the reward in the specified language.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..termNConditionsId\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the identifier for terms and conditions. Uploading the termsNconditons file to the file service/solutions workspace generates this unique identifier.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..imageId\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        File_handle of the main image. Uploading the image to the file service/solutions workspace generates this unique identifier. This is the image that the brand configures during the reward creation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..thumbnailId\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the identifier for the thumbnail image.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..enabled\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates if the language should be enabled or not.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..images\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        A list of image details related to the reward. Notes: A maximum of 10 images can be added to the reward. The brand can update the main image from these 10 images. You can use the ID or image URL to add the image. There is no limit in dimension or size for images. Image in any format is supported.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...name\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the name of the image. The name should be unique. Warning: If a name is added twice for the same image, only the first one will be considered.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...id\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        The file_handle of the image. Uploading the image to the file service/solutions workspace generates this unique identifier.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...isExternal\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates if the image is hosted on an external server. By default, the value is false.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...urlString\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        External URL of the image.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...altText\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the Alternative text or description of the image. You can use alt text to convey the meaning and context of visual content to users who cannot view images, such as individuals using screen readers due to visual impairments, or in situations where images fail to load.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..videos\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the a list of video details related to the reward. Notes: A maximum of 10 videos can be added to the reward. The brand can update the main videos from these 10 videos. You can use the ID or video URL to add the videos. There is no limit in dimension or size for videos. Videos in any format are supported.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...name\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the name of the video. The name should be unique. Warning: If a name is passed twice, only the first one will be considered.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...id\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        The file_handle of the video. Uploading the video to the file service/solutions workspace generates this unique identifier.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...urlString\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        URL of the video.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...isExternal\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates if the video is hosted on an external server.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...altText\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Alternative text or description of the video.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..customFields\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines a map of custom key-value pairs for\n        the reward. Custom fields are unique\n        columns used to store specific, non-standard\n        information (e.g., custom loyalty levels,\n        partner IDs, descriptive tags, etc.). Before\n        using this field, custom fields must be\n        defined at the organization level using the\n        [Create Custom Field API](https://docs.capillarytech.com/reference/create-a-custom-field#/).  \n        Character Limit of `customFields` is 255 characters. If language-specific custom fields are unavailable, English values are used. If language-level custom fields are not defined, reward-level custom fields are used else, meta-level default values are used.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...customFieldName\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Name of the custom field.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...customFieldValue\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Value of the custom field.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..richContentRO\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        An object containing HTML-formatted rich text content.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...content\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        The HTML-formatted rich text content.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...isEnabled\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates whether the rich text content is enabled. Supported Values: `true` or `false`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .owners\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        List containing detailed owner information\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..ownerType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        The module for which the reward was created. Supported values: `LOYALTY_PROGRAM`, `MILESTONES`, `CAMPAIGNS`, `JOURNEYS`, `GOODWILL`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..ownerId\n      </td>\n\n      <td>\n        string\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier of the owner to claim the reward. Multiple owner IDs are supported for a single reward with the same owner type.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .rewardRevenueMeta\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates an object with commission details for different participants over specific periods.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..commissionParticipant\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the entity receiving the commission. Supported values: `BRAND`, `CAPILLARY`, `AFFILIATE`, `END_CUSTOMER`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..commissionRate\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the amount of commission to be received.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..cycleStartDate\n      </td>\n\n      <td>\n        date\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the start date of the commission cycle. Note: `cycleStartDate` should be greater than `rewardStartDate`. `cycleStartDate` must be in the future\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..cycleEndDate\n      </td>\n\n      <td>\n        date\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the end date of the commission cycle. Note: `cycleEndDate` should smaller than `rewardEndDate`. `cycleEndDate` must be in the future\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .rewardRevenueDefaults\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the object with the default commission. In case multiple blocks with the same `commissionParticipant` are passed, only the first is considered.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..commissionParticipant\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        The entity receiving the commission. Supported values: `BRAND`, `CAPILLARY`, `AFFILIATE`, `END_CUSTOMER`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..defaultValue\n      </td>\n\n      <td>\n        decimal\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the default commission rate associated with the participant. Note: If no `defaultValue` is passed, then 0 is considered as the `defaultValue`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .segment\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the Customer Segmentation which logically groups audiences based on shared characteristics. You can create segments using the Insights+ UI. You can use these segments to create rewards targeting specific customer groups. Note: The segments and partition information should be valid and the segments must be active while creating the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..segmentId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the unique identifier used to create or update segment information.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..partitionId\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the Partition ID is a unique identifier used to create or update partition information.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .cardSeries\n      </td>\n\n      <td>\n        Array of Objects\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the list of card series codes associated with the reward. Brands can use cards and labels to offer personalized rewards. There is no limit on the number of card series code. You can use Get Card Details API to get the series code of the card. Example: `\"cardSeries\":[\"26NOV2024TRYLEN17\",\"26NOV2024TRYLEN18\"]`. Note: You cannot link the same reward to multiple attributes at a time.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .labels\n      </td>\n\n      <td>\n        Array of Objects\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the list of label IDs associated with the reward. You can get the Label ID from Get Customer Labels API. There is no limit on the number of label IDs. Note:\\<br> * Blank input resets the field to null.\\<br> * You cannot link the same reward to multiple attributes at a time.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .isActive\n      </td>\n\n      <td>\n        boolean\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates if the reward is active or Inactive. Supported values: `true` or `false`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        .restrictions\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines how and when a reward can be issued—at both the reward level (total limit across all users) and the customer level (limit per individual user). For example, \\<br>* Allow only 1,000 total redemptions of a reward across all users. \\<br>* Limit each customer to 5 redemptions per month.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..rewardLevel\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the total number of times a reward can be issued across all customers. Example: If the limit for a reward is set to 1000, a maximum of 1,000 total redemptions will be allowed. Once this limit is reached, the reward will no longer be available for issuance to any customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...kpi\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the Key Performance Indicator (KPI) on which the reward is created. Supported values : `QUANTITY`, `REDEMPTION_VALUE`. Example: \\<br>* `QUANTITY` Limits a \"Free Drink\" reward based on the total number of times it's redeemed (e.g., 500 redemptions). \\<br>* `REDEMPTION_VALUE` Limits an \"Airline Miles\" reward based on the total accumulated value of miles redeemed (e.g., 100,000 miles). \\<br>Note: When `redemptionType` is `MILES`, set the KPI value to `REDEMPTION_VALUE` as miles are always tracked by their total redeemed value.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...windowType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Specifies the type of window for the reward. Supported values: include `ROLLING` and `FIXED`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...repeatFrequencyType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines how often the reward limit resets when `windowType` is set to `FIXED`. Supported Values: \\<br>* `DAYS`: The limit resets every N days. Example: A limit of 100 redemptions resets every 10 days. \\<br>* `WEEKS`: The limit resets weekly. Example: A limit of 500 redemptions resets each week, starting on Monday. \\<br>* `MONTHS`: The limit resets every calendar month. Example: A limit of 1,000 redemptions resets per month. \\<br>* `NO_LIMIT`: There's no reset. The limit is tracked for the entire duration of the reward. Example: A one-time limit of 2,000 redemptions applies over the full reward period.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...weekStartDay\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Specifies the day of the week that the week starts on. Supported values : `MONDAY`, `TUESDAY`, etc.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...limit\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the maximum number of times the reward can be issued across all customers during a fixed window. \\<br>* If `windowType` is `FIXED`, the limit applies to each fixed cycle (e.g., per week or per month). \\<br>* If `windowType` is `ROLLING`, the limit applies over a sliding time window (e.g., past 30 days). \\<br>* If `repeatFrequencyType` is `NO_LIMIT`, the cap is applied for the entire lifetime of the reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ..customerLevel\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Define the maximum number of times an individual customer can redeem a specific reward. Example: If the limit is set to 3 and `repeatFrequencyType` to `MONTHS`, each customer will be able to redeem the reward up to 3 times within a calendar month.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...kpi\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the Key Performance Indicator (KPI) on which the reward is created. Supported values : `QUANTITY`, `REDEMPTION_VALUE`. Example: \\<br>* `QUANTITY` Limits a \"Free Drink\" reward based on the total number of times it's redeemed (e.g., 500 redemptions). \\<br>* `REDEMPTION_VALUE` Limits an \"Airline Miles\" reward based on the total accumulated value of miles redeemed (e.g., 100,000 miles). \\<br>Note: When `redemptionType` is `MILES`, set the KPI value to `REDEMPTION_VALUE` as miles are tracked by their total value, not as individual units.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...windowType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Specifies the type of window for the reward. Supported values: include `ROLLING` and `FIXED`. \\<br>`ROLLING`: Tracks usage within a sliding time window relative to the current date. Limits are recalculated dynamically; for instance, over the last 30 days from today. \\<br>Use case: You want to restrict reward issuance to 1,000 redemptions in any rolling 30-day period. If 1,000 redemptions have already occurred within the past 30 days, the reward will not be issued again today. \\<br>`FIXED`: Tracks usage within predefined fixed cycles, such as calendar weeks, months, or N-day blocks. Limits apply to a specific date range, and each cycle is evaluated independently. \\<br>Use case: You want to allow a reward to be redeemed up to 500 times per calendar month. In this case, redemptions from March 1st to March 31st are counted together. On April 1st, a new cycle begins with a fresh limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...repeatFrequencyType\n      </td>\n\n      <td>\n        enum\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Indicates the frequency at which the reward is repeated. Supported values : Include `DAYS`, `WEEKS`, `MONTHS`, and `NO_LIMIT`. \\<br>* `DAYS`— `weekStartDay` isn’t supported; `startOfCycle` and `interval` (+ve) are mandatory \\<br>* `WEEKS`— `interval` and `startOfCycle` aren’t supported; `weekStartDay` is optional (default Monday) \\<br>* `MONTHS` — `interval`, `startOfCycle`, and `weekStartDay` aren’t supported\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...startOfCycle\n      </td>\n\n      <td>\n        date\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Specifies the start date and time of the reward cycle in ISO 8601 Time Format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...limit\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the maximum number of times a single customer can receive or redeem the reward within a fixed cycle. \\<br>* If `windowType` is `FIXED`, the limit applies to each fixed cycle. For example, a customer could receive this reward a maximum of 3 times per week or per month. \\<br>* If `windowType` is `ROLLING`, the limit applies over a sliding time window. For example, a customer could receive this reward a maximum of 5 times over the past 30 days. \\<br>* If `repeatFrequencyType` is `NO_LIMIT`, the limit is applied for the entire lifetime of the reward for that individual customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        ...interval\n      </td>\n\n      <td>\n        integer\n      </td>\n\n      <td>\n        Optional\n      </td>\n\n      <td>\n        Defines the interval for the frequency type, indicating how often the reward can be issued within the specified frequency.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            ".startTime",
+            "datetime",
+            "Yes",
+            "Indicates the start date and time of the reward. It can be set to the present, a future date, or up to 10 years in the past, but cannot be modified once the reward is live. The timestamp must be in UTC format: YYYY-MM-DDTHH:MM:SSZ (for example: 2024-11-01T06:00:00Z). It also accepts Unix Epoch values (for example: 2024-11-01T06:00:00Z → 1730440800)."
+          ],
+          [
+            ".endTime",
+            "datetime",
+            "Yes",
+            "Indicates the end date and time of the reward. It can be set to the present, a future date, or up to 10 years in the past, and remains editable even after the reward is live. The timestamp must be in UTC format: YYYY-MM-DDTHH:MM:SSZ (for example: 2026-11-01T06:00:00Z). It also accepts Unix Epoch values (for example: 2026-11-01T06:00:00Z → 1782597600)."
+          ],
+          [
+            ".priority",
+            "integer",
+            "Optional",
+            "Specifies the order in which rewards are applied. Lower numbers have higher priority. By default, the priority value is 0.\u000b Promotions with priority 0 are applied first. Example\u000b If there are three reward—A (priority 0), B (priority 1), and C (priority 2) The order of application will be: Reward A(priority 0)\u000b Reward A (priority 1)\u000b Reward C (priority 2)"
+          ],
+          [
+            ".type",
+            "enum",
+            "Yes",
+            "Indicates the type of the reward. Supported values: POINTS, PHYSICAL_VOUCHER, FREE_VOUCHER, VOUCHER."
+          ],
+          [
+            ".group",
+            "string",
+            "Optional",
+            "Defines a group to the reward and helps to filter the rewards based on the group name. The maximum number of characters allowed is 255."
+          ],
+          [
+            ".rewardExternalId",
+            "String",
+            "Optional",
+            "An external identifier you assign to map this reward to a third-party offer or partner system ID. Must be alphanumeric and unique per brand. If a duplicate value is submitted, the request fails with error code 6081."
+          ],
+          [
+            ".label",
+            "string",
+            "Optional",
+            "Defines a label to the reward and helps to filter the rewards based on the label name. The maximum number of characters allowed is 255."
+          ],
+          [
+            ".brandId",
+            "long",
+            "Yes",
+            "Indicates the unique identifier of the  brand. To retrieve the brandId, use the Retrieve Brand ID API"
+          ],
+          [
+            ".enabled",
+            "boolean",
+            "Optional",
+            "Indicates if the reward is enabled. Supported values : true , false"
+          ],
+          [
+            ".intouchPoints",
+            "int",
+            "Optional",
+            "Defines the number of points required to redeem the reward."
+          ],
+          [
+            ".intouchSeriesId",
+            "string",
+            "Optional",
+            "Indicates the unique identifier of the Coupon series ID or cart promotion ID when intouch reward is selected. (Coupon should be active*). NOTE: If the redemptionType provided is handled by an external vendor, the intouchSeriesId field must be null."
+          ],
+          [
+            ".tier",
+            "string",
+            "Optional",
+            "Defines the tier level, e.g., \"SILVER\". The maximum character limit is 255 characters. Note: Blank input resets the field to null."
+          ],
+          [
+            ".geography",
+            "Array of objects",
+            "Optional",
+            "Defines Geographic details, including countryId for restriction."
+          ],
+          [
+            "..countryId",
+            "integer",
+            "Optional",
+            "Indicates the ID of the country. Must be a positive value."
+          ],
+          [
+            "..cityId",
+            "integer",
+            "Optional",
+            "Indicates the ID of the city."
+          ],
+          [
+            "..areaId",
+            "integer",
+            "Optional",
+            "Indicates the ID of the area."
+          ],
+          [
+            "..longitude",
+            "decimal",
+            "Optional",
+            "Indicates the longitude coordinate."
+          ],
+          [
+            "..latitude",
+            "decimal",
+            "Optional",
+            "Indicates thelatitude coordinate."
+          ],
+          [
+            ".paymentConfigs",
+            "Array of objects",
+            "Optional",
+            "Indicates the list of payment mode supported by the reward."
+          ],
+          [
+            "..paymentMode",
+            "enum",
+            "Optional",
+            "Defines the type of payment mode supported to redeem the reward. Supported values: POINTS, FREE, CASH, POINTS_CASH, CONV_RATIO. Multiple payments are not supported within FREE and CONV_RATIO modes.\nNote: The same payment method cannot be used twice to create a reward. For example, only the first entry will be considered if you use POINTS twice as a payment mode."
+          ],
+          [
+            "...cash",
+            "decimal",
+            "Optional",
+            "Defines the total amount in cash required to redeem the reward."
+          ],
+          [
+            "...points",
+            "decimal",
+            "Optional",
+            "Defines the total amount in points required to redeem the reward."
+          ],
+          [
+            ".groups",
+            "Array of objects",
+            "Optional",
+            "Indicates an array containing information about groups and rewards associated with reward."
+          ],
+          [
+            "..groupName",
+            "string",
+            "Optional",
+            "Indicates the group name assigned to a set of rewards to organize them based on common themes or purposes.\u000bEg. electronics , clothing\u000b\u000bThe maximum character limit is 255 characters."
+          ],
+          [
+            "..groupRank",
+            "integer",
+            "Optional",
+            "Indicates the priority level assigned to a reward group to determine its display order in the reward catalog."
+          ],
+          [
+            ".rewardRank",
+            "integer",
+            "Optional",
+            "Indicates the priority level assigned to an individual reward within a group to which determines which one is applied first."
+          ],
+          [
+            ".categories",
+            "Array",
+            "Optional",
+            "Defines the metadata for the reward to categorize different rewards in different categories for end users. It can be null."
+          ],
+          [
+            ".redemptionType",
+            "enum",
+            "Yes",
+            "Defines the type of intouch reward or vendor reward. Supported values: GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VOUCHER, CASH_BACK, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, INTOUCH_REWARD, CARD_DISC. Notes: 1. If redemptionType is MILES, Payment config is mandatory. 2. CONV_RATIO mode is supported only for CHARITY, MILES, CASH_WALLET, SWEEPSTAKES, AUCTION, GIFT_CARD, PHYSICAL_REWARD type of redemption types. 3. If redemptionType is FREE_VOUCHER and payment mode is set, no points will be deducted. 4. For the INTOUCH_REWARD and CART_PROMOTION redemption type, a numeric intouchSeriesId is mandatory. 5. For the VENDOR_INTOUCH_REWARD redemption type, both a numeric intouchSeriesId and a valid vendorRedemption are mandatory. 6. For INTOUCH_REWARD redemption type, intouchSeriesId is mandatory."
+          ],
+          [
+            ".vendorRedemption",
+            "long",
+            "Optional",
+            "Indicates the reward configured for a particular vendor. NOTE: If the redemptionType provided does not support vendor flow (i.e., when redemption is handled by an external vendor), the vendorRedemption field must be null."
+          ],
+          [
+            ".communications",
+            "Array",
+            "Optional",
+            "Indicates the communication IDs related to the reward."
+          ],
+          [
+            ".supplementaryCriteriaRO",
+            "Array",
+            "Optional",
+            "Indicates Tier/subscription programs for which the reward is being created."
+          ],
+          [
+            "..loyaltyProgramId",
+            "integer",
+            "Optional",
+            "Indicates the unique identifier of the loyalty program."
+          ],
+          [
+            "..tierIds",
+            "integer",
+            "Optional",
+            "Indicates the unique identifier of the tier."
+          ],
+          [
+            "..partnerProgramIds",
+            "integer",
+            "Optional",
+            "Indicates the unique identifier of the partner program."
+          ],
+          [
+            ".languageSpecificInfo",
+            "Array",
+            "Yes",
+            "Enables the display of reward level information specified in this object in the desired language. Note: There is no limit on the number of languages a user can define for custom fields. Prerequisite: If the desired language is not available in the system, raise a ticket to the Capillary support team to have it added."
+          ],
+          [
+            "..languageCode",
+            "string",
+            "Optional",
+            "Indicates the ISO code for the language. For ex: FR-French, JA-Japanese etc. Character limit of languageCode is 255 characters. languageCodes can have space. languageCode has to be Unique."
+          ],
+          [
+            "..name",
+            "string",
+            "Optional",
+            "Indicates the name of the reward in the specified language. Character limit of name is 255 characters."
+          ],
+          [
+            "..description",
+            "string",
+            "Optional",
+            "Indicates the description of the reward in the specified language."
+          ],
+          [
+            "..termNConditionsId",
+            "string",
+            "Optional",
+            "Indicates the identifier for terms and conditions. Uploading the termsNconditons file to the file service/solutions workspace generates this unique identifier."
+          ],
+          [
+            "..imageId",
+            "string",
+            "Optional",
+            "File_handle of the main image. Uploading the image to the file service/solutions workspace generates this unique identifier. This is the image that the brand configures during the reward creation."
+          ],
+          [
+            "..thumbnailId",
+            "string",
+            "Optional",
+            "Indicates the identifier for the thumbnail image."
+          ],
+          [
+            "..enabled",
+            "boolean",
+            "Optional",
+            "Indicates if the language should be enabled or not."
+          ],
+          [
+            "..images",
+            "Object",
+            "Optional",
+            "A list of image details related to the reward. Notes: A maximum of 10 images can be added to the reward. The brand can update the main image from these 10 images. You can use the ID or image URL to add the image. There is no limit in dimension or size for images. Image in any format is supported."
+          ],
+          [
+            "...name",
+            "string",
+            "Optional",
+            "Indicates the name of the image. The name should be unique. Warning: If a name is added twice for the same image, only the first one will be considered."
+          ],
+          [
+            "...id",
+            "string",
+            "Optional",
+            "The file_handle of the image. Uploading the image to the file service/solutions workspace generates this unique identifier."
+          ],
+          [
+            "...isExternal",
+            "boolean",
+            "Optional",
+            "Indicates if the image is hosted on an external server. By default, the value is false."
+          ],
+          [
+            "...urlString",
+            "string",
+            "Optional",
+            "External URL of the image."
+          ],
+          [
+            "...altText",
+            "string",
+            "Optional",
+            "Indicates the Alternative text or description of the image. You can use alt text to convey the meaning and context of visual content to users who cannot view images, such as individuals using screen readers due to visual impairments, or in situations where images fail to load."
+          ],
+          [
+            "..videos",
+            "Object",
+            "Optional",
+            "Defines the a list of video details related to the reward. Notes: A maximum of 10 videos can be added to the reward. The brand can update the main videos from these 10 videos. You can use the ID or video URL to add the videos. There is no limit in dimension or size for videos. Videos in any format are supported."
+          ],
+          [
+            "...name",
+            "string",
+            "Optional",
+            "Indicates the name of the video. The name should be unique. Warning: If a name is passed twice, only the first one will be considered."
+          ],
+          [
+            "...id",
+            "string",
+            "Optional",
+            "The file_handle of the video. Uploading the video to the file service/solutions workspace generates this unique identifier."
+          ],
+          [
+            "...urlString",
+            "string",
+            "Optional",
+            "URL of the video."
+          ],
+          [
+            "...isExternal",
+            "boolean",
+            "Optional",
+            "Indicates if the video is hosted on an external server."
+          ],
+          [
+            "...altText",
+            "string",
+            "Optional",
+            "Alternative text or description of the video."
+          ],
+          [
+            "..customFields",
+            "Object",
+            "Optional",
+            "Defines a map of custom key-value pairs for\nthe reward. Custom fields are unique\ncolumns used to store specific, non-standard\ninformation (e.g., custom loyalty levels,\npartner IDs, descriptive tags, etc.). Before\nusing this field, custom fields must be\ndefined at the organization level using the\nCreate Custom Field API.Character Limit of customFields is 255 characters. If language-specific custom fields are unavailable, English values are used. If language-level custom fields are not defined, reward-level custom fields are used else, meta-level default values are used."
+          ],
+          [
+            "...customFieldName",
+            "string",
+            "Optional",
+            "Name of the custom field."
+          ],
+          [
+            "...customFieldValue",
+            "string",
+            "Optional",
+            "Value of the custom field."
+          ],
+          [
+            "..richContentRO",
+            "string",
+            "Optional",
+            "An object containing HTML-formatted rich text content."
+          ],
+          [
+            "...content",
+            "string",
+            "Optional",
+            "The HTML-formatted rich text content."
+          ],
+          [
+            "...isEnabled",
+            "boolean",
+            "Optional",
+            "Indicates whether the rich text content is enabled. Supported Values: true or false"
+          ],
+          [
+            ".owners",
+            "Object",
+            "Optional",
+            "List containing detailed owner information"
+          ],
+          [
+            "..ownerType",
+            "enum",
+            "Optional",
+            "The module for which the reward was created. Supported values: LOYALTY_PROGRAM, MILESTONES, CAMPAIGNS, JOURNEYS, GOODWILL."
+          ],
+          [
+            "..ownerId",
+            "string",
+            "Optional",
+            "Indicates the unique identifier of the owner to claim the reward. Multiple owner IDs are supported for a single reward with the same owner type."
+          ],
+          [
+            ".rewardRevenueMeta",
+            "Object",
+            "Optional",
+            "Indicates an object with commission details for different participants over specific periods."
+          ],
+          [
+            "..commissionParticipant",
+            "enum",
+            "Optional",
+            "Indicates the entity receiving the commission. Supported values: BRAND, CAPILLARY, AFFILIATE, END_CUSTOMER."
+          ],
+          [
+            "..commissionRate",
+            "decimal",
+            "Optional",
+            "Indicates the amount of commission to be received."
+          ],
+          [
+            "..cycleStartDate",
+            "date",
+            "Optional",
+            "Indicates the start date of the commission cycle. Note: cycleStartDate should be greater than rewardStartDate. cycleStartDate must be in the future"
+          ],
+          [
+            "..cycleEndDate",
+            "date",
+            "Optional",
+            "Indicates the end date of the commission cycle. Note: cycleEndDate should smaller than rewardEndDate. cycleEndDate must be in the future"
+          ],
+          [
+            ".rewardRevenueDefaults",
+            "Object",
+            "Optional",
+            "Indicates the object with the default commission. In case multiple blocks with the same commissionParticipant are passed, only the first is considered."
+          ],
+          [
+            "..commissionParticipant",
+            "enum",
+            "Optional",
+            "The entity receiving the commission. Supported values: BRAND, CAPILLARY, AFFILIATE, END_CUSTOMER"
+          ],
+          [
+            "..defaultValue",
+            "decimal",
+            "Optional",
+            "Indicates the default commission rate associated with the participant. Note: If no defaultValue is passed, then 0 is considered as the defaultValue."
+          ],
+          [
+            ".segment",
+            "Object",
+            "Optional",
+            "Indicates the Customer Segmentation which logically groups audiences based on shared characteristics. You can create segments using the Insights+ UI. You can use these segments to create rewards targeting specific customer groups. Note: The segments and partition information should be valid and the segments must be active while creating the reward."
+          ],
+          [
+            "..segmentId",
+            "integer",
+            "Optional",
+            "Indicates the unique identifier used to create or update segment information."
+          ],
+          [
+            "..partitionId",
+            "integer",
+            "Optional",
+            "Indicates the Partition ID is a unique identifier used to create or update partition information."
+          ],
+          [
+            ".cardSeries",
+            "Array of Objects",
+            "Optional",
+            "Indicates the list of card series codes associated with the reward. Brands can use cards and labels to offer personalized rewards. There is no limit on the number of card series code. You can use Get Card Details API to get the series code of the card. Example: \"cardSeries\":[\"26NOV2024TRYLEN17\",\"26NOV2024TRYLEN18\"]. Note: You cannot link the same reward to multiple attributes at a time."
+          ],
+          [
+            ".labels",
+            "Array of Objects",
+            "Optional",
+            "Indicates the list of label IDs associated with the reward. You can get the Label ID from Get Customer Labels API. There is no limit on the number of label IDs. Note:<br> * Blank input resets the field to null.<br> * You cannot link the same reward to multiple attributes at a time."
+          ],
+          [
+            ".isActive",
+            "boolean",
+            "Optional",
+            "Indicates if the reward is active or Inactive. Supported values: true or false."
+          ],
+          [
+            ".restrictions",
+            "Object",
+            "Optional",
+            "Defines how and when a reward can be issued—at both the reward level (total limit across all users) and the customer level (limit per individual user). For example, <br>* Allow only 1,000 total redemptions of a reward across all users. <br>* Limit each customer to 5 redemptions per month."
+          ],
+          [
+            "..rewardLevel",
+            "Object",
+            "Optional",
+            "Defines the total number of times a reward can be issued across all customers. Example: If the limit for a reward is set to 1000, a maximum of 1,000 total redemptions will be allowed. Once this limit is reached, the reward will no longer be available for issuance to any customer."
+          ],
+          [
+            "...kpi",
+            "enum",
+            "Optional",
+            "Indicates the Key Performance Indicator (KPI) on which the reward is created. Supported values : QUANTITY, REDEMPTION_VALUE. Example: <br>* QUANTITY Limits a \"Free Drink\" reward based on the total number of times it's redeemed (e.g., 500 redemptions). <br>* REDEMPTION_VALUE Limits an \"Airline Miles\" reward based on the total accumulated value of miles redeemed (e.g., 100,000 miles). <br>Note: When redemptionType is MILES, set the KPI value to REDEMPTION_VALUE as miles are always tracked by their total redeemed value."
+          ],
+          [
+            "...windowType",
+            "enum",
+            "Optional",
+            "Specifies the type of window for the reward. Supported values: include ROLLING and FIXED."
+          ],
+          [
+            "...repeatFrequencyType",
+            "enum",
+            "Optional",
+            "Defines how often the reward limit resets when windowType is set to FIXED. Supported Values: <br>* DAYS: The limit resets every N days. Example: A limit of 100 redemptions resets every 10 days. <br>* WEEKS: The limit resets weekly. Example: A limit of 500 redemptions resets each week, starting on Monday. <br>* MONTHS: The limit resets every calendar month. Example: A limit of 1,000 redemptions resets per month. <br>* NO_LIMIT: There's no reset. The limit is tracked for the entire duration of the reward. Example: A one-time limit of 2,000 redemptions applies over the full reward period."
+          ],
+          [
+            "...weekStartDay",
+            "enum",
+            "Optional",
+            "Specifies the day of the week that the week starts on. Supported values : MONDAY, TUESDAY, etc."
+          ],
+          [
+            "...limit",
+            "integer",
+            "Optional",
+            "Defines the maximum number of times the reward can be issued across all customers during a fixed window. <br>* If windowType is FIXED, the limit applies to each fixed cycle (e.g., per week or per month). <br>* If windowType is ROLLING, the limit applies over a sliding time window (e.g., past 30 days). <br>* If repeatFrequencyType is NO_LIMIT, the cap is applied for the entire lifetime of the reward."
+          ],
+          [
+            "..customerLevel",
+            "Array",
+            "Optional",
+            "Define the maximum number of times an individual customer can redeem a specific reward. Example: If the limit is set to 3 and repeatFrequencyType to MONTHS, each customer will be able to redeem the reward up to 3 times within a calendar month."
+          ],
+          [
+            "...kpi",
+            "enum",
+            "Optional",
+            "Indicates the Key Performance Indicator (KPI) on which the reward is created. Supported values : QUANTITY, REDEMPTION_VALUE. Example: <br>* QUANTITY Limits a \"Free Drink\" reward based on the total number of times it's redeemed (e.g., 500 redemptions). <br>* REDEMPTION_VALUE Limits an \"Airline Miles\" reward based on the total accumulated value of miles redeemed (e.g., 100,000 miles). <br>Note: When redemptionType is MILES, set the KPI value to REDEMPTION_VALUE as miles are tracked by their total value, not as individual units."
+          ],
+          [
+            "...windowType",
+            "enum",
+            "Optional",
+            "Specifies the type of window for the reward. Supported values: include ROLLING and FIXED. <br>ROLLING: Tracks usage within a sliding time window relative to the current date. Limits are recalculated dynamically; for instance, over the last 30 days from today. <br>Use case: You want to restrict reward issuance to 1,000 redemptions in any rolling 30-day period. If 1,000 redemptions have already occurred within the past 30 days, the reward will not be issued again today. <br>FIXED: Tracks usage within predefined fixed cycles, such as calendar weeks, months, or N-day blocks. Limits apply to a specific date range, and each cycle is evaluated independently. <br>Use case: You want to allow a reward to be redeemed up to 500 times per calendar month. In this case, redemptions from March 1st to March 31st are counted together. On April 1st, a new cycle begins with a fresh limit."
+          ],
+          [
+            "...repeatFrequencyType",
+            "enum",
+            "Optional",
+            "Indicates the frequency at which the reward is repeated. Supported values : Include DAYS, WEEKS, MONTHS, and NO_LIMIT. <br>* DAYS— weekStartDay isn’t supported; startOfCycle and interval (+ve) are mandatory <br>* WEEKS— interval and startOfCycle aren’t supported; weekStartDay is optional (default Monday) <br>* MONTHS — interval, startOfCycle, and weekStartDay aren’t supported"
+          ],
+          [
+            "...startOfCycle",
+            "date",
+            "Optional",
+            "Specifies the start date and time of the reward cycle in ISO 8601 Time Format."
+          ],
+          [
+            "...limit",
+            "integer",
+            "Optional",
+            "Defines the maximum number of times a single customer can receive or redeem the reward within a fixed cycle. <br>* If windowType is FIXED, the limit applies to each fixed cycle. For example, a customer could receive this reward a maximum of 3 times per week or per month. <br>* If windowType is ROLLING, the limit applies over a sliding time window. For example, a customer could receive this reward a maximum of 5 times over the past 30 days. <br>* If repeatFrequencyType is NO_LIMIT, the limit is applied for the entire lifetime of the reward for that individual customer."
+          ],
+          [
+            "...interval",
+            "integer",
+            "Optional",
+            "Defines the interval for the frequency type, indicating how often the reward can be issued within the specified frequency."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2861
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2861
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2897
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2897
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2861
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2861
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2897
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2897
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2933
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 2969
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3005
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3041
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3059
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3077
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 3113
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/retrieve-brand-id#/",
+          "line": 1628
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-a-custom-field#/",
+          "line": 2482
+        }
+      ],
+      "notes": [
+        "escaped \\<br> renders as literal text",
+        "unclosed <br> is invalid MDX"
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        3137,
+        3137
+      ],
+      "raw": "## Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        3139,
+        3226
+      ],
+      "raw": "```json Sample response\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6002,\n        \"message\": \"Reward created successfully\"\n    },\n    \"reward\": {\n        \"id\": 488443\n    }\n}\n```\n```json 400\n{\n   \"status\": {\n       \"success\": false,\n       \"code\": 6003,\n       \"message\": \"Unable to create reward as Org doesn't have the custom field/s: CF0\"\n   },\n   \"reward\": null\n}\n```\n```json 400 Conversion ratio with unsupported redemptiontypes\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Conversion ratio can be set only for MILES, CASH_WALLET and CHARITY content types.\"\n    }\n}\n```\n```json 400-CONV RATIO with other payment mode\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Multiple payments is not supported within FREE and CONV_RATIO modes\"\n    }\n}\n```\n```json Invalid segment ID\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Invalid Segment Id:  6136\"\n    },\n    \"reward\": null\n}\n```\n```json 400-Vendor Reward is required\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Vendor redemption is required in case of Vendor rewards\"\n    }\n}\n```\n```json 400- Reward Term & Conditions can't be null\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Reward Term & Conditions can't be null or empty.\"\n    }\n}\n```\n```json 400- Label ID is incorrect\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Label not found for label_id: 12749822\"\n    },\n    \"reward\": null\n}\n```\n```json 400- Card Series not found\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Card series not found for series_code: 26NOV2024TR573\"\n    },\n    \"reward\": null\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Sample response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Sample response",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6002,\n        \"message\": \"Reward created successfully\"\n    },\n    \"reward\": {\n        \"id\": 488443\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400",
+          "code": "{\n   \"status\": {\n       \"success\": false,\n       \"code\": 6003,\n       \"message\": \"Unable to create reward as Org doesn't have the custom field/s: CF0\"\n   },\n   \"reward\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400 Conversion ratio with unsupported redemptiontypes",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Conversion ratio can be set only for MILES, CASH_WALLET and CHARITY content types.\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400-CONV RATIO with other payment mode",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Multiple payments is not supported within FREE and CONV_RATIO modes\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Invalid segment ID",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Invalid Segment Id:  6136\"\n    },\n    \"reward\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400-Vendor Reward is required",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Vendor redemption is required in case of Vendor rewards\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400- Reward Term & Conditions can't be null",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 400,\n        \"message\": \"Reward Term & Conditions can't be null or empty.\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400- Label ID is incorrect",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Label not found for label_id: 12749822\"\n    },\n    \"reward\": null\n}"
+        },
+        {
+          "lang": "json",
+          "title": "400- Card Series not found",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 6003,\n        \"message\": \"Unable to create reward as Card series not found for series_code: 26NOV2024TR573\"\n    },\n    \"reward\": null\n}"
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        3228,
+        3228
+      ],
+      "raw": "## Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        3230,
+        3237
+      ],
+      "raw": "| Field     | Type    | Description                                       |\n| :-------- | :------ | :------------------------------------------------ |\n| .status   | Object  | Contains details about the status of the request. |\n| ..success | boolean | Indicates whether the request was successful.     |\n| ..code    | integer | Status code associated with the response.         |\n| ..message | string  | Descriptive message of the response.              |\n| .reward   | Object  | Contains details about the reward created.        |\n| ..id      | integer | Unique identifier for the created reward.         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            ".status",
+            "Object",
+            "Contains details about the status of the request."
+          ],
+          [
+            "..success",
+            "boolean",
+            "Indicates whether the request was successful."
+          ],
+          [
+            "..code",
+            "integer",
+            "Status code associated with the response."
+          ],
+          [
+            "..message",
+            "string",
+            "Descriptive message of the response."
+          ],
+          [
+            ".reward",
+            "Object",
+            "Contains details about the reward created."
+          ],
+          [
+            "..id",
+            "integer",
+            "Unique identifier for the created reward."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        3239,
+        3239
+      ],
+      "raw": "## Error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        3241,
+        3252
+      ],
+      "raw": "| Code     | Description                                                                                                   |\n| :------- | :------------------------------------------------------------------------------------------------------------ |\n| **6003** | Reward creation failed due to the absence of a required custom field in the Org settings - Invalid segment ID |\n| **6003** | Invalid segment ID                                                                                            |\n| **6003** | Invalid label ID                                                                                              |\n| **6003** | Card series not found.                                                                                        |\n| **400**  | Conversion ratio can be set only for MILES, CASH\\_WALLET and CHARITY content types.                           |\n| **400**  | Multiple payments is not supported within FREE and CONV\\_RATIO modes                                          |\n| **400**  | Vendor redemption is required in case of Vendor rewards                                                       |\n| **400**  | Reward Term & Conditions can't be null or empty.                                                              |\n| **400**  | Reward startTime and endTime can't be null or empty.                                                          |\n| **6081** | Duplicate external ID. The `rewardExternalId` value already exists for another reward in this brand.          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "6003",
+            "Reward creation failed due to the absence of a required custom field in the Org settings - Invalid segment ID"
+          ],
+          [
+            "6003",
+            "Invalid segment ID"
+          ],
+          [
+            "6003",
+            "Invalid label ID"
+          ],
+          [
+            "6003",
+            "Card series not found."
+          ],
+          [
+            "400",
+            "Conversion ratio can be set only for MILES, CASH_WALLET and CHARITY content types."
+          ],
+          [
+            "400",
+            "Multiple payments is not supported within FREE and CONV_RATIO modes"
+          ],
+          [
+            "400",
+            "Vendor redemption is required in case of Vendor rewards"
+          ],
+          [
+            "400",
+            "Reward Term & Conditions can't be null or empty."
+          ],
+          [
+            "400",
+            "Reward startTime and endTime can't be null or empty."
+          ],
+          [
+            "6081",
+            "Duplicate external ID. The rewardExternalId value already exists for another reward in this brand."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        3254,
+        3254
+      ],
+      "raw": "## **Additional notes**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Additional notes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        3256,
+        3262
+      ],
+      "raw": "* Reward Linking – A reward can be linked to one entity type at a time: card, label, segment, tier, or loyalty program. You can link the same reward to multiple entries within the same type (e.g., multiple labels or card series).\n  *Example: Link to both \"Gold Card Series\" and \"Platinum Card Series\", but not to a card and a label together.*\n* The type field now accepts POINTS, PHYSICAL\\_VOUCHER, and FREE\\_VOUCHER.\n  VendorOnlyReward and VendorIntouchReward are deprecated—update your integrations accordingly.\n* Define all the necessary configurations. For new brands, use the paymentConfig block instead of Intouch Points.\n* To add Rich Text Content, ensure metadata is created first – see [this guide](https://docs.capillarytech.com/reference/adding-rich-text-content-metadata) and [API reference](https://docs.capillarytech.com/reference/create-rich-content-meta).\n* Without metadata, rich content can’t be saved or retrieved. Always validate it before use.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Reward Linking – A reward can be linked to one entity type at a time: card, label, segment, tier, or loyalty program. You can link the same reward to multiple entries within the same type (e.g., multiple labels or card series).\nExample: Link to both \"Gold Card Series\" and \"Platinum Card Series\", but not to a card and a label together.The type field now accepts POINTS, PHYSICAL_VOUCHER, and FREE_VOUCHER.\nVendorOnlyReward and VendorIntouchReward are deprecated—update your integrations accordingly.Define all the necessary configurations. For new brands, use the paymentConfig block instead of Intouch Points.To add Rich Text Content, ensure metadata is created first – see this guide and API reference.Without metadata, rich content can’t be saved or retrieved. Always validate it before use.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/adding-rich-text-content-metadata",
+          "line": 3261
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-rich-content-meta",
+          "line": 3261
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        3264,
+        3264
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 3264
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        3266,
+        3266
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        3268,
+        3328
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.0.1\",\n  \"info\": {\n    \"title\": \"Sample API\",\n    \"version\": \"1.0.0\",\n    \"description\": \"API specification generated from cURL for POST /v1.1/customer/add\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\"\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/create\": {\n      \"post\": {\n        \"description\": \"\",\n        \"operationId\": \"\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample response\": {\n                    \"summary\": \"Sample response\",\n                    \"value\": {\n                      \"status\": {\n                        \"success\": true,\n                        \"code\": 6002,\n                        \"message\": \"Reward created successfully\"\n                      },\n                      \"reward\": {\n                        \"id\": 488443\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"parameters\": [],\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/create' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHzI3MjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=QnNsjQy2xw_5IexMyp1lVPVBlGdYOX.2APjTsu0a.2Y-1763380682991-0.0.1.1-604800000' \\\\\\n--data '{\\n    /******** Mandatory parameters *********/\\n    \\\"startTime\\\": \\\"2025-09-16T05:15:00Z\\\",\\n    \\\"endTime\\\": \\\"2025-09-31T06:00:00Z\\\",\\n    \\\"type\\\": \\\"VOUCHER\\\",\\n    \\\"brandId\\\": 61,\\n    \\\"redemptionType\\\": \\\"INTOUCH_REWARD\\\",\\n    \\\"languageSpecificInfo\\\": [ //mandatory\\n        {\\n            \\\"languageCode\\\": \\\"en\\\", //mandatory\\n            \\\"name\\\": \\\"UAT Reward 11\\\", //mandatory\\n            \\\"description\\\": \\\"Test Reward for UAT Team\\\",\\n            \\\"enabled\\\": true, //mandatory\\n            \\\"richContentRO\\\": {\\n                \\\"UAT_RCT_1\\\": {\\n                    \\\"content\\\": \\\"Rich Content Text for UAT\\\",\\n                    \\\"isEnabled\\\": true\\n                }\\n            }//,\\n            // \\\"customFields\\\": { \\\"UAT_CF_9\\\": \\\"EV1\\\" }\\n        }\\n    ],\\n    /******** Non Mandatory Parameters ********/\\n    \\\"enabled\\\": true,\\n    \\\"priority\\\": \\\"1\\\",\\n    // \\\"tier\\\": \\\"Emerald\\\",\\n    // \\\"intouchPoints\\\": 100, Use payments config block instead\\n    \\\"intouchSeriesId\\\": \\\"844312\\\",\\n    \\\"categories\\\": [\\n        486\\n    ],\\n    // \\\"vendorRedemption\\\": \\\"2846\\\",\\n    \\\"paymentConfigs\\\": [\\n       {\\n            \\\"paymentMode\\\": \\\"POINTS\\\",\\n            // \\\"conversionRatio\\\":0.33,\\n            \\\"points\\\": 100\\n        }\\n    ]//,\\n    // \\\"restrictions\\\": {\\n    //     \\\"rewardLevel\\\": [\\n    //         {\\n    //             \\\"kpi\\\": \\\"REDEMPTION_VALUE\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"WEEKS\\\",\\n    //             \\\"weekStartDay\\\": \\\"TUESDAY\\\",\\n    //             \\\"limit\\\": 2\\n    //         }\\n    //     ],\\n    //     \\\"customerLevel\\\": [\\n    //         {\\n    //             \\\"kpi\\\": \\\"REDEMPTION_VALUE\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"DAYS\\\",\\n    //             \\\"startOfCycle\\\": \\\"2025-07-31T00:00:00Z\\\",\\n    //             \\\"limit\\\": 2,\\n    //             \\\"interval\\\": 2\\n    //         },\\n    //         {\\n    //             \\\"kpi\\\": \\\"QUANTITY\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"MONTHS\\\",\\n    //             \\\"limit\\\": 6\\n    //         }\\n    //     ]\\n    // }\\n}\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {}\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.0.1\",\n  \"info\": {\n    \"title\": \"Sample API\",\n    \"version\": \"1.0.0\",\n    \"description\": \"API specification generated from cURL for POST /v1.1/customer/add\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\"\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/create\": {\n      \"post\": {\n        \"description\": \"\",\n        \"operationId\": \"\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Sample response\": {\n                    \"summary\": \"Sample response\",\n                    \"value\": {\n                      \"status\": {\n                        \"success\": true,\n                        \"code\": 6002,\n                        \"message\": \"Reward created successfully\"\n                      },\n                      \"reward\": {\n                        \"id\": 488443\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"parameters\": [],\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/create' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Authorization: Basic bWFkaHzI3MjU2YQ==' \\\\\\n--header 'Cookie: _cfuvid=QnNsjQy2xw_5IexMyp1lVPVBlGdYOX.2APjTsu0a.2Y-1763380682991-0.0.1.1-604800000' \\\\\\n--data '{\\n    /******** Mandatory parameters *********/\\n    \\\"startTime\\\": \\\"2025-09-16T05:15:00Z\\\",\\n    \\\"endTime\\\": \\\"2025-09-31T06:00:00Z\\\",\\n    \\\"type\\\": \\\"VOUCHER\\\",\\n    \\\"brandId\\\": 61,\\n    \\\"redemptionType\\\": \\\"INTOUCH_REWARD\\\",\\n    \\\"languageSpecificInfo\\\": [ //mandatory\\n        {\\n            \\\"languageCode\\\": \\\"en\\\", //mandatory\\n            \\\"name\\\": \\\"UAT Reward 11\\\", //mandatory\\n            \\\"description\\\": \\\"Test Reward for UAT Team\\\",\\n            \\\"enabled\\\": true, //mandatory\\n            \\\"richContentRO\\\": {\\n                \\\"UAT_RCT_1\\\": {\\n                    \\\"content\\\": \\\"Rich Content Text for UAT\\\",\\n                    \\\"isEnabled\\\": true\\n                }\\n            }//,\\n            // \\\"customFields\\\": { \\\"UAT_CF_9\\\": \\\"EV1\\\" }\\n        }\\n    ],\\n    /******** Non Mandatory Parameters ********/\\n    \\\"enabled\\\": true,\\n    \\\"priority\\\": \\\"1\\\",\\n    // \\\"tier\\\": \\\"Emerald\\\",\\n    // \\\"intouchPoints\\\": 100, Use payments config block instead\\n    \\\"intouchSeriesId\\\": \\\"844312\\\",\\n    \\\"categories\\\": [\\n        486\\n    ],\\n    // \\\"vendorRedemption\\\": \\\"2846\\\",\\n    \\\"paymentConfigs\\\": [\\n       {\\n            \\\"paymentMode\\\": \\\"POINTS\\\",\\n            // \\\"conversionRatio\\\":0.33,\\n            \\\"points\\\": 100\\n        }\\n    ]//,\\n    // \\\"restrictions\\\": {\\n    //     \\\"rewardLevel\\\": [\\n    //         {\\n    //             \\\"kpi\\\": \\\"REDEMPTION_VALUE\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"WEEKS\\\",\\n    //             \\\"weekStartDay\\\": \\\"TUESDAY\\\",\\n    //             \\\"limit\\\": 2\\n    //         }\\n    //     ],\\n    //     \\\"customerLevel\\\": [\\n    //         {\\n    //             \\\"kpi\\\": \\\"REDEMPTION_VALUE\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"DAYS\\\",\\n    //             \\\"startOfCycle\\\": \\\"2025-07-31T00:00:00Z\\\",\\n    //             \\\"limit\\\": 2,\\n    //             \\\"interval\\\": 2\\n    //         },\\n    //         {\\n    //             \\\"kpi\\\": \\\"QUANTITY\\\",\\n    //             \\\"windowType\\\": \\\"FIXED\\\",\\n    //             \\\"repeatFrequencyType\\\": \\\"MONTHS\\\",\\n    //             \\\"limit\\\": 6\\n    //         }\\n    //     ]\\n    // }\\n}\",\n              \"language\": \"shell\",\n              \"name\": \"Sample request\"\n            }\n          ],\n          \"samples-languages\": [\n            \"shell\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {}\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

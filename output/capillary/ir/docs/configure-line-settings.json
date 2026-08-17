@@ -1,0 +1,1468 @@
+{
+  "slug": "docs/configure-line-settings",
+  "source": "https://docs.capillarytech.com/docs/configure-line-settings.md",
+  "url": "https://docs.capillarytech.com/docs/configure-line-settings",
+  "title": "Configure Line Settings",
+  "description": "",
+  "section": "Line",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-23T10:28:55.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 15,
+    "paragraph": 30,
+    "list": 13,
+    "Callout": 8,
+    "Image": 7,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure LINE Settings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure LINE Settings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Before integrating LINE into Capillary, ensure the following prerequisites are met:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before integrating LINE into Capillary, ensure the following prerequisites are met:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        20
+      ],
+      "raw": "* [ ] **[Create a LINE account](#creating-a-line-account):** A LINE account is the primary account used to login to the LINE Developer Platform.\n* [ ] **[Create a LINE Developer Platform Account](#creating-a-line-developer-platform-account):** The LINE Developer Platform is the portal to connect and utilize the LINE API.\n* [ ] **[Create a Provider](#creating-a-provider):** A provider is an individual developer or organization that provides services and acquires user information on the LINE Developers platform.\n* [ ] **[Create a Channel](#creating-a-channel):** A channel is a communication path for providers to use the LINE platform's features.\n* [ ] **[Create a Bot](#creating-a-bot):** A bot allows you to send messages to users and leverage features such as rich menus and quick replies.\n* [ ] **[Create a Webhook](#creating-a-webhook):** A webhook allows you to receive real time information from LINE.\n* [ ] **[Configure the LINE Message API](#configuring-the-line-message-api):** The Messaging API lets you develop two-way communication between your service and LINE users.\n* [ ] **[Channel ID and Secret Keys](#channel-id-and-channel-secret-keys):** The Channel ID and Secret Keys are identifiers used when integrating your LINE account with Capillary.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create a LINE account: A LINE account is the primary account used to login to the LINE Developer Platform.Create a LINE Developer Platform Account: The LINE Developer Platform is the portal to connect and utilize the LINE API.Create a Provider: A provider is an individual developer or organization that provides services and acquires user information on the LINE Developers platform.Create a Channel: A channel is a communication path for providers to use the LINE platform's features.Create a Bot: A bot allows you to send messages to users and leverage features such as rich menus and quick replies.Create a Webhook: A webhook allows you to receive real time information from LINE.Configure the LINE Message API: The Messaging API lets you develop two-way communication between your service and LINE users.Channel ID and Secret Keys: The Channel ID and Secret Keys are identifiers used when integrating your LINE account with Capillary.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## Creating a line account",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a line account",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "Download and install the LINE app and [create an account](https://help.line.me/official_account/web/categoryId/20010172/pc?lang=en\\&contentId=20013134) if not already done.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Download and install the LINE app and create an account if not already done.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Creating a line developer platform account",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a line developer platform account",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Create a LINE developer account on the <Anchor target=\"_blank\" href=\"https://account.line.biz/login?redirectUri=https%3A%2F%2Fdevelopers.line.biz%2Fconsole%2Fchannel%2Fnew%3Ftype%3Dline-login\">LINE Developers platform </Anchor>using your LINE account.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a LINE developer account on the LINE Developers platform using your LINE account.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://account.line.biz/login?redirectUri=https%3A%2F%2Fdevelopers.line.biz%2Fconsole%2Fchannel%2Fnew%3Ftype%3Dline-login",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "On the LINE Developers Console, you can manage Developers, Providers, and Channels.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "On the LINE Developers Console, you can manage Developers, Providers, and Channels.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "## Creating a provider",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a provider",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "To create a provider on the LINE Developer Platform, refer to the [LINE Developer Console documentation](https://developers.line.biz/en/docs/line-developers-console/overview/#creating-a-provider) on creating a provider.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a provider on the LINE Developer Platform, refer to the LINE Developer Console documentation on creating a provider.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        38
+      ],
+      "raw": "> ❗️ Important\n>\n> The provider name should be an official name such as the company name as it is used to verify your identity.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "ImportantThe provider name should be an official name such as the company name as it is used to verify your identity.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "## Creating a channel",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a channel",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "The channel is the hub through which your messages are sent. Users can join your channel and receive promotional content and announcements through LINE.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The channel is the hub through which your messages are sent. Users can join your channel and receive promotional content and announcements through LINE.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "To create a channel on the LINE Developer Platform, refer to the [LINE Developer Console documentation](https://developers.line.biz/en/docs/line-developers-console/overview/#creating-a-channel) on creating a channel.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a channel on the LINE Developer Platform, refer to the LINE Developer Console documentation on creating a channel.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        46,
+        48
+      ],
+      "raw": "> 📘 Note\n>\n> Choose Messaging API as the channel type while creating a channel.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteChoose Messaging API as the channel type while creating a channel.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "## Creating a bot",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a bot",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "Once you have created the provider and channel, you will need to create and configure a bot. This allows you to send messages to users. Additionally, you can configure the bot to use rich menus, and quick replies for a personalized experience.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you have created the provider and channel, you will need to create and configure a bot. This allows you to send messages to users. Additionally, you can configure the bot to use rich menus, and quick replies for a personalized experience.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "To create a bot on the LINE Developer Platform, refer to the [LINE Developer Console documentation](https://developers.line.biz/en/docs/messaging-api/building-bot/) on creating a bot.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a bot on the LINE Developer Platform, refer to the LINE Developer Console documentation on creating a bot.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "## Creating a webhook",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a webhook",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "For detailed steps, refer to the [Capillary Developer Documentation ](https://docs.capillarytech.com/reference/add-webhook)on creating a webhook.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For detailed steps, refer to the Capillary Developer Documentation on creating a webhook.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-webhook",
+          "line": 58
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        60,
+        62
+      ],
+      "raw": "> 📘 Note\n>\n> The generated webhook URL can then be used for integration on LINE.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe generated webhook URL can then be used for integration on LINE.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "## Setting the webhook url",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Setting the webhook url",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "Once the webhook URL has been created, you need to set the webhook onto the LINE developer platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once the webhook URL has been created, you need to set the webhook onto the LINE developer platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "For detailed steps to set the webhook URL on the Line Developer Platform, refer to the [LINE Developer Console Documentation.](https://developers.line.biz/en/docs/messaging-api/building-bot/#setting-webhook-url)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For detailed steps to set the webhook URL on the Line Developer Platform, refer to the LINE Developer Console Documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "## Configuring the line message api",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring the line message api",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "To connect your LINE account with Capillary, you need to enable the Messaging API for your account.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To connect your LINE account with Capillary, you need to enable the Messaging API for your account.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "Follow these steps to enable Messaging API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Follow these steps to enable Messaging API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        76,
+        79
+      ],
+      "raw": "1. Log in to your LINE developer account and select your target account.\n2. Click **Settings**in the top right and go to the settings screen.\n3. Select **Messaging API**from the menu on the left.\n4. Click on the **Enable Messaging API**button.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Log in to your LINE developer account and select your target account.Click Settingsin the top right and go to the settings screen.Select Messaging APIfrom the menu on the left.Click on the Enable Messaging APIbutton.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "<Image src=\"https://files.readme.io/1e5e42320fb42c17de2a555ce01c6620bd2c5a92603c203896f81c00243fd17f-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/1e5e42320fb42c17de2a555ce01c6620bd2c5a92603c203896f81c00243fd17f-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "5. Select the provider you want to associate with and click on **Agree**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the provider you want to associate with and click on Agree.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "When the Channel information appears on the screen, the Messaging API activation is complete.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When the Channel information appears on the screen, the Messaging API activation is complete.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "## Channel id and channel secret keys",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Channel id and channel secret keys",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "These are required while setting up a LINE source account on InTouch.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "These are required while setting up a LINE source account on InTouch.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "**Channel ID**is a unique identifier of the channel.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Channel IDis a unique identifier of the channel.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "**Channel Secret Key**is a unique secret key used to grant an app access to your channel.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Channel Secret Keyis a unique secret key used to grant an app access to your channel.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        95,
+        97
+      ],
+      "raw": "> 📘 Note\n>\n> Find the Channel ID and Channel Secret Keys on the LINE Developer Platform under Settings > Messaging API > Channel Info.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteFind the Channel ID and Channel Secret Keys on the LINE Developer Platform under Settings > Messaging API > Channel Info.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "Once you have set up your LINE developer account and created a Provider, Channel and Webhook, configure Capillary to work with LINE.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you have set up your LINE developer account and created a Provider, Channel and Webhook, configure Capillary to work with LINE.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        101,
+        101
+      ],
+      "raw": "The configuration procedure includes the following steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The configuration procedure includes the following steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        103,
+        106
+      ],
+      "raw": "* [ ] [Setting up LINE Source Account on InTouch](#setting-up-a-line-source-account-on-intouch)\n* [ ] [Registering a LINE User on InTouch](#registering-a-line-user-on-intouch)\n* [ ] [Creating a LINE Gateway](#creating-a-line-gateway)\n* [ ] [Setting Up a Webhook in the LINE Developer Account](#setting-up-a-webhook-on-the-line-developer-platform)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Setting up LINE Source Account on InTouchRegistering a LINE User on InTouchCreating a LINE GatewaySetting Up a Webhook in the LINE Developer Account",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "## Setting up a line source account on intouch",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Setting up a line source account on intouch",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "Setting up a LINE source account on InTouch involves configuring the LINE channel details obtained from the LINE developer platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Setting up a LINE source account on InTouch involves configuring the LINE channel details obtained from the LINE developer platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "This step is required to establish a functional connection between your LINE account and Capillary.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This step is required to establish a functional connection between your LINE account and Capillary.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "To set up a LINE source account, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up a LINE source account, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "1. Log in to InTouch and navigate to Organization Settings > [Channel Configurations](https://incrm.cc.capillarytech.com/org/config/ChannelConfig).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Log in to InTouch and navigate to Organization Settings > Channel Configurations.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "<Image src=\"https://files.readme.io/2d1ba3e1edd7db2c3ea009ffa792cea9d2eccca6182196fe896270ca3bf48f4a-image.png\" align=\"center\" width=\"70% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/2d1ba3e1edd7db2c3ea009ffa792cea9d2eccca6182196fe896270ca3bf48f4a-image.png",
+        "align": "center",
+        "width": "70% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "2. From the **Channel List**, select LINE.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the Channel List, select LINE.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        122,
+        124
+      ],
+      "raw": "> 👍 Tip\n>\n> Use the search function to find it quickly .",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "TipUse the search function to find it quickly .",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        126,
+        126
+      ],
+      "raw": "3. Click on **Add Account**in the top right and enter an **Account Name**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click on Add Accountin the top right and enter an Account Name.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "<Image src=\"https://files.readme.io/def87dbda1eb63d3a332c2665db1651c24a0ccdc4b7e505b908be23d7c90c719-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/def87dbda1eb63d3a332c2665db1651c24a0ccdc4b7e505b908be23d7c90c719-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        130,
+        131
+      ],
+      "raw": "4. Enter the **Source Account ID**, **Channel ID**, and **Channel Secret** from the channel created on the LINE Developers Console.\n5. Click **Submit**to save the changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter the Source Account ID, Channel ID, and Channel Secret from the channel created on the LINE Developers Console.Click Submitto save the changes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        133,
+        133
+      ],
+      "raw": "## Registering a line user on intouch",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Registering a line user on intouch",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "To register a LINE user on InTouch, set up the LINE app, create an account if you don’t already have one, and scan the channel's QR code to connect with the LINE channel.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To register a LINE user on InTouch, set up the LINE app, create an account if you don’t already have one, and scan the channel's QR code to connect with the LINE channel.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        137,
+        137
+      ],
+      "raw": "Ensuring that both sources are correctly mapped is crucial for integration between LINE and InTouch.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Ensuring that both sources are correctly mapped is crucial for integration between LINE and InTouch.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        139,
+        139
+      ],
+      "raw": "To register a LINE user on InTouch, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To register a LINE user on InTouch, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        141,
+        143
+      ],
+      "raw": "1. Download and install the LINE app.\n2. Create an account by providing your mobile number, if you do not have an existing LINE account.\n3. Scan the QR code for the target LINE channel using the LINE app.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Download and install the LINE app.Create an account by providing your mobile number, if you do not have an existing LINE account.Scan the QR code for the target LINE channel using the LINE app.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        145,
+        147
+      ],
+      "raw": "> 📘 Note\n>\n> The QR code for the channel is available on the [LINE Developer Platform](https://developers.line.biz/en/docs/messaging-api/sharing-bot/#use-qr-code).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe QR code for the channel is available on the LINE Developer Platform.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "<Image src=\"https://files.readme.io/0ec10de5dc9b3f613961d7a7d1a9dda1f76cc92da0e06e508595c216f1fcde4a-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/0ec10de5dc9b3f613961d7a7d1a9dda1f76cc92da0e06e508595c216f1fcde4a-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "4. On your mobile device, click **Add**to send a request to the LINE channel when prompted.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On your mobile device, click Addto send a request to the LINE channel when prompted.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        153,
+        155
+      ],
+      "raw": "> 📘 Note\n>\n> The request can be viewed using the Webhook URL. **userid**is the unique identifier of a LINE account for the user.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe request can be viewed using the Webhook URL. useridis the unique identifier of a LINE account for the user.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        157,
+        159
+      ],
+      "raw": "5. On InTouch, register a customer using the [customer registration API](https://docs.capillarytech.com/reference/v2-add-customer) and the mobile number associated with the LINE app. Set the source as **INSTORE**.\n6. Once the INSTORE profile for the customer is created, use the [customer registration V2 API](https://docs.capillarytech.com/reference/v2-add-customer) to register the same user with the source set as LINE.\n7. Check the Member Care section for the registered customer to confirm that both sources (INSTORE and LINE) are mapped to the same customer.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On InTouch, register a customer using the customer registration API and the mobile number associated with the LINE app. Set the source as INSTORE.Once the INSTORE profile for the customer is created, use the customer registration V2 API to register the same user with the source set as LINE.Check the Member Care section for the registered customer to confirm that both sources (INSTORE and LINE) are mapped to the same customer.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/v2-add-customer",
+          "line": 157
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/v2-add-customer",
+          "line": 158
+        }
+      ]
+    },
+    {
+      "i": 62,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "<Image src=\"https://files.readme.io/5cab36bb6575e65d1691519222dbe48f2d774eddf65a33b4a18f87c8df53812c-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/5cab36bb6575e65d1691519222dbe48f2d774eddf65a33b4a18f87c8df53812c-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 63,
+      "lines": [
+        163,
+        165
+      ],
+      "raw": "> 📘 Note\n>\n> The addition of a LINE user on InTouch can be automated as needed.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe addition of a LINE user on InTouch can be automated as needed.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "## Creating a line gateway",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating a line gateway",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "Creating a LINE Gateway is required for managing message delivery through the LINE channel",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Creating a LINE Gateway is required for managing message delivery through the LINE channel",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "To create a LINE gateway on InTouch, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a LINE gateway on InTouch, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        173,
+        177
+      ],
+      "raw": "1. Login to InTouch and navigate to the [Gateways](https://incrm.cc.capillarytech.com/org/gateways/Gateways) page.\n2. Under Gateway Settings, choose **LINE** from the Gateway drop-down menu.\n3. Define the Gateway Weight (the ratio in which messages will be delivered).\n4. Define the Start and End Time.\n5. Click on **Submit**to create a LINE Gateway.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Login to InTouch and navigate to the Gateways page.Under Gateway Settings, choose LINE from the Gateway drop-down menu.Define the Gateway Weight (the ratio in which messages will be delivered).Define the Start and End Time.Click on Submitto create a LINE Gateway.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8fd7e294112d1a1cf0b16a820a8f190c0059860ad6ce24769780e1792eab9ae3-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8fd7e294112d1a1cf0b16a820a8f190c0059860ad6ce24769780e1792eab9ae3-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 69,
+      "lines": [
+        181,
+        181
+      ],
+      "raw": "You can now include the customer in any campaign lists and contact them via the LINE channel.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can now include the customer in any campaign lists and contact them via the LINE channel.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "## Setting up a webhook on the line developer platform",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Setting up a webhook on the line developer platform",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "To set up a webhook on the LINE developer platform, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up a webhook on the LINE developer platform, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        187,
+        190
+      ],
+      "raw": "1. **Configure the Webhook**<br />[Setup the webhook URL](https://developers.line.biz/en/docs/messaging-api/building-bot/#setting-webhook-url) for the specific LINE channel. This webhook will capture events for when the user opts in or out of the channel.\n2. **Manage Subscription Status**\n   * Use the LINE user ID from the API response to[ update the subscription status](https://docs.capillarytech.com/reference/update-subscription-details) on Capillary via middleware.\n   * If the user does not exist in the system create an INSTORE and LINE profile using the [customer registration API](https://docs.capillarytech.com/reference/v2-add-customer).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Configure the WebhookSetup the webhook URL for the specific LINE channel. This webhook will capture events for when the user opts in or out of the channel.Manage Subscription StatusUse the LINE user ID from the API response to update the subscription status on Capillary via middleware.If the user does not exist in the system create an INSTORE and LINE profile using the customer registration API.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 187
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/update-subscription-details",
+          "line": 189
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/v2-add-customer",
+          "line": 190
+        }
+      ]
+    },
+    {
+      "i": 73,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8ab336652c792a37253f3fc9e1aed2eba9b803802a14381dc05bfb0d3aca6d56-image.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8ab336652c792a37253f3fc9e1aed2eba9b803802a14381dc05bfb0d3aca6d56-image.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 74,
+      "lines": [
+        194,
+        194
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 194
+        }
+      ]
+    }
+  ]
+}

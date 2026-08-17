@@ -1,0 +1,406 @@
+{
+  "slug": "docs/monitoring-and-reporting",
+  "source": "https://docs.capillarytech.com/docs/monitoring-and-reporting.md",
+  "url": "https://docs.capillarytech.com/docs/monitoring-and-reporting",
+  "title": "Monitoring And Reporting",
+  "description": "",
+  "section": "User Group Loyalty",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-02T06:39:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 9,
+    "list": 1,
+    "Table": 1,
+    "Callout": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Reports for User Groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Reports for User Groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Export group loyalty data and identify group activity in Insights+.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Export group loyalty data and identify group activity in Insights+.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Group loyalty data surfaces in Insights+ through the standard Points and Points Redemption Summary export templates. Group activity doesn't create a separate data model. Instead, it's identifiable through specific fields within the existing fact tables.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Group loyalty data surfaces in Insights+ through the standard Points and Points Redemption Summary export templates. Group activity doesn't create a separate data model. Instead, it's identifiable through specific fields within the existing fact tables.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Finding group transactions in reports",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Finding group transactions in reports",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Standard fact tables use `dim_event_user_id` to identify the individual member who triggered an event, not the group entity. To analyze performance at the group level, you need to join on group membership data to associate individual member IDs with their respective groups.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Standard fact tables use dim_event_user_id to identify the individual member who triggered an event, not the group entity. To analyze performance at the group level, you need to join on group membership data to associate individual member IDs with their respective groups.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "There are two fields for identifying group-specific activity:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are two fields for identifying group-specific activity:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "* In the **[Points Redemption Summary](https://docs.capillarytech.com/docs/points-fact-table#points_redemption_summary-fact-table)** fact table, `dim_redemption_type_id` takes the value `group_redemption` for points redeemed from a group wallet. For these rows, `point_category_id` is set to `-1`.\n* In the **[Reward Fact](https://docs.capillarytech.com/docs/rewards-fact-table)** tables, the `group_loyalty_redemption` field identifies redemptions made against a group wallet.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Points Redemption Summary fact table, dim_redemption_type_id takes the value group_redemption for points redeemed from a group wallet. For these rows, point_category_id is set to -1.In the Reward Fact tables, the group_loyalty_redemption field identifies redemptions made against a group wallet.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table#points_redemption_summary-fact-table",
+          "line": 19
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/rewards-fact-table",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "In the event log data, group transactions are recorded under the `GroupTransactionAdd` event, separate from the individual `TransactionAdd` event. Filter on this event name to isolate transactions made on behalf of a group.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the event log data, group transactions are recorded under the GroupTransactionAdd event, separate from the individual TransactionAdd event. Filter on this event name to isolate transactions made on behalf of a group.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "Once you have identified the relevant fields and events, use the following export templates to pull the data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you have identified the relevant fields and events, use the following export templates to pull the data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "# Exporting group loyalty data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Exporting group loyalty data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Use the following Insights+ export templates to pull group loyalty performance data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the following Insights+ export templates to pull group loyalty performance data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        34
+      ],
+      "raw": "| Template                                                                                                                | What it covers                                                                                                                                        |\n| :---------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |\n| [Points](https://docs.capillarytech.com/docs/points-fact-table#points-fact-table)                                       | Points earned and deducted events per member. Filter on `GroupTransactionAdd` to the scope to group transactions.                                     |\n| [Points Redemption Summary](https://docs.capillarytech.com/docs/points-fact-table#points_redemption_summary-fact-table) | Redemption events per member. Filter `dim_redemption_type_id = 'group_redemption'` to isolate group wallet redemptions.                               |\n| Members                                                                                                                 | Member-level loyalty profile data, including current tier, points balance, and lifetime purchases. Use to analyse group members' individual standing. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Template",
+          "What it covers"
+        ],
+        "rows": [
+          [
+            "Points",
+            "Points earned and deducted events per member. Filter on GroupTransactionAdd to the scope to group transactions."
+          ],
+          [
+            "Points Redemption Summary",
+            "Redemption events per member. Filter dim_redemption_type_id = 'group_redemption' to isolate group wallet redemptions."
+          ],
+          [
+            "Members",
+            "Member-level loyalty profile data, including current tier, points balance, and lifetime purchases. Use to analyse group members' individual standing."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table#points-fact-table",
+          "line": 32
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-fact-table#points_redemption_summary-fact-table",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "To schedule exports, go to **Insights+** > **Data Connectors** > [**Export Schedules**](https://docs.capillarytech.com/docs/schedule-an-export-job) and create a new schedule using the relevant template.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To schedule exports, go to Insights+ > Data Connectors > Export Schedules and create a new schedule using the relevant template.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/schedule-an-export-job",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        42
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  ## **Note:**\n\n  Standard export templates don't include a native group-level aggregation. Aggregating data to the group level requires post-processing the exported data using the group membership list, which you can download from the Member Care group view or retrieve via `GET /v2/userGroup2` (see [Get user group details](https://docs.capillarytech.com/reference/get-user-group-details)).\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Note:Standard export templates don't include a native group-level aggregation. Aggregating data to the group level requires post-processing the exported data using the group membership list, which you can download from the Member Care group view or retrieve via GET /v2/userGroup2 (see Get user group details).",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 14,
+          "lines": [
+            39,
+            39
+          ],
+          "raw": "  ## **Note:**",
+          "kind": "heading",
+          "syntax": "markdown",
+          "depth": 2,
+          "text": "Note:",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 15,
+          "lines": [
+            41,
+            41
+          ],
+          "raw": "  Standard export templates don't include a native group-level aggregation. Aggregating data to the group level requires post-processing the exported data using the group membership list, which you can download from the Member Care group view or retrieve via `GET /v2/userGroup2` (see [Get user group details](https://docs.capillarytech.com/reference/get-user-group-details)).",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Standard export templates don't include a native group-level aggregation. Aggregating data to the group level requires post-processing the exported data using the group membership list, which you can download from the Member Care group view or retrieve via GET /v2/userGroup2 (see Get user group details).",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": [
+            {
+              "kind": "absoluteInternalLink",
+              "value": "https://docs.capillarytech.com/reference/get-user-group-details",
+              "line": 41
+            }
+          ]
+        }
+      ],
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-user-group-details",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 44
+        }
+      ]
+    }
+  ]
+}

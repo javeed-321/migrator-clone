@@ -1,0 +1,810 @@
+{
+  "slug": "docs/register-customers",
+  "source": "https://docs.capillarytech.com/docs/register-customers.md",
+  "url": "https://docs.capillarytech.com/docs/register-customers",
+  "title": "Register Customers",
+  "description": "",
+  "section": "Member Care (Old UI)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T13:11:13.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `@` (U+0040) in name, expected a name character such as letters, digits, `$`, or `_`; whitespace before attributes; or the end of the tag (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 10,
+    "blockquote": 2,
+    "list": 12,
+    "Image": 7,
+    "Callout": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Register customers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Register customers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Organizations usually build microsites using the Sharingan app and allow registering customers directly through microsites. If a customer cannot access the microsite, staff or admins can register or update the profile information on a specific microsite through Member Care.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Organizations usually build microsites using the Sharingan app and allow registering customers directly through microsites. If a customer cannot access the microsite, staff or admins can register or update the profile information on a specific microsite through Member Care.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "> **Important:** Automatic External ID generation during customer registration is only supported when using the v2 Customer Registration API. If you register customers using legacy APIs or SDK-based methods, such as MAPP\\_SDK Upsert or /v1.1/customer/add, External IDs will not be assigned automatically. To ensure consistent External ID assignment, use the v2 API for customer registration.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Important: Automatic External ID generation during customer registration is only supported when using the v2 Customer Registration API. If you register customers using legacy APIs or SDK-based methods, such as MAPP_SDK Upsert or /v1.1/customer/add, External IDs will not be assigned automatically. To ensure consistent External ID assignment, use the v2 API for customer registration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following are the steps to register or update a customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the steps to register or update a customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        16
+      ],
+      "raw": "Choose the microsite on which you want to register/update a customer through Member Care.\\\nNavigate to the respective page and register or update a customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Choose the microsite on which you want to register/update a customer through Member Care.Navigate to the respective page and register or update a customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        21
+      ],
+      "raw": "* You need to have permission to register or update a customer on Member Care.\n* The microsite on which you want to register or update your profile should have the respective event configured.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "You need to have permission to register or update a customer on Member Care.The microsite on which you want to register or update your profile should have the respective event configured.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Set the microsite on which you want to register/update customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Set the microsite on which you want to register/update customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Before proceeding, you need to set the microsite on which you want to register/update a customer through Member Care. You will see form fields configured for the microsite that you set on the Action Settings page.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before proceeding, you need to set the microsite on which you want to register/update a customer through Member Care. You will see form fields configured for the microsite that you set on the Action Settings page.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "To set the microsite on which you want to register/update a customer, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set the microsite on which you want to register/update a customer, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "1. On **Member Care**, navigate to **Settings** > **Action Settings**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On Member Care, navigate to Settings > Action Settings.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/22d6b7c-8BQpw34m0XaS1Vj3pZbXOya9apUvAm0gsw.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/22d6b7c-8BQpw34m0XaS1Vj3pZbXOya9apUvAm0gsw.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        33,
+        35
+      ],
+      "raw": "2. In **New Customer**, select the microsite that you want to use to register a customer. For example, membercareReg.\n3. In **Edit Customer**, select the microsite that you want to use to update customer information. For example, membercareEdit.\n4. Click **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In New Customer, select the microsite that you want to use to register a customer. For example, membercareReg.In Edit Customer, select the microsite that you want to use to update customer information. For example, membercareEdit.Click Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "> 📘 Note:\n>\n> * In the preceding screenshot, the membercareReg and membercareEdit are the pages created using Sharingan App. Hence, the page design and form fields can differ for each microsite.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:In the preceding screenshot, the membercareReg and membercareEdit are the pages created using Sharingan App. Hence, the page design and form fields can differ for each microsite.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "## Register customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Register customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "Before registering, ensure that you have set the microsite on which you want to register.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before registering, ensure that you have set the microsite on which you want to register.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "To register a customer on a microsite through Member Care, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To register a customer on a microsite through Member Care, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "> **Note:** External ID generation is only available when customer registration uses the v2 Customer Registration API. If you use other methods, such as MAPP\\_SDK Upsert or /v1.1/customer/add, External IDs will not be generated automatically. For consistent External ID assignment, migrate your registration process to the v2 API.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: External ID generation is only available when customer registration uses the v2 Customer Registration API. If you use other methods, such as MAPP_SDK Upsert or /v1.1/customer/add, External IDs will not be generated automatically. For consistent External ID assignment, migrate your registration process to the v2 API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "1. Navigate to the **New Customer Registration** page using any of the following processes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the New Customer Registration page using any of the following processes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "* **Customer Registration page** **(directly)**: On **Member Care**, click  **Search** > **Customer Registration**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer Registration page (directly): On Member Care, click  Search > Customer Registration.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/9eba21d-VSjPOEa34KX8CorFVQ7Nq-Qu1YHE1MvV8w.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/9eba21d-VSjPOEa34KX8CorFVQ7Nq-Qu1YHE1MvV8w.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "* **From Customer Search page**: If you are already on the **Customer Search** page, click the ⋮ icon and **New Customer**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From Customer Search page: If you are already on the Customer Search page, click the ⋮ icon and New Customer.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/9c37add-TLgL0PmOHUBi1Hx_uqqH70NnELYnpMNscg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/9c37add-TLgL0PmOHUBi1Hx_uqqH70NnELYnpMNscg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "* **From Customer Profile page**: If you are already on a customer's profile page, click the **Select Actions** drop-down and select **New Customer**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From Customer Profile page: If you are already on a customer's profile page, click the Select Actions drop-down and select New Customer.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/2156f4e-QUkACD_pXEcL5HW_zob0XRetbwq6Ox8RQQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/2156f4e-QUkACD_pXEcL5HW_zob0XRetbwq6Ox8RQQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        63,
+        64
+      ],
+      "raw": "2. In **New Customer Registration**, enter the customer details.\\\n   The following image shows a sample registration page of a microsite. The page design and form fields might differ for each microsite.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In New Customer Registration, enter the customer details.The following image shows a sample registration page of a microsite. The page design and form fields might differ for each microsite.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/55fddb2-gGDwSyOgxEG38RWPoNf9NWmndwU13Sv5IQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/55fddb2-gGDwSyOgxEG38RWPoNf9NWmndwU13Sv5IQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        68,
+        77
+      ],
+      "raw": "* In **Name**, enter the name of the customer.\n* In the **Email Address**, enter the email ID of the customer. For example, <username123@capillarytech.com>, where username123 is the username, capillarytech is the domain and com is the Top Level Domain (TLD).\\\n  **Username:** The username portion of the email address can consist of alphanumeric characters (letters and numbers) along with hyphens, underscores, plus signs, and dots.\\\n  **Domain:** The domain portion of the email address can consist of alphanumeric characters (letters and numbers) along with hyphens, underscores, and dots.\\\n  **TLD:** The TLD must consist only of alphabetic characters (letters).\\\n  When you enter an email id, the system changes the entered email id into the format `<alphanumeric along with hypen, underscore, plus, dot>@<alphanumeric along with hypen, underscore, dot>.<alphabetic>`and performs the email validation.\n* In **External ID**, enter the external ID of the customer, if required by your organization. The external ID must match the prefix and length requirements configured in Org Settings > Registration. Only external IDs that meet these requirements are accepted. For example, if your organization requires a prefix such as LM\\* and a length of 10 digits, you must enter an external ID that follows this format.\n* In **Mobile Number**, enter the mobile number of the customer.\n* In **Country**, select the country where the customer resides using drop-down options.\n* Click **Save**. You will see the message - **Customer registered successfully**. Then, It redirects to the customer profile page.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Name, enter the name of the customer.In the Email Address, enter the email ID of the customer. For example, username123@capillarytech.com, where username123 is the username, capillarytech is the domain and com is the Top Level Domain (TLD).Username: The username portion of the email address can consist of alphanumeric characters (letters and numbers) along with hyphens, underscores, plus signs, and dots.Domain: The domain portion of the email address can consist of alphanumeric characters (letters and numbers) along with hyphens, underscores, and dots.TLD: The TLD must consist only of alphabetic characters (letters).When you enter an email id, the system changes the entered email id into the format <alphanumeric along with hypen, underscore, plus, dot>@<alphanumeric along with hypen, underscore, dot>.<alphabetic>and performs the email validation.In External ID, enter the external ID of the customer, if required by your organization. The external ID must match the prefix and length requirements configured in Org Settings > Registration. Only external IDs that meet these requirements are accepted. For example, if your organization requires a prefix such as LM* and a length of 10 digits, you must enter an external ID that follows this format.In Mobile Number, enter the mobile number of the customer.In Country, select the country where the customer resides using drop-down options.Click Save. You will see the message - Customer registered successfully. Then, It redirects to the customer profile page.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "## Update customer profile",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update customer profile",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "You can modify existing customer details other than the primary identifier. However, secondary identifiers can be modified if the relevant configuration is enabled on the **Registration Configuration** page.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can modify existing customer details other than the primary identifier. However, secondary identifiers can be modified if the relevant configuration is enabled on the Registration Configuration page.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "Before updating a customer, set the relevant microsite page on which you want to update profile details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before updating a customer, set the relevant microsite page on which you want to update profile details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "To modify customer details on a microsite through Member Care, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To modify customer details on a microsite through Member Care, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        87,
+        89
+      ],
+      "raw": "1. On **Member Care**, navigate to  **Search** > **Customer** > **Customer Search**.\n2. Search and open a customer profile using customer details such as **name**, **mobile number**, **email ID**, and **external ID**.\n3. In Select Actions, select **Edit Customer** using the drop-down option",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On Member Care, navigate to  Search > Customer > Customer Search.Search and open a customer profile using customer details such as name, mobile number, email ID, and external ID.In Select Actions, select Edit Customer using the drop-down option",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/cfff408-HNkUH7j6reHPFV9BvgyH2J05DiWLHCL91Q.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/cfff408-HNkUH7j6reHPFV9BvgyH2J05DiWLHCL91Q.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "4. In **Update Profile**, modify the customer profile details.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Update Profile, modify the customer profile details.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/c229caf-OvWpMoA3LVz1jsRs-Wv_uoX5PCcuHqSuAQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/c229caf-OvWpMoA3LVz1jsRs-Wv_uoX5PCcuHqSuAQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "5. Click **Save**. You will see the message - **Profile updated successfully**. Then, It redirects to the customer profile page.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Save. You will see the message - Profile updated successfully. Then, It redirects to the customer profile page.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        99,
+        101
+      ],
+      "raw": "> 📘 Note:\n>\n> * The customer profile update will fail if the customer identifier’s value is the same as an existing customer identifier value.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The customer profile update will fail if the customer identifier’s value is the same as an existing customer identifier value.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

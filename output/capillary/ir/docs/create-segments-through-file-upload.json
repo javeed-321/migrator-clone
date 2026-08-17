@@ -1,0 +1,691 @@
+{
+  "slug": "docs/create-segments-through-file-upload",
+  "source": "https://docs.capillarytech.com/docs/create-segments-through-file-upload.md",
+  "url": "https://docs.capillarytech.com/docs/create-segments-through-file-upload",
+  "title": "Create Segments Through File Upload",
+  "description": "",
+  "section": "Customer Segmentation",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 7,
+    "list": 10,
+    "Image": 7,
+    "Table": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create segments through file upload",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create segments through file upload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "There are two ways of uploading a file -",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are two ways of uploading a file -",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "1. Upload a file directly,\n2. Upload the file through an FTP server.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Upload a file directly,Upload the file through an FTP server.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/395bb5af6530719d8ed6f866f647eb054db692eff75450c2877948b99be58884-Segmentation_file_upload_flowchart.drawio_1.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/395bb5af6530719d8ed6f866f647eb054db692eff75450c2877948b99be58884-Segmentation_file_upload_flowchart.drawio_1.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "The segments created through upload are static as the customers/values in a partition do not change automatically. However, you can edit a segment to update details manually, i.e., you can add new customers or update existing segment values  (partition name) of customers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The segments created through upload are static as the customers/values in a partition do not change automatically. However, you can edit a segment to update details manually, i.e., you can add new customers or update existing segment values  (partition name) of customers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "Your CSV file should have the following headers:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Your CSV file should have the following headers:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        21
+      ],
+      "raw": "1st column header: user\\_id, mobile, email or external\\_id\\\n2nd column header: value",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "1st column header: user_id, mobile, email or external_id2nd column header: value",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "You can also track customer activities manually by making the respective segment SCD and specifying the date of the tracked values every time you update the segment.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can also track customer activities manually by making the respective segment SCD and specifying the date of the tracked values every time you update the segment.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "### To create a segment through file upload:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "To create a segment through file upload:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "1. On the EI navigation pane, click **User Segments**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the EI navigation pane, click User Segments.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/170bff3-iAOxImIbcJCxdR19mFnrv1DAXGIPol0dJA.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/170bff3-iAOxImIbcJCxdR19mFnrv1DAXGIPol0dJA.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "2. Click **Create Segment**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Create Segment.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/13aacdb-H6GXkzJgSXYXcL6l8OX5i9R9Ahr-KjPOcQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/13aacdb-H6GXkzJgSXYXcL6l8OX5i9R9Ahr-KjPOcQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        35,
+        39
+      ],
+      "raw": "3. In **Segment Name**, specify a name for the group.\n4. In **Description**, specify a short description of the segment.\n5. In **Type**, select **SCD** to keep a track of customer behavior for the current segment. Select **Non-SCD** to save only the current snapshot.\n6. In **Method**, choose Upload for list creation through file upload.\n7. Click **Next** to continue.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Segment Name, specify a name for the group.In Description, specify a short description of the segment.In Type, select SCD to keep a track of customer behavior for the current segment. Select Non-SCD to save only the current snapshot.In Method, choose Upload for list creation through file upload.Click Next to continue.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/2e523ac-mzKe0PB182l8A0aWn_uxHuglZ-dGdr3sEQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/2e523ac-mzKe0PB182l8A0aWn_uxHuglZ-dGdr3sEQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        110
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        OPTION\n      </th>\n\n      <th>\n        DESCRIPTION\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Valid from\n      </td>\n\n      <td>\n        You need to manually specify the date when the events specified in the CSV file have happened (for SCD). Hence, whenever you upload a new file, it is required to specify the date on which the values are tracked\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Upload Type - Upload\n      </td>\n\n      <td>\n        Select **Upload** to directly upload the CSV file and click Choose File to upload the fil  \n\n        Sample contents of a .csv file with customer id and loyalty value: mobile,value44700900000,High 44700915020,Low\\\n        44700911011,High\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Upload Type - FTP\n      </td>\n\n      <td>\n        Select **FTP** to upload through an FTP server >specify the path in the FTP server where the file is available and > click **Upload**  \n\n        * \\*Note:\\*\\* Enter a valid FTP path. FTP path must be relative to the configured root folder. For example, root\\_folder/FTP path such as ftp\\://demo\\_apac/demo\\_master/demo\\_path/demo\\*\\*points.csv. Here, demo\\_apac/demo\\_master/ is the root folder and /demo\\_path/ is the FTP path.  \n\n        To use FTP, you should have configured the FTP  address and access credentials as explained below  \n\n        1. Navigate to **Segments** > **Settings**.\n\n        2. Specify **Server Address** (FTP server URL), **Username**, and **Password**.**Notes:**  \n\n        3. The file name should adhere to the following format: \"*segment name\\_\\_suffix*\\*\\*\"\\\n           For instance, take 'demo\\_\\_points.csv' as an example. Here, 'demo' represents the segment name, separated by a double underscore from the 'points' suffix.\n\n        4. The FTP path must point to the correct CSV file.\n\n        5. The first row of the CSV sheet must be a column header.\n\n        6. The first column header must be a user identifier such as user id, mobile, email, and external\\_ID.\\\n           If the identifier is mobile(mobile number), country code is mandatory (without the \"+\" sign). For example, 919972752991.\n\n        7. The second column header must have a partition value. For example, If the first column header is the user\\_id(1,2,3, and so on) then the second column header must hold the partition value( high, medium, or low).\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "OPTION",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "Valid from",
+            "You need to manually specify the date when the events specified in the CSV file have happened (for SCD). Hence, whenever you upload a new file, it is required to specify the date on which the values are tracked"
+          ],
+          [
+            "Upload Type - Upload",
+            "Select Upload to directly upload the CSV file and click Choose File to upload the filSample contents of a .csv file with customer id and loyalty value: mobile,value44700900000,High 44700915020,Low44700911011,High"
+          ],
+          [
+            "Upload Type - FTP",
+            "Select FTP to upload through an FTP server >specify the path in the FTP server where the file is available and > click Upload*Note:** Enter a valid FTP path. FTP path must be relative to the configured root folder. For example, root_folder/FTP path such as ftp://demo_apac/demo_master/demo_path/demo**points.csv. Here, demo_apac/demo_master/ is the root folder and /demo_path/ is the FTP path.To use FTP, you should have configured the FTP  address and access credentials as explained belowNavigate to Segments > Settings.Specify Server Address (FTP server URL), Username, and Password.Notes:The file name should adhere to the following format: \"segment name__suffix**\"For instance, take 'demo__points.csv' as an example. Here, 'demo' represents the segment name, separated by a double underscore from the 'points' suffix.The FTP path must point to the correct CSV file.The first row of the CSV sheet must be a column header.The first column header must be a user identifier such as user id, mobile, email, and external_ID.If the identifier is mobile(mobile number), country code is mandatory (without the \"+\" sign). For example, 919972752991.The second column header must have a partition value. For example, If the first column header is the user_id(1,2,3, and so on) then the second column header must hold the partition value( high, medium, or low)."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "8. Click **Upload & Proceed**. You will see the segment with the list of partitions as shown below",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Upload & Proceed. You will see the segment with the list of partitions as shown below",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "* **Partitions**: Partitions are different values of a segment. For example, if a segment has high loyal, low loyal, and medium loyal as segment values, then three partitions will be created (one for each value)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Partitions: Partitions are different values of a segment. For example, if a segment has high loyal, low loyal, and medium loyal as segment values, then three partitions will be created (one for each value)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/1169896-0Q6zvkGQanticR3gM_EQM3JcsOSUGo44Vg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/1169896-0Q6zvkGQanticR3gM_EQM3JcsOSUGo44Vg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "9. Once the processing is completed, review the details and click **Create**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Once the processing is completed, review the details and click Create",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/c598a33-BddAi_6RbjcbweODdxEQhmCE-utHlUvO0g.jpg\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/c598a33-BddAi_6RbjcbweODdxEQhmCE-utHlUvO0g.jpg"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        122,
+        122
+      ],
+      "raw": "The segment will be in Inprogress status initially and once processed, the status label will disappear automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The segment will be in Inprogress status initially and once processed, the status label will disappear automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        124,
+        125
+      ],
+      "raw": "* Inprogress: The segment creation is being processed\n* Draft: Signifies draft state where the recent changes were not saved. If you open the segment, you will see Draft available: Save changes to see the partition values. You can save or Deactivate draft segments",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Inprogress: The segment creation is being processedDraft: Signifies draft state where the recent changes were not saved. If you open the segment, you will see Draft available: Save changes to see the partition values. You can save or Deactivate draft segments",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "## Editing an existing upload-based segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Editing an existing upload-based segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "You can modify a segment to add or modify existing details. During editing the upload-based segment, the existing segment details will be completely replaced with the new details that you upload. So, make sure you create a new file accordingly.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can modify a segment to add or modify existing details. During editing the upload-based segment, the existing segment details will be completely replaced with the new details that you upload. So, make sure you create a new file accordingly.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        131,
+        133
+      ],
+      "raw": "> 📘 Note\n>\n> Each time you upload or import a file using the upload-based segmentation, the data from the new file replaces the existing data.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteEach time you upload or import a file using the upload-based segmentation, the data from the new file replaces the existing data.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "### To edit a segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "To edit a segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        137,
+        138
+      ],
+      "raw": "1. On the Segments summary page, click on the segment that you want to edit.  You can filter the summary list by Type (SCD, Non-SCD, or All) and Method (Conditions, Upload, or All) and also search for a specific filter in the **Search** box.\n2. Click **Edit Segment**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Segments summary page, click on the segment that you want to edit.  You can filter the summary list by Type (SCD, Non-SCD, or All) and Method (Conditions, Upload, or All) and also search for a specific filter in the Search box.Click Edit Segment.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/f89bc7f-9X2i2p7N5DztcxW2Zg216Zyp_s-UKVO_Ng.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/f89bc7f-9X2i2p7N5DztcxW2Zg216Zyp_s-UKVO_Ng.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        142,
+        144
+      ],
+      "raw": "3. Choose your preferred **Upload Type** and upload the new file\n4. Click **Upload & Proceed**. Wait until the file is processed successfully\n5. Click **Update**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Choose your preferred Upload Type and upload the new fileClick Upload & Proceed. Wait until the file is processed successfullyClick Update.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

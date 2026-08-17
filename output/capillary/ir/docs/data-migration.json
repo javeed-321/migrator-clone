@@ -1,0 +1,288 @@
+{
+  "slug": "docs/data-migration",
+  "source": "https://docs.capillarytech.com/docs/data-migration.md",
+  "url": "https://docs.capillarytech.com/docs/data-migration",
+  "title": "Data Migration",
+  "description": "",
+  "section": "Adobe Integration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:02:36.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 2,
+    "Embed": 1,
+    "br": 1,
+    "list": 2,
+    "Image": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Data Migration - Capillary to Adobe",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Data Migration - Capillary to Adobe",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "If you already use Adobe and need to align your existing Capillary data with customer profiles in Adobe Experience Platform (AEP), you can perform a one-time historical data migration. This process ensures continuity from day one by syncing past data with Adobe profiles.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you already use Adobe and need to align your existing Capillary data with customer profiles in Adobe Experience Platform (AEP), you can perform a one-time historical data migration. This process ensures continuity from day one by syncing past data with Adobe profiles.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Capillary uses the [Data Connectors framework in the Insights+](https://docs.capillarytech.com/docs/export#/) application to export data, which is then securely transferred to Adobe Experience Platform (AEP) over an SFTP connection configured on the Adobe source connector. The exported data is provided in CSV format and delivered as compressed `.zip` files to ensure both efficiency and security.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary uses the Data Connectors framework in the Insights+ application to export data, which is then securely transferred to Adobe Experience Platform (AEP) over an SFTP connection configured on the Adobe source connector. The exported data is provided in CSV format and delivered as compressed .zip files to ensure both efficiency and security.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/export#/",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "<Embed typeOfEmbed=\"iframe\" url=\"https://player.vimeo.com/video/1132418484?h=4ad4e5febb&badge=0&autopause=0&player_id=0&app_id=58479\" html=\"false\" iframe=\"true\" href=\"https://player.vimeo.com/video/1132418484?h=4ad4e5febb&badge=0&autopause=0&player_id=0&app_id=58479\" height=\"300px\" width=\"100%\" />",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Embed",
+      "attrs": {
+        "typeOfEmbed": "iframe",
+        "url": "https://player.vimeo.com/video/1132418484?h=4ad4e5febb&badge=0&autopause=0&player_id=0&app_id=58479",
+        "html": "false",
+        "iframe": "true",
+        "href": "https://player.vimeo.com/video/1132418484?h=4ad4e5febb&badge=0&autopause=0&player_id=0&app_id=58479",
+        "height": "300px",
+        "width": "100%"
+      },
+      "target": {
+        "component": "Video",
+        "status": "transform",
+        "note": "YouTube/Vimeo/Loom -> <Video src>; anything else -> <Iframe src width height>"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "#### **Steps to perform migration**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Steps to perform migration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        50
+      ],
+      "raw": "1. Launch your SFTP server (for example, SFTP Cloud). Navigate to **Adobe Experience Platform** > **Connection details** and copy the connection details such as username, host, and port.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/afae6960a76d0f680891936368cc6e7587ecfdc02cb6f65d7eabff7e3d8ebeb7-image22.png\" className=\"border\" />\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/01108d0c9cceb49891a73f66881cbaade33359e37e9ebda687921f36ef564d49-image1.png\" className=\"border\" />\n2. Enter the SFTP connection details in Capillary’s Insights+ Data Connectors. You can also schedule exports. Data is sent as CSV files in compressed `.zip` format.using data connectors. Refer to [Insights+ documentation](https://docs.capillarytech.com/docs/export#/) for more information.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/509e55877750a6eb95c34d18b13ede24ca405fbffbee82e88caf37f9eec989f2-image16.png\" className=\"border\" />\n3. Check the status of your export schedule in your SFTP. The application displays if a transfer is completed. Review logs to verify the file path and details. Exported data arrives as a ZIP file.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/c8e775155417225eb8b4d4708e66abacc9b081b35260e196bfa47cae088c7a9a-image.png\" className=\"border\" />\n4. In AEP, go to **Sources** and add or select your SFTP account > specify the repository and folder containing the exported files and click **Next**.\n\n   1. Existing account\n\n      <Image align=\"center\" border={true} src=\"https://files.readme.io/977ac4f0f6823a5d49f015270b4cdbadfa805e9536ff2005e9880b7185735089-image20.png\" className=\"border\" />\n   2. New account\n\n      <Image border={false} src=\"https://files.readme.io/d3765f31d33d175e1226f873dd53effc281165ec8dd45d92d0a85bd0bba92968-image.png\" />\n5. Select the data repository and folders containing the data. For CSV files, select the delimited data format to ensure proper data handling.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/c1f531659f0f9d3a86831e62774e9d7203d82e5cefc262c3a4f8c9a124997ae5-image.png\" className=\"border\" />\n6. To unzip the data, use the **zipDeflate** option.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/f803162fc98af1e28071c6af39bafadb13c727c89320320687a0d5dbbccbc38a-image19.png\" className=\"border\" />\n7. Select or create a dataset in AEP and map source fields (e.g., username → customer ID).\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/1916ef166f02738012d476d17ec9b0403d858234bfb03bf212025ed0e40b1b24-image.png\" className=\"border\" />\n8. Review and activate data flow. Review your setup, schedule the data flow, and start the import.\n9. Monitor data flow status, confirm records in the target dataset, and preview profiles to ensure attributes were mapped correctly.\n\n   <Image align=\"center\" border={true} src=\"https://files.readme.io/d470ba027650fe97fd3f7a6023afef773d91225a2b0728a7c77550286983e82e-image6.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Launch your SFTP server (for example, SFTP Cloud). Navigate to Adobe Experience Platform > Connection details and copy the connection details such as username, host, and port.Enter the SFTP connection details in Capillary’s Insights+ Data Connectors. You can also schedule exports. Data is sent as CSV files in compressed .zip format.using data connectors. Refer to Insights+ documentation for more information.Check the status of your export schedule in your SFTP. The application displays if a transfer is completed. Review logs to verify the file path and details. Exported data arrives as a ZIP file.In AEP, go to Sources and add or select your SFTP account > specify the repository and folder containing the exported files and click Next.Existing accountNew accountSelect the data repository and folders containing the data. For CSV files, select the delimited data format to ensure proper data handling.To unzip the data, use the zipDeflate option.Select or create a dataset in AEP and map source fields (e.g., username → customer ID).Review and activate data flow. Review your setup, schedule the data flow, and start the import.Monitor data flow status, confirm records in the target dataset, and preview profiles to ensure attributes were mapped correctly.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/export#/",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/86cb3563da95bf1399270a73f467c8043ee4700a8b5dfd7fbb144a17d56f0d44-image18.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/86cb3563da95bf1399270a73f467c8043ee4700a8b5dfd7fbb144a17d56f0d44-image18.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/97b73b2b6ef821a6274b2088cdd71f0ed9362ded8fe58d5ab7411594a51b1fb9-image12.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/97b73b2b6ef821a6274b2088cdd71f0ed9362ded8fe58d5ab7411594a51b1fb9-image12.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "<Image align=\"center\" border={false} src=\"https://files.readme.io/767fec2ae71fb7ec9f465635d6edca53f4420bda8f3eacdc255da97207f20dc5-image17.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{false}",
+        "src": "https://files.readme.io/767fec2ae71fb7ec9f465635d6edca53f4420bda8f3eacdc255da97207f20dc5-image17.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        58,
+        60
+      ],
+      "raw": "10. Verify that the data is transferred to designated location in the AEP and review the SFTP server values in the attribute section to confirm they’re correct. This completes the data export from Capillary to SFTP and the transfer into Adobe.\n\n    <Image align=\"center\" border={true} src=\"https://files.readme.io/8039dc8d95e06b31a0f9a3ae0bc45c69e78360555b9849aa84854d63535e2847-image.png\" className=\"border\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Verify that the data is transferred to designated location in the AEP and review the SFTP server values in the attribute section to confirm they’re correct. This completes the data export from Capillary to SFTP and the transfer into Adobe.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

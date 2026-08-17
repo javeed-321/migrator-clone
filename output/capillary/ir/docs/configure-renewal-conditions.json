@@ -1,0 +1,2141 @@
+{
+  "slug": "docs/configure-renewal-conditions",
+  "source": "https://docs.capillarytech.com/docs/configure-renewal-conditions.md",
+  "url": "https://docs.capillarytech.com/docs/configure-renewal-conditions",
+  "title": "Configure Renewal Conditions",
+  "description": "",
+  "section": "Tiers",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T06:58:52.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 20,
+    "paragraph": 45,
+    "list": 25,
+    "Callout": 8,
+    "Image": 11
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Validity and Renewal Conditions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Validity and Renewal Conditions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Validity period",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Validity period",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The validity period indicates how long a customer can access the benefits of their respective tier.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The validity period indicates how long a customer can access the benefits of their respective tier.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The validity of the tier can be validated by one of the following options:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The validity of the tier can be validated by one of the following options:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        17
+      ],
+      "raw": "* Until tier upgrade or fixed duration\n* Until next registration date of customer\n* Until fixed date",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until tier upgrade or fixed durationUntil next registration date of customerUntil fixed date",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Until tier upgrade or fixed duration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Until tier upgrade or fixed duration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "The validity of the tier is validated after a specific fixed duration period. During this time, customers have the opportunity to upgrade to a higher tier and then the validity period of the customer is adjusted to align with their upgraded tier.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The validity of the tier is validated after a specific fixed duration period. During this time, customers have the opportunity to upgrade to a higher tier and then the validity period of the customer is adjusted to align with their upgraded tier.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "The system calculates the tier expiry date as the new cycle start date plus the cycle window (for example, 12 or 24 months), minus one second. This means the tier remains valid up to the last moment before the same time on the corresponding date after the cycle window. The calculation uses the event or bill date, not the checkout time, to determine the start of the new cycle.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system calculates the tier expiry date as the new cycle start date plus the cycle window (for example, 12 or 24 months), minus one second. This means the tier remains valid up to the last moment before the same time on the corresponding date after the cycle window. The calculation uses the event or bill date, not the checkout time, to determine the start of the new cycle.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        30
+      ],
+      "raw": "* The date the customer upgraded to a higher tier was April 15, 2024.\n* The fixed duration for the renewal check is 12 months.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The date the customer upgraded to a higher tier was April 15, 2024.The fixed duration for the renewal check is 12 months.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "The renewal check for the customer happens on April 15, 2025. Suppose the customer has met eligibility criteria for upgrading to a higher tier and gets upgraded on October 25, 2024. Now the customer gets the renewal check extended to October 25, 2024, instead of April 15, 2025.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The renewal check for the customer happens on April 15, 2025. Suppose the customer has met eligibility criteria for upgrading to a higher tier and gets upgraded on October 25, 2024. Now the customer gets the renewal check extended to October 25, 2024, instead of April 15, 2025.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "For example, if the new cycle starts on April 15, 2024, and the cycle window is 12 months, the slab expiry date is set to April 15, 2025, at 00:00:00, minus one second (April 14, 2025, at 23:59:59). The system uses the event or bill date (such as the date of the upgrade or renewal event) to determine the start of the new cycle, not the checkout time.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, if the new cycle starts on April 15, 2024, and the cycle window is 12 months, the slab expiry date is set to April 15, 2025, at 00:00:00, minus one second (April 14, 2025, at 23:59:59). The system uses the event or bill date (such as the date of the upgrade or renewal event) to determine the start of the new cycle, not the checkout time.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        36,
+        40
+      ],
+      "raw": "> 📘 Note\n>\n> If the expiry date for a tier is changed, only new customers who will be upgraded or downgraded to that tier are affected by the change. Existing customers will keep their previous expiry date.\n>\n> To update the tier expiry information of existing customers of a tier, use the [slab data import function](https://docs.capillarytech.com/docs/points-slabs#slab-tier).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteIf the expiry date for a tier is changed, only new customers who will be upgraded or downgraded to that tier are affected by the change. Existing customers will keep their previous expiry date.To update the tier expiry information of existing customers of a tier, use the slab data import function.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/points-slabs#slab-tier",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "## Until the next registration date of customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Until the next registration date of customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "The registration date refers to the date when a customer registers as a loyalty customer. In this scenario, the program annually validates the validity of the tier based on the registration date of the customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The registration date refers to the date when a customer registers as a loyalty customer. In this scenario, the program annually validates the validity of the tier based on the registration date of the customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "**Scenario 1**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        52,
+        53
+      ],
+      "raw": "* The registration date of a customer into a program is October 25, 2024\n* The date on which the customer made an upgrade to a higher tier: October 15, 2025",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The registration date of a customer into a program is October 25, 2024The date on which the customer made an upgrade to a higher tier: October 15, 2025",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "In that case, the renewal check of the tier happens on October 25, 2025. But, if you prefer to make the customer stay in that new tier for a minimum duration, you can set the minimum duration as 6 months.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In that case, the renewal check of the tier happens on October 25, 2025. But, if you prefer to make the customer stay in that new tier for a minimum duration, you can set the minimum duration as 6 months.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "In this case, the renewal check becomes nullified for 6 months on entering the new tier, then the renewal check will only happen to the customer on October 15, 2026.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the renewal check becomes nullified for 6 months on entering the new tier, then the renewal check will only happen to the customer on October 15, 2026.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "**Scenario 2**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "Consider another scenario, where the customer registration date is on a leap year.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider another scenario, where the customer registration date is on a leap year.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "The customer registers into a program on February 29, 2024, which is a leap year.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The customer registers into a program on February 29, 2024, which is a leap year.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "The following renewal checks for the tier in the years ahead occur on the following dates:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following renewal checks for the tier in the years ahead occur on the following dates:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        67,
+        70
+      ],
+      "raw": "* February 28, 2025\n* February 28, 2026\n* February 28, 2027\n* On the next leap year 2028, the renewal check happens on February 29.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "February 28, 2025February 28, 2026February 28, 2027On the next leap year 2028, the renewal check happens on February 29.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "## Until fixed date",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Until fixed date",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "The validity of the tier is validated on a configured fixed date every year.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The validity of the tier is validated on a configured fixed date every year.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        80,
+        81
+      ],
+      "raw": "* The date the customer upgraded to a higher tier: April 15, 2024\n* Configured fixed date: April 20",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The date the customer upgraded to a higher tier: April 15, 2024Configured fixed date: April 20",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "In this case, the renewal check of the tier happens on April 20, 2025. But, you prefer to make the customer stay in the new tier for a minimum duration of 6 months.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the renewal check of the tier happens on April 20, 2025. But, you prefer to make the customer stay in the new tier for a minimum duration of 6 months.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "In this case, the renewal check becomes nullified for 6 months on entering the new tier and the next renewal check happens on April 20, 2026.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the renewal check becomes nullified for 6 months on entering the new tier and the next renewal check happens on April 20, 2026.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "# Configuring validity period",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring validity period",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "To configure [validity period](https://docs.capillarytech.com/docs/tier-downgrade-renewal#validity-period), perform the following steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure validity period, perform the following steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#validity-period",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "i": 37,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "1. In **Edit tier**, enable **Validity**. Once this is enabled in any of the tiers, the validity options will get enabled for you in advanced settings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Edit tier, enable Validity. Once this is enabled in any of the tiers, the validity options will get enabled for you in advanced settings.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/4903dd2-Screenshot_2024-05-13_232907.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/4903dd2-Screenshot_2024-05-13_232907.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "2. In **Advanced settings**, under \"**Validity**\", select **Validity Period**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Advanced settings, under \"Validity\", select Validity Period.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/1b8f044-Image_2_validity_period.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/1b8f044-Image_2_validity_period.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 41,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "As you can see here, The Validity section provides three options.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "As you can see here, The Validity section provides three options.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        101,
+        103
+      ],
+      "raw": "* [Until tier upgrade or Fixed duration](https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-tier-upgrade-or-fixed-duration)\n* [Until the next registration date of customer](https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-the-next-registration-date-of-customer)\n* [Until fixed date](https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-fixed-date)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until tier upgrade or Fixed durationUntil the next registration date of customerUntil fixed date",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-tier-upgrade-or-fixed-duration",
+          "line": 101
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-the-next-registration-date-of-customer",
+          "line": 102
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#until-fixed-date",
+          "line": 103
+        }
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "3. If you select:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If you select:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "* **Until Tier upgrade or Fixed Duration**, in the **Fixed duration**, enter the months after which the tier expires.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until Tier upgrade or Fixed Duration, in the Fixed duration, enter the months after which the tier expires.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/292f0fd-Screenshot_2024-05-13_172958.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/292f0fd-Screenshot_2024-05-13_172958.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "* **Until next registration date of customer**, check **Add minimum duration** box to set the minimum duration.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until next registration date of customer, check Add minimum duration box to set the minimum duration.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        113,
+        113
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/1e92912-Screenshot_2024-05-13_174647.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/1e92912-Screenshot_2024-05-13_174647.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        115,
+        117
+      ],
+      "raw": "> 📘 Minimum Duration in case of Registration date\n>\n> By setting a minimum duration, the tier stays valid for that minimum duration during the first cycle, the validity check willbegin from the customer’s registration date every year.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Minimum Duration in case of Registration dateBy setting a minimum duration, the tier stays valid for that minimum duration during the first cycle, the validity check willbegin from the customer’s registration date every year.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "* **Until Fixed Date**, in the **Fixed date**, you can set the date for which the tier expires.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until Fixed Date, in the Fixed date, you can set the date for which the tier expires.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/2c10118-Screenshot_2024-05-13_174345.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/2c10118-Screenshot_2024-05-13_174345.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 51,
+      "lines": [
+        123,
+        125
+      ],
+      "raw": "> 📘 Minimum Duration in case of Fixed date\n>\n> By setting a minimum duration, the tier stays valid for that minimum duration during the first cycle, and the validity check will begin from the fixed date every year.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Minimum Duration in case of Fixed dateBy setting a minimum duration, the tier stays valid for that minimum duration during the first cycle, and the validity check will begin from the fixed date every year.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "## Check tier expiry on a daily basis",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Check tier expiry on a daily basis",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "Enabling this option allows you to validity check the renewal conditions and corresponding downgrades daily.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Enabling this option allows you to validity check the renewal conditions and corresponding downgrades daily.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        131,
+        131
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/7952116-Check_validity_on_daily_basis.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/7952116-Check_validity_on_daily_basis.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        133,
+        137
+      ],
+      "raw": "> 📘 Note:\n>\n> By default, the validity check of the renewal conditions and corresponding downgrades happens only on the last day of each month.\n>\n> If you manually change a customer's expiry date, the system does not immediately downgrade the tier. The downgrade will only occur during the next scheduled validity check. To trigger downgrades immediately after expiry date changes, you must enable daily validity checks.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:By default, the validity check of the renewal conditions and corresponding downgrades happens only on the last day of each month.If you manually change a customer's expiry date, the system does not immediately downgrade the tier. The downgrade will only occur during the next scheduled validity check. To trigger downgrades immediately after expiry date changes, you must enable daily validity checks.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        139,
+        139
+      ],
+      "raw": "# Configuring renewal conditions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring renewal conditions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        141,
+        143
+      ],
+      "raw": "> 📘 **Note**\n>\n> If renewal conditions are left unconfigured for a tier, the tier renews automatically at every validity check, regardless of the downgrade strategy configured. To allow customers to actually downgrade, you must configure at least one renewal condition.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteIf renewal conditions are left unconfigured for a tier, the tier renews automatically at every validity check, regardless of the downgrade strategy configured. To allow customers to actually downgrade, you must configure at least one renewal condition.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        145,
+        145
+      ],
+      "raw": "To configure [renewal conditions](https://docs.capillarytech.com/docs/tier-downgrade-renewal#tier-renewal), perform the following steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure renewal conditions, perform the following steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#tier-renewal",
+          "line": 145
+        }
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        147,
+        147
+      ],
+      "raw": "1. In **Edit tier**, enable the **Renewal conditions**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Edit tier, enable the Renewal conditions.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/0b1af3a-Screenshot_2024-05-13_175922.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/0b1af3a-Screenshot_2024-05-13_175922.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 61,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "2. In **Renew current tier if any of the following conditions are true from**, perform the following steps:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Renew current tier if any of the following conditions are true from, perform the following steps:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/7ce97dd-Screenshot_2024-05-13_180621.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/7ce97dd-Screenshot_2024-05-13_180621.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 63,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "* Enable **[Purchases](https://docs.capillarytech.com/docs/tier-downgrade-renewal#purchases)** and enter the purchase value.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enable Purchases and enter the purchase value.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#purchases",
+          "line": 155
+        }
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/05f336d-Purchases.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/05f336d-Purchases.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 65,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "* Enable **[No of visits](https://docs.capillarytech.com/docs/tier-downgrade-renewal#number-of-visits)** and enter the number of visits that the customer has to make within the validity period of the tier.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enable No of visits and enter the number of visits that the customer has to make within the validity period of the tier.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#number-of-visits",
+          "line": 159
+        }
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/6e3edab-No_of_visits.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/6e3edab-No_of_visits.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 67,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "* Enable **[Points earned](https://docs.capillarytech.com/docs/tier-downgrade-renewal#points-earned)** and enter the number of points that the customer needs to earn within the validity period.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enable Points earned and enter the number of points that the customer needs to earn within the validity period.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#points-earned",
+          "line": 163
+        }
+      ]
+    },
+    {
+      "i": 68,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/0e64480-Points_earned.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/0e64480-Points_earned.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 69,
+      "lines": [
+        167,
+        169
+      ],
+      "raw": "> 📘\n>\n> You can also add tracker as an renewal condition on selecting **+Add tracker** .",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "You can also add tracker as an renewal condition on selecting +Add tracker .",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "3. Select \"**Done**\".",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select \"Done\".",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        173,
+        175
+      ],
+      "raw": "> 📘\n>\n> Tier renewal happens if any of the when conditions enabled are satisfied.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Tier renewal happens if any of the when conditions enabled are satisfied.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "# Extension of tier after renewal",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Extension of tier after renewal",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "Extension of tier renewal specifies how long the tier is extended once the customer meets the renewal conditions. The extension of tier duration relies on the option set in the tier validity configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Extension of tier renewal specifies how long the tier is extended once the customer meets the renewal conditions. The extension of tier duration relies on the option set in the tier validity configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        181,
+        181
+      ],
+      "raw": "You can define the extension period based on the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can define the extension period based on the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        183,
+        185
+      ],
+      "raw": "* Until tier upgrade or fixed duration\n* Until the next registration date of the customer\n* Until a fixed date",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Until tier upgrade or fixed durationUntil the next registration date of the customerUntil a fixed date",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "## Tier renewal until tier upgrade or fixed duration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Tier renewal until tier upgrade or fixed duration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "The following options are available under this condition:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following options are available under this condition:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        191,
+        193
+      ],
+      "raw": "* **By one month**\n* **By tier’s validity period duration**\n* **From fixed date by tier’s validity period duration**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "By one monthBy tier’s validity period durationFrom fixed date by tier’s validity period duration",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        195,
+        195
+      ],
+      "raw": "### By one month",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "By one month",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "The tier gets renewed for one more month, with the next renewal check happening after one month, and this process continues repeatedly.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The tier gets renewed for one more month, with the next renewal check happening after one month, and this process continues repeatedly.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "**Use Case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use Case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        201,
+        201
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "* The renewal check date of the tier: is April 15, 2024.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The renewal check date of the tier: is April 15, 2024.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "On April 15, 2024, the renewal check happens and upon meeting the renewal conditions, the tier is extended until May 15, 2024. The system will then perform the next renewal check on May 15, 2024, evaluating the renewal conditions from May 15, 2023, to May 15, 2024.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "On April 15, 2024, the renewal check happens and upon meeting the renewal conditions, the tier is extended until May 15, 2024. The system will then perform the next renewal check on May 15, 2024, evaluating the renewal conditions from May 15, 2023, to May 15, 2024.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "### By tier’s validity period duration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "By tier’s validity period duration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        209,
+        209
+      ],
+      "raw": "The tier gets renewed for the predefined value set in the fixed duration of the tier validity.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The tier gets renewed for the predefined value set in the fixed duration of the tier validity.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        211,
+        211
+      ],
+      "raw": "**Use Case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use Case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        213,
+        213
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        215,
+        216
+      ],
+      "raw": "* The date the customer upgraded to a higher tier was April 15, 2024.\n* The fixed duration configured for the renewal check is 12 months.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The date the customer upgraded to a higher tier was April 15, 2024.The fixed duration configured for the renewal check is 12 months.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "The renewal check for the customer happens on April 15, 2025, and the tier gets renewed for 12 months and the next renewal check happens only on April 15, 2026.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The renewal check for the customer happens on April 15, 2025, and the tier gets renewed for 12 months and the next renewal check happens only on April 15, 2026.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        220,
+        220
+      ],
+      "raw": "### By the duration of the tier's validity period from a fixed date",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "By the duration of the tier's validity period from a fixed date",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        222,
+        222
+      ],
+      "raw": "The tier gets renewed till the configured fixed date, and the renewal check happens on the fixed date.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The tier gets renewed till the configured fixed date, and the renewal check happens on the fixed date.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "**Use case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        226,
+        226
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "* Configured fixed date of the tier: January 1, 2025",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Configured fixed date of the tier: January 1, 2025",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        230,
+        230
+      ],
+      "raw": "In this case, the renewal check happens for all the customers in the organization on January 1, 2025.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the renewal check happens for all the customers in the organization on January 1, 2025.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        232,
+        234
+      ],
+      "raw": "> 📘 Note:\n>\n> Once the set fixed date has passed, you must access the tier configuration to establish the fixed date for the following year.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Once the set fixed date has passed, you must access the tier configuration to establish the fixed date for the following year.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "## Tier renewal until the next registration date of the customer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Tier renewal until the next registration date of the customer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "After the renewal check, the tier stays valid for 12 months from the registration date to the same date the next year.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After the renewal check, the tier stays valid for 12 months from the registration date to the same date the next year.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        244,
+        246
+      ],
+      "raw": "* The registration date of a customer into a program is October 25, 2024.\n* The date the customer upgraded to a higher tier was October 15, 2025.\n* Configured minimum duration: 6 months.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The registration date of a customer into a program is October 25, 2024.The date the customer upgraded to a higher tier was October 15, 2025.Configured minimum duration: 6 months.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        248,
+        248
+      ],
+      "raw": "In this case, the program is configured with a minimum duration of 6 months, so the renewal check on October 15, 2025, will be nullified. The system will conduct the renewal check of the tier on October 25, 2026, and upon meeting the renewal conditions, the tier of the customer is renewed, and the next renewal check happens only on October 25, 2027.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the program is configured with a minimum duration of 6 months, so the renewal check on October 15, 2025, will be nullified. The system will conduct the renewal check of the tier on October 25, 2026, and upon meeting the renewal conditions, the tier of the customer is renewed, and the next renewal check happens only on October 25, 2027.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        250,
+        250
+      ],
+      "raw": "## Tier renewal until fixed date",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Tier renewal until fixed date",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 105,
+      "lines": [
+        252,
+        252
+      ],
+      "raw": "After the renewal check on the fixed date, the tier stays valid from the fixed date to the fixed date next year.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After the renewal check on the fixed date, the tier stays valid from the fixed date to the fixed date next year.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        254,
+        254
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        256,
+        256
+      ],
+      "raw": "Consider the below scenario:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider the below scenario:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 108,
+      "lines": [
+        258,
+        258
+      ],
+      "raw": "* The configured fixed date: January 1",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The configured fixed date: January 1",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        260,
+        260
+      ],
+      "raw": "In this case, the system conducts the renewal check of the tier for all the customers within that organization on January 1, 2025. If the tier of the customers is renewed, the next renewal check happens only on January 1, 2026.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, the system conducts the renewal check of the tier for all the customers within that organization on January 1, 2025. If the tier of the customers is renewed, the next renewal check happens only on January 1, 2026.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

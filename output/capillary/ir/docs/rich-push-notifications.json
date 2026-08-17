@@ -1,0 +1,213 @@
+{
+  "slug": "docs/rich-push-notifications",
+  "source": "https://docs.capillarytech.com/docs/rich-push-notifications.md",
+  "url": "https://docs.capillarytech.com/docs/rich-push-notifications",
+  "title": "Rich Push Notifications",
+  "description": "",
+  "section": "iOS SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 4,
+    "list": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Rich Push Notifications",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Rich Push Notifications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Hydra supports rich push notifications, allowing you to include images, buttons, and potentially other interactive elements directly in the notification interface.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Hydra supports rich push notifications, allowing you to include images, buttons, and potentially other interactive elements directly in the notification interface.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Integrate the HydraPushNotificationServiceExtension framework into a Notification Service Extension target to enable rich push processing. To do this, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Integrate the HydraPushNotificationServiceExtension framework into a Notification Service Extension target to enable rich push processing. To do this, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        68
+      ],
+      "raw": "1. ## Add Notification Service Extension Target:\n\n   1. In Xcode, go to **File** > **New** > **Target**\n   2. Select **Notification Service Extension** under the iOS tab.\n   3. Give it a product name (e.g., YourAppNotificationService).\n   4. Select Finish. If prompted, activate the new scheme by selecting **Activate**.\n\n2. ## Add Framework to Extension Target:\n\n   1. Add the `HydraPushNotificationServiceExtension` framework to this *new* target using your preferred  manager:\\\n      **Swift Package Manager (SPM):**\n\n      1. In **Project Settings** > **Your Project** > **Package Dependencies**, select `hydra-sdk-ios-packages`.\n      2. Under **Targets**, select your Notification Service Extension target.\n      3. Check the box next to `HydraPushNotificationServiceExtension`.\\\n         **CocoaPods:**\n      4. Add the following to your Podfile:\n\n         ```ruby\n         target 'YourNotificationServiceExtensionTargetName' do  \n           use_frameworks!  \n           pod 'HydraPushNotificationServiceExtension', :git => 'https://github.com/Capillary/hydra-sdk-ios-packages.git' # Use your private repo URL if applicable  \n         end  \n         ```\n\n         2. Run `pod install`\n\n3. ## Modify NotificationService.swift:\n\n   1. Open the NotificationService.swift file in your Notification Service Extension target\n   2. Replace its content with the following code to delegate handling to the Hydra SDK:\n\n   ```\n   import UserNotifications  \n   import HydraPushNotificationServiceExtension  \n   import HydraCore // May be needed for Logger or other shared components  \n\n   class NotificationService: HydraRemoteNotificationService {\n   // The HydraRemoteNotificationService superclass handles the core logic.  \n   // You generally don't need to override didReceive or serviceExtensionTimeWillExpire  \n   // unless you have very specific custom logic \\*in addition\\* to Hydra's processing.  \n     \n   override func didReceive(\\_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) \\-\\> Void) {  \n       HydraCore.Logger.debug(\"NotificationService: didReceive called.\") // Example logging  \n       // Ensure App Group UserDefaults migration/setup runs if needed.   \n       // Consider calling a setup function if HydraCore requires it for extensions.  \n       // UserDefaults.standard.performMigrationIfNeeded() // If applicable in extension  \n       super.didReceive(request, withContentHandler: contentHandler)  \n   }  \n\n   override func serviceExtensionTimeWillExpire() {  \n       HydraCore.Logger.debug(\"NotificationService: serviceExtensionTimeWillExpire called.\") // Example logging  \n       super.serviceExtensionTimeWillExpire()  \n    }\n   }\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add Notification Service Extension Target:In Xcode, go to File > New > TargetSelect Notification Service Extension under the iOS tab.Give it a product name (e.g., YourAppNotificationService).Select Finish. If prompted, activate the new scheme by selecting Activate.Add Framework to Extension Target:Add the HydraPushNotificationServiceExtension framework to this new target using your preferred  manager:Swift Package Manager (SPM):In Project Settings > Your Project > Package Dependencies, select hydra-sdk-ios-packages.Under Targets, select your Notification Service Extension target.Check the box next to HydraPushNotificationServiceExtension.CocoaPods:Add the following to your Podfile:target 'YourNotificationServiceExtensionTargetName' do  \n  use_frameworks!  \n  pod 'HydraPushNotificationServiceExtension', :git => 'https://github.com/Capillary/hydra-sdk-ios-packages.git' # Use your private repo URL if applicable  \nend  Run pod installModify NotificationService.swift:Open the NotificationService.swift file in your Notification Service Extension targetReplace its content with the following code to delegate handling to the Hydra SDK:import UserNotifications  \nimport HydraPushNotificationServiceExtension  \nimport HydraCore // May be needed for Logger or other shared components  \n\nclass NotificationService: HydraRemoteNotificationService {\n// The HydraRemoteNotificationService superclass handles the core logic.  \n// You generally don't need to override didReceive or serviceExtensionTimeWillExpire  \n// unless you have very specific custom logic \\*in addition\\* to Hydra's processing.  \n  \noverride func didReceive(\\_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) \\-\\> Void) {  \n    HydraCore.Logger.debug(\"NotificationService: didReceive called.\") // Example logging  \n    // Ensure App Group UserDefaults migration/setup runs if needed.   \n    // Consider calling a setup function if HydraCore requires it for extensions.  \n    // UserDefaults.standard.performMigrationIfNeeded() // If applicable in extension  \n    super.didReceive(request, withContentHandler: contentHandler)  \n}  \n\noverride func serviceExtensionTimeWillExpire() {  \n    HydraCore.Logger.debug(\"NotificationService: serviceExtensionTimeWillExpire called.\") // Example logging  \n    super.serviceExtensionTimeWillExpire()  \n }\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "## How it Works:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How it Works:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        72,
+        74
+      ],
+      "raw": "1. When a remote notification with `mutable-content: 1`flag arrives while the app is in the background, iOS launches your Notification Service Extension.\n2. The `didReceive` method in `HydraRemoteNotificationService` is called.\n3. The SDK parses the payload, identifies rich content (like image URLs), downloads the image, attaches it to the notification content, and then calls the `contentHandler` to display the modified notification.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When a remote notification with mutable-content: 1flag arrives while the app is in the background, iOS launches your Notification Service Extension.The didReceive method in HydraRemoteNotificationService is called.The SDK parses the payload, identifies rich content (like image URLs), downloads the image, attaches it to the notification content, and then calls the contentHandler to display the modified notification.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "# Handling Notification Actions (CTAs)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling Notification Actions (CTAs)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "Push notifications can include Call-to-Action (CTA) buttons. A CTA is a button or link that encourages users to take the next step. Phrases like “Shop now” or “Learn more” guide users clearly and effectively toward the desired action.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Push notifications can include Call-to-Action (CTA) buttons. A CTA is a button or link that encourages users to take the next step. Phrases like “Shop now” or “Learn more” guide users clearly and effectively toward the desired action.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "To setup CTA handling for rich push notifications follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To setup CTA handling for rich push notifications follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        82,
+        166
+      ],
+      "raw": "1. Define CTAs: CTAs are typically defined when creating the push notification campaign on the Capillary platform.\n2. Implement Delegate:\\\n   Your application needs to handle what happens when a user taps a CTA button.\\\n   If the application did not conform to protocol `HydraNotificationCallbackDelegate` , SDK will only be able to handle external type CTA on its own. All the other types of CTA will be ignored.\n\n   1. Create a class (or use an existing one like your `AppDelegate` or a dedicated manager) that conforms to the `HydraNotificationCallbackDelegate` protocol (defined in `HydraPushNotification`).\n   2. Implement the required `process(cta:notificationPayload:)` -> `Bool` method.\n   3. Set the following delegate instance on the `NotificationCore.shared` instance:\n\n      ```\n      import HydraPushNotification\n\n          // In your AppDelegate or where you initialize NotificationCore:\n\n          let actionHandler = NotificationActionHandler() // Create an instance\n\n          func application(_ application : UIApplication, didFinishLaunchingWithOptions launchOptions : [UIApplication.LaunchOptionsKey : Any] ?)->Bool {\n        // ... initialization ...\n        notificationCore\n            .update(sdk: hydraSDK)\n\n            // Set the delegate for handling CTAs\n            notificationCore.setNotificationCallbackDelagte(delegate: actionHandler)\n\n            // ... rest of setup ...\n            return true\n      }\n\n      // Example Implementation (e.g., in AppDelegate or a dedicated manager)\n      class NotificationActionHandler : HydraNotificationCallbackDelegate {\n        func process(cta: HydraCore.CTA, notificationPayload payload: Any)->Bool {\n          print(\n              \"Processing CTA: Type='\\(cta.type)', Action='\\(cta.action)', Text='\\(cta.actionText)'\")\n\n              // Parse the payload if needed (it's passed as Any)\n              if let userInfo =\n                  payload as ? [AnyHashable : Any] {\n            // You might extract more context from the original payload\n            print(\"Original Payload: \\(userInfo)\")\n          }\n\n          // Handle different CTA types based on the 'action' string\n          switch\n            cta.type {\n              case CTAActionType.deepLink.rawValue:\n                // Handle deep linking based on the cta.action value\n                print(\"Handling Deep Link: \\(cta.action)\") if cta.action ==\n                    \"myapp://products/promo\" {\n                  // Navigate to specific screen\n                  // NotificationCenter.default.post(name: .navigateToPromoProducts,\n                  // object: nil)\n                  return true  // Indicate we handled it\n                }\n                else {\n                  return false  // Let SDK try default handling (if any) or ignore\n                }\n\n              case CTAActionType.external.rawValue:\n                print(\"Handling External URL: \\(cta.action)\")\n                    // Attempt to open the URL using Hydra's helper or\n                    // UIApplication.shared.open\n                    if let url = URL(string: cta.action),\n                           UIApplication.shared.canOpenURL(url) {\n                  DispatchQueue.main.async {\n                    UIApplication.shared.open(url, options: [:],\n                                              completionHandler: nil)\n                  }\n                  return true  // Indicate we handled it\n                }\n                else {\n                  return false\n                }\n\n              default:\n                print(\n                    \"Unhandled CTA type: \\(cta.type)\") return false  // Indicate we did not handle this type\n            }\n        }\n      }\n      ```\n3. Delegate Responsibilities:\n   1. The `process` method receives the `CTA` object (containing `type`, `action`, `actionText`) and the original notification payload (Any).\n   2. Your code needs to interpret the `cta.type` and `cta.action` to perform the desired task (e.g., navigate to a screen, open a URL, call an API).\n   3. Return `true` if your app successfully handled the action.\n   4. Return `false` if your app did not handle the action. If you return `false` for common types like `external_url`, the SDK might attempt a default behavior (like trying to open the URL itself). For unhandled custom types, returning `false` usually means the action is ignored.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Define CTAs: CTAs are typically defined when creating the push notification campaign on the Capillary platform.Implement Delegate:Your application needs to handle what happens when a user taps a CTA button.If the application did not conform to protocol HydraNotificationCallbackDelegate , SDK will only be able to handle external type CTA on its own. All the other types of CTA will be ignored.Create a class (or use an existing one like your AppDelegate or a dedicated manager) that conforms to the HydraNotificationCallbackDelegate protocol (defined in HydraPushNotification).Implement the required process(cta:notificationPayload:) -> Bool method.Set the following delegate instance on the NotificationCore.shared instance:import HydraPushNotification\n\n    // In your AppDelegate or where you initialize NotificationCore:\n\n    let actionHandler = NotificationActionHandler() // Create an instance\n\n    func application(_ application : UIApplication, didFinishLaunchingWithOptions launchOptions : [UIApplication.LaunchOptionsKey : Any] ?)->Bool {\n  // ... initialization ...\n  notificationCore\n      .update(sdk: hydraSDK)\n\n      // Set the delegate for handling CTAs\n      notificationCore.setNotificationCallbackDelagte(delegate: actionHandler)\n\n      // ... rest of setup ...\n      return true\n}\n\n// Example Implementation (e.g., in AppDelegate or a dedicated manager)\nclass NotificationActionHandler : HydraNotificationCallbackDelegate {\n  func process(cta: HydraCore.CTA, notificationPayload payload: Any)->Bool {\n    print(\n        \"Processing CTA: Type='\\(cta.type)', Action='\\(cta.action)', Text='\\(cta.actionText)'\")\n\n        // Parse the payload if needed (it's passed as Any)\n        if let userInfo =\n            payload as ? [AnyHashable : Any] {\n      // You might extract more context from the original payload\n      print(\"Original Payload: \\(userInfo)\")\n    }\n\n    // Handle different CTA types based on the 'action' string\n    switch\n      cta.type {\n        case CTAActionType.deepLink.rawValue:\n          // Handle deep linking based on the cta.action value\n          print(\"Handling Deep Link: \\(cta.action)\") if cta.action ==\n              \"myapp://products/promo\" {\n            // Navigate to specific screen\n            // NotificationCenter.default.post(name: .navigateToPromoProducts,\n            // object: nil)\n            return true  // Indicate we handled it\n          }\n          else {\n            return false  // Let SDK try default handling (if any) or ignore\n          }\n\n        case CTAActionType.external.rawValue:\n          print(\"Handling External URL: \\(cta.action)\")\n              // Attempt to open the URL using Hydra's helper or\n              // UIApplication.shared.open\n              if let url = URL(string: cta.action),\n                     UIApplication.shared.canOpenURL(url) {\n            DispatchQueue.main.async {\n              UIApplication.shared.open(url, options: [:],\n                                        completionHandler: nil)\n            }\n            return true  // Indicate we handled it\n          }\n          else {\n            return false\n          }\n\n        default:\n          print(\n              \"Unhandled CTA type: \\(cta.type)\") return false  // Indicate we did not handle this type\n      }\n  }\n}Delegate Responsibilities:The process method receives the CTA object (containing type, action, actionText) and the original notification payload (Any).Your code needs to interpret the cta.type and cta.action to perform the desired task (e.g., navigate to a screen, open a URL, call an API).Return true if your app successfully handled the action.Return false if your app did not handle the action. If you return false for common types like external_url, the SDK might attempt a default behavior (like trying to open the URL itself). For unhandled custom types, returning false usually means the action is ignored.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "slug": "docs/sftp-read-block",
+  "source": "https://docs.capillarytech.com/docs/sftp-read-block.md",
+  "url": "https://docs.capillarytech.com/docs/sftp-read-block",
+  "title": "Sftp Read Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:25:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 9,
+    "list": 1,
+    "Callout": 2,
+    "Table": 2,
+    "Image": 2,
+    "br": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# SFTP (Read) block ",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "SFTP (Read) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configuration reference for the Connect to Source block — polls an SFTP or FTP server and downloads files for processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration reference for the Connect to Source block — polls an SFTP or FTP server and downloads files for processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The `sftp_read` block is the source or the **Connect to Source** block in a Connect+ dataflow. It connects to a remote SFTP server on scheduled intervals, matches files in a specified directory using a regex pattern, downloads them for processing, and moves them to a processed directory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The sftp_read block is the source or the Connect to Source block in a Connect+ dataflow. It connects to a remote SFTP server on scheduled intervals, matches files in a specified directory using a regex pattern, downloads them for processing, and moves them to a processed directory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Use this block when your input files are stored on a remote SFTP server and need to be retrieved on a scheduled basis.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your input files are stored on a remote SFTP server and need to be retrieved on a scheduled basis.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        25
+      ],
+      "raw": "* SFTP hostname, username, and password\n* A source directory on the SFTP server where input files will be placed\n* A processed directory on the SFTP server where files will be moved after download\n* An error directory path for API error files\n* A regex pattern that matches your input filenames",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "SFTP hostname, username, and passwordA source directory on the SFTP server where input files will be placedA processed directory on the SFTP server where files will be moved after downloadAn error directory path for API error filesA regex pattern that matches your input filenames",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        31
+      ],
+      "raw": "<Callout icon=\"❗️\" theme=\"error\">\n  **Note**\n\n  Connection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️",
+        "theme": "error"
+      },
+      "text": "NoteConnection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "children": [
+        {
+          "i": 9,
+          "lines": [
+            28,
+            28
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 10,
+          "lines": [
+            30,
+            30
+          ],
+          "raw": "  Connection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Connection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "## Standard properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Standard properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        35,
+        177
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Hostname**\u000b\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The SFTP hostname.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.\n        For example, `data.capillarydata.com`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Username**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The SFTP username.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.\n        For example, `sftp_user`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Password**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The SFTP password.  \n        Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.  \n        For example, `sftp_password`.  \n        **Note**: When creating a password configuration in the Extension Configuration section of the Dev Console, set `Is Secret` to make it available in the dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Source Directory**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The remote source directory to read from.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration ](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager)section of the Dev Console.\n        For example, `/APAC2Cluster/A_Connect`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Filename Pattern**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The regex used to match remote files.  \n        Filename pattern: `.*.csv`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Processed Directory**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The remote directory to move processed files to.  \n        For example, `/APAC2Cluster/Process`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **API Error Filepath**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The remote path where the error file will be placed.  \n        For example, `/APAC2Cluster/Errors`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Hostname",
+            "Yes",
+            "The SFTP hostname.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.\nFor example, data.capillarydata.com."
+          ],
+          [
+            "Username",
+            "Yes",
+            "The SFTP username.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.\nFor example, sftp_user."
+          ],
+          [
+            "Password",
+            "Yes",
+            "The SFTP password.Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.For example, sftp_password.Note: When creating a password configuration in the Extension Configuration section of the Dev Console, set Is Secret to make it available in the dropdown."
+          ],
+          [
+            "Source Directory",
+            "Yes",
+            "The remote source directory to read from.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.\nFor example, /APAC2Cluster/A_Connect."
+          ],
+          [
+            "Filename Pattern",
+            "Yes",
+            "The regex used to match remote files.Filename pattern: .*.csv"
+          ],
+          [
+            "Processed Directory",
+            "Yes",
+            "The remote directory to move processed files to.For example, /APAC2Cluster/Process."
+          ],
+          [
+            "API Error Filepath",
+            "Yes",
+            "The remote path where the error file will be placed.For example, /APAC2Cluster/Errors."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 78
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 94
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 127
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        179,
+        179
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"80% \" src=\"https://files.readme.io/c120697f4afa73fe7d8c67be4ace749a8c92b272adccd1505e056e125849914a-gix.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "80% ",
+        "src": "https://files.readme.io/c120697f4afa73fe7d8c67be4ace749a8c92b272adccd1505e056e125849914a-gix.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        181,
+        185
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note**\n\n  Use unique source, processed, and API error directories for each `Live` dataflow. Sharing directories across multiple dataflows can cause files to be picked up by the wrong dataflow, leading to race conditions or misrouted error files.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "NoteUse unique source, processed, and API error directories for each Live dataflow. Sharing directories across multiple dataflows can cause files to be picked up by the wrong dataflow, leading to race conditions or misrouted error files.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 15,
+          "lines": [
+            182,
+            182
+          ],
+          "raw": "  **Note**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 16,
+          "lines": [
+            184,
+            184
+          ],
+          "raw": "  Use unique source, processed, and API error directories for each `Live` dataflow. Sharing directories across multiple dataflows can cause files to be picked up by the wrong dataflow, leading to race conditions or misrouted error files.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Use unique source, processed, and API error directories for each Live dataflow. Sharing directories across multiple dataflows can cause files to be picked up by the wrong dataflow, leading to race conditions or misrouted error files.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "## Advanced properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Advanced properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "⚠️ Make changes to advanced properties only if you know what you are doing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "⚠️ Make changes to advanced properties only if you know what you are doing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        191,
+        309
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Private key path**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The optional private key path for SFTP authentication.  \n        For example, `/home/user/.ssh/id_rsa`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Key passphrase**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The optional passphrase for the private key. Set to `null` if no passphrase was used.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Unzip Files**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Unzips incoming files before validation. Select `true` to enable or `false` to disable. Default value: `false`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Search Directory Recursively**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Searches nested folders when listing files. Select `true` to enable or `false` to disable. Default value: `false`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Port**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The SFTP port. Default value: `22`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **File Delimiter**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The delimiter used for file validation.  \n        Default value: `,`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Report Status Code**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The status codes to include in the error file. For example, `all`. Default value: `all`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Private key path",
+            "No",
+            "The optional private key path for SFTP authentication.For example, /home/user/.ssh/id_rsa."
+          ],
+          [
+            "Key passphrase",
+            "No",
+            "The optional passphrase for the private key. Set to null if no passphrase was used."
+          ],
+          [
+            "Unzip Files",
+            "No",
+            "Unzips incoming files before validation. Select true to enable or false to disable. Default value: false."
+          ],
+          [
+            "Search Directory Recursively",
+            "No",
+            "Searches nested folders when listing files. Select true to enable or false to disable. Default value: false."
+          ],
+          [
+            "Port",
+            "No",
+            "The SFTP port. Default value: 22."
+          ],
+          [
+            "File Delimiter",
+            "No",
+            "The delimiter used for file validation.Default value: ,."
+          ],
+          [
+            "Report Status Code",
+            "No",
+            "The status codes to include in the error file. For example, all. Default value: all."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"70% \" src=\"https://files.readme.io/3d485ed583469e15eab731519b5af21b734bd8b2742d73c9d602aa0b902b3259-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "70% ",
+        "src": "https://files.readme.io/3d485ed583469e15eab731519b5af21b734bd8b2742d73c9d602aa0b902b3259-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 313
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        315,
+        315
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 315
+        }
+      ]
+    }
+  ]
+}

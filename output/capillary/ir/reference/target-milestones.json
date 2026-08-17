@@ -1,0 +1,168 @@
+{
+  "slug": "reference/target-milestones",
+  "source": "https://docs.capillarytech.com/reference/target-milestones.md",
+  "url": "https://docs.capillarytech.com/reference/target-milestones",
+  "title": "Target Milestones",
+  "description": "",
+  "section": "Target/Milestone",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `=` (U+003D) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "list": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Target/Milestone",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Target/Milestone",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Basic introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Basic introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This section contains APIs for various capabilities powered by \"targets\" in the system. The following are the capabilities that are currently being powered by targets:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section contains APIs for various capabilities powered by \"targets\" in the system. The following are the capabilities that are currently being powered by targets:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        21
+      ],
+      "raw": "1. **Milestones**\n   1. Single milestone: Contains only 1 target\n   2. Unified milestone: Contains more than 1 target & they are linked together with arithmetic operations like:\n      1. ALL: Works similar to AND\n      2. ANY (N-1): Words identical to OR\n2. **Streaks**\n3. **Cappings** (Individual customer type of capping)\n4. **User-created challenges**\n   1. These are similar to single milestones but can be created by the end-user directly from the mobile app instead of the brand creating them via CRM for their end-users. In this case, the word 'challenge' is analogous to 'milestone'.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "MilestonesSingle milestone: Contains only 1 targetUnified milestone: Contains more than 1 target & they are linked together with arithmetic operations like:ALL: Works similar to ANDANY (N-1): Words identical to ORStreaksCappings (Individual customer type of capping)User-created challengesThese are similar to single milestones but can be created by the end-user directly from the mobile app instead of the brand creating them via CRM for their end-users. In this case, the word 'challenge' is analogous to 'milestone'.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# Good to know information:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Good to know information:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "To know how the target (and its downstream capabilities) works, it is advised to know about the following nuances for better & enhanced understanding. Following are the 4 major components involved here:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To know how the target (and its downstream capabilities) works, it is advised to know about the following nuances for better & enhanced understanding. Following are the 4 major components involved here:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        72
+      ],
+      "raw": "1. **Target group**\n   1. This is like a container (or a bowl) that can hold one/more target rules in it.\n   2. This will have core properties associated with it like:\n      1. Tracking type: Defines what is the nature of the tracking\n         1. Single\n         2. Unified\n         3. Streak\n         4. Capping\n      2. Start & End date on a whole\n      3. Frequency\n      4. The number of periods/cycles, etc...\n2. **Periods/Cycle**\n   1. This will have information on the timelines within which the tracking will happen.\n      1. Will have the exact start & end date for each cycle of the target group.\n   2. If the frequency & number of cycles are given as weekly, 3 in the target group level info, then this contains what is the exact start & end date for all the 3 cycles:\n      1. 1st cycle: Start date (point a) - End date (point b)\n      2. 2nd cycle: Start date (point b)  - End date (point c)\n      3. 3rd cycle: Start date (point c) - End date (point d)\n   3. A few points to note here are:\n      1. The start date given in the target group (point x) should always be <=  1st cycle's start date (point a)\n      2. The end date given in the target group (point y) should always be >= Last cycle's end date (point d)\n      3. No tracking will happen between point (x, a) & point (d, y). Tracking will always happen within cycles.\n      4. <Image align=\"center\" className=\"border\" width=\"70% \" border={true} src=\"https://files.readme.io/34ca65052a646b4a5190e7aae8bc23e2ed9a0350b3ed97a72020d1030026cb9f-Screenshot_2024-11-04_at_11.32.00_AM.png\" />\n3. **Target rule (some call this as the target itself)**\n\n   1. This contains information on what to track exactly\n      1. KPI to be tracked\n      2. Target value\n      3. Filters, etc...\n   2. Depending on the tracking type of target group, a single target group can have 1 target or multiple targets\n\n      1. | Capability              | How many target groups | How many target rules |\n         | :---------------------- | :--------------------- | :-------------------- |\n         | Single milestone        | 1                      | 1                     |\n         | Unified milestone       | 1                      | more than 1           |\n         | Streak                  | 1                      | 1                     |\n         | Capping                 | 1                      | 1                     |\n         | User-created challenges | 1                      | 1                     |\n\n         <br />\n      2. No matter how many target rules are present in a target group, all of them will have the same period/cycle information. For instance, even though more than 1 target is present in unified target milestones, all the targets are tracked in similar timelines.\n\n         1. This means that, period/cycle is associated with 'target group' but not 'target rule'.\n4. **Streak**\n   1. When the tracking type is mentioned as 'streak' in the target group info, then this extra information will also need to be added to the payload.\n   2. This essentially contains information on how many continuous/non-continuous periods the user has to achieve to get the rewards.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Target groupThis is like a container (or a bowl) that can hold one/more target rules in it.This will have core properties associated with it like:Tracking type: Defines what is the nature of the trackingSingleUnifiedStreakCappingStart & End date on a wholeFrequencyThe number of periods/cycles, etc...Periods/CycleThis will have information on the timelines within which the tracking will happen.Will have the exact start & end date for each cycle of the target group.If the frequency & number of cycles are given as weekly, 3 in the target group level info, then this contains what is the exact start & end date for all the 3 cycles:1st cycle: Start date (point a) - End date (point b)2nd cycle: Start date (point b)  - End date (point c)3rd cycle: Start date (point c) - End date (point d)A few points to note here are:The start date given in the target group (point x) should always be <=  1st cycle's start date (point a)The end date given in the target group (point y) should always be >= Last cycle's end date (point d)No tracking will happen between point (x, a) & point (d, y). Tracking will always happen within cycles.<Image align=\"center\" className=\"border\" width=\"70% \" border={true} src=\"https://files.readme.io/34ca65052a646b4a5190e7aae8bc23e2ed9a0350b3ed97a72020d1030026cb9f-Screenshot_2024-11-04_at_11.32.00_AM.png\" />Target rule (some call this as the target itself)This contains information on what to track exactlyKPI to be trackedTarget valueFilters, etc...Depending on the tracking type of target group, a single target group can have 1 target or multiple targetsCapabilityHow many target groupsHow many target rulesSingle milestone11Unified milestone1more than 1Streak11Capping11User-created challenges11<br />No matter how many target rules are present in a target group, all of them will have the same period/cycle information. For instance, even though more than 1 target is present in unified target milestones, all the targets are tracked in similar timelines.This means that, period/cycle is associated with 'target group' but not 'target rule'.StreakWhen the tracking type is mentioned as 'streak' in the target group info, then this extra information will also need to be added to the payload.This essentially contains information on how many continuous/non-continuous periods the user has to achieve to get the rewards.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 66
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "slug": "docs/basic-authentication-api",
+  "source": "https://docs.capillarytech.com/docs/basic-authentication-api.md",
+  "url": "https://docs.capillarytech.com/docs/basic-authentication-api",
+  "title": "Basic Authentication Api",
+  "description": "",
+  "section": "Machine-to-machine (M2M) IAM for services",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2025-06-20T08:57:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 6,
+    "paragraph": 12,
+    "list": 5,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Basic Authentication",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Basic Authentication",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "In basic authentication, the till ID and password (in MD5 format) are used for authenticating the APIs. To authenticate using Basic Auth, you can use any of the following methods:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In basic authentication, the till ID and password (in MD5 format) are used for authenticating the APIs. To authenticate using Basic Auth, you can use any of the following methods:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "* [Pass the credentials in the authorization header ](https://docs.capillarytech.com/reference/basic-authentication#using-authorization-header)\n* [Use till ID and password for authentication](https://docs.capillarytech.com/reference/basic-authentication#using-till-id-and-password)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Pass the credentials in the authorization header Use till ID and password for authentication",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication#using-authorization-header",
+          "line": 11
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication#using-till-id-and-password",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "# Prerequisite",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisite",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        17
+      ],
+      "raw": "* Till credentials. For information on creating till credentials, see [Add TILL](https://docs.capillarytech.com/docs/store-hierarchy#add-till).\n* Basic authentication should be enabled. For information on enabling basic authentication, see [Enable basic authentication](https://docs.capillarytech.com/docs/api-client#enabling-basic-authentication).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Till credentials. For information on creating till credentials, see Add TILL.Basic authentication should be enabled. For information on enabling basic authentication, see Enable basic authentication.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/store-hierarchy#add-till",
+          "line": 16
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-client#enabling-basic-authentication",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "# Using authorization header",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using authorization header",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "For using basic authentication by passing the values in the authorization header, construct the authorization header as mentioned in the below format:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For using basic authentication by passing the values in the authorization header, construct the authorization header as mentioned in the below format:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "`Basic <Base64 encoded (username:md5(password))>`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Basic <Base64 encoded (username:md5(password))>",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/edb2a2f-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/edb2a2f-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "Follow the steps below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Follow the steps below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        31
+      ],
+      "raw": "1. Calculate the MD5 hash of the password\n2. Concatenate the username and the MD5 hashed password with a colon in between.\n3. Encode the concatenated string in Base64.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Calculate the MD5 hash of the passwordConcatenate the username and the MD5 hashed password with a colon in between.Encode the concatenated string in Base64.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "For example, if the username is `store123`and the password is Pass123,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, if the username is store123and the password is Pass123,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        35,
+        37
+      ],
+      "raw": "* MD5 hash of the password Pass123 - bdc87b9c894da5168059e00ebffb9077\n* Concatenate the username and the MD5 hashed password with a colon in between - store123:bdc87b9c894da5168059e00ebffb9077\n* Base64 value of the concatenated string - c3RvcmUxMjM6YmRjODdiOWM4OTRkYTUxNjgwNTllMDBlYmZmYjkwNzc=",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "MD5 hash of the password Pass123 - bdc87b9c894da5168059e00ebffb9077Concatenate the username and the MD5 hashed password with a colon in between - store123:bdc87b9c894da5168059e00ebffb9077Base64 value of the concatenated string - c3RvcmUxMjM6YmRjODdiOWM4OTRkYTUxNjgwNTllMDBlYmZmYjkwNzc=",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "Final value: `Basic c3RvcmUxMjM6YmRjODdiOWM4OTRkYTUxNjgwNTllMDBlYmZmYjkwNzc=`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Final value: Basic c3RvcmUxMjM6YmRjODdiOWM4OTRkYTUxNjgwNTllMDBlYmZmYjkwNzc=",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# Using till ID and password",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using till ID and password",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "You can use your till ID as your username and the [MD5 encryption](https://www.md5online.org/md5-encrypt.html) of the password.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use your till ID as your username and the MD5 encryption of the password.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "For example, if the username is store.server and password is 123, enter `store.server` in the username field and enter `202cb962ac59075b964b07152d234b70` in the password field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, if the username is store.server and password is 123, enter store.server in the username field and enter 202cb962ac59075b964b07152d234b70 in the password field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "# Headers required for basic authentication",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Headers required for basic authentication",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        49,
+        50
+      ],
+      "raw": "* Content-Type - This should be set as application/JSON.\n* Accept - This should also be set as application/JSON.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Content-Type - This should be set as application/JSON.Accept - This should also be set as application/JSON.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "# Submitting requests on behalf of other tills",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Submitting requests on behalf of other tills",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "V2 API supports submitting requests on behalf of other tills (active tills). In the database, the combination of attribution\\_lookup and lookup\\_code are mapped to till ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the database on behalf of the till that is mapped to the specified combination.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "V2 API supports submitting requests on behalf of other tills (active tills). In the database, the combination of attribution_lookup and lookup_code are mapped to till ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the database on behalf of the till that is mapped to the specified combination.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "To enable this functionality, add the following code snippet into your request HEADER:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable this functionality, add the following code snippet into your request HEADER:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "`X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:<name> X-CAP-API-ATTRIBUTION-LOOKUP:<value>`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:<name> X-CAP-API-ATTRIBUTION-LOOKUP:<value>",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "**NOTE**: `value` tag is case sensitive.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "NOTE: value tag is case sensitive.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

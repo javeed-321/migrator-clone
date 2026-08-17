@@ -1,0 +1,176 @@
+{
+  "slug": "docs/configuring-ingest-kafka-stream-in-api",
+  "source": "https://docs.capillarytech.com/docs/configuring-ingest-kafka-stream-in-api.md",
+  "url": "https://docs.capillarytech.com/docs/configuring-ingest-kafka-stream-in-api",
+  "title": "Configuring Ingest Kafka Stream In Api",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 2,
+    "Image": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Connect to Source - Kafka",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Connect to Source - Kafka",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This block enables you to define the Kafka server details. Below is the screenshot showing the fields in the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This block enables you to define the Kafka server details. Below is the screenshot showing the fields in the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/b478905a418889e9d3e265c5c1c599512c0d551e68bf8311e8f8a8c8d8e59aef-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/b478905a418889e9d3e265c5c1c599512c0d551e68bf8311e8f8a8c8d8e59aef-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The table below describes the fields in the block:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below describes the fields in the block:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        113
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field Name\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        kafka brokers\n      </td>\n\n      <td>\n        Kafka server URL. The URL is a combination of the server address and the port number.\n\n        * *Example**: `kafka-connectplus:9092`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        kafka topics\n      </td>\n\n      <td>\n        Predefined topic name from which you consume messages. These topics must already exist in your Kafka system. You can list multiple topics separated by commas.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Consumer Group Id\n      </td>\n\n      <td>\n        Specifies the predefined consumer group ID used for access control.  \n        **Note**: Configure a distinct `groupId` for each dataflow. If multiple dataflows share the same `groupId`, only one will consume the messages.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Security Protocol\n      </td>\n\n      <td>\n        Specify the security protocol you want to use to exchange data between the Kafka client and server. The supported protocols are:\n\n        * **PLAINTEXT**:  No data encryption or authentication.\n        * **SSL**: Uses the SSL protocol for data encryption but no SASL authentication.\n        * **SASL_PLAINTEXT**: Uses SASL protocol for authentication but does not encrypt data.\n        * **SASL_SSL**: Uses the SASL protocol for authentication and SSL for encryption.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        SASL Mechanism\n      </td>\n\n      <td>\n        Specify the authentication method used to connect to Kafka. The supported mechanisms are `GSSAPI`, `PLAIN`, `SCRAM-SHA-256`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Username and Password\n      </td>\n\n      <td>\n        Username and password to access the Kafka server.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Headers as Attribute\n      </td>\n\n      <td>\n        Choose the headers to be used as attributes.  \n        Kafka message headers can contain metadata such as `user ID`, `priority`, and `source system`. Connect+ extracts these headers as data attributes and makes them available to all steps in the flow. You can use these attributes for:\n\n        * **Routing**: Direct messages based on header values\n        * **Filtering**: Process only relevant messages\n        * **Tracking**: Enable observability and trace message flow\n        * **Simplified Logic**: Apply business rules without parsing the main message.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "kafka brokers",
+            "Kafka server URL. The URL is a combination of the server address and the port number.Example*: kafka-connectplus:9092"
+          ],
+          [
+            "kafka topics",
+            "Predefined topic name from which you consume messages. These topics must already exist in your Kafka system. You can list multiple topics separated by commas."
+          ],
+          [
+            "Consumer Group Id",
+            "Specifies the predefined consumer group ID used for access control.Note: Configure a distinct groupId for each dataflow. If multiple dataflows share the same groupId, only one will consume the messages."
+          ],
+          [
+            "Security Protocol",
+            "Specify the security protocol you want to use to exchange data between the Kafka client and server. The supported protocols are:PLAINTEXT:  No data encryption or authentication.SSL: Uses the SSL protocol for data encryption but no SASL authentication.SASL_PLAINTEXT: Uses SASL protocol for authentication but does not encrypt data.SASL_SSL: Uses the SASL protocol for authentication and SSL for encryption."
+          ],
+          [
+            "SASL Mechanism",
+            "Specify the authentication method used to connect to Kafka. The supported mechanisms are GSSAPI, PLAIN, SCRAM-SHA-256"
+          ],
+          [
+            "Username and Password",
+            "Username and password to access the Kafka server."
+          ],
+          [
+            "Headers as Attribute",
+            "Choose the headers to be used as attributes.Kafka message headers can contain metadata such as user ID, priority, and source system. Connect+ extracts these headers as data attributes and makes them available to all steps in the flow. You can use these attributes for:Routing: Direct messages based on header valuesFiltering: Process only relevant messagesTracking: Enable observability and trace message flowSimplified Logic: Apply business rules without parsing the main message."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

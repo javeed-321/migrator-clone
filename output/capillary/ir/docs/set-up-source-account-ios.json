@@ -1,0 +1,416 @@
+{
+  "slug": "docs/set-up-source-account-ios",
+  "source": "https://docs.capillarytech.com/docs/set-up-source-account-ios.md",
+  "url": "https://docs.capillarytech.com/docs/set-up-source-account-ios",
+  "title": "Set Up Source Account Ios",
+  "description": "",
+  "section": "iOS SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 6,
+    "CodeTabs": 1,
+    "list": 5,
+    "Image": 4
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Source Account",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Source Account",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This section provides you with information on how to set up a source account and set the connection between SDK and the org. You can also use a single source account for iOS and Android.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section provides you with information on how to set up a source account and set the connection between SDK and the org. You can also use a single source account for iOS and Android.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Using a single source account for iOS and Android",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using a single source account for iOS and Android",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "If all information apart from the Bundle ID, such as the FCM Project ID, Identifier type, etc., remains the same for both iOS and Android, you can use a single source account for both platforms. In the **Bundle Name** field, you can specify the Bundle IDs for both iOS and Android apps. These IDs should be separated by a semicolon.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If all information apart from the Bundle ID, such as the FCM Project ID, Identifier type, etc., remains the same for both iOS and Android, you can use a single source account for both platforms. In the Bundle Name field, you can specify the Bundle IDs for both iOS and Android apps. These IDs should be separated by a semicolon.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "If brands wish to switch to a single source account ID for existing integrations, they must request the app developer to make the necessary changes on their end. Subsequently, in one of the source accounts, brands should input both the values of the bundle ID and deprecate the remaining source account.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If brands wish to switch to a single source account ID for existing integrations, they must request the app developer to make the necessary changes on their end. Subsequently, in one of the source accounts, brands should input both the values of the bundle ID and deprecate the remaining source account.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "This change will not impact the subscription status response, and it will not require any action from the app developer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This change will not impact the subscription status response, and it will not require any action from the app developer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "For instance, in the payload below, both the iOS and Android channels share the same accountId, contrasting with previous usage where different source accountIds were employed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For instance, in the payload below, both the iOS and Android channels share the same accountId, contrasting with previous usage where different source accountIds were employed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        38
+      ],
+      "raw": "```json Android\n{  \n    \"channel\": \"ANDROID\",  \n    \"accountId\": \"~2024ba96\",  \n    \"priority\": \"BULK\",  \n    \"type\": \"OPTIN\",  \n    \"sourceName\": \"MAPP_SDK\"  \n}\n```\n```json iOS\n{  \n    \"channel\": \"iOS\",  \n    \"accountId\": \"~2024ba96\",  \n    \"priority\": \"BULK\",  \n    \"type\": \"OPTIN\",  \n    \"sourceName\": \"MAPP_SDK\"  \n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Android",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Android",
+          "code": "{  \n    \"channel\": \"ANDROID\",  \n    \"accountId\": \"~2024ba96\",  \n    \"priority\": \"BULK\",  \n    \"type\": \"OPTIN\",  \n    \"sourceName\": \"MAPP_SDK\"  \n}"
+        },
+        {
+          "lang": "json",
+          "title": "iOS",
+          "code": "{  \n    \"channel\": \"iOS\",  \n    \"accountId\": \"~2024ba96\",  \n    \"priority\": \"BULK\",  \n    \"type\": \"OPTIN\",  \n    \"sourceName\": \"MAPP_SDK\"  \n}"
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "To configure the source account, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the source account, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "1. Navigate to **Organisation settings > Omni Channel Settings > Channel Configurations** and click **MAPP\\_SDK**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to Organisation settings > Omni Channel Settings > Channel Configurations and click MAPP_SDK.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/c6db242-Account_mobile_sdk.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/c6db242-Account_mobile_sdk.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "2. Click **Add new account** and in the **Add new account**page, enter the following details:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add new account and in the Add new accountpage, enter the following details:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        48,
+        56
+      ],
+      "raw": "* **Account Name** - Enter the channel account name.\n* **Source Account Id** - Displays the service account id. This is auto-generated.\n* **Enable Mirror** - Not required\n* **Account Linking Identifier** - The account linking identifier is used to register a user and form a connection with the member care profile. The account linking identifier drop-down provides a selection of available identifier options. This set of options remains consistent across all Orgs, regardless of whether a specific identifier is configured for a particular Org or not.\n* **Android/IOS** - Select the correct checkbox according to the mobile apps in your account.\n* **Valid till Name** - Select the till from the drop-down. The drop-down displays the tills available in the respective org.\n* **Bundle name** - Enter the app bundle name. Contact the app developer for the bundle name. You can add multiple bundle IDs separated by a semicolon. Multiple bundle names can be entered when you use the same source account for both iOS and Android. For example, `android:com.capillary.product.android.one;ios:com.capillary.product.ios.x`.\n* **App signature** - Enter the app signature. This is required only for Android apps. Contact the app developer for the app signature.\n* **FCM Project ID** - Enter the Firebase project ID. This is available in the **Project settings > General tab**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Account Name - Enter the channel account name.Source Account Id - Displays the service account id. This is auto-generated.Enable Mirror - Not requiredAccount Linking Identifier - The account linking identifier is used to register a user and form a connection with the member care profile. The account linking identifier drop-down provides a selection of available identifier options. This set of options remains consistent across all Orgs, regardless of whether a specific identifier is configured for a particular Org or not.Android/IOS - Select the correct checkbox according to the mobile apps in your account.Valid till Name - Select the till from the drop-down. The drop-down displays the tills available in the respective org.Bundle name - Enter the app bundle name. Contact the app developer for the bundle name. You can add multiple bundle IDs separated by a semicolon. Multiple bundle names can be entered when you use the same source account for both iOS and Android. For example, android:com.capillary.product.android.one;ios:com.capillary.product.ios.x.App signature - Enter the app signature. This is required only for Android apps. Contact the app developer for the app signature.FCM Project ID - Enter the Firebase project ID. This is available in the Project settings > General tab.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/ceae3e0-Project_id.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/ceae3e0-Project_id.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "* **FCM Email** - Enter the FCM service account e-mail. This is available on the service account page in FCM.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "FCM Email - Enter the FCM service account e-mail. This is available on the service account page in FCM.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/96ebc58-Service_account_email.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/96ebc58-Service_account_email.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        64,
+        66
+      ],
+      "raw": "* **Previous Deep Links** - Displays previous deep links, if any.\n* **Add Deep links** - This is optional. The deep links added here will be available in Engage+ creatives for push notifications.\\\n  ![](https://files.readme.io/adddd6c-Deep_link.png)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Previous Deep Links - Displays previous deep links, if any.Add Deep links - This is optional. The deep links added here will be available in Engage+ creatives for push notifications.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/adddd6c-Deep_link.png",
+          "line": 66
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "![](https://files.readme.io/355bed6-iOS_and_Android.png)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/355bed6-iOS_and_Android.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/355bed6-iOS_and_Android.png",
+          "line": 68
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

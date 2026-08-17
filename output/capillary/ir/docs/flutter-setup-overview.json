@@ -1,0 +1,248 @@
+{
+  "slug": "docs/flutter-setup-overview",
+  "source": "https://docs.capillarytech.com/docs/flutter-setup-overview.md",
+  "url": "https://docs.capillarytech.com/docs/flutter-setup-overview",
+  "title": "Flutter Setup Overview",
+  "description": "",
+  "section": "Flutter SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "list": 1,
+    "paragraph": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Flutter Setup Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Flutter Setup Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        16
+      ],
+      "raw": "1. Get the SDK initialization result in the`onHydraSdkInitializationResult({required bool success, String? error})` callback provided by the handler.\n2. Use the HydraCore class for user management. It includes static functions such as: [signUp](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#signup), [signIn](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-in), [updateUser](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-user), [signOut](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-out), [updateGeoConfig](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-geo-config), [updatePushPreferences](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-user-push-preferences), and [reportUserEvent](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#report-custom-user-events).\n3. These functions accept a [HydraUserDetails](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrauserdetails) instance, which requires a customerId that must match the configuration on the Capillary CRM dashboard. Use the [signUp](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#signup) function to register the user. For subsequent launches, use [signIn](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-in).\n4. The [HydraPushNotification](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrapushnotification) class provides static functions for push notifications: [requestPermission](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#request-permission-for-push-notifications) and [getFCMToken](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-fcm-token). To receive push notifications, you can ask for permission using [requestPermission](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#request-permission-for-push-notifications).\n5. Use [getFCMToken](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-fcm-token) to get the FCM token. If you added an event handler in step 1, you also receive the callback in [onTokenAvailable](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydranativeeventhandler-class).\n6. Use the [HydraInbox](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrainbox) class to manage them with functions like [getInboxMessages](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-list-of-hydra-notifications), [getUnreadInboxMessagesCount](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-unread-hydra-notifications-count), [markInboxMessageAsRead](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#mark-a-hydra-notification-as-read), [deleteInboxMessage](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#delete-a-hydra-notification), and [deleteAllInboxMessages](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#delete-all-hydra-notifications). The Hydra SDK saves notifications in a database.\n7. Use the [HydraInboxUI](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrainboxui) class functions: [showNotificationCenter](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#show-in-built-notification-center) and [hideNotificationCenterIfShowing](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hide-in-built-notification-center-if-showing) to use the built-in notification center from the Hydra plugin.\n8. Set the console log level in hydra-config.json. It should be an integer from 0 to 5, where 0 represents off, 1 for error, 2 for warning, 3 for info, 4 for debug, and 5 for verbose. You can also set one of these log levels for remote logging using hydra\\_remote\\_log\\_level in Firebase Remote Configuration.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Get the SDK initialization result in theonHydraSdkInitializationResult({required bool success, String? error}) callback provided by the handler.Use the HydraCore class for user management. It includes static functions such as: signUp, signIn, updateUser, signOut, updateGeoConfig, updatePushPreferences, and reportUserEvent.These functions accept a HydraUserDetails instance, which requires a customerId that must match the configuration on the Capillary CRM dashboard. Use the signUp function to register the user. For subsequent launches, use signIn.The HydraPushNotification class provides static functions for push notifications: requestPermission and getFCMToken. To receive push notifications, you can ask for permission using requestPermission.Use getFCMToken to get the FCM token. If you added an event handler in step 1, you also receive the callback in onTokenAvailable.Use the HydraInbox class to manage them with functions like getInboxMessages, getUnreadInboxMessagesCount, markInboxMessageAsRead, deleteInboxMessage, and deleteAllInboxMessages. The Hydra SDK saves notifications in a database.Use the HydraInboxUI class functions: showNotificationCenter and hideNotificationCenterIfShowing to use the built-in notification center from the Hydra plugin.Set the console log level in hydra-config.json. It should be an integer from 0 to 5, where 0 represents off, 1 for error, 2 for warning, 3 for info, 4 for debug, and 5 for verbose. You can also set one of these log levels for remote logging using hydra_remote_log_level in Firebase Remote Configuration.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#signup",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-in",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-user",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-out",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-geo-config",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#update-user-push-preferences",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#report-custom-user-events",
+          "line": 10
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrauserdetails",
+          "line": 11
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#signup",
+          "line": 11
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#sign-in",
+          "line": 11
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrapushnotification",
+          "line": 12
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#request-permission-for-push-notifications",
+          "line": 12
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-fcm-token",
+          "line": 12
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#request-permission-for-push-notifications",
+          "line": 12
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-fcm-token",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydranativeeventhandler-class",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrainbox",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-list-of-hydra-notifications",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#get-unread-hydra-notifications-count",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#mark-a-hydra-notification-as-read",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#delete-a-hydra-notification",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#delete-all-hydra-notifications",
+          "line": 14
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydrainboxui",
+          "line": 15
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#show-in-built-notification-center",
+          "line": 15
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hide-in-built-notification-center-if-showing",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "The [HydraNativeEventHandler](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydranativeevent-class-apis) also includes callbacks for [onHydraNotificationReceived](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationreceived), [onHydraNotificationClicked](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationclicked), [onHydraNotificationDismissed](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationdismissed), [onHydraNotificationShown](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationshown), and [onNotificationCenterDismissed](https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onnotificationcenterdismissed).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The HydraNativeEventHandler also includes callbacks for onHydraNotificationReceived, onHydraNotificationClicked, onHydraNotificationDismissed, onHydraNotificationShown, and onNotificationCenterDismissed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#hydranativeevent-class-apis",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationreceived",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationclicked",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationdismissed",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onhydranotificationshown",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/flutter-sdk-api-reference#onnotificationcenterdismissed",
+          "line": 18
+        }
+      ]
+    }
+  ]
+}

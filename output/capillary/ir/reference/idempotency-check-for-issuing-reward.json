@@ -1,0 +1,340 @@
+{
+  "slug": "reference/idempotency-check-for-issuing-reward",
+  "source": "https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward.md",
+  "url": "https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward",
+  "title": "Idempotency Check For Issuing Reward",
+  "description": "",
+  "section": "Reward Catalog Issuance",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-02T18:34:41.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 8,
+    "blockquote": 1,
+    "code": 1,
+    "list": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Idempotency Check for Issuing Reward",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Idempotency Check for Issuing Reward",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Idempotency means that performing the same action multiple times will have the same result as performing it once. Idempotency check-in rewards ensure that a customer is rewarded only once, even if the API is requested multiple times. This prevents duplicate or additional rewards and allows you to safely repeat the request in case of partial success. (Partial success occurs when only some rewards are issued successfully, while others fail due to issues like incorrect details or limitations.) This ensures that rewards are issued exactly as requested.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Idempotency means that performing the same action multiple times will have the same result as performing it once. Idempotency check-in rewards ensure that a customer is rewarded only once, even if the API is requested multiple times. This prevents duplicate or additional rewards and allows you to safely repeat the request in case of partial success. (Partial success occurs when only some rewards are issued successfully, while others fail due to issues like incorrect details or limitations.) This ensures that rewards are issued exactly as requested.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "> \\[!NOTE]\n> The Issue Reward API does not allow multiple simultaneous (parallel) requests for the same customer. If you send parallel requests for the same customer, the API returns error code 10004 with the message \"Parallel calls are not allowed for same customer.\" Wait for the first request to complete before sending another request for the same customer.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!NOTE]\nThe Issue Reward API does not allow multiple simultaneous (parallel) requests for the same customer. If you send parallel requests for the same customer, the API returns error code 10004 with the message \"Parallel calls are not allowed for same customer.\" Wait for the first request to complete before sending another request for the same customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "To ensure the idempotency check is carried out, provide an additional **Request ID** in the request parameters of the Issue Reward APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To ensure the idempotency check is carried out, provide an additional Request ID in the request parameters of the Issue Reward APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        36
+      ],
+      "raw": "```json\n{\n    \"mobile\": \"919825752814\",\n    \"brand\": \"testOrg_marvel_20230822_147\",\n    \"transactionNumber\": \"2344s4\",\n    \"notes\": \"This is test\",\n    \"eventLogId\":\"eventLogId124\",\n    \"rewards\": [\n        {\n            \"rewardId\": 125099,\n            \"quantity\": 2,\n            \"requestId\":\"req3\"//This is used for performing idempotency check.\n        },\n        {\n            \"rewardId\": 125101,\n            \"quantity\": 2,\n            \"requestId\":\"req4\"//This is used for performing idempotency check.\n        }\n    ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"mobile\": \"919825752814\",\n    \"brand\": \"testOrg_marvel_20230822_147\",\n    \"transactionNumber\": \"2344s4\",\n    \"notes\": \"This is test\",\n    \"eventLogId\":\"eventLogId124\",\n    \"rewards\": [\n        {\n            \"rewardId\": 125099,\n            \"quantity\": 2,\n            \"requestId\":\"req3\"//This is used for performing idempotency check.\n        },\n        {\n            \"rewardId\": 125101,\n            \"quantity\": 2,\n            \"requestId\":\"req4\"//This is used for performing idempotency check.\n        }\n    ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "# Example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "Consider a case where you are trying to issue two rewards using the payment mode \"POINTS.\" The first reward is redeemed by using five points, and the second one with ten points, with a requested quantity of two for each.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a case where you are trying to issue two rewards using the payment mode \"POINTS.\" The first reward is redeemed by using five points, and the second one with ten points, with a requested quantity of two for each.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        42,
+        44
+      ],
+      "raw": "* **Reward 1 (R1):** 5 points\n* **Reward 2 (R2):** 10 points\n* **Requested Quantity:** Two quantities of R1 and two quantities of R2",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Reward 1 (R1): 5 pointsReward 2 (R2): 10 pointsRequested Quantity: Two quantities of R1 and two quantities of R2",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "#### Scenario 1: Maximum Issuance Limit per Customer: One per R1 and R2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 1: Maximum Issuance Limit per Customer: One per R1 and R2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "In this scenario, when you attempt to issue rewards to the customer, only one reward of R1 and one reward of R2 will be issued due to the restriction. This is known as a Partial Success Scenario, as only one of each reward is issued despite the request for two.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this scenario, when you attempt to issue rewards to the customer, only one reward of R1 and one reward of R2 will be issued due to the restriction. This is known as a Partial Success Scenario, as only one of each reward is issued despite the request for two.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "#### Scenario 2: Maximum Issuance Limit per Customer: One for R1 and Two for R2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 2: Maximum Issuance Limit per Customer: One for R1 and Two for R2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "Now, if you retry issuing the remaining quantity after adjusting the issuance limit, the API responds with \"Reward issued partially,\" successfully redeeming the remaining 10 points for R2. However, the remaining points for R1 are still not processed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Now, if you retry issuing the remaining quantity after adjusting the issuance limit, the API responds with \"Reward issued partially,\" successfully redeeming the remaining 10 points for R2. However, the remaining points for R1 are still not processed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "#### Scenario 3: Maximum Issuance Limit per Customer: No Limit for R1 and R2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Scenario 3: Maximum Issuance Limit per Customer: No Limit for R1 and R2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "When you retry issuing after removing the issuance restrictions, the API responds with \"Reward issued successfully,\" successfully redeeming the remaining 5 points for R1. Due to the idempotency check, even though the same request is made, no additional points are processed for R2, as they were successfully processed in the previous requests.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you retry issuing after removing the issuance restrictions, the API responds with \"Reward issued successfully,\" successfully redeeming the remaining 5 points for R1. Due to the idempotency check, even though the same request is made, no additional points are processed for R2, as they were successfully processed in the previous requests.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "In total, 30 points are successfully redeemed through all issued rewards. The Idempotency Check ensures that only the requested points are redeemed and that the intended results are achieved, even after multiple retries.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In total, 30 points are successfully redeemed through all issued rewards. The Idempotency Check ensures that only the requested points are redeemed and that the intended results are achieved, even after multiple retries.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "Refer to the documentation below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to the documentation below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        62,
+        63
+      ],
+      "raw": "* [Create Reward ](https://docs.capillarytech.com/reference/post-create-reward): Create reward using Payment Mode as **POINTS** and redemption value as **INTOUCH\\_POINTS**.\n* [Issue Bulk Reward](https://docs.capillarytech.com/reference/issue-bulk-reward): Issue Reward using the **Request ID** in the Request Body Param.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create Reward : Create reward using Payment Mode as POINTS and redemption value as INTOUCH_POINTS.Issue Bulk Reward: Issue Reward using the Request ID in the Request Body Param.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/post-create-reward",
+          "line": 62
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/issue-bulk-reward",
+          "line": 63
+        }
+      ]
+    }
+  ]
+}

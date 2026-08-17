@@ -1,0 +1,604 @@
+{
+  "slug": "docs/event-schema-rewards",
+  "source": "https://docs.capillarytech.com/docs/event-schema-rewards.md",
+  "url": "https://docs.capillarytech.com/docs/event-schema-rewards",
+  "title": "Event Schema Rewards",
+  "description": "",
+  "section": "Event schema (Payload)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 7,
+    "Table": 2,
+    "CodeTabs": 2,
+    "code": 4
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Transaction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Transaction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "A transaction represents a purchase or return event made by a customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A transaction represents a purchase or return event made by a customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Transaction Added Event (transactionAdded)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Added Event (transactionAdded)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Notifies when a transaction is added. For example, a transaction is made by a user.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when a transaction is added. For example, a transaction is made by a user.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        28
+      ],
+      "raw": "| Parameter      | Datatype | Description                                                                                                                                                                                                                                                                              |\n| :------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| amount         | Double   | Net transaction amount.                                                                                                                                                                                                                                                                  |\n| billClientId   | String   | Unique id of the bill as per the client (org) end.                                                                                                                                                                                                                                       |\n| billNumber     | String   | Unique transaction number. The uniqueness depends on the configuration.                                                                                                                                                                                                                  |\n| enteredAt      | Integer  | The timestamp for when the customer was registered with the brand in milliseconds since the Unix epoch 1970-01-01T00:00:00Z, UTC. This value comes from the payload. If the brand does not provide it, the system sets it to the current time.                                           |\n| enteredBy      | obj      | Details of the store at which the transaction happened.                                                                                                                                                                                                                                  |\n| transactionId  | long     | Unique transaction ID generated internally.                                                                                                                                                                                                                                              |\n| deliveryStatus | Enum     | Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED.                                                                                                                                                                                                    |\n| billType       | Enum     | Type of transaction. Supported value:  regular for loyalty transactions. ‘RETURN’ for return transactions.                                                                                                                                                                               |\n| lineItemCount  | Integer  | Number of line-items in the transaction.                                                                                                                                                                                                                                                 |\n| Discount       | Double   | Discount availed for the transaction (discount amount).                                                                                                                                                                                                                                  |\n| grossAmount    | Double   | Transaction amount before discount.                                                                                                                                                                                                                                                      |\n| currencyCode   | String   | ISO currency code that you want to update. For example EUR for Euro, SGD for the Singapore Dollar, CNY for China Yuan Renminbi, SAR Saudi Riyal. For more codes, see [ISO currency codes](https://docs.1010data.com/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html). |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "amount",
+            "Double",
+            "Net transaction amount."
+          ],
+          [
+            "billClientId",
+            "String",
+            "Unique id of the bill as per the client (org) end."
+          ],
+          [
+            "billNumber",
+            "String",
+            "Unique transaction number. The uniqueness depends on the configuration."
+          ],
+          [
+            "enteredAt",
+            "Integer",
+            "The timestamp for when the customer was registered with the brand in milliseconds since the Unix epoch 1970-01-01T00:00:00Z, UTC. This value comes from the payload. If the brand does not provide it, the system sets it to the current time."
+          ],
+          [
+            "enteredBy",
+            "obj",
+            "Details of the store at which the transaction happened."
+          ],
+          [
+            "transactionId",
+            "long",
+            "Unique transaction ID generated internally."
+          ],
+          [
+            "deliveryStatus",
+            "Enum",
+            "Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED."
+          ],
+          [
+            "billType",
+            "Enum",
+            "Type of transaction. Supported value:  regular for loyalty transactions. ‘RETURN’ for return transactions."
+          ],
+          [
+            "lineItemCount",
+            "Integer",
+            "Number of line-items in the transaction."
+          ],
+          [
+            "Discount",
+            "Double",
+            "Discount availed for the transaction (discount amount)."
+          ],
+          [
+            "grossAmount",
+            "Double",
+            "Transaction amount before discount."
+          ],
+          [
+            "currencyCode",
+            "String",
+            "ISO currency code that you want to update. For example EUR for Euro, SGD for the Singapore Dollar, CNY for China Yuan Renminbi, SAR Saudi Riyal. For more codes, see ISO currency codes."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        30,
+        302
+      ],
+      "raw": "```json Webhook payload\n{\n  \"eventId\": \"7a2716a8-9cc7-4beb-999a-a8f02ad9f02d\",\n  \"eventType\": \"transactionAdded\",\n  \"consumerGroupId\": null,\n  \"actionType\": \"STA RT\",\n  \"timeStamp\": 1683874800103,\n  \"attributes\": {\n    \"createdAt\": 1683874800089,\n    \"data\": {\n      \"amount\": 89000.0,\n      \"billNumber\": \"2_134577_12591538_487122\",\n      \"enteredAt\": 1683880160000,\n      \"transactionId\": 65658570,\n      \"billType\": \"REGULAR\",\n      \"lineItemCount\": 1,\n      \"discount\": 0.0,\n      \"currencyCode\": \"IDR\",\n      \"enteredBy\": {\n        \"id\": 200280487,\n        \"till\": {\n          \"code\": \"prod.shell.id.12591538.1\",\n          \"name \": \"prod.shell.id.12591538.1\"\n        },\n        \"store\": {\n          \"code\": \"prod.shell.id.12591538\",\n          \"name\": \"SHELL JABABEKA-1 BKS\",\n          \"externalId\": \"12591538\",\n          \"externalId1\": \"\",\n          \"externalId2\": \"\"\n        }\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 3122204,\n        \"loyaltyType\": \"loyalty\",\n        \"instore\": {\n          \"mobile\": \"6285692704128\"\n        },\n        \"web_engage\": {\n          \"accounts\": [\n            {\n              \"accountId\": \"~1341059d8\",\n              \"identifiers \": [\n                {\n                  \"identifierType\": \"cuid\",\n                  \"identifierValue\": \"6285692704128\"\n                },\n                {\n                  \"identifierType\": \"mobile\",\n                  \"identifierValue\": \"6285692704128\"\n                }\n              ]\n            }\n          ]\n        }\n      }\n    },\n    \"eventName\": \"transactionAdded\",\n    \"refId\": \"151195_65658570\",\n    \"apiRequestId\": \"e0c09ab511e9f942526944012967b5c4\",\n    \"orgId\": 151195\n  }\n}\n```\n```json Non webhook payload\n{\n  \"eventName\": \"transactionAdded\",\n  \"eventLogId\": 3081,\n  \"data\": {\n    \"discount\": 6772.288685115359,\n    \"billType\": \"ZYSRQ\",\n    \"deliveryStatus\": \"IOZVNVIQR\",\n    \"lineItemCount\": 4614,\n    \"enteredAt\": 3157,\n    \"outlierStatus\": \"QGCSDDX\",\n    \"customFields\": [\n      {\n        \"key\": \"QPFFCG\",\n        \"value\": \"FRBFFHGWTJ\"\n      }\n    ],\n    \"customerIdentifiers\": {\n      \"loyaltyType\": \"VCMFJZR\",\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"YNBBFEJMK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IDH\",\n                \"identifierValue\": \"NBEYPLZ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"lastName\": \"CWLYFGKJ\",\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZGHGULPXAH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"MVJRDNON\",\n                \"identifierValue\": \"NPSFV\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LRTCPG\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ENBP\",\n                \"identifierValue\": \"XAIQULDPR\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"MPLTQULXT\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"WEJHCMXT\",\n                \"identifierValue\": \"CVNZB\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"NFZIHRRN\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"NOV\",\n                \"identifierValue\": \"LLVAMSKG\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"XZONWZAKLN\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IWYTVV\",\n                \"identifierValue\": \"UYDQWCGS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"WEMAEFWC\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"XVZZ\",\n                \"identifierValue\": \"FGYPCXN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"MBQQ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"XGDHFSPKF\",\n                \"identifierValue\": \"DYSQU\"\n              }\n            ]\n          }\n        ]\n      },\n      \"customerId\": 8601,\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"NQNLD\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"BOO\",\n                \"identifierValue\": \"NEJXQDQ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZKK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZOONQJGOYB\",\n                \"identifierValue\": \"NEUQHDZ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"firstName\": \"NULQB\",\n      \"instore\": {\n        \"id\": 2550,\n        \"mobile\": \"VHDEKKZHX\",\n        \"email\": \"WTRF\",\n        \"externalId\": \"DFJ\",\n        \"cardnumber\": \"LYIFFZ\",\n        \"cardexternalid\": \"YKXVSX\",\n        \"cardNumbers\": [\n          \"WHTABZGI\"\n        ]\n      }\n    },\n    \"billClientId\": \"GRSSVQJVQJ\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"GFXNSUZCB\"\n      },\n      \"id\": 3346,\n      \"till\": {\n        \"code\": \"BDWUEVAAWD\",\n        \"name\": \"OWYAWDUGBS\"\n      },\n      \"store\": {\n        \"code\": \"FHNB\",\n        \"name\": \"YHNIDBF\",\n        \"externalId\": \"CVBJOTZK\",\n        \"externalId1\": \"PZINK\",\n        \"externalId2\": \"FXJOUFPDXJ\"\n      }\n    },\n    \"billNumber\": \"ZGXHRVH\",\n    \"extendedFields\": [\n      {\n        \"key\": \"SGPVPHAARG\",\n        \"value\": \"QMM\"\n      }\n    ],\n    \"billDate\": 624,\n    \"amount\": 5916.450492782085,\n    \"transactionId\": 7319,\n    \"grossAmount\": 4894.476461932411,\n    \"currencyCode\": \"GRANYLKL\"\n  },\n  \"refId\": \"WHLJCDMQK\",\n  \"loyaltyEventId\": \"LEPPRSWCS\",\n  \"apiRequestId\": \"JRY\",\n  \"eventId\": \"QGCE\",\n  \"createdAt\": 5319,\n  \"traceAttributes\": {\n    \"XVHKSK\": \"RFQQM\",\n    \"LGVL\": \"XRZEUSA\",\n    \"YMNACAU\": \"CMXNURQCR\",\n    \"DMFAUGNVX\": \"SQOMNPLR\"\n  },\n  \"orgId\": 4710\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Webhook payload",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Webhook payload",
+          "code": "{\n  \"eventId\": \"7a2716a8-9cc7-4beb-999a-a8f02ad9f02d\",\n  \"eventType\": \"transactionAdded\",\n  \"consumerGroupId\": null,\n  \"actionType\": \"STA RT\",\n  \"timeStamp\": 1683874800103,\n  \"attributes\": {\n    \"createdAt\": 1683874800089,\n    \"data\": {\n      \"amount\": 89000.0,\n      \"billNumber\": \"2_134577_12591538_487122\",\n      \"enteredAt\": 1683880160000,\n      \"transactionId\": 65658570,\n      \"billType\": \"REGULAR\",\n      \"lineItemCount\": 1,\n      \"discount\": 0.0,\n      \"currencyCode\": \"IDR\",\n      \"enteredBy\": {\n        \"id\": 200280487,\n        \"till\": {\n          \"code\": \"prod.shell.id.12591538.1\",\n          \"name \": \"prod.shell.id.12591538.1\"\n        },\n        \"store\": {\n          \"code\": \"prod.shell.id.12591538\",\n          \"name\": \"SHELL JABABEKA-1 BKS\",\n          \"externalId\": \"12591538\",\n          \"externalId1\": \"\",\n          \"externalId2\": \"\"\n        }\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 3122204,\n        \"loyaltyType\": \"loyalty\",\n        \"instore\": {\n          \"mobile\": \"6285692704128\"\n        },\n        \"web_engage\": {\n          \"accounts\": [\n            {\n              \"accountId\": \"~1341059d8\",\n              \"identifiers \": [\n                {\n                  \"identifierType\": \"cuid\",\n                  \"identifierValue\": \"6285692704128\"\n                },\n                {\n                  \"identifierType\": \"mobile\",\n                  \"identifierValue\": \"6285692704128\"\n                }\n              ]\n            }\n          ]\n        }\n      }\n    },\n    \"eventName\": \"transactionAdded\",\n    \"refId\": \"151195_65658570\",\n    \"apiRequestId\": \"e0c09ab511e9f942526944012967b5c4\",\n    \"orgId\": 151195\n  }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Non webhook payload",
+          "code": "{\n  \"eventName\": \"transactionAdded\",\n  \"eventLogId\": 3081,\n  \"data\": {\n    \"discount\": 6772.288685115359,\n    \"billType\": \"ZYSRQ\",\n    \"deliveryStatus\": \"IOZVNVIQR\",\n    \"lineItemCount\": 4614,\n    \"enteredAt\": 3157,\n    \"outlierStatus\": \"QGCSDDX\",\n    \"customFields\": [\n      {\n        \"key\": \"QPFFCG\",\n        \"value\": \"FRBFFHGWTJ\"\n      }\n    ],\n    \"customerIdentifiers\": {\n      \"loyaltyType\": \"VCMFJZR\",\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"YNBBFEJMK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IDH\",\n                \"identifierValue\": \"NBEYPLZ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"lastName\": \"CWLYFGKJ\",\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZGHGULPXAH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"MVJRDNON\",\n                \"identifierValue\": \"NPSFV\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LRTCPG\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ENBP\",\n                \"identifierValue\": \"XAIQULDPR\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"MPLTQULXT\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"WEJHCMXT\",\n                \"identifierValue\": \"CVNZB\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"NFZIHRRN\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"NOV\",\n                \"identifierValue\": \"LLVAMSKG\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"XZONWZAKLN\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IWYTVV\",\n                \"identifierValue\": \"UYDQWCGS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"WEMAEFWC\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"XVZZ\",\n                \"identifierValue\": \"FGYPCXN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"MBQQ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"XGDHFSPKF\",\n                \"identifierValue\": \"DYSQU\"\n              }\n            ]\n          }\n        ]\n      },\n      \"customerId\": 8601,\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"NQNLD\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"BOO\",\n                \"identifierValue\": \"NEJXQDQ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZKK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZOONQJGOYB\",\n                \"identifierValue\": \"NEUQHDZ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"firstName\": \"NULQB\",\n      \"instore\": {\n        \"id\": 2550,\n        \"mobile\": \"VHDEKKZHX\",\n        \"email\": \"WTRF\",\n        \"externalId\": \"DFJ\",\n        \"cardnumber\": \"LYIFFZ\",\n        \"cardexternalid\": \"YKXVSX\",\n        \"cardNumbers\": [\n          \"WHTABZGI\"\n        ]\n      }\n    },\n    \"billClientId\": \"GRSSVQJVQJ\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"GFXNSUZCB\"\n      },\n      \"id\": 3346,\n      \"till\": {\n        \"code\": \"BDWUEVAAWD\",\n        \"name\": \"OWYAWDUGBS\"\n      },\n      \"store\": {\n        \"code\": \"FHNB\",\n        \"name\": \"YHNIDBF\",\n        \"externalId\": \"CVBJOTZK\",\n        \"externalId1\": \"PZINK\",\n        \"externalId2\": \"FXJOUFPDXJ\"\n      }\n    },\n    \"billNumber\": \"ZGXHRVH\",\n    \"extendedFields\": [\n      {\n        \"key\": \"SGPVPHAARG\",\n        \"value\": \"QMM\"\n      }\n    ],\n    \"billDate\": 624,\n    \"amount\": 5916.450492782085,\n    \"transactionId\": 7319,\n    \"grossAmount\": 4894.476461932411,\n    \"currencyCode\": \"GRANYLKL\"\n  },\n  \"refId\": \"WHLJCDMQK\",\n  \"loyaltyEventId\": \"LEPPRSWCS\",\n  \"apiRequestId\": \"JRY\",\n  \"eventId\": \"QGCE\",\n  \"createdAt\": 5319,\n  \"traceAttributes\": {\n    \"XVHKSK\": \"RFQQM\",\n    \"LGVL\": \"XRZEUSA\",\n    \"YMNACAU\": \"CMXNURQCR\",\n    \"DMFAUGNVX\": \"SQOMNPLR\"\n  },\n  \"orgId\": 4710\n}"
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        304,
+        304
+      ],
+      "raw": "## Transaction Updated Event (transactionUpdated)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Updated Event (transactionUpdated)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        306,
+        306
+      ],
+      "raw": "Notifies when a transaction is updated. For example, a change to a line-item in a transaction.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when a transaction is updated. For example, a change to a line-item in a transaction.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        308,
+        322
+      ],
+      "raw": "| Parameter                                                                             | Datatype | Description                                                                                                                                                                                                                                                                          |\n| ------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| amount                                                                                | Double   | Net transaction amount.                                                                                                                                                                                                                                                              |\n| billClientId                                                                          | String   | Unique id of the bill as per the client (org) end.                                                                                                                                                                                                                                   |\n| billNumber                                                                            | String   | Unique transaction number. The uniqueness depends on the configuration.                                                                                                                                                                                                              |\n| enteredAt                                                                             | Long     | Date and time when the transaction was entered in Epoch time format.                                                                                                                                                                                                                 |\n| enteredBy                                                                             | obj      | Details of the store at which the transaction happened.                                                                                                                                                                                                                              |\n| transactionId                                                                         | long     | Unique transaction ID generated internally.                                                                                                                                                                                                                                          |\n| deliveryStatus                                                                        | Enum     | Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED.                                                                                                                                                                                                |\n| Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED. |          |                                                                                                                                                                                                                                                                                      |\n| billType                                                                              | Enum     | Type of transaction. Supported value:  regular for loyalty transactions. ‘RETURN’ for return transactions.                                                                                                                                                                           |\n| lineItemCount                                                                         | Integer  | Number of line-items in the transaction.                                                                                                                                                                                                                                             |\n| Discount                                                                              | Double   | Discount availed for the transaction (discount amount).                                                                                                                                                                                                                              |\n| grossAmount                                                                           | Double   | Transaction amount before discount.                                                                                                                                                                                                                                                  |\n| currencyCode                                                                          | String   | ISO currency code that you want to update. For example EUR for Euro, SGD for Singapore Dollar, CNY for China Yuan Renminbi, SAR Saudi Riyal. For more codes, see [ISO currency codes.](https://docs.1010data.com/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Datatype",
+          "Description"
+        ],
+        "rows": [
+          [
+            "amount",
+            "Double",
+            "Net transaction amount."
+          ],
+          [
+            "billClientId",
+            "String",
+            "Unique id of the bill as per the client (org) end."
+          ],
+          [
+            "billNumber",
+            "String",
+            "Unique transaction number. The uniqueness depends on the configuration."
+          ],
+          [
+            "enteredAt",
+            "Long",
+            "Date and time when the transaction was entered in Epoch time format."
+          ],
+          [
+            "enteredBy",
+            "obj",
+            "Details of the store at which the transaction happened."
+          ],
+          [
+            "transactionId",
+            "long",
+            "Unique transaction ID generated internally."
+          ],
+          [
+            "deliveryStatus",
+            "Enum",
+            "Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED."
+          ],
+          [
+            "Delivery status of the order. Value: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED.",
+            "",
+            ""
+          ],
+          [
+            "billType",
+            "Enum",
+            "Type of transaction. Supported value:  regular for loyalty transactions. ‘RETURN’ for return transactions."
+          ],
+          [
+            "lineItemCount",
+            "Integer",
+            "Number of line-items in the transaction."
+          ],
+          [
+            "Discount",
+            "Double",
+            "Discount availed for the transaction (discount amount)."
+          ],
+          [
+            "grossAmount",
+            "Double",
+            "Transaction amount before discount."
+          ],
+          [
+            "currencyCode",
+            "String",
+            "ISO currency code that you want to update. For example EUR for Euro, SGD for Singapore Dollar, CNY for China Yuan Renminbi, SAR Saudi Riyal. For more codes, see ISO currency codes."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        324,
+        569
+      ],
+      "raw": "```json Webhook payload\n{\n  \"eventId\": \"b9383037-89ce-43a9-9db1-99c5ac96e2b9\",\n  \"eventType\": \"transactionUpdated\",\n  \"consumerGroupId\": null,\n  \"actionType\": \"START\",\n  \"timeStamp\": 1683874807284,\n  \"attributes\": {\n    \"createdAt\": 1683874807271,\n    \"data\": {\n      \"amount\": 50.0,\n      \"enteredAt\": 1683883802000,\n      \"transactionId\": 65658586,\n      \"deliveryStatus\": \"DELIVERED\",\n      \"billType\": \"REGULAR\",\n      \"discount\": 0.0,\n      \"grossAmount\": 0.0,\n      \"enteredBy\": {\n        \"id\": 200315709\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 6675787,\n        \"instore\": {\n          \"mobile\": \"609110544825 \",\n          \"externalId\": \"6018840184080212\"\n        }\n      }\n    },\n    \"eventName\": \"transactionUpdated\",\n    \"refId\": \"151229_65658586\",\n    \"apiRequestId\": \"0cb47446178e9fa4d66b985087a0f6f5\",\n    \"orgId\": 151229\n  }\n}\n```\n```json Non webhook payload\n{\n  \"eventName\": \"transactionUpdated\",\n  \"eventLogId\": 1127,\n  \"data\": {\n    \"discount\": 9612.581950399224,\n    \"billType\": \"BGE\",\n    \"deliveryStatus\": \"NETXLE\",\n    \"lineItemCount\": 3767,\n    \"enteredAt\": 1538,\n    \"outlierStatus\": \"BGFVC\",\n    \"customFields\": [\n      {\n        \"key\": \"MEZS\",\n        \"value\": \"TWIS\"\n      }\n    ],\n    \"customerIdentifiers\": {\n      \"loyaltyType\": \"ZOCDL\",\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LZF\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"FNHPFPRUG\",\n                \"identifierValue\": \"PAK\"\n              }\n            ]\n          }\n        ]\n      },\n      \"lastName\": \"YJGKOIHD\",\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"UYWKNDRZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"JDXXUKUWR\",\n                \"identifierValue\": \"TFEHWUMC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"YUJDBPHXE\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"HIKN\",\n                \"identifierValue\": \"OOJILZX\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"OKIXZIHII\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"TFOLAH\",\n                \"identifierValue\": \"UKDEBZKTC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"KTZXRLOKH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"JGDMVMWQ\",\n                \"identifierValue\": \"HECEWSCC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"QRKNK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IPBXVFJUJ\",\n                \"identifierValue\": \"XKEHD\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LELYAXLHD\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"UWWAIIEFC\",\n                \"identifierValue\": \"MAVFAJYKHD\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"SXDVLUFSP\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"CAWGFBAW\",\n                \"identifierValue\": \"UXZZO\"\n              }\n            ]\n          }\n        ]\n      },\n      \"customerId\": 5081,\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"VYUQZMCJI\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GBXPK\",\n                \"identifierValue\": \"PEOHLH\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZPJ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GUPPHI\",\n                \"identifierValue\": \"ERYUSWS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"firstName\": \"ZZJ\",\n      \"instore\": {\n        \"id\": 426,\n        \"mobile\": \"TBBAE\",\n        \"email\": \"TCDAGZMLRS\",\n        \"externalId\": \"KPNVE\",\n        \"cardnumber\": \"DESQ\",\n        \"cardexternalid\": \"IFKJBWJXY\",\n        \"cardNumbers\": [\n          \"UPWVKEOCG\"\n        ]\n      }\n    },\n    \"billClientId\": \"XOKIUUF\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"VYBHMOCGCD\"\n      },\n      \"id\": 7681,\n      \"till\": {\n        \"code\": \"ZDV\",\n        \"name\": \"FFPZJX\"\n      },\n      \"store\": {\n        \"code\": \"BDQUOGFJ\",\n        \"name\": \"KNVICFMFL\",\n        \"externalId\": \"QWQL\",\n        \"externalId1\": \"GSJ\",\n        \"externalId2\": \"SVVWGX\"\n      }\n    },\n    \"billNumber\": \"QNYNEUWCA\",\n    \"extendedFields\": [\n      {\n        \"key\": \"WAF\",\n        \"value\": \"BIDSMDKD\"\n      }\n    ],\n    \"billDate\": 1834,\n    \"amount\": 597.6608711697584,\n    \"transactionId\": 6510,\n    \"grossAmount\": 8786.296895839632,\n    \"currencyCode\": \"QRZAKLF\"\n  },\n  \"refId\": \"HPAV\",\n  \"loyaltyEventId\": \"KIN\",\n  \"apiRequestId\": \"UZJ\",\n  \"eventId\": \"ZRRIA\",\n  \"createdAt\": 6648,\n  \"traceAttributes\": {\n    \"TDQ\": \"QKKSDN\",\n    \"TEXYXJYBC\": \"CQWC\",\n    \"VWXMRC\": \"VWL\",\n    \"TOEMFBSCZ\": \"DTTCATF\",\n    \"NGASPHMI\": \"RNUAEKY\",\n    \"XDADMPBE\": \"FTBH\"\n  },\n  \"orgId\": 8653\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Webhook payload",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "Webhook payload",
+          "code": "{\n  \"eventId\": \"b9383037-89ce-43a9-9db1-99c5ac96e2b9\",\n  \"eventType\": \"transactionUpdated\",\n  \"consumerGroupId\": null,\n  \"actionType\": \"START\",\n  \"timeStamp\": 1683874807284,\n  \"attributes\": {\n    \"createdAt\": 1683874807271,\n    \"data\": {\n      \"amount\": 50.0,\n      \"enteredAt\": 1683883802000,\n      \"transactionId\": 65658586,\n      \"deliveryStatus\": \"DELIVERED\",\n      \"billType\": \"REGULAR\",\n      \"discount\": 0.0,\n      \"grossAmount\": 0.0,\n      \"enteredBy\": {\n        \"id\": 200315709\n      },\n      \"customerIdentifiers\": {\n        \"customerId\": 6675787,\n        \"instore\": {\n          \"mobile\": \"609110544825 \",\n          \"externalId\": \"6018840184080212\"\n        }\n      }\n    },\n    \"eventName\": \"transactionUpdated\",\n    \"refId\": \"151229_65658586\",\n    \"apiRequestId\": \"0cb47446178e9fa4d66b985087a0f6f5\",\n    \"orgId\": 151229\n  }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Non webhook payload",
+          "code": "{\n  \"eventName\": \"transactionUpdated\",\n  \"eventLogId\": 1127,\n  \"data\": {\n    \"discount\": 9612.581950399224,\n    \"billType\": \"BGE\",\n    \"deliveryStatus\": \"NETXLE\",\n    \"lineItemCount\": 3767,\n    \"enteredAt\": 1538,\n    \"outlierStatus\": \"BGFVC\",\n    \"customFields\": [\n      {\n        \"key\": \"MEZS\",\n        \"value\": \"TWIS\"\n      }\n    ],\n    \"customerIdentifiers\": {\n      \"loyaltyType\": \"ZOCDL\",\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LZF\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"FNHPFPRUG\",\n                \"identifierValue\": \"PAK\"\n              }\n            ]\n          }\n        ]\n      },\n      \"lastName\": \"YJGKOIHD\",\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"UYWKNDRZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"JDXXUKUWR\",\n                \"identifierValue\": \"TFEHWUMC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"YUJDBPHXE\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"HIKN\",\n                \"identifierValue\": \"OOJILZX\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"OKIXZIHII\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"TFOLAH\",\n                \"identifierValue\": \"UKDEBZKTC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"KTZXRLOKH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"JGDMVMWQ\",\n                \"identifierValue\": \"HECEWSCC\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"QRKNK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"IPBXVFJUJ\",\n                \"identifierValue\": \"XKEHD\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"LELYAXLHD\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"UWWAIIEFC\",\n                \"identifierValue\": \"MAVFAJYKHD\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"SXDVLUFSP\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"CAWGFBAW\",\n                \"identifierValue\": \"UXZZO\"\n              }\n            ]\n          }\n        ]\n      },\n      \"customerId\": 5081,\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"VYUQZMCJI\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GBXPK\",\n                \"identifierValue\": \"PEOHLH\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZPJ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GUPPHI\",\n                \"identifierValue\": \"ERYUSWS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"firstName\": \"ZZJ\",\n      \"instore\": {\n        \"id\": 426,\n        \"mobile\": \"TBBAE\",\n        \"email\": \"TCDAGZMLRS\",\n        \"externalId\": \"KPNVE\",\n        \"cardnumber\": \"DESQ\",\n        \"cardexternalid\": \"IFKJBWJXY\",\n        \"cardNumbers\": [\n          \"UPWVKEOCG\"\n        ]\n      }\n    },\n    \"billClientId\": \"XOKIUUF\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"VYBHMOCGCD\"\n      },\n      \"id\": 7681,\n      \"till\": {\n        \"code\": \"ZDV\",\n        \"name\": \"FFPZJX\"\n      },\n      \"store\": {\n        \"code\": \"BDQUOGFJ\",\n        \"name\": \"KNVICFMFL\",\n        \"externalId\": \"QWQL\",\n        \"externalId1\": \"GSJ\",\n        \"externalId2\": \"SVVWGX\"\n      }\n    },\n    \"billNumber\": \"QNYNEUWCA\",\n    \"extendedFields\": [\n      {\n        \"key\": \"WAF\",\n        \"value\": \"BIDSMDKD\"\n      }\n    ],\n    \"billDate\": 1834,\n    \"amount\": 597.6608711697584,\n    \"transactionId\": 6510,\n    \"grossAmount\": 8786.296895839632,\n    \"currencyCode\": \"QRZAKLF\"\n  },\n  \"refId\": \"HPAV\",\n  \"loyaltyEventId\": \"KIN\",\n  \"apiRequestId\": \"UZJ\",\n  \"eventId\": \"ZRRIA\",\n  \"createdAt\": 6648,\n  \"traceAttributes\": {\n    \"TDQ\": \"QKKSDN\",\n    \"TEXYXJYBC\": \"CQWC\",\n    \"VWXMRC\": \"VWL\",\n    \"TOEMFBSCZ\": \"DTTCATF\",\n    \"NGASPHMI\": \"RNUAEKY\",\n    \"XDADMPBE\": \"FTBH\"\n  },\n  \"orgId\": 8653\n}"
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        571,
+        571
+      ],
+      "raw": "## Not-Interested Bill Added Event (notInterestedBillAdded)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Not-Interested Bill Added Event (notInterestedBillAdded)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        573,
+        573
+      ],
+      "raw": "Notifies when a non-loyalty transaction is made by a user. A non-loyalty or not-interested transaction refers to a purchase made by a user who is not interested in registering for the organisation's loyalty program.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when a non-loyalty transaction is made by a user. A non-loyalty or not-interested transaction refers to a purchase made by a user who is not interested in registering for the organisation's loyalty program.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        575,
+        782
+      ],
+      "raw": "```json Non webhook payload\n{\n  \"eventName\": \"notInterestedBillAdded\",\n  \"data\": {\n    \"amount\": 9511.0960402456,\n    \"billClientId\": \"MZIMAB\",\n    \"billNumber\": \"RGSMQ\",\n    \"billDate\": 1503,\n    \"enteredAt\": 1733,\n    \"transactionId\": 7378,\n    \"deliveryStatus\": \"DDRNZJM\",\n    \"billType\": \"ZNGPNUHI\",\n    \"lineItemCount\": 6252,\n    \"discount\": 5424.653652820183,\n    \"grossAmount\": 1025.554923312577,\n    \"currencyCode\": \"BYULP\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"MFTQNKS\"\n      },\n      \"id\": 7668,\n      \"till\": {\n        \"code\": \"PNJVSZF\",\n        \"name\": \"LWXKSK\"\n      },\n      \"store\": {\n        \"code\": \"EHO\",\n        \"name\": \"CWZJGRRFBP\",\n        \"externalId\": \"ULALNJPS\",\n        \"externalId1\": \"MYMCSLEBN\",\n        \"externalId2\": \"GZD\"\n      }\n    },\n    \"customerIdentifiers\": {\n      \"customerId\": 9191,\n      \"firstName\": \"AMXUQD\",\n      \"lastName\": \"FIIG\",\n      \"loyaltyType\": \"SZGSV\",\n      \"instore\": {\n        \"id\": 6296,\n        \"mobile\": \"MPERH\",\n        \"email\": \"NRDTCIPXRF\",\n        \"externalId\": \"AYCRFBIYDP\",\n        \"cardnumber\": \"XKWWFAHKYS\",\n        \"cardexternalid\": \"DIVQ\",\n        \"cardNumbers\": [\n          \"KDGWBPMNVI\"\n        ]\n      },\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ROL\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"RDCDIG\",\n                \"identifierValue\": \"RYCSJLLF\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"GNNBOIEH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"CNOBXSKXF\",\n                \"identifierValue\": \"FSSJ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"RATNLSNXZB\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"HUNGZBIXGC\",\n                \"identifierValue\": \"CYXGXRN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"WNTBGCPZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GJPHRFZD\",\n                \"identifierValue\": \"SYPRX\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"PENK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZFBXIOIP\",\n                \"identifierValue\": \"ZDVGEVGM\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"KFRNVWJ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GWPCHK\",\n                \"identifierValue\": \"LEZVBXPS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZBCPPDNCEE\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"SXQSLUJKR\",\n                \"identifierValue\": \"SOR\"\n              }\n            ]\n          }\n        ]\n      },\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"VVWU\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZQAQDU\",\n                \"identifierValue\": \"YZKB\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"TRTEMZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"KSAMFDO\",\n                \"identifierValue\": \"GBNYYKLN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"UOULQ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"MYVZHLDPZ\",\n                \"identifierValue\": \"CMJ\"\n              }\n            ]\n          }\n        ]\n      }\n    },\n    \"customFields\": [\n      {\n        \"key\": \"DRSOD\",\n        \"value\": \"FLBMAO\"\n      }\n    ],\n    \"extendedFields\": [\n      {\n        \"key\": \"ZLPRWB\",\n        \"value\": \"CCLW\"\n      }\n    ],\n    \"outlierStatus\": \"ULQMAHABTM\"\n  },\n  \"eventId\": \"ZLPVW\",\n  \"orgId\": 6590,\n  \"refId\": \"FJGZUWELJ\",\n  \"apiRequestId\": \"BSIYSAGPO\",\n  \"createdAt\": 8426,\n  \"loyaltyEventId\": \"HAHCUOJ\",\n  \"traceAttributes\": {\n    \"NNILCE\": \"AGLNT\",\n    \"TNHIFECFF\": \"ANPQHIP\",\n    \"YLKNQYS\": \"RJDV\",\n    \"TVFIRAJBS\": \"QGKKN\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Non webhook payload",
+        "code": "{\n  \"eventName\": \"notInterestedBillAdded\",\n  \"data\": {\n    \"amount\": 9511.0960402456,\n    \"billClientId\": \"MZIMAB\",\n    \"billNumber\": \"RGSMQ\",\n    \"billDate\": 1503,\n    \"enteredAt\": 1733,\n    \"transactionId\": 7378,\n    \"deliveryStatus\": \"DDRNZJM\",\n    \"billType\": \"ZNGPNUHI\",\n    \"lineItemCount\": 6252,\n    \"discount\": 5424.653652820183,\n    \"grossAmount\": 1025.554923312577,\n    \"currencyCode\": \"BYULP\",\n    \"enteredBy\": {\n      \"user\": {\n        \"username\": \"MFTQNKS\"\n      },\n      \"id\": 7668,\n      \"till\": {\n        \"code\": \"PNJVSZF\",\n        \"name\": \"LWXKSK\"\n      },\n      \"store\": {\n        \"code\": \"EHO\",\n        \"name\": \"CWZJGRRFBP\",\n        \"externalId\": \"ULALNJPS\",\n        \"externalId1\": \"MYMCSLEBN\",\n        \"externalId2\": \"GZD\"\n      }\n    },\n    \"customerIdentifiers\": {\n      \"customerId\": 9191,\n      \"firstName\": \"AMXUQD\",\n      \"lastName\": \"FIIG\",\n      \"loyaltyType\": \"SZGSV\",\n      \"instore\": {\n        \"id\": 6296,\n        \"mobile\": \"MPERH\",\n        \"email\": \"NRDTCIPXRF\",\n        \"externalId\": \"AYCRFBIYDP\",\n        \"cardnumber\": \"XKWWFAHKYS\",\n        \"cardexternalid\": \"DIVQ\",\n        \"cardNumbers\": [\n          \"KDGWBPMNVI\"\n        ]\n      },\n      \"facebook\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ROL\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"RDCDIG\",\n                \"identifierValue\": \"RYCSJLLF\"\n              }\n            ]\n          }\n        ]\n      },\n      \"web_engage\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"GNNBOIEH\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"CNOBXSKXF\",\n                \"identifierValue\": \"FSSJ\"\n              }\n            ]\n          }\n        ]\n      },\n      \"wechat\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"RATNLSNXZB\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"HUNGZBIXGC\",\n                \"identifierValue\": \"CYXGXRN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"martjack\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"WNTBGCPZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GJPHRFZD\",\n                \"identifierValue\": \"SYPRX\"\n              }\n            ]\n          }\n        ]\n      },\n      \"tmall\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"PENK\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZFBXIOIP\",\n                \"identifierValue\": \"ZDVGEVGM\"\n              }\n            ]\n          }\n        ]\n      },\n      \"toabao\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"KFRNVWJ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"GWPCHK\",\n                \"identifierValue\": \"LEZVBXPS\"\n              }\n            ]\n          }\n        ]\n      },\n      \"jd\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"ZBCPPDNCEE\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"SXQSLUJKR\",\n                \"identifierValue\": \"SOR\"\n              }\n            ]\n          }\n        ]\n      },\n      \"ecommerce\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"VVWU\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"ZQAQDU\",\n                \"identifierValue\": \"YZKB\"\n              }\n            ]\n          }\n        ]\n      },\n      \"website\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"TRTEMZ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"KSAMFDO\",\n                \"identifierValue\": \"GBNYYKLN\"\n              }\n            ]\n          }\n        ]\n      },\n      \"line\": {\n        \"accounts\": [\n          {\n            \"accountId\": \"UOULQ\",\n            \"identifiers\": [\n              {\n                \"identifierType\": \"MYVZHLDPZ\",\n                \"identifierValue\": \"CMJ\"\n              }\n            ]\n          }\n        ]\n      }\n    },\n    \"customFields\": [\n      {\n        \"key\": \"DRSOD\",\n        \"value\": \"FLBMAO\"\n      }\n    ],\n    \"extendedFields\": [\n      {\n        \"key\": \"ZLPRWB\",\n        \"value\": \"CCLW\"\n      }\n    ],\n    \"outlierStatus\": \"ULQMAHABTM\"\n  },\n  \"eventId\": \"ZLPVW\",\n  \"orgId\": 6590,\n  \"refId\": \"FJGZUWELJ\",\n  \"apiRequestId\": \"BSIYSAGPO\",\n  \"createdAt\": 8426,\n  \"loyaltyEventId\": \"HAHCUOJ\",\n  \"traceAttributes\": {\n    \"NNILCE\": \"AGLNT\",\n    \"TNHIFECFF\": \"ANPQHIP\",\n    \"YLKNQYS\": \"RJDV\",\n    \"TVFIRAJBS\": \"QGKKN\"\n  }\n}"
+      },
+      "text": "Non webhook payload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        784,
+        784
+      ],
+      "raw": "## Transaction Rejected Event (transactionRejected)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Transaction Rejected Event (transactionRejected)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        786,
+        786
+      ],
+      "raw": "Notifies when a transaction is rejected.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when a transaction is rejected.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        788,
+        824
+      ],
+      "raw": "```json Non webhook payload\n{\n    \"eventName\": \"transactionRejected\",\n    \"eventSearchKey\": \"data.customerIdentifiers.customerId\",\n    \"data\":\n    {\n        \"customerIdentifiers\":\n        {\n            \"customerId\": 343014824\n        },\n        \"eventDateTime\": \"2025-10-07 14:17:38\", //Being replaced by eventDateTimeInMillis\n        \"eventDateTimeInMillis\": 1759826858000, //Post timezone standardization\n        \"billNumber\": \"2025-10-07_4\",\n        \"rejectionType\": \"OPEN\",\n        \"rejectionDetails\": [{\n            \"rejectionReason\": \"656\",\n            \"reasonDetails\": \"unsupported custom enum value:own apps for extended field\"\n        }],\n        \"retrialCount\": 0,\n        \"triggeringActivity\":\n        {\n            \"name\": \"TransactionAdd\",\n            \"identifiers\": [],\n            \"entityInformation\":\n            {\n                \"entityType\": \"TILL\",\n                \"entityId\": 50788409\n            },\n            \"additionalAttributes\": []\n        }\n    },\n    \"orgId\": 50583,\n    \"refId\": \"50583-2025-10-07_4\",\n    \"apiRequestId\": \"8fac35ce72ff5ae1c27dd096b7b2573d\",\n    \"createdAt\": 1759826858994\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Non webhook payload",
+        "code": "{\n    \"eventName\": \"transactionRejected\",\n    \"eventSearchKey\": \"data.customerIdentifiers.customerId\",\n    \"data\":\n    {\n        \"customerIdentifiers\":\n        {\n            \"customerId\": 343014824\n        },\n        \"eventDateTime\": \"2025-10-07 14:17:38\", //Being replaced by eventDateTimeInMillis\n        \"eventDateTimeInMillis\": 1759826858000, //Post timezone standardization\n        \"billNumber\": \"2025-10-07_4\",\n        \"rejectionType\": \"OPEN\",\n        \"rejectionDetails\": [{\n            \"rejectionReason\": \"656\",\n            \"reasonDetails\": \"unsupported custom enum value:own apps for extended field\"\n        }],\n        \"retrialCount\": 0,\n        \"triggeringActivity\":\n        {\n            \"name\": \"TransactionAdd\",\n            \"identifiers\": [],\n            \"entityInformation\":\n            {\n                \"entityType\": \"TILL\",\n                \"entityId\": 50788409\n            },\n            \"additionalAttributes\": []\n        }\n    },\n    \"orgId\": 50583,\n    \"refId\": \"50583-2025-10-07_4\",\n    \"apiRequestId\": \"8fac35ce72ff5ae1c27dd096b7b2573d\",\n    \"createdAt\": 1759826858994\n}"
+      },
+      "text": "Non webhook payload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        826,
+        826
+      ],
+      "raw": "## Rejected Transaction Retrigger Event (rejectedTransactionRetrigger)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Rejected Transaction Retrigger Event (rejectedTransactionRetrigger)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        828,
+        828
+      ],
+      "raw": "Notifies when a rejected transaction is attempted again.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when a rejected transaction is attempted again.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        830,
+        867
+      ],
+      "raw": "```json Non webhook payload\n{\n    \"eventName\": \"rejectedTransactionRetrigger\",\n    \"eventSearchKey\": \"data.customerIdentifiers.customerId\",\n    \"data\":\n    {\n        \"customerIdentifiers\":\n        {\n            \"customerId\": 343014824\n        },\n        \"eventDateTime\": \"2025-10-07 14:17:38\", //Being replaced by eventDateTimeInMillis\n        \"eventDateTimeInMillis\": 1759826858000, //Post timezone standardization\n        \"billNumber\": \"2025-10-07_4\",\n        \"rejectionType\": \"FIXED\",\n        \"rejectionDetailsOnRetrigger\": [{\n            \"rejectionReason\": \"656\",\n            \"reasonDetails\": \"unsupported custom enum value:own apps for extended field\"\n        }],\n        \"retrialCount\": 0,\n        \"triggeringActivity\":\n        {\n            \"name\": \"transactionRejectionRetrigger\",\n            \"identifiers\": [],\n            \"entityInformation\":\n            {\n                \"entityType\": \"TILL\",\n                \"entityId\": 50788409\n            },\n            \"additionalAttributes\": []\n        },\n        \"retriggerId\": 1\n    },\n    \"orgId\": 50583,\n    \"refId\": \"50583-2025-10-07_4\",\n    \"apiRequestId\": \"7974d5d700d5e11e204506e0d0ec46a5\",\n    \"createdAt\": 1759831340439\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Non webhook payload",
+        "code": "{\n    \"eventName\": \"rejectedTransactionRetrigger\",\n    \"eventSearchKey\": \"data.customerIdentifiers.customerId\",\n    \"data\":\n    {\n        \"customerIdentifiers\":\n        {\n            \"customerId\": 343014824\n        },\n        \"eventDateTime\": \"2025-10-07 14:17:38\", //Being replaced by eventDateTimeInMillis\n        \"eventDateTimeInMillis\": 1759826858000, //Post timezone standardization\n        \"billNumber\": \"2025-10-07_4\",\n        \"rejectionType\": \"FIXED\",\n        \"rejectionDetailsOnRetrigger\": [{\n            \"rejectionReason\": \"656\",\n            \"reasonDetails\": \"unsupported custom enum value:own apps for extended field\"\n        }],\n        \"retrialCount\": 0,\n        \"triggeringActivity\":\n        {\n            \"name\": \"transactionRejectionRetrigger\",\n            \"identifiers\": [],\n            \"entityInformation\":\n            {\n                \"entityType\": \"TILL\",\n                \"entityId\": 50788409\n            },\n            \"additionalAttributes\": []\n        },\n        \"retriggerId\": 1\n    },\n    \"orgId\": 50583,\n    \"refId\": \"50583-2025-10-07_4\",\n    \"apiRequestId\": \"7974d5d700d5e11e204506e0d0ec46a5\",\n    \"createdAt\": 1759831340439\n}"
+      },
+      "text": "Non webhook payload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        869,
+        869
+      ],
+      "raw": "## Retro Bill Added Event (retroBillAdded)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Retro Bill Added Event (retroBillAdded)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        871,
+        871
+      ],
+      "raw": "Notifies when an older transaction is added against the user.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Notifies when an older transaction is added against the user.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        873,
+        1079
+      ],
+      "raw": "```json Non webhook payload\n{\n        \"eventName\": \"retroBillAdded\",\n        \"data\": {\n            \"amount\": 246.66453103260665,\n            \"billClientId\": \"EFJNGO\",\n            \"billNumber\": \"XADYJHTNZ\",\n            \"billDate\": 1157,\n            \"enteredAt\": 3765,\n            \"transactionId\": 5650,\n            \"deliveryStatus\": \"BLQMATBU\",\n            \"billType\": \"GMV\",\n            \"lineItemCount\": 8791,\n            \"discount\": 8154.318560422623,\n            \"grossAmount\": 8109.952753195439,\n            \"currencyCode\": \"YBND\",\n            \"enteredBy\": {\n                \"user\": {\n                    \"username\": \"PDBLNVJOMJ\"\n                },\n                \"id\": 8822,\n                \"till\": {\n                    \"code\": \"PYSIVN\",\n                    \"name\": \"XLSCOHGLQX\"\n                },\n                \"store\": {\n                    \"code\": \"PSHIA\",\n                    \"name\": \"GBJIQ\",\n                    \"externalId\": \"IPHXYWR\",\n                    \"externalId1\": \"YXAV\",\n                    \"externalId2\": \"GVYYMAF\"\n                }\n            },\n            \"customerIdentifiers\": {\n                \"customerId\": 7264,\n                \"firstName\": \"PVKZNFPPTL\",\n                \"lastName\": \"TCJHTJY\",\n                \"loyaltyType\": \"ZBLKXAQ\",\n                \"instore\": {\n                    \"id\": 2582,\n                    \"mobile\": \"ROFWZ\",\n                    \"email\": \"VTPP\",\n                    \"externalId\": \"USDYHBYUG\",\n                    \"cardnumber\": \"IVWBJFA\",\n                    \"cardexternalid\": \"TVQVR\",\n                    \"cardNumbers\": [\n                        \"VATLAPHTK\"\n                    ]\n                },\n                \"facebook\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"MHHRRNJ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"TWFDWZGJ\",\n                                    \"identifierValue\": \"QCXFAKBG\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"web_engage\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"KNJBNFL\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"PUNLANYWWF\",\n                                    \"identifierValue\": \"JDCP\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"wechat\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"ZEHSPZISU\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"GQBXBW\",\n                                    \"identifierValue\": \"WBWEEGISH\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"martjack\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"CXTIKNECEZ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"SUTZDRYYTL\",\n                                    \"identifierValue\": \"QMTIN\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"tmall\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"WHWJ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"DOUSHFNSI\",\n                                    \"identifierValue\": \"XEL\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"toabao\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"IVHIFFM\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"VANKJHXR\",\n                                    \"identifierValue\": \"UIZRV\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"jd\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"BSFKRKK\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"WMZPVYCLNS\",\n                                    \"identifierValue\": \"VOJ\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"ecommerce\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"JUXCZQI\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"WJGCEWGRD\",\n                                    \"identifierValue\": \"UCMPSQ\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"website\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"TMUQQK\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"ITMASKHY\",\n                                    \"identifierValue\": \"YGTPVBCNCW\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"line\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"CYQNJXF\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"RKMW\",\n                                    \"identifierValue\": \"AFXL\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            },\n            \"customFields\": [\n                {\n                    \"key\": \"CURI\",\n                    \"value\": \"BSSCEBNI\"\n                }\n            ],\n            \"extendedFields\": [\n                {\n                    \"key\": \"ZEEJJXW\",\n                    \"value\": \"XSP\"\n                }\n            ],\n            \"outlierStatus\": \"WJLRMBFI\"\n        },\n        \"eventId\": \"SZGDD\",\n        \"orgId\": 708,\n        \"refId\": \"GABCYPOGH\",\n        \"apiRequestId\": \"JSNJHDS\",\n        \"createdAt\": 2888,\n        \"loyaltyEventId\": \"PZNF\",\n        \"traceAttributes\": {\n            \"DEH\": \"HEPGWRPKG\",\n            \"SUUMEX\": \"YBNSTCBE\",\n            \"AXSIBTZFR\": \"DLYRHXGN\"\n        }\n    }\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Non webhook payload",
+        "code": "{\n        \"eventName\": \"retroBillAdded\",\n        \"data\": {\n            \"amount\": 246.66453103260665,\n            \"billClientId\": \"EFJNGO\",\n            \"billNumber\": \"XADYJHTNZ\",\n            \"billDate\": 1157,\n            \"enteredAt\": 3765,\n            \"transactionId\": 5650,\n            \"deliveryStatus\": \"BLQMATBU\",\n            \"billType\": \"GMV\",\n            \"lineItemCount\": 8791,\n            \"discount\": 8154.318560422623,\n            \"grossAmount\": 8109.952753195439,\n            \"currencyCode\": \"YBND\",\n            \"enteredBy\": {\n                \"user\": {\n                    \"username\": \"PDBLNVJOMJ\"\n                },\n                \"id\": 8822,\n                \"till\": {\n                    \"code\": \"PYSIVN\",\n                    \"name\": \"XLSCOHGLQX\"\n                },\n                \"store\": {\n                    \"code\": \"PSHIA\",\n                    \"name\": \"GBJIQ\",\n                    \"externalId\": \"IPHXYWR\",\n                    \"externalId1\": \"YXAV\",\n                    \"externalId2\": \"GVYYMAF\"\n                }\n            },\n            \"customerIdentifiers\": {\n                \"customerId\": 7264,\n                \"firstName\": \"PVKZNFPPTL\",\n                \"lastName\": \"TCJHTJY\",\n                \"loyaltyType\": \"ZBLKXAQ\",\n                \"instore\": {\n                    \"id\": 2582,\n                    \"mobile\": \"ROFWZ\",\n                    \"email\": \"VTPP\",\n                    \"externalId\": \"USDYHBYUG\",\n                    \"cardnumber\": \"IVWBJFA\",\n                    \"cardexternalid\": \"TVQVR\",\n                    \"cardNumbers\": [\n                        \"VATLAPHTK\"\n                    ]\n                },\n                \"facebook\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"MHHRRNJ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"TWFDWZGJ\",\n                                    \"identifierValue\": \"QCXFAKBG\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"web_engage\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"KNJBNFL\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"PUNLANYWWF\",\n                                    \"identifierValue\": \"JDCP\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"wechat\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"ZEHSPZISU\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"GQBXBW\",\n                                    \"identifierValue\": \"WBWEEGISH\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"martjack\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"CXTIKNECEZ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"SUTZDRYYTL\",\n                                    \"identifierValue\": \"QMTIN\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"tmall\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"WHWJ\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"DOUSHFNSI\",\n                                    \"identifierValue\": \"XEL\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"toabao\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"IVHIFFM\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"VANKJHXR\",\n                                    \"identifierValue\": \"UIZRV\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"jd\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"BSFKRKK\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"WMZPVYCLNS\",\n                                    \"identifierValue\": \"VOJ\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"ecommerce\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"JUXCZQI\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"WJGCEWGRD\",\n                                    \"identifierValue\": \"UCMPSQ\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"website\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"TMUQQK\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"ITMASKHY\",\n                                    \"identifierValue\": \"YGTPVBCNCW\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                \"line\": {\n                    \"accounts\": [\n                        {\n                            \"accountId\": \"CYQNJXF\",\n                            \"identifiers\": [\n                                {\n                                    \"identifierType\": \"RKMW\",\n                                    \"identifierValue\": \"AFXL\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            },\n            \"customFields\": [\n                {\n                    \"key\": \"CURI\",\n                    \"value\": \"BSSCEBNI\"\n                }\n            ],\n            \"extendedFields\": [\n                {\n                    \"key\": \"ZEEJJXW\",\n                    \"value\": \"XSP\"\n                }\n            ],\n            \"outlierStatus\": \"WJLRMBFI\"\n        },\n        \"eventId\": \"SZGDD\",\n        \"orgId\": 708,\n        \"refId\": \"GABCYPOGH\",\n        \"apiRequestId\": \"JSNJHDS\",\n        \"createdAt\": 2888,\n        \"loyaltyEventId\": \"PZNF\",\n        \"traceAttributes\": {\n            \"DEH\": \"HEPGWRPKG\",\n            \"SUUMEX\": \"YBNSTCBE\",\n            \"AXSIBTZFR\": \"DLYRHXGN\"\n        }\n    }"
+      },
+      "text": "Non webhook payload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

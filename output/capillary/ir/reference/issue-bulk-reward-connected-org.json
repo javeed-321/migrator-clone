@@ -1,0 +1,983 @@
+{
+  "slug": "reference/issue-bulk-reward-connected-org",
+  "source": "https://docs.capillarytech.com/reference/issue-bulk-reward-connected-org.md",
+  "url": "https://docs.capillarytech.com/reference/issue-bulk-reward-connected-org",
+  "title": "Issue Bulk Reward Connected Org",
+  "description": "",
+  "section": "Connected-Org APIs",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-02T18:34:44.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 3,
+    "list": 2,
+    "Callout": 4,
+    "Table": 5,
+    "br": 2,
+    "code": 2,
+    "CodeTabs": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Issue Reward in connected orgs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Issue Reward in connected orgs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API is used to issue single or multiple rewards to the user based on mobile number email Id.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API is used to issue single or multiple rewards to the user based on mobile number email Id.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "While issuing bulk rewards,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "While issuing bulk rewards,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        18
+      ],
+      "raw": "1. The intouch points required to purchase the rewards are summed up and isRedeemable call checks if the customer has enough points or not.\n   1. If the customer has enough points, then all the rewards in the issue bulk call are issued in a single shot\n   2. If the customer doesn't have enough points, then the issue bulk call is failed and no reward is issued.\n2. If the isRedeemable call is successful, then the system will issue the rewards to the user.\n\n   1. Let's say, one reward is coupon, another is cart promotion in the request payload. Coupon is issued but cart promotion issual failed, this can happen and the coupon will be issued. Here in this case, partial issual will be successful.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The intouch points required to purchase the rewards are summed up and isRedeemable call checks if the customer has enough points or not.If the customer has enough points, then all the rewards in the issue bulk call are issued in a single shotIf the customer doesn't have enough points, then the issue bulk call is failed and no reward is issued.If the isRedeemable call is successful, then the system will issue the rewards to the user.Let's say, one reward is coupon, another is cart promotion in the request payload. Coupon is issued but cart promotion issual failed, this can happen and the coupon will be issued. Here in this case, partial issual will be successful.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        20,
+        22
+      ],
+      "raw": "> ❗️ Issuing a reward created for a customer segment\n>\n> If you want to issue a reward created for a specific customer segment, the user receiving the reward must belong to the segment or partition to which the reward is attached.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "Issuing a reward created for a customer segmentIf you want to issue a reward created for a specific customer segment, the user receiving the reward must belong to the segment or partition to which the reward is attached.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        24,
+        33
+      ],
+      "raw": "> 👍 Note\n>\n> * For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .\n> * If either of the user\\_group2\\_primary\\_user\\_id or user\\_group2\\_id or user\\_group2\\_external\\_id is not null, the transaction will be treated as group loyalty redemption and GROUP\\_LOYALTY\\_REDEMPTION will be set to true for transaction\n> * Rewards can be issued to a customer:\n>   1. If they are linked to any cards or labels associated with the customer. The status for the cards and labels need to be **ACTIVE** as well here.\n>   2. If they have no cards or labels linked.\n> * The Rewards system (Marvel/Rewards Catalogue)  only deducts points from the customer if the vendor reward issue is successful. As a result, the need to reverse redeemed points does not arise, as points are deducted only upon a confirmed successful reward issue. The success of the vendor reward issue is determined based on the following configuration criteria:\n>   1. \\*\\*HTTP Status Code:\\*\\*The API response must return a status code of 200.\n>   2. \\*\\*Context Map Validation:\\*\\*The context map in the vendor redemption configuration must include a keyword \"voucher\". The \"voucher\" must have a valid value, such as a coupon code or reference ID.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .If either of the user_group2_primary_user_id or user_group2_id or user_group2_external_id is not null, the transaction will be treated as group loyalty redemption and GROUP_LOYALTY_REDEMPTION will be set to true for transactionRewards can be issued to a customer:If they are linked to any cards or labels associated with the customer. The status for the cards and labels need to be ACTIVE as well here.If they have no cards or labels linked.The Rewards system (Marvel/Rewards Catalogue)  only deducts points from the customer if the vendor reward issue is successful. As a result, the need to reverse redeemed points does not arise, as points are deducted only upon a confirmed successful reward issue. The success of the vendor reward issue is determined based on the following configuration criteria:**HTTP Status Code:**The API response must return a status code of 200.**Context Map Validation:**The context map in the vendor redemption configuration must include a keyword \"voucher\". The \"voucher\" must have a valid value, such as a coupon code or reference ID.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 26
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        35,
+        39
+      ],
+      "raw": "> 🚧 **Warning**\n>\n> **Warning**\n>\n> Use this API exclusively for connected orgs. For other orgs, use this [API](https://docs.capillarytech.com/reference/get-rewards-for-user) instead.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "WarningWarningUse this API exclusively for connected orgs. For other orgs, use this API instead.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-rewards-for-user",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        43,
+        44
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authenticationDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        48,
+        54
+      ],
+      "raw": "|                        |                                                                     |\n| :--------------------- | :------------------------------------------------------------------ |\n| URI                    | /v1.1/user/rewards/issue?username=`\\{till\\}`\\&skip\\_validation=true |\n| HTTP Method            | POST                                                                |\n| Pagination             | No                                                                  |\n| Batch support          | No                                                                  |\n| Rate limit information | None                                                                |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/v1.1/user/rewards/issue?username=\\{till\\}&skip_validation=true"
+          ],
+          [
+            "HTTP Method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "No"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue?username=tillID&skip_validation=true`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue?username=tillID&skip_validation=true",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "# Headers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Headers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        62,
+        100
+      ],
+      "raw": "<Table>\n  <thead>\n    <tr>\n      <th>\n        Header\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        DATA-SCOPE-ORG\n      </td>\n\n      <td>\n        List of Organization IDs\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        DATA-SCOPE\n      </td>\n\n      <td>\n        Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization.\n\n        Supported headers: `SELF` and  `OTHER`\n\n        Refer to connected orgs [data scopes](https://docs.capillarytech.com/reference/connected-orgs-data-scopes)   for more information. |\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {},
+      "table": {
+        "header": [
+          "Header",
+          "Description"
+        ],
+        "rows": [
+          [
+            "DATA-SCOPE-ORG",
+            "List of Organization IDs"
+          ],
+          [
+            "DATA-SCOPE",
+            "Scopes define what data can be accessed using the API. You can use scopes to control access to data from a parent or child organization. Defining a scope ensures that the response contains only data from the respective organization.Supported headers: SELF and  OTHERRefer to connected orgs data scopes   for more information. |"
+          ]
+        ],
+        "align": [],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/connected-orgs-data-scopes",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "# Request query parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request query parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        104,
+        107
+      ],
+      "raw": "| Parameter        | Data Type | Description                                                                                                                                             |\n| ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| username\\*       | String    | Username name of the store.                                                                                                                             |\n| skip\\_validation | Boolean   | A validation code is used to redeem points for the transaction. `skip_validation` is set to true as brands configured in Marvel bypass validation code. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "username*",
+            "String",
+            "Username name of the store."
+          ],
+          [
+            "skip_validation",
+            "Boolean",
+            "A validation code is used to redeem points for the transaction. skip_validation is set to true as brands configured in Marvel bypass validation code."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        111,
+        383
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Parameter\n      </th>\n\n      <th>\n        Data Type\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **`mobile*`**\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        The customer's mobile phone number. Any one of the identifiers (`mobile`, `email`, or `externalId`) is mandatory.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `email`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        The customer's email ID. Any one of the identifiers (`mobile`, `email`, or `externalId`) is mandatory.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `externalId`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        The customer's external ID. Any one of the identifiers (`mobile`, `email`, or `externalId`) is mandatory.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `transactionNumber`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        A unique identifier for the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `notes`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        A string used to store or represent additional information.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **`quantity*`**\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        The quantity of the specified reward. This is applicable only for rewards with `CONV_RATIO` payment configuration and must be greater than one. For more information and various examples, refer to the documentation [here](https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios).\n        **Note:** If the quantity is entered with decimals (e.g., 1.56), the system will disregard the decimal part, treating the value as 1.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `eventLogId`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        A plain string identifier used to identify the transaction associated with a reward issuance. There is no character limit for this parameter.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `rewards`\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        An array of rewards associated with the transaction.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `rewardId`\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        A unique identifier for a reward.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `params`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        `params` acts as a key that holds additional information or configuration details as a JSON object.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `paymentConfig`\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        Payment configuration details for the reward.\n        **Note:** The payment config ID is mandatory if rewards are created with a payment configuration block. This applies when multiple payment configurations are defined for a single reward. It is not recommended to use `Payment Config` for a single payment configuration, as it will disrupt the flow when rewards need to be issued from loyalty workflows, loyalty promotions, journeys, or campaigns.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `id`\n      </td>\n\n      <td>\n        Integer\n      </td>\n\n      <td>\n        A unique identifier for the payment configuration. (The ID can be obtained from this [API](https://docs.capillarytech.com/reference/get-brand-by-id)).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `customFields`\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        A list of custom fields associated with the reward issued to the customer. A custom field allows you to add extra information related to the reward. You can add the custom field in the issue reward call once the custom field is created using the [create custom field API](https://docs.capillarytech.com/reference/post-create-custom-field).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `fulfillmentDetails`\n      </td>\n\n      <td>\n        Object\n      </td>\n\n      <td>\n        A list of fulfillment details associated with the reward. There can be multiple stages a reward undergoes, such as `BOOKED`, `ON THE WAY`, or `DELIVERED`. \\<br>\\<br>For example, a brand can have a fulfillment status as `Reward SHIPPED` before delivering the reward to the customer. You can create a fulfillment status using the [Create fulfillment status API](https://docs.capillarytech.com/reference/create-fulfillment-status) and use it in the issue reward call.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `requestId`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        A plain string identifier for the request that initiated this reward issuance attempt. Each request ID must be unique for each reward. This is used for [Idempotency check](https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward). There is no character limit for this parameter.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `user_group2_primary_user_id`\n      </td>\n\n      <td>\n        String\n      </td>\n\n      <td>\n        The unique user ID of the primary member of the group associated with the rewards to be issued. Customer ID (`user_group2_id`), User ID (`user_group2_primary_user_id`), or External ID (`user_group2_external_id`) can be used (any one of these three). If any one of these is null, the transaction won't be considered a Group Loyalty Redemption.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `orgLevelDetails`\n      </td>\n\n      <td>\n        Array\n      </td>\n\n      <td>\n        Contains a list of organization IDs related to the rewards. All fields like `orgId`, `params`, `notes`, `userGroup2PrimaryUserId`, and `userGroup2Id` need to be passed in `orgLevelDetails`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        `orgId`\n      </td>\n\n      <td>\n        List\n      </td>\n\n      <td>\n        The organization ID of the reward from which it was created.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "mobile*",
+            "Integer",
+            "The customer's mobile phone number. Any one of the identifiers (mobile, email, or externalId) is mandatory."
+          ],
+          [
+            "email",
+            "String",
+            "The customer's email ID. Any one of the identifiers (mobile, email, or externalId) is mandatory."
+          ],
+          [
+            "externalId",
+            "String",
+            "The customer's external ID. Any one of the identifiers (mobile, email, or externalId) is mandatory."
+          ],
+          [
+            "transactionNumber",
+            "String",
+            "A unique identifier for the transaction."
+          ],
+          [
+            "notes",
+            "String",
+            "A string used to store or represent additional information."
+          ],
+          [
+            "quantity*",
+            "Integer",
+            "The quantity of the specified reward. This is applicable only for rewards with CONV_RATIO payment configuration and must be greater than one. For more information and various examples, refer to the documentation here.\nNote: If the quantity is entered with decimals (e.g., 1.56), the system will disregard the decimal part, treating the value as 1."
+          ],
+          [
+            "eventLogId",
+            "String",
+            "A plain string identifier used to identify the transaction associated with a reward issuance. There is no character limit for this parameter."
+          ],
+          [
+            "rewards",
+            "Array",
+            "An array of rewards associated with the transaction."
+          ],
+          [
+            "rewardId",
+            "Integer",
+            "A unique identifier for a reward."
+          ],
+          [
+            "params",
+            "String",
+            "params acts as a key that holds additional information or configuration details as a JSON object."
+          ],
+          [
+            "paymentConfig",
+            "Object",
+            "Payment configuration details for the reward.\nNote: The payment config ID is mandatory if rewards are created with a payment configuration block. This applies when multiple payment configurations are defined for a single reward. It is not recommended to use Payment Config for a single payment configuration, as it will disrupt the flow when rewards need to be issued from loyalty workflows, loyalty promotions, journeys, or campaigns."
+          ],
+          [
+            "id",
+            "Integer",
+            "A unique identifier for the payment configuration. (The ID can be obtained from this API)."
+          ],
+          [
+            "customFields",
+            "Object",
+            "A list of custom fields associated with the reward issued to the customer. A custom field allows you to add extra information related to the reward. You can add the custom field in the issue reward call once the custom field is created using the create custom field API."
+          ],
+          [
+            "fulfillmentDetails",
+            "Object",
+            "A list of fulfillment details associated with the reward. There can be multiple stages a reward undergoes, such as BOOKED, ON THE WAY, or DELIVERED. <br><br>For example, a brand can have a fulfillment status as Reward SHIPPED before delivering the reward to the customer. You can create a fulfillment status using the Create fulfillment status API and use it in the issue reward call."
+          ],
+          [
+            "requestId",
+            "String",
+            "A plain string identifier for the request that initiated this reward issuance attempt. Each request ID must be unique for each reward. This is used for Idempotency check. There is no character limit for this parameter."
+          ],
+          [
+            "user_group2_primary_user_id",
+            "String",
+            "The unique user ID of the primary member of the group associated with the rewards to be issued. Customer ID (user_group2_id), User ID (user_group2_primary_user_id), or External ID (user_group2_external_id) can be used (any one of these three). If any one of these is null, the transaction won't be considered a Group Loyalty Redemption."
+          ],
+          [
+            "orgLevelDetails",
+            "Array",
+            "Contains a list of organization IDs related to the rewards. All fields like orgId, params, notes, userGroup2PrimaryUserId, and userGroup2Id need to be passed in orgLevelDetails."
+          ],
+          [
+            "orgId",
+            "List",
+            "The organization ID of the reward from which it was created."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 323
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 323
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 323
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 323
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/reward-issuance-with-quantity-and-calculation-scenarios",
+          "line": 209
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-brand-by-id",
+          "line": 295
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/post-create-custom-field",
+          "line": 309
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-fulfillment-status",
+          "line": 323
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/idempotency-check-for-issuing-reward",
+          "line": 337
+        }
+      ],
+      "notes": [
+        "escaped \\<br> renders as literal text",
+        "unclosed <br> is invalid MDX"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        385,
+        385
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 385
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        387,
+        408
+      ],
+      "raw": "```json Request Body\n{\n    \"brand\": \"O2Brand\",\n    \"transactionNumber\": \"123456789\",\n    \"orgLevelDetails\": [\n        {\n            \"orgId\": 4000876\n        }\n    ],\n    \"rewards\": [\n        {\n            \"rewardId\": 350,\n            \"quantity\": 1,\n            \"orgId\": 4000876,\n            \"paymentConfig\": {\n                \"redemptionValue\": 1\n            }\n        }\n    ],\n    \"externalId\": \"ext_id98543198\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Request Body",
+        "code": "{\n    \"brand\": \"O2Brand\",\n    \"transactionNumber\": \"123456789\",\n    \"orgLevelDetails\": [\n        {\n            \"orgId\": 4000876\n        }\n    ],\n    \"rewards\": [\n        {\n            \"rewardId\": 350,\n            \"quantity\": 1,\n            \"orgId\": 4000876,\n            \"paymentConfig\": {\n                \"redemptionValue\": 1\n            }\n        }\n    ],\n    \"externalId\": \"ext_id98543198\"\n}"
+      },
+      "text": "Request Body",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        410,
+        410
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        412,
+        414
+      ],
+      "raw": "> ⚠️ **Important**\n>\n> The API does not allow multiple reward issuance requests for the same customer at the same time. If you send parallel requests for the same customer, the API returns error code `10004` with the message 'Parallel calls are not allowed for same customer'. Wait for the first request to complete before sending another for the same customer.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "⚠️"
+      },
+      "text": "ImportantThe API does not allow multiple reward issuance requests for the same customer at the same time. If you send parallel requests for the same customer, the API returns error code 10004 with the message 'Parallel calls are not allowed for same customer'. Wait for the first request to complete before sending another for the same customer.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        416,
+        449
+      ],
+      "raw": "| Parameter               | Description                                                                                                                                                                                                                                                                                                                                 |\n| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| status                  | Represents the overall status of the reward issuance request.                                                                                                                                                                                                                                                                               |\n| success                 | Indicates if the overall operation was successful or not.                                                                                                                                                                                                                                                                                   |\n| code                    | A unique code representing the overall status of the operation.                                                                                                                                                                                                                                                                             |\n| message                 | A message providing additional information about the status of the operation.                                                                                                                                                                                                                                                               |\n| rewards                 | A list of individual reward issuance results.                                                                                                                                                                                                                                                                                               |\n| status                  | Represents the status of an individual reward issuance attempt.                                                                                                                                                                                                                                                                             |\n| success                 | Indicates if the reward issuance for this specific reward was successful or not.                                                                                                                                                                                                                                                            |\n| code                    | A unique code representing the status of this reward issuance attempt.                                                                                                                                                                                                                                                                      |\n| message                 | A message providing more details about the status of this reward issuance attempt.                                                                                                                                                                                                                                                          |\n| orgID                   | Organisation ID of the reward where it was issued.                                                                                                                                                                                                                                                                                          |\n| transactionId           | A unique identifier for the transaction associated with this reward issuance attempt.                                                                                                                                                                                                                                                       |\n| rewardId                | A unique identifier for the reward that was attempted to be issued.                                                                                                                                                                                                                                                                         |\n| requestedQuantity       | The Requested Quantity is the original number of items you asked for when making a reward request. Even if this number is later changed, for example, reduced from two to one, the Requested Quantity will still show the number you originally requested, which in this case is two.                                                       |\n| quantity                | The number of rewards that were successfully issued in this transaction.                                                                                                                                                                                                                                                                    |\n| pointsReferenceId       | A unique identifier generated each time rewards are issued. This field stores identifier, allowing you to track points redemption transaction.                                                                                                                                                                                              |\n| pointsReferenceIds      | A unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions.                                                                                                                                                                   |\n| eventLogId              | A plain string identifier used to identify the transaction associated with a reward issual.                                                                                                                                                                                                                                                 |\n| requestId               | A unique identifier for the request that is used for Idempotency check.                                                                                                                                                                                                                                                                     |\n| intouch                 | Details of the rewards issued, including points redeemed, coupon codes, and expiration dates.                                                                                                                                                                                                                                               |\n| pointsRedeemed          | The number of points that were redeemed for this reward.                                                                                                                                                                                                                                                                                    |\n| pointsRedeemedInDecimal | The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF\\_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards. |\n| couponCode              | The unique code for the issued coupon.                                                                                                                                                                                                                                                                                                      |\n| codeExpiry              | The expiration date and time for the issued coupon code in the format YYYY-MM-DD HH:MM:SS.                                                                                                                                                                                                                                                  |\n| promotions              | A list of promotional offers associated with the reward.                                                                                                                                                                                                                                                                                    |\n| vendor                  | Vendor-related details associated with the reward issuance.                                                                                                                                                                                                                                                                                 |\n| restrictions            | Restrictions or limitations that apply to the reward.                                                                                                                                                                                                                                                                                       |\n| paymentConfig           | Payment configuration details related to the reward.                                                                                                                                                                                                                                                                                        |\n| fulfillmentDetails      | Fulfillment-related information for the reward.                                                                                                                                                                                                                                                                                             |\n| customFields            | Custom fields defined for the reward.                                                                                                                                                                                                                                                                                                       |\n| redemptionDetails       | Redemption-specific details associated with the reward.                                                                                                                                                                                                                                                                                     |\n| redemptionType          | Specifies the category of reward redemption available, that indicate how users can redeem the reward.                                                                                                                                                                                                                                       |\n| redemptionValue         | Redemption Value is the value of a reward, showing how much is needed to claim it.                                                                                                                                                                                                                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description"
+        ],
+        "rows": [
+          [
+            "status",
+            "Represents the overall status of the reward issuance request."
+          ],
+          [
+            "success",
+            "Indicates if the overall operation was successful or not."
+          ],
+          [
+            "code",
+            "A unique code representing the overall status of the operation."
+          ],
+          [
+            "message",
+            "A message providing additional information about the status of the operation."
+          ],
+          [
+            "rewards",
+            "A list of individual reward issuance results."
+          ],
+          [
+            "status",
+            "Represents the status of an individual reward issuance attempt."
+          ],
+          [
+            "success",
+            "Indicates if the reward issuance for this specific reward was successful or not."
+          ],
+          [
+            "code",
+            "A unique code representing the status of this reward issuance attempt."
+          ],
+          [
+            "message",
+            "A message providing more details about the status of this reward issuance attempt."
+          ],
+          [
+            "orgID",
+            "Organisation ID of the reward where it was issued."
+          ],
+          [
+            "transactionId",
+            "A unique identifier for the transaction associated with this reward issuance attempt."
+          ],
+          [
+            "rewardId",
+            "A unique identifier for the reward that was attempted to be issued."
+          ],
+          [
+            "requestedQuantity",
+            "The Requested Quantity is the original number of items you asked for when making a reward request. Even if this number is later changed, for example, reduced from two to one, the Requested Quantity will still show the number you originally requested, which in this case is two."
+          ],
+          [
+            "quantity",
+            "The number of rewards that were successfully issued in this transaction."
+          ],
+          [
+            "pointsReferenceId",
+            "A unique identifier generated each time rewards are issued. This field stores identifier, allowing you to track points redemption transaction."
+          ],
+          [
+            "pointsReferenceIds",
+            "A unique identifier generated each time rewards are issued. This field stores a list of these identifiers, allowing you to track multiple points redemption transactions."
+          ],
+          [
+            "eventLogId",
+            "A plain string identifier used to identify the transaction associated with a reward issual."
+          ],
+          [
+            "requestId",
+            "A unique identifier for the request that is used for Idempotency check."
+          ],
+          [
+            "intouch",
+            "Details of the rewards issued, including points redeemed, coupon codes, and expiration dates."
+          ],
+          [
+            "pointsRedeemed",
+            "The number of points that were redeemed for this reward."
+          ],
+          [
+            "pointsRedeemedInDecimal",
+            "The number of points redeemed, expressed as a decimal value rounded to 3 decimal places. Rounding follows the HALF_UP method, where if the fourth decimal digit is 5 or more, the third decimal rounds up. For example, 21.4555 becomes 21.456, and 21.4554 becomes 21.455. This field will have values only for conversion ratio rewards."
+          ],
+          [
+            "couponCode",
+            "The unique code for the issued coupon."
+          ],
+          [
+            "codeExpiry",
+            "The expiration date and time for the issued coupon code in the format YYYY-MM-DD HH:MM:SS."
+          ],
+          [
+            "promotions",
+            "A list of promotional offers associated with the reward."
+          ],
+          [
+            "vendor",
+            "Vendor-related details associated with the reward issuance."
+          ],
+          [
+            "restrictions",
+            "Restrictions or limitations that apply to the reward."
+          ],
+          [
+            "paymentConfig",
+            "Payment configuration details related to the reward."
+          ],
+          [
+            "fulfillmentDetails",
+            "Fulfillment-related information for the reward."
+          ],
+          [
+            "customFields",
+            "Custom fields defined for the reward."
+          ],
+          [
+            "redemptionDetails",
+            "Redemption-specific details associated with the reward."
+          ],
+          [
+            "redemptionType",
+            "Specifies the category of reward redemption available, that indicate how users can redeem the reward."
+          ],
+          [
+            "redemptionValue",
+            "Redemption Value is the value of a reward, showing how much is needed to claim it."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        451,
+        451
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 451
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        453,
+        556
+      ],
+      "raw": "```json With DATA-SCOPE as SELF\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"rewards\": [\n        {\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Reward issued successfully\"\n            },\n            \"orgId\": 4004543,\n            \"transactionId\": 57097,\n            \"rewardId\": 350,\n            \"requestedQuantity\": 1,\n            \"quantity\": 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n            \"pointsReferenceIds\": [\n                \"7Scaq1\"\n            ],\n            \"eventLogId\": null,\n            \"requestId\": null,\n            \"intouch\": null,\n            \"promotions\": [],\n            \"vendor\": [\n                {\n                    \"valid_till\": \"2027-11-01\",\n                    \"voucher\": \"OV4GJYQV3Y\",\n                    \"pointsRedeemed\": \"2\",\n                    \"offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\": \"234\"\n                }\n            ],\n            \"restrictions\": null,\n            \"paymentConfig\": {\n                \"paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n                \"conversionRatio\": 0.5000\n            },\n            \"fulfillmentDetails\": null,\n            \"customFields\": null,\n            \"redemptionDetails\": {\n                \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\": 1\n            }\n        }\n    ]\n}\n```\n```json With DATA-SCOPE as OTHER\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"rewards\": [\n        {\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Reward issued successfully\"\n            },\n            \"orgId\": 4000085,\n            \"transactionId\": 57097,\n            \"rewardId\": 350,\n            \"requestedQuantity\": 1,\n            \"quantity\": 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n            \"pointsReferenceIds\": [\n                \"7Scaq1\"\n            ],\n            \"eventLogId\": null,\n            \"requestId\": null,\n            \"intouch\": null,\n            \"promotions\": [],\n            \"vendor\": [\n                {\n                    \"valid_till\": \"2027-11-01\",\n                    \"voucher\": \"OV4GJYQV3Y\",\n                    \"pointsRedeemed\": \"2\",\n                    \"offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\": \"234\"\n                }\n            ],\n            \"restrictions\": null,\n            \"paymentConfig\": {\n                \"paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n                \"conversionRatio\": 0.5000\n            },\n            \"fulfillmentDetails\": null,\n            \"customFields\": null,\n            \"redemptionDetails\": {\n                \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\": 1\n            }\n        }\n    ]\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "With DATA-SCOPE as SELF",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "With DATA-SCOPE as SELF",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"rewards\": [\n        {\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Reward issued successfully\"\n            },\n            \"orgId\": 4004543,\n            \"transactionId\": 57097,\n            \"rewardId\": 350,\n            \"requestedQuantity\": 1,\n            \"quantity\": 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n            \"pointsReferenceIds\": [\n                \"7Scaq1\"\n            ],\n            \"eventLogId\": null,\n            \"requestId\": null,\n            \"intouch\": null,\n            \"promotions\": [],\n            \"vendor\": [\n                {\n                    \"valid_till\": \"2027-11-01\",\n                    \"voucher\": \"OV4GJYQV3Y\",\n                    \"pointsRedeemed\": \"2\",\n                    \"offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\": \"234\"\n                }\n            ],\n            \"restrictions\": null,\n            \"paymentConfig\": {\n                \"paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n                \"conversionRatio\": 0.5000\n            },\n            \"fulfillmentDetails\": null,\n            \"customFields\": null,\n            \"redemptionDetails\": {\n                \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\": 1\n            }\n        }\n    ]\n}"
+        },
+        {
+          "lang": "json",
+          "title": "With DATA-SCOPE as OTHER",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 200,\n        \"message\": \"Reward issued successfully\"\n    },\n    \"rewards\": [\n        {\n            \"status\": {\n                \"success\": true,\n                \"code\": 200,\n                \"message\": \"Reward issued successfully\"\n            },\n            \"orgId\": 4000085,\n            \"transactionId\": 57097,\n            \"rewardId\": 350,\n            \"requestedQuantity\": 1,\n            \"quantity\": 1,\n            \"pointsReferenceId\": \"7Scaq1\",\n            \"pointsReferenceIds\": [\n                \"7Scaq1\"\n            ],\n            \"eventLogId\": null,\n            \"requestId\": null,\n            \"intouch\": null,\n            \"promotions\": [],\n            \"vendor\": [\n                {\n                    \"valid_till\": \"2027-11-01\",\n                    \"voucher\": \"OV4GJYQV3Y\",\n                    \"pointsRedeemed\": \"2\",\n                    \"offer_name\": \"marvel-loadtest\",\n                    \"coupon_series_id\": \"234\"\n                }\n            ],\n            \"restrictions\": null,\n            \"paymentConfig\": {\n                \"paymentMode\": \"CONV_RATIO\",\n                \"id\": 54,\n                \"conversionRatio\": 0.5000\n            },\n            \"fulfillmentDetails\": null,\n            \"customFields\": null,\n            \"redemptionDetails\": {\n                \"redemptionType\": \"MILES\",\n                \"totalRedemptionValue\": 1\n            }\n        }\n    ]\n}"
+        }
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        558,
+        558
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        560,
+        1195
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/v1.1/user/rewards/issue/?username={till}&skip_validation=true\": {\n      \"post\": {\n        \"summary\": \"Issue Reward in connected orgs\",\n        \"description\": \"\",\n        \"operationId\": \"issue-bulk-reward-connected-org\",\n        \"parameters\": [\n          {\n            \"name\": \"username\",\n            \"in\": \"query\",\n            \"description\": \"username here represents name of the store\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\",\n              \"default\": \"store_name\"\n            }\n          },\n          {\n            \"name\": \"skip_validation\",\n            \"in\": \"query\",\n            \"description\": \"optional\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"mobile\": {\n                    \"type\": \"string\",\n                    \"description\": \"Mobile number/ email Id/ External Id of the customer\"\n                  },\n                  \"brand\": {\n                    \"type\": \"string\",\n                    \"description\": \"name of the brand\"\n                  },\n                  \"transactionNumber\": {\n                    \"type\": \"string\",\n                    \"description\": \"transaction number for issuing the reward\"\n                  },\n                  \"rewardId\": {\n                    \"type\": \"string\",\n                    \"description\": \"reward ID(s) of the rewards to be issued\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"With DATA-SCOPE as SELF\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 200,\\n        \\\"message\\\": \\\"Reward issued successfully\\\"\\n    },\\n    \\\"rewards\\\": [\\n        {\\n            \\\"status\\\": {\\n                \\\"success\\\": true,\\n                \\\"code\\\": 200,\\n                \\\"message\\\": \\\"Reward issued successfully\\\"\\n            },\\n            \\\"orgId\\\": 4004543,\\n            \\\"transactionId\\\": 57097,\\n            \\\"rewardId\\\": 350,\\n            \\\"requestedQuantity\\\": 1,\\n            \\\"quantity\\\": 1,\\n            \\\"pointsReferenceId\\\": \\\"7Scaq1\\\",\\n            \\\"pointsReferenceIds\\\": [\\n                \\\"7Scaq1\\\"\\n            ],\\n            \\\"eventLogId\\\": null,\\n            \\\"requestId\\\": null,\\n            \\\"intouch\\\": null,\\n            \\\"promotions\\\": [],\\n            \\\"vendor\\\": [\\n                {\\n                    \\\"valid_till\\\": \\\"2027-11-01\\\",\\n                    \\\"voucher\\\": \\\"OV4GJYQV3Y\\\",\\n                    \\\"pointsRedeemed\\\": \\\"2\\\",\\n                    \\\"offer_name\\\": \\\"marvel-loadtest\\\",\\n                    \\\"coupon_series_id\\\": \\\"234\\\"\\n                }\\n            ],\\n            \\\"restrictions\\\": null,\\n            \\\"paymentConfig\\\": {\\n                \\\"paymentMode\\\": \\\"CONV_RATIO\\\",\\n                \\\"id\\\": 54,\\n                \\\"conversionRatio\\\": 0.5000\\n            },\\n            \\\"fulfillmentDetails\\\": null,\\n            \\\"customFields\\\": null,\\n            \\\"redemptionDetails\\\": {\\n                \\\"redemptionType\\\": \\\"MILES\\\",\\n                \\\"totalRedemptionValue\\\": 1\\n            }\\n        }\\n    ]\\n}\"\n                  },\n                  \"With DATA-SCOPE as OTHER\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 200,\\n        \\\"message\\\": \\\"Reward issued successfully\\\"\\n    },\\n    \\\"rewards\\\": [\\n        {\\n            \\\"status\\\": {\\n                \\\"success\\\": true,\\n                \\\"code\\\": 200,\\n                \\\"message\\\": \\\"Reward issued successfully\\\"\\n            },\\n            \\\"orgId\\\": 4000086,\\n            \\\"transactionId\\\": 57097,\\n            \\\"rewardId\\\": 350,\\n            \\\"requestedQuantity\\\": 1,\\n            \\\"quantity\\\": 1,\\n            \\\"pointsReferenceId\\\": \\\"7Scaq1\\\",\\n            \\\"pointsReferenceIds\\\": [\\n                \\\"7Scaq1\\\"\\n            ],\\n            \\\"eventLogId\\\": null,\\n            \\\"requestId\\\": null,\\n            \\\"intouch\\\": null,\\n            \\\"promotions\\\": [],\\n            \\\"vendor\\\": [\\n                {\\n                    \\\"valid_till\\\": \\\"2027-11-01\\\",\\n                    \\\"voucher\\\": \\\"OV4GJYQV3Y\\\",\\n                    \\\"pointsRedeemed\\\": \\\"2\\\",\\n                    \\\"offer_name\\\": \\\"marvel-loadtest\\\",\\n                    \\\"coupon_series_id\\\": \\\"234\\\"\\n                }\\n            ],\\n            \\\"restrictions\\\": null,\\n            \\\"paymentConfig\\\": {\\n                \\\"paymentMode\\\": \\\"CONV_RATIO\\\",\\n                \\\"id\\\": 54,\\n                \\\"conversionRatio\\\": 0.5000\\n            },\\n            \\\"fulfillmentDetails\\\": null,\\n            \\\"customFields\\\": null,\\n            \\\"redemptionDetails\\\": {\\n                \\\"redemptionType\\\": \\\"MILES\\\",\\n                \\\"totalRedemptionValue\\\": 1\\n            }\\n        }\\n    ]\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"With DATA-SCOPE as SELF\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued successfully\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"orgId\": {\n                                \"type\": \"integer\",\n                                \"example\": 4004543,\n                                \"default\": 0\n                              },\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 57097,\n                                \"default\": 0\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 350,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"quantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"7Scaq1\"\n                              },\n                              \"pointsReferenceIds\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"7Scaq1\"\n                                }\n                              },\n                              \"eventLogId\": {},\n                              \"requestId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"valid_till\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2027-11-01\"\n                                    },\n                                    \"voucher\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"OV4GJYQV3Y\"\n                                    },\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2\"\n                                    },\n                                    \"offer_name\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"marvel-loadtest\"\n                                    },\n                                    \"coupon_series_id\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"234\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"restrictions\": {},\n                              \"paymentConfig\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"paymentMode\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"CONV_RATIO\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 54,\n                                    \"default\": 0\n                                  },\n                                  \"conversionRatio\": {\n                                    \"type\": \"number\",\n                                    \"example\": 0.5,\n                                    \"default\": 0\n                                  }\n                                }\n                              },\n                              \"fulfillmentDetails\": {},\n                              \"customFields\": {},\n                              \"redemptionDetails\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"redemptionType\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"MILES\"\n                                  },\n                                  \"totalRedemptionValue\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 1,\n                                    \"default\": 0\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"With DATA-SCOPE as OTHER\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued successfully\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"orgId\": {\n                                \"type\": \"integer\",\n                                \"example\": 4000086,\n                                \"default\": 0\n                              },\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 57097,\n                                \"default\": 0\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 350,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"quantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"7Scaq1\"\n                              },\n                              \"pointsReferenceIds\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"7Scaq1\"\n                                }\n                              },\n                              \"eventLogId\": {},\n                              \"requestId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"valid_till\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2027-11-01\"\n                                    },\n                                    \"voucher\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"OV4GJYQV3Y\"\n                                    },\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2\"\n                                    },\n                                    \"offer_name\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"marvel-loadtest\"\n                                    },\n                                    \"coupon_series_id\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"234\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"restrictions\": {},\n                              \"paymentConfig\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"paymentMode\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"CONV_RATIO\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 54,\n                                    \"default\": 0\n                                  },\n                                  \"conversionRatio\": {\n                                    \"type\": \"number\",\n                                    \"example\": 0.5,\n                                    \"default\": 0\n                                  }\n                                }\n                              },\n                              \"fulfillmentDetails\": {},\n                              \"customFields\": {},\n                              \"redemptionDetails\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"redemptionType\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"MILES\"\n                                  },\n                                  \"totalRedemptionValue\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 1,\n                                    \"default\": 0\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"8003\": {\n                    \"value\": \"{\\n   \\\"status\\\": {\\n       \\\"success\\\": false,\\n       \\\"code\\\": 8003,\\n       \\\"message\\\": \\\"fail to issue reward\\\"\\n   },\\n   \\\"rewards\\\": [\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": false,\\n               \\\"code\\\": 12005,\\n               \\\"message\\\": \\\"Reward constraint evaluation failed. Request failed. Max limit for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER\\\"\\n           },\\n           \\\"rewardId\\\": 49827,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": null,\\n           \\\"intouch\\\": null,\\n           \\\"promotions\\\": null,\\n           \\\"vendor\\\": null,\\n           \\\"restrictions\\\": null\\n       }\\n   ]\\n}\\n\\n\"\n                  },\n                  \"Result\": {\n                    \"value\": \"{\\n   \\\"status\\\": {\\n       \\\"success\\\": false,\\n       \\\"code\\\": 8010,\\n       \\\"message\\\": \\\"Reward issued partially\\\"\\n   },\\n   \\\"rewards\\\": [\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": true,\\n               \\\"code\\\": 200,\\n               \\\"message\\\": \\\"Reward issued successfully\\\"\\n           },\\n           \\\"rewardId\\\": 13,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": \\\"ZGxGVD\\\",\\n           \\\"intouch\\\": [\\n               {\\n                   \\\"pointsRedeemed\\\": \\\"50\\\",\\n                   \\\"couponCode\\\": \\\"42FU1ZP3\\\",\\n                   \\\"codeExpiry\\\": \\\"2023-06-09 00:00:00\\\"\\n               }\\n           ],\\n           \\\"promotions\\\": [],\\n           \\\"vendor\\\": [],\\n           \\\"restrictions\\\": null\\n       },\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": false,\\n               \\\"code\\\": 8004,\\n               \\\"message\\\": \\\"fail to issue reward as  Coupon has expired\\\"\\n           },\\n           \\\"rewardId\\\": 12,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": \\\"ZGxGVD\\\",\\n           \\\"intouch\\\": null,\\n           \\\"promotions\\\": [],\\n           \\\"vendor\\\": [],\\n           \\\"restrictions\\\": null\\n       }\\n   ]\\n}\\n\\n\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 8010,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued partially\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 13,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"ZGxGVD\"\n                              },\n                              \"intouch\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"50\"\n                                    },\n                                    \"couponCode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"42FU1ZP3\"\n                                    },\n                                    \"codeExpiry\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2023-06-09 00:00:00\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\"\n                              },\n                              \"restrictions\": {}\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"8003\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 8003,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"fail to issue reward\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": false,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 12005,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward constraint evaluation failed. Request failed. Max limit for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER\"\n                                  }\n                                }\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 49827,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {},\n                              \"vendor\": {},\n                              \"restrictions\": {}\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Accept: */*' \\\\\\n--header 'Authorization: Basic bG9hZHRlc3QubWBLAHBLAH5NjRiMDcxNTJkMjM0Yjcw' \\\\\\n--header 'Cookie: _cfuvid=Vl2GkTHlFJ52__EqmWxwr62UUys6VkoqjLDZ8Iah00s-1732168027696-0.0.1.1-604800000; _cfuvid=iCEn1_39ZRrYViEvmJGle4eW7lcuck3DPgT_B1jmysQ-1732599277239-0.0.1.1-604800000' \\\\\\n--header 'DATA-SCOPE: SELF' \\\\\\n--data '{\\n    \\\"brand\\\": \\\"O2Brand\\\",\\n    \\\"transactionNumber\\\": \\\"123456789\\\",\\n    \\\"orgLevelDetails\\\": [\\n        {\\n            \\\"orgId\\\": 4004543\\n        }\\n    ],\\n    \\\"rewards\\\": [\\n        {\\n            \\\"rewardId\\\": 350,\\n            \\\"quantity\\\": 1,\\n            \\\"orgId\\\": 4004543,\\n            \\\"paymentConfig\\\": {\\n                \\\"redemptionValue\\\": 1\\n            }\\n        }\\n    ],\\n    \\\"externalId\\\": \\\"ext_id9860000198\\\"\\n}'\",\n              \"name\": \"With DATA-SCOPE as SELF\"\n            },\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Accept: */*' \\\\\\n--header 'Authorization: Basic bG9hZHBLAHBLAH3NWI5NjRiMDcxNTJkMjM0Yjcw' \\\\\\n--header 'DATA-SCOPE: OTHER' \\\\\\n--header 'DATA-SCOPE-ORGS: 4000085' \\\\\\n--header 'Cookie: _cfuvid=u7lX7fA.uTQht8cWKxG4HXhwZo7y8PLo9hFe64KkyjA-1734592157810-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"brand\\\": \\\"OptumUATChild2\\\",\\n    \\\"transactionNumber\\\": \\\"123456789\\\",\\n    \\\"orgLevelDetails\\\": [\\n        {\\n            \\\"orgId\\\": 4000086\\n        }\\n    ],\\n    \\\"rewards\\\": [\\n        {\\n            \\\"rewardId\\\": 350,\\n            \\\"quantity\\\": 1,\\n            \\\"orgId\\\": 4000086,\\n            \\\"paymentConfig\\\": {\\n                \\\"redemptionValue\\\": 1\\n            }\\n        }\\n    ],\\n    \\\"externalId\\\": \\\"ext_id9860000198\\\"\\n}'\",\n              \"name\": \"With DATA-SCOPE as OTHER\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/v1.1/user/rewards/issue/?username={till}&skip_validation=true\": {\n      \"post\": {\n        \"summary\": \"Issue Reward in connected orgs\",\n        \"description\": \"\",\n        \"operationId\": \"issue-bulk-reward-connected-org\",\n        \"parameters\": [\n          {\n            \"name\": \"username\",\n            \"in\": \"query\",\n            \"description\": \"username here represents name of the store\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"string\",\n              \"default\": \"store_name\"\n            }\n          },\n          {\n            \"name\": \"skip_validation\",\n            \"in\": \"query\",\n            \"description\": \"optional\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\",\n                \"properties\": {\n                  \"mobile\": {\n                    \"type\": \"string\",\n                    \"description\": \"Mobile number/ email Id/ External Id of the customer\"\n                  },\n                  \"brand\": {\n                    \"type\": \"string\",\n                    \"description\": \"name of the brand\"\n                  },\n                  \"transactionNumber\": {\n                    \"type\": \"string\",\n                    \"description\": \"transaction number for issuing the reward\"\n                  },\n                  \"rewardId\": {\n                    \"type\": \"string\",\n                    \"description\": \"reward ID(s) of the rewards to be issued\"\n                  }\n                }\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"With DATA-SCOPE as SELF\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 200,\\n        \\\"message\\\": \\\"Reward issued successfully\\\"\\n    },\\n    \\\"rewards\\\": [\\n        {\\n            \\\"status\\\": {\\n                \\\"success\\\": true,\\n                \\\"code\\\": 200,\\n                \\\"message\\\": \\\"Reward issued successfully\\\"\\n            },\\n            \\\"orgId\\\": 4004543,\\n            \\\"transactionId\\\": 57097,\\n            \\\"rewardId\\\": 350,\\n            \\\"requestedQuantity\\\": 1,\\n            \\\"quantity\\\": 1,\\n            \\\"pointsReferenceId\\\": \\\"7Scaq1\\\",\\n            \\\"pointsReferenceIds\\\": [\\n                \\\"7Scaq1\\\"\\n            ],\\n            \\\"eventLogId\\\": null,\\n            \\\"requestId\\\": null,\\n            \\\"intouch\\\": null,\\n            \\\"promotions\\\": [],\\n            \\\"vendor\\\": [\\n                {\\n                    \\\"valid_till\\\": \\\"2027-11-01\\\",\\n                    \\\"voucher\\\": \\\"OV4GJYQV3Y\\\",\\n                    \\\"pointsRedeemed\\\": \\\"2\\\",\\n                    \\\"offer_name\\\": \\\"marvel-loadtest\\\",\\n                    \\\"coupon_series_id\\\": \\\"234\\\"\\n                }\\n            ],\\n            \\\"restrictions\\\": null,\\n            \\\"paymentConfig\\\": {\\n                \\\"paymentMode\\\": \\\"CONV_RATIO\\\",\\n                \\\"id\\\": 54,\\n                \\\"conversionRatio\\\": 0.5000\\n            },\\n            \\\"fulfillmentDetails\\\": null,\\n            \\\"customFields\\\": null,\\n            \\\"redemptionDetails\\\": {\\n                \\\"redemptionType\\\": \\\"MILES\\\",\\n                \\\"totalRedemptionValue\\\": 1\\n            }\\n        }\\n    ]\\n}\"\n                  },\n                  \"With DATA-SCOPE as OTHER\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 200,\\n        \\\"message\\\": \\\"Reward issued successfully\\\"\\n    },\\n    \\\"rewards\\\": [\\n        {\\n            \\\"status\\\": {\\n                \\\"success\\\": true,\\n                \\\"code\\\": 200,\\n                \\\"message\\\": \\\"Reward issued successfully\\\"\\n            },\\n            \\\"orgId\\\": 4000086,\\n            \\\"transactionId\\\": 57097,\\n            \\\"rewardId\\\": 350,\\n            \\\"requestedQuantity\\\": 1,\\n            \\\"quantity\\\": 1,\\n            \\\"pointsReferenceId\\\": \\\"7Scaq1\\\",\\n            \\\"pointsReferenceIds\\\": [\\n                \\\"7Scaq1\\\"\\n            ],\\n            \\\"eventLogId\\\": null,\\n            \\\"requestId\\\": null,\\n            \\\"intouch\\\": null,\\n            \\\"promotions\\\": [],\\n            \\\"vendor\\\": [\\n                {\\n                    \\\"valid_till\\\": \\\"2027-11-01\\\",\\n                    \\\"voucher\\\": \\\"OV4GJYQV3Y\\\",\\n                    \\\"pointsRedeemed\\\": \\\"2\\\",\\n                    \\\"offer_name\\\": \\\"marvel-loadtest\\\",\\n                    \\\"coupon_series_id\\\": \\\"234\\\"\\n                }\\n            ],\\n            \\\"restrictions\\\": null,\\n            \\\"paymentConfig\\\": {\\n                \\\"paymentMode\\\": \\\"CONV_RATIO\\\",\\n                \\\"id\\\": 54,\\n                \\\"conversionRatio\\\": 0.5000\\n            },\\n            \\\"fulfillmentDetails\\\": null,\\n            \\\"customFields\\\": null,\\n            \\\"redemptionDetails\\\": {\\n                \\\"redemptionType\\\": \\\"MILES\\\",\\n                \\\"totalRedemptionValue\\\": 1\\n            }\\n        }\\n    ]\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"With DATA-SCOPE as SELF\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued successfully\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"orgId\": {\n                                \"type\": \"integer\",\n                                \"example\": 4004543,\n                                \"default\": 0\n                              },\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 57097,\n                                \"default\": 0\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 350,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"quantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"7Scaq1\"\n                              },\n                              \"pointsReferenceIds\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"7Scaq1\"\n                                }\n                              },\n                              \"eventLogId\": {},\n                              \"requestId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"valid_till\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2027-11-01\"\n                                    },\n                                    \"voucher\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"OV4GJYQV3Y\"\n                                    },\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2\"\n                                    },\n                                    \"offer_name\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"marvel-loadtest\"\n                                    },\n                                    \"coupon_series_id\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"234\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"restrictions\": {},\n                              \"paymentConfig\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"paymentMode\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"CONV_RATIO\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 54,\n                                    \"default\": 0\n                                  },\n                                  \"conversionRatio\": {\n                                    \"type\": \"number\",\n                                    \"example\": 0.5,\n                                    \"default\": 0\n                                  }\n                                }\n                              },\n                              \"fulfillmentDetails\": {},\n                              \"customFields\": {},\n                              \"redemptionDetails\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"redemptionType\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"MILES\"\n                                  },\n                                  \"totalRedemptionValue\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 1,\n                                    \"default\": 0\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"With DATA-SCOPE as OTHER\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 200,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued successfully\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"orgId\": {\n                                \"type\": \"integer\",\n                                \"example\": 4000086,\n                                \"default\": 0\n                              },\n                              \"transactionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 57097,\n                                \"default\": 0\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 350,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"quantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"7Scaq1\"\n                              },\n                              \"pointsReferenceIds\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"string\",\n                                  \"example\": \"7Scaq1\"\n                                }\n                              },\n                              \"eventLogId\": {},\n                              \"requestId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"valid_till\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2027-11-01\"\n                                    },\n                                    \"voucher\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"OV4GJYQV3Y\"\n                                    },\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2\"\n                                    },\n                                    \"offer_name\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"marvel-loadtest\"\n                                    },\n                                    \"coupon_series_id\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"234\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"restrictions\": {},\n                              \"paymentConfig\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"paymentMode\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"CONV_RATIO\"\n                                  },\n                                  \"id\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 54,\n                                    \"default\": 0\n                                  },\n                                  \"conversionRatio\": {\n                                    \"type\": \"number\",\n                                    \"example\": 0.5,\n                                    \"default\": 0\n                                  }\n                                }\n                              },\n                              \"fulfillmentDetails\": {},\n                              \"customFields\": {},\n                              \"redemptionDetails\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"redemptionType\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"MILES\"\n                                  },\n                                  \"totalRedemptionValue\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 1,\n                                    \"default\": 0\n                                  }\n                                }\n                              }\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"8003\": {\n                    \"value\": \"{\\n   \\\"status\\\": {\\n       \\\"success\\\": false,\\n       \\\"code\\\": 8003,\\n       \\\"message\\\": \\\"fail to issue reward\\\"\\n   },\\n   \\\"rewards\\\": [\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": false,\\n               \\\"code\\\": 12005,\\n               \\\"message\\\": \\\"Reward constraint evaluation failed. Request failed. Max limit for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER\\\"\\n           },\\n           \\\"rewardId\\\": 49827,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": null,\\n           \\\"intouch\\\": null,\\n           \\\"promotions\\\": null,\\n           \\\"vendor\\\": null,\\n           \\\"restrictions\\\": null\\n       }\\n   ]\\n}\\n\\n\"\n                  },\n                  \"Result\": {\n                    \"value\": \"{\\n   \\\"status\\\": {\\n       \\\"success\\\": false,\\n       \\\"code\\\": 8010,\\n       \\\"message\\\": \\\"Reward issued partially\\\"\\n   },\\n   \\\"rewards\\\": [\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": true,\\n               \\\"code\\\": 200,\\n               \\\"message\\\": \\\"Reward issued successfully\\\"\\n           },\\n           \\\"rewardId\\\": 13,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": \\\"ZGxGVD\\\",\\n           \\\"intouch\\\": [\\n               {\\n                   \\\"pointsRedeemed\\\": \\\"50\\\",\\n                   \\\"couponCode\\\": \\\"42FU1ZP3\\\",\\n                   \\\"codeExpiry\\\": \\\"2023-06-09 00:00:00\\\"\\n               }\\n           ],\\n           \\\"promotions\\\": [],\\n           \\\"vendor\\\": [],\\n           \\\"restrictions\\\": null\\n       },\\n       {\\n           \\\"status\\\": {\\n               \\\"success\\\": false,\\n               \\\"code\\\": 8004,\\n               \\\"message\\\": \\\"fail to issue reward as  Coupon has expired\\\"\\n           },\\n           \\\"rewardId\\\": 12,\\n           \\\"requestedQuantity\\\": 1,\\n           \\\"pointsReferenceId\\\": \\\"ZGxGVD\\\",\\n           \\\"intouch\\\": null,\\n           \\\"promotions\\\": [],\\n           \\\"vendor\\\": [],\\n           \\\"restrictions\\\": null\\n       }\\n   ]\\n}\\n\\n\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 8010,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward issued partially\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": true,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 200,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward issued successfully\"\n                                  }\n                                }\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 13,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {\n                                \"type\": \"string\",\n                                \"example\": \"ZGxGVD\"\n                              },\n                              \"intouch\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"pointsRedeemed\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"50\"\n                                    },\n                                    \"couponCode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"42FU1ZP3\"\n                                    },\n                                    \"codeExpiry\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"2023-06-09 00:00:00\"\n                                    }\n                                  }\n                                }\n                              },\n                              \"promotions\": {\n                                \"type\": \"array\"\n                              },\n                              \"vendor\": {\n                                \"type\": \"array\"\n                              },\n                              \"restrictions\": {}\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"title\": \"8003\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 8003,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"fail to issue reward\"\n                            }\n                          }\n                        },\n                        \"rewards\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"status\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"success\": {\n                                    \"type\": \"boolean\",\n                                    \"example\": false,\n                                    \"default\": true\n                                  },\n                                  \"code\": {\n                                    \"type\": \"integer\",\n                                    \"example\": 12005,\n                                    \"default\": 0\n                                  },\n                                  \"message\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"Reward constraint evaluation failed. Request failed. Max limit for the DAYS is reached. Allowed limit is 15 For Level CUSTOMER\"\n                                  }\n                                }\n                              },\n                              \"rewardId\": {\n                                \"type\": \"integer\",\n                                \"example\": 49827,\n                                \"default\": 0\n                              },\n                              \"requestedQuantity\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"pointsReferenceId\": {},\n                              \"intouch\": {},\n                              \"promotions\": {},\n                              \"vendor\": {},\n                              \"restrictions\": {}\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Accept: */*' \\\\\\n--header 'Authorization: Basic bG9hZHRlc3QubWBLAHBLAH5NjRiMDcxNTJkMjM0Yjcw' \\\\\\n--header 'Cookie: _cfuvid=Vl2GkTHlFJ52__EqmWxwr62UUys6VkoqjLDZ8Iah00s-1732168027696-0.0.1.1-604800000; _cfuvid=iCEn1_39ZRrYViEvmJGle4eW7lcuck3DPgT_B1jmysQ-1732599277239-0.0.1.1-604800000' \\\\\\n--header 'DATA-SCOPE: SELF' \\\\\\n--data '{\\n    \\\"brand\\\": \\\"O2Brand\\\",\\n    \\\"transactionNumber\\\": \\\"123456789\\\",\\n    \\\"orgLevelDetails\\\": [\\n        {\\n            \\\"orgId\\\": 4004543\\n        }\\n    ],\\n    \\\"rewards\\\": [\\n        {\\n            \\\"rewardId\\\": 350,\\n            \\\"quantity\\\": 1,\\n            \\\"orgId\\\": 4004543,\\n            \\\"paymentConfig\\\": {\\n                \\\"redemptionValue\\\": 1\\n            }\\n        }\\n    ],\\n    \\\"externalId\\\": \\\"ext_id9860000198\\\"\\n}'\",\n              \"name\": \"With DATA-SCOPE as SELF\"\n            },\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1.1/user/rewards/issue/?skip_validation=true&username=loadtest.marvel' \\\\\\n--header 'Content-Type: application/json' \\\\\\n--header 'Accept: */*' \\\\\\n--header 'Authorization: Basic bG9hZHBLAHBLAH3NWI5NjRiMDcxNTJkMjM0Yjcw' \\\\\\n--header 'DATA-SCOPE: OTHER' \\\\\\n--header 'DATA-SCOPE-ORGS: 4000085' \\\\\\n--header 'Cookie: _cfuvid=u7lX7fA.uTQht8cWKxG4HXhwZo7y8PLo9hFe64KkyjA-1734592157810-0.0.1.1-604800000' \\\\\\n--data '{\\n    \\\"brand\\\": \\\"OptumUATChild2\\\",\\n    \\\"transactionNumber\\\": \\\"123456789\\\",\\n    \\\"orgLevelDetails\\\": [\\n        {\\n            \\\"orgId\\\": 4000086\\n        }\\n    ],\\n    \\\"rewards\\\": [\\n        {\\n            \\\"rewardId\\\": 350,\\n            \\\"quantity\\\": 1,\\n            \\\"orgId\\\": 4000086,\\n            \\\"paymentConfig\\\": {\\n                \\\"redemptionValue\\\": 1\\n            }\\n        }\\n    ],\\n    \\\"externalId\\\": \\\"ext_id9860000198\\\"\\n}'\",\n              \"name\": \"With DATA-SCOPE as OTHER\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

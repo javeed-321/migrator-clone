@@ -1,0 +1,1272 @@
+{
+  "slug": "docs/create-segments-using-filters",
+  "source": "https://docs.capillarytech.com/docs/create-segments-using-filters.md",
+  "url": "https://docs.capillarytech.com/docs/create-segments-using-filters",
+  "title": "Create Segments Using Filters",
+  "description": "",
+  "section": "Customer Segmentation",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-06T13:42:44.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 6,
+    "list": 18,
+    "Callout": 3,
+    "Image": 14,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Create segments using filters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create segments using filters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Segments are equipped with predefined rules using which you can set conditions for each partition. The segment details are updated automatically based on the ruleset. Rule-based segments are usually SCD and activity-based.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Segments are equipped with predefined rules using which you can set conditions for each partition. The segment details are updated automatically based on the ruleset. Rule-based segments are usually SCD and activity-based.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "For example, you can have a segment based on RFM (Recency, Frequency, Monetary) and have partitions as explained below:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, you can have a segment based on RFM (Recency, Frequency, Monetary) and have partitions as explained below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        19
+      ],
+      "raw": "* Champions:  High spending customers who purchased recently and also shop quite often\\\n  (Last Txn Date in the last 10 days) AND (Latency < 25) AND (Lifetime Purchased > 500)\n\n* Loyal Customers: A frequent shopper and responsive to promotions.\\\n  (Last Txn Date in the last 30 days) AND (Latency between 25 and 45) AND (Lifetime Purchased between 200 and 500)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Champions:  High spending customers who purchased recently and also shop quite often(Last Txn Date in the last 10 days) AND (Latency < 25) AND (Lifetime Purchased > 500)Loyal Customers: A frequent shopper and responsive to promotions.(Last Txn Date in the last 30 days) AND (Latency between 25 and 45) AND (Lifetime Purchased between 200 and 500)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        25
+      ],
+      "raw": "> 📘 Note\n>\n> Each org unit can create a maximum of 20 SCD segments. So if you want to create a new one thereafter, you need to deactivate an existing SCD segment and create a new one. If the brand requires more than 20 SCD segments, they can request additional segments by contacting the product sustenance team.\n>\n> There is no limit on non-SCD segments.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteEach org unit can create a maximum of 20 SCD segments. So if you want to create a new one thereafter, you need to deactivate an existing SCD segment and create a new one. If the brand requires more than 20 SCD segments, they can request additional segments by contacting the product sustenance team.There is no limit on non-SCD segments.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "### To create a rule-based segment:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "To create a rule-based segment:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        34
+      ],
+      "raw": "1. On the EI navigation pane, click **User Segments** > **Create Segment**.\n2. In **Segment Name**, specify a name for the group. Do not use the / character, as segment creation fails if the name contains this character. Use only letters, numbers, spaces, and supported symbols. This restriction remains in effect until further notice.\n3. In **Description**, specify a short description of the segment.\n4. In **Type**, select **SCD** to keep a track of customers' behavior for the current segment. Select **Non-SCD** to save only the current snapshot.\n5. In **Method**, choose **Conditions** for creating based on rule conditions.\n6. Click **Next** to continue.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the EI navigation pane, click User Segments > Create Segment.In Segment Name, specify a name for the group. Do not use the / character, as segment creation fails if the name contains this character. Use only letters, numbers, spaces, and supported symbols. This restriction remains in effect until further notice.In Description, specify a short description of the segment.In Type, select SCD to keep a track of customers' behavior for the current segment. Select Non-SCD to save only the current snapshot.In Method, choose Conditions for creating based on rule conditions.Click Next to continue.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/fb9f75a--XNN4AV52Xqd6Ep9mgVTISxEyJSG2vZvjQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/fb9f75a--XNN4AV52Xqd6Ep9mgVTISxEyJSG2vZvjQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "7. In **Update**, choose your preferred frequency for updating the segment data.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Update, choose your preferred frequency for updating the segment data.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "* **Manually**: To update the partition values manually. The list will be updated only if the list is refreshed manually on the segment details page.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Manually: To update the partition values manually. The list will be updated only if the list is refreshed manually on the segment details page.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/41264353bfb325e9c6f7e0ddc6b0d12c7bec1ef5a061c3f9b16fb73b13233be8-Refresh.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/41264353bfb325e9c6f7e0ddc6b0d12c7bec1ef5a061c3f9b16fb73b13233be8-Refresh.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        44,
+        46
+      ],
+      "raw": "* **Daily**: To update the segment values on a daily basis.\n* **Weekly**: To update the list on a weekly basis.\n* **Monthly**: To update the list on a monthly basis.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Daily: To update the segment values on a daily basis.Weekly: To update the list on a weekly basis.Monthly: To update the list on a monthly basis.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "8. In **Partition name**, specify a name for the partition.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Partition name, specify a name for the partition.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/91c6572-M4hZE0u2I5n5syieKSLqw9diYodA8e0njA.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/91c6572-M4hZE0u2I5n5syieKSLqw9diYodA8e0njA.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        52,
+        53
+      ],
+      "raw": "9. In **Description**, specify a short description for the partition.\n10. Click **+Add rule** > Customer summary KPIs and choose the desired option on which you want to define the condition.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Description, specify a short description for the partition.Click +Add rule > Customer summary KPIs and choose the desired option on which you want to define the condition.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/d49acc1-9aX9_Xeyj66PsUsC1kz3X7G4dbVLvSbo5A.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/d49acc1-9aX9_Xeyj66PsUsC1kz3X7G4dbVLvSbo5A.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/c9553ef-FHqnMxA3s5nZjqW65DKGhQS9KZ6JCSAvfg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/c9553ef-FHqnMxA3s5nZjqW65DKGhQS9KZ6JCSAvfg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        59,
+        106
+      ],
+      "raw": "| FILTER                             | DESCRIPTION                                                                                                                                  |\n| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |\n| Average Spent Per SKU              | Get customers based on their average item value (Total items purchased/total transaction amount)                                             |\n| Average Spent Per Visit            | Get customers based on their average transaction value per visit (Total transaction amount/No. of visits)                                    |\n| Canceled Points                    | Get customers by the number of reverted points. That is, issued points that were reverted due to reasons like transaction return.            |\n| Expired Points                     | Get customers by their expired points (points that are expired for not redeeming within the expiry period)                                   |\n| First Visit Basket Size            | Get customers by the number of items purchased during their first visit (line-item count)                                                    |\n| First Visit Bill Amount            | Get customers by their transaction amount during their first visit (line-item count)                                                         |\n| Has Spike Bill                     | Used to get Fraud bills. Gets customers whose bills have a sudden spike. For example, spiked 2 times, spiked greater than 5 times, and so on |\n| Last Visit Bill Amount             | Get customers by their recent bill amount                                                                                                    |\n| Latency                            | Get customers by their average duration between two transactions                                                                             |\n| Lifetime Points                    | Get customers by their total loyalty points earned (considering from the registration date)                                                  |\n| Lifetime Purchased                 | Get customers by their lifetime purchases amount (Total transaction amount after becoming a member)                                          |\n| Line Item Count                    | Get customers by the total number of line-items purchase                                                                                     |\n| Loyalty Points                     | Get customers by their current or active loyalty points                                                                                      |\n| Max Bill Amount                    | Get customers by the maximum bill amount recorded                                                                                            |\n| Max Bill Count In Day              | Get customers by their maximum number of transactions in a day                                                                               |\n| Max Bill Count In Week             | Get customers by their maximum number of transactions in a week                                                                              |\n| Max Zones With Billing On Same Day | Get customers based on their transactions recorded in one or more zones on the same day (fraud customers)                                    |\n| Number Of Visits                   | Get customers by their total number of visits  (visited and made transactions)                                                               |\n| Number Of Visit Days               | Get customers by the unique number of days visited                                                                                           |\n| Points Awarded Days                | Get customers by the unique number of days loyalty points were awarded                                                                       |\n| Redeemed Points                    | Get customers by the number of loyalty points redeemed                                                                                       |\n| Redeemed Rate                      | Get customers by the percentage of points redemption - (Points Redeemed/Points Awarded) \\* 100                                               |\n| Redeemed Visits                    | Get customers by the unique number of days customers redeemed their points                                                                   |\n| Redeemed Visit Days                | Get customers by the unique number of days customers redeemed their coupons                                                                  |\n| Redeemed Voucher Count             | Get customers by the number of coupons redemption                                                                                            |\n| Redemption Latency                 | Get customers by the average gap (in days) between two consecutive redemption                                                                |\n| Returned Bill Amount               | Get customers by the total amount of return transactions                                                                                     |\n| Returned Bill Count                | Get customers by the number of transactions returned                                                                                         |\n| SKUs Returned                      | Get customers by the total number of items (SKUs) returned                                                                                   |\n| SKU Purchased                      | Get customers by the total number of items (SKUs) purchased                                                                                  |\n| Total Bill Amount                  | Get customers by their total transaction amount                                                                                              |\n| Total Bill Count                   | Get customers by their transactions count                                                                                                    |\n| Total Line Item Amount             | Get customers by the total amount of line items purchased in their transactions                                                              |\n| Total Points Redeemed              | Get customers by the total number of points redeemed                                                                                         |\n| Total Returned Line Item Amount    | Get customers by the total amount of returned line items                                                                                     |\n| Conversion Date                    | Get customers by their loyalty conversion date (loyalty registration date) during a specified period                                         |\n| DOB Date                           | Get customers by their birth date (day, month)                                                                                               |\n| First Points Awarded Date          | Get customers based on the date when points were first awarded                                                                               |\n| First Points redemption date       | Get customers based on the date when points were first redeemed  (relative days or during a specified period)                                |\n| First coupon redemption date       | Get customers based on the date when a coupon was first redeemed (relative days or during a specified period)                                |\n| Lapsation Date                     | Get customers by their lapsation date (did not shop for a specific duration)                                                                 |\n| First Txn Date                     | Get customers whose first transaction is in a specified period                                                                               |\n| Last Txn Date                      | Get customers whose recent transaction date is in a specified period                                                                         |\n| Last Points Redemption Date        | Get customers whose recent points redemption is in a specific period                                                                         |\n| Last Coupon Redemption Date        | Get customers whose recent coupons redemption is in a specific period                                                                        |\n| Wedding Date                       | Get customers by their wedding anniversary date. That is, anniversary in a specific duration                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "FILTER",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "Average Spent Per SKU",
+            "Get customers based on their average item value (Total items purchased/total transaction amount)"
+          ],
+          [
+            "Average Spent Per Visit",
+            "Get customers based on their average transaction value per visit (Total transaction amount/No. of visits)"
+          ],
+          [
+            "Canceled Points",
+            "Get customers by the number of reverted points. That is, issued points that were reverted due to reasons like transaction return."
+          ],
+          [
+            "Expired Points",
+            "Get customers by their expired points (points that are expired for not redeeming within the expiry period)"
+          ],
+          [
+            "First Visit Basket Size",
+            "Get customers by the number of items purchased during their first visit (line-item count)"
+          ],
+          [
+            "First Visit Bill Amount",
+            "Get customers by their transaction amount during their first visit (line-item count)"
+          ],
+          [
+            "Has Spike Bill",
+            "Used to get Fraud bills. Gets customers whose bills have a sudden spike. For example, spiked 2 times, spiked greater than 5 times, and so on"
+          ],
+          [
+            "Last Visit Bill Amount",
+            "Get customers by their recent bill amount"
+          ],
+          [
+            "Latency",
+            "Get customers by their average duration between two transactions"
+          ],
+          [
+            "Lifetime Points",
+            "Get customers by their total loyalty points earned (considering from the registration date)"
+          ],
+          [
+            "Lifetime Purchased",
+            "Get customers by their lifetime purchases amount (Total transaction amount after becoming a member)"
+          ],
+          [
+            "Line Item Count",
+            "Get customers by the total number of line-items purchase"
+          ],
+          [
+            "Loyalty Points",
+            "Get customers by their current or active loyalty points"
+          ],
+          [
+            "Max Bill Amount",
+            "Get customers by the maximum bill amount recorded"
+          ],
+          [
+            "Max Bill Count In Day",
+            "Get customers by their maximum number of transactions in a day"
+          ],
+          [
+            "Max Bill Count In Week",
+            "Get customers by their maximum number of transactions in a week"
+          ],
+          [
+            "Max Zones With Billing On Same Day",
+            "Get customers based on their transactions recorded in one or more zones on the same day (fraud customers)"
+          ],
+          [
+            "Number Of Visits",
+            "Get customers by their total number of visits  (visited and made transactions)"
+          ],
+          [
+            "Number Of Visit Days",
+            "Get customers by the unique number of days visited"
+          ],
+          [
+            "Points Awarded Days",
+            "Get customers by the unique number of days loyalty points were awarded"
+          ],
+          [
+            "Redeemed Points",
+            "Get customers by the number of loyalty points redeemed"
+          ],
+          [
+            "Redeemed Rate",
+            "Get customers by the percentage of points redemption - (Points Redeemed/Points Awarded) * 100"
+          ],
+          [
+            "Redeemed Visits",
+            "Get customers by the unique number of days customers redeemed their points"
+          ],
+          [
+            "Redeemed Visit Days",
+            "Get customers by the unique number of days customers redeemed their coupons"
+          ],
+          [
+            "Redeemed Voucher Count",
+            "Get customers by the number of coupons redemption"
+          ],
+          [
+            "Redemption Latency",
+            "Get customers by the average gap (in days) between two consecutive redemption"
+          ],
+          [
+            "Returned Bill Amount",
+            "Get customers by the total amount of return transactions"
+          ],
+          [
+            "Returned Bill Count",
+            "Get customers by the number of transactions returned"
+          ],
+          [
+            "SKUs Returned",
+            "Get customers by the total number of items (SKUs) returned"
+          ],
+          [
+            "SKU Purchased",
+            "Get customers by the total number of items (SKUs) purchased"
+          ],
+          [
+            "Total Bill Amount",
+            "Get customers by their total transaction amount"
+          ],
+          [
+            "Total Bill Count",
+            "Get customers by their transactions count"
+          ],
+          [
+            "Total Line Item Amount",
+            "Get customers by the total amount of line items purchased in their transactions"
+          ],
+          [
+            "Total Points Redeemed",
+            "Get customers by the total number of points redeemed"
+          ],
+          [
+            "Total Returned Line Item Amount",
+            "Get customers by the total amount of returned line items"
+          ],
+          [
+            "Conversion Date",
+            "Get customers by their loyalty conversion date (loyalty registration date) during a specified period"
+          ],
+          [
+            "DOB Date",
+            "Get customers by their birth date (day, month)"
+          ],
+          [
+            "First Points Awarded Date",
+            "Get customers based on the date when points were first awarded"
+          ],
+          [
+            "First Points redemption date",
+            "Get customers based on the date when points were first redeemed  (relative days or during a specified period)"
+          ],
+          [
+            "First coupon redemption date",
+            "Get customers based on the date when a coupon was first redeemed (relative days or during a specified period)"
+          ],
+          [
+            "Lapsation Date",
+            "Get customers by their lapsation date (did not shop for a specific duration)"
+          ],
+          [
+            "First Txn Date",
+            "Get customers whose first transaction is in a specified period"
+          ],
+          [
+            "Last Txn Date",
+            "Get customers whose recent transaction date is in a specified period"
+          ],
+          [
+            "Last Points Redemption Date",
+            "Get customers whose recent points redemption is in a specific period"
+          ],
+          [
+            "Last Coupon Redemption Date",
+            "Get customers whose recent coupons redemption is in a specific period"
+          ],
+          [
+            "Wedding Date",
+            "Get customers by their wedding anniversary date. That is, anniversary in a specific duration"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "11. To validate more than one condition, click **+ Add rule** that uses OR operator - In this, a customer is added to the partition, if any of the specified conditions are satisfied.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To validate more than one condition, click + Add rule that uses OR operator - In this, a customer is added to the partition, if any of the specified conditions are satisfied.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/a90a3e0-o7MVYoqtTiYHbxHpygpU3SfZYBWVkoCFgQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/a90a3e0-o7MVYoqtTiYHbxHpygpU3SfZYBWVkoCFgQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "12. To validate multiple rules (and), click **+Rule Set** (AND) > **+ Add Rule**. In this, a customer is added to the partition only if both conditions are satisfied",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To validate multiple rules (and), click +Rule Set (AND) > + Add Rule. In this, a customer is added to the partition only if both conditions are satisfied",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/d1cb690-M7r04JCFKflh5_4TNJenauVfg_4vnmR7xg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/d1cb690-M7r04JCFKflh5_4TNJenauVfg_4vnmR7xg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "13. Click **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        118,
+        120
+      ],
+      "raw": "> 📘\n>\n> * The **Description** field is mandatory along with other fields.  The save button will not be enabled if the Description is left blank.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "The Description field is mandatory along with other fields.  The save button will not be enabled if the Description is left blank.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        122,
+        122
+      ],
+      "raw": "14. Similarly, multiple partitions are required, and click **Compute & Proceed**. You will see the Processing bar.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Similarly, multiple partitions are required, and click Compute & Proceed. You will see the Processing bar.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        124,
+        124
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/4ee0804-r8DJ_YYZmt8P9gCpUFZTx1_M7bwc2wCoBQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/4ee0804-r8DJ_YYZmt8P9gCpUFZTx1_M7bwc2wCoBQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        126,
+        126
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/a7e30c0-Ojn7RSdBJ0q0_dt1H8AECdFeGagb-KTrGQ.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/a7e30c0-Ojn7RSdBJ0q0_dt1H8AECdFeGagb-KTrGQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "15. Click **Create** to complete creating the segment. Else, it will be in the draft state",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Create to complete creating the segment. Else, it will be in the draft state",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/4ae9fc0-2gLJMNY_q4ZvGPLXwXhqUkYXWOr1j5Zj5A.jpg\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/4ae9fc0-2gLJMNY_q4ZvGPLXwXhqUkYXWOr1j5Zj5A.jpg"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "The segment will be in **Inprogress** status initially and once processed, the status label will disappear automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The segment will be in Inprogress status initially and once processed, the status label will disappear automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "* Inprogress: The segment creation is being processed",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Inprogress: The segment creation is being processed",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "**Note**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        138,
+        140
+      ],
+      "raw": "* **Draft**: Signifies draft state where the recent changes were not saved. If you open the segment, you will see Draft available: Save changes to see the partition values. You can save or Deactivate draft segments\n* **Active segment**: Only active segments will appear on the service that consumes Segments. You can either edit or deactivate active segments\n* **Inactive segment**: These segments will be inactive and will not appear in any service that consumes segments. You can edit and activate inactive segments",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Draft: Signifies draft state where the recent changes were not saved. If you open the segment, you will see Draft available: Save changes to see the partition values. You can save or Deactivate draft segmentsActive segment: Only active segments will appear on the service that consumes Segments. You can either edit or deactivate active segmentsInactive segment: These segments will be inactive and will not appear in any service that consumes segments. You can edit and activate inactive segments",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "## Editing an existing rule-based segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Editing an existing rule-based segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "You can modify a segment to add new partitions or modify rules for existing partitions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can modify a segment to add new partitions or modify rules for existing partitions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "### To edit a segment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "To edit a segment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        148,
+        149
+      ],
+      "raw": "1. On the Segments summary page, click on the segment that you want to edit.  You can filter the summary list by Type (SCD, Non-SCD, or All) and Method (Condition, Upload, or All) and also search for a specific filter in the Search box\n2. Click on the drop-down box that appears on the top and chooses **Edit Segment**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Segments summary page, click on the segment that you want to edit.  You can filter the summary list by Type (SCD, Non-SCD, or All) and Method (Condition, Upload, or All) and also search for a specific filter in the Search boxClick on the drop-down box that appears on the top and chooses Edit Segment.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/62dc10d-e1C2kk_aGJFlYjiXUGsxtjnXh0U-qyZXHg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/62dc10d-e1C2kk_aGJFlYjiXUGsxtjnXh0U-qyZXHg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        153,
+        154
+      ],
+      "raw": "3. Click **Edit Partitions**.\n4. To add a new partition, click **Add Partition**. If you want to update the rule of an existing partition, click on the **More** **options icon** > **Edit**. Modify rules as needed and click **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Edit Partitions.To add a new partition, click Add Partition. If you want to update the rule of an existing partition, click on the More options icon > Edit. Modify rules as needed and click Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/13280b4-qV4L19NBBSYnvcP9iDqlcGYgmhru_0g-mg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/13280b4-qV4L19NBBSYnvcP9iDqlcGYgmhru_0g-mg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        158,
+        159
+      ],
+      "raw": "5. Click **Compute & Proceed**. You will see the Processing bar\n6. Click **Update** to complete creating the segment. Else, it will be in the draft state.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Compute & Proceed. You will see the Processing barClick Update to complete creating the segment. Else, it will be in the draft state.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        161,
+        163
+      ],
+      "raw": "> 📘\n>\n> * If you try to edit the draft version, you will see the following prompt . Click Continue editing draft version to start editing the previously saved version, click Discard draft and edit current state to discard the previously saved draft version and edit",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "If you try to edit the draft version, you will see the following prompt . Click Continue editing draft version to start editing the previously saved version, click Discard draft and edit current state to discard the previously saved draft version and edit",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/28b728d-mxA8TxLph6CbyCcI5Q0qcg4qvBPM9RUy1g.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/28b728d-mxA8TxLph6CbyCcI5Q0qcg4qvBPM9RUy1g.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 45,
+      "lines": [
+        167,
+        168
+      ],
+      "raw": "**Deactivate**: You can click the **Deactivate** button to inactivate a segment and vice versa\\\n**Refresh**:  This lets you update the segment manually. This can be used for segments with the manual update. However, if you have a segment that is set to update monthly or any other frequency, you can get the updated list whenever required by clicking this manual Refresh. The time to complete the process depends on the rules to be evaluated and the data size.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Deactivate: You can click the Deactivate button to inactivate a segment and vice versaRefresh:  This lets you update the segment manually. This can be used for segments with the manual update. However, if you have a segment that is set to update monthly or any other frequency, you can get the updated list whenever required by clicking this manual Refresh. The time to complete the process depends on the rules to be evaluated and the data size.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" width=\"smart\" border={true} src=\"https://files.readme.io/ef9b485-2ZRiB9WtFPc6bwjPM1t5IFqfT_Wv92CY0g.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "width": "smart",
+        "border": "{true}",
+        "src": "https://files.readme.io/ef9b485-2ZRiB9WtFPc6bwjPM1t5IFqfT_Wv92CY0g.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width=\"smart\" is a legacy RDMD value — drop it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        172,
+        172
+      ],
+      "raw": "* **Limit of only 10 SCD segments**: You can create up to 10 SCD segments only. If you want to create a new SCD segment thereafter, you need to deactivate an existing one and create new one.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Limit of only 10 SCD segments: You can create up to 10 SCD segments only. If you want to create a new SCD segment thereafter, you need to deactivate an existing one and create new one.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

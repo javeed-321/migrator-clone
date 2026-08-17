@@ -1,0 +1,391 @@
+{
+  "slug": "docs/xiaomi-push-notification",
+  "source": "https://docs.capillarytech.com/docs/xiaomi-push-notification.md",
+  "url": "https://docs.capillarytech.com/docs/xiaomi-push-notification",
+  "title": "Xiaomi Push Notification",
+  "description": "",
+  "section": "Android SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-25T09:19:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 9,
+    "blockquote": 1,
+    "list": 4,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Xiaomi push notification (Push Amplification)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Xiaomi push notification (Push Amplification)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you with information on configuring push notifications on Chinese OEM devices.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you with information on configuring push notifications on Chinese OEM devices.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "> **Deprecation Notice:** This page documents the Xiaomi Mi Push integration which is currently deprecated. If you are starting a new integration, contact your Capillary CSM for the recommended push amplification approach.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Deprecation Notice: This page documents the Xiaomi Mi Push integration which is currently deprecated. If you are starting a new integration, contact your Capillary CSM for the recommended push amplification approach.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Push notifications often go undelivered to some app users due to device-level restrictions on certain Chinese OEM devices. The Capillary Android SDK addresses this issue by sending push notifications through both Xiaomi Cloud Push and Firebase Cloud Messaging (FCM) push services, increasing the likelihood of successful delivery. If a message is successfully delivered through one of these push services, the notification from the other cloud service is suppressed. No priority is defined, and there are no changes to the current FCM flow. This ensures that users receive the push notification only once.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Push notifications often go undelivered to some app users due to device-level restrictions on certain Chinese OEM devices. The Capillary Android SDK addresses this issue by sending push notifications through both Xiaomi Cloud Push and Firebase Cloud Messaging (FCM) push services, increasing the likelihood of successful delivery. If a message is successfully delivered through one of these push services, the notification from the other cloud service is suppressed. No priority is defined, and there are no changes to the current FCM flow. This ensures that users receive the push notification only once.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "To prevent unnecessary additions to the application, separate modules for each push service are available. You can integrate the appropriate module based on the types of devices used by your application's users.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To prevent unnecessary additions to the application, separate modules for each push service are available. You can integrate the appropriate module based on the types of devices used by your application's users.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# Integrating Xiaomi Push SDK",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Integrating Xiaomi Push SDK",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        63
+      ],
+      "raw": "1. Register as a Xiaomi developer on the [Xiaomi website](https://global.developer.mi.com/home).\n2. Create app. To create, Log into the console, click **Create App**, enter the required details and click **CREATE**.\n\n   <Image align=\"center\" className=\"border\" border={true} width=\"60% \" src=\"https://files.readme.io/f0be5dc-Register.png\" />\n3. Click on the App name and retrieve the app's Package name/App ID / AppKey / App Secret.\\\n   The App ID and App Key serve as the client's identity during client SDK initialization. The App Secret is authenticated for sending messages on the server-side.\n\n   <Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/2ba8ea9-package_name.png\" />\n4. Log into the Mi Push Operational Console and enable Push.\n5. Add dependency of the Mi SDK.\n\n   1. Download the Mi SDK.\n   2. Add the downloaded Mi SDK to the \"libs\" folder of the application module in your project.\n   3. Include the following configuration in the `build.gradle` file of the app module:\n\n      ```groovy\n      android {\n          repositories {\n              flatDir {\n                  dirs 'libs'\n              }\n          }\n      }\n\n      dependencies {\n          implementation fileTree(include: ['*.aar'], dir: 'libs')\n      }\n\n      ```\n   4. For the new project structure (applicable from the Android Gradle plugin version 7.0.0 and above), add the following in the `dependencyResolutionManagement` block of your `settings.gradle` file:\n\n      ```groovy\n      dependencyResolutionManagement {DependencyResolutionManagement it ->\n          repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)\n          repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)\n          \n          repositories { RepositoryHandler it ->\n              google()\n              mavenCentral()\n          }\n      }\n\n      ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Register as a Xiaomi developer on the Xiaomi website.Create app. To create, Log into the console, click Create App, enter the required details and click CREATE.Click on the App name and retrieve the app's Package name/App ID / AppKey / App Secret.The App ID and App Key serve as the client's identity during client SDK initialization. The App Secret is authenticated for sending messages on the server-side.Log into the Mi Push Operational Console and enable Push.Add dependency of the Mi SDK.Download the Mi SDK.Add the downloaded Mi SDK to the \"libs\" folder of the application module in your project.Include the following configuration in the build.gradle file of the app module:android {\n    repositories {\n        flatDir {\n            dirs 'libs'\n        }\n    }\n}\n\ndependencies {\n    implementation fileTree(include: ['*.aar'], dir: 'libs')\n}\nFor the new project structure (applicable from the Android Gradle plugin version 7.0.0 and above), add the following in the dependencyResolutionManagement block of your settings.gradle file:dependencyResolutionManagement {DependencyResolutionManagement it ->\n    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)\n    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)\n    \n    repositories { RepositoryHandler it ->\n        google()\n        mavenCentral()\n    }\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "# Installing SDK",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Installing SDK",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "Perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        69,
+        113
+      ],
+      "raw": "1. Add the dependency files.\\\n   **Installing using version catalog:**\n   This is the recommended method.\n   1. Configure the catalog. For more information, refer to the [Version Catalog Installation](https://docs.capillarytech.com/docs/installing-sdk#/installing-with-version-catalog).\n   2. Add the dependency in the `app/build.gradle` file.\n      ```groovy\n      dependencies {\n          ...\n          implementation(\"hydra.mipushkit\")\n      }\n      ```\n      **Installing using Artifact**\\\n      To install using artifact, add the following dependency in the `app/build.gradle` file:\n   ```groovy\n   dependencies {\n   …\n    implementation(\"com.capillary:hydra-mi-push-kit:x.x.x\")\n   }\n   ```\n2. Add the SDK files to the project.\n\n   1. Download the helper class and broadcast receiver files from [here](https://github.com/Capillary/push-amp-plus).\n   2. Create a package named `com.hydra.sdk.miPushKit` and paste the downloaded files into this package.\n   3. Add Broadcast Receiver in AndroidManifest.xml file.\n\n      ```xml\n      <receiver\n          android:name=\"com.hydra.sdk.miPushKit.MiBroadcastReciever\"\n          android:exported=\"false\">\n\n          <intent-filter>\n              <action android:name=\"com.xiaomi.mipush.RECEIVE_MESSAGE\" />\n          </intent-filter>\n\n          <intent-filter>\n              <action android:name=\"com.xiaomi.mipush.MESSAGE_ARRIVED\" />\n          </intent-filter>\n\n          <intent-filter>\n              <action android:name=\"com.xiaomi.mipush.ERROR\" />\n          </intent-filter>\n\n      </receiver>\n\n      ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add the dependency files.Installing using version catalog:\nThis is the recommended method.Configure the catalog. For more information, refer to the Version Catalog Installation.Add the dependency in the app/build.gradle file.dependencies {\n    ...\n    implementation(\"hydra.mipushkit\")\n}Installing using ArtifactTo install using artifact, add the following dependency in the app/build.gradle file:dependencies {\n…\n implementation(\"com.capillary:hydra-mi-push-kit:x.x.x\")\n}Add the SDK files to the project.Download the helper class and broadcast receiver files from here.Create a package named com.hydra.sdk.miPushKit and paste the downloaded files into this package.Add Broadcast Receiver in AndroidManifest.xml file.<receiver\n    android:name=\"com.hydra.sdk.miPushKit.MiBroadcastReciever\"\n    android:exported=\"false\">\n\n    <intent-filter>\n        <action android:name=\"com.xiaomi.mipush.RECEIVE_MESSAGE\" />\n    </intent-filter>\n\n    <intent-filter>\n        <action android:name=\"com.xiaomi.mipush.MESSAGE_ARRIVED\" />\n    </intent-filter>\n\n    <intent-filter>\n        <action android:name=\"com.xiaomi.mipush.ERROR\" />\n    </intent-filter>\n\n</receiver>",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/installing-sdk#/installing-with-version-catalog",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "i": 12,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "# Initialise Xiaomi push",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Initialise Xiaomi push",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        117,
+        122
+      ],
+      "raw": "1. Locate the part of your code where the application comes to the foreground.\n2. Insert the following code within that section:\n\n   ```java\n   MiPushHelper.initialiseMiPush(context, MI_APP_ID, MI_APP_KEY, Region);\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Locate the part of your code where the application comes to the foreground.Insert the following code within that section:MiPushHelper.initialiseMiPush(context, MI_APP_ID, MI_APP_KEY, Region);",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        124,
+        124
+      ],
+      "raw": "where,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "where,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        126,
+        128
+      ],
+      "raw": "MI\\_APP\\_ID: The App-Id from the Mi Dashboard.\\\nMI\\_APP\\_KEY: The App-Key from the Mi Dashboard.\nRegion: The chosen region for Mi data residency.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "MI_APP_ID: The App-Id from the Mi Dashboard.MI_APP_KEY: The App-Key from the Mi Dashboard.\nRegion: The chosen region for Mi data residency.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "## Handling Push within the Application (optional):",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Handling Push within the Application (optional):",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "If you're handling token registration and notifications in your app's receiver, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you're handling token registration and notifications in your app's receiver, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        134,
+        151
+      ],
+      "raw": "1. Set the Data Region:\n\n   1. Determine the region where Mi data resides using the`MiPushClient.getAppRegion(context)`API.\n   2. Pass the region to the below API:\n\n      ```java\n      HydraMiPushApi.getInstance().setDataRegion(context, MiRegion.valueOf(region.toString()));  \n\n      ```\n2. Use the `passPushToken()` API and pass the push token to the SDK.\n\n   ```java\n   HydraMiPushApi.getInstance().passPushToken(context, pushToken);\n   ```\n3. Use the `isFromHydraPlatform()` helper API provided by the SDK and make sure that the payload is from the Capillary Hydra platform. After you confirm, pass the notification payload to the SDK.\n   ```java\n   HydraMiPushApi.getInstance().passPushPayload(context, pushPayload)\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Set the Data Region:Determine the region where Mi data resides using theMiPushClient.getAppRegion(context)API.Pass the region to the below API:HydraMiPushApi.getInstance().setDataRegion(context, MiRegion.valueOf(region.toString()));  \nUse the passPushToken() API and pass the push token to the SDK.HydraMiPushApi.getInstance().passPushToken(context, pushToken);Use the isFromHydraPlatform() helper API provided by the SDK and make sure that the payload is from the Capillary Hydra platform. After you confirm, pass the notification payload to the SDK.HydraMiPushApi.getInstance().passPushPayload(context, pushPayload)",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        155,
+        159
+      ],
+      "raw": "```java\nif (HydraPushApi.getInstance().isFromHydraPlatform(remoteMessage)) {\n   HydraMiPushApi.getInstance().passPushPayload(context, remoteMessage);\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "java",
+        "title": null,
+        "code": "if (HydraPushApi.getInstance().isFromHydraPlatform(remoteMessage)) {\n   HydraMiPushApi.getInstance().passPushPayload(context, remoteMessage);\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

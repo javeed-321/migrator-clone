@@ -1,0 +1,600 @@
+{
+  "slug": "reference/post-images-to-file-service",
+  "source": "https://docs.capillarytech.com/reference/post-images-to-file-service.md",
+  "url": "https://docs.capillarytech.com/reference/post-images-to-file-service",
+  "title": "Post Images To File Service",
+  "description": "",
+  "section": "File Service",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-03T06:55:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 2,
+    "Callout": 1,
+    "list": 1,
+    "Table": 4,
+    "code": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Upload images to file service",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Upload images to file service",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API is upload an image to the file service.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API is upload an image to the file service.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "> 👍 Note\n>\n> * For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call).",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and step-by-step guide on making your first API call in Make your first API call.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        18
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth credentials\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth credentialsDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        22,
+        28
+      ],
+      "raw": "|                        |                                                                |\n| :--------------------- | :------------------------------------------------------------- |\n| URI                    | /api\\_gateway/file-service/rewards`{file name with extension}` |\n| HTTP Method            | POST                                                           |\n| Pagination             | No                                                             |\n| Batch support          | No                                                             |\n| Rate limit information | None                                                           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "/api_gateway/file-service/rewards{file name with extension}"
+          ],
+          [
+            "HTTP Method",
+            "POST"
+          ],
+          [
+            "Pagination",
+            "No"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "`https://{host}/api_gateway/file-service/rewards/test.png`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "https://{host}/api_gateway/file-service/rewards/test.png",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "# Request path parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request path parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        36,
+        38
+      ],
+      "raw": "| Parameter  | Data type | Description                                                                                                 |\n| ---------- | --------- | ----------------------------------------------------------------------------------------------------------- |\n| filename\\* | String    | The name of the image to be uploaded. All file image extensions are supported. Example: test.png, test.jpg. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "filename*",
+            "String",
+            "The name of the image to be uploaded. All file image extensions are supported. Example: test.png, test.jpg."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "# Request body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        42,
+        44
+      ],
+      "raw": "| Parameter                | Data Type | Description                                                                                                                                                                                                                                                                                         |\n| :----------------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **`File path location`** | String    | The location of the image stored on your computer. If a file path is provided, the image is stored in S3. \\<br>\\<br>**Example**: `@/Users/nikhil/Downloads/IMG_20220730_180352311.jpg`\\<br>\\<br>**Note**: If no file path is given, a placeholder is created in the S3 location to store the image. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "File path location",
+            "String",
+            "The location of the image stored on your computer. If a file path is provided, the image is stored in S3. <br><br>Example: @/Users/nikhil/Downloads/IMG_20220730_180352311.jpg<br><br>Note: If no file path is given, a placeholder is created in the S3 location to store the image."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 44
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 44
+        }
+      ],
+      "notes": [
+        "escaped \\<br> renders as literal text",
+        "unclosed <br> is invalid MDX"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        46,
+        48
+      ],
+      "raw": "```json\n@/Users/nikhil/Downloads/IMG_20220730_180352311.jpg\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "@/Users/nikhil/Downloads/IMG_20220730_180352311.jpg"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        52,
+        68
+      ],
+      "raw": "| Parameter            | Data Type | Description                                                                           |\n| -------------------- | --------- | ------------------------------------------------------------------------------------- |\n| code                 | Integer   | HTTP status code indicating the outcome of the request.                               |\n| status               | String    | A Boolean indicating the status of the file upload operation.                         |\n| message              | String    | A message describing the outcome of the operation.                                    |\n| file.name            | String    | The name of the uploaded file.                                                        |\n| file.namespace       | String    | The namespace categorization for the file.                                            |\n| file.version         | Integer   | The version number of the file.                                                       |\n| file.acl             | String    | Access control level of the file.                                                     |\n| file.fileSize        | String    | The size of the file in bytes.                                                        |\n| file.file\\_handle    | String    | A unique identifier for the file handle.                                              |\n| file.content\\_type   | String    | The MIME (Multipurpose Internet Mail Extensions) type of the file, e.g., \"image/png\". |\n| file.s3\\_token       | String    | A token representing the file in the S3 storage.                                      |\n| file.latest\\_version | Integer   | The latest version number of the file.                                                |\n| file.last\\_modified  | String    | The timestamp of the last modification to the file.                                   |\n| file.s3\\_url         | String    | The URL to access the file directly from S3 storage.                                  |\n| secureFilePath       | String    | A secure URL to access the file, including authentication tokens and parameters.      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "code",
+            "Integer",
+            "HTTP status code indicating the outcome of the request."
+          ],
+          [
+            "status",
+            "String",
+            "A Boolean indicating the status of the file upload operation."
+          ],
+          [
+            "message",
+            "String",
+            "A message describing the outcome of the operation."
+          ],
+          [
+            "file.name",
+            "String",
+            "The name of the uploaded file."
+          ],
+          [
+            "file.namespace",
+            "String",
+            "The namespace categorization for the file."
+          ],
+          [
+            "file.version",
+            "Integer",
+            "The version number of the file."
+          ],
+          [
+            "file.acl",
+            "String",
+            "Access control level of the file."
+          ],
+          [
+            "file.fileSize",
+            "String",
+            "The size of the file in bytes."
+          ],
+          [
+            "file.file_handle",
+            "String",
+            "A unique identifier for the file handle."
+          ],
+          [
+            "file.content_type",
+            "String",
+            "The MIME (Multipurpose Internet Mail Extensions) type of the file, e.g., \"image/png\"."
+          ],
+          [
+            "file.s3_token",
+            "String",
+            "A token representing the file in the S3 storage."
+          ],
+          [
+            "file.latest_version",
+            "Integer",
+            "The latest version number of the file."
+          ],
+          [
+            "file.last_modified",
+            "String",
+            "The timestamp of the last modification to the file."
+          ],
+          [
+            "file.s3_url",
+            "String",
+            "The URL to access the file directly from S3 storage."
+          ],
+          [
+            "secureFilePath",
+            "String",
+            "A secure URL to access the file, including authentication tokens and parameters."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        70,
+        90
+      ],
+      "raw": "```json\n{\n    \"code\": 200,\n    \"status\": \"true\",\n    \"message\": \"Successfully uploaded file\",\n    \"file\": {\n        \"name\": \"test.png\",\n        \"namespace\": \"rewards\",\n        \"version\": 2,\n        \"acl\": \"PRIVATE\",\n        \"fileSize\": \"51\",\n        \"file_handle\": \"73e78929-1e07-4cc5-a738-b54470a7dc8c\",\n        \"content_type\": \"image/png\",\n        \"s3_token\": \"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\",\n        \"latest_version\": 2,\n        \"last_modified\": \"2024-05-08 09:10:59\",\n        \"s3_url\": \"s3:/eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n    },\n    \"secureFilePath\": \"https://{host}/{path}\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n    \"code\": 200,\n    \"status\": \"true\",\n    \"message\": \"Successfully uploaded file\",\n    \"file\": {\n        \"name\": \"test.png\",\n        \"namespace\": \"rewards\",\n        \"version\": 2,\n        \"acl\": \"PRIVATE\",\n        \"fileSize\": \"51\",\n        \"file_handle\": \"73e78929-1e07-4cc5-a738-b54470a7dc8c\",\n        \"content_type\": \"image/png\",\n        \"s3_token\": \"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\",\n        \"latest_version\": 2,\n        \"last_modified\": \"2024-05-08 09:10:59\",\n        \"s3_url\": \"s3:/eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n    },\n    \"secureFilePath\": \"https://{host}/{path}\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        94,
+        275
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/file-service/rewards/{file name with extension}\": {\n      \"post\": {\n        \"summary\": \"Upload images to file service\",\n        \"description\": \"\",\n        \"operationId\": \"post-images-to-file-service\",\n        \"parameters\": [\n          {\n            \"name\": \"fileName\",\n            \"in\": \"path\",\n            \"description\": \"Name of the image to upload with extension.\",\n            \"schema\": {\n              \"type\": \"string\"\n            },\n            \"required\": true\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"code\\\": 200,\\n    \\\"status\\\": \\\"true\\\",\\n    \\\"message\\\": \\\"Successfully uploaded file\\\",\\n    \\\"file\\\": {\\n        \\\"name\\\": \\\"test.png\\\",\\n        \\\"namespace\\\": \\\"rewards\\\",\\n        \\\"version\\\": 2,\\n        \\\"acl\\\": \\\"PRIVATE\\\",\\n        \\\"fileSize\\\": \\\"51\\\",\\n        \\\"file_handle\\\": \\\"73e78929-1e07-4cc5-a738-b54470a7dc8c\\\",\\n        \\\"content_type\\\": \\\"image/png\\\",\\n        \\\"s3_token\\\": \\\"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\\\",\\n        \\\"latest_version\\\": 2,\\n        \\\"last_modified\\\": \\\"2024-05-08 09:10:59\\\",\\n        \\\"s3_url\\\": \\\"s3://eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\\\"\\n    },\\n    \\\"secureFilePath\\\": \\\"https://{host}/{path}\\\"\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"code\": {\n                      \"type\": \"integer\",\n                      \"example\": 200,\n                      \"default\": 0\n                    },\n                    \"status\": {\n                      \"type\": \"string\",\n                      \"example\": \"true\"\n                    },\n                    \"message\": {\n                      \"type\": \"string\",\n                      \"example\": \"Successfully uploaded file\"\n                    },\n                    \"file\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"test.png\"\n                        },\n                        \"namespace\": {\n                          \"type\": \"string\",\n                          \"example\": \"rewards\"\n                        },\n                        \"version\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"acl\": {\n                          \"type\": \"string\",\n                          \"example\": \"PRIVATE\"\n                        },\n                        \"fileSize\": {\n                          \"type\": \"string\",\n                          \"example\": \"51\"\n                        },\n                        \"file_handle\": {\n                          \"type\": \"string\",\n                          \"example\": \"73e78929-1e07-4cc5-a738-b54470a7dc8c\"\n                        },\n                        \"content_type\": {\n                          \"type\": \"string\",\n                          \"example\": \"image/png\"\n                        },\n                        \"s3_token\": {\n                          \"type\": \"string\",\n                          \"example\": \"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n                        },\n                        \"latest_version\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"last_modified\": {\n                          \"type\": \"string\",\n                          \"example\": \"2024-05-08 09:10:59\"\n                        },\n                        \"s3_url\": {\n                          \"type\": \"string\",\n                          \"example\": \"s3://eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n                        }\n                      }\n                    },\n                    \"secureFilePath\": {\n                      \"type\": \"string\",\n                      \"example\": \"https://{host}/{path}\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"@/Users/nikhil/Downloads/IMG_20220730_180352311.jpg\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/file-service/rewards/{file name with extension}\": {\n      \"post\": {\n        \"summary\": \"Upload images to file service\",\n        \"description\": \"\",\n        \"operationId\": \"post-images-to-file-service\",\n        \"parameters\": [\n          {\n            \"name\": \"fileName\",\n            \"in\": \"path\",\n            \"description\": \"Name of the image to upload with extension.\",\n            \"schema\": {\n              \"type\": \"string\"\n            },\n            \"required\": true\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"code\\\": 200,\\n    \\\"status\\\": \\\"true\\\",\\n    \\\"message\\\": \\\"Successfully uploaded file\\\",\\n    \\\"file\\\": {\\n        \\\"name\\\": \\\"test.png\\\",\\n        \\\"namespace\\\": \\\"rewards\\\",\\n        \\\"version\\\": 2,\\n        \\\"acl\\\": \\\"PRIVATE\\\",\\n        \\\"fileSize\\\": \\\"51\\\",\\n        \\\"file_handle\\\": \\\"73e78929-1e07-4cc5-a738-b54470a7dc8c\\\",\\n        \\\"content_type\\\": \\\"image/png\\\",\\n        \\\"s3_token\\\": \\\"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\\\",\\n        \\\"latest_version\\\": 2,\\n        \\\"last_modified\\\": \\\"2024-05-08 09:10:59\\\",\\n        \\\"s3_url\\\": \\\"s3://eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\\\"\\n    },\\n    \\\"secureFilePath\\\": \\\"https://{host}/{path}\\\"\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {\n                    \"code\": {\n                      \"type\": \"integer\",\n                      \"example\": 200,\n                      \"default\": 0\n                    },\n                    \"status\": {\n                      \"type\": \"string\",\n                      \"example\": \"true\"\n                    },\n                    \"message\": {\n                      \"type\": \"string\",\n                      \"example\": \"Successfully uploaded file\"\n                    },\n                    \"file\": {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"name\": {\n                          \"type\": \"string\",\n                          \"example\": \"test.png\"\n                        },\n                        \"namespace\": {\n                          \"type\": \"string\",\n                          \"example\": \"rewards\"\n                        },\n                        \"version\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"acl\": {\n                          \"type\": \"string\",\n                          \"example\": \"PRIVATE\"\n                        },\n                        \"fileSize\": {\n                          \"type\": \"string\",\n                          \"example\": \"51\"\n                        },\n                        \"file_handle\": {\n                          \"type\": \"string\",\n                          \"example\": \"73e78929-1e07-4cc5-a738-b54470a7dc8c\"\n                        },\n                        \"content_type\": {\n                          \"type\": \"string\",\n                          \"example\": \"image/png\"\n                        },\n                        \"s3_token\": {\n                          \"type\": \"string\",\n                          \"example\": \"rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n                        },\n                        \"latest_version\": {\n                          \"type\": \"integer\",\n                          \"example\": 2,\n                          \"default\": 0\n                        },\n                        \"last_modified\": {\n                          \"type\": \"string\",\n                          \"example\": \"2024-05-08 09:10:59\"\n                        },\n                        \"s3_url\": {\n                          \"type\": \"string\",\n                          \"example\": \"s3://eucrm-solutions/rewards/100606/b21f3aea-ad38-4634-82a4-db2aaa0b.png\"\n                        }\n                      }\n                    },\n                    \"secureFilePath\": {\n                      \"type\": \"string\",\n                      \"example\": \"https://{host}/{path}\"\n                    }\n                  }\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"@/Users/nikhil/Downloads/IMG_20220730_180352311.jpg\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

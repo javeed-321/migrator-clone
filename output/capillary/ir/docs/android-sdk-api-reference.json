@@ -1,0 +1,1631 @@
+{
+  "slug": "docs/android-sdk-api-reference",
+  "source": "https://docs.capillarytech.com/docs/android-sdk-api-reference.md",
+  "url": "https://docs.capillarytech.com/docs/android-sdk-api-reference",
+  "title": "Android Sdk Api Reference",
+  "description": "",
+  "section": "Android SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-25T09:19:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 14,
+    "paragraph": 27,
+    "list": 7,
+    "CodeTabs": 8,
+    "Table": 8,
+    "code": 2,
+    "Image": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API Reference for Event Tracking and User Lifecycle Management",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Reference for Event Tracking and User Lifecycle Management",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Capillary Android SDK APIs provide you with the capability to perform various actions, including customer registrations, customer logins, and more. These APIs can also be used for reporting to track events such as customer registrations, customer logins, and more.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Capillary Android SDK APIs provide you with the capability to perform various actions, including customer registrations, customer logins, and more. These APIs can also be used for reporting to track events such as customer registrations, customer logins, and more.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "There are 2 types of events:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are 2 types of events:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        15
+      ],
+      "raw": "1. **Standard events** - These events are configured in the SDK and cannot be removed.  With Capillary SDK, you can record user-specific information such as their username, first name, last name, email, mobile number, and other custom information, along with system information, in the events. This information can then be used to run campaigns based on user segregation at different levels.\n2. **Behavioural events** - The events resource also allows you to create behavioural events to track any other important user interactions for your business. For example, events such as forgot password, cart abandonment etc. These events can be further defined by event attributes such as price, quantity, and category. These events need to be configured in your org settings.\n   For behavioural events, you need to do configuration in the Hydraconfig and organisation settings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Standard events - These events are configured in the SDK and cannot be removed.  With Capillary SDK, you can record user-specific information such as their username, first name, last name, email, mobile number, and other custom information, along with system information, in the events. This information can then be used to run campaigns based on user segregation at different levels.Behavioural events - The events resource also allows you to create behavioural events to track any other important user interactions for your business. For example, events such as forgot password, cart abandonment etc. These events can be further defined by event attributes such as price, quantity, and category. These events need to be configured in your org settings.\nFor behavioural events, you need to do configuration in the Hydraconfig and organisation settings.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# User Management and Account Configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "User Management and Account Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "The SDK offers four event-tracking APIs for recording for reporting user action events. These APIs enable you to recognize visitors, monitor events, generate events dynamically, and track the activities of users, including any properties that describe their actions. This information can be used to gain insights into user behaviour and create campaigns based on user segmentation at different levels. For example, with the user event data, you can send welcome messages to customers through e-mail or offer different offers based on user age, gender etc.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The SDK offers four event-tracking APIs for recording for reporting user action events. These APIs enable you to recognize visitors, monitor events, generate events dynamically, and track the activities of users, including any properties that describe their actions. This information can be used to gain insights into user behaviour and create campaigns based on user segmentation at different levels. For example, with the user event data, you can send welcome messages to customers through e-mail or offer different offers based on user age, gender etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "The SDK has the below standard event tracking APIs:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The SDK has the below standard event tracking APIs:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        26
+      ],
+      "raw": "1. Sign In\n2. Sign Up\n3. User Update\n4. Sign Out",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Sign InSign UpUser UpdateSign Out",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Each user in the app should have a unique identifier (cuid) associated with their account. Provide this identifier whenever a user signs up or signs in. This enables cross-device and cross-platform tracking, leading to improved behavioural and demographic data quality.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each user in the app should have a unique identifier (cuid) associated with their account. Provide this identifier whenever a user signs up or signs in. This enables cross-device and cross-platform tracking, leading to improved behavioural and demographic data quality.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "### Sign In",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Sign In",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "This API can be used to sign in a user to the platform and report when a user signs in.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to sign in a user to the platform and report when a user signs in.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        34,
+        48
+      ],
+      "raw": "```kotlin\nfun pushUserSignin(  \n   cuid: String,  \n   firstName: String? = null,  \n   lastName: String? = null,  \n   email: String? = null,  \n   phone: String? = null,  \n   customData: Map\\<String, Any>? = null  \n)\n```\n```java\npublic void pushUserSignin(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "fun pushUserSignin(  \n   cuid: String,  \n   firstName: String? = null,  \n   lastName: String? = null,  \n   email: String? = null,  \n   phone: String? = null,  \n   customData: Map\\<String, Any>? = null  \n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void pushUserSignin(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        50,
+        57
+      ],
+      "raw": "| Parameter  | Type   | Description                                            | Optional/Mandatory |\n| ---------- | ------ | ------------------------------------------------------ | ------------------ |\n| cuid       | String | Identifier for the user, either phone/email/externalId | Mandatory          |\n| firstName  | String | First name of the user                                 | Optional           |\n| lastName   | String | Last name of the user                                  | Optional           |\n| email      | String | Email address of the user                              | Optional           |\n| phone      | String | Phone number of the user                               | Optional           |\n| customData | Map    | Map of custom attributes for the user                  | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Optional/Mandatory"
+        ],
+        "rows": [
+          [
+            "cuid",
+            "String",
+            "Identifier for the user, either phone/email/externalId",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "First name of the user",
+            "Optional"
+          ],
+          [
+            "lastName",
+            "String",
+            "Last name of the user",
+            "Optional"
+          ],
+          [
+            "email",
+            "String",
+            "Email address of the user",
+            "Optional"
+          ],
+          [
+            "phone",
+            "String",
+            "Phone number of the user",
+            "Optional"
+          ],
+          [
+            "customData",
+            "Map",
+            "Map of custom attributes for the user",
+            "Optional"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        61,
+        105
+      ],
+      "raw": "1. User push sign-in event to SDK with optional details.\n   ```kotlin\n   hydraAPI?.pushUserSignin(  \n      \"9000090000\",  \n      \"Henry\",  \n      \"Williams\",  \n      \"henrywill@gmail.com\",  \n      \"9000090000\",  \n      mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\"))\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserSignin(\n           \"9000090000\",\n           \"Henry\",\n           \"Williams\",\n           \"henrywill@gmail.com\",\n           \"9000090000\",\n           Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n       );\n   }\n   ```\n2. User push sign-in event to SDK without optional details.\n   ```kotlin\n   hydraAPI?.pushUserSignin(  \n      \"9000090000\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      emptyMap()  \n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserSignin(\n           \"9000090000\",\n           \"\",\n           \"\",\n           \"\",\n           \"\",\n           Collections.emptyMap()\n       );\n   }\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User push sign-in event to SDK with optional details.hydraAPI?.pushUserSignin(  \n   \"9000090000\",  \n   \"Henry\",  \n   \"Williams\",  \n   \"henrywill@gmail.com\",  \n   \"9000090000\",  \n   mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\"))if (hydraAPI != null) {\n    hydraAPI.pushUserSignin(\n        \"9000090000\",\n        \"Henry\",\n        \"Williams\",\n        \"henrywill@gmail.com\",\n        \"9000090000\",\n        Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n    );\n}User push sign-in event to SDK without optional details.hydraAPI?.pushUserSignin(  \n   \"9000090000\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   emptyMap()  \n)if (hydraAPI != null) {\n    hydraAPI.pushUserSignin(\n        \"9000090000\",\n        \"\",\n        \"\",\n        \"\",\n        \"\",\n        Collections.emptyMap()\n    );\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "### Sign up",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Sign up",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        109,
+        109
+      ],
+      "raw": "This API can be used to register a user to the platform and report when a user registers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to register a user to the platform and report when a user registers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        111,
+        126
+      ],
+      "raw": "```kotlin\nfun pushUserSignup(  \n   cuid: String,  \n   firstName: String,  \n   lastName: String,  \n   email: String,  \n   phone: String,  \n   customData: Map\\<String, Any>?,\n   subscriptions: List<Any>?\n)\n```\n```java\npublic void pushUserSignup(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "fun pushUserSignup(  \n   cuid: String,  \n   firstName: String,  \n   lastName: String,  \n   email: String,  \n   phone: String,  \n   customData: Map\\<String, Any>?,\n   subscriptions: List<Any>?\n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void pushUserSignup(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        128,
+        136
+      ],
+      "raw": "| Parameter     | Type   | Description                                                                            | Optional/Mandatory |\n| ------------- | ------ | -------------------------------------------------------------------------------------- | ------------------ |\n| cuid          | String | phone/email/externalId                                                                 | Mandatory          |\n| firstName     | String | User first name                                                                        | Mandatory          |\n| lastName      | String | User last Name                                                                         | Mandatory          |\n| email         | String | User email address                                                                     | Mandatory          |\n| phone         | String | User mobile number                                                                     | Mandatory          |\n| customData    | Map    | The attribute map which needs to be set for the user.                                  | Optional           |\n| subscriptions | List   | List of subscriptions which include channel, accountId, priority, type and sourcename. | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Optional/Mandatory"
+        ],
+        "rows": [
+          [
+            "cuid",
+            "String",
+            "phone/email/externalId",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "User first name",
+            "Mandatory"
+          ],
+          [
+            "lastName",
+            "String",
+            "User last Name",
+            "Mandatory"
+          ],
+          [
+            "email",
+            "String",
+            "User email address",
+            "Mandatory"
+          ],
+          [
+            "phone",
+            "String",
+            "User mobile number",
+            "Mandatory"
+          ],
+          [
+            "customData",
+            "Map",
+            "The attribute map which needs to be set for the user.",
+            "Optional"
+          ],
+          [
+            "subscriptions",
+            "List",
+            "List of subscriptions which include channel, accountId, priority, type and sourcename.",
+            "Optional"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        140,
+        187
+      ],
+      "raw": "1. User push sign-up event to  SDK with all optional details\n\n   ```kotlin\n   hydraAPI?.pushUserSignup(\n      \"9000090000\",\n      \"Henry\",\n      \"Williams\",\n      \"henrywill@gmail.com\",\n      \"9000090000\",\n      mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\")\n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserSignup(\n           \"9000090000\",\n           \"Henry\",\n           \"Williams\",\n           \"henrywill@gmail.com\",\n           \"9000090000\",\n           Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n       );\n   }\n\n   ```\n2. User push sign-up event to  SDK without optional details\n   ```kotlin\n   hydraAPI?.pushUserSignup(  \n      \"9000090000\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      emptyMap()  \n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserSignup(\n           \"9000090000\",\n           \"\",\n           \"\",\n           \"\",\n           \"\",\n           Collections.emptyMap()\n       );\n   }\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User push sign-up event to  SDK with all optional detailshydraAPI?.pushUserSignup(\n   \"9000090000\",\n   \"Henry\",\n   \"Williams\",\n   \"henrywill@gmail.com\",\n   \"9000090000\",\n   mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\")\n)if (hydraAPI != null) {\n    hydraAPI.pushUserSignup(\n        \"9000090000\",\n        \"Henry\",\n        \"Williams\",\n        \"henrywill@gmail.com\",\n        \"9000090000\",\n        Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n    );\n}\nUser push sign-up event to  SDK without optional detailshydraAPI?.pushUserSignup(  \n   \"9000090000\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   emptyMap()  \n)if (hydraAPI != null) {\n    hydraAPI.pushUserSignup(\n        \"9000090000\",\n        \"\",\n        \"\",\n        \"\",\n        \"\",\n        Collections.emptyMap()\n    );\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "### User update",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "User update",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "This API can be used to update a user's profile and report when a user has updated their profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to update a user's profile and report when a user has updated their profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        193,
+        207
+      ],
+      "raw": "```kotlin\nfun pushUserUpdate(  \n   cuid: String,  \n   firstName: String? = null,  \n   lastName: String? = null,  \n   email: String? = null,  \n   phone: String? = null,  \n   customData: Map\\<String, Any>? = null  \n)\n```\n```java\npublic void pushUserUpdate(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "fun pushUserUpdate(  \n   cuid: String,  \n   firstName: String? = null,  \n   lastName: String? = null,  \n   email: String? = null,  \n   phone: String? = null,  \n   customData: Map\\<String, Any>? = null  \n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void pushUserUpdate(String cuid, String firstName, String lastName, String email, String phone, Map<String, Object> customData) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        209,
+        216
+      ],
+      "raw": "| Parameter  | Type   | Description                                          | Optional/Mandatory |\n| ---------- | ------ | ---------------------------------------------------- | ------------------ |\n| cuid       | String | phone/email/externalId                               | Mandatory          |\n| firstName  | String | User first Name                                      | Optional           |\n| lastName   | String | User Last Name                                       | Optional           |\n| email      | String | User Email address                                   | Optional           |\n| phone      | String | User mobile number                                   | Optional           |\n| customData | Map    | The attribute map which needs to be set for the user | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Optional/Mandatory"
+        ],
+        "rows": [
+          [
+            "cuid",
+            "String",
+            "phone/email/externalId",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "User first Name",
+            "Optional"
+          ],
+          [
+            "lastName",
+            "String",
+            "User Last Name",
+            "Optional"
+          ],
+          [
+            "email",
+            "String",
+            "User Email address",
+            "Optional"
+          ],
+          [
+            "phone",
+            "String",
+            "User mobile number",
+            "Optional"
+          ],
+          [
+            "customData",
+            "Map",
+            "The attribute map which needs to be set for the user",
+            "Optional"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        220,
+        265
+      ],
+      "raw": "1. User push update event to SDK with optional details\n   ```kotlin\n   hydraAPI?.pushUserUpdate(  \n      \"9000090000\",  \n      \"Henry\",  \n      \"Williams\",  \n      \"henrywill@gmail.com\",  \n      \"9000090000\",  \n      mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\")  \n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserUpdate(\n           \"9000090000\",\n           \"Henry\",\n           \"Williams\",\n           \"henrywill@gmail.com\",\n           \"9000090000\",\n           Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n       );\n   }\n   ```\n2. User push update event to  SDK without optional details\n   ```kotlin\n   hydraAPI?.pushUserUpdate(  \n      \"9000090000\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      \"\",  \n      emptyMap()  \n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushUserUpdate(\n           \"9000090000\",\n           \"\",\n           \"\",\n           \"\",\n           \"\",\n           Collections.emptyMap()\n       );\n   }\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User push update event to SDK with optional detailshydraAPI?.pushUserUpdate(  \n   \"9000090000\",  \n   \"Henry\",  \n   \"Williams\",  \n   \"henrywill@gmail.com\",  \n   \"9000090000\",  \n   mapOf(\"Age\" to \"25\",\"Gender\" to \"Male\")  \n)if (hydraAPI != null) {\n    hydraAPI.pushUserUpdate(\n        \"9000090000\",\n        \"Henry\",\n        \"Williams\",\n        \"henrywill@gmail.com\",\n        \"9000090000\",\n        Map.of(\"Age\", \"25\", \"Gender\", \"Male\")\n    );\n}User push update event to  SDK without optional detailshydraAPI?.pushUserUpdate(  \n   \"9000090000\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   \"\",  \n   emptyMap()  \n)if (hydraAPI != null) {\n    hydraAPI.pushUserUpdate(\n        \"9000090000\",\n        \"\",\n        \"\",\n        \"\",\n        \"\",\n        Collections.emptyMap()\n    );\n}",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        267,
+        267
+      ],
+      "raw": "### Sign out",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Sign out",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        269,
+        269
+      ],
+      "raw": "This API can be used to sign out a user and report when a user has signed out.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to sign out a user and report when a user has signed out.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        271,
+        271
+      ],
+      "raw": "To log sign-out events, only the cuid is required. You can use the cuid to erase all previously logged user information such as firstName, mobile, etc.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To log sign-out events, only the cuid is required. You can use the cuid to erase all previously logged user information such as firstName, mobile, etc.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        273,
+        273
+      ],
+      "raw": "**API function:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API function:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        275,
+        284
+      ],
+      "raw": "```kotlin\nfun pushUserSignOut(  \n cuid: String  \n)\n```\n```java\npublic void pushUserSignOut(String cuid) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "fun pushUserSignOut(  \n cuid: String  \n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void pushUserSignOut(String cuid) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        286,
+        288
+      ],
+      "raw": "| Parameter | Type   | Description            | Optional/Mandatory |\n| --------- | ------ | ---------------------- | ------------------ |\n| cuid      | String | phone/email/externalId | Mandatory          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Optional/Mandatory"
+        ],
+        "rows": [
+          [
+            "cuid",
+            "String",
+            "phone/email/externalId",
+            "Mandatory"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        290,
+        290
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        292,
+        301
+      ],
+      "raw": "```kotlin\nhydraAPI?.pushUserSignOut(  \n   \"9000090000\",  \n)\n```\n```java\nif (hydraAPI != null) {\n    hydraAPI.pushUserSignOut(\"9000090000\");\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "hydraAPI?.pushUserSignOut(  \n   \"9000090000\",  \n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "if (hydraAPI != null) {\n    hydraAPI.pushUserSignOut(\"9000090000\");\n}"
+        }
+      ]
+    },
+    {
+      "i": 36,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "### Pass user preferences",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Pass user preferences",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "This API allows the application to track user preferences by passing settings in a User Preference object with the necessary information.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API allows the application to track user preferences by passing settings in a User Preference object with the necessary information.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        307,
+        307
+      ],
+      "raw": "**API function:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API function:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        309,
+        311
+      ],
+      "raw": "```kotlin\nfun passUserPreferences(cuid: String,   userPreference: UserPreferences)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "kotlin",
+        "title": null,
+        "code": "fun passUserPreferences(cuid: String,   userPreference: UserPreferences)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        315,
+        324
+      ],
+      "raw": "```kotlin\nhydraAPI?.passUserPreferences(\n   \"9000090000\", UserPreferences(promOpted, transOpted)\n)\n```\n```java\npublic void passUserPreferences(String cuid, UserPreferences userPreference) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "hydraAPI?.passUserPreferences(\n   \"9000090000\", UserPreferences(promOpted, transOpted)\n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void passUserPreferences(String cuid, UserPreferences userPreference) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        326,
+        326
+      ],
+      "raw": "#### Parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        328,
+        331
+      ],
+      "raw": "| Parameter        | Type   | Description                                                                       | Optional/Mandatory |\n| :--------------- | :----- | :-------------------------------------------------------------------------------- | :----------------- |\n| `cuid`           | String | Customer ID (phone/email/externalId). If null, uses the stored CUID from sign-in. | Optional           |\n| `userPreference` | Object | Object containing `promPushOpted` and `transPushOpted` boolean values.            | Mandatory          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Optional/Mandatory"
+        ],
+        "rows": [
+          [
+            "cuid",
+            "String",
+            "Customer ID (phone/email/externalId). If null, uses the stored CUID from sign-in.",
+            "Optional"
+          ],
+          [
+            "userPreference",
+            "Object",
+            "Object containing promPushOpted and transPushOpted boolean values.",
+            "Mandatory"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        333,
+        333
+      ],
+      "raw": "##### UserPreferences Object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 5,
+      "text": "UserPreferences Object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        335,
+        335
+      ],
+      "raw": "The `userPreferences` object contains two boolean properties:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The userPreferences object contains two boolean properties:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        337,
+        340
+      ],
+      "raw": "| Property         | Type    | Description                                                                                                                                                                                |\n| :--------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `promPushOpted`  | Boolean | **Promotional Push Opt-in**: Set to `true` if user wants to receive promotional push notifications (marketing campaigns, offers, discounts). Set to `false` to opt out.                    |\n| `transPushOpted` | Boolean | **Transactional Push Opt-in**: Set to `true` if user wants to receive transactional push notifications (order confirmations, shipping updates, account alerts). Set to `false` to opt out. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Property",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "promPushOpted",
+            "Boolean",
+            "Promotional Push Opt-in: Set to true if user wants to receive promotional push notifications (marketing campaigns, offers, discounts). Set to false to opt out."
+          ],
+          [
+            "transPushOpted",
+            "Boolean",
+            "Transactional Push Opt-in: Set to true if user wants to receive transactional push notifications (order confirmations, shipping updates, account alerts). Set to false to opt out."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        342,
+        342
+      ],
+      "raw": "# User Event Tracking",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "User Event Tracking",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        344,
+        344
+      ],
+      "raw": "These events can be used to track user actions throughout the application. These events are valid only if the SDK receives the `SignIn` or `SignUp `events. Events are Invalid if they are called after a `SignOut` event. In order to track these events, users have to pass event names (NotNull or NonEmpty) and attributes (optional).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "These events can be used to track user actions throughout the application. These events are valid only if the SDK receives the SignIn or SignUp events. Events are Invalid if they are called after a SignOut event. In order to track these events, users have to pass event names (NotNull or NonEmpty) and attributes (optional).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        346,
+        346
+      ],
+      "raw": "## Creating behavioural events",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Creating behavioural events",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        348,
+        348
+      ],
+      "raw": "You need to create the desired behavioural events in the org settings.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You need to create the desired behavioural events in the org settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        350,
+        350
+      ],
+      "raw": "1. Navigate to  **Organisation settings > Master Data Management > Data Model > Behavioural events** and create desired behaviour events. For more information, see [Set behavioural events](https://docs.capillarytech.com/docs/behavioral-events).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to  Organisation settings > Master Data Management > Data Model > Behavioural events and create desired behaviour events. For more information, see Set behavioural events.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/behavioral-events",
+          "line": 350
+        }
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        352,
+        352
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/ab478d0-Custom_event.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/ab478d0-Custom_event.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 53,
+      "lines": [
+        354,
+        354
+      ],
+      "raw": "> 📘 These events enable tracking user actions within the application and are only valid if the user has signed in or signed up with Capillary SDK.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "These events enable tracking user actions within the application and are only valid if the user has signed in or signed up with Capillary SDK.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        356,
+        356
+      ],
+      "raw": "## Adding behavioural events in Hydraconfig",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding behavioural events in Hydraconfig",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        358,
+        358
+      ],
+      "raw": "The events that you created in the org settings need to be configured in the `HydraConfig` to send the events to the SDK.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The events that you created in the org settings need to be configured in the HydraConfig to send the events to the SDK.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        360,
+        360
+      ],
+      "raw": "**API function:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API function:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        362,
+        372
+      ],
+      "raw": "```kotlin\nfun pushEvent(  \n   eventName: String,  \n   attributes: Map\\<String, Any>? = null  \n)\n```\n```java\npublic void pushEvent(String eventName, Map<String, Object> attributes) {\n    // Function body\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": null,
+          "code": "fun pushEvent(  \n   eventName: String,  \n   attributes: Map\\<String, Any>? = null  \n)"
+        },
+        {
+          "lang": "java",
+          "title": null,
+          "code": "public void pushEvent(String eventName, Map<String, Object> attributes) {\n    // Function body\n}"
+        }
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        374,
+        377
+      ],
+      "raw": "| Parameter   | Type   | Description                                           | Mandatory/Optional |\n| :---------- | :----- | :---------------------------------------------------- | :----------------- |\n| event\\_name | String | Event name                                            | Mandatory          |\n| attributes  | Map    | The attribute map which needs to be set for the event | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "event_name",
+            "String",
+            "Event name",
+            "Mandatory"
+          ],
+          [
+            "attributes",
+            "Map",
+            "The attribute map which needs to be set for the event",
+            "Optional"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        379,
+        379
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        381,
+        465
+      ],
+      "raw": "1. Review events to the SDK\n   ```kotlin\n   HydraAPI.getDefaultInstance(context = this)!!.pushEvent(\n       \"productReviewedMapp\",\n       mapOf(\n           \"event_name\" to \"productReviewedMapp\",\n           \"customerId\" to AppSharedPreferences.getInstance()\n               .getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"),\n           \"customerReview\"  to review,\n           \"productName\" to productName\n       )\n   )\n   ```\n   ```java\n   HydraAPI.getDefaultInstance(this).pushEvent(\n       \"productReviewedMapp\",\n       new HashMap<String, Object>() {{\n           put(\"event_name\", \"productReviewedMapp\");\n           put(\"customerId\", AppSharedPreferences.getInstance()\n               .getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n           put(\"customerReview\", review);\n           put(\"productName\", productName);\n       }}\n   );\n   ```\n2. Remove from cart event to SDK\n   ```kotlin\n   HydraAPI.getDefaultInstance(this@CartPageActivity)?.pushEvent(\n       \"removedFromCart\",\n       mapOf(\n           \"price\" to clickedItem.amount,\n           \"skuCode\" to clickedItem.sku,\n           \"quantity\" to clickedItem.qty,\n           \"customerId\" to AppSharedPreferences.getInstance().getStringSharedPreference(Constants.Pref.MOBILE_NUMBER,\"null\"),\n           \"event_name\" to \"removedFromCart\"\n       )\n   )\n   ```\n   ```java\n   HydraAPI.getDefaultInstance(this).pushEvent(\n       \"removedFromCart\",\n       new HashMap<String, Object>() {{\n           put(\"price\", clickedItem.getAmount());\n           put(\"skuCode\", clickedItem.getSku());\n           put(\"quantity\", clickedItem.getQty());\n           put(\"customerId\", AppSharedPreferences.getInstance().getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n           put(\"event_name\", \"removedFromCart\");\n       }}\n   );\n   ```\n3. Page/Activity events to SDK\n\n   ```kotlin\n   hydraAPI?.pushEvent(\"Page/Activity successfully opened\")\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushEvent(\"Page/Activity successfully opened\");\n   }\n   ```\n4. Click events with some attributes to SDK\n   ```kotlin\n   hydraAPI?.pushEvent(\"button Click\",\n   mapOf(\"Username\" to \"Henry\", \"Age\" to \"25\", \"Gender\" to \"Male\")\n   )\n   ```\n   ```java\n   if (hydraAPI != null) {\n       hydraAPI.pushEvent(\"button Click\",\n           Map.of(\"Username\", \"Henry\", \"Age\", \"25\", \"Gender\", \"Male\")\n       );\n   }\n   ```\n5. Customer cart details to SDK\n   ```kotlin\n   hydraAPI.pushEvent(\"add to cart\",  \n   mapOf(\"Book\" to \"Rich Dad Poor Dad\", \"Phone\" to \"Realme 10\", \"Earphones\" to \"Sony Earbuds\")  \n   )\n   ```\n   ```java\n   hydraAPI.pushEvent(\n       \"add to cart\",\n       Map.of(\"Book\", \"Rich Dad Poor Dad\", \"Phone\", \"Realme 10\", \"Earphones\", \"Sony Earbuds\")\n   );\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Review events to the SDKHydraAPI.getDefaultInstance(context = this)!!.pushEvent(\n    \"productReviewedMapp\",\n    mapOf(\n        \"event_name\" to \"productReviewedMapp\",\n        \"customerId\" to AppSharedPreferences.getInstance()\n            .getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"),\n        \"customerReview\"  to review,\n        \"productName\" to productName\n    )\n)HydraAPI.getDefaultInstance(this).pushEvent(\n    \"productReviewedMapp\",\n    new HashMap<String, Object>() {{\n        put(\"event_name\", \"productReviewedMapp\");\n        put(\"customerId\", AppSharedPreferences.getInstance()\n            .getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n        put(\"customerReview\", review);\n        put(\"productName\", productName);\n    }}\n);Remove from cart event to SDKHydraAPI.getDefaultInstance(this@CartPageActivity)?.pushEvent(\n    \"removedFromCart\",\n    mapOf(\n        \"price\" to clickedItem.amount,\n        \"skuCode\" to clickedItem.sku,\n        \"quantity\" to clickedItem.qty,\n        \"customerId\" to AppSharedPreferences.getInstance().getStringSharedPreference(Constants.Pref.MOBILE_NUMBER,\"null\"),\n        \"event_name\" to \"removedFromCart\"\n    )\n)HydraAPI.getDefaultInstance(this).pushEvent(\n    \"removedFromCart\",\n    new HashMap<String, Object>() {{\n        put(\"price\", clickedItem.getAmount());\n        put(\"skuCode\", clickedItem.getSku());\n        put(\"quantity\", clickedItem.getQty());\n        put(\"customerId\", AppSharedPreferences.getInstance().getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n        put(\"event_name\", \"removedFromCart\");\n    }}\n);Page/Activity events to SDKhydraAPI?.pushEvent(\"Page/Activity successfully opened\")if (hydraAPI != null) {\n    hydraAPI.pushEvent(\"Page/Activity successfully opened\");\n}Click events with some attributes to SDKhydraAPI?.pushEvent(\"button Click\",\nmapOf(\"Username\" to \"Henry\", \"Age\" to \"25\", \"Gender\" to \"Male\")\n)if (hydraAPI != null) {\n    hydraAPI.pushEvent(\"button Click\",\n        Map.of(\"Username\", \"Henry\", \"Age\", \"25\", \"Gender\", \"Male\")\n    );\n}Customer cart details to SDKhydraAPI.pushEvent(\"add to cart\",  \nmapOf(\"Book\" to \"Rich Dad Poor Dad\", \"Phone\" to \"Realme 10\", \"Earphones\" to \"Sony Earbuds\")  \n)hydraAPI.pushEvent(\n    \"add to cart\",\n    Map.of(\"Book\", \"Rich Dad Poor Dad\", \"Phone\", \"Realme 10\", \"Earphones\", \"Sony Earbuds\")\n);",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{\n           put(\"event_name\", \"productReviewedMapp\");\n           put(\"customerId\", AppSharedPreferences.getInstance()\n               .getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n           put(\"customerReview\", review);\n           put(\"productName\", productName);\n       }}",
+          "line": 397
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{\n           put(\"price\", clickedItem.getAmount());\n           put(\"skuCode\", clickedItem.getSku());\n           put(\"quantity\", clickedItem.getQty());\n           put(\"customerId\", AppSharedPreferences.getInstance().getStringSharedPreference(Constants.Pref.MOBILE_NUMBER, \"null\"));\n           put(\"event_name\", \"removedFromCart\");\n       }}",
+          "line": 422
+        }
+      ]
+    },
+    {
+      "i": 61,
+      "lines": [
+        467,
+        467
+      ],
+      "raw": "## Enable console log",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Enable console log",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        469,
+        469
+      ],
+      "raw": "Use this API to initialise Hydra’s console logger if the SDK initialises after app startup.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to initialise Hydra’s console logger if the SDK initialises after app startup.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        471,
+        471
+      ],
+      "raw": "**API function:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API function:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        473,
+        475
+      ],
+      "raw": "```kotlin\nHydraAPI.initializeConsoleLogger(LogType.Debug)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "kotlin",
+        "title": null,
+        "code": "HydraAPI.initializeConsoleLogger(LogType.Debug)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        477,
+        479
+      ],
+      "raw": "| Parameter (parameters marked with \\* are mandatory) | Type    | Description |\n| :-------------------------------------------------- | :------ | :---------- |\n| logLevel\\*                                          | LogType | Log level   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter (parameters marked with * are mandatory)",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "logLevel*",
+            "LogType",
+            "Log level"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        481,
+        481
+      ],
+      "raw": "# Handling alarm permissions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling alarm permissions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        483,
+        483
+      ],
+      "raw": "Use this API to check if your app currently has the user’s permission to schedule alarms. If not, ask the user for permission and retrieve the current status of the alarm permission.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to check if your app currently has the user’s permission to schedule alarms. If not, ask the user for permission and retrieve the current status of the alarm permission.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        485,
+        501
+      ],
+      "raw": "```kotlin Check if exact alarms are available\nval canSchedule = AlarmPermissionUtils.canScheduleExactAlarms(context)\n```\n```kotlin Request exact alarm permission (Android 12+)\nAlarmPermissionUtils.requestExactAlarmPermission(context)\n```\n```kotlin Log current permission status for debugging\nAlarmPermissionUtils.logExactAlarmStatus(context)\n```\n```kotlin Check if exact alarms are supported but not granted\nif (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {\n    if (!AlarmPermissionUtils.canScheduleExactAlarms(context)) {\n        // Optionally guide users to grant permission for better carousel timing\n        AlarmPermissionUtils.requestExactAlarmPermission(context)\n    }\n}\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "Check if exact alarms are available",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "kotlin",
+          "title": "Check if exact alarms are available",
+          "code": "val canSchedule = AlarmPermissionUtils.canScheduleExactAlarms(context)"
+        },
+        {
+          "lang": "kotlin",
+          "title": "Request exact alarm permission (Android 12+)",
+          "code": "AlarmPermissionUtils.requestExactAlarmPermission(context)"
+        },
+        {
+          "lang": "kotlin",
+          "title": "Log current permission status for debugging",
+          "code": "AlarmPermissionUtils.logExactAlarmStatus(context)"
+        },
+        {
+          "lang": "kotlin",
+          "title": "Check if exact alarms are supported but not granted",
+          "code": "if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {\n    if (!AlarmPermissionUtils.canScheduleExactAlarms(context)) {\n        // Optionally guide users to grant permission for better carousel timing\n        AlarmPermissionUtils.requestExactAlarmPermission(context)\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

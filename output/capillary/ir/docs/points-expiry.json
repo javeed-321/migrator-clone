@@ -1,0 +1,1195 @@
+{
+  "slug": "docs/points-expiry",
+  "source": "https://docs.capillarytech.com/docs/points-expiry.md",
+  "url": "https://docs.capillarytech.com/docs/points-expiry",
+  "title": "Points Expiry",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-26T12:02:42.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "blockquote": 1,
+    "paragraph": 26,
+    "Table": 8,
+    "Image": 6,
+    "list": 5
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Points expiry",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Points expiry",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        21
+      ],
+      "raw": "> **Note:** By default, point expiry imports reject updates in two cases:\n>\n> * **New expiry date is in the past** — the record fails with the error *\"past expiry date or redeemable points not available\"*. Use **Immediate expiry** instead to expire points right away.\n> * **Existing expiry is already past** — those customer records are skipped.\n>\n> To override either restriction, raise a JIRA ticket to the Capillary product support team to enable the relevant org-level flag:\n>\n> | Flag                                               | What it allows                                                     |\n> | :------------------------------------------------- | :----------------------------------------------------------------- |\n> | `ALLOW_EXPIRY_UPDATE_WHEN_EXISTING_EXPIRY_IN_PAST` | Update records where the customer's current expiry is already past |\n> | `ALLOW_EXPIRY_UPDATE_WHEN_NEW_EXPIRY_IN_PAST`      | Set a new expiry date that is itself in the past                   |\n>\n> Enable both flags to update already-expired records to a new past date.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: By default, point expiry imports reject updates in two cases:New expiry date is in the past — the record fails with the error \"past expiry date or redeemable points not available\". Use Immediate expiry instead to expire points right away.Existing expiry is already past — those customer records are skipped.To override either restriction, raise a JIRA ticket to the Capillary product support team to enable the relevant org-level flag:FlagWhat it allowsALLOW_EXPIRY_UPDATE_WHEN_EXISTING_EXPIRY_IN_PASTUpdate records where the customer's current expiry is already pastALLOW_EXPIRY_UPDATE_WHEN_NEW_EXPIRY_IN_PASTSet a new expiry date that is itself in the pastEnable both flags to update already-expired records to a new past date.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Update Points Expiry (Date range)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Points Expiry (Date range)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "This profile lets you update the validity of points for a customer that are expiring in a specific date range. Only points in Available status are updated. Points that are already Redeemed or Expired are skipped and their expiry dates are not changed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update the validity of points for a customer that are expiring in a specific date range. Only points in Available status are updated. Points that are already Redeemed or Expired are skipped and their expiry dates are not changed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "If you reverse a redemption after the original expiry date, the points are restored and immediately expired in the same transaction. You will see both REDEMPTION\\_REVERSAL and EXPIRED entries for these points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you reverse a redemption after the original expiry date, the points are restored and immediately expired in the same transaction. You will see both REDEMPTION_REVERSAL and EXPIRED entries for these points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "Example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "Consider Blue Purple(org) loyalty program is having 12 months of points validity for a list of customers which they want to change to 24 months. In such case, you can select the extended expiry type and use the relative point expiry option to update the point expiry duration from 12 to 24 months.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider Blue Purple(org) loyalty program is having 12 months of points validity for a list of customers which they want to change to 24 months. In such case, you can select the extended expiry type and use the relative point expiry option to update the point expiry duration from 12 to 24 months.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        33,
+        37
+      ],
+      "raw": "| Facts                      | Date & duration                              |\n| :------------------------- | :------------------------------------------- |\n| Current date               | August 01, 2021                              |\n| Actual point expiry date   | July 31, 2022 (12 months from current date)  |\n| Extended point expiry date | July 31, 2023  (24 months from current date) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Facts",
+          "Date & duration"
+        ],
+        "rows": [
+          [
+            "Current date",
+            "August 01, 2021"
+          ],
+          [
+            "Actual point expiry date",
+            "July 31, 2022 (12 months from current date)"
+          ],
+          [
+            "Extended point expiry date",
+            "July 31, 2023  (24 months from current date)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "**CSV Fields**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        41,
+        42
+      ],
+      "raw": "Customer identifier (User ID/External ID/Email/Mobile/Card Number)\\*\\\n**CSV Sample using User ID**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customer identifier (User ID/External ID/Email/Mobile/Card Number)*CSV Sample using User ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "User Id",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "User Id",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "1250755",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "1250755",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "![](https://files.readme.io/8771f26-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ.png \"p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8771f26-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ.png",
+        "title": "p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/8771f26-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ.png",
+          "line": 48
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "**Template configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "![](https://files.readme.io/bca8224-Screenshot_2023-06-23_at_1.03.37_PM.png)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/bca8224-Screenshot_2023-06-23_at_1.03.37_PM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/bca8224-Screenshot_2023-06-23_at_1.03.37_PM.png",
+          "line": 52
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        54,
+        156
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Choose customer's unique identifier\n      </td>\n\n      <td>\n        Choose the unique customer identifier used in the CSV to identify customers.\\\n        USER\\_ID\\\n        MOBILE\\\n        EMAIL\\\n        EXTERNAL\\_ID\\\n        CARD\\_NUMBER\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Program Name\n      </td>\n\n      <td>\n        Select the loyalty program name for which you want to update the point expiry date.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select start date -  \n\n        Select end date\n      </td>\n\n      <td>\n        Set the duration for which you want to update the expiry date. Any points that are expiring in the specified duration will be updated as per the new expiry date you set.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Type\n      </td>\n\n      <td>\n        Choose your preferred type for points update.  \n\n        * **Early expiry**: Select this option to expire points before the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.  \n        * **Extended expiry**: Select this option to extend the expiry date from the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Note\n      </td>\n\n      <td>\n        Enter the reason for updating the point expiry date.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Set expiry date to\n      </td>\n\n      <td>\n        Choose the expiry date from the following options.  \n\n        * **Fixed date expiry**: Set a date on which you want to expire the points. Fixed date expiry must be greater than the current date.\\\n          For example, If the current date is August 29, 2021, then the fixed date expiry must start from August 30, 2021  \n        * **Relative date expiry**: Set the number of days or months after which the points will expire.\\\n          For example, If the current date is July 29, 2021(today) and you set the expiry count to 5 days then the point expiry date will be August 02, 2021.  \n        * **Immediate expiry**: Select this option if you want the points to be expired immediately(the moment system has successfully updated the point expiry using data import. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Expire Promised Points\n      </td>\n\n      <td>\n        Select this to expire promised points. \n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Choose customer's unique identifier",
+            "Choose the unique customer identifier used in the CSV to identify customers.USER_IDMOBILEEMAILEXTERNAL_IDCARD_NUMBER"
+          ],
+          [
+            "Program Name",
+            "Select the loyalty program name for which you want to update the point expiry date."
+          ],
+          [
+            "Select start date -Select end date",
+            "Set the duration for which you want to update the expiry date. Any points that are expiring in the specified duration will be updated as per the new expiry date you set."
+          ],
+          [
+            "Select Expiry Update Reason Type",
+            "Choose your preferred type for points update.Early expiry: Select this option to expire points before the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.Extended expiry: Select this option to extend the expiry date from the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021."
+          ],
+          [
+            "Select Expiry Update Reason Note",
+            "Enter the reason for updating the point expiry date."
+          ],
+          [
+            "Set expiry date to",
+            "Choose the expiry date from the following options.Fixed date expiry: Set a date on which you want to expire the points. Fixed date expiry must be greater than the current date.For example, If the current date is August 29, 2021, then the fixed date expiry must start from August 30, 2021Relative date expiry: Set the number of days or months after which the points will expire.For example, If the current date is July 29, 2021(today) and you set the expiry count to 5 days then the point expiry date will be August 02, 2021.Immediate expiry: Select this option if you want the points to be expired immediately(the moment system has successfully updated the point expiry using data import."
+          ],
+          [
+            "Expire Promised Points",
+            "Select this to expire promised points."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "## Update Points Expiry (PointsType & RefID)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Points Expiry (PointsType & RefID)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "This profile lets you modify the points expiry of a customer based on Point Awarded Reference Type and Point Awarded Reference ID. It is very important to understand how the issued and expired points will be affected by this import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you modify the points expiry of a customer based on Point Awarded Reference Type and Point Awarded Reference ID. It is very important to understand how the issued and expired points will be affected by this import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "**Example**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "Consider there are five customers in an org with different reasons to update their point expiry and you want to update customer 1, customer 2, and rest customers(customer 3, 4, and 5) with different expiry type(extended or early expiry) and date(fixed, relative, or immediate).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider there are five customers in an org with different reasons to update their point expiry and you want to update customer 1, customer 2, and rest customers(customer 3, 4, and 5) with different expiry type(extended or early expiry) and date(fixed, relative, or immediate).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        166,
+        169
+      ],
+      "raw": "* **Use case 1 -  Update expiry for a customers with point awarded reference ID**\\\n  Consider customer 1 has accidentally received points with a incorrect validly (incorrect validity awarded - 4 months, correct validity should be - 6 months). In this case, you can update customer 1 with an extended points expiry of 2 months(relative) using point awarded reference ID.\\\n  Note: When point awarded reference ID is mentioned then you also have to mention point awarded reference type in the csv file.\\\n  &#x9;",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use case 1 -  Update expiry for a customers with point awarded reference IDConsider customer 1 has accidentally received points with a incorrect validly (incorrect validity awarded - 4 months, correct validity should be - 6 months). In this case, you can update customer 1 with an extended points expiry of 2 months(relative) using point awarded reference ID.Note: When point awarded reference ID is mentioned then you also have to mention point awarded reference type in the csv file.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        171,
+        175
+      ],
+      "raw": "| Facts                       | Date & duration                                                    |\n| :-------------------------- | :----------------------------------------------------------------- |\n| Current date                | August 01, 2021                                                    |\n| Incorrect point expiry date | September 31, 2021 (31 days from current date)                     |\n| Extended point expiry date  | October 31, 2021 (After 2 months from incorrect point expiry date) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Facts",
+          "Date & duration"
+        ],
+        "rows": [
+          [
+            "Current date",
+            "August 01, 2021"
+          ],
+          [
+            "Incorrect point expiry date",
+            "September 31, 2021 (31 days from current date)"
+          ],
+          [
+            "Extended point expiry date",
+            "October 31, 2021 (After 2 months from incorrect point expiry date)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        177,
+        178
+      ],
+      "raw": "* **Use case 2 -  Update expiry for a customers with point awarded reference type**\\\n  Consider customer 1 has 100 points that are going to expire on August 31, 2021 but the store will be closed from August 22, 2021 to August 31, 2021(10 days) due to store redesigning. In this case, you can update customer 2 with an extended points expiry of 10 days(relative) using point awarded reference type.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use case 2 -  Update expiry for a customers with point awarded reference typeConsider customer 1 has 100 points that are going to expire on August 31, 2021 but the store will be closed from August 22, 2021 to August 31, 2021(10 days) due to store redesigning. In this case, you can update customer 2 with an extended points expiry of 10 days(relative) using point awarded reference type.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        180,
+        184
+      ],
+      "raw": "| Facts                      | Date & duration                                                                  |\n| :------------------------- | :------------------------------------------------------------------------------- |\n| Current date               | August 01, 2021                                                                  |\n| Actual point expiry date   | August 31, 2021 (31 days from current date)                                      |\n| Extended point expiry date | September 09, 2021 (Points expiring after 10 days from actual point expiry date) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Facts",
+          "Date & duration"
+        ],
+        "rows": [
+          [
+            "Current date",
+            "August 01, 2021"
+          ],
+          [
+            "Actual point expiry date",
+            "August 31, 2021 (31 days from current date)"
+          ],
+          [
+            "Extended point expiry date",
+            "September 09, 2021 (Points expiring after 10 days from actual point expiry date)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        186,
+        187
+      ],
+      "raw": "* **Use case 3 -  Update expiry for a list of customers**\\\n  Consider customer 3, 4, and 5 have 100 points each that are going to expire on September 30, 2021 but the store will be closed permanently after August 31, 2021 due to business failure. In this case, you can update customer 3, 4, and 5 with an early points expiry date - August 31, 2021(fixed).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Use case 3 -  Update expiry for a list of customersConsider customer 3, 4, and 5 have 100 points each that are going to expire on September 30, 2021 but the store will be closed permanently after August 31, 2021 due to business failure. In this case, you can update customer 3, 4, and 5 with an early points expiry date - August 31, 2021(fixed).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        189,
+        193
+      ],
+      "raw": "| Facts                    | Date & duration                                                   |\n| :----------------------- | :---------------------------------------------------------------- |\n| Current date             | August 01, 2021                                                   |\n| Actual point expiry date | September 30, 2021                                                |\n| Early point expiry date  | August 31, 2021 (Points expiring before actual point expiry date) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Facts",
+          "Date & duration"
+        ],
+        "rows": [
+          [
+            "Current date",
+            "August 01, 2021"
+          ],
+          [
+            "Actual point expiry date",
+            "September 30, 2021"
+          ],
+          [
+            "Early point expiry date",
+            "August 31, 2021 (Points expiring before actual point expiry date)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        195,
+        195
+      ],
+      "raw": "The following are fields of the csv file.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are fields of the csv file.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "Customer identifier (User ID/External ID/Email/Mobile/Card Number)\\*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customer identifier (User ID/External ID/Email/Mobile/Card Number)*",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        199,
+        205
+      ],
+      "raw": "* Point Awarded Ref Type\\*\n* Point Awarded Ref ID\\*\n* Expiry Type\\*\n* Expiry Unit\\*\n* Expiry Value\\*\n* Expiry Update Reason Type\\*\n* Expiry Update Reason Note",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Point Awarded Ref Type*Point Awarded Ref ID*Expiry Type*Expiry Unit*Expiry Value*Expiry Update Reason Type*Expiry Update Reason Note",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "**CSV Sample using User ID**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample using User ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        209,
+        209
+      ],
+      "raw": "User Id,Point Awarded Ref Type,Point Awarded Ref Id,Expiry Type,Expiry Unit,New Expiry Value,Expiry Update Reason Type,Expiry Update Reason Note",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "User Id,Point Awarded Ref Type,Point Awarded Ref Id,Expiry Type,Expiry Unit,New Expiry Value,Expiry Update Reason Type,Expiry Update Reason Note",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        211,
+        211
+      ],
+      "raw": "235233,POINTS\\_AWARDED,134435,relative,months,12,Extend\\_Expiry,Covid",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "235233,POINTS_AWARDED,134435,relative,months,12,Extend_Expiry,Covid",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        213,
+        213
+      ],
+      "raw": "![](https://files.readme.io/b7bc048-VogGSXX7XdD7W--0o4S0c3QASENrDf6asg.png \"VogGSXX7XdD7W--0o4S0c3QASENrDf6asg.png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b7bc048-VogGSXX7XdD7W--0o4S0c3QASENrDf6asg.png",
+        "title": "VogGSXX7XdD7W--0o4S0c3QASENrDf6asg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/b7bc048-VogGSXX7XdD7W--0o4S0c3QASENrDf6asg.png",
+          "line": 213
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        215,
+        215
+      ],
+      "raw": "**Template configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        217,
+        217
+      ],
+      "raw": "![](https://files.readme.io/bd6ed8f-Screenshot_2023-06-23_at_2.08.44_PM.png)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/bd6ed8f-Screenshot_2023-06-23_at_2.08.44_PM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/bd6ed8f-Screenshot_2023-06-23_at_2.08.44_PM.png",
+          "line": 217
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 36,
+      "lines": [
+        219,
+        294
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Choose customer's unique identifier\n      </td>\n\n      <td>\n        Choose the unique customer identifier used in the CSV to identify customers.  \n\n        * USER\\_ID  \n        * MOBILE  \n        * EMAIL  \n        * EXTERNAL\\_ID  \n        * CARD\\_NUMBER \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Choose Program Name\n      </td>\n\n      <td>\n        Select the loyalty program for which you want to update the point expiry date of a customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Type\n      </td>\n\n      <td>\n        Choose your preferred type for points update.  \n\n        * **Early expiry**: Select this option to expire points before the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.  \n        * **Extended expiry**: Select this option to extend the expiry date from the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Note\n      </td>\n\n      <td>\n        Enter the reason for updating the point expiry date/days/months.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Expire promised points\n      </td>\n\n      <td>\n        Select this to expire promised points.  \n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Choose customer's unique identifier",
+            "Choose the unique customer identifier used in the CSV to identify customers.USER_IDMOBILEEMAILEXTERNAL_IDCARD_NUMBER"
+          ],
+          [
+            "Choose Program Name",
+            "Select the loyalty program for which you want to update the point expiry date of a customer."
+          ],
+          [
+            "Select Expiry Update Reason Type",
+            "Choose your preferred type for points update.Early expiry: Select this option to expire points before the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.Extended expiry: Select this option to extend the expiry date from the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021."
+          ],
+          [
+            "Select Expiry Update Reason Note",
+            "Enter the reason for updating the point expiry date/days/months."
+          ],
+          [
+            "Expire promised points",
+            "Select this to expire promised points."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        296,
+        296
+      ],
+      "raw": "## Update Points Expiry (using Promotion ID)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Points Expiry (using Promotion ID)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        298,
+        298
+      ],
+      "raw": "This profile lets you update the points expiry of a customer based on Loyalty Promotion ID.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update the points expiry of a customer based on Loyalty Promotion ID.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        300,
+        300
+      ],
+      "raw": "It is very important to understand how the issued and expired points will be affected by this import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "It is very important to understand how the issued and expired points will be affected by this import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        302,
+        302
+      ],
+      "raw": "**Example**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        304,
+        304
+      ],
+      "raw": "Consider that 100 promotional points wrongly awarded to 10 customers of an org. Now the org want to remove the promotional points from all 10 customers. In such case, you can select the promotion and use the customer identifier(User ID/External ID/Email/Mobile/Card Number) to change the expiry type(early expiry) and date(immediately).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider that 100 promotional points wrongly awarded to 10 customers of an org. Now the org want to remove the promotional points from all 10 customers. In such case, you can select the promotion and use the customer identifier(User ID/External ID/Email/Mobile/Card Number) to change the expiry type(early expiry) and date(immediately).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        306,
+        308
+      ],
+      "raw": "| Facts                   | Date & duration                               |\n| :---------------------- | :-------------------------------------------- |\n| Early point expiry date | Immediate expiry (on the date of data import) |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Facts",
+          "Date & duration"
+        ],
+        "rows": [
+          [
+            "Early point expiry date",
+            "Immediate expiry (on the date of data import)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        310,
+        310
+      ],
+      "raw": "* Customer identifier (User ID/External ID/Email/Mobile/Card Number)\\*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customer identifier (User ID/External ID/Email/Mobile/Card Number)*",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        312,
+        312
+      ],
+      "raw": "**CSV Sample using User ID:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample using User ID:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        314,
+        314
+      ],
+      "raw": "User Id",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "User Id",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        316,
+        316
+      ],
+      "raw": "1250755",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "1250755",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        318,
+        318
+      ],
+      "raw": "![](https://files.readme.io/514555b-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ_1.png \"p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ (1).png\")",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/514555b-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ_1.png",
+        "title": "p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ (1).png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/514555b-p42i7B0Vhepn4lZ93XxfxfHtLdbfNLE7kQ_1.png",
+          "line": 318
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        320,
+        320
+      ],
+      "raw": "**Template configuration**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        322,
+        322
+      ],
+      "raw": "![](https://files.readme.io/888a40a-Screenshot_2023-06-23_at_2.11.27_PM.png)",
+      "kind": "image",
+      "syntax": "markdown",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/888a40a-Screenshot_2023-06-23_at_2.11.27_PM.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [
+        {
+          "kind": "markdownImage",
+          "value": "https://files.readme.io/888a40a-Screenshot_2023-06-23_at_2.11.27_PM.png",
+          "line": 322
+        }
+      ],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        324,
+        425
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Option\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Choose customer's unique identifier\n      </td>\n\n      <td>\n        Choose the unique customer identifier used in the CSV to identify customers.  \n\n        * USER\\_ID  \n        * MOBILE  \n        * EMAIL  \n        * EXTERNAL\\_ID  \n        * CARD\\_NUMBER \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Program Name\n      </td>\n\n      <td>\n        Select the loyalty program for which you want to update the point expiry date of a customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Promotion\n      </td>\n\n      <td>\n        Select the promotion for which you want to update the point expiry date of a customer.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Type\n      </td>\n\n      <td>\n        Choose your preferred type for points update.  \n\n        * **Early expiry**: Select this option to expire points before the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.  \n        * **Extended expiry**: Select this option to extend the expiry date from the actual expiry date.\\\n          For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select Expiry Update Reason Note\n      </td>\n\n      <td>\n        Enter the reason for updating the point expiry date.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Set expiry date to\n      </td>\n\n      <td>\n        Choose the expiry date from the following options.  \n\n        * **Fixed date expiry**: Set a date on which you want to expire the points. Fixed date expiry must be greater than the current date.\\\n          For example, If the current date is August 29, 2021, then the fixed date expiry must start from August 30, 2021  \n        * **Relative date expiry**: Set the number of days or months after which the points will expire.\\\n          For example, If the current date is July 29, 2021(today) and you set the expiry count to 5 days then the point expiry date will be August 02, 2021.  \n        * **Immediate expiry**: Select this option if you want the points to be expired immediately(the moment system has successfully updated the point expiry using data import. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Expire promised points\n      </td>\n\n      <td>\n        Select this to expire promised points. \n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Choose customer's unique identifier",
+            "Choose the unique customer identifier used in the CSV to identify customers.USER_IDMOBILEEMAILEXTERNAL_IDCARD_NUMBER"
+          ],
+          [
+            "Program Name",
+            "Select the loyalty program for which you want to update the point expiry date of a customer."
+          ],
+          [
+            "Select Promotion",
+            "Select the promotion for which you want to update the point expiry date of a customer."
+          ],
+          [
+            "Select Expiry Update Reason Type",
+            "Choose your preferred type for points update.Early expiry: Select this option to expire points before the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the early expiry date must be before August 30, 2021.Extended expiry: Select this option to extend the expiry date from the actual expiry date.For example, If the actual point expiry date is August 30, 2021, then the extended expiry date must be after August 30, 2021."
+          ],
+          [
+            "Select Expiry Update Reason Note",
+            "Enter the reason for updating the point expiry date."
+          ],
+          [
+            "Set expiry date to",
+            "Choose the expiry date from the following options.Fixed date expiry: Set a date on which you want to expire the points. Fixed date expiry must be greater than the current date.For example, If the current date is August 29, 2021, then the fixed date expiry must start from August 30, 2021Relative date expiry: Set the number of days or months after which the points will expire.For example, If the current date is July 29, 2021(today) and you set the expiry count to 5 days then the point expiry date will be August 02, 2021.Immediate expiry: Select this option if you want the points to be expired immediately(the moment system has successfully updated the point expiry using data import."
+          ],
+          [
+            "Expire promised points",
+            "Select this to expire promised points."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

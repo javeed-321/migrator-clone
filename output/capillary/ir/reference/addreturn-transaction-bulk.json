@@ -1,0 +1,1460 @@
+{
+  "slug": "reference/addreturn-transaction-bulk",
+  "source": "https://docs.capillarytech.com/reference/addreturn-transaction-bulk.md",
+  "url": "https://docs.capillarytech.com/reference/addreturn-transaction-bulk",
+  "title": "Addreturn Transaction Bulk",
+  "description": "",
+  "section": "Transaction (V2)",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-13T09:48:02.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Expected a closing tag for `<br>` (189:162-189:166) before the end of `tableData`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 19,
+    "paragraph": 5,
+    "code": 2,
+    "br": 2,
+    "list": 1,
+    "Callout": 3,
+    "Table": 10
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Add/Return Transaction in Bulk",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Add/Return Transaction in Bulk",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Add Transaction API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Add Transaction API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Use this API to add a customer transaction to the loyalty system. Supports regular purchases, returns, and not-interested transactions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this API to add a customer transaction to the loyalty system. Supports regular purchases, returns, and not-interested transactions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Example request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        155
+      ],
+      "raw": "```\ncurl --location 'https://eu.api.capillarytech.com/v2/transactions/bulk' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic VjMT' \\\n--data '[\n    {\n        \"identifierType\": \"mobile\",\n        \"identifierValue\": \"919999988886\",\n        \"source\": \"INSTORE\",\n        \"accountId\": \"\",\n        \"type\": \"REGULAR\",\n        \"billNumber\": \"test00transact087\",\n        \"billingDate\": \"2025-04-11T11:00:00+05:30\",\n        \"discount\": \"\",\n        \"billAmount\": \"6000.0\",\n        \"note\": \"Transaction number 87\",\n        \"grossAmount\": \"110\",\n        \"deliveryStatus\": \"PLACED\",\n        \"paymentModes\": [\n            {\n                \"mode\": \"CardPayment\",\n                \"value\": \"6000.0\",\n                \"notes\": \"SPay\",\n                \"attributes\": {\n                    \"card_type\": \"Visa\"\n                }\n            }\n        ],\n        \"lineItemsV2\": [\n            {\n                \"itemCode\": \"model_id_001\",\n                \"amount\": 2000.0,\n                \"description\": \"Steel Bottle\",\n                \"discount\": 0,\n                \"rate\": 500.0,\n                \"qty\": 4,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_002\",\n                \"amount\": 2000.0,\n                \"description\": \"Sports Shoe\",\n                \"discount\": 0,\n                \"rate\": 1000.0,\n                \"value\": 2000.0,\n                \"qty\": 2,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_003\",\n                \"amount\": 2000.0,\n                \"rate\": 2000.0,\n                \"qty\": 1,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"gender\": \"Male\",\n                    \"marital_status\": \"Married\"\n                },\n                \"customFields\": {\n                    \"cashierid\": \"jim2345\",\n                    \"city\": \"Bangalore\"\n                }\n            } \n        ]\n    },\n    {\n        \"identifierType\": \"mobile\",\n        \"identifierValue\": \"919999988886\",\n        \"source\": \"INSTORE\",\n        \"accountId\": \"\",\n        \"type\": \"REGULAR\",\n        \"billNumber\": \"test00transact086\",\n        \"billingDate\": \"2025-04-11T11:00:00+05:30\",\n        \"discount\": \"1000\",\n        \"billAmount\": \"6000.0\",\n        \"note\": \"Transaction number 86\",\n        \"grossAmount\": \"7000\",\n        \"deliveryStatus\": \"PLACED\",\n        \"paymentModes\": [\n            {\n                \"mode\": \"CardPayment\",\n                \"value\": \"6000.0\",\n                \"notes\": \"SPay\",\n                \"attributes\": {\n                    \"card_type\": \"Visa\"\n                }\n            }\n        ],\n        \"lineItemsV2\": [\n            {\n                \"itemCode\": \"model_id_001\",\n                \"amount\": 2000.0,\n                \"description\": \"Steel Bottle\",\n                \"discount\": 1000.0,\n                \"rate\": 750.0,\n                \"qty\": 4,\n                \"value\": 3000.0,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_002\",\n                \"amount\": 2000.0,\n                \"description\": \"Sports Shoe\",\n                \"discount\": 0,\n                \"rate\": 1000.0,\n                \"value\": 2000.0,\n                \"qty\": 2,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_003\",\n                \"amount\": 2000.0,\n                \"rate\": 2000.0,\n                \"qty\": 1,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"gender\": \"Male\",\n                    \"marital_status\": \"Married\"\n                },\n                \"customFields\": {\n                    \"cashierid\": \"jim2345\",\n                    \"city\": \"Bangalore\"\n                }\n            }    \n        ]\n    }\n]'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v2/transactions/bulk' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Basic VjMT' \\\n--data '[\n    {\n        \"identifierType\": \"mobile\",\n        \"identifierValue\": \"919999988886\",\n        \"source\": \"INSTORE\",\n        \"accountId\": \"\",\n        \"type\": \"REGULAR\",\n        \"billNumber\": \"test00transact087\",\n        \"billingDate\": \"2025-04-11T11:00:00+05:30\",\n        \"discount\": \"\",\n        \"billAmount\": \"6000.0\",\n        \"note\": \"Transaction number 87\",\n        \"grossAmount\": \"110\",\n        \"deliveryStatus\": \"PLACED\",\n        \"paymentModes\": [\n            {\n                \"mode\": \"CardPayment\",\n                \"value\": \"6000.0\",\n                \"notes\": \"SPay\",\n                \"attributes\": {\n                    \"card_type\": \"Visa\"\n                }\n            }\n        ],\n        \"lineItemsV2\": [\n            {\n                \"itemCode\": \"model_id_001\",\n                \"amount\": 2000.0,\n                \"description\": \"Steel Bottle\",\n                \"discount\": 0,\n                \"rate\": 500.0,\n                \"qty\": 4,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_002\",\n                \"amount\": 2000.0,\n                \"description\": \"Sports Shoe\",\n                \"discount\": 0,\n                \"rate\": 1000.0,\n                \"value\": 2000.0,\n                \"qty\": 2,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_003\",\n                \"amount\": 2000.0,\n                \"rate\": 2000.0,\n                \"qty\": 1,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"gender\": \"Male\",\n                    \"marital_status\": \"Married\"\n                },\n                \"customFields\": {\n                    \"cashierid\": \"jim2345\",\n                    \"city\": \"Bangalore\"\n                }\n            } \n        ]\n    },\n    {\n        \"identifierType\": \"mobile\",\n        \"identifierValue\": \"919999988886\",\n        \"source\": \"INSTORE\",\n        \"accountId\": \"\",\n        \"type\": \"REGULAR\",\n        \"billNumber\": \"test00transact086\",\n        \"billingDate\": \"2025-04-11T11:00:00+05:30\",\n        \"discount\": \"1000\",\n        \"billAmount\": \"6000.0\",\n        \"note\": \"Transaction number 86\",\n        \"grossAmount\": \"7000\",\n        \"deliveryStatus\": \"PLACED\",\n        \"paymentModes\": [\n            {\n                \"mode\": \"CardPayment\",\n                \"value\": \"6000.0\",\n                \"notes\": \"SPay\",\n                \"attributes\": {\n                    \"card_type\": \"Visa\"\n                }\n            }\n        ],\n        \"lineItemsV2\": [\n            {\n                \"itemCode\": \"model_id_001\",\n                \"amount\": 2000.0,\n                \"description\": \"Steel Bottle\",\n                \"discount\": 1000.0,\n                \"rate\": 750.0,\n                \"qty\": 4,\n                \"value\": 3000.0,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_002\",\n                \"amount\": 2000.0,\n                \"description\": \"Sports Shoe\",\n                \"discount\": 0,\n                \"rate\": 1000.0,\n                \"value\": 2000.0,\n                \"qty\": 2,\n                \"extendedFields\": {\n                    \"MetalRate\": \"22.02\",\n                    \"GrossWeight\": \"10.50\"\n                }\n            },\n            {\n                \"itemCode\": \"model_id_003\",\n                \"amount\": 2000.0,\n                \"rate\": 2000.0,\n                \"qty\": 1,\n                \"value\": 2000.0,\n                \"extendedFields\": {\n                    \"gender\": \"Male\",\n                    \"marital_status\": \"Married\"\n                },\n                \"customFields\": {\n                    \"cashierid\": \"jim2345\",\n                    \"city\": \"Bangalore\"\n                }\n            }    \n        ]\n    }\n]'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        161,
+        162
+      ],
+      "raw": "* Authentication details\n* Authorization/access group details",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication detailsAuthorization/access group details",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "> 🚧 You cannot register a customer with this API. Pass only registered customer identifiers.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "You cannot register a customer with this API. Pass only registered customer identifiers.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        166,
+        166
+      ],
+      "raw": "## Header information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Header information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        168,
+        170
+      ],
+      "raw": "| Header name     | Description                                                                                                                                                                                                                                                                               |\n| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| SKIP-DOWNSTREAM | When set to `true`, the transaction is written directly to the database without notifying downstream systems (Loyalty Engine/EMF or event notification services). No loyalty actions or event triggers are executed. Use this to import transaction data without generating side effects. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Header name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "SKIP-DOWNSTREAM",
+            "When set to true, the transaction is written directly to the database without notifying downstream systems (Loyalty Engine/EMF or event notification services). No loyalty actions or event triggers are executed. Use this to import transaction data without generating side effects."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        172,
+        172
+      ],
+      "raw": "## Path parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Path parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        174,
+        174
+      ],
+      "raw": "Not applicable.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Not applicable.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        176,
+        176
+      ],
+      "raw": "## Query parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Query parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "Not applicable.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Not applicable.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        180,
+        180
+      ],
+      "raw": "## Body parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Body parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        182,
+        182
+      ],
+      "raw": "### Transaction (top level)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Transaction (top level)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        184,
+        212
+      ],
+      "raw": "| Field                       | Type      | Required    | Description                                                                                                                                                                                                                                                  |\n| :-------------------------- | :-------- | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| identifierType              | enum      | Yes         | Registered identifier type of the customer. Values: `mobile`, `email`, `externalId`, `wechat`, `martjackId`, `fbId`, `id`.                                                                                                                                   |\n| identifierValue             | string    | Yes         | Value for the specified `identifierType`. This field is mandatory when `identifierType` is `mobile`. For example, if `identifierType` is `mobile`, pass the mobile number. If missing or empty, the API returns a 400 Bad Request error.                     |\n| source                      | enum      | Yes         | Source from which the transaction originates. Values: `INSTORE`, `WECHAT`, `MARTJACK`, `WEB_ENGAGE`, `ECOMMERCE`, `JD`, `TAOBAO`, `TMALL`, `FACEBOOK`, `WEBSITE`, `OTHERS`.                                                                                  |\n| accountId                   | string    | Optional    | For multi-account sources such as `MARTJACK` and `WECHAT`, pass the respective account ID.                                                                                                                                                                   |\n| type                        | enum      | Yes         | Transaction type. Values: `REGULAR`, `RETURN`, `NOT_INTERESTED`, `NOT_INTERESTED_RETURN`.                                                                                                                                                                    |\n| notInterestedReason         | string    | Optional    | Reason the customer declined loyalty enrollment. Applicable when `type` is `NOT_INTERESTED`. Max 255 characters.                                                                                                                                             |\n| returnType                  | enum      | Conditional | Return type. Required when `type` is `RETURN`. Values: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`. <br><br>**Note:** For `NOT_INTERESTED_RETURN` transactions, only `AMOUNT`, `FULL`, and `LINE_ITEM` are valid. `CANCELLED` is not supported for this type. |\n| billNumber                  | string    | Yes         | Unique transaction number. For return transactions, pass the original transaction's bill number. Max 50 characters. Uniqueness scope (till, store, or org) is org-configured.                                                                                |\n| id                          | long      | Optional    | Transaction ID of the transaction to return. Use when `CONF_LOYALTY_BILL_NUMBER_UNIQUE_ONLY_STORE` is enabled and the same bill number exists across multiple stores, to identify which specific transaction to return.                                      |\n| billAmount                  | double    | Yes         | Net transaction amount. Negative values are not accepted.                                                                                                                                                                                                    |\n| billingDate                 | date-time | Optional    | Date and time of the transaction. ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                   |\n| discount                    | double    | Optional    | Discount amount applied at the transaction level. Negative values are not accepted.                                                                                                                                                                          |\n| grossAmount                 | double    | Optional    | Transaction amount before discount.                                                                                                                                                                                                                          |\n| outlierStatus               | enum      | Optional    | Transaction-level outlier status. Overrides configured outlier settings. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`.                                                                                             |\n| note                        | string    | Optional    | Additional information about the transaction.                                                                                                                                                                                                                |\n| deliveryStatus              | enum      | Optional    | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. Update this field using `v2/transaction/update`.                                                                                                             |\n| purchaseTime                | date-time | Conditional | Billing time of the original transaction for which a return is being made. Required when `type` is `RETURN`. ISO 8601: `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                               |\n| currencyCode                | string    | Optional    | ISO currency code for transactions in local currency. Examples: `INR`, `SGD`, `EUR`, `IQD`. The currency must be enabled in **InTouch > Organization Setup** and a conversion ratio must be set via `v2/currencyratio`.                                      |\n| addWithLocalCurrency        | boolean   | Optional    | Pass `true` to add the transaction in local currency.                                                                                                                                                                                                        |\n| promotionEvaluationId       | string    | Optional    | Promotion evaluation code (cart or catalog) applied to the transaction.                                                                                                                                                                                      |\n| appliedPromotionIdentifiers | array     | Optional    | Base64-encoded cart or catalog promotion identifiers applied to the transaction. Each entry contains: `promotionId`, `discount`, `amount`, `discountAppliedQty`, `promotionAppliedQty`, `redemptionCount`, `sku`, `version`.                                 |\n| loyaltyPromotionIdentifiers | array     | Optional    | Identifiers of loyalty promotions to tag to the transaction.                                                                                                                                                                                                 |\n| extendedFields              | object    | Optional    | Transaction-level extended field details as name-value pairs.                                                                                                                                                                                                |\n| lineItemsV2                 | object    | Optional    | Line item details. See [lineItemsV2 object](#lineitemsv2-object).                                                                                                                                                                                            |\n| attribution                 | object    | Optional    | Maps the transaction to a different user or till. See [attribution object](#attribution-object).                                                                                                                                                             |\n| redemptions                 | object    | Optional    | Points and coupon redemption details. See [redemptions object](#redemptions-object).                                                                                                                                                                         |\n| paymentModes                | object    | Optional    | Payment mode details. See [paymentModes object](#paymentmodes-object).                                                                                                                                                                                       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "identifierType",
+            "enum",
+            "Yes",
+            "Registered identifier type of the customer. Values: mobile, email, externalId, wechat, martjackId, fbId, id."
+          ],
+          [
+            "identifierValue",
+            "string",
+            "Yes",
+            "Value for the specified identifierType. This field is mandatory when identifierType is mobile. For example, if identifierType is mobile, pass the mobile number. If missing or empty, the API returns a 400 Bad Request error."
+          ],
+          [
+            "source",
+            "enum",
+            "Yes",
+            "Source from which the transaction originates. Values: INSTORE, WECHAT, MARTJACK, WEB_ENGAGE, ECOMMERCE, JD, TAOBAO, TMALL, FACEBOOK, WEBSITE, OTHERS."
+          ],
+          [
+            "accountId",
+            "string",
+            "Optional",
+            "For multi-account sources such as MARTJACK and WECHAT, pass the respective account ID."
+          ],
+          [
+            "type",
+            "enum",
+            "Yes",
+            "Transaction type. Values: REGULAR, RETURN, NOT_INTERESTED, NOT_INTERESTED_RETURN."
+          ],
+          [
+            "notInterestedReason",
+            "string",
+            "Optional",
+            "Reason the customer declined loyalty enrollment. Applicable when type is NOT_INTERESTED. Max 255 characters."
+          ],
+          [
+            "returnType",
+            "enum",
+            "Conditional",
+            "Return type. Required when type is RETURN. Values: AMOUNT, FULL, LINE_ITEM, CANCELLED. <br><br>Note: For NOT_INTERESTED_RETURN transactions, only AMOUNT, FULL, and LINE_ITEM are valid. CANCELLED is not supported for this type."
+          ],
+          [
+            "billNumber",
+            "string",
+            "Yes",
+            "Unique transaction number. For return transactions, pass the original transaction's bill number. Max 50 characters. Uniqueness scope (till, store, or org) is org-configured."
+          ],
+          [
+            "id",
+            "long",
+            "Optional",
+            "Transaction ID of the transaction to return. Use when CONF_LOYALTY_BILL_NUMBER_UNIQUE_ONLY_STORE is enabled and the same bill number exists across multiple stores, to identify which specific transaction to return."
+          ],
+          [
+            "billAmount",
+            "double",
+            "Yes",
+            "Net transaction amount. Negative values are not accepted."
+          ],
+          [
+            "billingDate",
+            "date-time",
+            "Optional",
+            "Date and time of the transaction. ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ."
+          ],
+          [
+            "discount",
+            "double",
+            "Optional",
+            "Discount amount applied at the transaction level. Negative values are not accepted."
+          ],
+          [
+            "grossAmount",
+            "double",
+            "Optional",
+            "Transaction amount before discount."
+          ],
+          [
+            "outlierStatus",
+            "enum",
+            "Optional",
+            "Transaction-level outlier status. Overrides configured outlier settings. Values: NORMAL, INTERNAL, FRAUD, OUTLIER, TEST, DELETED, FAILED, OTHER."
+          ],
+          [
+            "note",
+            "string",
+            "Optional",
+            "Additional information about the transaction."
+          ],
+          [
+            "deliveryStatus",
+            "enum",
+            "Optional",
+            "Delivery status of the item. Values: PLACED, PROCESSED, SHIPPED, DELIVERED, RETURNED. Update this field using v2/transaction/update."
+          ],
+          [
+            "purchaseTime",
+            "date-time",
+            "Conditional",
+            "Billing time of the original transaction for which a return is being made. Required when type is RETURN. ISO 8601: YYYY-MM-DDTHH:MM:SSZ."
+          ],
+          [
+            "currencyCode",
+            "string",
+            "Optional",
+            "ISO currency code for transactions in local currency. Examples: INR, SGD, EUR, IQD. The currency must be enabled in InTouch > Organization Setup and a conversion ratio must be set via v2/currencyratio."
+          ],
+          [
+            "addWithLocalCurrency",
+            "boolean",
+            "Optional",
+            "Pass true to add the transaction in local currency."
+          ],
+          [
+            "promotionEvaluationId",
+            "string",
+            "Optional",
+            "Promotion evaluation code (cart or catalog) applied to the transaction."
+          ],
+          [
+            "appliedPromotionIdentifiers",
+            "array",
+            "Optional",
+            "Base64-encoded cart or catalog promotion identifiers applied to the transaction. Each entry contains: promotionId, discount, amount, discountAppliedQty, promotionAppliedQty, redemptionCount, sku, version."
+          ],
+          [
+            "loyaltyPromotionIdentifiers",
+            "array",
+            "Optional",
+            "Identifiers of loyalty promotions to tag to the transaction."
+          ],
+          [
+            "extendedFields",
+            "object",
+            "Optional",
+            "Transaction-level extended field details as name-value pairs."
+          ],
+          [
+            "lineItemsV2",
+            "object",
+            "Optional",
+            "Line item details. See lineItemsV2 object."
+          ],
+          [
+            "attribution",
+            "object",
+            "Optional",
+            "Maps the transaction to a different user or till. See attribution object."
+          ],
+          [
+            "redemptions",
+            "object",
+            "Optional",
+            "Points and coupon redemption details. See redemptions object."
+          ],
+          [
+            "paymentModes",
+            "object",
+            "Optional",
+            "Payment mode details. See paymentModes object."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br>",
+          "line": 192
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br>",
+          "line": 192
+        }
+      ],
+      "notes": [
+        "unclosed <br> is invalid MDX"
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "#### User group parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "User group parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "Use these parameters to associate the transaction with a user group. At least one `userGroup2` parameter is required to make the association.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use these parameters to associate the transaction with a user group. At least one userGroup2 parameter is required to make the association.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        218,
+        226
+      ],
+      "raw": "| Field                                | Type   | Required    | Description                                                                                                                                                                                        |\n| :----------------------------------- | :----- | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| userGroup2Id                         | int    | Conditional | Unique ID of the user group.                                                                                                                                                                       |\n| userGroup2PrimaryUserId              | long   | Conditional | User ID of the primary group member.                                                                                                                                                               |\n| userGroup2ExternalId                 | string | Conditional | External ID of the user group.                                                                                                                                                                     |\n| userGroup2PrimaryUserIdentifierType  | enum   | Conditional | Identifier type for the group primary member. Values: `mobile`, `email`, `externalId`, `wechat`, `martjackId`, `fbId`, `id`.                                                                       |\n| userGroup2PrimaryUserIdentifierValue | string | Conditional | Value for the specified group identifier type.                                                                                                                                                     |\n| userGroup2PrimaryUserSource          | enum   | Conditional | Source in which the group primary member's identifier is registered. Values: `INSTORE`, `WECHAT`, `MARTJACK`, `WEB_ENGAGE`, `ECOMMERCE`, `JD`, `TAOBAO`, `TMALL`, `FACEBOOK`, `WEBSITE`, `OTHERS`. |\n| userGroup2PrimaryUserAccountId       | string | Conditional | Account ID for multi-account sources such as `WECHAT`.                                                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "userGroup2Id",
+            "int",
+            "Conditional",
+            "Unique ID of the user group."
+          ],
+          [
+            "userGroup2PrimaryUserId",
+            "long",
+            "Conditional",
+            "User ID of the primary group member."
+          ],
+          [
+            "userGroup2ExternalId",
+            "string",
+            "Conditional",
+            "External ID of the user group."
+          ],
+          [
+            "userGroup2PrimaryUserIdentifierType",
+            "enum",
+            "Conditional",
+            "Identifier type for the group primary member. Values: mobile, email, externalId, wechat, martjackId, fbId, id."
+          ],
+          [
+            "userGroup2PrimaryUserIdentifierValue",
+            "string",
+            "Conditional",
+            "Value for the specified group identifier type."
+          ],
+          [
+            "userGroup2PrimaryUserSource",
+            "enum",
+            "Conditional",
+            "Source in which the group primary member's identifier is registered. Values: INSTORE, WECHAT, MARTJACK, WEB_ENGAGE, ECOMMERCE, JD, TAOBAO, TMALL, FACEBOOK, WEBSITE, OTHERS."
+          ],
+          [
+            "userGroup2PrimaryUserAccountId",
+            "string",
+            "Conditional",
+            "Account ID for multi-account sources such as WECHAT."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "### `attribution` object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "attribution object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        230,
+        235
+      ],
+      "raw": "| Field          | Type      | Required | Description                                                                                                                        |\n| :------------- | :-------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------- |\n| createDate     | date-time | Optional | Date of the transaction. ISO 8601 format.                                                                                          |\n| createdBy      | object    | Optional | User ID or store entity (till, store) to associate with the transaction.                                                           |\n| createdBy.code | string    | Optional | Unique code of the entity.                                                                                                         |\n| createdBy.type | enum      | Optional | Type of the attribution entity. Values: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "createDate",
+            "date-time",
+            "Optional",
+            "Date of the transaction. ISO 8601 format."
+          ],
+          [
+            "createdBy",
+            "object",
+            "Optional",
+            "User ID or store entity (till, store) to associate with the transaction."
+          ],
+          [
+            "createdBy.code",
+            "string",
+            "Optional",
+            "Unique code of the entity."
+          ],
+          [
+            "createdBy.type",
+            "enum",
+            "Optional",
+            "Type of the attribution entity. Values: ZONE, CONCEPT, STORE, TILL, STR_SERVER, ADMIN_USER, ASSOCIATE, RULE, OU."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        237,
+        237
+      ],
+      "raw": "### `lineItemsV2` object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "lineItemsV2 object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        239,
+        241
+      ],
+      "raw": "> 📘 Note\n>\n> Custom fields are supported only at the customer, bill, and redemption levels. Only extended fields are supported at the line item level.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteCustom fields are supported only at the customer, bill, and redemption levels. Only extended fields are supported at the line item level.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        243,
+        266
+      ],
+      "raw": "| Field                       | Type      | Required    | Description                                                                                                                                         |\n| :-------------------------- | :-------- | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |\n| amount                      | double    | Optional    | Net line item amount (`value` minus `discount`).                                                                                                    |\n| description                 | string    | Optional    | Short description of the line item.                                                                                                                 |\n| discount                    | int       | Optional    | Discount applied to the line item.                                                                                                                  |\n| itemCode                    | string    | Optional    | Unique code of the line item.                                                                                                                       |\n| qty                         | double    | Optional    | Quantity of the line item.                                                                                                                          |\n| rate                        | double    | Optional    | Price per unit.                                                                                                                                     |\n| serial                      | string    | Optional    | Serial number of the line item.                                                                                                                     |\n| value                       | double    | Optional    | Gross amount of the line item (`rate` multiplied by `qty`).                                                                                         |\n| returnable                  | boolean   | Optional    | Pass `true` if the item is eligible for return.                                                                                                     |\n| returnableDays              | int       | Optional    | Maximum number of days within which the item can be returned.                                                                                       |\n| customFields                | object    | Optional    | Transaction or line item-level custom field details.                                                                                                |\n| imgUrl                      | string    | Optional    | URL of the product image.                                                                                                                           |\n| attributes                  | object    | Optional    | Attributes of combo, bundle, or split items.                                                                                                        |\n| comboDetails                | object    | Optional    | Details of combo or bundle items.                                                                                                                   |\n| addOnDetails                | object    | Optional    | Details of add-on items.                                                                                                                            |\n| splitDetails                | object    | Optional    | Details of split items.                                                                                                                             |\n| parentBillNumber            | string    | Optional    | Original transaction bill number for return line items in a mixed transaction (one that contains both purchase and return items).                   |\n| purchaseTime                | date-time | Conditional | Billing time of the original transaction for which a return is being made. Required for return line items. ISO 8601: `YYYY-MM-DDTHH:MM:SSZ`.        |\n| returnType                  | enum      | Optional    | Return type for the line item. Values: `AMOUNT`, `FULL`, `LINE_ITEM`. Not applicable when the transaction-level `returnType` is `FULL` or `AMOUNT`. |\n| type                        | enum      | Optional    | Type of the line item. Values: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`.                                                      |\n| appliedPromotionIdentifiers | array     | Optional    | Base64-encoded cart or catalog promotions applied to the line item. Same structure as the transaction-level `appliedPromotionIdentifiers`.          |\n| extendedFields              | object    | Optional    | Line item-level extended field details.                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "amount",
+            "double",
+            "Optional",
+            "Net line item amount (value minus discount)."
+          ],
+          [
+            "description",
+            "string",
+            "Optional",
+            "Short description of the line item."
+          ],
+          [
+            "discount",
+            "int",
+            "Optional",
+            "Discount applied to the line item."
+          ],
+          [
+            "itemCode",
+            "string",
+            "Optional",
+            "Unique code of the line item."
+          ],
+          [
+            "qty",
+            "double",
+            "Optional",
+            "Quantity of the line item."
+          ],
+          [
+            "rate",
+            "double",
+            "Optional",
+            "Price per unit."
+          ],
+          [
+            "serial",
+            "string",
+            "Optional",
+            "Serial number of the line item."
+          ],
+          [
+            "value",
+            "double",
+            "Optional",
+            "Gross amount of the line item (rate multiplied by qty)."
+          ],
+          [
+            "returnable",
+            "boolean",
+            "Optional",
+            "Pass true if the item is eligible for return."
+          ],
+          [
+            "returnableDays",
+            "int",
+            "Optional",
+            "Maximum number of days within which the item can be returned."
+          ],
+          [
+            "customFields",
+            "object",
+            "Optional",
+            "Transaction or line item-level custom field details."
+          ],
+          [
+            "imgUrl",
+            "string",
+            "Optional",
+            "URL of the product image."
+          ],
+          [
+            "attributes",
+            "object",
+            "Optional",
+            "Attributes of combo, bundle, or split items."
+          ],
+          [
+            "comboDetails",
+            "object",
+            "Optional",
+            "Details of combo or bundle items."
+          ],
+          [
+            "addOnDetails",
+            "object",
+            "Optional",
+            "Details of add-on items."
+          ],
+          [
+            "splitDetails",
+            "object",
+            "Optional",
+            "Details of split items."
+          ],
+          [
+            "parentBillNumber",
+            "string",
+            "Optional",
+            "Original transaction bill number for return line items in a mixed transaction (one that contains both purchase and return items)."
+          ],
+          [
+            "purchaseTime",
+            "date-time",
+            "Conditional",
+            "Billing time of the original transaction for which a return is being made. Required for return line items. ISO 8601: YYYY-MM-DDTHH:MM:SSZ."
+          ],
+          [
+            "returnType",
+            "enum",
+            "Optional",
+            "Return type for the line item. Values: AMOUNT, FULL, LINE_ITEM. Not applicable when the transaction-level returnType is FULL or AMOUNT."
+          ],
+          [
+            "type",
+            "enum",
+            "Optional",
+            "Type of the line item. Values: REGULAR, NOT_INTERESTED, RETURN, NOT_INTERESTED_RETURN."
+          ],
+          [
+            "appliedPromotionIdentifiers",
+            "array",
+            "Optional",
+            "Base64-encoded cart or catalog promotions applied to the line item. Same structure as the transaction-level appliedPromotionIdentifiers."
+          ],
+          [
+            "extendedFields",
+            "object",
+            "Optional",
+            "Line item-level extended field details."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        268,
+        268
+      ],
+      "raw": "### `redemptions` object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "redemptions object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        270,
+        273
+      ],
+      "raw": "| Field             | Type  | Required | Description                                                                            |\n| :---------------- | :---- | :------- | :------------------------------------------------------------------------------------- |\n| pointsRedemptions | array | Optional | Unique points redemption IDs to apply to the transaction. Example: `[727272, 237878]`. |\n| couponRedemptions | array | Optional | Unique coupon redemption IDs to apply to the transaction. Example: `[727272, 237878]`. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "pointsRedemptions",
+            "array",
+            "Optional",
+            "Unique points redemption IDs to apply to the transaction. Example: [727272, 237878]."
+          ],
+          [
+            "couponRedemptions",
+            "array",
+            "Optional",
+            "Unique coupon redemption IDs to apply to the transaction. Example: [727272, 237878]."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        275,
+        275
+      ],
+      "raw": "### `paymentModes` object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "paymentModes object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        277,
+        282
+      ],
+      "raw": "| Field      | Type   | Required | Description                                              |\n| :--------- | :----- | :------- | :------------------------------------------------------- |\n| mode       | string | Optional | Payment mode.                                            |\n| value      | double | Optional | Amount paid via this mode.                               |\n| notes      | string | Optional | Additional payment mode information. Max 250 characters. |\n| attributes | object | Optional | Payment mode attributes as name-value pairs.             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "mode",
+            "string",
+            "Optional",
+            "Payment mode."
+          ],
+          [
+            "value",
+            "double",
+            "Optional",
+            "Amount paid via this mode."
+          ],
+          [
+            "notes",
+            "string",
+            "Optional",
+            "Additional payment mode information. Max 250 characters."
+          ],
+          [
+            "attributes",
+            "object",
+            "Optional",
+            "Payment mode attributes as name-value pairs."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        284,
+        284
+      ],
+      "raw": "## Example response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        286,
+        500
+      ],
+      "raw": "```\n{\n    \"response\": [\n        {\n            \"entityId\": 884796252,\n            \"result\": {\n                \"identifierType\": \"mobile\",\n                \"identifierValue\": \"919999988886\",\n                \"source\": \"INSTORE\",\n                \"accountId\": \"\",\n                \"deliveryStatus\": \"PLACED\",\n                \"type\": \"REGULAR\",\n                \"billAmount\": 6000.0,\n                \"billNumber\": \"test00transact087\",\n                \"grossAmount\": 110.0,\n                \"note\": \"Transaction number 87\",\n                \"lineItemsV2\": [\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Steel Bottle\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_001\",\n                        \"qty\": 4.0,\n                        \"rate\": 500.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Sports Shoe\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_002\",\n                        \"qty\": 2.0,\n                        \"rate\": 1000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"itemCode\": \"model_id_003\",\n                        \"qty\": 1.0,\n                        \"rate\": 2000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"customFields\": {\n                            \"cashierid\": \"jim2345\",\n                            \"city\": \"Bangalore\"\n                        },\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {}\n                    }\n                ],\n                \"notInterestedReason\": \"\",\n                \"sideEffects\": [\n                    {\n                        \"entityType\": \"USER\",\n                        \"rawAwardedPoints\": 1.000,\n                        \"customerId\": 564703252,\n                        \"awardedPoints\": 1,\n                        \"type\": \"points\"\n                    }\n                ],\n                \"isUseDefaultUserGroup2\": false,\n                \"paymentModes\": [\n                    {\n                        \"mode\": \"CardPayment\",\n                        \"value\": 6000.0,\n                        \"notes\": \"SPay\",\n                        \"attributes\": {\n                            \"card_type\": \"Visa\"\n                        }\n                    }\n                ],\n                \"billingDate\": \"2025-04-11T05:30:00Z\",\n                \"useDefaultUserGroup2\": false\n            },\n            \"errors\": [],\n            \"warnings\": [\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name gender is invalid.\"\n                },\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name marital_status is invalid.\"\n                }\n            ],\n            \"loyaltyDetails\": []\n        },\n        {\n            \"entityId\": 884796253,\n            \"result\": {\n                \"identifierType\": \"mobile\",\n                \"identifierValue\": \"919999988886\",\n                \"source\": \"INSTORE\",\n                \"accountId\": \"\",\n                \"deliveryStatus\": \"PLACED\",\n                \"type\": \"REGULAR\",\n                \"billAmount\": 6000.0,\n                \"billNumber\": \"test00transact086\",\n                \"discount\": 1000.0,\n                \"grossAmount\": 7000.0,\n                \"note\": \"Transaction number 86\",\n                \"lineItemsV2\": [\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Steel Bottle\",\n                        \"discount\": 1000.0,\n                        \"itemCode\": \"model_id_001\",\n                        \"qty\": 4.0,\n                        \"rate\": 750.0,\n                        \"value\": 3000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Sports Shoe\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_002\",\n                        \"qty\": 2.0,\n                        \"rate\": 1000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"itemCode\": \"model_id_003\",\n                        \"qty\": 1.0,\n                        \"rate\": 2000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"customFields\": {\n                            \"cashierid\": \"jim2345\",\n                            \"city\": \"Bangalore\"\n                        },\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {}\n                    }\n                ],\n                \"notInterestedReason\": \"\",\n                \"sideEffects\": [],\n                \"isUseDefaultUserGroup2\": false,\n                \"paymentModes\": [\n                    {\n                        \"mode\": \"CardPayment\",\n                        \"value\": 6000.0,\n                        \"notes\": \"SPay\",\n                        \"attributes\": {\n                            \"card_type\": \"Visa\"\n                        }\n                    }\n                ],\n                \"billingDate\": \"2025-04-11T05:30:00Z\",\n                \"useDefaultUserGroup2\": false\n            },\n            \"errors\": [],\n            \"warnings\": [\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name gender is invalid.\"\n                },\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name marital_status is invalid.\"\n                }\n            ],\n            \"loyaltyDetails\": []\n        }\n    ],\n    \"totalCount\": 2,\n    \"failureCount\": 0\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "{\n    \"response\": [\n        {\n            \"entityId\": 884796252,\n            \"result\": {\n                \"identifierType\": \"mobile\",\n                \"identifierValue\": \"919999988886\",\n                \"source\": \"INSTORE\",\n                \"accountId\": \"\",\n                \"deliveryStatus\": \"PLACED\",\n                \"type\": \"REGULAR\",\n                \"billAmount\": 6000.0,\n                \"billNumber\": \"test00transact087\",\n                \"grossAmount\": 110.0,\n                \"note\": \"Transaction number 87\",\n                \"lineItemsV2\": [\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Steel Bottle\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_001\",\n                        \"qty\": 4.0,\n                        \"rate\": 500.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Sports Shoe\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_002\",\n                        \"qty\": 2.0,\n                        \"rate\": 1000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"itemCode\": \"model_id_003\",\n                        \"qty\": 1.0,\n                        \"rate\": 2000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"customFields\": {\n                            \"cashierid\": \"jim2345\",\n                            \"city\": \"Bangalore\"\n                        },\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {}\n                    }\n                ],\n                \"notInterestedReason\": \"\",\n                \"sideEffects\": [\n                    {\n                        \"entityType\": \"USER\",\n                        \"rawAwardedPoints\": 1.000,\n                        \"customerId\": 564703252,\n                        \"awardedPoints\": 1,\n                        \"type\": \"points\"\n                    }\n                ],\n                \"isUseDefaultUserGroup2\": false,\n                \"paymentModes\": [\n                    {\n                        \"mode\": \"CardPayment\",\n                        \"value\": 6000.0,\n                        \"notes\": \"SPay\",\n                        \"attributes\": {\n                            \"card_type\": \"Visa\"\n                        }\n                    }\n                ],\n                \"billingDate\": \"2025-04-11T05:30:00Z\",\n                \"useDefaultUserGroup2\": false\n            },\n            \"errors\": [],\n            \"warnings\": [\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name gender is invalid.\"\n                },\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name marital_status is invalid.\"\n                }\n            ],\n            \"loyaltyDetails\": []\n        },\n        {\n            \"entityId\": 884796253,\n            \"result\": {\n                \"identifierType\": \"mobile\",\n                \"identifierValue\": \"919999988886\",\n                \"source\": \"INSTORE\",\n                \"accountId\": \"\",\n                \"deliveryStatus\": \"PLACED\",\n                \"type\": \"REGULAR\",\n                \"billAmount\": 6000.0,\n                \"billNumber\": \"test00transact086\",\n                \"discount\": 1000.0,\n                \"grossAmount\": 7000.0,\n                \"note\": \"Transaction number 86\",\n                \"lineItemsV2\": [\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Steel Bottle\",\n                        \"discount\": 1000.0,\n                        \"itemCode\": \"model_id_001\",\n                        \"qty\": 4.0,\n                        \"rate\": 750.0,\n                        \"value\": 3000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"description\": \"Sports Shoe\",\n                        \"discount\": 0.0,\n                        \"itemCode\": \"model_id_002\",\n                        \"qty\": 2.0,\n                        \"rate\": 1000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {\n                            \"GrossWeight\": 10.5,\n                            \"MetalRate\": 22.02\n                        }\n                    },\n                    {\n                        \"amount\": 2000.0,\n                        \"itemCode\": \"model_id_003\",\n                        \"qty\": 1.0,\n                        \"rate\": 2000.0,\n                        \"value\": 2000.0,\n                        \"returnable\": true,\n                        \"returnableDays\": -1,\n                        \"customFields\": {\n                            \"cashierid\": \"jim2345\",\n                            \"city\": \"Bangalore\"\n                        },\n                        \"comboDetails\": [],\n                        \"addOnDetails\": [],\n                        \"splitDetails\": [],\n                        \"extendedFields\": {}\n                    }\n                ],\n                \"notInterestedReason\": \"\",\n                \"sideEffects\": [],\n                \"isUseDefaultUserGroup2\": false,\n                \"paymentModes\": [\n                    {\n                        \"mode\": \"CardPayment\",\n                        \"value\": 6000.0,\n                        \"notes\": \"SPay\",\n                        \"attributes\": {\n                            \"card_type\": \"Visa\"\n                        }\n                    }\n                ],\n                \"billingDate\": \"2025-04-11T05:30:00Z\",\n                \"useDefaultUserGroup2\": false\n            },\n            \"errors\": [],\n            \"warnings\": [\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name gender is invalid.\"\n                },\n                {\n                    \"status\": false,\n                    \"code\": 91016,\n                    \"message\": \"Extended field name marital_status is invalid.\"\n                }\n            ],\n            \"loyaltyDetails\": []\n        }\n    ],\n    \"totalCount\": 2,\n    \"failureCount\": 0\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        502,
+        502
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 502
+        }
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        504,
+        504
+      ],
+      "raw": "## Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        506,
+        506
+      ],
+      "raw": "### `sideEffects` object",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "sideEffects object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        508,
+        514
+      ],
+      "raw": "| Field              | Type           | Description                                                                                                                                                                                           |\n| :----------------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `entityType`       | enum           | Entity that receives points. **Possible values**: `USER`, `USERGROUP2`.                                                                                                                               |\n| `rawAwardedPoints` | decimal number | Total number of points awarded, without rounding. For a `RETURN` (or `NOT_INTERESTED_RETURN`) line item, this value is negative, representing a points deduction rather than a second positive award. |\n| `customerId`       | integer        | Unique ID of the customer who is awarded (or, for a return, has points deducted).                                                                                                                     |\n| `awardedPoints`    | decimal number | Total number of points awarded, with rounding applied. Same sign convention as `rawAwardedPoints`: negative for a return line item.                                                                   |\n| `type`             | enum           | Type of side effect. **Possible values**: `points`, `coupon`, `slab`, `alternate_currency`, `Points promotion`, `Revoke Issue Promotion`, `Revoke Earn Promotion`.                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "entityType",
+            "enum",
+            "Entity that receives points. Possible values: USER, USERGROUP2."
+          ],
+          [
+            "rawAwardedPoints",
+            "decimal number",
+            "Total number of points awarded, without rounding. For a RETURN (or NOT_INTERESTED_RETURN) line item, this value is negative, representing a points deduction rather than a second positive award."
+          ],
+          [
+            "customerId",
+            "integer",
+            "Unique ID of the customer who is awarded (or, for a return, has points deducted)."
+          ],
+          [
+            "awardedPoints",
+            "decimal number",
+            "Total number of points awarded, with rounding applied. Same sign convention as rawAwardedPoints: negative for a return line item."
+          ],
+          [
+            "type",
+            "enum",
+            "Type of side effect. Possible values: points, coupon, slab, alternate_currency, Points promotion, Revoke Issue Promotion, Revoke Earn Promotion."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        516,
+        518
+      ],
+      "raw": "> 📘 Note\n>\n> For a mixed transaction (a single bulk line item that combines a purchase and a return using [`parentBillNumber`](#lineitemsv2-object)), the API merges the purchase's earn side effect with the return's negative side effect into one net `sideEffects` entry in the response, instead of returning two separate entries.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteFor a mixed transaction (a single bulk line item that combines a purchase and a return using parentBillNumber), the API merges the purchase's earn side effect with the return's negative side effect into one net sideEffects entry in the response, instead of returning two separate entries.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        520,
+        520
+      ],
+      "raw": "## Error and warning codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Error and warning codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        522,
+        527
+      ],
+      "raw": "| Code                                                 | Type  | Description                                                                                                                                                                                                                                                                                               |\n| :--------------------------------------------------- | :---- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Time mismatch between billing time and response time | Error | Timezone conversion is not disabled. Enable `CONF_ORG_DISABLE_MACHINE_TIME_CONV` to store the time from the payload without UTC offset conversion. See [Timezone Management](https://docs.capillarytech.com/reference/timezone-management#configuration-to-ignore-conversion-of-timezone-in-transaction). |\n| 624                                                  | Error | Invalid return transaction time. Return transaction should happen after add transaction. Include `purchaseTime` in the request payload.                                                                                                                                                                   |\n| 400                                                  | Error | `identifierValue` is missing or empty when `identifierType` is `mobile`. The API returns a 400 Bad Request error in this case.                                                                                                                                                                            |\n| 628                                                  | Error | Invalid return transaction type. Use only `AMOUNT`, `FULL`, or `LINE_ITEM` as `returnType` for `NOT_INTERESTED_RETURN` transactions. `CANCELLED` and other values are not supported for this transaction type.                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Time mismatch between billing time and response time",
+            "Error",
+            "Timezone conversion is not disabled. Enable CONF_ORG_DISABLE_MACHINE_TIME_CONV to store the time from the payload without UTC offset conversion. See Timezone Management."
+          ],
+          [
+            "624",
+            "Error",
+            "Invalid return transaction time. Return transaction should happen after add transaction. Include purchaseTime in the request payload."
+          ],
+          [
+            "400",
+            "Error",
+            "identifierValue is missing or empty when identifierType is mobile. The API returns a 400 Bad Request error in this case."
+          ],
+          [
+            "628",
+            "Error",
+            "Invalid return transaction type. Use only AMOUNT, FULL, or LINE_ITEM as returnType for NOT_INTERESTED_RETURN transactions. CANCELLED and other values are not supported for this transaction type."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/timezone-management#configuration-to-ignore-conversion-of-timezone-in-transaction",
+          "line": 524
+        }
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        529,
+        529
+      ],
+      "raw": "## Configurations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configurations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        531,
+        531
+      ],
+      "raw": "To enable or disable any of the following configurations, raise a Jira ticket to the Capillary Product Support team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable or disable any of the following configurations, raise a Jira ticket to the Capillary Product Support team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        533,
+        540
+      ],
+      "raw": "| Configuration                                              | Default  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |\n| :--------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| CONF\\_ORG\\_DISABLE\\_MACHINE\\_TIME\\_CONV                    | Disabled | When enabled, stores the time from the payload without UTC offset conversion, for all clusters. See [Timezone Management](https://docs.capillarytech.com/reference/timezone-management#configuration-to-ignore-conversion-of-timezone-in-transaction).                                                                                                                                                                                                                                                                                            |\n| CONF\\_ALLOW\\_TRANSACTION\\_RETURN\\_AFTER\\_GROUP\\_TRANSITION | Disabled | When enabled, allows returns for former group members. When a return is performed for a user who has left the group, points allocated to the group as part of the original transaction are also reverted.                                                                                                                                                                                                                                                                                                                                         |\n| CONF\\_POINTS\\_RETURN\\_ENABLED                              | Enabled  | When disabled, earned points are not reversed when a transaction is returned. To reverse points manually, use the [Manual Points Adjustment API](https://docs.capillarytech.com/reference/deduct-points-and-alternatecurrencies-from-user-using-userid#/).                                                                                                                                                                                                                                                                                        |\n| CONF\\_RETURN\\_WITHOUT\\_ORIGINAL\\_BILL\\_PROCESSING          | Disabled | When on, a `RETURN` transaction whose bill number doesn't match any existing transaction, or the return portion of a `MIXED` transaction with no bill number, still deducts the returned amount from the customer's lifetime purchases using a hidden internal record. When off, the system records the same return as a standalone return with no change to lifetime purchases. If `CONF_ALLOW_NOT_EXISTING_BILL_RETURN` is off, this configuration overrides it so the return still succeeds with warning `625` instead of failing as an error. |\n| CONF\\_LOYALTY\\_BILL\\_NUMBER\\_UNIQUE\\_ONLY\\_STORE           | Disabled | When enabled, bill number uniqueness is scoped to the store level. Use the `id` parameter in return transactions to disambiguate identical bill numbers across stores.                                                                                                                                                                                                                                                                                                                                                                            |\n| CONFIG\\_SKIP\\_SECONDARY\\_ID\\_ON\\_PRIMARY\\_MISMATCH         | Disabled | When enabled, if the primary identifier differs but a secondary identifier matches, a new customer is registered with the primary identifier, ignoring the secondary. Configurable at **InTouch > Organization Settings > Miscellaneous > Registration Page**.                                                                                                                                                                                                                                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Configuration",
+          "Default",
+          "Description"
+        ],
+        "rows": [
+          [
+            "CONF_ORG_DISABLE_MACHINE_TIME_CONV",
+            "Disabled",
+            "When enabled, stores the time from the payload without UTC offset conversion, for all clusters. See Timezone Management."
+          ],
+          [
+            "CONF_ALLOW_TRANSACTION_RETURN_AFTER_GROUP_TRANSITION",
+            "Disabled",
+            "When enabled, allows returns for former group members. When a return is performed for a user who has left the group, points allocated to the group as part of the original transaction are also reverted."
+          ],
+          [
+            "CONF_POINTS_RETURN_ENABLED",
+            "Enabled",
+            "When disabled, earned points are not reversed when a transaction is returned. To reverse points manually, use the Manual Points Adjustment API."
+          ],
+          [
+            "CONF_RETURN_WITHOUT_ORIGINAL_BILL_PROCESSING",
+            "Disabled",
+            "When on, a RETURN transaction whose bill number doesn't match any existing transaction, or the return portion of a MIXED transaction with no bill number, still deducts the returned amount from the customer's lifetime purchases using a hidden internal record. When off, the system records the same return as a standalone return with no change to lifetime purchases. If CONF_ALLOW_NOT_EXISTING_BILL_RETURN is off, this configuration overrides it so the return still succeeds with warning 625 instead of failing as an error."
+          ],
+          [
+            "CONF_LOYALTY_BILL_NUMBER_UNIQUE_ONLY_STORE",
+            "Disabled",
+            "When enabled, bill number uniqueness is scoped to the store level. Use the id parameter in return transactions to disambiguate identical bill numbers across stores."
+          ],
+          [
+            "CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH",
+            "Disabled",
+            "When enabled, if the primary identifier differs but a secondary identifier matches, a new customer is registered with the primary identifier, ignoring the secondary. Configurable at InTouch > Organization Settings > Miscellaneous > Registration Page."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/timezone-management#configuration-to-ignore-conversion-of-timezone-in-transaction",
+          "line": 535
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/deduct-points-and-alternatecurrencies-from-user-using-userid#/",
+          "line": 537
+        }
+      ]
+    }
+  ]
+}

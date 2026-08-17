@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import styles from "./page.module.css";
-import type { HarvestResponse } from "./types";
-import type { Block, PageIR } from "@/src/harvest/types";
+import type { DownloadResponse } from "./types";
+import type { Block, PageIR } from "@/src/download/types";
 
 /**
  * The status a block's target carries, as a colour.
@@ -124,14 +124,14 @@ function BlockCard({
   );
 }
 
-export default function Harvest() {
+export default function Download() {
   const [url, setUrl] = useState("https://docs.capillarytech.com");
   const [filter, setFilter] = useState("docs/");
   const [limit, setLimit] = useState(8);
   const [single, setSingle] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<HarvestResponse | null>(null);
+  const [data, setData] = useState<DownloadResponse | null>(null);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [activeBlock, setActiveBlock] = useState<number | null>(null);
 
@@ -166,12 +166,12 @@ export default function Harvest() {
     setActiveBlock(null);
 
     try {
-      const res = await fetch("/api/harvest", {
+      const res = await fetch("/api/download", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, filter: filter || undefined, limit, single }),
       });
-      const json = (await res.json()) as HarvestResponse;
+      const json = (await res.json()) as DownloadResponse;
 
       if (!res.ok || !json.ok) {
         setError(json.message ?? `Request failed with ${res.status}`);
@@ -195,7 +195,7 @@ export default function Harvest() {
         ← Full discovery
       </a>
 
-      <h1>Harvest source markdown</h1>
+      <h1>Download source markdown</h1>
       <p className="sub">
         Fetches each page&apos;s authored markdown from <code>&lt;page-url&gt;.md</code> and turns it
         into a component IR — <strong>input on the left, what was identified on the right</strong>.
@@ -234,7 +234,7 @@ export default function Harvest() {
           One page (the URL is the page)
         </label>
         <button type="submit" disabled={loading || !url}>
-          {loading ? "Harvesting…" : "Harvest"}
+          {loading ? "Downloading…" : "Download"}
         </button>
       </form>
 
@@ -245,7 +245,7 @@ export default function Harvest() {
           <div className="stats">
             <div className="stat">
               <div className="n">{data.pages?.length ?? 0}</div>
-              <div className="k">Pages harvested</div>
+              <div className="k">Pages downloaded</div>
             </div>
             <div className="stat">
               <div className="n">{inventory.blocks}</div>
@@ -272,7 +272,7 @@ export default function Harvest() {
           <p className={styles.scope}>
             {data.listed} pages listed in <code>llms.txt</code>
             {data.matching !== data.listed ? `, ${data.matching} matched the filter` : ""} — the first{" "}
-            {data.limit} were harvested. Run <code>npm run harvest</code> for the whole site.
+            {data.limit} were downloaded. Run <code>npm run download</code> for the whole site.
           </p>
 
           <section>

@@ -1,0 +1,192 @@
+{
+  "slug": "docs/rebuild-headers-define-headers-and-transform-data",
+  "source": "https://docs.capillarytech.com/docs/rebuild-headers-define-headers-and-transform-data.md",
+  "url": "https://docs.capillarytech.com/docs/rebuild-headers-define-headers-and-transform-data",
+  "title": "Rebuild Headers Define Headers And Transform Data",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 2,
+    "Image": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Rebuild Headers / Define Headers and Transform Data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Rebuild Headers / Define Headers and Transform Data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This block enables you to map and manipulate the data in the input file during file transfer. Below is the screenshot of the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This block enables you to map and manipulate the data in the input file during file transfer. Below is the screenshot of the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/576dd24-template_define_headers_and_transform_data.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/576dd24-template_define_headers_and_transform_data.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The table contains the fields and their descriptions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table contains the fields and their descriptions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        121
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Headers Mapping\n      </td>\n\n      <td>\n        Map the column headers or headings according to the input file.  \n\n        * \\*Syntax:\\*\\* `{\"heading1 of output file\":\"heading1 of input file\", \"heading2 of output file\":\"heading2 of input file\"}`  \n        * \\*Example:\\*\\*` {\"TAmount\":\"t_amount\", \"BillID\":\"Bill_Number\"}`\\\n          Here,` t_amount` and `Bill_Number` in the input file are stored as `TAmount` and `BillID `respectively in the output file. The information in the input and output files is identical.\\\n            \n\n        You can manipulate or change the information in the output during file transfer. This is done by using expressions.  \n\n        * \\*Example:\\*\\*` {\"TAmount\":exp{hdr\"t_amount\"+1}}`\\\n          Here,` t_amount` in the input file is stored as `TAmount` in the output file. Each value under `TAmount` in the output file is the value from `t_amount` in the input file increased by 1.\\\n            \n\n        See [Example use case](https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case) for details.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Output Headers Order\n      </td>\n\n      <td>\n        Specify the order of column headers in the output file or skip columns during the transfer. The headings should be comma-separated without spaces between them.  \n\n        * \\*Syntax:\\*\\* `heading1,heading2`  \n        * \\*Example:\\*\\* `TAmount,bill_name,BillID `\\\n          See [Example use case](https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case)  for details.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Input File Delimiter\n      </td>\n\n      <td>\n        File delimiter separates fields in the input file.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Output File Delimiter\n      </td>\n\n      <td>\n        File delimiter separates fields in the output file. Delimiter allowed: pipe (|), comma (,) ampersand (&), per cent (%). Alphabets and numbers cannot be delimiters.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Output Filename\n      </td>\n\n      <td>\n        Name of the output filename with extension. Extensions allowed: .txt or .csv.\\\n        The output filename cannot be null. Ensure that the output filename matches the one specified in the Connect to destination block.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Is the file headerless?\n      </td>\n\n      <td>\n        Select the check box if the columns in the input file do not have a header.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Mention header names (for use in mapping and expressions)\n      </td>\n\n      <td>\n        Define the column header or heading in the output file if the input file does not have a heading or column header. There cannot be spaces between two heading names and do not use double quotes.  \n\n        * \\*Syntax:\\*\\* `heading1,heading2`  \n        * \\*Example:\\*\\* `TAmount,BillID`\\\n          See [Example use case](https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case)  for details.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Headers Mapping",
+            "Map the column headers or headings according to the input file.*Syntax:** {\"heading1 of output file\":\"heading1 of input file\", \"heading2 of output file\":\"heading2 of input file\"}*Example:** {\"TAmount\":\"t_amount\", \"BillID\":\"Bill_Number\"}Here, t_amount and Bill_Number in the input file are stored as TAmount and BillID respectively in the output file. The information in the input and output files is identical.\\You can manipulate or change the information in the output during file transfer. This is done by using expressions.*Example:** {\"TAmount\":exp{hdr\"t_amount\"+1}}Here, t_amount in the input file is stored as TAmount in the output file. Each value under TAmount in the output file is the value from t_amount in the input file increased by 1.\\See Example use case for details."
+          ],
+          [
+            "Output Headers Order",
+            "Specify the order of column headers in the output file or skip columns during the transfer. The headings should be comma-separated without spaces between them.*Syntax:** heading1,heading2*Example:** TAmount,bill_name,BillID See Example use case  for details."
+          ],
+          [
+            "Input File Delimiter",
+            "File delimiter separates fields in the input file."
+          ],
+          [
+            "Output File Delimiter",
+            "File delimiter separates fields in the output file. Delimiter allowed: pipe (|), comma (,) ampersand (&), per cent (%). Alphabets and numbers cannot be delimiters."
+          ],
+          [
+            "Output Filename",
+            "Name of the output filename with extension. Extensions allowed: .txt or .csv.The output filename cannot be null. Ensure that the output filename matches the one specified in the Connect to destination block."
+          ],
+          [
+            "Is the file headerless?",
+            "Select the check box if the columns in the input file do not have a header."
+          ],
+          [
+            "Mention header names (for use in mapping and expressions)",
+            "Define the column header or heading in the output file if the input file does not have a heading or column header. There cannot be spaces between two heading names and do not use double quotes.*Syntax:** heading1,heading2*Example:** TAmount,BillIDSee Example use case  for details."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case",
+          "line": 62
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-to-sftp-with-headers-definition#example-use-case",
+          "line": 117
+        }
+      ]
+    }
+  ]
+}

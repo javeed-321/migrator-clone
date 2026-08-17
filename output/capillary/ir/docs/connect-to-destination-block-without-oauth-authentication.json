@@ -1,0 +1,339 @@
+{
+  "slug": "docs/connect-to-destination-block-without-oauth-authentication",
+  "source": "https://docs.capillarytech.com/docs/connect-to-destination-block-without-oauth-authentication.md",
+  "url": "https://docs.capillarytech.com/docs/connect-to-destination-block-without-oauth-authentication",
+  "title": "Connect To Destination Block Without Oauth Authentication",
+  "description": "",
+  "section": "Configure blocks",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 7,
+    "list": 1,
+    "Image": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Connect to Destination without OAuth or S3 Pull Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Connect to Destination without OAuth or S3 Pull Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Connect to Destination without OAuth or S3 Pull block is used to fetch or pull files stored in an Amazon S3 bucket. It acts as a source block, meaning it pulls data that can then be used for further processing, transformations, or validations within a dataflow. This block connects to the S3 bucket using AWS Access Key and Secret Key credentials.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Connect to Destination without OAuth or S3 Pull block is used to fetch or pull files stored in an Amazon S3 bucket. It acts as a source block, meaning it pulls data that can then be used for further processing, transformations, or validations within a dataflow. This block connects to the S3 bucket using AWS Access Key and Secret Key credentials.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Use Case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Use Case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "A company stores customer transaction data in an S3 bucket after every purchase made on its e-commerce platform. The data is stored in .csv format and must be pulled into the Capillary platform for further processing and allocation of loyalty points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A company stores customer transaction data in an S3 bucket after every purchase made on its e-commerce platform. The data is stored in .csv format and must be pulled into the Capillary platform for further processing and allocation of loyalty points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Create a template with the **Connect to Destination without OAuth** block to fetch the file from the specified S3 bucket. Once the files are pulled from S3, you can use the Transform Data block or Neo Transformer for parsing, validating, and mapping fields before pushing to Capillary's APIs. to process the data and allocate loyalty points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a template with the Connect to Destination without OAuth block to fetch the file from the specified S3 bucket. Once the files are pulled from S3, you can use the Transform Data block or Neo Transformer for parsing, validating, and mapping fields before pushing to Capillary's APIs. to process the data and allocate loyalty points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "# Configuring the Connect to Destination without OAuth Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the Connect to Destination without OAuth Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Pre-Requisite",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Pre-Requisite",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "The following are the prerequisites for the **Connect to Destination without OAuth** block:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the prerequisites for the Connect to Destination without OAuth block:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        29
+      ],
+      "raw": "* AWS Access Key and Secret Key with read permissions for the S3 bucket.\\\n  For Access Key and Secret, create a ticket with the Capillary Access team.\n* Bucket Name and the Region where your files are stored.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "AWS Access Key and Secret Key with read permissions for the S3 bucket.For Access Key and Secret, create a ticket with the Capillary Access team.Bucket Name and the Region where your files are stored.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/e170a0ea08570bf26b3055c921ebfef22c85ded675ca7bbe499c2109e3e7dc76-Dataflow_and_API_Integration_Guide_1.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/e170a0ea08570bf26b3055c921ebfef22c85ded675ca7bbe499c2109e3e7dc76-Dataflow_and_API_Integration_Guide_1.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        33,
+        43
+      ],
+      "raw": "| Field Name         | Description                                                                                       |\n| :----------------- | :------------------------------------------------------------------------------------------------ |\n| Bucket Name        | Name of the S3 bucket from which data needs to be pulled.                                         |\n| Region             | AWS region where the S3 bucket is hosted. **Example**:  `us-east-1`, `us-west-1`, `eu-west-1`     |\n| Access Key         | AWS Access Key ID used to authenticate with the S3 bucket.                                        |\n| Secret Key         | AWS Secret Access Key used for authentication.                                                    |\n| Input Path         | Path inside the bucket where the source files are located.                                        |\n| Output Path        | Path where the files are saved after pulling.                                                     |\n| Filename Pattern   | File type that needs to be pulled from the S3 bucket. Currently, `.csv` file format is supported. |\n| API Error Filepath | Path where the error file is stored.                                                              |\n| File Delimiter     | Delimiter used in the pulled files. The supported delimiters are `comma `(,) , `pipe `(\\|)        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Bucket Name",
+            "Name of the S3 bucket from which data needs to be pulled."
+          ],
+          [
+            "Region",
+            "AWS region where the S3 bucket is hosted. Example:  us-east-1, us-west-1, eu-west-1"
+          ],
+          [
+            "Access Key",
+            "AWS Access Key ID used to authenticate with the S3 bucket."
+          ],
+          [
+            "Secret Key",
+            "AWS Secret Access Key used for authentication."
+          ],
+          [
+            "Input Path",
+            "Path inside the bucket where the source files are located."
+          ],
+          [
+            "Output Path",
+            "Path where the files are saved after pulling."
+          ],
+          [
+            "Filename Pattern",
+            "File type that needs to be pulled from the S3 bucket. Currently, .csv file format is supported."
+          ],
+          [
+            "API Error Filepath",
+            "Path where the error file is stored."
+          ],
+          [
+            "File Delimiter",
+            "Delimiter used in the pulled files. The supported delimiters are comma (,) , pipe (|)"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "For details on adding column headers, refer to [Defining column header](https://docs.capillarytech.com/docs/connect-to-source#defining-column-header-for-transform-block).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For details on adding column headers, refer to Defining column header.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/connect-to-source#defining-column-header-for-transform-block",
+          "line": 45
+        }
+      ]
+    }
+  ]
+}

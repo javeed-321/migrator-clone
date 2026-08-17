@@ -1,0 +1,657 @@
+{
+  "slug": "docs/ingest-kafka-stream-in-api",
+  "source": "https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api.md",
+  "url": "https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api",
+  "title": "Ingest Kafka Stream In Api",
+  "description": "",
+  "section": "Explore templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "paragraph": 12,
+    "list": 4,
+    "Image": 3,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Ingest Kafka Stream in API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Ingest Kafka Stream in API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This template imports data from the Kafka queue into the Capillary system and then transforms it for further processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template imports data from the Kafka queue into the Capillary system and then transforms it for further processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "An airline brand uses a Passenger Service System (PSS) to send post-flight passenger data to the Capillary platform. The data includes details like passenger information, flight completion status, and other relevant metadata. This data is sent in bulk every hour, reaching up to 1,000 requests per minute. Due to the high volume and frequency, the PSS streams this data into a Kafka queue.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An airline brand uses a Passenger Service System (PSS) to send post-flight passenger data to the Capillary platform. The data includes details like passenger information, flight completion status, and other relevant metadata. This data is sent in bulk every hour, reaching up to 1,000 requests per minute. Due to the high volume and frequency, the PSS streams this data into a Kafka queue.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "The system needs a reliable and scalable way to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system needs a reliable and scalable way to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* Continuously consume data from the Kafka queue\n* Transform it into a format that Capillary’s platform can process\n* Forward the processed data for downstream use, such as awarding loyalty points or updating customer profiles",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Continuously consume data from the Kafka queueTransform it into a format that Capillary’s platform can processForward the processed data for downstream use, such as awarding loyalty points or updating customer profiles",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "## Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Use the \"Ingest from Kafka Stream\" template in Connect+ to build a Kafka consumer that retrieves and processes data efficiently.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the \"Ingest from Kafka Stream\" template in Connect+ to build a Kafka consumer that retrieves and processes data efficiently.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "This setup will:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This setup will:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        32
+      ],
+      "raw": "* Connect to the specified Kafka topic using OAuth-based credentials\n* Consume messages in real time as they arrive in the Kafka queue\n* Transform the incoming payloads using a JavaScript-based transformer to match Capillary's expected schema\n* Forward the transformed data to the appropriate platform APIs for processing (e.g., behavioral event ingestion, customer updates)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Connect to the specified Kafka topic using OAuth-based credentialsConsume messages in real time as they arrive in the Kafka queueTransform the incoming payloads using a JavaScript-based transformer to match Capillary's expected schemaForward the transformed data to the appropriate platform APIs for processing (e.g., behavioral event ingestion, customer updates)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "The following are the prerequisites for using the Ingest Kafka Stream in API:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the prerequisites for using the Ingest Kafka Stream in API:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        41
+      ],
+      "raw": "* Name of the Kafka server\n* Kafka topic\n* Consumer group ID\n* Username and password to access the Kafka server.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Name of the Kafka serverKafka topicConsumer group IDUsername and password to access the Kafka server.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "# Configuring Ingest Kafka stream in API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Ingest Kafka stream in API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "Below is a screenshot of the template, showing the various blocks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Below is a screenshot of the template, showing the various blocks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/b65df94e8ab74b962237e1989c2a98564ea914a414e60fae0dab4cbbb4f922a2-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/b65df94e8ab74b962237e1989c2a98564ea914a414e60fae0dab4cbbb4f922a2-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "To configure **Ingest Kafka stream in API** template, the following are the steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure Ingest Kafka stream in API template, the following are the steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        51,
+        53
+      ],
+      "raw": "1. In the **Connect-to-source-kafka** block, enter the Kafka details, including the server address, Kafka topic, username, and password from where the events are imported. For the information on configuring this block, refer to [Connect-to-source-kafka](https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api#connect-to-source-kafka).\n2. In the **neo-Transformer** block, enter the URL of the Neo dataflow created to transform the data required as per your requirement. For the information on configuring this block, refer to [neo-Transformer](https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api#neo-transformer).\n3. In the **Connect-to-destination** enter the details of the API endpoint. For the information on configuring this block, refer to **[Connect to destination](https://docs.capillarytech.com/docs/configure-actions#connect-to-destination)**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Connect-to-source-kafka block, enter the Kafka details, including the server address, Kafka topic, username, and password from where the events are imported. For the information on configuring this block, refer to Connect-to-source-kafka.In the neo-Transformer block, enter the URL of the Neo dataflow created to transform the data required as per your requirement. For the information on configuring this block, refer to neo-Transformer.In the Connect-to-destination enter the details of the API endpoint. For the information on configuring this block, refer to Connect to destination.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api#connect-to-source-kafka",
+          "line": 51
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/ingest-kafka-stream-in-api#neo-transformer",
+          "line": 52
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-destination",
+          "line": 53
+        }
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "# Connect-to-source-kafka",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Connect-to-source-kafka",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "This block enables you to define the Kafka server details. Below is the screenshot showing the fields in the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This block enables you to define the Kafka server details. Below is the screenshot showing the fields in the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/b478905a418889e9d3e265c5c1c599512c0d551e68bf8311e8f8a8c8d8e59aef-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/b478905a418889e9d3e265c5c1c599512c0d551e68bf8311e8f8a8c8d8e59aef-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "The table below describes the fields in the block:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below describes the fields in the block:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        63,
+        163
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field Name\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        kafka brokers\n      </td>\n\n      <td>\n        Kafka server URL. The URL is a combination of the server address and the port number.\n\n        * _Example_*: `kafka-connectplus:9092`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        kafka topics\n      </td>\n\n      <td>\n        Predefined topic name from which you consume messages. These topics must already exist in your Kafka system. You can list multiple topics separated by commas. It is not recommended to use the same Kafka topics for multiple dataflows.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Consumer Group Id\n      </td>\n\n      <td>\n        Specifies the predefined consumer group ID used for access control.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Security Protocol\n      </td>\n\n      <td>\n        Specify the security protocol you want to use to exchange data between the Kafka client and server. The supported protocols are:\n\n        * **PLAINTEXT**:  No data encryption or authentication.\n        * **SSL**: Uses the SSL protocol for data encryption but no SASL authentication.\n        * **SASL_PLAINTEXT**: Uses SASL protocol for authentication but does not encrypt data.\n        * **SASL_SSL**: Uses the SASL protocol for authentication and SSL for encryption.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        SASL Mechanism\n      </td>\n\n      <td>\n        Specify the authentication method used to connect to Kafka. The supported mechanisms are:\n\n        * GSSAPI\n        * PLAIN\n        * SCRAM-SHA-256\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Username and Password\n      </td>\n\n      <td>\n        Username and password to access the Kafka server.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Headers as Attribute\n      </td>\n\n      <td>\n        Headers from the Kafka message contain metadata like user-id, priority, and source-system. These headers are extracted as data attributes and are available for all the steps in Connect+. The headers are required for the following:\n\n        * Routing:  Direct the messages based on headers\n        * Filtering: Process only the relevant messages\n        * Tracking: Use for obervability and tracking\n        * Simplified Logic: Apply  business logic without needing to parse the main message.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "kafka brokers",
+            "Kafka server URL. The URL is a combination of the server address and the port number.Example*: kafka-connectplus:9092"
+          ],
+          [
+            "kafka topics",
+            "Predefined topic name from which you consume messages. These topics must already exist in your Kafka system. You can list multiple topics separated by commas. It is not recommended to use the same Kafka topics for multiple dataflows."
+          ],
+          [
+            "Consumer Group Id",
+            "Specifies the predefined consumer group ID used for access control."
+          ],
+          [
+            "Security Protocol",
+            "Specify the security protocol you want to use to exchange data between the Kafka client and server. The supported protocols are:PLAINTEXT:  No data encryption or authentication.SSL: Uses the SSL protocol for data encryption but no SASL authentication.SASL_PLAINTEXT: Uses SASL protocol for authentication but does not encrypt data.SASL_SSL: Uses the SASL protocol for authentication and SSL for encryption."
+          ],
+          [
+            "SASL Mechanism",
+            "Specify the authentication method used to connect to Kafka. The supported mechanisms are:GSSAPIPLAINSCRAM-SHA-256"
+          ],
+          [
+            "Username and Password",
+            "Username and password to access the Kafka server."
+          ],
+          [
+            "Headers as Attribute",
+            "Headers from the Kafka message contain metadata like user-id, priority, and source-system. These headers are extracted as data attributes and are available for all the steps in Connect+. The headers are required for the following:Routing:  Direct the messages based on headersFiltering: Process only the relevant messagesTracking: Use for obervability and trackingSimplified Logic: Apply  business logic without needing to parse the main message."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "# neo-Transformer",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "neo-Transformer",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "The Neo Transformer block allows you to call a NEO dataflow for data transformation. Below is the screenshot showing the fields in the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Neo Transformer block allows you to call a NEO dataflow for data transformation. Below is the screenshot showing the fields in the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/0926a1877c79431fb1281b644712c50ac3291886d2d628cdc62dd96e98301887-image.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/0926a1877c79431fb1281b644712c50ac3291886d2d628cdc62dd96e98301887-image.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "The table below describes the fields in the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below describes the fields in the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        173,
+        224
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field Name\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Enter url\n      </td>\n\n      <td>\n        Select the\n\n        [Neo Dataflow](https://docs.capillarytech.com/docs/dataflows)\n\n        from the drop-down menu. The drop-down lists Dataflows with the `Connectplus` tag.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Authorization\n      </td>\n\n      <td>\n        Authorisation key for the API (if required).\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Split Response\n      </td>\n\n      <td>\n        Splits the response when the API returns an array of objects.\n\n        * *True **- Separates each array element in the API response into individual responses\n        * *False **- Keeps the response as a single array without separation\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Enter url",
+            "Select theNeo Dataflowfrom the drop-down menu. The drop-down lists Dataflows with the Connectplus tag."
+          ],
+          [
+            "Authorization",
+            "Authorisation key for the API (if required)."
+          ],
+          [
+            "Split Response",
+            "Splits the response when the API returns an array of objects.*True **- Separates each array element in the API response into individual responses*False **- Keeps the response as a single array without separation"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dataflows",
+          "line": 195
+        }
+      ]
+    }
+  ]
+}

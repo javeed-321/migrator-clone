@@ -1,0 +1,296 @@
+{
+  "slug": "docs/onboard-users-to-intouch",
+  "source": "https://docs.capillarytech.com/docs/onboard-users-to-intouch.md",
+  "url": "https://docs.capillarytech.com/docs/onboard-users-to-intouch",
+  "title": "Onboard Users To Intouch",
+  "description": "",
+  "section": "Explore templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 3,
+    "list": 2,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Onboard users to Intouch",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Onboard users to Intouch",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you with information on the Onboarding users to Intouch.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you with information on the Onboarding users to Intouch.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This template enables you to onboard users in bulk to Intouch with the following attributes:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template enables you to onboard users in bulk to Intouch with the following attributes:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        16
+      ],
+      "raw": "* User role\n* Entities to which the user has access\n* User type\n* Security / Access groups to which the user has access",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User roleEntities to which the user has accessUser typeSecurity / Access groups to which the user has access",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        18,
+        20
+      ],
+      "raw": "> 📘 Note\n>\n> This is applicable only for external users and cannot be used to add Capillary users.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThis is applicable only for external users and cannot be used to add Capillary users.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "# Configuring the template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "To configure the template, perform the below steps/actions:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the template, perform the below steps/actions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        26,
+        130
+      ],
+      "raw": "1. In the **Connect-to-source** <Glossary>Block</Glossary>, enter the source server details where the source\\\n   data is present and the location for saving the processed file. See [Connect to source](https://docs.capillarytech.com/docs/configure-actions#connect-to-source).\n\n2. In the **Decrypt data** block, if the files are encrypted, enter the details to decrypt the data. See [Decrypt data](https://docs.capillarytech.com/docs/configure-actions#decrypt-data).\n\n3. In the **Data-Validation-Block**, validate or transform data using a Databricks notebook. For more details, refer to [Data-Validation-Block](https://docs.capillarytech.com/docs/data-validation-block). The block is optional, so you can skip it without affecting the dataflow. If enabled, the rest of the dataflow continues as usual after the block executes.\n\n4. In the **Transform Data** block, map the API fields with the source CSV file. See [Transform data](https://docs.capillarytech.com/docs/configure-actions#transform-data). The below parameters are mandatory:\n\n   <Table align={[\"left\",\"left\"]}>\n     <thead>\n       <tr>\n         <th style={{ textAlign: \"left\" }}>\n           Parameter\n         </th>\n\n         <th style={{ textAlign: \"left\" }}>\n           Description\n         </th>\n       </tr>\n     </thead>\n\n     <tbody>\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           firstName\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Name of the user.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           reportsTo\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           The email ID of the existing user to whom the user reports. You can also map all users whom you are onboarding to a single user.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           email\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Email ID of the user.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           userRole\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Role of the user. Enter a valid role defined for this org in **Intouch > Organization setup > Roles & Privileges**. The API throws an error if the role entered does not belong to the user's org. This determines the level of data access the user has. For example, a concept-level role indicates that the user will have access to concept-level data.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           accessibleEntities\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Entities to which the user will have access. If the role is concept-level, the org units to which the user will have access are defined and separated by a comma. Example - orgunit1, orgunit2. This is not required if the user role is organisation level where the user will have access to entire org-level data.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           userType\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Defines the user type. The supported values are Brand User, Brand User - Reports Only, and Brand POC.  \n\n           * \\*Brand POC\\*\\*(Administrator) - A brand POC is a type of user who can add other users, and approve or reject the addition of users.  \n           * \\*Brand user\\*\\* (Standard user) - A brand user is a type of user in the system who cannot add new users or approve or reject existing users but they can configure or publish the campaigns according to their user permission.  \n           * \\*Brand user - reports only \\*\\*- A brand user - reports only is a type of user that will not be able to access the inTouch platform but will get insights plus report notifications, which they can click on and view.\n         </td>\n       </tr>\n\n       <tr>\n         <td style={{ textAlign: \"left\" }}>\n           groupName\n         </td>\n\n         <td style={{ textAlign: \"left\" }}>\n           Access group/Security group name to which the user will be assigned. This access group name should match with the access group name created in the Organizational Security Groups. The access groups are defined in **Organisation settings > Security & Audit > Access**.  \n\n           * \\*Note: \\*\\* For groupName and permission-related information, contact the access team for access.\n         </td>\n       </tr>\n     </tbody>\n   </Table>\n\n5. In the **Connect-to-destination** block, enter the API endpoint details. See [Connect to destination](https://docs.capillarytech.com/docs/configure-actions#connect-to-destination).\\\n   For this template, the API used is `/intouch-ui/api/v1/users`. By default, this block is auto-filled and need not be modified.\n\n6. In the **Trigger section** block, enter the details to schedule the trigger. Refer to the documentation on scheduling[Trigger](https://docs.capillarytech.com/docs/configure-actions#schedule-trigger).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Connect-to-source Block, enter the source server details where the sourcedata is present and the location for saving the processed file. See Connect to source.In the Decrypt data block, if the files are encrypted, enter the details to decrypt the data. See Decrypt data.In the Data-Validation-Block, validate or transform data using a Databricks notebook. For more details, refer to Data-Validation-Block. The block is optional, so you can skip it without affecting the dataflow. If enabled, the rest of the dataflow continues as usual after the block executes.In the Transform Data block, map the API fields with the source CSV file. See Transform data. The below parameters are mandatory:ParameterDescriptionfirstNameName of the user.reportsToThe email ID of the existing user to whom the user reports. You can also map all users whom you are onboarding to a single user.emailEmail ID of the user.userRoleRole of the user. Enter a valid role defined for this org in Intouch > Organization setup > Roles & Privileges. The API throws an error if the role entered does not belong to the user's org. This determines the level of data access the user has. For example, a concept-level role indicates that the user will have access to concept-level data.accessibleEntitiesEntities to which the user will have access. If the role is concept-level, the org units to which the user will have access are defined and separated by a comma. Example - orgunit1, orgunit2. This is not required if the user role is organisation level where the user will have access to entire org-level data.userTypeDefines the user type. The supported values are Brand User, Brand User - Reports Only, and Brand POC.*Brand POC**(Administrator) - A brand POC is a type of user who can add other users, and approve or reject the addition of users.*Brand user** (Standard user) - A brand user is a type of user in the system who cannot add new users or approve or reject existing users but they can configure or publish the campaigns according to their user permission.*Brand user - reports only **- A brand user - reports only is a type of user that will not be able to access the inTouch platform but will get insights plus report notifications, which they can click on and view.groupNameAccess group/Security group name to which the user will be assigned. This access group name should match with the access group name created in the Organizational Security Groups. The access groups are defined in Organisation settings > Security & Audit > Access.*Note: ** For groupName and permission-related information, contact the access team for access.In the Connect-to-destination block, enter the API endpoint details. See Connect to destination.For this template, the API used is /intouch-ui/api/v1/users. By default, this block is auto-filled and need not be modified.In the Trigger section block, enter the details to schedule the trigger. Refer to the documentation on schedulingTrigger.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 38
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 42
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 50
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 54
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 60
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 64
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 70
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 74
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 80
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 84
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 90
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 94
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 100
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 104
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 114
+        },
+        {
+          "kind": "handlebars",
+          "value": "{{ textAlign: \"left\" }}",
+          "line": 118
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-source",
+          "line": 27
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#decrypt-data",
+          "line": 29
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/data-validation-block",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#transform-data",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-destination",
+          "line": 127
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#schedule-trigger",
+          "line": 130
+        }
+      ]
+    }
+  ]
+}

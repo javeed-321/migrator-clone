@@ -1,0 +1,125 @@
+{
+  "slug": "docs/faqs-tier",
+  "source": "https://docs.capillarytech.com/docs/faqs-tier.md",
+  "url": "https://docs.capillarytech.com/docs/faqs-tier",
+  "title": "Faqs Tier",
+  "description": "",
+  "section": "Tiers",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-12T06:29:16.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "list": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        12
+      ],
+      "raw": "1. Can I add a tier in between two existing tiers?\\\n   You cannot add a tier between two existing tiers. A new tier is always an upgrade to the last tier. If it is highly\\\n   required to add a tier in between two tiers, contact your Capillary PoC. The Capillary Admin needs to perform\\\n   the following steps.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Can I add a tier in between two existing tiers?You cannot add a tier between two existing tiers. A new tier is always an upgrade to the last tier. If it is highlyrequired to add a tier in between two tiers, contact your Capillary PoC. The Capillary Admin needs to performthe following steps.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        14,
+        17
+      ],
+      "raw": "* Edit all the tiers from where you need to modify\n* Change rule expressions and conditions\n* Do a data clean up\n* Reconfigure the loyalty program",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Edit all the tiers from where you need to modifyChange rule expressions and conditionsDo a data clean upReconfigure the loyalty program",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        19,
+        67
+      ],
+      "raw": "2. Can I change the points allocation type of an existing tier?\\\n   When you create a tier, it shows the default points allocation type - prorated (% of the transaction amount). To\\\n   change the points allocation type, create a new points allocation strategy. Then, on the **EventsView** page,\\\n   modify the action for the **TransactionAdd** event by replacing the existing Transaction Points Allocation\\\n   strategy with the new strategy. Save the changes and Reconfigure the loyalty program to reflect the changes in the live program.\n\n3. How are tiers structured in an MLP?\\\n   Tiers are independent across programs in an MLP. Each program can have different numbers of tiers.\n\n4. Can different tiers have different eligibility criteria?\\\n   The eligibility criteria that you set for tier upgrade remains the same for all the subsequent tiers that you create.\n\n5. What happens to the status of my customer if he/she does not fulfill any of the tier eligibility criteria?\\\n   By default, the customer will be in the base tier of the program.\n\n6. Does each of the renewal conditions have to be met or any one of them is enough?\\\n   This depends on how the renewal condition is configured:\n   * **All** — the customer must satisfy every configured condition.\n   * **Any** — the customer must satisfy the number of conditions specified. For example, with **Any 1**, satisfying a single condition is sufficient. With **Any 2**, the customer must meet at least two conditions. A customer who meets only one condition when **Any 2** is required will still be downgraded, even if that individual condition is satisfied.\\\n     Refer to [Creating dynamic renewal criteria](https://docs.capillarytech.com/docs/tier-downgrade-renewal#creating-dynamic-renewal-criteria) for more information.\n\n7. Will changing eligibility force the tiers to compute the settings for all users in advanced settings?\\\n   Yes, it depends on the tier evaluation cycle.\n\n8. Can I set an action in the workflows to send a communication to the customer after I retain the customer tier based\\\n   on conditions such as at least 10 visits or 1000 points, even if the customer has not met the tier criteria?\\\n   Yes, that action can be set in the workflows.\n\n9. Is it possible to upgrade tiers by using any other means apart from the usual upgrade conditions like a coupon or\\\n   passing the points rule?\\\n   As of now, you can do this manually through member care.\n\n10. When I configure 26K points to upgrade a tier (say Gold), will it consider 26,000 points or 26,001 to qualify?\\\n    When configuring a tier, you will only see upgrade rules greater than or equal to (>=). Hence, a customer with\\\n    26000 points or more will be in the Gold tier.\n\n11. Can tracker values for issuance be negatively adjusted for a return if the original transaction information is not available?\\\n    In cases where a return occurs without reference to the original transaction, there are a few options to manage adjustments:\n    * Import Profiles for Downgrading Customers: To downgrade the customer's status, you can use import profiles. Currently, there are no available APIs for this process.\n    * Manual Point Adjustments: For deducting points, you can use the manual adjustment API to perform point adjustments.\\\n      There is no out-of-the-box (OOB) capability to cap agent-level points. However, a custom solution can be implemented using behavioural events and loyalty promotions. Create a JIRA ticket and assign it to the Product team for guidance on this.\n\n12. Does Tier Downgrade work in real-time?\n    * The tier downgrade does not work in real-time. Instead, it operates on a 24-hour sync cycle. While tier upgrades happen in real-time, downgrades are processed within a 24-hour sync period.\n\n13. Why was a customer downgraded even though they appear to have met a renewal condition?\\\n    When the **Any N** condition is configured (for example, **Any 2**), the customer must meet at least N conditions to qualify for renewal. If the customer satisfies fewer conditions than the configured minimum, the system downgrades them — even if one or more individual conditions are met.\\\n    For example, if the renewal criteria are purchase ≥ $400 and at least 5 store visits, and the condition is set to **Any 2**, a customer who spends $433 but makes only 3 visits will be downgraded because only 1 of the 2 required conditions was met.\\\n    To confirm the renewal configuration for a tier, check the **Renewal conditions** section in the tier settings. Refer to [Creating dynamic renewal criteria](https://docs.capillarytech.com/docs/tier-downgrade-renewal#creating-dynamic-renewal-criteria).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Can I change the points allocation type of an existing tier?When you create a tier, it shows the default points allocation type - prorated (% of the transaction amount). Tochange the points allocation type, create a new points allocation strategy. Then, on the EventsView page,modify the action for the TransactionAdd event by replacing the existing Transaction Points Allocationstrategy with the new strategy. Save the changes and Reconfigure the loyalty program to reflect the changes in the live program.How are tiers structured in an MLP?Tiers are independent across programs in an MLP. Each program can have different numbers of tiers.Can different tiers have different eligibility criteria?The eligibility criteria that you set for tier upgrade remains the same for all the subsequent tiers that you create.What happens to the status of my customer if he/she does not fulfill any of the tier eligibility criteria?By default, the customer will be in the base tier of the program.Does each of the renewal conditions have to be met or any one of them is enough?This depends on how the renewal condition is configured:All — the customer must satisfy every configured condition.Any — the customer must satisfy the number of conditions specified. For example, with Any 1, satisfying a single condition is sufficient. With Any 2, the customer must meet at least two conditions. A customer who meets only one condition when Any 2 is required will still be downgraded, even if that individual condition is satisfied.Refer to Creating dynamic renewal criteria for more information.Will changing eligibility force the tiers to compute the settings for all users in advanced settings?Yes, it depends on the tier evaluation cycle.Can I set an action in the workflows to send a communication to the customer after I retain the customer tier basedon conditions such as at least 10 visits or 1000 points, even if the customer has not met the tier criteria?Yes, that action can be set in the workflows.Is it possible to upgrade tiers by using any other means apart from the usual upgrade conditions like a coupon orpassing the points rule?As of now, you can do this manually through member care.When I configure 26K points to upgrade a tier (say Gold), will it consider 26,000 points or 26,001 to qualify?When configuring a tier, you will only see upgrade rules greater than or equal to (>=). Hence, a customer with26000 points or more will be in the Gold tier.Can tracker values for issuance be negatively adjusted for a return if the original transaction information is not available?In cases where a return occurs without reference to the original transaction, there are a few options to manage adjustments:Import Profiles for Downgrading Customers: To downgrade the customer's status, you can use import profiles. Currently, there are no available APIs for this process.Manual Point Adjustments: For deducting points, you can use the manual adjustment API to perform point adjustments.There is no out-of-the-box (OOB) capability to cap agent-level points. However, a custom solution can be implemented using behavioural events and loyalty promotions. Create a JIRA ticket and assign it to the Product team for guidance on this.Does Tier Downgrade work in real-time?The tier downgrade does not work in real-time. Instead, it operates on a 24-hour sync cycle. While tier upgrades happen in real-time, downgrades are processed within a 24-hour sync period.Why was a customer downgraded even though they appear to have met a renewal condition?When the Any N condition is configured (for example, Any 2), the customer must meet at least N conditions to qualify for renewal. If the customer satisfies fewer conditions than the configured minimum, the system downgrades them — even if one or more individual conditions are met.For example, if the renewal criteria are purchase ≥ $400 and at least 5 store visits, and the condition is set to Any 2, a customer who spends $433 but makes only 3 visits will be downgraded because only 1 of the 2 required conditions was met.To confirm the renewal configuration for a tier, check the Renewal conditions section in the tier settings. Refer to Creating dynamic renewal criteria.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#creating-dynamic-renewal-criteria",
+          "line": 38
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tier-downgrade-renewal#creating-dynamic-renewal-criteria",
+          "line": 67
+        }
+      ]
+    }
+  ]
+}

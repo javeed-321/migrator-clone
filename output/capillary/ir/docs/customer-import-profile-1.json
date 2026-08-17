@@ -1,0 +1,979 @@
+{
+  "slug": "docs/customer-import-profile-1",
+  "source": "https://docs.capillarytech.com/docs/customer-import-profile-1.md",
+  "url": "https://docs.capillarytech.com/docs/customer-import-profile-1",
+  "title": "Customer Import Profile 1",
+  "description": "",
+  "section": "Customer Entity Profiles",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-29T11:42:03.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 10,
+    "list": 15,
+    "blockquote": 1,
+    "Image": 7,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Customer Import Profile",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Customer Import Profile",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "With Customer Import Profile, you can bring customer data into Capillary from a connected Databricks workspace without manual file uploads. You select a source table, choose how records are added or updated, map the fields to Capillary's customer profile, and validate everything before the import runs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With Customer Import Profile, you can bring customer data into Capillary from a connected Databricks workspace without manual file uploads. You select a source table, choose how records are added or updated, map the fields to Capillary's customer profile, and validate everything before the import runs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this feature to register new customers in bulk, refresh existing profiles, or do both in a single import. The four-step flow guides you through the process, and you can save a draft at any step to finish later.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this feature to register new customers in bulk, refresh existing profiles, or do both in a single import. The four-step flow guides you through the process, and you can save a draft at any step to finish later.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Import methods",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Import methods",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "The following are the import methods that are supported by the profile:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the import methods that are supported by the profile:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* Insert adds new records only\n* Update changes existing records only\n* Upsert adds new records and updates existing ones",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Insert adds new records onlyUpdate changes existing records onlyUpsert adds new records and updates existing ones",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# Create an import job",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Create an import job",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Select the data source and the table you want to import from your Databricks workspace.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Select the data source and the table you want to import from your Databricks workspace.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "### Step 1: Job settings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 1: Job settings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        62
+      ],
+      "raw": "1. Select the job type:\n   * **One-time**: runs a single import and stops.\n   * **Recurring**: automatically runs on a schedule you define.\n\n     <Image src=\"https://files.readme.io/99efef0ff24be5a87eb91c3f62f48545feff4ec3c103bd3d03dcfbbff5a1c4e4-2importmethods.png\" border={true} />\n\n2. If you selected **Recurring**, set the frequency:\n\n   | Frequency                | Additional fields                                                                                             |\n   | ------------------------ | ------------------------------------------------------------------------------------------------------------- |\n   | Every 15 mins            | None                                                                                                          |\n   | Hourly                   | None                                                                                                          |\n   | Daily                    | **At**: select a time                                                                                         |\n   | Weekly                   | **On**: select a day of the week; **At**: select a time                                                       |\n   | Monthly                  | **On**: select First day of the month, 15th day of the month, or Last day of the month; **At**: select a time |\n   | Custom (cron expression) | **Cron expression**: enter a valid cron expression                                                            |\n\n   <Image src=\"https://files.readme.io/b04112c2256f566b587638ae61a86937b463abd9f17044e0621f039e9e784384-set_frequency.png\" border={true} />\n\n3. If you selected **Recurring**, set the start and end time for the schedule:\n   * **Start time**: select **Start immediately** to begin on the next scheduled occurrence, or select **Specific date and time** to set a date and time.\n   * **End time**: select **Runs indefinitely** to keep the schedule running until you stop it manually, or select **Specific date and time** to set when the schedule stops.\n\n     <Image src=\"https://files.readme.io/b6214c63925867c70bfa3683386e76fa2f4b7056c696f9197ddb3657788deed5-Screenshot_2026-07-10_at_2.15.08_PM.png\" border={true} />\n\n4. Under **Run approval**, select how the job is approved before importing:\n   * **Auto-approve this import** (default): the job runs without manual review.\n   * **Send for approval when the import crosses a limit of**: the system holds the job for manual approval when the import meets either condition below. Select one or both:\n     * **Number of records**: enter a threshold. The system sends the job for approval when the import contains more than the specified number of records.\n     * **Error rate**: enter a percentage. The system sends the job for approval when the error rate exceeds the specified percentage.\n\n       <Image src=\"https://files.readme.io/ae7709402e40da63c039b66f082849723f9781d65e983797781524f97f295e8b-runApproval.png\" border={true} />\n\n5. In the **Notify** field, enter the email addresses of users who should receive a notification when a run crosses a limit. Select **Enter** after each address.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the job type:One-time: runs a single import and stops.Recurring: automatically runs on a schedule you define.If you selected Recurring, set the frequency:FrequencyAdditional fieldsEvery 15 minsNoneHourlyNoneDailyAt: select a timeWeeklyOn: select a day of the week; At: select a timeMonthlyOn: select First day of the month, 15th day of the month, or Last day of the month; At: select a timeCustom (cron expression)Cron expression: enter a valid cron expressionIf you selected Recurring, set the start and end time for the schedule:Start time: select Start immediately to begin on the next scheduled occurrence, or select Specific date and time to set a date and time.End time: select Runs indefinitely to keep the schedule running until you stop it manually, or select Specific date and time to set when the schedule stops.Under Run approval, select how the job is approved before importing:Auto-approve this import (default): the job runs without manual review.Send for approval when the import crosses a limit of: the system holds the job for manual approval when the import meets either condition below. Select one or both:Number of records: enter a threshold. The system sends the job for approval when the import contains more than the specified number of records.Error rate: enter a percentage. The system sends the job for approval when the error rate exceeds the specified percentage.In the Notify field, enter the email addresses of users who should receive a notification when a run crosses a limit. Select Enter after each address.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "> **Note:** Select **Save as draft** at any step to save your progress and return to the job later.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "Note: Select Save as draft at any step to save your progress and return to the job later.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "6. Select **Next**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select Next.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "## Step 2: Data to import",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 2: Data to import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        70,
+        82
+      ],
+      "raw": "1. Under **Data source**, select **Databricks**.\n\n2. In the **Table pattern** field, enter the name of your source table. The name must exactly match the table name in Databricks.\n\n3. When the system finds a match, a confirmation appears: \"1 tables matched\". <br />In the **Select table** dropdown, select your table.\n\n   <Image src=\"https://files.readme.io/7d3b549a5a148f48627ff2c8c56090eaaf9746a99dcbe32e52f1f91b02d3bf71-table_match.png\" border={true} />\n\n4. A preview of the top 50 records appears along with the total record count. Review the preview to confirm you've selected the correct table.\n\n   <Image src=\"https://files.readme.io/fb94d8bf6a4f851a71f2a2e11bcee507ea0eb646de3a0da6be7be9516d887d19-tale_content.png\" border={true} />\n\n5. Select **Next**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Under Data source, select Databricks.In the Table pattern field, enter the name of your source table. The name must exactly match the table name in Databricks.When the system finds a match, a confirmation appears: \"1 tables matched\". In the Select table dropdown, select your table.A preview of the top 50 records appears along with the total record count. Review the preview to confirm you've selected the correct table.Select Next.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "## Step 3: Profile and method",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 3: Profile and method",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "Define the import profile that matches your data type and select how the records should be written to the Capillary database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Define the import profile that matches your data type and select how the records should be written to the Capillary database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        88,
+        92
+      ],
+      "raw": "1. Under **Import profile**, select the dropdown and select the profile that matches the type of data you are importing. The profile tells the system what entity the data belongs to and how it should be validated and processed.\n\n   The following profiles are available:\n\n   * **Customer:** For importing customer registration or profile data.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Under Import profile, select the dropdown and select the profile that matches the type of data you are importing. The profile tells the system what entity the data belongs to and how it should be validated and processed.The following profiles are available:Customer: For importing customer registration or profile data.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "<Image src=\"https://files.readme.io/9fe953c93df77e0a61da75102a67dd03f8ddf8ce84fa9b788a6c5413cf93a49c-data-import-google-docs_4.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/9fe953c93df77e0a61da75102a67dd03f8ddf8ce84fa9b788a6c5413cf93a49c-data-import-google-docs_4.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "2. Under **Import method**, select how the records from your table should be written to the Capillary database. Three methods are available:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Under Import method, select how the records from your table should be written to the Capillary database. Three methods are available:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        98,
+        102
+      ],
+      "raw": "| Method | Description                                                         |\n| :----- | :------------------------------------------------------------------ |\n| Insert | Inserts new records only; skips if an existing record is found      |\n| Update | Updates existing records if found; does not insert new records      |\n| Upsert | Updates existing records if found; otherwise inserts as new records |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Method",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Insert",
+            "Inserts new records only; skips if an existing record is found"
+          ],
+          [
+            "Update",
+            "Updates existing records if found; does not insert new records"
+          ],
+          [
+            "Upsert",
+            "Updates existing records if found; otherwise inserts as new records"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "**Note:** The Upsert method is supported even when <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/customer_entity#setup-customer-configs\">CONF\\_ALLOW\\_REGISTRATION\\_FROM\\_ANY\\_IDENTIFIERS</Anchor> is enabled for the organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: The Upsert method is supported even when CONF_ALLOW_REGISTRATION_FROM_ANY_IDENTIFIERS is enabled for the organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/customer_entity#setup-customer-configs",
+          "line": 104
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/customer_entity#setup-customer-configs",
+          "line": 104
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "<Image src=\"https://files.readme.io/5fbcac8c7db8655610b06f89de4bfb8d7bb39e534bb4acd65b04e252277dfb51-data-import-google-docs_5.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/5fbcac8c7db8655610b06f89de4bfb8d7bb39e534bb4acd65b04e252277dfb51-data-import-google-docs_5.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        108,
+        118
+      ],
+      "raw": "3. Under **Additional configurations**, set the **Unique ID**. This defines the identifier the system uses to distinguish between customer accounts during the import.\n\n   Select one of the following:\n\n   * **MOBILE**\n\n   * **EXTERNAL\\_ID**\n\n   * **USER\\_ID**\n\n   * **EMAIL**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Under Additional configurations, set the Unique ID. This defines the identifier the system uses to distinguish between customer accounts during the import.Select one of the following:MOBILEEXTERNAL_IDUSER_IDEMAIL",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8faa34677a95dc2227de28967d61c3749f5b7deb72a09492770d05f50c439baf-data-import-google-docs_6.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8faa34677a95dc2227de28967d61c3749f5b7deb72a09492770d05f50c439baf-data-import-google-docs_6.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        122,
+        126
+      ],
+      "raw": "4. Once you have configured the profile, method, and Unique ID, do one of the following:\n\n   * Select **Previous step** to go back to [Step 1: Data to import](#step-1-data-to-import).\n   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.\n   * Select **Next** to proceed to [Step 3: Fields mapping](#step-3-fields-mapping).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Once you have configured the profile, method, and Unique ID, do one of the following:Select Previous step to go back to Step 1: Data to import.Select Save as draft to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select Save to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.Select Next to proceed to Step 3: Fields mapping.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "## Step 4: Fields mapping",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 4: Fields mapping",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "Map the fields from your source data to the corresponding customer profile fields to ensure accurate data import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Map the fields from your source data to the corresponding customer profile fields to ensure accurate data import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "1. In the **Fields mapping** section, review the list of source fields displayed under **Fields of source data to be imported**. The banner at the top shows how many mandatory profile fields still need to be mapped, for example: 0/4 mandatory profile fields mapped.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Fields mapping section, review the list of source fields displayed under Fields of source data to be imported. The banner at the top shows how many mandatory profile fields still need to be mapped, for example: 0/4 mandatory profile fields mapped.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "<Image src=\"https://files.readme.io/04da8f68c9d6946902534ef4e5563e0bba255f886604c03c8da71ebcef3dabc3-data-import-google-docs_7.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/04da8f68c9d6946902534ef4e5563e0bba255f886604c03c8da71ebcef3dabc3-data-import-google-docs_7.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "2. Select **View mandatory fields** to see which fields are required for the selected profile. The modal lists all mandatory fields marked with `*`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select View mandatory fields to see which fields are required for the selected profile. The modal lists all mandatory fields marked with *.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "<Image src=\"https://files.readme.io/d3dce7b6fe6ecd13a31f849a0acb197c3d7e403bcd0be27859994aed095b585c-data-import-google-docs_8.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/d3dce7b6fe6ecd13a31f849a0acb197c3d7e403bcd0be27859994aed095b585c-data-import-google-docs_8.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "3. For each source field, select **Select profile field** under **Customer profile fields** and select the appropriate field. Fields are organised into the following categories:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "For each source field, select Select profile field under Customer profile fields and select the appropriate field. Fields are organised into the following categories:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        142,
+        150
+      ],
+      "raw": "* [Standard fields](https://docs.capillarytech.com/docs/standard-fields)\n\n* <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/dimension-tables#customer-slab\">Customer slab</Anchor>\n\n* <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/customer_entity#managing-customer-lifecycle-with-customer-status\">Customer status</Anchor>\n\n* [Custom fields](https://docs.capillarytech.com/docs/entity-management-custom-fields)\n\n* [Extended fields](https://docs.capillarytech.com/docs/extended-fields)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Standard fieldsCustomer slabCustomer statusCustom fieldsExtended fields",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#customer-slab",
+          "line": 144
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/customer_entity#managing-customer-lifecycle-with-customer-status",
+          "line": 146
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/standard-fields",
+          "line": 142
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#customer-slab",
+          "line": 144
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/customer_entity#managing-customer-lifecycle-with-customer-status",
+          "line": 146
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/entity-management-custom-fields",
+          "line": 148
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extended-fields",
+          "line": 150
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "<Image src=\"https://files.readme.io/b859871aec4b731d06dd1cc4167286fc53e03a8388d2b6417cea1d0845badfe7-data-import-google-docs_9.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/b859871aec4b731d06dd1cc4167286fc53e03a8388d2b6417cea1d0845badfe7-data-import-google-docs_9.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 36,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "**Note:** When you map a field that is mandatory for the selected profile, the Mark as mandatory checkbox is automatically selected.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: When you map a field that is mandatory for the selected profile, the Mark as mandatory checkbox is automatically selected.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        156,
+        166
+      ],
+      "raw": "4. Track your mapping progress using the banner at the top, for example: 3/4 mandatory profile fields mapped. The Customer profile fields column header also shows a running count.\n\n5. Optionally, select the **Mark as mandatory** checkbox next to any additional field to enforce it as mandatory for this import. Fields marked as mandatory must have valid values; otherwise, the record is marked as invalid during import.\n\n   **Note -** If you selected the **Update** import method, identifier fields such as mobile, email, and external ID cannot be updated. Mapping these fields has no effect. Only non-identifier fields are updated.\n\n6. Once mapping is complete, do one of the following:\n\n   * Select **Next** to proceed to [Step 4: Review and proceed](#step-4-review-and-proceed).\n   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.\n   * Select **Previous step** to go back to [Step 2: Profile and method](#step-2-profile-and-method).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Track your mapping progress using the banner at the top, for example: 3/4 mandatory profile fields mapped. The Customer profile fields column header also shows a running count.Optionally, select the Mark as mandatory checkbox next to any additional field to enforce it as mandatory for this import. Fields marked as mandatory must have valid values; otherwise, the record is marked as invalid during import.Note - If you selected the Update import method, identifier fields such as mobile, email, and external ID cannot be updated. Mapping these fields has no effect. Only non-identifier fields are updated.Once mapping is complete, do one of the following:Select Next to proceed to Step 4: Review and proceed.Select Save as draft to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select Save to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.Select Previous step to go back to Step 2: Profile and method.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "## Step 5: Review and proceed",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step 5: Review and proceed",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "Review the complete configuration of your import job and submit it for validation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Review the complete configuration of your import job and submit it for validation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        172,
+        172
+      ],
+      "raw": "To review and proceed, follow the steps given below.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To review and proceed, follow the steps given below.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        174,
+        188
+      ],
+      "raw": "1. Enter a **Job name** to help identify the job later.\n\n2. Optionally, enter a **Description** for this job.\n\n   <Image src=\"https://files.readme.io/cfc61b9b043e042a34b6bffab6fe153d0ee30f8f692a5aeac6f836be9543791d-data-import-google-docs_10.png\" align=\"center\" width=\"85% \" border={true} />\n\n3. Review the **Configuration summary**. This section provides an overview of all settings configured across the previous steps. Verify each section before proceeding.\n\n   <Image src=\"https://files.readme.io/68057efb5318107a63c05167a123633a162f079e38f205da61e537a4c0e9e860-data-import-google-docs_11.png\" align=\"center\" width=\"85% \" border={true} />\n\n4. Navigate to the **Profile and method** section and select **Show additional configurations** to expand and view the additional settings configured in [Step 2](#step-2-profile-and-method). Select **Hide additional configurations** to collapse the section.\n\n   <Image src=\"https://files.readme.io/d97f694aec80edc0d57b68724c22760952dfa61cdf20d184a37049b5a9cd5c3a-data-import-google-docs_12.png\" align=\"center\" border={true} />\n\n5. Navigate to the **Fields mapping** section and select **Show mapping** to expand and view the complete field mapping. Fields marked with `*` and a green checkmark under Required indicate mandatory fields that have been mapped. Select **Hide mapping** to collapse the mapping table.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter a Job name to help identify the job later.Optionally, enter a Description for this job.Review the Configuration summary. This section provides an overview of all settings configured across the previous steps. Verify each section before proceeding.Navigate to the Profile and method section and select Show additional configurations to expand and view the additional settings configured in Step 2. Select Hide additional configurations to collapse the section.Navigate to the Fields mapping section and select Show mapping to expand and view the complete field mapping. Fields marked with * and a green checkmark under Required indicate mandatory fields that have been mapped. Select Hide mapping to collapse the mapping table.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "<Image src=\"https://files.readme.io/75765708cb17e46f18c44e0e54ddc905778dff45061a7b5751c743ace0f9424e-data-import-google-docs_13.png\" align=\"center\" width=\"85% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/75765708cb17e46f18c44e0e54ddc905778dff45061a7b5751c743ace0f9424e-data-import-google-docs_13.png",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        192,
+        198
+      ],
+      "raw": "6. Once you have reviewed the configuration, do one of the following:\n\n   * Select **Previous step** to go back to [Step 3: Fields mapping](#step-3-fields-mapping).\n\n   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.\n\n   * Select **Proceed to validate** to submit the import job for validation. A confirmation modal appears. Select **Yes, validate** to confirm.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Once you have reviewed the configuration, do one of the following:Select Previous step to go back to Step 3: Fields mapping.Select Save as draft to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Select Save to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.Select Proceed to validate to submit the import job for validation. A confirmation modal appears. Select Yes, validate to confirm.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 200
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "docs/flutter-sdk-in-app-messaging",
+  "source": "https://docs.capillarytech.com/docs/flutter-sdk-in-app-messaging.md",
+  "url": "https://docs.capillarytech.com/docs/flutter-sdk-in-app-messaging",
+  "title": "Flutter Sdk In App Messaging",
+  "description": "",
+  "section": "Flutter SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 2,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure In-App Messaging",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure In-App Messaging",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Configuring In-App Messaging",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring In-App Messaging",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You can enable and configure in-app messages within your application for both iOS and Android.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can enable and configure in-app messages within your application for both iOS and Android.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "To enable in-app messaging, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable in-app messaging, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        29
+      ],
+      "raw": "1. Enable in-app messaging by setting the `enable_in_app_messaging` parameter to `true` in your `hydra-config.json` file.\n2. Configure in-app messaging for iOS\n   1. Add an Image Set named `inAppPlaceholder` in your project's `Assets.xcassets`. This image will serve as a placeholder when an in-app message does not include an image.\n   2. In your `AppDelegate.swift` file, add the following at the top:\n      ```swift\n      import capillary_hydra_ios\n      ```\n   3. Add the following function to your `AppDelegate.swift` file:\n      ```swift\n      override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){\n          HydraNativeAPI.shared.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)\n      }\n      ```\n3. Configure in-app messaging for Android\n   1. Add an image file named `hydra_in_app_placeholder` to the `android/app/src/main/res/drawable` folder. This image will be used as a placeholder when an in-app message does not include an image. The image file can be in PNG, JPG, or XML format.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enable in-app messaging by setting the enable_in_app_messaging parameter to true in your hydra-config.json file.Configure in-app messaging for iOSAdd an Image Set named inAppPlaceholder in your project's Assets.xcassets. This image will serve as a placeholder when an in-app message does not include an image.In your AppDelegate.swift file, add the following at the top:import capillary_hydra_iosAdd the following function to your AppDelegate.swift file:override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){\n    HydraNativeAPI.shared.application(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)\n}Configure in-app messaging for AndroidAdd an image file named hydra_in_app_placeholder to the android/app/src/main/res/drawable folder. This image will be used as a placeholder when an in-app message does not include an image. The image file can be in PNG, JPG, or XML format.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

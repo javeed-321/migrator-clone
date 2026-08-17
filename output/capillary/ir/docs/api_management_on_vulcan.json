@@ -1,0 +1,601 @@
+{
+  "slug": "docs/api_management_on_vulcan",
+  "source": "https://docs.capillarytech.com/docs/api_management_on_vulcan.md",
+  "url": "https://docs.capillarytech.com/docs/api_management_on_vulcan",
+  "title": "Api Management On Vulcan",
+  "description": "",
+  "section": "Vulcan",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 10,
+    "Callout": 4,
+    "list": 4,
+    "code": 3,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API Management on Vulcan",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Management on Vulcan",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Vulcan supports two categories of APIs accessible directly through the Vulcan node layer and those available through [Arya APIs](https://api.arya.ai/).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Vulcan supports two categories of APIs accessible directly through the Vulcan node layer and those available through Arya APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        13
+      ],
+      "raw": "> 📘 Note\n>\n> When you use Vulcan APIs, include `x-cap-vulcan-app-id` and the [Vulcan app ID](https://docs.capillarytech.com/docs/vulcan-getting-started#/basic-details) in the header.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteWhen you use Vulcan APIs, include x-cap-vulcan-app-id and the Vulcan app ID in the header.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/vulcan-getting-started#/basic-details",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Types of APIs Supported on Vulcan",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Types of APIs Supported on Vulcan",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Type 1",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Type 1",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "APIs supported on the Vulcan node layer (whitelisted)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "APIs supported on the Vulcan node layer (whitelisted)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        26
+      ],
+      "raw": "1. Intouch\n2. XAJA\n3. Extension (Avengers API extension.)\n4. Neo Extensions\n5. Shield / Workflow Management APIs\n6. [Cortex APIs](https://docs.cortex.io/docs/api)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "IntouchXAJAExtension (Avengers API extension.)Neo ExtensionsShield / Workflow Management APIsCortex APIs",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Sample Method for Services/API.js:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample Method for Services/API.js:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        30,
+        35
+      ],
+      "raw": "```\nexport const methodName = (param) => {\n\tconst url = `${endpoints.vulcan_endpoint}/<intouch|neo|extensions|xaja/AjaxService>/<URL path of svc>`;\n\treturn httpRequest(url, getVulcanAPICallObject('GET'));\n};\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "export const methodName = (param) => {\n\tconst url = `${endpoints.vulcan_endpoint}/<intouch|neo|extensions|xaja/AjaxService>/<URL path of svc>`;\n\treturn httpRequest(url, getVulcanAPICallObject('GET'));\n};"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "> 📘 Note:\n>\n> Always use `getVulcanAPICallObject` in the api.js method",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Always use getVulcanAPICallObject in the api.js method",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "## Type 2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Type 2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "APIs supported on Arya (Node APIs and Whitelisted BE APIs):",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "APIs supported on Arya (Node APIs and Whitelisted BE APIs):",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        45,
+        52
+      ],
+      "raw": "1. EMF (/loyalty/emf/v1)\n2. File service (/v1/file-service)\n3. Promo engine (/v1/promotion-management)\n4. Observability engine (/v1/observability)\n5. Rewards core (/core)\n6. Gamification (/gamification)\n7. Badges (/v1/badges)\n8. Any node API (loyalty/api/v1, member-care/api/v1, arya/api/v1/org-settings, arya/api/v1/creatives, any other Arya APIs)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "EMF (/loyalty/emf/v1)File service (/v1/file-service)Promo engine (/v1/promotion-management)Observability engine (/v1/observability)Rewards core (/core)Gamification (/gamification)Badges (/v1/badges)Any node API (loyalty/api/v1, member-care/api/v1, arya/api/v1/org-settings, arya/api/v1/creatives, any other Arya APIs)",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        54,
+        57
+      ],
+      "raw": "> 📘 Note:\n>\n> For all the above APIs, if the endpoint has \"arya/api/v1\" then use `endpoints.arya_endpoint`.\\\n> Else define an endpoint in the `endpoints.js` file.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:For all the above APIs, if the endpoint has \"arya/api/v1\" then use endpoints.arya_endpoint.Else define an endpoint in the endpoints.js file.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "Sample:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        61,
+        63
+      ],
+      "raw": "```\nfileservice_endpoint:\"https://north-america.intouch.capillarytech.com/v1/file-service\"\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "fileservice_endpoint:\"https://north-america.intouch.capillarytech.com/v1/file-service\""
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "Sample Method for Services/API.js:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Sample Method for Services/API.js:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        67,
+        72
+      ],
+      "raw": "```\nexport const methodName = (param) => {\n\tconst url = `${endpoints.fileservice_endpoint}/<URL path of svc>/<param>`;\n\treturn httpRequest(url, getAryaAPICallObject(\"GET\"));\n};\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "export const methodName = (param) => {\n\tconst url = `${endpoints.fileservice_endpoint}/<URL path of svc>/<param>`;\n\treturn httpRequest(url, getAryaAPICallObject(\"GET\"));\n};"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        74,
+        76
+      ],
+      "raw": "> 📘 Note:\n>\n> Always use `getAryaAPICallObject` in the api.js method.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Always use getAryaAPICallObject in the api.js method.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "# Whitelisted Endpoints",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Whitelisted Endpoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "The `endpoint.js` file contains all the possible whitelisted endpoints callable from Vulcan (Type 1 and Type 2). These are based on the InTouch cluster specified during the project setup",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The endpoint.js file contains all the possible whitelisted endpoints callable from Vulcan (Type 1 and Type 2). These are based on the InTouch cluster specified during the project setup",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "<Image align=\"center\" border={false} src=\"https://files.readme.io/d25ddc3-image7.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{false}",
+        "src": "https://files.readme.io/d25ddc3-image7.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "# Making Vulcan endpoint calls for OAuth APIs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Making Vulcan endpoint calls for OAuth APIs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "To make Vulcan endpoint calls for OAuth APIs, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To make Vulcan endpoint calls for OAuth APIs, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        88,
+        101
+      ],
+      "raw": "1. Register the OAuth client key, secret, and till ID using the `metadata/oauth-clients` API.\n   ```curl\n   curl --location 'https://{host}/vulcan/api/v1/metadata/oauth-clients' \\\n   --header 'x-cap-api-auth-org-id: <orgId>' \\\n   --header 'x-cap-remote-user: <userId>' \\\n   --header 'Content-Type: application/json' \\\n   --header 'Authorization: Bearer <ct_token>' \\\n   --data '{\n       \"key\": \"<client_key>\",\n       \"secret\": \"<client_secret>\",\n       \"defaultTillId\": <till_id_number>\n   }'\n   ```\n2. After you register the OAuth client, make the necessary API calls, and ensure that the `x-cap-api-auth-type: oauth` header is included in the request.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Register the OAuth client key, secret, and till ID using the metadata/oauth-clients API.curl --location 'https://{host}/vulcan/api/v1/metadata/oauth-clients' \\\n--header 'x-cap-api-auth-org-id: <orgId>' \\\n--header 'x-cap-remote-user: <userId>' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <ct_token>' \\\n--data '{\n    \"key\": \"<client_key>\",\n    \"secret\": \"<client_secret>\",\n    \"defaultTillId\": <till_id_number>\n}'After you register the OAuth client, make the necessary API calls, and ensure that the x-cap-api-auth-type: oauth header is included in the request.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "# Compressing a Vulcan API response",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Compressing a Vulcan API response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "To improve the handling of large Vulcan API responses, enable response compression. This involves configuring the API to compress the response data and decompress the data on the client side once received. This reduces response size, improves data transfer speed, and prevents performance issues such as UI slowdowns or server-side timeouts  during response parsing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To improve the handling of large Vulcan API responses, enable response compression. This involves configuring the API to compress the response data and decompress the data on the client side once received. This reduces response size, improves data transfer speed, and prevents performance issues such as UI slowdowns or server-side timeouts  during response parsing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "To compress an API response, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To compress an API response, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        109,
+        115
+      ],
+      "raw": "1. [Update the Vulcan SDK](https://docs.capillarytech.com/docs/application-development-process#updating-the-vulcan-sdk) to version `2.3.1`.\n2. Open the project folder on your local machine, then navigate to the `./app/services/api.js`  file.\n3. At the start of the `api.js` file, add the following code:\n   ```json\n   return httpRequest(url, { ...getVulcanAPICallObject('GET'), useResponseCompression: true });\n   ```\n4. . [Update the Vulcan SDK](https://docs.capillarytech.com/docs/application-development-process#updating-the-vulcan-sdk) to v2.4.0.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Update the Vulcan SDK to version 2.3.1.Open the project folder on your local machine, then navigate to the ./app/services/api.js  file.At the start of the api.js file, add the following code:return httpRequest(url, { ...getVulcanAPICallObject('GET'), useResponseCompression: true });. Update the Vulcan SDK to v2.4.0.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/application-development-process#updating-the-vulcan-sdk",
+          "line": 109
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/application-development-process#updating-the-vulcan-sdk",
+          "line": 115
+        }
+      ]
+    }
+  ]
+}

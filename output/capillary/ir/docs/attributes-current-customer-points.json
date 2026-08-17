@@ -1,0 +1,918 @@
+{
+  "slug": "docs/attributes-current-customer-points",
+  "source": "https://docs.capillarytech.com/docs/attributes-current-customer-points.md",
+  "url": "https://docs.capillarytech.com/docs/attributes-current-customer-points",
+  "title": "Attributes Current Customer Points",
+  "description": "",
+  "section": "Profile : Current Customer",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:04:18.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `6` (U+0036) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 8,
+    "Table": 16,
+    "paragraph": 10,
+    "thematicBreak": 6
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Attributes - KPIs (Customer Points)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Attributes - KPIs (Customer Points)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        17
+      ],
+      "raw": "| Attribute                   | Data Type  | Example                                          |\n| :-------------------------- | :--------- | :----------------------------------------------- |\n| currentPoints               | BigDecimal | currentCustomer.currentPoints>100                |\n| initialCurrentPoints        | BigDecimal | currentCustomer.initialCurrentPoints<60          |\n| currentAllPoints            | BigDecimal | currentCustomer.currentAllPoints<=500            |\n| lifetimePoints              | BigDecimal | currentCustomer.lifetimePoints<100               |\n| lifetimeAllPoints           | BigDecimal | currentCustomer.lifetimeAllPoints<1000           |\n| initiallifetimePoints       | BigDecimal | currentCustomer.initiallifetimePoints>1000       |\n| lifetimeNonRedeemablePoints | BigDecimal | currentCustomer.lifetimeNonRedeemablePoints<1000 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Attribute",
+          "Data Type",
+          "Example"
+        ],
+        "rows": [
+          [
+            "currentPoints",
+            "BigDecimal",
+            "currentCustomer.currentPoints>100"
+          ],
+          [
+            "initialCurrentPoints",
+            "BigDecimal",
+            "currentCustomer.initialCurrentPoints<60"
+          ],
+          [
+            "currentAllPoints",
+            "BigDecimal",
+            "currentCustomer.currentAllPoints<=500"
+          ],
+          [
+            "lifetimePoints",
+            "BigDecimal",
+            "currentCustomer.lifetimePoints<100"
+          ],
+          [
+            "lifetimeAllPoints",
+            "BigDecimal",
+            "currentCustomer.lifetimeAllPoints<1000"
+          ],
+          [
+            "initiallifetimePoints",
+            "BigDecimal",
+            "currentCustomer.initiallifetimePoints>1000"
+          ],
+          [
+            "lifetimeNonRedeemablePoints",
+            "BigDecimal",
+            "currentCustomer.lifetimeNonRedeemablePoints<1000"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## **currentPoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "currentPoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        21,
+        27
+      ],
+      "raw": "**Profile :** currentCustomer\\\n**Attribute :** currentPoints\\\n**Meaning :** Customer's current redeemable points. **\\\nType:**&#x42;oolean\\\n**Sub-Attributes :** NA\\\n**Operator :** isNull, isNotNull, Interval, >,<,=,>=,<=\\\n**Syntax : currentCustomer.currentPoints\\[Operators like >,<,>=,<=,==]\\[VALUE]**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentCustomerAttribute : currentPointsMeaning : Customer's current redeemable points. Type:BooleanSub-Attributes : NAOperator : isNull, isNotNull, Interval, >,<,=,>=,<=Syntax : currentCustomer.currentPoints[Operators like >,<,>=,<=,==][VALUE]",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "***current points = overall earned points - overall returned points - overall redeemed points - overall expired points.***",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "current points = overall earned points - overall returned points - overall redeemed points - overall expired points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        31,
+        33
+      ],
+      "raw": "| Example 1: As a Marketing Manager I want to allocate points to the customer who has current redeemable points or currentPoints greater than 100. |\n| :----------------------------------------------------------------------------------------------------------------------------------------------- |\n| Expression : currentCustomer.currentPoints>100                                                                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 1: As a Marketing Manager I want to allocate points to the customer who has current redeemable points or currentPoints greater than 100."
+        ],
+        "rows": [
+          [
+            "Expression : currentCustomer.currentPoints>100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        35,
+        54
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 2: As a Marketing Manager, you want to send communications regarding expiry conditions to the Customer, who has current Points greater than and equal to 1000 but less than 5000.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Profile -> currentCustomer\n        Attributes -> currentPoints\n        And -> &&\n        Expression : currentCustomer.currentPoints>=1000&&(currentCustomer.currentPoints\\<5000\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        56,
+        96
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 3: Write an expression to Issue a Coupon to the customers whose\n\n\n\n\n        Condition1 : current Transaction value is greater than 500\n\n\n\n\n        Condition 2: Current Transaction Basket Includes the item from category field, value lifestyle\n\n\n\n\n        Condition 3 : Current Points is greater than 400\n\n\n\n\n        Also Condition 1 AND condition 2 OR Condition 3\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Ans: Profiles Included for Current Transaction -> currentTxn\n                Profiles Included for Current Points -> currentPoints\n                AND -> &&\n                OR -> ||\n                Expression:(currentTxn.value>500)&&(currentTxn.basketIncludes(“Category”,”Lifestyle”))||currentCustomer.currentPoints>400\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        98,
+        119
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example4: Suppose you want to issue coupons for customers whose current points is greater than 500, then use the following condition:\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        currentCustomer.currentPoints>500\n        Profile: currentcustomer & Attribute: CurrentPoints  \n\n        Let's see how we can use \"Interval\" operators:\n        To issue coupons to those customers whose current points fall in the third interval of 600 (the first interval being 1 to 100, the second interval being 101 to 400, the third interval being 401 to 600), then use the following condition:\n        **currentCustomer.currentPoints.interval(\"100,400,600\")==3**\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "## **initialCurrentPoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "initialCurrentPoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        125,
+        130
+      ],
+      "raw": "**Profile :** currentCustomer\\\n**Attribute:** initialCurrentPoints\\\n**Meaning:** customer's current redeemable points before the current event or Active points of a customer before evaluating the event .\\\n**Data Type:** BigDecimal\\\n**Sub-Attribute :** NA\\\n**Syntax:** currentCustomer.initialCurrentPoints \\[Operators like >,<,>=,<=,==]\\[VALUE]",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentCustomerAttribute: initialCurrentPointsMeaning: customer's current redeemable points before the current event or Active points of a customer before evaluating the event .Data Type: BigDecimalSub-Attribute : NASyntax: currentCustomer.initialCurrentPoints [Operators like >,<,>=,<=,==][VALUE]",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "**initial current points** = overall earned points (before evaluating an event) - overall returned points(before evaluating an event) - overall redeemed points(before evaluating an event) - overall expired points(before evaluating an event)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "initial current points = overall earned points (before evaluating an event) - overall returned points(before evaluating an event) - overall redeemed points(before evaluating an event) - overall expired points(before evaluating an event)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        134,
+        136
+      ],
+      "raw": "| Example 1:  Write an expression to check the difference in currentPoints and initialCurrentPoints of a customer is greater than 120 |\n| :---------------------------------------------------------------------------------------------------------------------------------- |\n| Expression: ((currentCustomer.currentPoints)-(currentCustomer.initialCurrentPoints))>120                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 1:  Write an expression to check the difference in currentPoints and initialCurrentPoints of a customer is greater than 120"
+        ],
+        "rows": [
+          [
+            "Expression: ((currentCustomer.currentPoints)-(currentCustomer.initialCurrentPoints))>120"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        138,
+        140
+      ],
+      "raw": "| Example 2: Write an expression to check if customers lifetime points are equal to initial current points and number of transactions is equal to 1. |\n| :------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Expression: (currentCustomer.initialLifetimePoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)                       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 2: Write an expression to check if customers lifetime points are equal to initial current points and number of transactions is equal to 1."
+        ],
+        "rows": [
+          [
+            "Expression: (currentCustomer.initialLifetimePoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "## **currentAllPoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "currentAllPoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        146,
+        151
+      ],
+      "raw": "**Profile:** currentCustomer\\\n**Attribute:** currentAllPoints\\\n**Data Type** -> BigDecimal\\\n**Meaning** -> Sum of all Points, redeemable as well as Promised Points.\\\n**currentAllPoints** : customer's current redeemable points + customer's current promised points\\\n**Sub-Attribute:\\*\\* NA**Syntax : currentCustomer.currentAllPoints \\[Operators like >,<,>=,<=,==]\\[VALUE]\\*\\*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: currentCustomerAttribute: currentAllPointsData Type -> BigDecimalMeaning -> Sum of all Points, redeemable as well as Promised Points.currentAllPoints : customer's current redeemable points + customer's current promised pointsSub-Attribute:** NASyntax : currentCustomer.currentAllPoints [Operators like >,<,>=,<=,==][VALUE]**",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        153,
+        155
+      ],
+      "raw": "| Example1: Write an expression to check if Customer points earned till now irrespective of redeemable or promised points are less than 500. |\n| :----------------------------------------------------------------------------------------------------------------------------------------- |\n| Expression: currentCustomer.currentAllPoints<=500                                                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example1: Write an expression to check if Customer points earned till now irrespective of redeemable or promised points are less than 500."
+        ],
+        "rows": [
+          [
+            "Expression: currentCustomer.currentAllPoints<=500"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "## **lifetimePoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "lifetimePoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        161,
+        167
+      ],
+      "raw": "**Profile:** currentCustomer\\\n**Attribute:** lifetimePoints\\\n**Data type:** BigDecimal\\\n**Meaning :** Total points earned by a customer from the date of registration.\\\n**lifetime points** = overall redeemable points earned - overall returned points.\\\n**Sub-Attribute :** NA\\\n**Syntax : currentCustomer.lifetimePoints\\[Operators like >,<,>=,<=,==]\\[VALUE]**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: currentCustomerAttribute: lifetimePointsData type: BigDecimalMeaning : Total points earned by a customer from the date of registration.lifetime points = overall redeemable points earned - overall returned points.Sub-Attribute : NASyntax : currentCustomer.lifetimePoints[Operators like >,<,>=,<=,==][VALUE]",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        169,
+        171
+      ],
+      "raw": "| Example1: Write an expression for a current Customer if LifetimePoints are greater than 500 and the current Txn bill includes Shirt. |\n| :----------------------------------------------------------------------------------------------------------------------------------- |\n| currentCustomer.lifetimePoints>500&&(currentTxn.basketIncludes(\"Product\",\"Shirt\"))                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example1: Write an expression for a current Customer if LifetimePoints are greater than 500 and the current Txn bill includes Shirt."
+        ],
+        "rows": [
+          [
+            "currentCustomer.lifetimePoints>500&&(currentTxn.basketIncludes(\"Product\",\"Shirt\"))"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        173,
+        175
+      ],
+      "raw": "| Example2 : Write an expression for a current Customer if LifetimePoints are less than 1000 |\n| :----------------------------------------------------------------------------------------- |\n| currentCustomer.lifetimePoints<1000                                                        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example2 : Write an expression for a current Customer if LifetimePoints are less than 1000"
+        ],
+        "rows": [
+          [
+            "currentCustomer.lifetimePoints<1000"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        177,
+        196
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example 3: Write an expression for a current Customer to check if lifetimePoints are greater than and equal to 50 OR current Transaction value is greater than 500.\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        OR -> ||\n        Profile for lifetimePoints : currentCustomer\n        Profile for Transaction: currentTxn\n        Rule -> currentCustomer.lifetimePoints >= 50||currentTxn.value >500\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "## **lifetimeNonRedeemablePoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "lifetimeNonRedeemablePoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        202,
+        207
+      ],
+      "raw": "**Profile:** current customer\\\n**Attribute :** lifetimeNonRedeemablePoint\\\n**Data Type:** BigDecimal\\\n**Sub-Attributes** : NA\\\n**Meaning**: customer earned promised points - returned points since the registration date.\\\n**Syntax : currentCustomer.LifetimeNonRedeemablePoints\\[Operators like >,<,>=,<=,==]\\[VALUE]**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: current customerAttribute : lifetimeNonRedeemablePointData Type: BigDecimalSub-Attributes : NAMeaning: customer earned promised points - returned points since the registration date.Syntax : currentCustomer.LifetimeNonRedeemablePoints[Operators like >,<,>=,<=,==][VALUE]",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        209,
+        209
+      ],
+      "raw": "**lifetime non redeemable points** = overall non redeemable points earned - overall non  redeemable returned points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "lifetime non redeemable points = overall non redeemable points earned - overall non  redeemable returned points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        211,
+        213
+      ],
+      "raw": "| Example : Example : Write an expression to check if customers lifetimeNonRedeemablePoints are equal to initial current points and number of transactions is equal to 1. |\n| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| (currentCustomer.LifetimeNonRedeemablePoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)                                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example : Example : Write an expression to check if customers lifetimeNonRedeemablePoints are equal to initial current points and number of transactions is equal to 1."
+        ],
+        "rows": [
+          [
+            "(currentCustomer.LifetimeNonRedeemablePoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        215,
+        251
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example : Write an expression to Issue a Coupon to the customers whose\n\n\n\n\n        Condition1 : current Transaction value is greater than 500\n\n\n\n\n        Condition 2: Current Transaction Basket Includes the item from category field, value lifestyle\n\n\n\n\n        Condition 3 : lifetime Non Redeemable Points\n\n\n\n\n        Also Condition 1 AND condition 2 OR Condition 3\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Expression:(currentTxn.value>500&&(currentTxn.basketIncludes(“Category”,”Lifestyle”))||currentCustomerLifetimeNonRedeemablePoints>400\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        253,
+        253
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        255,
+        255
+      ],
+      "raw": "## **lifetimeAllPoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "lifetimeAllPoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        257,
+        263
+      ],
+      "raw": "**Profile:** current customer\\\n**Attribute :** lifetimeAllPoints\\\n**Data Type**: BigDecimal\\\n**Meaning** -> sum of lifetimePoints and lifetimeNonRedeemablePoints\\\n**Sub-Attributes** : NA\\\n**Syntax: currentCustomer.LifetimeAllPoints\\[Operators like >,<,>=,<=,==]\\[VALUE]**\\\n**lifetimeAllPoints = lifetimePoints + lifetimeNonRedeemablePoints**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: current customerAttribute : lifetimeAllPointsData Type: BigDecimalMeaning -> sum of lifetimePoints and lifetimeNonRedeemablePointsSub-Attributes : NASyntax: currentCustomer.LifetimeAllPoints[Operators like >,<,>=,<=,==][VALUE]lifetimeAllPoints = lifetimePoints + lifetimeNonRedeemablePoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        265,
+        267
+      ],
+      "raw": "| Example : Write an expression to check if customers lifetimeAllPoints are equal to initial current points and number of transactions is equal to 1. |\n| :-------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Rule :(currentCustomer.lifetimeAllPoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)                                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example : Write an expression to check if customers lifetimeAllPoints are equal to initial current points and number of transactions is equal to 1."
+        ],
+        "rows": [
+          [
+            "Rule :(currentCustomer.lifetimeAllPoints==currentCustomer.initialCurrentPoints)&&(currentCustomer.numberOfTxns==1)"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        269,
+        269
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        271,
+        271
+      ],
+      "raw": "## **intiallifetimePoints**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "intiallifetimePoints",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        273,
+        278
+      ],
+      "raw": "**Profile:** current customer\\\n**Attribute :** initiallifetimePoints\\\n**Data Type** -> BigDecimal\\\n**Meaning** -> customer's lifetime redeemable points before the current event.\\\n**Syntax :** currentCustomer.initiallifetimePoints \\[Operators like >,<,>=,<=,==]\\[VALUE]\\\n**initialLifetimePoints = customer lifetime earned redeemable points - returned points since start(before evaluating an event)**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: current customerAttribute : initiallifetimePointsData Type -> BigDecimalMeaning -> customer's lifetime redeemable points before the current event.Syntax : currentCustomer.initiallifetimePoints [Operators like >,<,>=,<=,==][VALUE]initialLifetimePoints = customer lifetime earned redeemable points - returned points since start(before evaluating an event)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        280,
+        282
+      ],
+      "raw": "| Example: write to rule to return false if the current customer initialLifetimePoints are greater than 500. |\n| :--------------------------------------------------------------------------------------------------------- |\n| Rule: currentCustomer.initiallifetimePoints>500                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: write to rule to return false if the current customer initialLifetimePoints are greater than 500."
+        ],
+        "rows": [
+          [
+            "Rule: currentCustomer.initiallifetimePoints>500"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        284,
+        286
+      ],
+      "raw": "| Example: write to rule to return false if the current customer's current points are between 200 and 500  OR initialLifetimePoints are greater than 100. |\n| :------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| Rule: (currentCustomer.currentPoints>200&&(currentCustomer.currentPoints>500))\\|\\|currentcustomer.initiallifetimePoints>100                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example: write to rule to return false if the current customer's current points are between 200 and 500  OR initialLifetimePoints are greater than 100."
+        ],
+        "rows": [
+          [
+            "Rule: (currentCustomer.currentPoints>200&&(currentCustomer.currentPoints>500))||currentcustomer.initiallifetimePoints>100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

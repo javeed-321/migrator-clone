@@ -1,0 +1,965 @@
+{
+  "slug": "docs/know-about-expressions-in-connect",
+  "source": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect.md",
+  "url": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect",
+  "title": "Know About Expressions In Connect",
+  "description": "",
+  "section": "Connect+ (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 13,
+    "paragraph": 15,
+    "Table": 5,
+    "list": 2,
+    "Image": 5
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Using  expressions for data transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using  expressions for data transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This page provides you with information on expressions that you can use in Connect+ actions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page provides you with information on expressions that you can use in Connect+ actions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        12
+      ],
+      "raw": "Connect+ uses two kinds of expressions: [spelExpression](https://docs.spring.io/spring-framework/docs/3.0.x/reference/expressions.html) for the transformation block and\\\n[NiFi expression](https://nifi.apache.org/docs/nifi-docs/html/expression-language-guide.html)  for other fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ uses two kinds of expressions: spelExpression for the transformation block andNiFi expression  for other fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        14,
+        14
+      ],
+      "raw": "# Creating expression",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Creating expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "The table below provides sample expressions along with additional information to assist you in understanding and creating new expressions as needed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The table below provides sample expressions along with additional information to assist you in understanding and creating new expressions as needed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "## Arithmetic expressions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Arithmetic expressions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        97
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Supported Operators\n      </th>\n\n      <th>\n        Expression Format\n      </th>\n\n      <th>\n        Example\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        *\n\n        -\n        - /\n      </td>\n\n      <td>\n        exp\\{hdr\\{header 1} [operator] hdr\\{header 2}}  \n\n        * \\*Note:\\*\\* Ensure that the braces are matched properly (opened and closed).\n      </td>\n\n      <td>\n        Example 1: Calculate net amount  \n\n        Headers: LineItem\\_Amount, LineItem\\_Discount  \n\n        Expression: exp\\{hdr\\{LineItem\\_Amount} - hdr\\{LineItem\\_Discount}}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n\n      <td>\n        Example 2: Calculate net amount based on quantity  \n\n        Headers: LineItem\\_Amount, Quantity  \n\n        Expression: exp\\{hdr\\{LineItem\\_Amount} \\* hdr\\{Quantity}}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n\n      <td>\n        Example 3: Currency conversion (INR to USD)  \n\n        Headers: LineItem\\_Amount  \n\n        Expression: exp\\{hdr\\{LineItem\\_Amount} / 74}\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Supported Operators",
+          "Expression Format",
+          "Example"
+        ],
+        "rows": [
+          [
+            "/",
+            "exp{hdr{header 1} [operator] hdr{header 2}}*Note:** Ensure that the braces are matched properly (opened and closed).",
+            "Example 1: Calculate net amountHeaders: LineItem_Amount, LineItem_DiscountExpression: exp{hdr{LineItem_Amount} - hdr{LineItem_Discount}}"
+          ],
+          [
+            "",
+            "",
+            "Example 2: Calculate net amount based on quantityHeaders: LineItem_Amount, QuantityExpression: exp{hdr{LineItem_Amount} * hdr{Quantity}}"
+          ],
+          [
+            "",
+            "",
+            "Example 3: Currency conversion (INR to USD)Headers: LineItem_AmountExpression: exp{hdr{LineItem_Amount} / 74}"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        99,
+        99
+      ],
+      "raw": "## String operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "String operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        101,
+        176
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Supported Operators\n      </th>\n\n      <th>\n        Expression Format\n      </th>\n\n      <th>\n        Example\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        startsWith\n        endsWith\n        concat\n        substring\n      </td>\n\n      <td>\n        exp\\{string expression1.concat(string expression2)}\n      </td>\n\n      <td>\n        Example 1: Concatenate headers for description  \n\n        Headers: Item\\_Name, Item\\_Purpose  \n\n        Expression: exp\\{hdr\\{Item\\_Name}.concat(hdr\\{Item\\_Purpose})}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n\n      <td>\n        Example 2: Concatenate headers with fixed info for item  \n\n        Headers: Item\\_Name, Item\\_Purpose  \n\n        Expression: exp\\{hdr\\{Item\\_Name}.concat(' is used for ').concat(hdr\\{Item\\_Purpose})}\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n\n      <td>\n        Example 3: Remove '+' prefix from mobile number  \n\n        Headers: Mobile\\_No  \n\n        Expression: exp\\{('hdr\\{Mobile\\_No}'.startsWith('+')) ? 'hdr\\{Mobile\\_No}'.substring(1) : 'hdr\\{Mobile\\_No}'}\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Supported Operators",
+          "Expression Format",
+          "Example"
+        ],
+        "rows": [
+          [
+            "startsWith\nendsWith\nconcat\nsubstring",
+            "exp{string expression1.concat(string expression2)}",
+            "Example 1: Concatenate headers for descriptionHeaders: Item_Name, Item_PurposeExpression: exp{hdr{Item_Name}.concat(hdr{Item_Purpose})}"
+          ],
+          [
+            "",
+            "",
+            "Example 2: Concatenate headers with fixed info for itemHeaders: Item_Name, Item_PurposeExpression: exp{hdr{Item_Name}.concat(' is used for ').concat(hdr{Item_Purpose})}"
+          ],
+          [
+            "",
+            "",
+            "Example 3: Remove '+' prefix from mobile numberHeaders: Mobile_NoExpression: exp{('hdr{Mobile_No}'.startsWith('+')) ? 'hdr{Mobile_No}'.substring(1) : 'hdr{Mobile_No}'}"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "## Conditional Operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Conditional Operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        180,
+        234
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Operator\n      </th>\n\n      <th>\n        Expression Format\n      </th>\n\n      <th>\n        Example\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        ? :\n      </td>\n\n      <td>\n        exp\\{(conditional expression) ? expression1 : expression2}\n      </td>\n\n      <td>\n        Example 1: Add country code +91 to the mobile number if the length of the number is 10, otherwise return the existing value.  \n\n        Headers: Mobile\\_No  \n\n        Expression:  exp\\{('hdr\\{Mobile\\_No}'.length() == 10) ? '+91'.concat('hdr\\{Mobile\\_No}') : 'hdr\\{Mobile\\_No}' }\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n\n      </td>\n\n      <td>\n\n      </td>\n\n      <td>\n        Example 2: Check if an item is returned. If yes, set transaction type value as 'RETURN' else  set it to 'REGULAR'.  \n\n        Headers: Is\\_Returned (Possible values 'true' / 'false')  \n\n        Expression: exp\\{ ('yes'.equalsIgnoreCase('hdr\\{Is\\_Returned}')) ? 'RETURN' : 'REGULAR' }\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Operator",
+          "Expression Format",
+          "Example"
+        ],
+        "rows": [
+          [
+            "? :",
+            "exp{(conditional expression) ? expression1 : expression2}",
+            "Example 1: Add country code +91 to the mobile number if the length of the number is 10, otherwise return the existing value.Headers: Mobile_NoExpression:  exp{('hdr{Mobile_No}'.length() == 10) ? '+91'.concat('hdr{Mobile_No}') : 'hdr{Mobile_No}' }"
+          ],
+          [
+            "",
+            "",
+            "Example 2: Check if an item is returned. If yes, set transaction type value as 'RETURN' else  set it to 'REGULAR'.Headers: Is_Returned (Possible values 'true' / 'false')Expression: exp{ ('yes'.equalsIgnoreCase('hdr{Is_Returned}')) ? 'RETURN' : 'REGULAR' }"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "## Complex expressions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Complex expressions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        238,
+        263
+      ],
+      "raw": "<Table align={[\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Example\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n         Scenario: Calculating non-fractional qualified quantity based on product category  \n\n        Description: In this scenario, we want to compute the qualified quantity based on the product category. If the product category is one of FUEL, JEWEL, or METAL, then the qualified quantity is determined by taking the difference between LineItem\\_Amount and LineItem\\_Discount and dividing it by LineItem\\_Rate. However, if the product category falls outside of these categories, the qualified quantity defaults to LineItem\\_Qty.  \n\n        Headers: Product\\_Category, LineItem\\_Discount, LineItem\\_Amount, LineItem\\_Rate, LineItem\\_Qty  \n\n        Expression:\n        exp\\{ (\\{'FUEL','JEWEL','METAL'}.contains('hdr\\{Product\\_Category}') ) ? T(Math).floor( (hdr\\{LineItem\\_Amount} - hdr\\{LineItem\\_Discount}) / hdr\\{LineItem\\_Rate}) : T(Math).floor(hdr\\{LineItem\\_Qty}) }  \n\n        This expression employs conditional logic to ensure accurate calculation of the qualified quantity based on the specified conditions and input data.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Example"
+        ],
+        "rows": [
+          [
+            "Scenario: Calculating non-fractional qualified quantity based on product categoryDescription: In this scenario, we want to compute the qualified quantity based on the product category. If the product category is one of FUEL, JEWEL, or METAL, then the qualified quantity is determined by taking the difference between LineItem_Amount and LineItem_Discount and dividing it by LineItem_Rate. However, if the product category falls outside of these categories, the qualified quantity defaults to LineItem_Qty.Headers: Product_Category, LineItem_Discount, LineItem_Amount, LineItem_Rate, LineItem_QtyExpression:\nexp{ ({'FUEL','JEWEL','METAL'}.contains('hdr{Product_Category}') ) ? T(Math).floor( (hdr{LineItem_Amount} - hdr{LineItem_Discount}) / hdr{LineItem_Rate}) : T(Math).floor(hdr{LineItem_Qty}) }This expression employs conditional logic to ensure accurate calculation of the qualified quantity based on the specified conditions and input data."
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        265,
+        265
+      ],
+      "raw": "#",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        267,
+        267
+      ],
+      "raw": "# Using SpEL expressions in data transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using SpEL expressions in data transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        269,
+        269
+      ],
+      "raw": "In the data transformation block, you can use expressions for the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the data transformation block, you can use expressions for the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        271,
+        273
+      ],
+      "raw": "* [Filtering data](https://docs.capillarytech.com/docs/know-about-expressions-in-connect#filtering-data)\n* [Mapping attribution identifier type](https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-attribution-identifier-type)\n* [Mapping header that has consistent values](https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-header-that-has-consistent-values)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Filtering dataMapping attribution identifier typeMapping header that has consistent values",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect#filtering-data",
+          "line": 271
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-attribution-identifier-type",
+          "line": 272
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/know-about-expressions-in-connect#mapping-header-that-has-consistent-values",
+          "line": 273
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        275,
+        275
+      ],
+      "raw": "## Filtering data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Filtering data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        277,
+        277
+      ],
+      "raw": "You can use filter expression to filter the data that needs to be processed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use filter expression to filter the data that needs to be processed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        279,
+        279
+      ],
+      "raw": "Consider a transaction dataflow that includes a **Financial status** header with values such as paid, refunded, or not paid.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a transaction dataflow that includes a Financial status header with values such as paid, refunded, or not paid.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        281,
+        281
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/1d86b69-Financial_status.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/1d86b69-Financial_status.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        283,
+        283
+      ],
+      "raw": "To exclusively process dataflow for transactions that are either paid or not paid, in the Transformation block, you can use the filter expression `${header_value:equals('paid'):or(${header_value:equals('not paid')})}` . This expression should be entered in the **Filter tab** within the **transformation** text box.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To exclusively process dataflow for transactions that are either paid or not paid, in the Transformation block, you can use the filter expression ${header_value:equals('paid'):or(${header_value:equals('not paid')})} . This expression should be entered in the Filter tab within the transformation text box.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        285,
+        285
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/4c28e6f-Filter_data.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/4c28e6f-Filter_data.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        287,
+        287
+      ],
+      "raw": "## Mapping attribution identifier type",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Mapping attribution identifier type",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        289,
+        289
+      ],
+      "raw": "Every transaction or customer addition is linked to a specific store or till. The details of these stores or tills are configured in the attribution block. Here, you have the flexibility to use expressions to define constant values for the identifier type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Every transaction or customer addition is linked to a specific store or till. The details of these stores or tills are configured in the attribution block. Here, you have the flexibility to use expressions to define constant values for the identifier type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        291,
+        291
+      ],
+      "raw": "For example, consider the scenario of a customer addition dataflow and the store code information is found under the 'SC\\_NUMBER' column in the source file. Here, you would set the identifierType as 'STORE\\_CODE' and map the identifierValue to the 'SC\\_NUMBER' column.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, consider the scenario of a customer addition dataflow and the store code information is found under the 'SC_NUMBER' column in the source file. Here, you would set the identifierType as 'STORE_CODE' and map the identifierValue to the 'SC_NUMBER' column.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        293,
+        293
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/390e3be-Identifier_type.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/390e3be-Identifier_type.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 28,
+      "lines": [
+        295,
+        295
+      ],
+      "raw": "In this case, use the expression const\\{STORE\\_CODE} in the identifierType field and specify 'SC\\_NUMBER' as the identifierValue. This setup ensures that the attribution of 'STORE CODE' is consistently associated with the 'SC\\_NUMBER' column in your data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this case, use the expression const{STORE_CODE} in the identifierType field and specify 'SC_NUMBER' as the identifierValue. This setup ensures that the attribution of 'STORE CODE' is consistently associated with the 'SC_NUMBER' column in your data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        297,
+        297
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/64b86b9-Attribution.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/64b86b9-Attribution.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        299,
+        299
+      ],
+      "raw": "## Mapping header that has consistent values",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Mapping header that has consistent values",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        301,
+        301
+      ],
+      "raw": "Consider a scenario where you're adding transaction data using the \"add transaction dataflow,\" and all the transactions share the same currency code, INR. The challenge here is that there's no specific header column in the source file indicating the currency code; instead, this information was conveyed via email.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a scenario where you're adding transaction data using the \"add transaction dataflow,\" and all the transactions share the same currency code, INR. The challenge here is that there's no specific header column in the source file indicating the currency code; instead, this information was conveyed via email.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "In this situation, you can map the header to the API field by performing the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this situation, you can map the header to the API field by performing the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        305,
+        307
+      ],
+      "raw": "1. Add a new column to your source file with the header \"Currency Code\".\n2. Populate this new column with the value \"INR\" for all transactions.\n3. Map this \"Transaction Type\" header to the API field **currencyCode**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add a new column to your source file with the header \"Currency Code\".Populate this new column with the value \"INR\" for all transactions.Map this \"Transaction Type\" header to the API field currencyCode.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        309,
+        309
+      ],
+      "raw": "This way, you explicitly specify that the currency code for all transactions is INR. However, there's a more efficient way to achieve this using an expression.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This way, you explicitly specify that the currency code for all transactions is INR. However, there's a more efficient way to achieve this using an expression.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "### Simplify with expressions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Simplify with expressions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "You can streamline this process by using the expression const\\{INR} in the API field **currencyCode**. This expression communicates that the value for the API field **currencyCode** is consistently \"INR\" for all transaction data. This approach eliminates the need for additional columns and simplifies the mapping process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can streamline this process by using the expression const{INR} in the API field currencyCode. This expression communicates that the value for the API field currencyCode is consistently \"INR\" for all transaction data. This approach eliminates the need for additional columns and simplifies the mapping process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        315,
+        315
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/5c2e0d3-Expression_for_consistent_values.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/5c2e0d3-Expression_for_consistent_values.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 38,
+      "lines": [
+        317,
+        317
+      ],
+      "raw": "# Avoiding common errors in expression",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Avoiding common errors in expression",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        319,
+        319
+      ],
+      "raw": "The examples below can help you to avoid errors when working with the MVEL expressions.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The examples below can help you to avoid errors when working with the MVEL expressions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        321,
+        332
+      ],
+      "raw": "| Challenge            | Issue                                                     | Solution                                                                        | Example                                                                     |\n| :------------------- | :-------------------------------------------------------- | :------------------------------------------------------------------------------ | :-------------------------------------------------------------------------- |\n| Syntax errors        | Incorrect syntax can lead to parsing errors.              | Ensure correct syntax with proper placement of brackets, quotes, and operators. | `exp{'hdr{to_change}'.equals('1')}`                                         |\n| Variable scope       | Referencing variables outside their scope can be risky.   | Declare and access variables within the appropriate scope.                      | `exp{var1 = 'Hello'}` followed by `exp{var2 = hdr{to_change}.equals(var1)}` |\n| Null handling        | Mishandling null values can lead to errors.               | Use null-safe operators to handle potential null values.                        | `exp{hdr{to_change} != null && hdr{to_change}.equals('1')}`                 |\n| Property access      | Incorrect property access syntax can cause issues.        | Access properties with the correct syntax, such as `hdr['to_change']`.          | N/A                                                                         |\n| Function calls       | Improper usage of function calls can lead to errors.      | Follow the correct function call syntax with parentheses and parameters.        | `exp{toUpperCase('hello')}`                                                 |\n| String concatenation | Incorrect string concatenation syntax can be problematic. | Use the '+' operator for string concatenation.                                  | `exp{'Hello ' + 'world'}`                                                   |\n| Operator precedence  | Incorrect operator order can yield unexpected results.    | Use parentheses to control the order of evaluation.                             | `exp{(1 + 2) * 3}`                                                          |\n| Type conversion      | Mismatched data types can cause issues.                   | Ensure data types match or perform conversions when needed.                     | `exp{Integer.parseInt(hdr{to_change}) == 1}`                                |\n| Collection handling  | Mishandling collections can result in errors.             | Understand collection operations, including indexing.                           | `exp{myList[0]}`                                                            |\n| Complex expressions  | Overcomplicated expressions can hinder readability.       | Keep expressions concise and organized.                                         | \\`exp\\{(a && b                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Challenge",
+          "Issue",
+          "Solution",
+          "Example"
+        ],
+        "rows": [
+          [
+            "Syntax errors",
+            "Incorrect syntax can lead to parsing errors.",
+            "Ensure correct syntax with proper placement of brackets, quotes, and operators.",
+            "exp{'hdr{to_change}'.equals('1')}"
+          ],
+          [
+            "Variable scope",
+            "Referencing variables outside their scope can be risky.",
+            "Declare and access variables within the appropriate scope.",
+            "exp{var1 = 'Hello'} followed by exp{var2 = hdr{to_change}.equals(var1)}"
+          ],
+          [
+            "Null handling",
+            "Mishandling null values can lead to errors.",
+            "Use null-safe operators to handle potential null values.",
+            "exp{hdr{to_change} != null && hdr{to_change}.equals('1')}"
+          ],
+          [
+            "Property access",
+            "Incorrect property access syntax can cause issues.",
+            "Access properties with the correct syntax, such as hdr['to_change'].",
+            "N/A"
+          ],
+          [
+            "Function calls",
+            "Improper usage of function calls can lead to errors.",
+            "Follow the correct function call syntax with parentheses and parameters.",
+            "exp{toUpperCase('hello')}"
+          ],
+          [
+            "String concatenation",
+            "Incorrect string concatenation syntax can be problematic.",
+            "Use the '+' operator for string concatenation.",
+            "exp{'Hello ' + 'world'}"
+          ],
+          [
+            "Operator precedence",
+            "Incorrect operator order can yield unexpected results.",
+            "Use parentheses to control the order of evaluation.",
+            "exp{(1 + 2) * 3}"
+          ],
+          [
+            "Type conversion",
+            "Mismatched data types can cause issues.",
+            "Ensure data types match or perform conversions when needed.",
+            "exp{Integer.parseInt(hdr{to_change}) == 1}"
+          ],
+          [
+            "Collection handling",
+            "Mishandling collections can result in errors.",
+            "Understand collection operations, including indexing.",
+            "exp{myList[0]}"
+          ],
+          [
+            "Complex expressions",
+            "Overcomplicated expressions can hinder readability.",
+            "Keep expressions concise and organized.",
+            "`exp{(a && b"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,2040 @@
+{
+  "slug": "docs/inventory-profiles",
+  "source": "https://docs.capillarytech.com/docs/inventory-profiles.md",
+  "url": "https://docs.capillarytech.com/docs/inventory-profiles",
+  "title": "Inventory Profiles",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-06-10T12:45:57.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 17,
+    "paragraph": 52,
+    "Table": 2,
+    "Callout": 1,
+    "list": 16,
+    "Image": 11
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Inventory profiles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Inventory profiles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This category lets you import items and product hierarchy according to the organization's product inventory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This category lets you import items and product hierarchy according to the organization's product inventory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You can have up to four levels above items including brands and categories. For example, if L1, L2, L3, and L4 are four categories from top to bottom level, you can import all categories at a time with a proper mapping or one by one from L1 to L4.  However, it is recommended to use the second case to ensure proper mapping.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can have up to four levels above items including brands and categories. For example, if L1, L2, L3, and L4 are four categories from top to bottom level, you can import all categories at a time with a proper mapping or one by one from L1 to L4.  However, it is recommended to use the second case to ensure proper mapping.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "It is important to understand the following points while configuring Profile Templates.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "It is important to understand the following points while configuring Profile Templates.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        20
+      ],
+      "raw": "| Action                                                                                                    | Behaviour                      |\n| :-------------------------------------------------------------------------------------------------------- | :----------------------------- |\n| If same field is selected in both update and ignore                                                       | Data will be updated           |\n| A column is selected to update but not mapped                                                             | Field data will not be updated |\n| Column not selected to update but mapped                                                                  | Field data will not be updated |\n| Updating item-code details for a category or brand ensuring that the Category and brand import is correct | Data will be updated           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Action",
+          "Behaviour"
+        ],
+        "rows": [
+          [
+            "If same field is selected in both update and ignore",
+            "Data will be updated"
+          ],
+          [
+            "A column is selected to update but not mapped",
+            "Field data will not be updated"
+          ],
+          [
+            "Column not selected to update but mapped",
+            "Field data will not be updated"
+          ],
+          [
+            "Updating item-code details for a category or brand ensuring that the Category and brand import is correct",
+            "Data will be updated"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## Configuring Organisation Unit (OU) support for product entities",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring Organisation Unit (OU) support for product entities",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "<Glossary>Organisation Unit</Glossary> (OU) support for product entities enables you to use the same SKU codes for the different OUs under an organisation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Organisation Unit (OU) support for product entities enables you to use the same SKU codes for the different OUs under an organisation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "> 📘 By default, transactions are tagged under OU. This is achieved by linking the stores where transactions occur to corresponding zones or concepts, and categorizing these zones or concepts as OUs.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "By default, transactions are tagged under OU. This is achieved by linking the stores where transactions occur to corresponding zones or concepts, and categorizing these zones or concepts as OUs.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "In your organizational setup, there are multiple organizational units (OUs) in place. By default, any inventory that's uploaded to the main organization is automatically shared among all these individual OUs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In your organizational setup, there are multiple organizational units (OUs) in place. By default, any inventory that's uploaded to the main organization is automatically shared among all these individual OUs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "However, let's consider a situation where a particular org unit requires its own separate inventory. This necessity arises due to conflicts noticed between the SKU codes it utilizes and those uploaded by other org units.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "However, let's consider a situation where a particular org unit requires its own separate inventory. This necessity arises due to conflicts noticed between the SKU codes it utilizes and those uploaded by other org units.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "In such scenarios, you have the option to enable the \"OU support for product entities\" configuration. This configuration allows the creation of distinct inventories that are specific to each specific organizational unit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In such scenarios, you have the option to enable the \"OU support for product entities\" configuration. This configuration allows the creation of distinct inventories that are specific to each specific organizational unit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "### Enabling OU support for product entities",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Enabling OU support for product entities",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "To enable OU support for product entities, create a [JIRA ticket](https://capillarytech.atlassian.net/browse/CAP-88674`) and enable the config `CONF_OU_LEVEL_PRODUCTS_ENABLED`.\\`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable OU support for product entities, create a JIRA ticket and enable the config CONF_OU_LEVEL_PRODUCTS_ENABLED.`",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "## Product category",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Product category",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "A product category is used to classify different types of products. For example, smartphones can be categories as “foldables”, “big screen”, “small screen”, “camera phone”.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A product category is used to classify different types of products. For example, smartphones can be categories as “foldables”, “big screen”, “small screen”, “camera phone”.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "You will have item code by default which is the lowest level. You can add up to four levels above the item code.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You will have item code by default which is the lowest level. You can add up to four levels above the item code.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "Assume L4, L3, L2, L1, L0 as different levels where L0 is item code and L4 is the super parent. You need to first import a parent category followed by child category.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Assume L4, L3, L2, L1, L0 as different levels where L0 is item code and L4 is the super parent. You need to first import a parent category followed by child category.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "You can make a super parent category a root category using the option **Mark parent category as root if not mapped for existing categories.**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can make a super parent category a root category using the option Mark parent category as root if not mapped for existing categories.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "This profile lets you update existing categories of a brand or add new child categories. To use this profile, the org should have at least one parent category under it.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update existing categories of a brand or add new child categories. To use this profile, the org should have at least one parent category under it.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        52,
+        55
+      ],
+      "raw": "* Category Code\n* Parent Category Code\n* Category Name\n* Category Description<br />Leave the Parent Category Code blank for parent categories and specify the respective parent category code for child categories.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Category CodeParent Category CodeCategory NameCategory DescriptionLeave the Parent Category Code blank for parent categories and specify the respective parent category code for child categories.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 55
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "**CSV Sample:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "Category Code,Parent Category Code, Category Name,Category Description<br />Shirts,Apparels,categoryName,Men Apparels",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Category Code,Parent Category Code, Category Name,Category DescriptionShirts,Apparels,categoryName,Men Apparels",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "**Configuring Template**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuring Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "<Image src=\"https://files.readme.io/484a8c7-Category_template.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/484a8c7-Category_template.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        65,
+        72
+      ],
+      "raw": "* Add the fields that you want to allow updating for the current template, Any field that you did not add here will be ignored even if you do the field mapping\n* Select Mark parent category as root if not mapped for new categories, to enable converting a new category parent if not mapped any parent category\n* Select Mark parent category as root if not mapped for existing categories, to convert existing categories - that are not mapped to any parent category - as parent categories\n* If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU.  For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n* Select the Store access group. For more information on the access group, see  [Access group](https://docs.capillarytech.com/docs/access-group).\n* Click Submit to save the template.\n* Mark parent category as root if not mapped for new categories: Check this option to make new parent categories of the current import as root brands.\n* Mark parent category as root if not mapped for existing categories: Check this option to make existing parent categories as root brands through the current import.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add the fields that you want to allow updating for the current template, Any field that you did not add here will be ignored even if you do the field mappingSelect Mark parent category as root if not mapped for new categories, to enable converting a new category parent if not mapped any parent categorySelect Mark parent category as root if not mapped for existing categories, to convert existing categories - that are not mapped to any parent category - as parent categoriesIf OU support for product inventory is enabled, select concept (OU) to map the product category to an OU.  For more information, see OU support for product inventory.Select the Store access group. For more information on the access group, see  Access group.Click Submit to save the template.Mark parent category as root if not mapped for new categories: Check this option to make new parent categories of the current import as root brands.Mark parent category as root if not mapped for existing categories: Check this option to make existing parent categories as root brands through the current import.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 68
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "## Inventory",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Inventory",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "This profile allows you to import product inventory for an organization. For this, you need to have categories created for the Org and you can specify values of each category in the data file. To import root categories and brands use the profiles Category and Brands respectively. Please navigate to the respective sections for more details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile allows you to import product inventory for an organization. For this, you need to have categories created for the Org and you can specify values of each category in the data file. To import root categories and brands use the profiles Category and Brands respectively. Please navigate to the respective sections for more details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "*Note:* If any new category is identified in the file that you import, a category is created  without any parent mapping. Hence, if you have new categories, it is recommended to do a category import before importing inventory details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: If any new category is identified in the file that you import, a category is created  without any parent mapping. Hence, if you have new categories, it is recommended to do a category import before importing inventory details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "**Important checklist for inventory import:**<br />Before importing inventory",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important checklist for inventory import:Before importing inventory",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        82,
+        86
+      ],
+      "raw": "* identify hierarchy levels and new attributes in the file.\n* Item codes are alpha-numeric and do not have special characters, spaces, blank or null values.\n* Item codes are unique and no duplicate codes are available.\n* An item code is associated only to one category.\n* Character count of item codes do not exceed 50 (Else, contact the Platform API Team to extend the character limit)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "identify hierarchy levels and new attributes in the file.Item codes are alpha-numeric and do not have special characters, spaces, blank or null values.Item codes are unique and no duplicate codes are available.An item code is associated only to one category.Character count of item codes do not exceed 50 (Else, contact the Platform API Team to extend the character limit)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "Note:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        90,
+        91
+      ],
+      "raw": "* If an item-code has prefix '0' or long digit value, example: 9988777665511, 00006785, it is recommended not to open the file directly on Notepad.\n* You can use only predefined attributes or custom attributes configured in InTouch > Settings > Miscellaneous > Inventory Operations > Inventory Attributes. Any unknown attribute will be ignored automatically. Make sure to configure your required attributes on the Inventory Attributes page before importing",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If an item-code has prefix '0' or long digit value, example: 9988777665511, 00006785, it is recommended not to open the file directly on Notepad.You can use only predefined attributes or custom attributes configured in InTouch > Settings > Miscellaneous > Inventory Operations > Inventory Attributes. Any unknown attribute will be ignored automatically. Make sure to configure your required attributes on the Inventory Attributes page before importing",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "**Inventory hierarchy**<br />Each organization might have a different product hierarchy - it could be hierarchy levels, supported attributes, brands or any other attribute. Before starting with the import, you need to validate the data file of the organization with that of the Capillary's.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Inventory hierarchyEach organization might have a different product hierarchy - it could be hierarchy levels, supported attributes, brands or any other attribute. Before starting with the import, you need to validate the data file of the organization with that of the Capillary's.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "i": 35,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "This profile is used to import the inventory details of stores. The CSV file should contain all the mandatory fields along with supported optional fields.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile is used to import the inventory details of stores. The CSV file should contain all the mandatory fields along with supported optional fields.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        97,
+        103
+      ],
+      "raw": "* SKU\\*\n* EAN\\*\n* Price\n* Description\n* Brand Code\n* Category Code\n* Style Code",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "SKU*EAN*PriceDescriptionBrand CodeCategory CodeStyle Code",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "**Prerequisites**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        107,
+        108
+      ],
+      "raw": "* Data Quality Report (DQR) to check the quality of data mapping (in percentage).\n* Compare inventory item-codes with that of transaction line-items before importing.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Data Quality Report (DQR) to check the quality of data mapping (in percentage).Compare inventory item-codes with that of transaction line-items before importing.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "**CSV Sample:**<br />Sku,Ean,Price,Description,BrandCode,CategoryCode,StyleCode<br />1234567,1234567,32,Pencils,Camelin,Camelinpencil2HB,PencilSytle",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:Sku,Ean,Price,Description,BrandCode,CategoryCode,StyleCode1234567,1234567,32,Pencils,Camelin,Camelinpencil2HB,PencilSytle",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 110
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 110
+        }
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "**Configuring Template**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuring Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "<Image src=\"https://files.readme.io/02e984a-Configure_template.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/02e984a-Configure_template.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        116,
+        125
+      ],
+      "raw": "| Option                                                    | Description                                                                                                                                                                                                                                                                                                                                               |\n| :-------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Disable existing data updation                            | Check this box to not allow updating existing inventory details if the field value is already available. Not applicable for first time import.                                                                                                                                                                                                            |\n| Create brand if provided brand\\_code does not exist       | Check this box to allow creating brands automatically if any new brand code (as per the Capillary database) appears in the CSV file.                                                                                                                                                                                                                      |\n| Create category if provided category\\_code does not exist | Check this box to allow creating categories automatically if a new category code (that is not in the Capillary database) is identified in the CSV file                                                                                                                                                                                                    |\n| Create style if provided style\\_code does not exist       | Check this box to allow creating styles automatically if any style code provided in the CSV file does not exist in the database.                                                                                                                                                                                                                          |\n| Select fields to be ignored if invalid                    | Add fields that you want to ignore from updating in case of invalid field names identified in the CSV file.                                                                                                                                                                                                                                               |\n| Select concept                                            | If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU.  For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).                                                            |\n| Select fields to be updated                               | Add fields that you want to update in the current import. Any other field that is available in the CSV file will be ignored even if you do the field mapping.                                                                                                                                                                                             |\n| Disable updation of custom fields with empty values       | Check this box to not allow updating custom field values with null values if found in the csv file. <br />**Note**: Leaving a custom field blank or null in the import file will not clear or reset the field. To clear a custom field value, enter a dash ('-') in the import file. The system will interpret the dash as 'no data' and reset the field. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Option",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Disable existing data updation",
+            "Check this box to not allow updating existing inventory details if the field value is already available. Not applicable for first time import."
+          ],
+          [
+            "Create brand if provided brand_code does not exist",
+            "Check this box to allow creating brands automatically if any new brand code (as per the Capillary database) appears in the CSV file."
+          ],
+          [
+            "Create category if provided category_code does not exist",
+            "Check this box to allow creating categories automatically if a new category code (that is not in the Capillary database) is identified in the CSV file"
+          ],
+          [
+            "Create style if provided style_code does not exist",
+            "Check this box to allow creating styles automatically if any style code provided in the CSV file does not exist in the database."
+          ],
+          [
+            "Select fields to be ignored if invalid",
+            "Add fields that you want to ignore from updating in case of invalid field names identified in the CSV file."
+          ],
+          [
+            "Select concept",
+            "If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU.  For more information, see OU support for product inventory."
+          ],
+          [
+            "Select fields to be updated",
+            "Add fields that you want to update in the current import. Any other field that is available in the CSV file will be ignored even if you do the field mapping."
+          ],
+          [
+            "Disable updation of custom fields with empty values",
+            "Check this box to not allow updating custom field values with null values if found in the csv file. Note: Leaving a custom field blank or null in the import file will not clear or reset the field. To clear a custom field value, enter a dash ('-') in the import file. The system will interpret the dash as 'no data' and reset the field."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 125
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "i": 43,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "## Update Inventory Line-items",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Update Inventory Line-items",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "This profile lets you update line-item ids (item codes) in the loyalty\\_bill\\_lineitems table. Use this profile to update item ids that are wrongly entered or with null values.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you update line-item ids (item codes) in the loyalty_bill_lineitems table. Use this profile to update item ids that are wrongly entered or with null values.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        131,
+        132
+      ],
+      "raw": "* Line-item id\n* Item Code",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Line-item idItem Code",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "**Prerequisites**<br />Compare inventory item-codes with that of transaction line-items before importing",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "PrerequisitesCompare inventory item-codes with that of transaction line-items before importing",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 134
+        }
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "**CSV Sample**<br />Line Item Id, Item Code<br />9970661,GB58",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV SampleLine Item Id, Item Code9970661,GB58",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 136
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 136
+        }
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "**Configuring Template**<br />Check the Update the existing item code box to allow updating existing item codes with the new values in the csv file and click Submit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuring TemplateCheck the Update the existing item code box to allow updating existing item codes with the new values in the csv file and click Submit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "i": 49,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "<Image src=\"https://files.readme.io/d51b53f-templatee.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/d51b53f-templatee.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "## Add Brands",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Add Brands",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "This profile lets you add child brands, or update existing brands. To use this profile, the org should have configured at least with one parent brand.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you add child brands, or update existing brands. To use this profile, the org should have configured at least with one parent brand.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "**Brand addition limits and error handling**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Brand addition limits and error handling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "When you add brands using the Intouch API or UI, the system enforces a maximum active brand limit for your organization. By default, this limit is 250 brands (controlled by the org\\_product\\_brands\\_limit setting). If you try to add a brand and your organization already has the maximum number of active brands, the system blocks the addition and displays a validation error. You must deactivate or remove existing brands before you can add new ones if you reach this limit.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you add brands using the Intouch API or UI, the system enforces a maximum active brand limit for your organization. By default, this limit is 250 brands (controlled by the org_product_brands_limit setting). If you try to add a brand and your organization already has the maximum number of active brands, the system blocks the addition and displays a validation error. You must deactivate or remove existing brands before you can add new ones if you reach this limit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "**Important:** Adding brands using the Import Profile Add Brands does not enforce the org\\_product\\_brands\\_limit. You can import brands in bulk using this profile even if your organization exceeds the default brand limit. However, brands added this way will still be subject to other validation checks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important: Adding brands using the Import Profile Add Brands does not enforce the org_product_brands_limit. You can import brands in bulk using this profile even if your organization exceeds the default brand limit. However, brands added this way will still be subject to other validation checks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        152,
+        155
+      ],
+      "raw": "* Brand Code\n* Brand Parent Code\n* Brand Name\n* Brand Description",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Brand CodeBrand Parent CodeBrand NameBrand Description",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "**CSV Sample:**<br />Brand Code,Parent Brand Code, Brand Name,Brand  Description<br />Shirts,Apparels,Brand Name,Men Apparels",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:Brand Code,Parent Brand Code, Brand Name,Brand  DescriptionShirts,Apparels,Brand Name,Men Apparels",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 157
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "i": 57,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "**Configuring Template**<br />Add the fields that you want to include for the current profile template and click Submit to save the template.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuring TemplateAdd the fields that you want to include for the current profile template and click Submit to save the template.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 159
+        }
+      ]
+    },
+    {
+      "i": 58,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "<Image src=\"https://files.readme.io/0f8d7a8-Brands_template.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/0f8d7a8-Brands_template.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "\\***Mark parent brand as root if not mapped for new brands:** Check this option to make new parent brands of the current import as root brands.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "*Mark parent brand as root if not mapped for new brands: Check this option to make new parent brands of the current import as root brands.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        165,
+        166
+      ],
+      "raw": "* **Mark parent brand as root if not mapped for existing brands**: Check this option to make existing parent brands as root brands through the current import.\n* If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mark parent brand as root if not mapped for existing brands: Check this option to make existing parent brands as root brands through the current import.If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU. For more information, see OU support for product inventory.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 166
+        }
+      ]
+    },
+    {
+      "i": 61,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "## Add product attributes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Add product attributes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "This profile lets you add or update product attributes. A custom / product attribute is a user-defined attribute for a product. For example, a smartphone model can have a “colour” attribute that contains information on the colours available for the smartphone model.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you add or update product attributes. A custom / product attribute is a user-defined attribute for a product. For example, a smartphone model can have a “colour” attribute that contains information on the colours available for the smartphone model.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        172,
+        172
+      ],
+      "raw": "**CSV Sample:**<br />attribute\\_is\\_enum, attribute\\_label, attribute\\_type, attribute\\_extraction\\_rule\\_type, attribute\\_extraction\\_rule\\_data, attribute\\_is\\_soft\\_enum, attribute\\_use\\_in\\_dump",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "CSV Sample:attribute_is_enum, attribute_label, attribute_type, attribute_extraction_rule_type, attribute_extraction_rule_data, attribute_is_soft_enum, attribute_use_in_dump",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 172
+        }
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        174,
+        174
+      ],
+      "raw": "**Configuring Template**<br />Add the fields that you want to include for the current profile template and click Submit to save the template.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuring TemplateAdd the fields that you want to include for the current profile template and click Submit to save the template.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 174
+        }
+      ]
+    },
+    {
+      "i": 65,
+      "lines": [
+        176,
+        176
+      ],
+      "raw": "<Image src=\"https://files.readme.io/84e3a58-Product_attributes.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/84e3a58-Product_attributes.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        178,
+        181
+      ],
+      "raw": "* Select the attributes and click **add**\n* If OU support for product inventory is enabled, select concept (OU) to map the product category to an OU. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n* Select the store access group.\n* Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the attributes and click addIf OU support for product inventory is enabled, select concept (OU) to map the product category to an OU. For more information, see OU support for product inventory.Select the store access group.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 179
+        }
+      ]
+    },
+    {
+      "i": 67,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "## Add Product entities individually",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Add Product entities individually",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "This section enables you to add the product colour, category, size, attribute, brand and style individually.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section enables you to add the product colour, category, size, attribute, brand and style individually.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "### Product colors",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product colors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "<Image src=\"https://files.readme.io/cf45c17-Colours.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/cf45c17-Colours.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 71,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "### Product categories",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product categories",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        193,
+        193
+      ],
+      "raw": "To add product categories, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add product categories, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        195,
+        201
+      ],
+      "raw": "1. Click **Add New**.\n2. In the **Name** text field, enter a name for the category.\n3. (Optional) In the **Label** text field, enter a label name.\n4. (Optional) In the **Description** text field, enter a valid description for the category.\n5. If OU support is enabled, from the **OU code** drop-down, select the OU to which this category needs to be mapped. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n6. (Optional) From the **Parent** drop-down, select the parent of category.\n7. Click **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New.In the Name text field, enter a name for the category.(Optional) In the Label text field, enter a label name.(Optional) In the Description text field, enter a valid description for the category.If OU support is enabled, from the OU code drop-down, select the OU to which this category needs to be mapped. For more information, see OU support for product inventory.(Optional) From the Parent drop-down, select the parent of category.Click Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 199
+        }
+      ]
+    },
+    {
+      "i": 74,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8682a3d-Categories.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8682a3d-Categories.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 75,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "### Product sizes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product sizes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "To add product sizes, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add product sizes, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        209,
+        214
+      ],
+      "raw": "1. Click **Add New**.\n2. In the **Name** text field, enter a name for the size.\n3. (Optional) In the **Label** text field, enter a label name.\n4. (Optional) In the **Description** text field, enter a valid description for the size.\n5. If OU support is enabled, from the **OU code** drop-down, select the OU to which this size needs to be mapped. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n6. Click **Save**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New.In the Name text field, enter a name for the size.(Optional) In the Label text field, enter a label name.(Optional) In the Description text field, enter a valid description for the size.If OU support is enabled, from the OU code drop-down, select the OU to which this size needs to be mapped. For more information, see OU support for product inventory.Click Save",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 213
+        }
+      ]
+    },
+    {
+      "i": 78,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "<Image src=\"https://files.readme.io/58c7cd9-Size.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/58c7cd9-Size.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 79,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "### Product attributes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product attributes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        220,
+        220
+      ],
+      "raw": "To add product attributes, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add product attributes, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        222,
+        230
+      ],
+      "raw": "1. Click **Add New**.\n2. In the **Name** text field, enter a name for the attribute.\n3. (Optional) In the **Label** text field, enter a label name.\n4. (Optional) From the **Data Type** drop-down, select the appropriate data type.\n5. (Optional) From the **Extraction Rule Type** drop-down, select the appropriate extraction rule type.\n6. (Optional) In the **Default Value** text box, enter a default value.\n7. (Optional) If applicable, select the **ENUM** check box.\n8. If OU support is enabled, from the **OU code** drop-down, select the OU to which this size needs to be mapped. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n9. Click **Save**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New.In the Name text field, enter a name for the attribute.(Optional) In the Label text field, enter a label name.(Optional) From the Data Type drop-down, select the appropriate data type.(Optional) From the Extraction Rule Type drop-down, select the appropriate extraction rule type.(Optional) In the Default Value text box, enter a default value.(Optional) If applicable, select the ENUM check box.If OU support is enabled, from the OU code drop-down, select the OU to which this size needs to be mapped. For more information, see OU support for product inventory.Click Save",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 229
+        }
+      ]
+    },
+    {
+      "i": 82,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "<Image src=\"https://files.readme.io/0d85d3e-Attribute.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/0d85d3e-Attribute.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 83,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "### Product brands",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product brands",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "A brand can be used to classify different verticals offered by an organisation. For example, an electronics conglomerate has a brand “VistaLux” that sells televisions. The organisation can create the brand for the vertical.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand can be used to classify different verticals offered by an organisation. For example, an electronics conglomerate has a brand “VistaLux” that sells televisions. The organisation can create the brand for the vertical.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "**Brand addition limits and error handling**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Brand addition limits and error handling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "When you add a brand using the Intouch API or UI, you cannot exceed the maximum number of active brands allowed for your organization. The default limit is 250 brands. If you try to add a brand after reaching this limit, the system will show a validation error and block the addition. To add more brands, deactivate or remove existing brands first.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you add a brand using the Intouch API or UI, you cannot exceed the maximum number of active brands allowed for your organization. The default limit is 250 brands. If you try to add a brand after reaching this limit, the system will show a validation error and block the addition. To add more brands, deactivate or remove existing brands first.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "Adding brands using the Import Profile Add Brands bypasses the brand limit. You can import brands in bulk even if your organization exceeds the default limit, but all other validations still apply.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Adding brands using the Import Profile Add Brands bypasses the brand limit. You can import brands in bulk even if your organization exceeds the default limit, but all other validations still apply.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "To add product brands, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add product brands, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        246,
+        252
+      ],
+      "raw": "1. Click **Add New**.\n2. In the **Name** text field, enter a name for the brand.\n3. (Optional) In the **Label** text field, enter a label name.\n4. (Optional) In the **Description** text field, enter a valid description for the brand.\n5. If OU support is enabled, from the **OU code** drop-down, select the OU to which this size needs to be mapped. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n6. (Optional) If applicable, from the **Parent** drop-down, select the parent brand.\n7. Click **Save**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New.In the Name text field, enter a name for the brand.(Optional) In the Label text field, enter a label name.(Optional) In the Description text field, enter a valid description for the brand.If OU support is enabled, from the OU code drop-down, select the OU to which this size needs to be mapped. For more information, see OU support for product inventory.(Optional) If applicable, from the Parent drop-down, select the parent brand.Click Save",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 250
+        }
+      ]
+    },
+    {
+      "i": 90,
+      "lines": [
+        254,
+        254
+      ],
+      "raw": "<Image src=\"https://files.readme.io/a5c1ac2-Brand.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/a5c1ac2-Brand.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 91,
+      "lines": [
+        256,
+        256
+      ],
+      "raw": "### Product styles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Product styles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        258,
+        258
+      ],
+      "raw": "To add product styles, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add product styles, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        260,
+        265
+      ],
+      "raw": "1. Click **Add New**.\n2. In the **Name** text field, enter a name for the style.\n3. (Optional) In the **Label** text field, enter a label name.\n4. (Optional) In the **Description** text field, enter a valid description for the style.\n5. If OU support is enabled, from the **OU code** drop-down, select the OU to which this size needs to be mapped. For more information, see [OU support for product inventory](https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities).\n6. Click **Save**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Add New.In the Name text field, enter a name for the style.(Optional) In the Label text field, enter a label name.(Optional) In the Description text field, enter a valid description for the style.If OU support is enabled, from the OU code drop-down, select the OU to which this size needs to be mapped. For more information, see OU support for product inventory.Click Save",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/inventory-profiles#configuring-organisation-unit-ou-support-for-product-entities",
+          "line": 264
+        }
+      ]
+    },
+    {
+      "i": 94,
+      "lines": [
+        267,
+        267
+      ],
+      "raw": "<Image src=\"https://files.readme.io/22e6522-Style.png\" align=\"center\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/22e6522-Style.png",
+        "align": "center",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 95,
+      "lines": [
+        269,
+        269
+      ],
+      "raw": "## Inventory import and category Creation Behavior",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Inventory import and category Creation Behavior",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        271,
+        271
+      ],
+      "raw": "When importing inventory data, new product categories will NOT be created and existing category mappings will NOT be updated in incentives unless both of the following conditions are met:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When importing inventory data, new product categories will NOT be created and existing category mappings will NOT be updated in incentives unless both of the following conditions are met:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        273,
+        274
+      ],
+      "raw": "* The `CREATE_NON_EXISTING_CATEGORY` flag is enabled.\n* The `INVENTORY_FIELDS_TO_UPDATE` configuration includes category fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The CREATE_NON_EXISTING_CATEGORY flag is enabled.The INVENTORY_FIELDS_TO_UPDATE configuration includes category fields.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        276,
+        276
+      ],
+      "raw": "If these configurations are not set, imported SKUs may not appear in incentives due to missing category associations. To ensure that new categories are created and properly mapped during inventory import, verify that both the flag and the relevant fields are configured before starting the import process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If these configurations are not set, imported SKUs may not appear in incentives due to missing category associations. To ensure that new categories are created and properly mapped during inventory import, verify that both the flag and the relevant fields are configured before starting the import process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        278,
+        278
+      ],
+      "raw": "**Note:** If you notice that imported SKUs are missing from incentives, contact the Product Support team and review your configuration for these settings.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: If you notice that imported SKUs are missing from incentives, contact the Product Support team and review your configuration for these settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

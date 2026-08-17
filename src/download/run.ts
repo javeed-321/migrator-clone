@@ -10,7 +10,7 @@ import { fetchMarkdown } from "./fetch";
 import { buildInventory, renderInventoryMarkdown } from "./inventory";
 import type { Inventory, PageIR, PageRef } from "./types";
 
-export type HarvestOptions = {
+export type DownloadOptions = {
   /**
    * Where the cache and the artefacts live. Omit it to run entirely in memory —
    * nothing is read from or written to disk. That is the mode the web UI uses:
@@ -35,15 +35,15 @@ export type HarvestOptions = {
  *
  * Step 8 fetches HTML 16-wide, but that is a different endpoint: at 16 the
  * markdown endpoint starts answering 429 part way through a run. Six plus a
- * short pause holds across a full-site harvest, and the cache means the cost is
+ * short pause holds across a full-site download, and the cache means the cost is
  * paid once.
  */
 const HARVEST_CONCURRENCY = 6;
 const HARVEST_DELAY_MS = 300;
 
-export type HarvestReport = {
+export type DownloadReport = {
   site: string;
-  /** The pages harvested by *this* run, in the order they were listed. */
+  /** The pages downloaded by *this* run, in the order they were listed. */
   pages: PageIR[];
   failed: { slug: string; message: string }[];
   fromCache: number;
@@ -58,7 +58,7 @@ export type HarvestReport = {
 };
 
 /**
- * `output/harvest/raw/<slug>.md` — the source, byte for byte.
+ * `output/download/raw/<slug>.md` — the source, byte for byte.
  *
  * Kept because it is the only thing a conversion can be checked against, and
  * because re-running the IR builder against a cache takes seconds where
@@ -68,7 +68,7 @@ function rawPath(outDir: string, slug: string): string {
   return join(outDir, "raw", `${slug}.md`);
 }
 
-/** `output/harvest/ir/<slug>.json` — the block IR for one page. */
+/** `output/download/ir/<slug>.json` — the block IR for one page. */
 function irPath(outDir: string, slug: string): string {
   return join(outDir, "ir", `${slug}.json`);
 }
@@ -76,7 +76,7 @@ function irPath(outDir: string, slug: string): string {
 /**
  * Every page IR already on disk, minus the ones this run just rewrote.
  *
- * Harvesting 1,500 pages is naturally done in batches (`--filter`, `--limit`),
+ * Downloading 1,500 pages is naturally done in batches (`--filter`, `--limit`),
  * and an inventory that only covered the current batch would be misleading the
  * moment you ran a second one. The census is therefore always built from
  * everything in `ir/`, not just from what was fetched this time.
@@ -96,7 +96,7 @@ function loadExistingIR(outDir: string, exclude: Set<string>): PageIR[] {
           const page = JSON.parse(readFileSync(path, "utf8")) as PageIR;
           if (page.slug && !exclude.has(page.slug)) pages.push(page);
         } catch {
-          // A half-written file from an interrupted run — the next harvest of
+          // A half-written file from an interrupted run — the next download of
           // that slug replaces it.
         }
       }
@@ -106,9 +106,9 @@ function loadExistingIR(outDir: string, exclude: Set<string>): PageIR[] {
   return pages;
 }
 
-async function harvestPage(
+async function downloadPage(
   ref: PageRef,
-  opts: HarvestOptions,
+  opts: DownloadOptions,
   host: string
 ): Promise<{ page: PageIR; cached: boolean; raw: string }> {
   const cache = opts.outDir ? rawPath(opts.outDir, ref.slug) : undefined;
@@ -150,7 +150,7 @@ async function harvestPage(
  * component in it named, which is the point at which you can decide what the
  * conversion should do.
  */
-export async function harvest(refs: PageRef[], opts: HarvestOptions): Promise<HarvestReport> {
+export async function download(refs: PageRef[], opts: DownloadOptions): Promise<DownloadReport> {
   const selected = refs
     .filter((ref) => !opts.filter || ref.slug.startsWith(opts.filter.replace(/^\//, "")))
     .slice(0, opts.limit ?? Infinity);
@@ -170,7 +170,7 @@ export async function harvest(refs: PageRef[], opts: HarvestOptions): Promise<Ha
     const results = await Promise.all(
       chunk.map(async (ref) => {
         try {
-          return { ok: true as const, ...(await harvestPage(ref, opts, host)) };
+          return { ok: true as const, ...(await downloadPage(ref, opts, host)) };
         } catch (error) {
           return { ok: false as const, slug: ref.slug, message: getErrorMessage(error) };
         }
@@ -188,7 +188,7 @@ export async function harvest(refs: PageRef[], opts: HarvestOptions): Promise<Ha
     }
 
     done += chunk.length;
-    log(`harvested ${done}/${selected.length}`, "info");
+    log(`downloaded ${done}/${selected.length}`, "info");
   }
 
   const site = host ? `https://${host}` : "";

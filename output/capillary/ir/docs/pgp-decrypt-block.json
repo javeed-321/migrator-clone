@@ -1,0 +1,290 @@
+{
+  "slug": "docs/pgp-decrypt-block",
+  "source": "https://docs.capillarytech.com/docs/pgp-decrypt-block.md",
+  "url": "https://docs.capillarytech.com/docs/pgp-decrypt-block",
+  "title": "Pgp Decrypt Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:28:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# PGP Decrypt block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "PGP Decrypt block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configuration reference for the Decrypt Data block — decrypts encrypted source files before processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration reference for the Decrypt Data block — decrypts encrypted source files before processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The `decrypt_content` block decrypts encrypted source files before they are processed downstream. It acts as an optional transformation block in a Connect+ dataflow, sitting between the source and transformation blocks to handle secure content. The block supports PGP-based decryption using a private key and passphrase, and can be enabled or disabled without removing it from the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The decrypt_content block decrypts encrypted source files before they are processed downstream. It acts as an optional transformation block in a Connect+ dataflow, sitting between the source and transformation blocks to handle secure content. The block supports PGP-based decryption using a private key and passphrase, and can be enabled or disabled without removing it from the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Use this block when your source files are PGP-encrypted and must be decrypted before transformation or validation can occur.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your source files are PGP-encrypted and must be decrypted before transformation or validation can occur.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "* The private key used to decrypt the files, in Base64-encoded format\n* The passphrase for the private key (if one was set during key generation)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The private key used to decrypt the files, in Base64-encoded formatThe passphrase for the private key (if one was set during key generation)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        117
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Encryption Algorithm**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The algorithm that was used to encrypt the source file.  \n        Select the algorithm from the dropdown.  This block supports only `PGP`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Private Key File**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The [private key used to decrypt](https://docs.capillarytech.com/docs/pgp-encrypt-block#creating-pgp-public--private-key) the file, provided in Base64-encoded format.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Private Passphrase**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The [passphrase associated with the private key](https://docs.capillarytech.com/docs/pgp-encrypt-block#creating-pgp-public--private-key). Required only if a passphrase was set during key generation.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Is Enabled**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Enables or disables the decryption block.  \n        Select `true` to activate decryption or `false` to skip it.  \n        Default value: `true`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Encryption Algorithm",
+            "Yes",
+            "The algorithm that was used to encrypt the source file.Select the algorithm from the dropdown.  This block supports only PGP"
+          ],
+          [
+            "Private Key File",
+            "Yes",
+            "The private key used to decrypt the file, provided in Base64-encoded format."
+          ],
+          [
+            "Private Passphrase",
+            "Yes",
+            "The passphrase associated with the private key. Required only if a passphrase was set during key generation."
+          ],
+          [
+            "Is Enabled",
+            "Yes",
+            "Enables or disables the decryption block.Select true to activate decryption or false to skip it.Default value: true."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/pgp-encrypt-block#creating-pgp-public--private-key",
+          "line": 83
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/pgp-encrypt-block#creating-pgp-public--private-key",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/e34c9556de5f3998c6cac0535ca25e6318d197d28f8c091615d7ee9e646c5ca3-Untitled_design.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/e34c9556de5f3998c6cac0535ca25e6318d197d28f8c091615d7ee9e646c5ca3-Untitled_design.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

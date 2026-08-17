@@ -1,0 +1,289 @@
+{
+  "slug": "docs/event-notification-enrichment",
+  "source": "https://docs.capillarytech.com/docs/event-notification-enrichment.md",
+  "url": "https://docs.capillarytech.com/docs/event-notification-enrichment",
+  "title": "Event Notification Enrichment",
+  "description": "",
+  "section": "Use Cases",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-09T05:51:57.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 5,
+    "list": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Event Notification Enrichment",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Event Notification Enrichment",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Requirement",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "A brand requires the current tier information when a customer is created. The `customerAdded` event is triggered when a customer signs up and includes details such as the customer's first name, last name, and customer ID. However, the brand also needs additional attributes, such as the customer tier, which are not included in the initial payload.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand requires the current tier information when a customer is created. The customerAdded event is triggered when a customer signs up and includes details such as the customer's first name, last name, and customer ID. However, the brand also needs additional attributes, such as the customer tier, which are not included in the initial payload.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        16
+      ],
+      "raw": "To address this, create a [Neo dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/380d7516-b4fe-4b5d-8835-27ef43f6ea7a/version/63332321-c617-4489-9469-3f0cc549c88a?ruleType=org) that enriches the event with the tier information.\\\n**Note**: To access the dataflow, ensure you have access to the DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To address this, create a Neo dataflow that enriches the event with the tier information.Note: To access the dataflow, ensure you have access to the DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "## Step one: Create a Neo dataflow to enrich the event",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step one: Create a Neo dataflow to enrich the event",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "Create a Neo dataflow with the tag `connectplus` that,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a Neo dataflow with the tag connectplus that,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        24
+      ],
+      "raw": "1. Uses the `customerAdded` event as the input.\n2. Retrieves the customer's tier information using the [Get Customer Details](https://docs.capillarytech.com/reference/get-customer-details) API.\n3. Enriches the event with the tier information.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Uses the customerAdded event as the input.Retrieves the customer's tier information using the Get Customer Details API.Enriches the event with the tier information.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/get-customer-details",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "## Step two: Create a webhook that listens to the `customerAdded` event",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step two: Create a webhook that listens to the customerAdded event",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Create a webhook from the [Event Notification UI](https://docs.capillarytech.com/docs/add-event-notification-account) .",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a webhook from the Event Notification UI .",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/add-event-notification-account",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "Use the webhook to perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the webhook to perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        32,
+        34
+      ],
+      "raw": "* Listen to the event, `customerAdded`.\n* In the **Payload enrichment settings**, check the **Enrich through Neo dataflow** option.\n* Choose the dataflow created in Step One.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Listen to the event, customerAdded.In the Payload enrichment settings, check the Enrich through Neo dataflow option.Choose the dataflow created in Step One.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        38
+      ],
+      "raw": "<Image alt=\"Event notification UI \" align=\"center\" width=\"85% \" border={true} src=\"https://files.readme.io/5d25e35212bb96505b0a0d3f92bebd59b650041de83e5be70555834119ca3094-image.png\">\n  Event notification UI \n</Image>",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "alt": "Event notification UI ",
+        "align": "center",
+        "width": "85% ",
+        "border": "{true}",
+        "src": "https://files.readme.io/5d25e35212bb96505b0a0d3f92bebd59b650041de83e5be70555834119ca3094-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    }
+  ]
+}

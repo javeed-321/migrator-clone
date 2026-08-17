@@ -1,0 +1,445 @@
+{
+  "slug": "docs/whatsapp-subscription-management",
+  "source": "https://docs.capillarytech.com/docs/whatsapp-subscription-management.md",
+  "url": "https://docs.capillarytech.com/docs/whatsapp-subscription-management",
+  "title": "Whatsapp Subscription Management",
+  "description": "",
+  "section": "WhatsApp",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:04:35.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 11,
+    "list": 9
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Manage WhatsApp Subscription",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Manage WhatsApp Subscription",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The WhatsApp Subscription Management feature allows you to handle user subscription statuses effectively and determine customer reachability via WhatsApp. Certain keywords, such as \"opt in,\" \"stop,\" and \"unsubscribe,\" are defined in the code and are checked against the user's message to determine if they want to opt out of further communications from the brand.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The WhatsApp Subscription Management feature allows you to handle user subscription statuses effectively and determine customer reachability via WhatsApp. Certain keywords, such as \"opt in,\" \"stop,\" and \"unsubscribe,\" are defined in the code and are checked against the user's message to determine if they want to opt out of further communications from the brand.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**Key concepts**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Key concepts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        17
+      ],
+      "raw": "1. **User Subscription Status**: This is the status indicating whether a user has opted in or opted out of WhatsApp communications from a specific brand. This status determines the reachability of the user for sending WhatsApp messages.\n\n2. **Reachability Calculation**: The reachability of a user is calculated based on their subscription status. If a user is opted in, they are reachable for messages. If opted out, they will not receive further messages from the brand.\n\n3. **Subscription Management Flow**:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User Subscription Status: This is the status indicating whether a user has opted in or opted out of WhatsApp communications from a specific brand. This status determines the reachability of the user for sending WhatsApp messages.Reachability Calculation: The reachability of a user is calculated based on their subscription status. If a user is opted in, they are reachable for messages. If opted out, they will not receive further messages from the brand.Subscription Management Flow:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "* **Opt-In and Opt-Out**: Users can manage their subscription status by replying with specific keywords (e.g., \"STOP\" or \"UNSUBSCRIBE\") to WhatsApp messages. This will trigger an event that updates their subscription status.\n* **Reachability Updates**: Changes in subscription status are reflected in the reachability calculations, impacting whether the user will receive future communications.]",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Opt-In and Opt-Out: Users can manage their subscription status by replying with specific keywords (e.g., \"STOP\" or \"UNSUBSCRIBE\") to WhatsApp messages. This will trigger an event that updates their subscription status.Reachability Updates: Changes in subscription status are reflected in the reachability calculations, impacting whether the user will receive future communications.]",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "# Managing WhatsApp Subscription Status",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Managing WhatsApp Subscription Status",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        25
+      ],
+      "raw": "* **For Opt-Out Requests**: Ensure that keywords like \"STOP\" or \"UNSUBSCRIBE\" are included in the messages as part of the response strategy.\n* **For Opt-In Requests**: Design messages to allow users to re-subscribe with clear keywords.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "For Opt-Out Requests: Ensure that keywords like \"STOP\" or \"UNSUBSCRIBE\" are included in the messages as part of the response strategy.For Opt-In Requests: Design messages to allow users to re-subscribe with clear keywords.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "## Use Cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Use Cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "1. **User Opt-Out Scenario**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User Opt-Out Scenario",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "**Description**: A user receives a promotional WhatsApp message from a brand. They decide they no longer wish to receive messages from this brand and reply with \"STOP.\"",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Description: A user receives a promotional WhatsApp message from a brand. They decide they no longer wish to receive messages from this brand and reply with \"STOP.\"",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "**Flow**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Flow:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        35,
+        38
+      ],
+      "raw": "* The user's reply with the keyword \"STOP\" is captured as a user event.\n* The event is processed and is identified that the user wants to opt-out.\n* The user's subscription status is updated to \"opt-out\" in the subscription database.\n* The reachability of this user is recalculated to reflect their opt-out status.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The user's reply with the keyword \"STOP\" is captured as a user event.The event is processed and is identified that the user wants to opt-out.The user's subscription status is updated to \"opt-out\" in the subscription database.The reachability of this user is recalculated to reflect their opt-out status.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "**Result**: The user will no longer receive any messages from the brand unless they opt in again.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Result: The user will no longer receive any messages from the brand unless they opt in again.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "2. **User Opt-In Scenario**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "User Opt-In Scenario",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "**Description**: After opting out previously, the same user decides to re-subscribe to the brand's WhatsApp messages by replying with \"SUBSCRIBE.\"",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Description: After opting out previously, the same user decides to re-subscribe to the brand's WhatsApp messages by replying with \"SUBSCRIBE.\"",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "**Flow**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Flow:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        48,
+        50
+      ],
+      "raw": "* The user's reply with the keyword \"SUBSCRIBE\" is processed as a user event.\n* The event is processed updating the user's status back to \"opt-in.\"\n* The reachability of this user is recalculated to allow the reception of messages.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The user's reply with the keyword \"SUBSCRIBE\" is processed as a user event.The event is processed updating the user's status back to \"opt-in.\"The reachability of this user is recalculated to allow the reception of messages.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "**Result**: The user starts receiving messages from the brand again.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Result: The user starts receiving messages from the brand again.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "3. **Unrelated Message Handling**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Unrelated Message Handling",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "**Description**: A user sends a general message like \"Hello\" to a brand without opting in or out.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Description: A user sends a general message like \"Hello\" to a brand without opting in or out.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "**Flow**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Flow:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        60,
+        62
+      ],
+      "raw": "* The message does not contain any subscription-related keywords.\n* The event is processed, but no changes are made to the user's subscription status.\n* The user remains in their current subscription status (opt-in or opt-out).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The message does not contain any subscription-related keywords.The event is processed, but no changes are made to the user's subscription status.The user remains in their current subscription status (opt-in or opt-out).",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "**Result**: The user continues to receive or not receive messages as per their existing subscription status.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Result: The user continues to receive or not receive messages as per their existing subscription status.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

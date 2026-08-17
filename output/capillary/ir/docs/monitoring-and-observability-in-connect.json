@@ -1,0 +1,1261 @@
+{
+  "slug": "docs/monitoring-and-observability-in-connect",
+  "source": "https://docs.capillarytech.com/docs/monitoring-and-observability-in-connect.md",
+  "url": "https://docs.capillarytech.com/docs/monitoring-and-observability-in-connect",
+  "title": "Monitoring And Observability In Connect",
+  "description": "",
+  "section": "Connect+",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T13:30:11.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 16,
+    "paragraph": 25,
+    "list": 7,
+    "Table": 3,
+    "Image": 5,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Monitoring and Observability in Connect+",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Monitoring and Observability in Connect+",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "How to view dataflow run status, performance metrics, block-wise breakdowns, error logs, and configure alerts in Connect+.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How to view dataflow run status, performance metrics, block-wise breakdowns, error logs, and configure alerts in Connect+.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Once a dataflow is live, Connect+ gives you two layers of visibility into what is happening with your data. The first is built directly into the Connect+ UI. The second is the Developer Console, a separate observability tool that operates at the system level.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once a dataflow is live, Connect+ gives you two layers of visibility into what is happening with your data. The first is built directly into the Connect+ UI. The second is the Developer Console, a separate observability tool that operates at the system level.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Together, these two layers let you monitor processing health at a glance, investigate errors at the file and record level, receive automated notifications when something goes wrong, and trace individual API requests through the platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Together, these two layers let you monitor processing health at a glance, investigate errors at the file and record level, receive automated notifications when something goes wrong, and trace individual API requests through the platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## What you can do",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "What you can do",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**View dataflow-level performance**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "View dataflow-level performance",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* See overall input counts, output counts, errors, warnings, and accuracy percentage from the Performance tab inside each dataflow.\n* Filter data for up to 30 days.\n* Use block-wise performance to see input, output, and error counts per block and pinpoint exactly where records are being lost.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "See overall input counts, output counts, errors, warnings, and accuracy percentage from the Performance tab inside each dataflow.Filter data for up to 30 days.Use block-wise performance to see input, output, and error counts per block and pinpoint exactly where records are being lost.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "**Investigate errors**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Investigate errors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        27
+      ],
+      "raw": "* View each distinct error message, the block it occurred in, and how many times it appeared from the error summary.\n* Search and filter errors by block or date.\n* Access error report files on FTP from the Error log tab. Each file covers one run and is available for 30 days, with per-record detail including the lineage ID assigned to each processed file.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "View each distinct error message, the block it occurred in, and how many times it appeared from the error summary.Search and filter errors by block or date.Access error report files on FTP from the Error log tab. Each file covers one run and is available for 30 days, with per-record detail including the lineage ID assigned to each processed file.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "**Schedule summary reports**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Schedule summary reports",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        31,
+        32
+      ],
+      "raw": "* Configure automatic email summaries of dataflow activity on an hourly, daily, or custom interval schedule.\n* Each report includes the dataflow name, file name, ingestion time, total record count, success count, and failure count broken down by block.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Configure automatic email summaries of dataflow activity on an hourly, daily, or custom interval schedule.Each report includes the dataflow name, file name, ingestion time, total record count, success count, and failure count broken down by block.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "**Monitor at the system level via the [Developer Console](https://docs.capillarytech.com/docs/introduction-dev-console)**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Monitor at the system level via the Developer Console",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/introduction-dev-console",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        36,
+        38
+      ],
+      "raw": "* Track request throughput, latency at the 95th percentile, error rates by status code, and API-level drill-downs into Capillary core platform calls using [Platform Metrics](https://docs.capillarytech.com/docs/platform-metrics#connect-platform-metrics).\n* Search for specific requests using [App Request Logs](https://docs.capillarytech.com/docs/view-app-request-logs).\n* For Neo-based dataflows, open Neo Log Insights from a request to inspect the full execution of a single record, including raw logs, block execution flow, block input and output, and request details.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Track request throughput, latency at the 95th percentile, error rates by status code, and API-level drill-downs into Capillary core platform calls using Platform Metrics.Search for specific requests using App Request Logs.For Neo-based dataflows, open Neo Log Insights from a request to inspect the full execution of a single record, including raw logs, block execution flow, block input and output, and request details.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/platform-metrics#connect-platform-metrics",
+          "line": 36
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/view-app-request-logs",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "**Configure alerts**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure alerts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        42,
+        44
+      ],
+      "raw": "* Set threshold-based alerts on metrics such as 4xx and 5xx error rates, latency, failure percentage, and retry exhaustion.\n* Scope alerts to specific dataflows and marks them as warning or critical.\n* Receive a notification with a custom message when a condition is breached.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Set threshold-based alerts on metrics such as 4xx and 5xx error rates, latency, failure percentage, and retry exhaustion.Scope alerts to specific dataflows and marks them as warning or critical.Receive a notification with a custom message when a condition is breached.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "## Alerts",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Alerts",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "Connect+ sends email alerts when a dataflow encounters an issue. Each alert identifies the failing block, describes the issue, and links to the affected dataflow. Alerts fire as soon as the threshold configured in [Alert Management](https://docs.capillarytech.com/docs/alert-management) is exceeded.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ sends email alerts when a dataflow encounters an issue. Each alert identifies the failing block, describes the issue, and links to the affected dataflow. Alerts fire as soon as the threshold configured in Alert Management is exceeded.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/alert-management",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "Connect+ monitors three signals across your dataflows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ monitors three signals across your dataflows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        52,
+        54
+      ],
+      "raw": "* Throughput per minute\n* Processing latency\n* Error rate",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Throughput per minuteProcessing latencyError rate",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "Connect+ provides two types of alerts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ provides two types of alerts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        58,
+        59
+      ],
+      "raw": "**Default alerts**\nConnect+ configures default alerts automatically. They are triggered based on system-defined thresholds and are active for all applicable dataflows. No setup is required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Default alerts\nConnect+ configures default alerts automatically. They are triggered based on system-defined thresholds and are active for all applicable dataflows. No setup is required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        61,
+        62
+      ],
+      "raw": "**Manual alerts**\nManual alerts, also called custom alerts, are alerts you configure. You set the threshold at which the alert triggers, giving you control over sensitivity based on your use case. You can set up these alerts in the [Alert Management](https://docs.capillarytech.com/docs/alert-management) section of the Dev Console.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Manual alerts\nManual alerts, also called custom alerts, are alerts you configure. You set the threshold at which the alert triggers, giving you control over sensitivity based on your use case. You can set up these alerts in the Alert Management section of the Dev Console.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/alert-management",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "### Alert scope",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Alert scope",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "Each alert applies to one of two scopes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each alert applies to one of two scopes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        68,
+        71
+      ],
+      "raw": "| Scope                     | Description                                                        |\n| ------------------------- | ------------------------------------------------------------------ |\n| Dataflow                  | The alert applies to a specific dataflow only.                     |\n| Dataflow and organization | The alert applies at both the dataflow and the organization level. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Scope",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Dataflow",
+            "The alert applies to a specific dataflow only."
+          ],
+          [
+            "Dataflow and organization",
+            "The alert applies at both the dataflow and the organization level."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "### Alerts reference",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Alerts reference",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        75,
+        82
+      ],
+      "raw": "| Alert name                | Category        | Type    | Trigger                                                 | Condition and threshold                                                      | Scope                     |\n| ------------------------- | --------------- | ------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------- |\n| Partial Failure Alert     | File and Stream | Manual  | Run completes with partial failures exceeding threshold | 10% or more of records exhaust all retry attempts within a 10-minute window. | Dataflow and organization |\n| File-Level Failure Alert  | File            | Manual  | Run completes with failed records                       | Total failed records are 10% or more of execution                            | Dataflow and organization |\n| Latency Alert             | File and Stream | Manual  | Processing latency exceeds threshold                    | Processing time exceeds the threshold you set                                | Dataflow and organization |\n| 5XX / Failure Alert       | File            | Default | 5XX errors and processing failures detected             | 1% or more of records fail within 10 minutes                                 | Dataflow and organization |\n| Dataflow Validation Alert | File and Stream | Default | Scheduled validation check after dataflow creation      | Validation check runs automatically 15 minutes after the dataflow is created | Dataflow                  |\n| No File Picked Alert      | File            | Default | No file received within expected time window            | No file arrives within the time window you define                            | Dataflow and organization |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Alert name",
+          "Category",
+          "Type",
+          "Trigger",
+          "Condition and threshold",
+          "Scope"
+        ],
+        "rows": [
+          [
+            "Partial Failure Alert",
+            "File and Stream",
+            "Manual",
+            "Run completes with partial failures exceeding threshold",
+            "10% or more of records exhaust all retry attempts within a 10-minute window.",
+            "Dataflow and organization"
+          ],
+          [
+            "File-Level Failure Alert",
+            "File",
+            "Manual",
+            "Run completes with failed records",
+            "Total failed records are 10% or more of execution",
+            "Dataflow and organization"
+          ],
+          [
+            "Latency Alert",
+            "File and Stream",
+            "Manual",
+            "Processing latency exceeds threshold",
+            "Processing time exceeds the threshold you set",
+            "Dataflow and organization"
+          ],
+          [
+            "5XX / Failure Alert",
+            "File",
+            "Default",
+            "5XX errors and processing failures detected",
+            "1% or more of records fail within 10 minutes",
+            "Dataflow and organization"
+          ],
+          [
+            "Dataflow Validation Alert",
+            "File and Stream",
+            "Default",
+            "Scheduled validation check after dataflow creation",
+            "Validation check runs automatically 15 minutes after the dataflow is created",
+            "Dataflow"
+          ],
+          [
+            "No File Picked Alert",
+            "File",
+            "Default",
+            "No file received within expected time window",
+            "No file arrives within the time window you define",
+            "Dataflow and organization"
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "### Alert descriptions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Alert descriptions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "The alerts below describe the conditions that trigger each notification and the thresholds at which they fire.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The alerts below describe the conditions that trigger each notification and the thresholds at which they fire.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "#### 5XX failure alert",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "5XX failure alert",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "This alert monitors file-based dataflows for server-side API errors and processing failures. It fires when failed records, including those caused by 5XX API errors, reach 1% or more within 10 minutes. The alert applies at both the dataflow and organization level.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This alert monitors file-based dataflows for server-side API errors and processing failures. It fires when failed records, including those caused by 5XX API errors, reach 1% or more within 10 minutes. The alert applies at both the dataflow and organization level.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/b9de3a4edc10e7484be77740d65b8db518fadb7a416903bd698c33a2a19de998-api_errors.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/b9de3a4edc10e7484be77740d65b8db518fadb7a416903bd698c33a2a19de998-api_errors.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "#### Dataflow validation alert",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Dataflow validation alert",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "This alert monitors file-based and stream-based dataflows after they're created. Connect+ runs a scheduled validation check 15 minutes after each dataflow is created to confirm it's configured correctly. If the validation fails, the alert fires. This alert applies at the dataflow level only.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This alert monitors file-based and stream-based dataflows after they're created. Connect+ runs a scheduled validation check 15 minutes after each dataflow is created to confirm it's configured correctly. If the validation fails, the alert fires. This alert applies at the dataflow level only.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/007b2fb9cc82282ade6bb33f95c12fb00763d235e59b0f9f3e18a27bdf07f44d-Screenshot_2026-03-30_at_3.45.00_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/007b2fb9cc82282ade6bb33f95c12fb00763d235e59b0f9f3e18a27bdf07f44d-Screenshot_2026-03-30_at_3.45.00_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 36,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "#### No file picked alert",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "No file picked alert",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "This alert monitors file-based dataflows for missing file arrivals. It fires when no file is received within a configurable time window that you define. Use it to detect upstream delivery failures before they cause a dataflow to run with missing data. The alert applies at both the dataflow and organization level.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This alert monitors file-based dataflows for missing file arrivals. It fires when no file is received within a configurable time window that you define. Use it to detect upstream delivery failures before they cause a dataflow to run with missing data. The alert applies at both the dataflow and organization level.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/4c3d4b0edc09b86807c4cc5a70b6cc5abc764feaf161d992cffbe681f6f926cd-Screenshot_2026-03-30_at_3.45.47_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/4c3d4b0edc09b86807c4cc5a70b6cc5abc764feaf161d992cffbe681f6f926cd-Screenshot_2026-03-30_at_3.45.47_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "#### File-level failure alert",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "File-level failure alert",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "This alert fires when a file-based dataflow run completes with 10% or more of its records failing. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from [Alert Management](https://docs.capillarytech.com/docs/alert-management).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This alert fires when a file-based dataflow run completes with 10% or more of its records failing. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from Alert Management.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/alert-management",
+          "line": 108
+        }
+      ]
+    },
+    {
+      "i": 41,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "#### Latency Alert",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Latency Alert",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "This alert fires when processing time in a file-based or stream-based dataflow exceeds the threshold you set. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from Alert Management.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This alert fires when processing time in a file-based or stream-based dataflow exceeds the threshold you set. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from Alert Management.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "#### Partial success",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Partial success",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "This notification fires when a file-based or stream-based dataflow run completes with 10% or more of records failing all retry attempts within 10 minutes. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from Alert Management.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This notification fires when a file-based or stream-based dataflow run completes with 10% or more of records failing all retry attempts within 10 minutes. It applies at both the dataflow and organization level. This is a manual alert. You can set or modify the threshold from Alert Management.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "### Alert details",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Alert details",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "When an alert fires, the notification mail includes the following information.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When an alert fires, the notification mail includes the following information.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        122,
+        138
+      ],
+      "raw": "| Field                     | Description                                                                                                              |\n| ------------------------- | ------------------------------------------------------------------------------------------------------------------------ |\n| Dataflow                  | The name of the dataflow where the issue was detected.                                                                   |\n| File                      | The name of the file that was processed during the run.                                                                  |\n| Lineage ID                | The unique identifier assigned to the processed file. Use this ID to trace the file through the pipeline.                |\n| Status                    | The outcome of the run. Possible values include Partial Success, Success, and Failure.                                   |\n| Started (IST)             | The date and time the run started, in IST.                                                                               |\n| Duration                  | The total time taken to complete the run.                                                                                |\n| Avg. Processing Time      | The average time taken to process each record in the run.                                                                |\n| Total Records             | The total number of records submitted for processing.                                                                    |\n| Success                   | The number and percentage of records that were processed successfully.                                                   |\n| Failure                   | The number and percentage of records that failed during processing.                                                      |\n| Retry Exhausted           | The number and percentage of records for which all retry attempts were exhausted without success.                        |\n| Failure Details           | A breakdown of failures by status code and category, with a count of records affected by each failure type.              |\n| View Dataflow in Connect+ | Opens the affected dataflow in Connect+ so you can investigate and take action.                                          |\n| View Run in Dev Console   | Opens the specific run in the Developer Console for deeper analysis.                                                     |\n| Error file                | The FTP path where the error report for this run is stored. The file contains per-record details for all failed records. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Dataflow",
+            "The name of the dataflow where the issue was detected."
+          ],
+          [
+            "File",
+            "The name of the file that was processed during the run."
+          ],
+          [
+            "Lineage ID",
+            "The unique identifier assigned to the processed file. Use this ID to trace the file through the pipeline."
+          ],
+          [
+            "Status",
+            "The outcome of the run. Possible values include Partial Success, Success, and Failure."
+          ],
+          [
+            "Started (IST)",
+            "The date and time the run started, in IST."
+          ],
+          [
+            "Duration",
+            "The total time taken to complete the run."
+          ],
+          [
+            "Avg. Processing Time",
+            "The average time taken to process each record in the run."
+          ],
+          [
+            "Total Records",
+            "The total number of records submitted for processing."
+          ],
+          [
+            "Success",
+            "The number and percentage of records that were processed successfully."
+          ],
+          [
+            "Failure",
+            "The number and percentage of records that failed during processing."
+          ],
+          [
+            "Retry Exhausted",
+            "The number and percentage of records for which all retry attempts were exhausted without success."
+          ],
+          [
+            "Failure Details",
+            "A breakdown of failures by status code and category, with a count of records affected by each failure type."
+          ],
+          [
+            "View Dataflow in Connect+",
+            "Opens the affected dataflow in Connect+ so you can investigate and take action."
+          ],
+          [
+            "View Run in Dev Console",
+            "Opens the specific run in the Developer Console for deeper analysis."
+          ],
+          [
+            "Error file",
+            "The FTP path where the error report for this run is stored. The file contains per-record details for all failed records."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "## File processing notifications",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "File processing notifications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "Connect+ sends a notification after processing each source file. Notifications are sent in the following scenarios:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Connect+ sends a notification after processing each source file. Notifications are sent in the following scenarios:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        144,
+        145
+      ],
+      "raw": "* Partial success\n* Success",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Partial successSuccess",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        147,
+        147
+      ],
+      "raw": "### Partial success",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Partial success",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "This notification fires when a file-based or stream-based dataflow run completes with some records succeeding and others failing. The notification includes the number of successful records, the number of failed records, and failure details for each failed record. It also includes a direct link to the Dev Console where you can review the failures.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This notification fires when a file-based or stream-based dataflow run completes with some records succeeding and others failing. The notification includes the number of successful records, the number of failed records, and failure details for each failed record. It also includes a direct link to the Dev Console where you can review the failures.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        151,
+        151
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/8c145bc029050ce3c5d467f707647b9d1fce74996c5b4c173ac69bdafc51027f-g.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/8c145bc029050ce3c5d467f707647b9d1fce74996c5b4c173ac69bdafc51027f-g.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 54,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "### Success",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Success",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "This notification fires when a file-based or stream-based dataflow run completes with all records processed successfully. It applies at both the dataflow and organization level.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This notification fires when a file-based or stream-based dataflow run completes with all records processed successfully. It applies at both the dataflow and organization level.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/4735b62b12b3ed87373e85cc463ec344e7ddccb6109cb85063c4634626832d30-Untitled_design_8.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/4735b62b12b3ed87373e85cc463ec344e7ddccb6109cb85063c4634626832d30-Untitled_design_8.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 57,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 159
+        }
+      ]
+    }
+  ]
+}

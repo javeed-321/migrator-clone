@@ -1,0 +1,176 @@
+{
+  "slug": "docs/configuring-relations",
+  "source": "https://docs.capillarytech.com/docs/configuring-relations.md",
+  "url": "https://docs.capillarytech.com/docs/configuring-relations",
+  "title": "Configuring Relations",
+  "description": "",
+  "section": "Configuration & Setup",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 4,
+    "list": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configuring Relations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Relations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Relations in Neo define how blocks connect and determine the dataflow path during execution. They work like a switch statement, where each condition directs the execution to the next block based on the dataflow logic. You can define relations using DAO functions or JavaScript. All Neo blocks support Relations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Relations in Neo define how blocks connect and determine the dataflow path during execution. They work like a switch statement, where each condition directs the execution to the next block based on the dataflow logic. You can define relations using DAO functions or JavaScript. All Neo blocks support Relations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "By default, Neo provides two path relations using DAO functions:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, Neo provides two path relations using DAO functions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        14
+      ],
+      "raw": "* isSuccess() – Executes when the operation succeeds.\n* hasError() – Executes when an error occurs.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "isSuccess() – Executes when the operation succeeds.hasError() – Executes when an error occurs.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "You can add, edit, or delete these default path relations based on your requirements. However, at least one path relation must always be defined.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can add, edit, or delete these default path relations based on your requirements. However, at least one path relation must always be defined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "#### **Adding a Path Relation**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Adding a Path Relation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "To add a path relation,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add a path relation,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        42
+      ],
+      "raw": "1. Click **+ Add Path**.\n2. In **Path Relation**, enter the condition to be checked. You can also use the **autocomplete feature** to select a DAO function and block name from the dropdown list. To do this:\n\n   1. Select the expand icon to expand the text box\n\n      <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/fc27030d7c7bf0348929bfb12d6e1fe9f8ab8ca52a1e4550fca585070acdad0a-Screenshot_2025-07-01_at_11.35.28_AM.png\" />\n   2. Start typing a DAO function starting with `.dao` to trigger the autocomplete dropdown for DAO functions.\n\n      <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/00786c64e6c16565a09286753ad470edd27a3d65bb1ceccae5ea294a0127ba9a-image.png\" />\n\n      1. Select the required DAO function from the drop-down list or click on `tab` to select the highlighted function. You can hover over the DAO function to view its syntax, parameters, and usage examples.\n\n         <Image align=\"center\" className=\"border\" border={true} width=\"80% \" src=\"https://files.readme.io/f445e1fefe1e7ac8dc20606cce17301c809c552a35025642af35710e374b0b3e-image.png\" />\n      2. Start typing an open parenthesis `(` to trigger the autocomplete dropdown for block names. The dropdown lists the block name and the block type in the following format: `blockName (Block Type)`.\n\n         <Image align=\"center\" width=\"80% \" src=\"https://files.readme.io/91d5b7d40cd35d9c46bc8ff808fed5bda93316615ddc6703534555cae5862c58-image.png\" />\n      3. Select the required block name from the drop-down list or click on `tab` to select the highlighted block name.\n      4. Select **Done** to save the changes.\n         > 📘 Note\n         >\n         > When writing relations, it is required to prefix function names with `dao.`. For example, for the DAO function `getApiRequest`, define the function as `dao.getApiRequest`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click + Add Path.In Path Relation, enter the condition to be checked. You can also use the autocomplete feature to select a DAO function and block name from the dropdown list. To do this:Select the expand icon to expand the text boxStart typing a DAO function starting with .dao to trigger the autocomplete dropdown for DAO functions.Select the required DAO function from the drop-down list or click on tab to select the highlighted function. You can hover over the DAO function to view its syntax, parameters, and usage examples.Start typing an open parenthesis ( to trigger the autocomplete dropdown for block names. The dropdown lists the block name and the block type in the following format: blockName (Block Type).Select the required block name from the drop-down list or click on tab to select the highlighted block name.Select Done to save the changes.📘 NoteWhen writing relations, it is required to prefix function names with dao.. For example, for the DAO function getApiRequest, define the function as dao.getApiRequest.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    }
+  ]
+}

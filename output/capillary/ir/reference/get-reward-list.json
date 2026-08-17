@@ -1,0 +1,845 @@
+{
+  "slug": "reference/get-reward-list",
+  "source": "https://docs.capillarytech.com/reference/get-reward-list.md",
+  "url": "https://docs.capillarytech.com/reference/get-reward-list",
+  "title": "Get Reward List",
+  "description": "",
+  "section": "Brand-Level Reward Queries",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-03T07:20:44.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 2,
+    "Callout": 1,
+    "list": 1,
+    "Table": 5,
+    "code": 2,
+    "br": 1,
+    "CodeTabs": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Get all brand rewards using Brand ID",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Get all brand rewards using Brand ID",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This API is used to retrieve list of rewards owned by brands based on filters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API is used to retrieve list of rewards owned by brands based on filters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        14
+      ],
+      "raw": "> 👍 Note\n>\n> * For detailed information about our APIs and for hands-on testing, refer documentation in [API overview](https://docs.capillarytech.com/reference/apioverview) and  step-by-step guide on making your first API call in [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) .\n> * The `groupName `filter allows only one group name at a time; multiple names separated by commas are not supported.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteFor detailed information about our APIs and for hands-on testing, refer documentation in API overview and  step-by-step guide on making your first API call in Make your first API call .The groupName filter allows only one group name at a time; multiple names separated by commas are not supported.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/apioverview",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "i": 4,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        18,
+        19
+      ],
+      "raw": "* [ ] Authentication: Basic or OAuth authentication\n* [ ] Default access group",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication: Basic or OAuth authenticationDefault access group",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "# Resource information",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Resource information",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        29
+      ],
+      "raw": "|                        |                                                             |\n| :--------------------- | :---------------------------------------------------------- |\n| URI                    | api\\_gateway/rewards/core/v1/reward/list/brand`\\{BrandID\\}` |\n| HTTP Method            | GET                                                         |\n| Pagination             | Yes Default - 100                                           |\n| Batch support          | No                                                          |\n| Rate limit information | None                                                        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            "URI",
+            "api_gateway/rewards/core/v1/reward/list/brand\\{BrandID\\}"
+          ],
+          [
+            "HTTP Method",
+            "GET"
+          ],
+          [
+            "Pagination",
+            "Yes Default - 100"
+          ],
+          [
+            "Batch support",
+            "No"
+          ],
+          [
+            "Rate limit information",
+            "None"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": true
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "# API endpoint example",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API endpoint example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "`https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&redemptionType=MILES&rewardName=gold&vendorIds=18,19`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&redemptionType=MILES&rewardName=gold&vendorIds=18,19",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "# Request path parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request path parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "| Parameter Name | Data Type | Description                     |\n| -------------- | --------- | ------------------------------- |\n| brandId\\*      | Integer   | Unique identifier of the brand. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "brandId*",
+            "Integer",
+            "Unique identifier of the brand."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "# Request query parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Request query parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        43,
+        57
+      ],
+      "raw": "| Parameter Name       | Data Type | Description                                                                                                                                                                                                                                                                                                                                                                                                   |\n| :------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **`Page`**           | Integer   | Allows you to retrieve details of a specific page.                                                                                                                                                                                                                                                                                                                                                            |\n| **`Size`**           | Long      | The number of results to show per page. Default: `100`.                                                                                                                                                                                                                                                                                                                                                       |\n| **`ownerType`**      | Enum      | The module for which the reward was created. Only **one** `ownerType` can be used as a filter. **Supported values:** `Loyalty program`, `Milestones`, `Campaigns`, `Journeys`, `Goodwill`.                                                                                                                                                                                                                    |\n| **`ownerId`**        | String    | The unique identifier of the owner to claim the reward.                                                                                                                                                                                                                                                                                                                                                       |\n| **`startDate`**      | Long      | The start date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response. If `startDate` is used as a filter, `endDate` must also be specified, and vice versa.                                                                                 |\n| **`endDate`**        | Long      | The end date of the reward in **epoch format**. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response.                                                                                                                                                                         |\n| **`rewardStatus`**   | Enum      | Indicates the current state of the reward. Only **one** `rewardStatus` can be used as a filter. Supported values:\\<br>- **`LIVE`**: The reward is currently available for redemption.\\<br>- **`UPCOMING`**: The reward will be available in the future.\\<br>- **`ENDED`**: The reward is no longer available.                                                                                                 |\n| **`vendorId`**       | Integer   | A collection of identifiers for vendors associated with the reward. Multiple `vendorId` values are supported, separated by a comma (`,`). **For example:** `VendorId=36,32`. There is no specific limit on the number of `vendorId` values.                                                                                                                                                                   |\n| **`redemptionType`** | Enum      | Specifies the category of reward redemption available, indicating how users can redeem the reward. Only **one** `redemptionType` can be used as a filter. **Supported values:** `GAMES`, `AUCTION`, `CART_PROMOTION`, `CASH_WALLET`, `VENDOR_ONLY_REWARD`, `VOUCHER`, `CASH_BACK`, `INTOUCH_REWARD`, `PHYSICAL_REWARD`, `CHARITY`, `MILES`, `GIFT_CARD`, `SWEEPSTAKES`, `VENDOR_INTOUCH_REWARD`, `CARD_DISC`. |\n| **`rewardName`**     | String    | The name of the reward that was created. `rewardName` supports **partial search**. Users can search for a reward using part of its name, and results that match the partial input will be returned. **For example:** Searching for \"Gold\" could return \"Gold Star Reward\" or \"Golden Points\".                                                                                                                 |\n| **`enabled`**        | Boolean   | A boolean value indicating whether the reward is currently **active** (`true`) or **inactive** (`false`) for users.                                                                                                                                                                                                                                                                                           |\n| **`language`**       | Enum      | Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to `en`.                                                                                                                                                                                                                      |\n| **`groupName`**      | String    | Filters rewards that are categorized under a specific group, for example: `'Seasonal Specials'`.                                                                                                                                                                                                                                                                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter Name",
+          "Data Type",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Page",
+            "Integer",
+            "Allows you to retrieve details of a specific page."
+          ],
+          [
+            "Size",
+            "Long",
+            "The number of results to show per page. Default: 100."
+          ],
+          [
+            "ownerType",
+            "Enum",
+            "The module for which the reward was created. Only one ownerType can be used as a filter. Supported values: Loyalty program, Milestones, Campaigns, Journeys, Goodwill."
+          ],
+          [
+            "ownerId",
+            "String",
+            "The unique identifier of the owner to claim the reward."
+          ],
+          [
+            "startDate",
+            "Long",
+            "The start date of the reward in epoch format. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response. If startDate is used as a filter, endDate must also be specified, and vice versa."
+          ],
+          [
+            "endDate",
+            "Long",
+            "The end date of the reward in epoch format. Any rewards between the specified start and end date will be displayed. If either the start or end date falls within the timeline, the reward will still be included in the response."
+          ],
+          [
+            "rewardStatus",
+            "Enum",
+            "Indicates the current state of the reward. Only one rewardStatus can be used as a filter. Supported values:<br>- LIVE: The reward is currently available for redemption.<br>- UPCOMING: The reward will be available in the future.<br>- ENDED: The reward is no longer available."
+          ],
+          [
+            "vendorId",
+            "Integer",
+            "A collection of identifiers for vendors associated with the reward. Multiple vendorId values are supported, separated by a comma (,). For example: VendorId=36,32. There is no specific limit on the number of vendorId values."
+          ],
+          [
+            "redemptionType",
+            "Enum",
+            "Specifies the category of reward redemption available, indicating how users can redeem the reward. Only one redemptionType can be used as a filter. Supported values: GAMES, AUCTION, CART_PROMOTION, CASH_WALLET, VENDOR_ONLY_REWARD, VOUCHER, CASH_BACK, INTOUCH_REWARD, PHYSICAL_REWARD, CHARITY, MILES, GIFT_CARD, SWEEPSTAKES, VENDOR_INTOUCH_REWARD, CARD_DISC."
+          ],
+          [
+            "rewardName",
+            "String",
+            "The name of the reward that was created. rewardName supports partial search. Users can search for a reward using part of its name, and results that match the partial input will be returned. For example: Searching for \"Gold\" could return \"Gold Star Reward\" or \"Golden Points\"."
+          ],
+          [
+            "enabled",
+            "Boolean",
+            "A boolean value indicating whether the reward is currently active (true) or inactive (false) for users."
+          ],
+          [
+            "language",
+            "Enum",
+            "Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en."
+          ],
+          [
+            "groupName",
+            "String",
+            "Filters rewards that are categorized under a specific group, for example: 'Seasonal Specials'."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 51
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 51
+        },
+        {
+          "kind": "breakTag",
+          "value": "\\<br>",
+          "line": 51
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 51
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 51
+        },
+        {
+          "kind": "escapedAngle",
+          "value": "\\<br>",
+          "line": 51
+        }
+      ],
+      "notes": [
+        "escaped \\<br> renders as literal text",
+        "unclosed <br> is invalid MDX"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        59,
+        61
+      ],
+      "raw": "```http API Endpoint\nhttps://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "http",
+        "title": "API Endpoint",
+        "code": "https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20&startDate=1727254620000&endDate=1752244980000&rewardType=CHARITY&rewardStatus=LIVE"
+      },
+      "text": "API Endpoint",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "# Response parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Response parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        65,
+        108
+      ],
+      "raw": "| Parameter             | Description                                                                                                                                      |\n| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |\n| status                | Object containing the status of the reward details                                                                                               |\n| success               | Indicates if the operation was successful                                                                                                        |\n| code                  | Status code of the operation                                                                                                                     |\n| message               | Status message                                                                                                                                   |\n| rewardList            | List of rewards                                                                                                                                  |\n| id                    | Unique identifier of the reward. This is the reward ID which was generated during reward creation.                                               |\n| rewardExternalId      | External identifier assigned to the reward. Returned only if a `rewardExternalId` was set when creating or updating the reward.                  |\n| name                  | Name of the reward                                                                                                                               |\n| startTime             | Start time of the reward availability                                                                                                            |\n| startDateTime         | Start date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                       |\n| endTime               | End time of the reward availability                                                                                                              |\n| endDateTime           | End date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)                                                                         |\n| type                  | Type of the reward.                                                                                                                              |\n| priority              | Priority of the reward                                                                                                                           |\n| enabled               | Indicates if the reward is enabled                                                                                                               |\n| intouchPoints         | Points required for the reward                                                                                                                   |\n| redemptionType        | Type of redemption for the reward                                                                                                                |\n| customFields          | Custom fields for additional information                                                                                                         |\n| status                | Indicates the current state of the reward. Example: LIVE, UPCOMING, ENDED                                                                        |\n| intouchSeriesId       | Coupon series ID or cart promotion ID when intouch reward is selected.                                                                           |\n| vendorId              | Unique ID of the vendor.                                                                                                                         |\n| vendorName            | Name of the vendor.                                                                                                                              |\n| vendorRedemptionId    | Unique vendor redemption ID which was generated from this [API](https://docs.capillarytech.com/reference/create-vendor-redemption).              |\n| vendorRedemptionName  | Name of the vendor redemption.                                                                                                                   |\n| lastUpdatedOn         | Date on which the Reward was last updated in Epoch format .                                                                                      |\n| lastUpdatedBy         | Identifier of the user who last updated the status                                                                                               |\n| owners                | List of owners of the reward                                                                                                                     |\n| ownerType             | Module for which the reward was created.                                                                                                         |\n| ownerId               | Unique identifier of the owner to claim the reward.                                                                                              |\n| pagingDto             | The object containing paging details                                                                                                             |\n| paymentConfigs        | The list of payment mode supported by the reward.                                                                                                |\n| groups                | An array containing information about groups and rewards associated with reward.                                                                 |\n| last                  | Indicates if it is the last page                                                                                                                 |\n| totalElements         | Total number of elements                                                                                                                         |\n| totalPages            | Total number of pages                                                                                                                            |\n| numberOfElements      | Number of elements in the current page                                                                                                           |\n| first                 | Indicates if it is the first page                                                                                                                |\n| size                  | The number of items or records returned in a single API response.                                                                                |\n| number                | Current page number                                                                                                                              |\n| rewardRank            | The rank or priority of the reward within its category or program                                                                                |\n| lastUpdatedOnDateTime | Date and time of the most recent reward modification.The ISO 8601 timestamp format is used: YYYY-MM-DDTHH:MM:SSZ. (e.g., `2023-10-05T14:30:00Z`) |\n| createdBy             | The user who created the reward.                                                                                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Description"
+        ],
+        "rows": [
+          [
+            "status",
+            "Object containing the status of the reward details"
+          ],
+          [
+            "success",
+            "Indicates if the operation was successful"
+          ],
+          [
+            "code",
+            "Status code of the operation"
+          ],
+          [
+            "message",
+            "Status message"
+          ],
+          [
+            "rewardList",
+            "List of rewards"
+          ],
+          [
+            "id",
+            "Unique identifier of the reward. This is the reward ID which was generated during reward creation."
+          ],
+          [
+            "rewardExternalId",
+            "External identifier assigned to the reward. Returned only if a rewardExternalId was set when creating or updating the reward."
+          ],
+          [
+            "name",
+            "Name of the reward"
+          ],
+          [
+            "startTime",
+            "Start time of the reward availability"
+          ],
+          [
+            "startDateTime",
+            "Start date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ],
+          [
+            "endTime",
+            "End time of the reward availability"
+          ],
+          [
+            "endDateTime",
+            "End date and time of the field in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)"
+          ],
+          [
+            "type",
+            "Type of the reward."
+          ],
+          [
+            "priority",
+            "Priority of the reward"
+          ],
+          [
+            "enabled",
+            "Indicates if the reward is enabled"
+          ],
+          [
+            "intouchPoints",
+            "Points required for the reward"
+          ],
+          [
+            "redemptionType",
+            "Type of redemption for the reward"
+          ],
+          [
+            "customFields",
+            "Custom fields for additional information"
+          ],
+          [
+            "status",
+            "Indicates the current state of the reward. Example: LIVE, UPCOMING, ENDED"
+          ],
+          [
+            "intouchSeriesId",
+            "Coupon series ID or cart promotion ID when intouch reward is selected."
+          ],
+          [
+            "vendorId",
+            "Unique ID of the vendor."
+          ],
+          [
+            "vendorName",
+            "Name of the vendor."
+          ],
+          [
+            "vendorRedemptionId",
+            "Unique vendor redemption ID which was generated from this API."
+          ],
+          [
+            "vendorRedemptionName",
+            "Name of the vendor redemption."
+          ],
+          [
+            "lastUpdatedOn",
+            "Date on which the Reward was last updated in Epoch format ."
+          ],
+          [
+            "lastUpdatedBy",
+            "Identifier of the user who last updated the status"
+          ],
+          [
+            "owners",
+            "List of owners of the reward"
+          ],
+          [
+            "ownerType",
+            "Module for which the reward was created."
+          ],
+          [
+            "ownerId",
+            "Unique identifier of the owner to claim the reward."
+          ],
+          [
+            "pagingDto",
+            "The object containing paging details"
+          ],
+          [
+            "paymentConfigs",
+            "The list of payment mode supported by the reward."
+          ],
+          [
+            "groups",
+            "An array containing information about groups and rewards associated with reward."
+          ],
+          [
+            "last",
+            "Indicates if it is the last page"
+          ],
+          [
+            "totalElements",
+            "Total number of elements"
+          ],
+          [
+            "totalPages",
+            "Total number of pages"
+          ],
+          [
+            "numberOfElements",
+            "Number of elements in the current page"
+          ],
+          [
+            "first",
+            "Indicates if it is the first page"
+          ],
+          [
+            "size",
+            "The number of items or records returned in a single API response."
+          ],
+          [
+            "number",
+            "Current page number"
+          ],
+          [
+            "rewardRank",
+            "The rank or priority of the reward within its category or program"
+          ],
+          [
+            "lastUpdatedOnDateTime",
+            "Date and time of the most recent reward modification.The ISO 8601 timestamp format is used: YYYY-MM-DDTHH:MM:SSZ. (e.g., 2023-10-05T14:30:00Z)"
+          ],
+          [
+            "createdBy",
+            "The user who created the reward."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-vendor-redemption",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 110
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        112,
+        359
+      ],
+      "raw": "```json 200- Response\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 345839,\n            \"name\": \"New year tes\",\n            \"startTime\": \"2025-04-02 10:20:10\",\n            \"startDateTime\": \"2025-04-02T10:20:10Z\",\n            \"endTime\": \"2025-04-02 10:25:10\",\n            \"endDateTime\": \"2025-04-02T10:25:10Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5717\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743667380000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T08:03:00Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        },\n        {\n            \"id\": 346323,\n            \"name\": \"Go Test fastest\",\n            \"startTime\": \"2025-04-03 05:29:47\",\n            \"startDateTime\": \"2025-04-03T05:29:47Z\",\n            \"endTime\": \"2025-04-03 05:34:47\",\n            \"endDateTime\": \"2025-04-03T05:34:47Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": null,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\",\n                \"CF1\": \"test\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5751\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743666079000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T07:41:19Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": false,\n        \"totalElements\": 759,\n        \"totalPages\": 380,\n        \"numberOfElements\": 2,\n        \"first\": false,\n        \"size\": 2,\n        \"number\": 2\n    }\n}\n```\n```json 200- With Owner type\n{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 265893,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:11:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 1955\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564635000,\n            \"lastUpdatedBy\": null\n        },\n        {\n            \"id\": 265892,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:10:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"POINTS\",\n                    \"id\": 1954,\n                    \"points\": 100.0000\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564549000,\n            \"lastUpdatedBy\": null\n        },\n        {\n            \"id\": 265891,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:08:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"POINTS\",\n                    \"id\": 1953,\n                    \"points\": 100.0000\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564479000,\n            \"lastUpdatedBy\": null\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": true,\n        \"totalElements\": 3,\n        \"totalPages\": 1,\n        \"numberOfElements\": 3,\n        \"first\": true,\n        \"size\": 20,\n        \"number\": 0\n    }\n}\n```\n```json Failure: Invalid Brand ID\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3004,\n        \"message\": \"Brand not found\"\n    }\n}\n```\n```json Failure: Both startDate and endDate is mandatory\n{\n    \"status\": {\n        \"success\": false,\n        \"code\": 11028,\n        \"message\": \"Ensure both startDate and endDate are provided\"\n    },\n\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "200- Response",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "200- Response",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 345839,\n            \"name\": \"New year tes\",\n            \"startTime\": \"2025-04-02 10:20:10\",\n            \"startDateTime\": \"2025-04-02T10:20:10Z\",\n            \"endTime\": \"2025-04-02 10:25:10\",\n            \"endDateTime\": \"2025-04-02T10:25:10Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5717\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743667380000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T08:03:00Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        },\n        {\n            \"id\": 346323,\n            \"name\": \"Go Test fastest\",\n            \"startTime\": \"2025-04-03 05:29:47\",\n            \"startDateTime\": \"2025-04-03T05:29:47Z\",\n            \"endTime\": \"2025-04-03 05:34:47\",\n            \"endDateTime\": \"2025-04-03T05:34:47Z\",\n            \"type\": \"VOUCHER\",\n            \"priority\": null,\n            \"enabled\": true,\n            \"intouchPoints\": 0,\n            \"redemptionType\": \"MILES\",\n            \"customFields\": {\n                \"A\": \"1\",\n                \"CF1233\": \"1\",\n                \"EnumCF2\": \"r1\",\n                \"EnumCF1\": \"white\",\n                \"CF1\": \"test\"\n            },\n            \"owners\": null,\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 5751\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": null,\n            \"status\": \"ENDED\",\n            \"intouchSeriesId\": null,\n            \"vendorRedemptionId\": 13417,\n            \"vendorRedemptionName\": \"Delta\",\n            \"vendorId\": 21,\n            \"vendorName\": \"Delta\",\n            \"lastUpdatedOn\": 1743666079000,\n            \"lastUpdatedOnDateTime\": \"2025-04-03T07:41:19Z\",\n            \"lastUpdatedBy\": 75106389,\n            \"createdBy\": 75106389\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": false,\n        \"totalElements\": 759,\n        \"totalPages\": 380,\n        \"numberOfElements\": 2,\n        \"first\": false,\n        \"size\": 2,\n        \"number\": 2\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "200- With Owner type",
+          "code": "{\n    \"status\": {\n        \"success\": true,\n        \"code\": 6101,\n        \"message\": \"Reward details fetched successfully\"\n    },\n    \"rewardList\": [\n        {\n            \"id\": 265893,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:11:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"FREE\",\n                    \"id\": 1955\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564635000,\n            \"lastUpdatedBy\": null\n        },\n        {\n            \"id\": 265892,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:10:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"POINTS\",\n                    \"id\": 1954,\n                    \"points\": 100.0000\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564549000,\n            \"lastUpdatedBy\": null\n        },\n        {\n            \"id\": 265891,\n            \"name\": \"testreward1\",\n            \"startTime\": \"2024-11-14 06:08:00\",\n            \"endTime\": \"2025-07-11 14:43:00\",\n            \"type\": \"VOUCHER\",\n            \"priority\": 1,\n            \"enabled\": true,\n            \"intouchPoints\": 500,\n            \"redemptionType\": \"INTOUCH_REWARD\",\n            \"customFields\": {\n                \"testdate\": \"2020-01-01 01:01:01\",\n                \"CF1\": \"Custom field 1\"\n            },\n            \"owners\": [\n                {\n                    \"ownerType\": \"LOYALTY_PROGRAM\",\n                    \"ownerId\": \"469\"\n                }\n            ],\n            \"paymentConfigs\": [\n                {\n                    \"paymentMode\": \"POINTS\",\n                    \"id\": 1953,\n                    \"points\": 100.0000\n                }\n            ],\n            \"groups\": [],\n            \"rewardRank\": 1,\n            \"status\": \"LIVE\",\n            \"intouchSeriesId\": \"415446\",\n            \"vendorRedemptionId\": null,\n            \"vendorRedemptionName\": null,\n            \"vendorId\": null,\n            \"vendorName\": null,\n            \"lastUpdatedOn\": 1731564479000,\n            \"lastUpdatedBy\": null\n        }\n    ],\n    \"pagingDto\": {\n        \"last\": true,\n        \"totalElements\": 3,\n        \"totalPages\": 1,\n        \"numberOfElements\": 3,\n        \"first\": true,\n        \"size\": 20,\n        \"number\": 0\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Failure: Invalid Brand ID",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 3004,\n        \"message\": \"Brand not found\"\n    }\n}"
+        },
+        {
+          "lang": "json",
+          "title": "Failure: Both startDate and endDate is mandatory",
+          "code": "{\n    \"status\": {\n        \"success\": false,\n        \"code\": 11028,\n        \"message\": \"Ensure both startDate and endDate are provided\"\n    },\n"
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        361,
+        361
+      ],
+      "raw": "# API-specific error codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API-specific error codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        363,
+        365
+      ],
+      "raw": "| Error code | Description     |\n| :--------- | :-------------- |\n| 3004       | Brand not found |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "3004",
+            "Brand not found"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        367,
+        367
+      ],
+      "raw": "# OpenAPI definition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "OpenAPI definition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        369,
+        932
+      ],
+      "raw": "```json\n{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/list/brand/{BrandID}?ownerId={ownerId}&ownerType={ownerType}\": {\n      \"get\": {\n        \"summary\": \"Get all brand rewards using Brand ID\",\n        \"description\": \"\",\n        \"operationId\": \"get-reward-list\",\n        \"parameters\": [\n          {\n            \"name\": \"BrandId\",\n            \"in\": \"path\",\n            \"description\": \"Unique identifier of the brand\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            },\n            \"required\": true\n          },\n          {\n            \"name\": \"ownerType\",\n            \"in\": \"query\",\n            \"description\": \"Module for which the reward was created.\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"Loyalty program\",\n                \"Milestones\",\n                \"Campaigns\",\n                \"Journeys\",\n                \"Goodwill.\"\n              ]\n            }\n          },\n          {\n            \"name\": \"ownerId\",\n            \"in\": \"query\",\n            \"description\": \"Unique identifier of the owner to claim the reward.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"size\",\n            \"in\": \"query\",\n            \"description\": \"Results to show per page. Default - 100\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"page\",\n            \"in\": \"query\",\n            \"description\": \"Allows to retrieve details of a specific page.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"language\",\n            \"in\": \"query\",\n            \"description\": \"Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"\"\n              ],\n              \"default\": \"en\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"With OwnerType\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 6101,\\n        \\\"message\\\": \\\"Reward details fetched successfully\\\"\\n    },\\n    \\\"rewardList\\\": [\\n        {\\n            \\\"id\\\": 345839,\\n            \\\"name\\\": \\\"New year tes\\\",\\n            \\\"startTime\\\": \\\"2025-04-02 10:20:10\\\",\\n            \\\"startDateTime\\\": \\\"2025-04-02T10:20:10Z\\\",\\n            \\\"endTime\\\": \\\"2025-04-02 10:25:10\\\",\\n            \\\"endDateTime\\\": \\\"2025-04-02T10:25:10Z\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": 1,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 0,\\n            \\\"redemptionType\\\": \\\"MILES\\\",\\n            \\\"customFields\\\": {\\n                \\\"A\\\": \\\"1\\\",\\n                \\\"CF1233\\\": \\\"1\\\",\\n                \\\"EnumCF2\\\": \\\"r1\\\",\\n                \\\"EnumCF1\\\": \\\"white\\\"\\n            },\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"FREE\\\",\\n                    \\\"id\\\": 5717\\n                }\\n            ],\\n            \\\"groups\\\": [],\\n            \\\"rewardRank\\\": null,\\n            \\\"status\\\": \\\"ENDED\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 13417,\\n            \\\"vendorRedemptionName\\\": \\\"Delta\\\",\\n            \\\"vendorId\\\": 21,\\n            \\\"vendorName\\\": \\\"Delta\\\",\\n            \\\"lastUpdatedOn\\\": 1743667380000,\\n            \\\"lastUpdatedOnDateTime\\\": \\\"2025-04-03T08:03:00Z\\\",\\n            \\\"lastUpdatedBy\\\": 75106389,\\n            \\\"createdBy\\\": 75106389\\n        },\\n        {\\n            \\\"id\\\": 346323,\\n            \\\"name\\\": \\\"Go Test fastest\\\",\\n            \\\"startTime\\\": \\\"2025-04-03 05:29:47\\\",\\n            \\\"startDateTime\\\": \\\"2025-04-03T05:29:47Z\\\",\\n            \\\"endTime\\\": \\\"2025-04-03 05:34:47\\\",\\n            \\\"endDateTime\\\": \\\"2025-04-03T05:34:47Z\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": null,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 0,\\n            \\\"redemptionType\\\": \\\"MILES\\\",\\n            \\\"customFields\\\": {\\n                \\\"A\\\": \\\"1\\\",\\n                \\\"CF1233\\\": \\\"1\\\",\\n                \\\"EnumCF2\\\": \\\"r1\\\",\\n                \\\"EnumCF1\\\": \\\"white\\\",\\n                \\\"CF1\\\": \\\"test\\\"\\n            },\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"FREE\\\",\\n                    \\\"id\\\": 5751\\n                }\\n            ],\\n            \\\"groups\\\": [],\\n            \\\"rewardRank\\\": null,\\n            \\\"status\\\": \\\"ENDED\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 13417,\\n            \\\"vendorRedemptionName\\\": \\\"Delta\\\",\\n            \\\"vendorId\\\": 21,\\n            \\\"vendorName\\\": \\\"Delta\\\",\\n            \\\"lastUpdatedOn\\\": 1743666079000,\\n            \\\"lastUpdatedOnDateTime\\\": \\\"2025-04-03T07:41:19Z\\\",\\n            \\\"lastUpdatedBy\\\": 75106389,\\n            \\\"createdBy\\\": 75106389\\n        }\\n    ],\\n    \\\"pagingDto\\\": {\\n        \\\"last\\\": false,\\n        \\\"totalElements\\\": 759,\\n        \\\"totalPages\\\": 380,\\n        \\\"numberOfElements\\\": 2,\\n        \\\"first\\\": false,\\n        \\\"size\\\": 2,\\n        \\\"number\\\": 2\\n    }\\n}\"\n                  },\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 6101,\\n        \\\"message\\\": \\\"Reward details fetched successfully\\\"\\n    },\\n    \\\"rewardList\\\": [\\n        {\\n            \\\"id\\\": 20867,\\n            \\\"name\\\": \\\"name_first\\\",\\n            \\\"startTime\\\": \\\"2024-11-01 03:53:01\\\",\\n            \\\"endTime\\\": \\\"2027-01-15 07:26:45\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": 1,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 1,\\n            \\\"redemptionType\\\": \\\"SWEEPSTAKES\\\",\\n            \\\"customFields\\\": {},\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"CASH\\\",\\n                    \\\"id\\\": 813,\\n                    \\\"cash\\\": 25.0000\\n                }\\n            ],\\n            \\\"groups\\\": [\\n                {\\n                    \\\"groupName\\\": \\\"groupName014\\\",\\n                    \\\"groupRank\\\": 8\\n                }\\n            ],\\n            \\\"rewardRank\\\": 10,\\n            \\\"status\\\": \\\"UPCOMING\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 1627,\\n            \\\"vendorRedemptionName\\\": \\\"demo vendor for physicalReward\\\",\\n            \\\"vendorId\\\": 17,\\n            \\\"vendorName\\\": \\\"testVendor002\\\",\\n            \\\"lastUpdatedOn\\\": 1725359777000,\\n            \\\"lastUpdatedBy\\\": null\\n        }\\n    ],\\n    \\\"pagingDto\\\": {\\n        \\\"last\\\": true,\\n        \\\"totalElements\\\": 1,\\n        \\\"totalPages\\\": 1,\\n        \\\"numberOfElements\\\": 1,\\n        \\\"first\\\": true,\\n        \\\"size\\\": 10,\\n        \\\"number\\\": 0\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"With OwnerType\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 6101,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward details fetched successfully\"\n                            }\n                          }\n                        },\n                        \"rewardList\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"id\": {\n                                \"type\": \"integer\",\n                                \"example\": 345839,\n                                \"default\": 0\n                              },\n                              \"name\": {\n                                \"type\": \"string\",\n                                \"example\": \"New year tes\"\n                              },\n                              \"startTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02 10:20:10\"\n                              },\n                              \"startDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02T10:20:10Z\"\n                              },\n                              \"endTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02 10:25:10\"\n                              },\n                              \"endDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02T10:25:10Z\"\n                              },\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"example\": \"VOUCHER\"\n                              },\n                              \"priority\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"enabled\": {\n                                \"type\": \"boolean\",\n                                \"example\": true,\n                                \"default\": true\n                              },\n                              \"intouchPoints\": {\n                                \"type\": \"integer\",\n                                \"example\": 0,\n                                \"default\": 0\n                              },\n                              \"redemptionType\": {\n                                \"type\": \"string\",\n                                \"example\": \"MILES\"\n                              },\n                              \"customFields\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"A\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"1\"\n                                  },\n                                  \"CF1233\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"1\"\n                                  },\n                                  \"EnumCF2\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"r1\"\n                                  },\n                                  \"EnumCF1\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"white\"\n                                  }\n                                }\n                              },\n                              \"owners\": {},\n                              \"paymentConfigs\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"paymentMode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"FREE\"\n                                    },\n                                    \"id\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 5717,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"groups\": {\n                                \"type\": \"array\"\n                              },\n                              \"rewardRank\": {},\n                              \"status\": {\n                                \"type\": \"string\",\n                                \"example\": \"ENDED\"\n                              },\n                              \"intouchSeriesId\": {},\n                              \"vendorRedemptionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 13417,\n                                \"default\": 0\n                              },\n                              \"vendorRedemptionName\": {\n                                \"type\": \"string\",\n                                \"example\": \"Delta\"\n                              },\n                              \"vendorId\": {\n                                \"type\": \"integer\",\n                                \"example\": 21,\n                                \"default\": 0\n                              },\n                              \"vendorName\": {\n                                \"type\": \"string\",\n                                \"example\": \"Delta\"\n                              },\n                              \"lastUpdatedOn\": {\n                                \"type\": \"integer\",\n                                \"example\": 1743667380000,\n                                \"default\": 0\n                              },\n                              \"lastUpdatedOnDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-03T08:03:00Z\"\n                              },\n                              \"lastUpdatedBy\": {\n                                \"type\": \"integer\",\n                                \"example\": 75106389,\n                                \"default\": 0\n                              },\n                              \"createdBy\": {\n                                \"type\": \"integer\",\n                                \"example\": 75106389,\n                                \"default\": 0\n                              }\n                            }\n                          }\n                        },\n                        \"pagingDto\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"last\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"totalElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 759,\n                              \"default\": 0\n                            },\n                            \"totalPages\": {\n                              \"type\": \"integer\",\n                              \"example\": 380,\n                              \"default\": 0\n                            },\n                            \"numberOfElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            },\n                            \"first\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"size\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            },\n                            \"number\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 6101,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward details fetched successfully\"\n                            }\n                          }\n                        },\n                        \"rewardList\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"id\": {\n                                \"type\": \"integer\",\n                                \"example\": 20867,\n                                \"default\": 0\n                              },\n                              \"name\": {\n                                \"type\": \"string\",\n                                \"example\": \"name_first\"\n                              },\n                              \"startTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2024-11-01 03:53:01\"\n                              },\n                              \"endTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2027-01-15 07:26:45\"\n                              },\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"example\": \"VOUCHER\"\n                              },\n                              \"priority\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"enabled\": {\n                                \"type\": \"boolean\",\n                                \"example\": true,\n                                \"default\": true\n                              },\n                              \"intouchPoints\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"redemptionType\": {\n                                \"type\": \"string\",\n                                \"example\": \"SWEEPSTAKES\"\n                              },\n                              \"customFields\": {\n                                \"type\": \"object\",\n                                \"properties\": {}\n                              },\n                              \"owners\": {},\n                              \"paymentConfigs\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"paymentMode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"CASH\"\n                                    },\n                                    \"id\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 813,\n                                      \"default\": 0\n                                    },\n                                    \"cash\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 25,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"groups\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"groupName\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"groupName014\"\n                                    },\n                                    \"groupRank\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 8,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"rewardRank\": {\n                                \"type\": \"integer\",\n                                \"example\": 10,\n                                \"default\": 0\n                              },\n                              \"status\": {\n                                \"type\": \"string\",\n                                \"example\": \"UPCOMING\"\n                              },\n                              \"intouchSeriesId\": {},\n                              \"vendorRedemptionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 1627,\n                                \"default\": 0\n                              },\n                              \"vendorRedemptionName\": {\n                                \"type\": \"string\",\n                                \"example\": \"demo vendor for physicalReward\"\n                              },\n                              \"vendorId\": {\n                                \"type\": \"integer\",\n                                \"example\": 17,\n                                \"default\": 0\n                              },\n                              \"vendorName\": {\n                                \"type\": \"string\",\n                                \"example\": \"testVendor002\"\n                              },\n                              \"lastUpdatedOn\": {\n                                \"type\": \"integer\",\n                                \"example\": 1725359777000,\n                                \"default\": 0\n                              },\n                              \"lastUpdatedBy\": {}\n                            }\n                          }\n                        },\n                        \"pagingDto\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"last\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"totalElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"totalPages\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"numberOfElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"first\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"size\": {\n                              \"type\": \"integer\",\n                              \"example\": 10,\n                              \"default\": 0\n                            },\n                            \"number\": {\n                              \"type\": \"integer\",\n                              \"example\": 0,\n                              \"default\": 0\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20' \\\\\\n--header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY=' \\\\\\n--header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"v1\",\n    \"version\": \"1.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://{host}\",\n      \"variables\": {\n        \"host\": {\n          \"default\": \"host\"\n        }\n      }\n    }\n  ],\n  \"components\": {\n    \"securitySchemes\": {\n      \"sec0\": {\n        \"type\": \"http\",\n        \"scheme\": \"basic\"\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"sec0\": []\n    }\n  ],\n  \"paths\": {\n    \"/api_gateway/rewards/core/v1/reward/list/brand/{BrandID}?ownerId={ownerId}&ownerType={ownerType}\": {\n      \"get\": {\n        \"summary\": \"Get all brand rewards using Brand ID\",\n        \"description\": \"\",\n        \"operationId\": \"get-reward-list\",\n        \"parameters\": [\n          {\n            \"name\": \"BrandId\",\n            \"in\": \"path\",\n            \"description\": \"Unique identifier of the brand\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            },\n            \"required\": true\n          },\n          {\n            \"name\": \"ownerType\",\n            \"in\": \"query\",\n            \"description\": \"Module for which the reward was created.\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"Loyalty program\",\n                \"Milestones\",\n                \"Campaigns\",\n                \"Journeys\",\n                \"Goodwill.\"\n              ]\n            }\n          },\n          {\n            \"name\": \"ownerId\",\n            \"in\": \"query\",\n            \"description\": \"Unique identifier of the owner to claim the reward.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"size\",\n            \"in\": \"query\",\n            \"description\": \"Results to show per page. Default - 100\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"page\",\n            \"in\": \"query\",\n            \"description\": \"Allows to retrieve details of a specific page.\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"language\",\n            \"in\": \"query\",\n            \"description\": \"Filters the response based on the reward language. Use this parameter to retrieve rewards in a specific language. For example, to display rewards in English, set the parameter to en\",\n            \"schema\": {\n              \"type\": \"string\",\n              \"enum\": [\n                \"\"\n              ],\n              \"default\": \"en\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"200\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"With OwnerType\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 6101,\\n        \\\"message\\\": \\\"Reward details fetched successfully\\\"\\n    },\\n    \\\"rewardList\\\": [\\n        {\\n            \\\"id\\\": 345839,\\n            \\\"name\\\": \\\"New year tes\\\",\\n            \\\"startTime\\\": \\\"2025-04-02 10:20:10\\\",\\n            \\\"startDateTime\\\": \\\"2025-04-02T10:20:10Z\\\",\\n            \\\"endTime\\\": \\\"2025-04-02 10:25:10\\\",\\n            \\\"endDateTime\\\": \\\"2025-04-02T10:25:10Z\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": 1,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 0,\\n            \\\"redemptionType\\\": \\\"MILES\\\",\\n            \\\"customFields\\\": {\\n                \\\"A\\\": \\\"1\\\",\\n                \\\"CF1233\\\": \\\"1\\\",\\n                \\\"EnumCF2\\\": \\\"r1\\\",\\n                \\\"EnumCF1\\\": \\\"white\\\"\\n            },\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"FREE\\\",\\n                    \\\"id\\\": 5717\\n                }\\n            ],\\n            \\\"groups\\\": [],\\n            \\\"rewardRank\\\": null,\\n            \\\"status\\\": \\\"ENDED\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 13417,\\n            \\\"vendorRedemptionName\\\": \\\"Delta\\\",\\n            \\\"vendorId\\\": 21,\\n            \\\"vendorName\\\": \\\"Delta\\\",\\n            \\\"lastUpdatedOn\\\": 1743667380000,\\n            \\\"lastUpdatedOnDateTime\\\": \\\"2025-04-03T08:03:00Z\\\",\\n            \\\"lastUpdatedBy\\\": 75106389,\\n            \\\"createdBy\\\": 75106389\\n        },\\n        {\\n            \\\"id\\\": 346323,\\n            \\\"name\\\": \\\"Go Test fastest\\\",\\n            \\\"startTime\\\": \\\"2025-04-03 05:29:47\\\",\\n            \\\"startDateTime\\\": \\\"2025-04-03T05:29:47Z\\\",\\n            \\\"endTime\\\": \\\"2025-04-03 05:34:47\\\",\\n            \\\"endDateTime\\\": \\\"2025-04-03T05:34:47Z\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": null,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 0,\\n            \\\"redemptionType\\\": \\\"MILES\\\",\\n            \\\"customFields\\\": {\\n                \\\"A\\\": \\\"1\\\",\\n                \\\"CF1233\\\": \\\"1\\\",\\n                \\\"EnumCF2\\\": \\\"r1\\\",\\n                \\\"EnumCF1\\\": \\\"white\\\",\\n                \\\"CF1\\\": \\\"test\\\"\\n            },\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"FREE\\\",\\n                    \\\"id\\\": 5751\\n                }\\n            ],\\n            \\\"groups\\\": [],\\n            \\\"rewardRank\\\": null,\\n            \\\"status\\\": \\\"ENDED\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 13417,\\n            \\\"vendorRedemptionName\\\": \\\"Delta\\\",\\n            \\\"vendorId\\\": 21,\\n            \\\"vendorName\\\": \\\"Delta\\\",\\n            \\\"lastUpdatedOn\\\": 1743666079000,\\n            \\\"lastUpdatedOnDateTime\\\": \\\"2025-04-03T07:41:19Z\\\",\\n            \\\"lastUpdatedBy\\\": 75106389,\\n            \\\"createdBy\\\": 75106389\\n        }\\n    ],\\n    \\\"pagingDto\\\": {\\n        \\\"last\\\": false,\\n        \\\"totalElements\\\": 759,\\n        \\\"totalPages\\\": 380,\\n        \\\"numberOfElements\\\": 2,\\n        \\\"first\\\": false,\\n        \\\"size\\\": 2,\\n        \\\"number\\\": 2\\n    }\\n}\"\n                  },\n                  \"Result\": {\n                    \"value\": \"{\\n    \\\"status\\\": {\\n        \\\"success\\\": true,\\n        \\\"code\\\": 6101,\\n        \\\"message\\\": \\\"Reward details fetched successfully\\\"\\n    },\\n    \\\"rewardList\\\": [\\n        {\\n            \\\"id\\\": 20867,\\n            \\\"name\\\": \\\"name_first\\\",\\n            \\\"startTime\\\": \\\"2024-11-01 03:53:01\\\",\\n            \\\"endTime\\\": \\\"2027-01-15 07:26:45\\\",\\n            \\\"type\\\": \\\"VOUCHER\\\",\\n            \\\"priority\\\": 1,\\n            \\\"enabled\\\": true,\\n            \\\"intouchPoints\\\": 1,\\n            \\\"redemptionType\\\": \\\"SWEEPSTAKES\\\",\\n            \\\"customFields\\\": {},\\n            \\\"owners\\\": null,\\n            \\\"paymentConfigs\\\": [\\n                {\\n                    \\\"paymentMode\\\": \\\"CASH\\\",\\n                    \\\"id\\\": 813,\\n                    \\\"cash\\\": 25.0000\\n                }\\n            ],\\n            \\\"groups\\\": [\\n                {\\n                    \\\"groupName\\\": \\\"groupName014\\\",\\n                    \\\"groupRank\\\": 8\\n                }\\n            ],\\n            \\\"rewardRank\\\": 10,\\n            \\\"status\\\": \\\"UPCOMING\\\",\\n            \\\"intouchSeriesId\\\": null,\\n            \\\"vendorRedemptionId\\\": 1627,\\n            \\\"vendorRedemptionName\\\": \\\"demo vendor for physicalReward\\\",\\n            \\\"vendorId\\\": 17,\\n            \\\"vendorName\\\": \\\"testVendor002\\\",\\n            \\\"lastUpdatedOn\\\": 1725359777000,\\n            \\\"lastUpdatedBy\\\": null\\n        }\\n    ],\\n    \\\"pagingDto\\\": {\\n        \\\"last\\\": true,\\n        \\\"totalElements\\\": 1,\\n        \\\"totalPages\\\": 1,\\n        \\\"numberOfElements\\\": 1,\\n        \\\"first\\\": true,\\n        \\\"size\\\": 10,\\n        \\\"number\\\": 0\\n    }\\n}\"\n                  }\n                },\n                \"schema\": {\n                  \"oneOf\": [\n                    {\n                      \"title\": \"With OwnerType\",\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 6101,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward details fetched successfully\"\n                            }\n                          }\n                        },\n                        \"rewardList\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"id\": {\n                                \"type\": \"integer\",\n                                \"example\": 345839,\n                                \"default\": 0\n                              },\n                              \"name\": {\n                                \"type\": \"string\",\n                                \"example\": \"New year tes\"\n                              },\n                              \"startTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02 10:20:10\"\n                              },\n                              \"startDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02T10:20:10Z\"\n                              },\n                              \"endTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02 10:25:10\"\n                              },\n                              \"endDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-02T10:25:10Z\"\n                              },\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"example\": \"VOUCHER\"\n                              },\n                              \"priority\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"enabled\": {\n                                \"type\": \"boolean\",\n                                \"example\": true,\n                                \"default\": true\n                              },\n                              \"intouchPoints\": {\n                                \"type\": \"integer\",\n                                \"example\": 0,\n                                \"default\": 0\n                              },\n                              \"redemptionType\": {\n                                \"type\": \"string\",\n                                \"example\": \"MILES\"\n                              },\n                              \"customFields\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                  \"A\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"1\"\n                                  },\n                                  \"CF1233\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"1\"\n                                  },\n                                  \"EnumCF2\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"r1\"\n                                  },\n                                  \"EnumCF1\": {\n                                    \"type\": \"string\",\n                                    \"example\": \"white\"\n                                  }\n                                }\n                              },\n                              \"owners\": {},\n                              \"paymentConfigs\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"paymentMode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"FREE\"\n                                    },\n                                    \"id\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 5717,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"groups\": {\n                                \"type\": \"array\"\n                              },\n                              \"rewardRank\": {},\n                              \"status\": {\n                                \"type\": \"string\",\n                                \"example\": \"ENDED\"\n                              },\n                              \"intouchSeriesId\": {},\n                              \"vendorRedemptionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 13417,\n                                \"default\": 0\n                              },\n                              \"vendorRedemptionName\": {\n                                \"type\": \"string\",\n                                \"example\": \"Delta\"\n                              },\n                              \"vendorId\": {\n                                \"type\": \"integer\",\n                                \"example\": 21,\n                                \"default\": 0\n                              },\n                              \"vendorName\": {\n                                \"type\": \"string\",\n                                \"example\": \"Delta\"\n                              },\n                              \"lastUpdatedOn\": {\n                                \"type\": \"integer\",\n                                \"example\": 1743667380000,\n                                \"default\": 0\n                              },\n                              \"lastUpdatedOnDateTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2025-04-03T08:03:00Z\"\n                              },\n                              \"lastUpdatedBy\": {\n                                \"type\": \"integer\",\n                                \"example\": 75106389,\n                                \"default\": 0\n                              },\n                              \"createdBy\": {\n                                \"type\": \"integer\",\n                                \"example\": 75106389,\n                                \"default\": 0\n                              }\n                            }\n                          }\n                        },\n                        \"pagingDto\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"last\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"totalElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 759,\n                              \"default\": 0\n                            },\n                            \"totalPages\": {\n                              \"type\": \"integer\",\n                              \"example\": 380,\n                              \"default\": 0\n                            },\n                            \"numberOfElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            },\n                            \"first\": {\n                              \"type\": \"boolean\",\n                              \"example\": false,\n                              \"default\": true\n                            },\n                            \"size\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            },\n                            \"number\": {\n                              \"type\": \"integer\",\n                              \"example\": 2,\n                              \"default\": 0\n                            }\n                          }\n                        }\n                      }\n                    },\n                    {\n                      \"type\": \"object\",\n                      \"properties\": {\n                        \"status\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"success\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"code\": {\n                              \"type\": \"integer\",\n                              \"example\": 6101,\n                              \"default\": 0\n                            },\n                            \"message\": {\n                              \"type\": \"string\",\n                              \"example\": \"Reward details fetched successfully\"\n                            }\n                          }\n                        },\n                        \"rewardList\": {\n                          \"type\": \"array\",\n                          \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                              \"id\": {\n                                \"type\": \"integer\",\n                                \"example\": 20867,\n                                \"default\": 0\n                              },\n                              \"name\": {\n                                \"type\": \"string\",\n                                \"example\": \"name_first\"\n                              },\n                              \"startTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2024-11-01 03:53:01\"\n                              },\n                              \"endTime\": {\n                                \"type\": \"string\",\n                                \"example\": \"2027-01-15 07:26:45\"\n                              },\n                              \"type\": {\n                                \"type\": \"string\",\n                                \"example\": \"VOUCHER\"\n                              },\n                              \"priority\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"enabled\": {\n                                \"type\": \"boolean\",\n                                \"example\": true,\n                                \"default\": true\n                              },\n                              \"intouchPoints\": {\n                                \"type\": \"integer\",\n                                \"example\": 1,\n                                \"default\": 0\n                              },\n                              \"redemptionType\": {\n                                \"type\": \"string\",\n                                \"example\": \"SWEEPSTAKES\"\n                              },\n                              \"customFields\": {\n                                \"type\": \"object\",\n                                \"properties\": {}\n                              },\n                              \"owners\": {},\n                              \"paymentConfigs\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"paymentMode\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"CASH\"\n                                    },\n                                    \"id\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 813,\n                                      \"default\": 0\n                                    },\n                                    \"cash\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 25,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"groups\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                  \"type\": \"object\",\n                                  \"properties\": {\n                                    \"groupName\": {\n                                      \"type\": \"string\",\n                                      \"example\": \"groupName014\"\n                                    },\n                                    \"groupRank\": {\n                                      \"type\": \"integer\",\n                                      \"example\": 8,\n                                      \"default\": 0\n                                    }\n                                  }\n                                }\n                              },\n                              \"rewardRank\": {\n                                \"type\": \"integer\",\n                                \"example\": 10,\n                                \"default\": 0\n                              },\n                              \"status\": {\n                                \"type\": \"string\",\n                                \"example\": \"UPCOMING\"\n                              },\n                              \"intouchSeriesId\": {},\n                              \"vendorRedemptionId\": {\n                                \"type\": \"integer\",\n                                \"example\": 1627,\n                                \"default\": 0\n                              },\n                              \"vendorRedemptionName\": {\n                                \"type\": \"string\",\n                                \"example\": \"demo vendor for physicalReward\"\n                              },\n                              \"vendorId\": {\n                                \"type\": \"integer\",\n                                \"example\": 17,\n                                \"default\": 0\n                              },\n                              \"vendorName\": {\n                                \"type\": \"string\",\n                                \"example\": \"testVendor002\"\n                              },\n                              \"lastUpdatedOn\": {\n                                \"type\": \"integer\",\n                                \"example\": 1725359777000,\n                                \"default\": 0\n                              },\n                              \"lastUpdatedBy\": {}\n                            }\n                          }\n                        },\n                        \"pagingDto\": {\n                          \"type\": \"object\",\n                          \"properties\": {\n                            \"last\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"totalElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"totalPages\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"numberOfElements\": {\n                              \"type\": \"integer\",\n                              \"example\": 1,\n                              \"default\": 0\n                            },\n                            \"first\": {\n                              \"type\": \"boolean\",\n                              \"example\": true,\n                              \"default\": true\n                            },\n                            \"size\": {\n                              \"type\": \"integer\",\n                              \"example\": 10,\n                              \"default\": 0\n                            },\n                            \"number\": {\n                              \"type\": \"integer\",\n                              \"example\": 0,\n                              \"default\": 0\n                            }\n                          }\n                        }\n                      }\n                    }\n                  ]\n                }\n              }\n            }\n          },\n          \"400\": {\n            \"description\": \"400\",\n            \"content\": {\n              \"application/json\": {\n                \"examples\": {\n                  \"Result\": {\n                    \"value\": \"{}\"\n                  }\n                },\n                \"schema\": {\n                  \"type\": \"object\",\n                  \"properties\": {}\n                }\n              }\n            }\n          }\n        },\n        \"deprecated\": false,\n        \"x-readme\": {\n          \"code-samples\": [\n            {\n              \"language\": \"curl\",\n              \"code\": \"curl --location 'https://eu.api.capillarytech.com/api_gateway/rewards/core/v1/reward/list/brand/1?page=0&size=20' \\\\\\n--header 'Authorization: Basic aWFtc2hpdmFhbms6NDAblahblahkNWI1YTI5MWY=' \\\\\\n--header 'Cookie: _cfuvid=QbjsRhi.Ql7ZC6uSBP98acGYFfR9hGAQv4cQ2w34JpU-1727244469000-0.0.1.1-604800000'\"\n            }\n          ],\n          \"samples-languages\": [\n            \"curl\"\n          ]\n        }\n      }\n    }\n  },\n  \"x-readme\": {\n    \"headers\": [\n      {\n        \"key\": \"Content-Type\",\n        \"value\": \"application/json\"\n      },\n      {\n        \"key\": \"Accept\",\n        \"value\": \"application/json\"\n      }\n    ],\n    \"explorer-enabled\": true,\n    \"proxy-enabled\": true\n  },\n  \"x-readme-fauxas\": true\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

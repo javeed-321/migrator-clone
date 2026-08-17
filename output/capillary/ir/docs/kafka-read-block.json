@@ -1,0 +1,336 @@
+{
+  "slug": "docs/kafka-read-block",
+  "source": "https://docs.capillarytech.com/docs/kafka-read-block.md",
+  "url": "https://docs.capillarytech.com/docs/kafka-read-block",
+  "title": "Kafka Read Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:27:46.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 4,
+    "list": 1,
+    "Table": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Kafka (Read) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Kafka (Read) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `kafka_topic_read` block pulls data from a Kafka topic. It acts as the source block in a Connect+ dataflow, connecting to a Kafka server and consuming messages from one or more predefined topics. The block supports configurable consumer group IDs, header extraction as data attributes for routing and tracking, and a unique ID for end-to-end message tracing across the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The kafka_topic_read block pulls data from a Kafka topic. It acts as the source block in a Connect+ dataflow, connecting to a Kafka server and consuming messages from one or more predefined topics. The block supports configurable consumer group IDs, header extraction as data attributes for routing and tracking, and a unique ID for end-to-end message tracing across the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your dataflow sources data from a Kafka topic, such as streaming event data or real-time transaction feeds.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow sources data from a Kafka topic, such as streaming event data or real-time transaction feeds.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "* The name of the Kafka topic or topics to consume from\n* Access to the appropriate Kafka client service",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The name of the Kafka topic or topics to consume fromAccess to the appropriate Kafka client service",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## Standard properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Standard properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        86
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Kafka topics comma separated**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The Kafka topic names to consume messages from. Enter multiple topics separated by commas. \n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Kafka client service to connect to server**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The Kafka client service used to connect to the server.   \n        Select `Event-notification-kafka` or `connectplus-kafka service`.   \n        Default value: `Event-notification-kafka`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Kafka topics comma separated",
+            "Yes",
+            "The Kafka topic names to consume messages from. Enter multiple topics separated by commas."
+          ],
+          [
+            "Kafka client service to connect to server",
+            "Yes",
+            "The Kafka client service used to connect to the server.Select Event-notification-kafka or connectplus-kafka service.Default value: Event-notification-kafka."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "## Advanced properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Advanced properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "⚠️ Make changes to advanced properties only if you know what you are doing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "⚠️ Make changes to advanced properties only if you know what you are doing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        92,
+        155
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Consumer Group Id**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The consumer group ID used to identify this block's consumer within the Kafka cluster. If you do not provide a value, the system uses a default value derived from the expression `${neoDataflowId}`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Headers as Attribute**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Specifies which Kafka message headers are extracted as data attributes and made available to downstream blocks.   \n        Select `All` to extract all headers, or `Traceable Id` to extract only the traceable identifier.   \n        Default value: `All`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Unique Id for tracing**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        The unique identifier used to trace a message through the dataflow. If you do not provide a value, the system uses a default value derived from the expression \n        `${kafka.key}_${kafka.offset}_${kafka.partition}_${kafka.topic}`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Consumer Group Id",
+            "No",
+            "The consumer group ID used to identify this block's consumer within the Kafka cluster. If you do not provide a value, the system uses a default value derived from the expression ${neoDataflowId}."
+          ],
+          [
+            "Headers as Attribute",
+            "No",
+            "Specifies which Kafka message headers are extracted as data attributes and made available to downstream blocks.Select All to extract all headers, or Traceable Id to extract only the traceable identifier.Default value: All."
+          ],
+          [
+            "Unique Id for tracing",
+            "No",
+            "The unique identifier used to trace a message through the dataflow. If you do not provide a value, the system uses a default value derived from the expression\n${kafka.key}_${kafka.offset}_${kafka.partition}_${kafka.topic}."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/6861091041661716bc81344cc4722a053a2a5a6856ea2be9f15fd605a695a5fb-Screenshot_2026-04-15_at_12.19.02_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/6861091041661716bc81344cc4722a053a2a5a6856ea2be9f15fd605a695a5fb-Screenshot_2026-04-15_at_12.19.02_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

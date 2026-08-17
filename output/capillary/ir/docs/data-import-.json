@@ -1,0 +1,2630 @@
+{
+  "slug": "docs/data-import-",
+  "source": "https://docs.capillarytech.com/docs/data-import-.md",
+  "url": "https://docs.capillarytech.com/docs/data-import-",
+  "title": "Data Import",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-31T11:11:25.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `\\` (U+005C) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 30,
+    "paragraph": 57,
+    "list": 26,
+    "blockquote": 1,
+    "Table": 6,
+    "Callout": 2,
+    "Image": 13
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Data Import (Old)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Data Import (Old)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Introduction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Introduction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "#### What is Data Import Framework?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "What is Data Import Framework?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The Data Import Framework is a web application that helps you upload offline data generated at stores to the Capillary Database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Import Framework is a web application that helps you upload offline data generated at stores to the Capillary Database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "When InStore is operated online, it continuously syncs data generated at the PoS to the Capillary Database. However, if data is not captured through InStore but saved in the PoS machines, you can use the Data Import Framework to upload such data to the Capillary Database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When InStore is operated online, it continuously syncs data generated at the PoS to the Capillary Database. However, if data is not captured through InStore but saved in the PoS machines, you can use the Data Import Framework to upload such data to the Capillary Database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Note:** Customers imported using the Data Import Framework will appear in the new Member Care (Cortex) search only after the daily Cortex sync, which occurs at 12 AM cluster timezone. Customers registered through APIs are available in Cortex search immediately due to event-driven sync. This timing difference is due to Cortex data ingestion processes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Customers imported using the Data Import Framework will appear in the new Member Care (Cortex) search only after the daily Cortex sync, which occurs at 12 AM cluster timezone. Customers registered through APIs are available in Cortex search immediately due to event-driven sync. This timing difference is due to Cortex data ingestion processes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "#### How can I import data to the Capillary Database?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "How can I import data to the Capillary Database?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "Based on the size of the data, you can import data in two ways:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Based on the size of the data, you can import data in two ways:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        24
+      ],
+      "raw": "* Import directly: If the number of entries in the CSV file are less than 700,000, you can directly upload the data (.csv) file in Data Import Framework.\n* Import through an FTP server: If the number of entries in the csv file are from 700,000 to 1,000,000, you need to import data from an FTP server. For this, you need to provide read/write access to a specific directory of the FTP Server and schedule the import job on a daily, weekly or monthly basis.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Import directly: If the number of entries in the CSV file are less than 700,000, you can directly upload the data (.csv) file in Data Import Framework.Import through an FTP server: If the number of entries in the csv file are from 700,000 to 1,000,000, you need to import data from an FTP server. For this, you need to provide read/write access to a specific directory of the FTP Server and schedule the import job on a daily, weekly or monthly basis.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "#### What all data can I import through Data Import Framework?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "What all data can I import through Data Import Framework?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "The data corresponding to each activity type will be grouped as a category called profiles.  Data Import Framework lets you import the data of activities provided in the following section.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The data corresponding to each activity type will be grouped as a category called profiles.  Data Import Framework lets you import the data of activities provided in the following section.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "**Can I restrict the number of entries in an import job?**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Can I restrict the number of entries in an import job?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "Data Import Framework lets you limit the entries to import for each profile through templates. Create a template for the profile and set the limit. When configuring an import job, choose the desired profile template.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Data Import Framework lets you limit the entries to import for each profile through templates. Create a template for the profile and set the limit. When configuring an import job, choose the desired profile template.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "#### How can I check the status of a data import job?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "How can I check the status of a data import job?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "You can check the detailed status of an import job on the Import File Details page.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can check the detailed status of an import job on the Import File Details page.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "#### Can I import multiple profiles data at a time?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Can I import multiple profiles data at a time?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "Through direct import, you can choose only one file at a time. However, you can import multiple files at a time through FTP.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Through direct import, you can choose only one file at a time. However, you can import multiple files at a time through FTP.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "## CSV files for different profiles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "CSV files for different profiles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        44,
+        54
+      ],
+      "raw": "> \\[!NOTE]\n> **Positional mapping in CSV imports**\n>\n> The import framework uses positional mapping, not header-based mapping, when processing CSV files. This means column values are read strictly based on their order in the file, regardless of the column names.\n>\n> If the column order in the CSV does not match the expected schema, values may be validated against the wrong fields and the record can fail silently or be rejected.\n>\n> **Example:**\n> If comm\\_channel and sub\\_status columns are swapped, values like EMAIL and OPTOUT will be validated against incorrect enums, resulting in import failures.\n>\n> Always ensure the CSV column order exactly matches the expected template sequence before uploading files.",
+      "kind": "blockquote",
+      "syntax": "markdown",
+      "text": "[!NOTE]\nPositional mapping in CSV importsThe import framework uses positional mapping, not header-based mapping, when processing CSV files. This means column values are read strictly based on their order in the file, regardless of the column names.If the column order in the CSV does not match the expected schema, values may be validated against the wrong fields and the record can fail silently or be rejected.Example:\nIf comm_channel and sub_status columns are swapped, values like EMAIL and OPTOUT will be validated against incorrect enums, resulting in import failures.Always ensure the CSV column order exactly matches the expected template sequence before uploading files.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "Before importing data, keep the CSV files ready for each profile that you want to import. Each file should contain entries of the corresponding profile. There are mandatory and optional fields for each profile. Fields that are marked by \\* are mandatory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before importing data, keep the CSV files ready for each profile that you want to import. Each file should contain entries of the corresponding profile. There are mandatory and optional fields for each profile. Fields that are marked by * are mandatory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        58,
+        62
+      ],
+      "raw": "* A customer identifier can be a mobile number, email ID, or external ID.\n* In addition to the profile fields, you can also have custom fields for your organization.\n* The organization could have additional mandatory fields excluding the ones mentioned herein. For example, mandatory custom fields.\n* For direct import, the number of entries in a CSV file should not exceed 7L entries and for import through FTP, the number of entries should be between 7L-10L.\n* The maximum size allowed for an FTP import is 200MB.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A customer identifier can be a mobile number, email ID, or external ID.In addition to the profile fields, you can also have custom fields for your organization.The organization could have additional mandatory fields excluding the ones mentioned herein. For example, mandatory custom fields.For direct import, the number of entries in a CSV file should not exceed 7L entries and for import through FTP, the number of entries should be between 7L-10L.The maximum size allowed for an FTP import is 200MB.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "The following table provides the reference links for each entity type available in import type (profiles)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table provides the reference links for each entity type available in import type (profiles)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        66,
+        255
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Entity\n      </th>\n\n      <th>\n        Supported Profiles\n      </th>\n\n      <th>\n        Reference links\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Customer\n      </td>\n\n      <td>\n        Identifier Cleanup\n        Loyalty Customers\n        User Subscription\n        Coupon Redemption\n        Card Import\n        Card Series Import\n        Card Status Update & Linking Import\n        Customer Status Import\n        Entity lifecycle\n        Fraud Status Migration to customer status\n        Historical points import\n        Loyalty Customers\n        Subscription service new\n        Update fraud status\n        V2 profile identifier (Add/Update)\n      </td>\n\n      <td>\n        [Customer Profile](https://docs.capillarytech.com/docs/customer-profiles)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Inventory\n      </td>\n\n      <td>\n        Inventory\n        Inventory Updates for Line-items\n        Brands\n        Category\n        Org colors import\n        Attributes\n      </td>\n\n      <td>\n        [Inventory Profile](https://docs.capillarytech.com/docs/inventory-profiles)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Org Entities\n      </td>\n\n      <td>\n        Admin Users\n        Attribution Lookup Import\n        Concepts\n        Org currency ratio import\n        Org entity status update\n        Store add ons\n        Zones\n        Stores\n        Store Server\n        Store TILLs\n      </td>\n\n      <td>\n        [Org Entities](https://docs.capillarytech.com/docs/org-entities)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Points & Slabs\n      </td>\n\n      <td>\n        Bill Points promotion (Accrual)\n        Redeem Points\n        Slab\n      </td>\n\n      <td>\n        [Points & Slabs](https://docs.capillarytech.com/docs/points-slabs)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Points Deduction\n      </td>\n\n      <td>\n        Bill Promotion Expiry\n        Customer Promotion Expiry\n        Transactions Bills Deduction\n      </td>\n\n      <td>\n        [Points deductions](https://docs.capillarytech.com/docs/points-deductions)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Transactions\n      </td>\n\n      <td>\n        Loyalty Transactions\n        Transactions (Not-Interested)\n        Extended Fields Import\n        Transaction Dump\n        Loyalty Transaction Line Items\n        Update Outlier Status (Loyalty Transactions)\n        Update Outlier Status (Not-Interested Transactions)\n        Not-Interested Transaction Line items\n        Transaction (Returns)\n      </td>\n\n      <td>\n        [Transactions](https://docs.capillarytech.com/docs/transactions-profiles)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Trackers and Promotional Rewards\n      </td>\n\n      <td>\n        Trackers\n        Promotional Rewards\n      </td>\n\n      <td>\n        [Trackers](https://docs.capillarytech.com/docs/other-import-profiles#trackers)\n\n        [Promotional Rewards](https://docs.capillarytech.com/docs/other-import-profiles#promotional-rewards)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Data Cleanup\n      </td>\n\n      <td>\n        Identifier Cleanup\n\n        Lifetime Purchases Recalculation\n      </td>\n\n      <td>\n        [Data cleanup](https://docs.capillarytech.com/docs/data-cleanup)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Payment Mode\n      </td>\n\n      <td>\n        Payment Mode\n      </td>\n\n      <td>\n        [Payment mode import profile](https://docs.capillarytech.com/docs/payment-mode-profile)\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        257,
+        257
+      ],
+      "raw": "## Configuring for directly uploading an import file",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring for directly uploading an import file",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        259,
+        259
+      ],
+      "raw": "Once you create the data file required for the current import job, you can import it to the Capillary database using the 6 steps provided in the following.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you create the data file required for the current import job, you can import it to the Capillary database using the 6 steps provided in the following.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        261,
+        261
+      ],
+      "raw": "The following are the important points to consider before starting with import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the important points to consider before starting with import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        263,
+        263
+      ],
+      "raw": "\\*The mentioned time period is in",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "*The mentioned time period is in",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        265,
+        267
+      ],
+      "raw": "* IST for APAC & APAC2 cluster\n* CST for China cluster;\n* GMT for EU cluster",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "IST for APAC & APAC2 clusterCST for China cluster;GMT for EU cluster",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        269,
+        276
+      ],
+      "raw": "| Category                                                                               | Figures        |\n| :------------------------------------------------------------------------------------- | :------------- |\n| Duration for data import in the day time (Peak hours)                                  | \\*6 AM - 10 PM |\n| Duration for data import in night time (FTP hours)                                     | \\*10 PM - 6 AM |\n| No of records allowed in the last 24 hours by direct import                            | 200,000        |\n| No of records allowed in the last 24 hours in the day time (Peak hours) day FTP import | 200,000        |\n| No of records allowed in last 24 hours in night time (FTP hours) by FTP import         | 1,000,000      |\n| Maximum size of a single file (in MB)                                                  | 200 MB         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Category",
+          "Figures"
+        ],
+        "rows": [
+          [
+            "Duration for data import in the day time (Peak hours)",
+            "*6 AM - 10 PM"
+          ],
+          [
+            "Duration for data import in night time (FTP hours)",
+            "*10 PM - 6 AM"
+          ],
+          [
+            "No of records allowed in the last 24 hours by direct import",
+            "200,000"
+          ],
+          [
+            "No of records allowed in the last 24 hours in the day time (Peak hours) day FTP import",
+            "200,000"
+          ],
+          [
+            "No of records allowed in last 24 hours in night time (FTP hours) by FTP import",
+            "1,000,000"
+          ],
+          [
+            "Maximum size of a single file (in MB)",
+            "200 MB"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        278,
+        282
+      ],
+      "raw": "> 🚧 **Large imports running during peak hours can cause live API timeouts**\n>\n> The Data Import Framework writes directly to the Capillary database tables that also serve live API traffic, including `v1.1/points/redeem` and `v2/customers`. When a large import runs during peak hours, it creates contention on these shared tables. API calls that write to the same tables may time out and return 520 errors for end users. Loyalty customer profile imports carry the highest risk because they touch the loyalty table directly.\n>\n> Schedule all imports exceeding 200,000 records during the off-peak window (10 PM to 6 AM cluster timezone). Do not trigger large imports during business hours even if the system allows it.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "Large imports running during peak hours can cause live API timeoutsThe Data Import Framework writes directly to the Capillary database tables that also serve live API traffic, including v1.1/points/redeem and v2/customers. When a large import runs during peak hours, it creates contention on these shared tables. API calls that write to the same tables may time out and return 520 errors for end users. Loyalty customer profile imports carry the highest risk because they touch the loyalty table directly.Schedule all imports exceeding 200,000 records during the off-peak window (10 PM to 6 AM cluster timezone). Do not trigger large imports during business hours even if the system allows it.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        284,
+        284
+      ],
+      "raw": "#### Step 1: Create data file (.csv)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 1: Create data file (.csv)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        286,
+        286
+      ],
+      "raw": "First, create a CSV file based on the purpose of the import. Each purpose is associated with a different profile. For example, register customers, add transactions, issue points, add inventory, and so on. You need to create CSV files according to profiles.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "First, create a CSV file based on the purpose of the import. Each purpose is associated with a different profile. For example, register customers, add transactions, issue points, add inventory, and so on. You need to create CSV files according to profiles.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        288,
+        288
+      ],
+      "raw": "* Before uploading the file, ensure that no invalid entries are present in the file.  To make this process easy, sort columns by mobile number and transaction date wherever applicable",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Before uploading the file, ensure that no invalid entries are present in the file.  To make this process easy, sort columns by mobile number and transaction date wherever applicable",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        290,
+        290
+      ],
+      "raw": "To know more about different fields supported for each profile, see Profiles, Supported Fields, and Template Configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To know more about different fields supported for each profile, see Profiles, Supported Fields, and Template Configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        292,
+        292
+      ],
+      "raw": "#### Step 2: Upload the CSV file",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 2: Upload the CSV file",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        294,
+        294
+      ],
+      "raw": "Once you create a file, upload it via. Import Framework.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once you create a file, upload it via. Import Framework.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        296,
+        297
+      ],
+      "raw": "1. On the Settings page, click Master Data Management > Data Import\n2. Click Data Import. You will see the following page",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Settings page, click Master Data Management > Data ImportClick Data Import. You will see the following page",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        299,
+        299
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/7530294-upload_csv.jpg\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/7530294-upload_csv.jpg",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        301,
+        301
+      ],
+      "raw": "In the **Direct Upload** field, do the following",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the Direct Upload field, do the following",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        303,
+        319
+      ],
+      "raw": "3. In **Upload data csv,** choose the CSV file that you want to import\n\n4. In the **No. of rows to be ignored from top**, set the number of rows from the top that you want to exclude from importing.\\\n   For example, if number 2 is set in this field then while uploading data to the server the top two rows will not be considered. This can be used when there are field names, duplicate data or blank data in the top rows\n\n5. In **No. of rows to be ignored from bottom**, set the number of rows from the bottom that you want to exclude from importing\\\n   For example, if 15 is set, then while importing the last 15 rows will be ignored. You can set this option in case of duplicate/blank/invalid entries in the last rows of the CSV file.\n\n6. In **File Delimiter**,  type in the character used to separate each value in the file\\\n   For example, a file can have either ',' separated or 'tab' separated or ';' separated values. If ','  is mentioned then values will be separated after every , found in the file.\n\n7. In **Enclosure**, type the special character used in the file for 'string' data types\n\n8. In **Escape Character**, type in the special character that needs to be ignored from the file\n\n9. Click Submit.\\\n   You will see the following page. Proceed with the configuration steps provided below.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Upload data csv, choose the CSV file that you want to importIn the No. of rows to be ignored from top, set the number of rows from the top that you want to exclude from importing.For example, if number 2 is set in this field then while uploading data to the server the top two rows will not be considered. This can be used when there are field names, duplicate data or blank data in the top rowsIn No. of rows to be ignored from bottom, set the number of rows from the bottom that you want to exclude from importingFor example, if 15 is set, then while importing the last 15 rows will be ignored. You can set this option in case of duplicate/blank/invalid entries in the last rows of the CSV file.In File Delimiter,  type in the character used to separate each value in the fileFor example, a file can have either ',' separated or 'tab' separated or ';' separated values. If ','  is mentioned then values will be separated after every , found in the file.In Enclosure, type the special character used in the file for 'string' data typesIn Escape Character, type in the special character that needs to be ignored from the fileClick Submit.You will see the following page. Proceed with the configuration steps provided below.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        321,
+        321
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/7ca6d43-Data_IMport.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/7ca6d43-Data_IMport.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        323,
+        323
+      ],
+      "raw": "#### Step 3: Choose the respective profile and create a template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 3: Choose the respective profile and create a template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        325,
+        325
+      ],
+      "raw": "Based on the type of data, choose the profile name. create a new template for the profile or use an existing template. A profile template stores the Template Configurations set and lets you reuse it whenever required instead of creating a new template every time.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Based on the type of data, choose the profile name. create a new template for the profile or use an existing template. A profile template stores the Template Configurations set and lets you reuse it whenever required instead of creating a new template every time.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        327,
+        327
+      ],
+      "raw": "**To choose from the existing templates,**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To choose from the existing templates,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        329,
+        331
+      ],
+      "raw": "* In **Choose Profile**, select the profile based on the data that you are uploading. For more information on profiles, see Profiles, Supported Fields, and Template Configuration\n* In **Choose Template**, select the template that you want to use for the current import\n* Click **Submit**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Choose Profile, select the profile based on the data that you are uploading. For more information on profiles, see Profiles, Supported Fields, and Template ConfigurationIn Choose Template, select the template that you want to use for the current importClick Submit",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        333,
+        333
+      ],
+      "raw": "**To create a new template**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a new template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        335,
+        337
+      ],
+      "raw": "* Check **Create new template box.**\n* In the **Name of the template**, type a name for the new template\n* Click **Submit.**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check Create new template box.In the Name of the template, type a name for the new templateClick Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        339,
+        339
+      ],
+      "raw": "<Image border={false} src=\"https://files.readme.io/51f0d77-Set_up_import.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "border": "{false}",
+        "src": "https://files.readme.io/51f0d77-Set_up_import.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 49,
+      "lines": [
+        341,
+        341
+      ],
+      "raw": "#### Step 4: Configure the Profile Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 4: Configure the Profile Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        343,
+        343
+      ],
+      "raw": "The options vary based on the profile chosen. Configure the profile template as explained in Profiles, Supported Fields, and Template Configuration and click **Submit**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The options vary based on the profile chosen. Configure the profile template as explained in Profiles, Supported Fields, and Template Configuration and click Submit",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        345,
+        345
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/2c96109-step4.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/2c96109-step4.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        347,
+        347
+      ],
+      "raw": "#### Step 5: Map each field with the respective column of the CSV file (Field Mapping)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 5: Map each field with the respective column of the CSV file (Field Mapping)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        349,
+        349
+      ],
+      "raw": "Map each field with the respective column names of the CSV file and click Submit. Fields that are marked with \\* are mandatory.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Map each field with the respective column names of the CSV file and click Submit. Fields that are marked with * are mandatory.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        351,
+        351
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/1ba65a8-step5.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/1ba65a8-step5.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 55,
+      "lines": [
+        353,
+        354
+      ],
+      "raw": "\\***Not Null**\\\nIf you do not want to allow saving null values for a field, check this box. It will ignore the entries with null values for that specific field while importing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "*Not NullIf you do not want to allow saving null values for a field, check this box. It will ignore the entries with null values for that specific field while importing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        356,
+        357
+      ],
+      "raw": "* **Data Transformer & Transformer Inputs**\\\n  This option is used to modify the existing data in a column automatically by making use of the functions and other configurations.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Data Transformer & Transformer InputsThis option is used to modify the existing data in a column automatically by making use of the functions and other configurations.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        359,
+        359
+      ],
+      "raw": "There are four types of data transformers as mentioned in the following table.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are four types of data transformers as mentioned in the following table.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        361,
+        438
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Data Transformers\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Merge\n      </td>\n\n      <td>\n        Merges the values of two or more columns to a single field. Write the merge function in the **Transformer Inputs** box.\n        Columns=>x,y,z or Columns=>2,3,4;Separator=>[] where x, y and z are column numbers.\n        For example, if Column=>1,2,3 is set then the text in the columns 1, 2, 3 will be merged to a single field separating each column with a comma (,), a default value.\n        You can set any delimiter for merging two or more columns using the Separator=> function.\n        For example, if Column=>1,2,3;Separator=>; is set in **Transformer Inputs**, the columns 1, 2 and 3 will be merged separating the value of each column with a semicolon.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Default Value\n      </td>\n\n      <td>\n        Replaces null values present in the column with a value specified in Transformer Inputs.\n        Value=>[Any Value].\n        For example, if Value=>store.server is set in **Transformer Inputs**, all null values identified in the column will be replaced with 'store.server'\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Convert to Date & Time\n      </td>\n\n      <td>\n        Changes the date and time format across the column. This is applicable only to the columns with date and time.\n        Set the standard date and time format in the **Transformer Inputs**box.\n        **Date parameters**\n\n        * d - Day of the month (1-31)\n        * m - Month (1-12)\n        * Y - Year in four digits (example: 2013)\n        * y: Year (13)\n          **Time Parameters**\n        * H: Hours (24hr format)\n        * s: Seconds\n        * h: 12 hour format(1-12)\n        * i: Minutes (00 - 60)\n          The parameters of date and time format can be used in any order. For example, date can be set as d/m/Y or m/d/Y or Y/m/d. However, it is recommended to use the standard date and time format of the organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Expression\n      </td>\n\n      <td>\n        This function lets you apply some mathematical calculations on two or more columns.  \n        Exp=>\\{Column no. of A} \\{+ or - or *or /} \\{Column no. of B}\n        For example, if the expression is set to Exp=>\\{1}\\{2}-10,\n        All null values of that column will be replaced with - (value of that field will be (value of column 1) * (value of column2) - 10).\n        You can use this function only on columns with integer values but not for string data types.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        440,
+        440
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        442,
+        445
+      ],
+      "raw": "* If the date format in the file is in the form YYYY-MM-DD hh:ii:ss, then date formatting is not required.\n* Select **Not Null** only for the fields that are not supposed to be empty. If any null values are identified for those particular fields, an error report will be generated with the entire list of null values.\n* Options for each configuration varies based on the org and profile selected\n* Apart from the standard fields, you can also import custom fields and map with the respective column of the CSV file. However, no validation is performed on custom fields.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the date format in the file is in the form YYYY-MM-DD hh:ii:ss, then date formatting is not required.Select Not Null only for the fields that are not supposed to be empty. If any null values are identified for those particular fields, an error report will be generated with the entire list of null values.Options for each configuration varies based on the org and profile selectedApart from the standard fields, you can also import custom fields and map with the respective column of the CSV file. However, no validation is performed on custom fields.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        447,
+        447
+      ],
+      "raw": "#### Step 6: Import data to the local database",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 6: Import data to the local database",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        449,
+        449
+      ],
+      "raw": "Once submitting the configurations and field mappings you will see the preview of the import jobs. Any errors identified in the import file will be highlighted in red.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once submitting the configurations and field mappings you will see the preview of the import jobs. Any errors identified in the import file will be highlighted in red.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        451,
+        451
+      ],
+      "raw": "To import data to the temporary database, scroll down to the **Import to Temporary DB** field and click **Submit**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To import data to the temporary database, scroll down to the Import to Temporary DB field and click Submit",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        453,
+        453
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/676f95b-step6.jpg\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/676f95b-step6.jpg",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 65,
+      "lines": [
+        455,
+        455
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        457,
+        458
+      ],
+      "raw": "* The import process consumes time depending on the size of the data\n* To cancel an import job at any point, click Cancel File Import",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The import process consumes time depending on the size of the dataTo cancel an import job at any point, click Cancel File Import",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        460,
+        460
+      ],
+      "raw": "#### Step 7: Import data to the main database",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 7: Import data to the main database",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        462,
+        462
+      ],
+      "raw": "Once the data is imported into the local database, you will see an option to import it to the main database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once the data is imported into the local database, you will see an option to import it to the main database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        464,
+        464
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/6d190ad-step7.jpg\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/6d190ad-step7.jpg",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 70,
+      "lines": [
+        466,
+        466
+      ],
+      "raw": "Once the data is imported to the temporary database, you will see an option to import data to the main database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once the data is imported to the temporary database, you will see an option to import data to the main database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        468,
+        469
+      ],
+      "raw": "* Check **Import to the Database** checkbox\n* Click \\**Submit*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check Import to the Database checkboxClick *Submit",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        471,
+        471
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        473,
+        478
+      ],
+      "raw": "* Customers imported through the Data Import Framework will be available in the new Member Care (Cortex) search only after the daily Cortex sync at 12 AM cluster timezone. If you need customers to appear in Cortex search immediately, use API-based registration instead.\n* The *Preview File* Details table shows the file name, number of entries, file properties, profile configured and template assigned\n* The *Error Summary* table shows the error type and error count.\n* The *Auto Correction Summary* table shows the corrections performed and the count\n* The *Download Reports* table lets you download various reports such as auto-corrected data, error data, temp table dump, and new customers data. Click on the respective **Download Report** link to download the report\n* At any point to cancel the data import, in the Cancel File Import field check the respective option and click \\**Submit*",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Customers imported through the Data Import Framework will be available in the new Member Care (Cortex) search only after the daily Cortex sync at 12 AM cluster timezone. If you need customers to appear in Cortex search immediately, use API-based registration instead.The Preview File Details table shows the file name, number of entries, file properties, profile configured and template assignedThe Error Summary table shows the error type and error count.The Auto Correction Summary table shows the corrections performed and the countThe Download Reports table lets you download various reports such as auto-corrected data, error data, temp table dump, and new customers data. Click on the respective Download Report link to download the reportAt any point to cancel the data import, in the Cancel File Import field check the respective option and click *Submit",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        480,
+        480
+      ],
+      "raw": "## Configuring for importing from an FTP location",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring for importing from an FTP location",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        482,
+        482
+      ],
+      "raw": "Whenever an import job is performed, only new records will be updated to the main database.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Whenever an import job is performed, only new records will be updated to the main database.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        484,
+        484
+      ],
+      "raw": "The following are the important points to consider before starting with import.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following are the important points to consider before starting with import.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        486,
+        486
+      ],
+      "raw": "\\*The mentioned time period is in",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "*The mentioned time period is in",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        488,
+        490
+      ],
+      "raw": "* IST for APAC and APAC2 cluster\n* CST for China cluster\n* GMT for EU cluster",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "IST for APAC and APAC2 clusterCST for China clusterGMT for EU cluster",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        492,
+        566
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Factors\n      </th>\n\n      <th>\n        Figures\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Duration for data import in the day time (Peak hours)\n      </td>\n\n      <td>\n        * 6 AM - 10 PM\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Duration for data import in night time (FTP hours)\n      </td>\n\n      <td>\n        * 10 PM - 6 AM\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        No of records allowed in the last 24 hours by direct import\n      </td>\n\n      <td>\n        200,000\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        No of records allowed in the last 24 hours in the day time (Peak hours) day FTP import\n      </td>\n\n      <td>\n        200,000\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        No of records allowed in last 24 hours in night time (FTP hours) by FTP import\n      </td>\n\n      <td>\n        1,000,000\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Maximum size of a single file (in MB)\n      </td>\n\n      <td>\n        200 MB\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 80,
+      "lines": [
+        568,
+        572
+      ],
+      "raw": "> 🚧 **Large imports running during peak hours can cause live API timeouts**\n>\n> The Data Import Framework writes directly to the Capillary database tables that also serve live API traffic, including `v1.1/points/redeem` and `v2/customers`. When a large import runs during peak hours, it creates contention on these shared tables. API calls that write to the same tables may time out and return 520 errors for end users. Loyalty customer profile imports carry the highest risk because they touch the loyalty table directly.\n>\n> Schedule all imports exceeding 200,000 records during the off-peak window (10 PM to 6 AM cluster timezone). Do not trigger large imports during business hours even if the system allows it.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "Large imports running during peak hours can cause live API timeoutsThe Data Import Framework writes directly to the Capillary database tables that also serve live API traffic, including v1.1/points/redeem and v2/customers. When a large import runs during peak hours, it creates contention on these shared tables. API calls that write to the same tables may time out and return 520 errors for end users. Loyalty customer profile imports carry the highest risk because they touch the loyalty table directly.Schedule all imports exceeding 200,000 records during the off-peak window (10 PM to 6 AM cluster timezone). Do not trigger large imports during business hours even if the system allows it.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        574,
+        574
+      ],
+      "raw": "The configuration of the Data Import job includes the following general steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The configuration of the Data Import job includes the following general steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        576,
+        583
+      ],
+      "raw": "* Identify the data that you want to import from the system\n* Clean up the data in the system to reduce the idle processing time while importing. This involves deleting previous records and removing blank/invalid/duplicate records\n* Create and configure templates for each profile that you want to import\n* Create different folders for each profile type in the FTP server\n* Copy data files of each profile to the respective folder of the FTP server. For example, registration data in Registration folder, points redemption data in the Points Redeem folder and so on\n* Map the fields in the database to the respective column names of the CSV file\n* Perform a trial import for each profile type\n* Perform the actual import job",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Identify the data that you want to import from the systemClean up the data in the system to reduce the idle processing time while importing. This involves deleting previous records and removing blank/invalid/duplicate recordsCreate and configure templates for each profile that you want to importCreate different folders for each profile type in the FTP serverCopy data files of each profile to the respective folder of the FTP server. For example, registration data in Registration folder, points redemption data in the Points Redeem folder and so onMap the fields in the database to the respective column names of the CSV filePerform a trial import for each profile typePerform the actual import job",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        585,
+        585
+      ],
+      "raw": "The following sections guide you on how to configure an import job for large data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following sections guide you on how to configure an import job for large data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        587,
+        587
+      ],
+      "raw": "#### Step 1: Select the job type as FTP",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 1: Select the job type as FTP",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        589,
+        590
+      ],
+      "raw": "* On the Settings page, click **Master Data Management** > **Data Import**.\n* Click **Configure Data Upload via. FTP** .",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Settings page, click Master Data Management > Data Import.Click Configure Data Upload via. FTP .",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        592,
+        592
+      ],
+      "raw": "#### Step 2: Configure the Source FTP Server",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 2: Configure the Source FTP Server",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        594,
+        594
+      ],
+      "raw": "**Important:** Do not use file names that contain the special character ' (apostrophe) when uploading files for import. Files with apostrophes in their names are not supported by the scheduler. These files will cause errors during import processing and will not be processed from the specified FTP path.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Important: Do not use file names that contain the special character ' (apostrophe) when uploading files for import. Files with apostrophes in their names are not supported by the scheduler. These files will cause errors during import processing and will not be processed from the specified FTP path.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        596,
+        596
+      ],
+      "raw": "Provide read/write access to the FTP server from where the data needs to be imported. Select all profiles that you want to import through the current import job.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Provide read/write access to the FTP server from where the data needs to be imported. Select all profiles that you want to import through the current import job.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        598,
+        598
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/5b3c786-step2ftp.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/5b3c786-step2ftp.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 90,
+      "lines": [
+        600,
+        607
+      ],
+      "raw": "* Check **Enable SFTP** if your FTP server is a secure FTP server. Skip this step for a normal FTP Server\n* In **FTP Server Name**, enter the URL of the source FTP server\n* In the **Username and Password boxes,** type the login credentials of the FTP server\n* In Folder Name, type the directory in the FTP server from where the data needs to be uploaded. For example, /import\n* In **Proceeded Folder Name**, specify the name of the processed data folder\n* Click **Submit** to save the configuration.\n* It is recommended to save the data of each type (profile) in different folders.\n* To create folders on the FTP server for each profile, check the respective checkboxes in **Configure Folders for FTP Server** field.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check Enable SFTP if your FTP server is a secure FTP server. Skip this step for a normal FTP ServerIn FTP Server Name, enter the URL of the source FTP serverIn the Username and Password boxes, type the login credentials of the FTP serverIn Folder Name, type the directory in the FTP server from where the data needs to be uploaded. For example, /importIn Proceeded Folder Name, specify the name of the processed data folderClick Submit to save the configuration.It is recommended to save the data of each type (profile) in different folders.To create folders on the FTP server for each profile, check the respective checkboxes in Configure Folders for FTP Server field.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        609,
+        609
+      ],
+      "raw": "You will see the following screen.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You will see the following screen.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        611,
+        611
+      ],
+      "raw": "#### Step 3: Set up for data processing",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 3: Set up for data processing",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        613,
+        613
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/e9594fe-step3ftp.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/e9594fe-step3ftp.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 94,
+      "lines": [
+        615,
+        620
+      ],
+      "raw": "* In the **No. of rows to be ignored from top**, set the number of rows from the top that you want to exclude from importing. For example, if number 2 is set in this field then while uploading data to the server the top two rows will not be considered. This can be used when there are field names, duplicate data or blank data in the top rows\n* In **No. of rows to be ignored from bottom**, set the number of rows from the bottom that you want to exclude from importing. For example, if 15 is set, then while importing the last 15 rows will be ignored. You can set this option in case of duplicate/blank/invalid entries in the last rows of the CSV file.\n* In **File Delimiter**,  type in the character used to separate each value in the file. For example, a file can have either ',' separated or 'tab' separated or ';' separated values. If ','  is mentioned then values will be separated after every ',' found in the file.\n* In **Enclosure**, type the special character used in the file for 'string' data types\n* In **Escape Character**, type in the special character that needs to be ignored from the file\n* Click **Submit**",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the No. of rows to be ignored from top, set the number of rows from the top that you want to exclude from importing. For example, if number 2 is set in this field then while uploading data to the server the top two rows will not be considered. This can be used when there are field names, duplicate data or blank data in the top rowsIn No. of rows to be ignored from bottom, set the number of rows from the bottom that you want to exclude from importing. For example, if 15 is set, then while importing the last 15 rows will be ignored. You can set this option in case of duplicate/blank/invalid entries in the last rows of the CSV file.In File Delimiter,  type in the character used to separate each value in the file. For example, a file can have either ',' separated or 'tab' separated or ';' separated values. If ','  is mentioned then values will be separated after every ',' found in the file.In Enclosure, type the special character used in the file for 'string' data typesIn Escape Character, type in the special character that needs to be ignored from the fileClick Submit",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        622,
+        622
+      ],
+      "raw": "#### Step 4: Choose templates for each data model(Profile)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 4: Choose templates for each data model(Profile)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        624,
+        624
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/e474837-step4ftp.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/e474837-step4ftp.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 97,
+      "lines": [
+        626,
+        626
+      ],
+      "raw": "In the **Configure Templates for Data Upload** field, choose the desired template for each profile and click **Submit**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the Configure Templates for Data Upload field, choose the desired template for each profile and click Submit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        628,
+        628
+      ],
+      "raw": "#### Step 5: Schedule the import job",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Step 5: Schedule the import job",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        630,
+        630
+      ],
+      "raw": "Schedule the import job during the off-peak window (10 PM–6 AM cluster timezone). See the scheduling guidance above for details on limits and API impact.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Schedule the import job during the off-peak window (10 PM–6 AM cluster timezone). See the scheduling guidance above for details on limits and API impact.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        632,
+        632
+      ],
+      "raw": "<Image align=\"left\" border={true} src=\"https://files.readme.io/a69b3e9-step5ftp.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "left",
+        "border": "{true}",
+        "src": "https://files.readme.io/a69b3e9-step5ftp.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 101,
+      "lines": [
+        634,
+        636
+      ],
+      "raw": "* In **Status**, choose Running\n* In **Check for Files**, choose the frequency of import - Daily, Weekly, Monthly or on a Fixed Date and set the respective time interval. For a fixed date schedule, set the date on which you want to schedule the import\n* In **Email ids to be notified**, enter email ids separating each with a comma to notify about the status updates the import job. The selected recipients are notified through email when files are queued up for importing, data is imported into the temporary database, data is successfully imported to the main database, and when import failed due to some error.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Status, choose RunningIn Check for Files, choose the frequency of import - Daily, Weekly, Monthly or on a Fixed Date and set the respective time interval. For a fixed date schedule, set the date on which you want to schedule the importIn Email ids to be notified, enter email ids separating each with a comma to notify about the status updates the import job. The selected recipients are notified through email when files are queued up for importing, data is imported into the temporary database, data is successfully imported to the main database, and when import failed due to some error.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        638,
+        638
+      ],
+      "raw": "## Configure notifications for import jobs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configure notifications for import jobs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        640,
+        640
+      ],
+      "raw": "The Data Import Framework lets you (InTouch users) subscribe your mobile number/email id for the status notifications related to import jobs. You can subscribe to receive profile level status notifications. You can also choose stages of an import job from which you wanted to receive notifications. For example, when data is imported into a temporary database, data import failed, data validation failed, data import job complete and so on.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Data Import Framework lets you (InTouch users) subscribe your mobile number/email id for the status notifications related to import jobs. You can subscribe to receive profile level status notifications. You can also choose stages of an import job from which you wanted to receive notifications. For example, when data is imported into a temporary database, data import failed, data validation failed, data import job complete and so on.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        642,
+        642
+      ],
+      "raw": "The status updates of the data import can be subscribed to an email id or mobile number.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The status updates of the data import can be subscribed to an email id or mobile number.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 105,
+      "lines": [
+        644,
+        644
+      ],
+      "raw": "**To subscribe for data exchange notifications**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To subscribe for data exchange notifications",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        646,
+        647
+      ],
+      "raw": "* In **Data Import**, click **Notification Subscription**\n* In the **Subscribe** for the drop-down box, choose **All Profiles** to subscribe for status notifications of all profiles or choose Select Profiles to add selected profiles.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In Data Import, click Notification SubscriptionIn the Subscribe for the drop-down box, choose All Profiles to subscribe for status notifications of all profiles or choose Select Profiles to add selected profiles.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        649,
+        649
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/1d45578-notif.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/1d45578-notif.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 108,
+      "lines": [
+        651,
+        655
+      ],
+      "raw": "* In the **Subscription Emails**, enter email ids of recipients receive status notifications. To enter multiple recipients, separate each email id with a comma (,).\n* In the **Subscription Mobiles**, enter mobile number of the recipients with country code. To enter multiple recipients, separate each number with a comma (,).\n* Set the subscription duration for receiving notifications in **Subscribed from** and **Subscribed upto** boxes.\n* In the **For Stages** selection box, select from the various available stages and click add>>. Recipients will be notified of status updates for these stages. All the selected stages will appear on the right-hand side box.\n* Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Subscription Emails, enter email ids of recipients receive status notifications. To enter multiple recipients, separate each email id with a comma (,).In the Subscription Mobiles, enter mobile number of the recipients with country code. To enter multiple recipients, separate each number with a comma (,).Set the subscription duration for receiving notifications in Subscribed from and Subscribed upto boxes.In the For Stages selection box, select from the various available stages and click add>>. Recipients will be notified of status updates for these stages. All the selected stages will appear on the right-hand side box.Click Submit.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        657,
+        657
+      ],
+      "raw": "*Note:*",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 110,
+      "lines": [
+        659,
+        660
+      ],
+      "raw": "* To remove any added notification stage, select the stage on the right box and click <\\<remove.\n* Mobile numbers should be entered with country code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "To remove any added notification stage, select the stage on the right box and click <<remove.Mobile numbers should be entered with country code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 111,
+      "lines": [
+        662,
+        662
+      ],
+      "raw": "## Import list and calendar filter behavior",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Import list and calendar filter behavior",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 112,
+      "lines": [
+        664,
+        664
+      ],
+      "raw": "### Excluding deleted imports from the Org settings import list",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Excluding deleted imports from the Org settings import list",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 113,
+      "lines": [
+        666,
+        666
+      ],
+      "raw": "Imports with a status of 'DELETED' are not shown in the Org settings import list. Only imports with active statuses appear. If you delete an import, it will no longer be visible in the list.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Imports with a status of 'DELETED' are not shown in the Org settings import list. Only imports with active statuses appear. If you delete an import, it will no longer be visible in the list.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 114,
+      "lines": [
+        668,
+        668
+      ],
+      "raw": "### Calendar filter logic on the import page",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Calendar filter logic on the import page",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 115,
+      "lines": [
+        670,
+        670
+      ],
+      "raw": "When you use the calendar filter on the import page, the 'To' date must include the day after your intended end date to display results for that day. For example, to see imports from June 1 to June 5, set the 'To' date as June 6. This is required because the filter includes imports up to, but not including, the selected 'To' date.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you use the calendar filter on the import page, the 'To' date must include the day after your intended end date to display results for that day. For example, to see imports from June 1 to June 5, set the 'To' date as June 6. This is required because the filter includes imports up to, but not including, the selected 'To' date.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 116,
+      "lines": [
+        672,
+        672
+      ],
+      "raw": "## Limitations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Limitations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 117,
+      "lines": [
+        674,
+        674
+      ],
+      "raw": "\\###Cluster-level idle-time SLA for FTP imports",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "###Cluster-level idle-time SLA for FTP imports",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 118,
+      "lines": [
+        676,
+        679
+      ],
+      "raw": "* The platform enforces a cluster-level idle-time SLA for queued FTP imports. If an import remains in the queue beyond this SLA, the platform marks it as Fail by validator (FTP TEMPDB\\_FAILED), even if the file contains no validation errors.\n* The platform processes FTP imports one at a time for each organization and profile. Submitting many large files in a single batch can delay processing and cause later imports to exceed the idle-time SLA.\n* The platform does not retry imports that fail because they exceed the idle-time SLA. Re-upload and reschedule these files to process them again.\n* To reduce the risk of idle-time SLA failures, submit smaller batches of files and avoid uploading many large files at the same time.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The platform enforces a cluster-level idle-time SLA for queued FTP imports. If an import remains in the queue beyond this SLA, the platform marks it as Fail by validator (FTP TEMPDB_FAILED), even if the file contains no validation errors.The platform processes FTP imports one at a time for each organization and profile. Submitting many large files in a single batch can delay processing and cause later imports to exceed the idle-time SLA.The platform does not retry imports that fail because they exceed the idle-time SLA. Re-upload and reschedule these files to process them again.To reduce the risk of idle-time SLA failures, submit smaller batches of files and avoid uploading many large files at the same time.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 119,
+      "lines": [
+        681,
+        681
+      ],
+      "raw": "\\###Per-file record limit for direct upload",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "###Per-file record limit for direct upload",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 120,
+      "lines": [
+        683,
+        683
+      ],
+      "raw": "* The number of records allowed per file for direct upload is subject to a cluster-level configuration that may vary by org. The default limit is 15,000 records per file for some profiles. If your file exceeds this limit, the import is rejected with a validation error before processing begins. To increase the per-file limit for your org, raise a request with the Capillary sustenance team. Note that this limit is separate from the overall 24-hour direct import cap of 200,000 records.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The number of records allowed per file for direct upload is subject to a cluster-level configuration that may vary by org. The default limit is 15,000 records per file for some profiles. If your file exceeds this limit, the import is rejected with a validation error before processing begins. To increase the per-file limit for your org, raise a request with the Capillary sustenance team. Note that this limit is separate from the overall 24-hour direct import cap of 200,000 records.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 121,
+      "lines": [
+        685,
+        685
+      ],
+      "raw": "\\###Only one import job per profile can run at a time",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "###Only one import job per profile can run at a time",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 122,
+      "lines": [
+        687,
+        689
+      ],
+      "raw": "* The Data Import Framework allows only one active import job per profile per org at any given time. If you attempt to start a new import while a previous job for the same profile is still in progress (including the temporary database stage), the system rejects the new attempt with an error indicating that an import is already running. Wait for the current job to reach a terminal state (completed or failed) before submitting the next batch. If a job appears stuck, do not attempt to start a new import until you have confirmed the status of the existing job on the Import File Details page.\n  \\###Understanding the TEMP\\_DB\\_COMPLETED status\n  TEMP\\_DB\\_COMPLETED means the file has been loaded into the temporary database but has not yet been pushed to the main database. At this stage, no records have been permanently written and the data is not yet visible in Member Care. It is safe to proceed with \"Import to Main DB\" — re-triggering this step does not re-process records that were already successfully written to the main database in a prior attempt. If you are unsure whether a previous \"Import to Main DB\" run completed, check the Import File Details page for the job status before proceeding.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The Data Import Framework allows only one active import job per profile per org at any given time. If you attempt to start a new import while a previous job for the same profile is still in progress (including the temporary database stage), the system rejects the new attempt with an error indicating that an import is already running. Wait for the current job to reach a terminal state (completed or failed) before submitting the next batch. If a job appears stuck, do not attempt to start a new import until you have confirmed the status of the existing job on the Import File Details page.\n###Understanding the TEMP_DB_COMPLETED status\nTEMP_DB_COMPLETED means the file has been loaded into the temporary database but has not yet been pushed to the main database. At this stage, no records have been permanently written and the data is not yet visible in Member Care. It is safe to proceed with \"Import to Main DB\" — re-triggering this step does not re-process records that were already successfully written to the main database in a prior attempt. If you are unsure whether a previous \"Import to Main DB\" run completed, check the Import File Details page for the job status before proceeding.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 123,
+      "lines": [
+        691,
+        691
+      ],
+      "raw": "## Field Validations for Customer/Transaction data",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Field Validations for Customer/Transaction data",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 124,
+      "lines": [
+        693,
+        693
+      ],
+      "raw": "When you import data to the local database, you will see the list of errors, auto corrections, and download report option. You can download the entire report. The following table provides the list of errors that frequently occur during an import job for customer and transaction profiles.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you import data to the local database, you will see the list of errors, auto corrections, and download report option. You can download the entire report. The following table provides the list of errors that frequently occur during an import job for customer and transaction profiles.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 125,
+      "lines": [
+        695,
+        695
+      ],
+      "raw": "**Customer Profile**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customer Profile",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 126,
+      "lines": [
+        697,
+        713
+      ],
+      "raw": "| Error                                                                                                                              | Explanation                                                                                                                                                                                                                             |\n| :--------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| When different users are linked with the email                                                                                     | Email is already present for some other registered user in the system                                                                                                                                                                   |\n| When an error on duplicate external id occurs                                                                                      | All records would be rejected                                                                                                                                                                                                           |\n| When an error on duplicate value for mobile in the file occurs                                                                     | All records would be rejected                                                                                                                                                                                                           |\n| When an error on duplicate value for external\\_id in the file occurs                                                               | All records would be rejected                                                                                                                                                                                                           |\n| When an error on duplicate value for email in the file occurs                                                                      | All records would be rejected                                                                                                                                                                                                           |\n| When different user is linked with the mobile                                                                                      | Mobile number is already registered for a different user in the system                                                                                                                                                                  |\n| When different mobile is linked with the users                                                                                     | Since mobile number is not allowed to update though import, trying to update an existing mobile for a user leads to such error                                                                                                          |\n| Invalid Mobile Number                                                                                                              | Check the pre-configured mobile regex for brand                                                                                                                                                                                         |\n| When different user gets linked with the external id, duplicate value for mobile in file, duplicate value for email in file occurs | External ID / Card number is already registered for a different user                                                                                                                                                                    |\n| Invalid external id prefix or length                                                                                               | External ID does not match the required prefix or length as configured in Org Settings > Registration. Only External IDs that exactly match the configured prefix (for example, LM\\*) and length (for example, 10 digits) are accepted. |\n| Invalid email id                                                                                                                   | Deviation from standard Email regex                                                                                                                                                                                                     |\n| Deactivated user / Fraud User                                                                                                      | The user is inactive or marked as fraud (as per brand requirement)                                                                                                                                                                      |\n| When customer name contains special characters                                                                                     | Customer Name should not contain any special characters other than alphabets/space                                                                                                                                                      |\n| join\\_date is invalid/null/void/of future date                                                                                     | Invalid join date                                                                                                                                                                                                                       |\n| join\\_store is invalid/null/void                                                                                                   | The store(s) specified in the file are not present in the system                                                                                                                                                                        |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Error",
+          "Explanation"
+        ],
+        "rows": [
+          [
+            "When different users are linked with the email",
+            "Email is already present for some other registered user in the system"
+          ],
+          [
+            "When an error on duplicate external id occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for mobile in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for external_id in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When an error on duplicate value for email in the file occurs",
+            "All records would be rejected"
+          ],
+          [
+            "When different user is linked with the mobile",
+            "Mobile number is already registered for a different user in the system"
+          ],
+          [
+            "When different mobile is linked with the users",
+            "Since mobile number is not allowed to update though import, trying to update an existing mobile for a user leads to such error"
+          ],
+          [
+            "Invalid Mobile Number",
+            "Check the pre-configured mobile regex for brand"
+          ],
+          [
+            "When different user gets linked with the external id, duplicate value for mobile in file, duplicate value for email in file occurs",
+            "External ID / Card number is already registered for a different user"
+          ],
+          [
+            "Invalid external id prefix or length",
+            "External ID does not match the required prefix or length as configured in Org Settings > Registration. Only External IDs that exactly match the configured prefix (for example, LM*) and length (for example, 10 digits) are accepted."
+          ],
+          [
+            "Invalid email id",
+            "Deviation from standard Email regex"
+          ],
+          [
+            "Deactivated user / Fraud User",
+            "The user is inactive or marked as fraud (as per brand requirement)"
+          ],
+          [
+            "When customer name contains special characters",
+            "Customer Name should not contain any special characters other than alphabets/space"
+          ],
+          [
+            "join_date is invalid/null/void/of future date",
+            "Invalid join date"
+          ],
+          [
+            "join_store is invalid/null/void",
+            "The store(s) specified in the file are not present in the system"
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 127,
+      "lines": [
+        715,
+        715
+      ],
+      "raw": "**Transaction Profile**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Transaction Profile",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 128,
+      "lines": [
+        717,
+        793
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Error\n      </th>\n\n      <th>\n        Explanation\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Bill_date is invalid/null/void/of future date\n      </td>\n\n      <td>\n        Invalid bill date\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill_store is invalid/null/void\n      </td>\n\n      <td>\n        The stores linked are not present in the system\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        bill_number repeating within X days\n      </td>\n\n      <td>\n        X is a number between 0 and 365 (that is configurable). It decides how often a bill_number is repeatable on the same store.\n        For eg, X=5, it means bill_number B1 cannot repeat on store S1 for at least 5 days.\n        bill_discount > bill_gross_value\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Duplicate within File\n      </td>\n\n      <td>\n        This means same bill_no, bill_date, billing_store are repeating within the import file\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Bill Duplicate within database\n      </td>\n\n      <td>\n        This means same bill_no, bill_date, billing_store are already present in system (Loyalty / Non-Loyalty)\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User Not Registered\n      </td>\n\n      <td>\n        The user linked to bill is not registered in the system\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "component",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [],
+      "notes": [
+        "reassembled from several raw-HTML chunks — this page needed the lenient parser"
+      ]
+    },
+    {
+      "i": 129,
+      "lines": [
+        795,
+        795
+      ],
+      "raw": "## Handling encrypted data during data ingestion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Handling encrypted data during data ingestion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 130,
+      "lines": [
+        797,
+        797
+      ],
+      "raw": "The configuration CONF\\_IS\\_PII\\_ENCRYPTED controls whether the system expects PII identifiers to be provided in encrypted form during data ingestion.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The configuration CONF_IS_PII_ENCRYPTED controls whether the system expects PII identifiers to be provided in encrypted form during data ingestion.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 131,
+      "lines": [
+        799,
+        799
+      ],
+      "raw": "When enabled, the system treats PII fields as opaque encrypted strings. It bypasses all validation and formatting logic for these fields to avoid rejecting or modifying encrypted values.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When enabled, the system treats PII fields as opaque encrypted strings. It bypasses all validation and formatting logic for these fields to avoid rejecting or modifying encrypted values.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 132,
+      "lines": [
+        801,
+        801
+      ],
+      "raw": "This configuration is intended for integrations where PII is encrypted at the source before being sent to the platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This configuration is intended for integrations where PII is encrypted at the source before being sent to the platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 133,
+      "lines": [
+        803,
+        803
+      ],
+      "raw": "## Behaviour",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Behaviour",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 134,
+      "lines": [
+        805,
+        811
+      ],
+      "raw": "* Skips validation checks (length, pattern, format)\n\n* Skips data cleaning and normalisation\n\n* Stores values exactly as received (with safe transformations only)\n\n* Prevents corruption of encrypted identifiers",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Skips validation checks (length, pattern, format)Skips data cleaning and normalisationStores values exactly as received (with safe transformations only)Prevents corruption of encrypted identifiers",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 135,
+      "lines": [
+        813,
+        813
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/5cc0ebb-Enable_delete_PII.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/5cc0ebb-Enable_delete_PII.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

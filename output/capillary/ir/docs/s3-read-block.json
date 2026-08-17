@@ -1,0 +1,321 @@
+{
+  "slug": "docs/s3-read-block",
+  "source": "https://docs.capillarytech.com/docs/s3-read-block.md",
+  "url": "https://docs.capillarytech.com/docs/s3-read-block",
+  "title": "S3 Read Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:26:11.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 3,
+    "list": 1,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# S3 (Read) block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "S3 (Read) block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `s3_read` block retrieves files from an Amazon S3 bucket and brings them into your Connect+ dataflow for processing.  It acts as the source or **Connect to Source** block in a Connect+ dataflow. It uses AWS credentials to connect to the specified bucket, picks up files matching a defined filename pattern, and moves them to an output path once downloaded. Any errors that occur during processing are written to a designated error file path for review.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The s3_read block retrieves files from an Amazon S3 bucket and brings them into your Connect+ dataflow for processing.  It acts as the source or Connect to Source block in a Connect+ dataflow. It uses AWS credentials to connect to the specified bucket, picks up files matching a defined filename pattern, and moves them to an output path once downloaded. Any errors that occur during processing are written to a designated error file path for review.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your input files are stored in an Amazon S3 bucket and need to be retrieved on a scheduled basis.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your input files are stored in an Amazon S3 bucket and need to be retrieved on a scheduled basis.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        22
+      ],
+      "raw": "* AWS access key ID and secret access key with read permissions on the bucket\n* The S3 bucket name and AWS region\n* An input path and an output (processed) path within the bucket\n* A regex pattern that matches your input filenames",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "AWS access key ID and secret access key with read permissions on the bucketThe S3 bucket name and AWS regionAn input path and an output (processed) path within the bucketA regex pattern that matches your input filenames",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        197
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Bucket Name**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The name of the S3 bucket to poll.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **S3 Region**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS region where the S3 bucket is located.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.\n        Default value: `us-east-1`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **S3 accessKey**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS access key ID used to authenticate with the S3 bucket.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Secret Key**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The AWS secret access key used for authentication.\n\n        Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.  \n        **Note**: When creating the configuration in the Extension Configuration section of the Dev Console,  `Is Secret` must be set to make it available in the dropdown.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Input Path**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The path within the S3 bucket where the input files are located.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.  \n        For example, `data/incoming/`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Output Path**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The path within the S3 bucket where files are moved after being downloaded.   Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.  \n        For example, `data/processed/`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Filename Pattern**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The regex pattern used to match files in the input path.  \n        File pattern: .*.csv\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **API Error Filepath**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The path where API error files are stored.  \n        Select a value from the dropdown. The list shows all values configured in the [Extension Configuration](https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager) section of the Dev Console.  \n        For example, `data/errors/`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **File Delimiter**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The delimiter used for file validation. Default value: `,`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "Yes",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "Bucket Name",
+            "Yes",
+            "The name of the S3 bucket to poll.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console."
+          ],
+          [
+            "S3 Region",
+            "Yes",
+            "The AWS region where the S3 bucket is located.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.\nDefault value: us-east-1."
+          ],
+          [
+            "S3 accessKey",
+            "Yes",
+            "The AWS access key ID used to authenticate with the S3 bucket.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console."
+          ],
+          [
+            "Secret Key",
+            "Yes",
+            "The AWS secret access key used for authentication.Select a value from the dropdown. The list shows configurations marked as secret in the Extension Configuration section of the Dev Console.Note: When creating the configuration in the Extension Configuration section of the Dev Console,  Is Secret must be set to make it available in the dropdown."
+          ],
+          [
+            "Input Path",
+            "Yes",
+            "The path within the S3 bucket where the input files are located.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example, data/incoming/."
+          ],
+          [
+            "Output Path",
+            "Yes",
+            "The path within the S3 bucket where files are moved after being downloaded.   Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example, data/processed/."
+          ],
+          [
+            "Filename Pattern",
+            "Yes",
+            "The regex pattern used to match files in the input path.File pattern: .*.csv"
+          ],
+          [
+            "API Error Filepath",
+            "Yes",
+            "The path where API error files are stored.Select a value from the dropdown. The list shows all values configured in the Extension Configuration section of the Dev Console.For example, data/errors/."
+          ],
+          [
+            "File Delimiter",
+            "Yes",
+            "The delimiter used for file validation. Default value: ,."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 69
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 84
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 100
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 132
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 147
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration#how-to-use-the-secret-manager",
+          "line": 178
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "<Image align=\"center\" border={true} width=\"90% \" src=\"https://files.readme.io/0aff2ef257e85d6ec6abe6891dcaf20394771426448af3d560120c9607e58b8e-s3_read.gif\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "width": "90% ",
+        "src": "https://files.readme.io/0aff2ef257e85d6ec6abe6891dcaf20394771426448af3d560120c9607e58b8e-s3_read.gif",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

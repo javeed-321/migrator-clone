@@ -1,0 +1,183 @@
+{
+  "slug": "docs/retro-transaction-template",
+  "source": "https://docs.capillarytech.com/docs/retro-transaction-template.md",
+  "url": "https://docs.capillarytech.com/docs/retro-transaction-template",
+  "title": "Retro Transaction Template",
+  "description": "",
+  "section": "Explore templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 2,
+    "paragraph": 3,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Retro transaction template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Retro transaction template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The retro transaction template allows you to tag retro (old) not-interested transactions to customers and change it to regular transactions. This can occur for a variety of reasons, such as an error in the transaction process, a delay in the transaction being recorded, or a promotion being applied retroactively to a past purchase. For more information on retro transactions, refer to the documentation [here](https://docs.capillarytech.com/docs/tag-not-interested-transactions).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The retro transaction template allows you to tag retro (old) not-interested transactions to customers and change it to regular transactions. This can occur for a variety of reasons, such as an error in the transaction process, a delay in the transaction being recorded, or a promotion being applied retroactively to a past purchase. For more information on retro transactions, refer to the documentation here.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/tag-not-interested-transactions",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Configuring retro transaction dataflow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring retro transaction dataflow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "To configure retro transaction dataflow, perform the below steps/actions:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure retro transaction dataflow, perform the below steps/actions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        25
+      ],
+      "raw": "1. In the **Connect-to-source section** <Glossary>Block</Glossary> enter the source server details where the source\\\n   data is present and the location for saving the processed file. For the information on configuring this block, refer to [Connect to source](https://docs.capillarytech.com/docs/configure-actions#connect-to-source) documentation\n2. In the **Decrypt data** block, if the files are encrypted, enter the details to decrypt the data. For the information on configuring this block, refer to [Decrypt data](https://docs.capillarytech.com/docs/configure-actions#decrypt-data) documentation.\n3. In the **Data-Validation-Block**, validate or transform data using a Databricks notebook. For more details, refer to [Data-Validation-Block](https://docs.capillarytech.com/docs/data-validation-block). The block is optional, so you can skip it without affecting the dataflow. If enabled, the rest of the dataflow continues as usual after the block executes.\n4. In the **Transform Data** block, map the API fields with the source file. For information on how to map the fields, see [Transform data](https://docs.capillarytech.com/docs/configure-actions#transform-data).\n\n   It is mandatory to map the `customerId`, `transactionId`, `oldType` and `newType` fields with the file. The value of the fields `newType` and `oldType` will be NOT\\_INTERESTED and REGULAR respectively.\n\n   <Image align=\"center\" className=\"border\" width=\"26% \" border={true} src=\"https://files.readme.io/d6d3237-image.png\" />\n5. In the **Connect-to-destination** block, enter the API endpoint details. For the information on configuring this block, refer to [Connect to destination](https://docs.capillarytech.com/docs/configure-actions#connect-to-destination) documentation.\n6. In the **Trigger** block, enter the details to schedule the trigger. See [Trigger](https://docs.capillarytech.com/docs/configure-actions#schedule-trigger).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Connect-to-source section Block enter the source server details where the sourcedata is present and the location for saving the processed file. For the information on configuring this block, refer to Connect to source documentationIn the Decrypt data block, if the files are encrypted, enter the details to decrypt the data. For the information on configuring this block, refer to Decrypt data documentation.In the Data-Validation-Block, validate or transform data using a Databricks notebook. For more details, refer to Data-Validation-Block. The block is optional, so you can skip it without affecting the dataflow. If enabled, the rest of the dataflow continues as usual after the block executes.In the Transform Data block, map the API fields with the source file. For information on how to map the fields, see Transform data.It is mandatory to map the customerId, transactionId, oldType and newType fields with the file. The value of the fields newType and oldType will be NOT_INTERESTED and REGULAR respectively.In the Connect-to-destination block, enter the API endpoint details. For the information on configuring this block, refer to Connect to destination documentation.In the Trigger block, enter the details to schedule the trigger. See Trigger.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-source",
+          "line": 16
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#decrypt-data",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/data-validation-block",
+          "line": 18
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#transform-data",
+          "line": 19
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#connect-to-destination",
+          "line": 24
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-actions#schedule-trigger",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "i": 6,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "For troubleshooting information, refer to the [troubleshooting section](https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus) of the documentation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For troubleshooting information, refer to the troubleshooting section of the documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/troubleshooting-guide-connectplus",
+          "line": 27
+        }
+      ]
+    }
+  ]
+}

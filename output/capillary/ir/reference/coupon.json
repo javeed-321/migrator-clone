@@ -1,0 +1,621 @@
+{
+  "slug": "reference/coupon",
+  "source": "https://docs.capillarytech.com/reference/coupon.md",
+  "url": "https://docs.capillarytech.com/reference/coupon",
+  "title": "Coupon",
+  "description": "",
+  "section": "Coupon (V2 APIs)",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-05-07T13:47:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 7,
+    "list": 1,
+    "Table": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Coupon (V2 APIs)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Coupon (V2 APIs)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Coupon represents store promotions or discounts created through Capillary Campaign Manager. A single campaign could contain one or more coupons or coupon series. Coupons are issued to loyalty or non-loyalty customers through SMS or email.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Coupon represents store promotions or discounts created through Capillary Campaign Manager. A single campaign could contain one or more coupons or coupon series. Coupons are issued to loyalty or non-loyalty customers through SMS or email.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You cannot create new coupons using coupon APIs. You can just send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id for making API calls.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You cannot create new coupons using coupon APIs. You can just send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id for making API calls.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "You cannot create new coupons using coupon APIs; instead, you can send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id to use coupon APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You cannot create new coupons using coupon APIs; instead, you can send or retrieve coupons that are already created in your campaigns. Hence, it is important to note the coupon code, coupon id or coupon series id to use coupon APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The V2 coupon entity just allows you to -",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The V2 coupon entity just allows you to -",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        18
+      ],
+      "raw": "* Redeem coupons in batch\n* Check whether specific coupons can be redeemed or not",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redeem coupons in batchCheck whether specific coupons can be redeemed or not",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "For any other coupon related APIs, please use v1.1 APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For any other coupon related APIs, please use v1.1 APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "## Status Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Status Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "### Error Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Error Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        860
+      ],
+      "raw": "<Table>\n    <thead>\n    <tr>\n        <th>\n            Code\n        </th>\n\n        <th>\n            Description\n        </th>\n    </tr>\n    </thead>\n\n    <tbody>\n    <tr>\n        <td>\n            412\n        </td>\n\n        <td>\n            Coupon gateway service error. Please try again later.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            413\n        </td>\n\n        <td>\n            Coupon gateway connection exhausted. Please try again later.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            500\n        </td>\n\n        <td>\n            All requests have failed due to errors\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            510\n        </td>\n\n        <td>\n            Invalid Redemption ids present\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            629\n        </td>\n\n        <td>\n            Invalid Input. This can also occuer if you try to redeem more than 100 coupons.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            621\n        </td>\n\n        <td>\n            Maximum number of coupons issued per user has been exceeded.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            626\n        </td>\n\n        <td>\n            Maximum number of coupons issued per series has been exceeded.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            660\n        </td>\n\n        <td>\n            Coupon code has been revoked\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            661\n        </td>\n\n        <td>\n            No Redemption id passed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            662\n        </td>\n\n        <td>\n            Coupon gateway validation error.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            683\n        </td>\n\n        <td>\n            Voucher Redemption event failed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            687\n        </td>\n\n        <td>\n            Points activities are queued and will be updated later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            700\n        </td>\n\n        <td>\n            Coupon series fetched successfully<br />Coupon processing successful.<br />Coupon resent successfully.<br />Coupon processing successful.<br />Coupon isRedeem successful\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            701\n        </td>\n\n        <td>\n            The customer could not be found. Please check mobile, email, external id passed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            702\n        </td>\n\n        <td>\n            Coupon code is invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            707\n        </td>\n\n        <td>\n            Coupon Series ID is invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            703\n        </td>\n\n        <td>\n            Coupon not issued to this customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            704\n        </td>\n\n        <td>\n            Error in sending coupon through SMS\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            705\n        </td>\n\n        <td>\n            Both coupon code and the validation code are invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            707\n        </td>\n\n        <td>\n            Coupon Series ID = \\{x} is invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            709\n        </td>\n\n        <td>\n            Coupon processing failed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            710\n        </td>\n\n        <td>\n            Coupon is not meant for this customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            711\n        </td>\n\n        <td>\n            Coupon is already used\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            712\n        </td>\n\n        <td>\n            Coupon Series / Campaign has expired\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            713\n        </td>\n\n        <td>\n            Coupon has expired\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            714\n        </td>\n\n        <td>\n            Campaign over, it was first come first serve\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            715\n        </td>\n\n        <td>\n            Invalid organization\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            716\n        </td>\n\n        <td>\n            Cannot redeem same Coupon multiple times\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            718\n        </td>\n\n        <td>\n            Transaction number needed for redemption\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            719\n        </td>\n\n        <td>\n            Coupon code does not exist\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            720\n        </td>\n\n        <td>\n            Coupon is a test Coupon. Cannot be redeemed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            721\n        </td>\n\n        <td>\n            Invalid customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            722\n        </td>\n\n        <td>\n            Unable to create coupon\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            723\n        </td>\n\n        <td>\n            Coupon not issued to this customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            724\n        </td>\n\n        <td>\n            Unable to communicate information to customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            725\n        </td>\n\n        <td>\n            Validation required\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            726\n        </td>\n\n        <td>\n            Validation not required\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            728\n        </td>\n\n        <td>\n            Maximum number of redemptions reached\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            729\n        </td>\n\n        <td>\n            Invalid redemption range For coupon series\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            730\n        </td>\n\n        <td>\n            Unknown error\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            731\n        </td>\n\n        <td>\n            Coupon redemption successful\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            732\n        </td>\n\n        <td>\n            No Missed call received from the customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            733\n        </td>\n\n        <td>\n            Invalid transaction amount\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            735\n        </td>\n\n        <td>\n            Invalid store\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            736\n        </td>\n\n        <td>\n            Allowed redemption consumed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            738\n        </td>\n\n        <td>\n            Allowed redemption gap is invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            739\n        </td>\n\n        <td>\n            Allowed redemption date is invalid\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            740\n        </td>\n\n        <td>\n            Fraud customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            742\n        </td>\n\n        <td>\n            Coupon issue and redemption blocked for customer\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            744\n        </td>\n\n        <td>\n            Couldn't save coupon series fields\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            745\n        </td>\n\n        <td>\n            Saved coupon series fields successfully\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            746\n        </td>\n\n        <td>\n            Please provide series id\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            747\n        </td>\n\n        <td>\n            Multiple redemption not allowed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            748\n        </td>\n\n        <td>\n            Coupon service timed out\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            749\n        </td>\n\n        <td>\n            Coupon Redeem/isRedeem failed because of failure on other coupons in the batch\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            750\n        </td>\n\n        <td>\n            Operation not allowed. Not allowed - customer is marked as fraud.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            751\n        </td>\n\n        <td>\n            coupon series with same series code is already present\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            752\n        </td>\n\n        <td>\n            coupon series with same series code is already present\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            753\n        </td>\n\n        <td>\n            series code cannot be empty\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            754\n        </td>\n\n        <td>\n            generic cannot be empty for series type GENERIC\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            755\n        </td>\n\n        <td>\n            invalid coupon series id\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            756\n        </td>\n\n        <td>\n            invalid value for mutually exclusive config series\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            759\n        </td>\n\n        <td>\n            Coupon redemption failed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            777\n        </td>\n\n        <td>\n            coupon source not valid for issue coupon\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            780\n        </td>\n\n        <td>\n            Coupon not found Identifier: \\{x}. <br />Coupon isRedeem failed\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            781\n        </td>\n\n        <td>\n            Either coupon ID or coupon code is missing\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            786\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            787\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            788\n        </td>\n\n        <td>\n            Invalid configuration. Please report to capillary support\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            789\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            790\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            791\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            792\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            793\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            794\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            795\n        </td>\n\n        <td>\n            Invalid configuration. Please report to capillary support.\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            796\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            797\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            798\n        </td>\n\n        <td>\n            Coupon processing failed, Please try again later\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            799\n        </td>\n\n        <td>\n            Invalid configuration. Please report to capillary support\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            1000\n        </td>\n\n        <td>\n            Filters not provided\n        </td>\n    </tr>\n\n    <tr>\n        <td>\n            811\n        </td>\n\n        <td>\n            Operation not supported for GENERIC_REDEEMABLE series.\n        </td>\n    </tr>\n    </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {},
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "412",
+            "Coupon gateway service error. Please try again later."
+          ],
+          [
+            "413",
+            "Coupon gateway connection exhausted. Please try again later."
+          ],
+          [
+            "500",
+            "All requests have failed due to errors"
+          ],
+          [
+            "510",
+            "Invalid Redemption ids present"
+          ],
+          [
+            "629",
+            "Invalid Input. This can also occuer if you try to redeem more than 100 coupons."
+          ],
+          [
+            "621",
+            "Maximum number of coupons issued per user has been exceeded."
+          ],
+          [
+            "626",
+            "Maximum number of coupons issued per series has been exceeded."
+          ],
+          [
+            "660",
+            "Coupon code has been revoked"
+          ],
+          [
+            "661",
+            "No Redemption id passed"
+          ],
+          [
+            "662",
+            "Coupon gateway validation error."
+          ],
+          [
+            "683",
+            "Voucher Redemption event failed"
+          ],
+          [
+            "687",
+            "Points activities are queued and will be updated later"
+          ],
+          [
+            "700",
+            "Coupon series fetched successfullyCoupon processing successful.Coupon resent successfully.Coupon processing successful.Coupon isRedeem successful"
+          ],
+          [
+            "701",
+            "The customer could not be found. Please check mobile, email, external id passed"
+          ],
+          [
+            "702",
+            "Coupon code is invalid"
+          ],
+          [
+            "707",
+            "Coupon Series ID is invalid"
+          ],
+          [
+            "703",
+            "Coupon not issued to this customer"
+          ],
+          [
+            "704",
+            "Error in sending coupon through SMS"
+          ],
+          [
+            "705",
+            "Both coupon code and the validation code are invalid"
+          ],
+          [
+            "707",
+            "Coupon Series ID = {x} is invalid"
+          ],
+          [
+            "709",
+            "Coupon processing failed"
+          ],
+          [
+            "710",
+            "Coupon is not meant for this customer"
+          ],
+          [
+            "711",
+            "Coupon is already used"
+          ],
+          [
+            "712",
+            "Coupon Series / Campaign has expired"
+          ],
+          [
+            "713",
+            "Coupon has expired"
+          ],
+          [
+            "714",
+            "Campaign over, it was first come first serve"
+          ],
+          [
+            "715",
+            "Invalid organization"
+          ],
+          [
+            "716",
+            "Cannot redeem same Coupon multiple times"
+          ],
+          [
+            "718",
+            "Transaction number needed for redemption"
+          ],
+          [
+            "719",
+            "Coupon code does not exist"
+          ],
+          [
+            "720",
+            "Coupon is a test Coupon. Cannot be redeemed"
+          ],
+          [
+            "721",
+            "Invalid customer"
+          ],
+          [
+            "722",
+            "Unable to create coupon"
+          ],
+          [
+            "723",
+            "Coupon not issued to this customer"
+          ],
+          [
+            "724",
+            "Unable to communicate information to customer"
+          ],
+          [
+            "725",
+            "Validation required"
+          ],
+          [
+            "726",
+            "Validation not required"
+          ],
+          [
+            "728",
+            "Maximum number of redemptions reached"
+          ],
+          [
+            "729",
+            "Invalid redemption range For coupon series"
+          ],
+          [
+            "730",
+            "Unknown error"
+          ],
+          [
+            "731",
+            "Coupon redemption successful"
+          ],
+          [
+            "732",
+            "No Missed call received from the customer"
+          ],
+          [
+            "733",
+            "Invalid transaction amount"
+          ],
+          [
+            "735",
+            "Invalid store"
+          ],
+          [
+            "736",
+            "Allowed redemption consumed"
+          ],
+          [
+            "738",
+            "Allowed redemption gap is invalid"
+          ],
+          [
+            "739",
+            "Allowed redemption date is invalid"
+          ],
+          [
+            "740",
+            "Fraud customer"
+          ],
+          [
+            "742",
+            "Coupon issue and redemption blocked for customer"
+          ],
+          [
+            "744",
+            "Couldn't save coupon series fields"
+          ],
+          [
+            "745",
+            "Saved coupon series fields successfully"
+          ],
+          [
+            "746",
+            "Please provide series id"
+          ],
+          [
+            "747",
+            "Multiple redemption not allowed"
+          ],
+          [
+            "748",
+            "Coupon service timed out"
+          ],
+          [
+            "749",
+            "Coupon Redeem/isRedeem failed because of failure on other coupons in the batch"
+          ],
+          [
+            "750",
+            "Operation not allowed. Not allowed - customer is marked as fraud."
+          ],
+          [
+            "751",
+            "coupon series with same series code is already present"
+          ],
+          [
+            "752",
+            "coupon series with same series code is already present"
+          ],
+          [
+            "753",
+            "series code cannot be empty"
+          ],
+          [
+            "754",
+            "generic cannot be empty for series type GENERIC"
+          ],
+          [
+            "755",
+            "invalid coupon series id"
+          ],
+          [
+            "756",
+            "invalid value for mutually exclusive config series"
+          ],
+          [
+            "759",
+            "Coupon redemption failed"
+          ],
+          [
+            "777",
+            "coupon source not valid for issue coupon"
+          ],
+          [
+            "780",
+            "Coupon not found Identifier: {x}. Coupon isRedeem failed"
+          ],
+          [
+            "781",
+            "Either coupon ID or coupon code is missing"
+          ],
+          [
+            "786",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "787",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "788",
+            "Invalid configuration. Please report to capillary support"
+          ],
+          [
+            "789",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "790",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "791",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "792",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "793",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "794",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "795",
+            "Invalid configuration. Please report to capillary support."
+          ],
+          [
+            "796",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "797",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "798",
+            "Coupon processing failed, Please try again later"
+          ],
+          [
+            "799",
+            "Invalid configuration. Please report to capillary support"
+          ],
+          [
+            "1000",
+            "Filters not provided"
+          ],
+          [
+            "811",
+            "Operation not supported for GENERIC_REDEEMABLE series."
+          ]
+        ],
+        "align": [],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 686
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        862,
+        862
+      ],
+      "raw": "## Coupon Series Limits",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Coupon Series Limits",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        864,
+        864
+      ],
+      "raw": "A coupon series may have a fixed number of coupons, especially when coupons are manually uploaded. Once all coupons in the series have been issued, no further redemptions are possible for that series. Any attempt to redeem a coupon after the series limit is reached will fail. This ensures that the total number of redemptions does not exceed the configured limit for the coupon series.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A coupon series may have a fixed number of coupons, especially when coupons are manually uploaded. Once all coupons in the series have been issued, no further redemptions are possible for that series. Any attempt to redeem a coupon after the series limit is reached will fail. This ensures that the total number of redemptions does not exceed the configured limit for the coupon series.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        866,
+        866
+      ],
+      "raw": "**Note:** Always ensure that the coupon series has sufficient unused coupons available before attempting redemption operations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: Always ensure that the coupon series has sufficient unused coupons available before attempting redemption operations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "slug": "docs/handling-of-rejected-transactions",
+  "source": "https://docs.capillarytech.com/docs/handling-of-rejected-transactions.md",
+  "url": "https://docs.capillarytech.com/docs/handling-of-rejected-transactions",
+  "title": "Handling Of Rejected Transactions",
+  "description": "",
+  "section": "Entities Management",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:03:59.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `/` (U+002F) before local name, expected a character that can start a name, such as a letter, `$`, or `_` (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 12,
+    "list": 5
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Handling of rejected transactions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Handling of rejected transactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "In this page, information of how Capillary handled rejected transactions will be available.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this page, information of how Capillary handled rejected transactions will be available.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Basically, whenever a transaction happens, the bill comes to the capillary system and will be processed. However, sometimes, in those transactions, we might get:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Basically, whenever a transaction happens, the bill comes to the capillary system and will be processed. However, sometimes, in those transactions, we might get:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        17
+      ],
+      "raw": "1. Line item that is not present in the master list\n2. Payment method that is not registered in the system\n3. Stores whose details are not yet added in the capillary system\n4. Missing transaction extended field\n5. Missing customer extended field",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Line item that is not present in the master listPayment method that is not registered in the systemStores whose details are not yet added in the capillary systemMissing transaction extended fieldMissing customer extended field",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Whenever these situations occur, those transactions will be stopped from processing (rejected), and will be moved to a centralised sanity queue instead based on below.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Whenever these situations occur, those transactions will be stopped from processing (rejected), and will be moved to a centralised sanity queue instead based on below.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "**After this enhancement, the handling will be as below:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "After this enhancement, the handling will be as below:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        23,
+        26
+      ],
+      "raw": "1. If they are of 1st, 2nd, 3rd type, they will be moved to the sanity queue.\n2. If they are of 4rth, 5th type:\n   1. If they are of enum (basically a bunch of options), they will be moved to the sanity queue.\n   2. For all the other types, they will be marked as failed permanently.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If they are of 1st, 2nd, 3rd type, they will be moved to the sanity queue.If they are of 4rth, 5th type:If they are of enum (basically a bunch of options), they will be moved to the sanity queue.For all the other types, they will be marked as failed permanently.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "Remember, all these transactions will be marked either as “pending” or “failed” as per above flow. All these configurations need to be enabled by the brands, otherwise the system will default to current behavior.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Remember, all these transactions will be marked either as “pending” or “failed” as per above flow. All these configurations need to be enabled by the brands, otherwise the system will default to current behavior.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "Once these transitions are moved to the sanity queue, an event notification will be sent to the respective brands notifying them that we have received these types of transactions. Brands can fetch these transactions from APIs too to check about them as per their policies (daily, weekly, etc..)",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once these transitions are moved to the sanity queue, an event notification will be sent to the respective brands notifying them that we have received these types of transactions. Brands can fetch these transactions from APIs too to check about them as per their policies (daily, weekly, etc..)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "In the event notification that will be sent to brands, it contains following information:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the event notification that will be sent to brands, it contains following information:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        40
+      ],
+      "raw": "1. Event name\n2. Event datetime\n3. Bill number\n4. Customer identifier\n5. Rejection type, .i.e., can be reprocessed or not\n6. Reason of the rejection\n7. Source details of the bill",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Event nameEvent datetimeBill numberCustomer identifierRejection type, .i.e., can be reprocessed or notReason of the rejectionSource details of the bill",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "Brands can get these transactions from API  based on:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Brands can get these transactions from API  based on:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        44,
+        45
+      ],
+      "raw": "1. Rejection type\n2. All pending transactions for a customer",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Rejection typeAll pending transactions for a customer",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "Then brands need to provide the new data points (new line items, new payment methods, new store, new extended field values) that can be considered for transactions to Capillary. Once they are updated in the Capillary system, all these transactions in the sanity queue will be re-processed once again by our capillary system.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Then brands need to provide the new data points (new line items, new payment methods, new store, new extended field values) that can be considered for transactions to Capillary. Once they are updated in the Capillary system, all these transactions in the sanity queue will be re-processed once again by our capillary system.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "During the reprocessing, the process will happen based on the processed date not the original bill date. The APIs involved in this entire sanity queue are following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "During the reprocessing, the process will happen based on the processed date not the original bill date. The APIs involved in this entire sanity queue are following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        51,
+        54
+      ],
+      "raw": "1. getRejectedTransactions: Fetches all the rejected transactions for the org, based on the input query params.\n2. retriggerTransactionAdd: Checks and updates the status of rejected Transaction. Retriggers the transaction add for  the rejected transaction  which are completely fixed.\n3. markFailed: Updates the rejected transaction status to PERMANENT\\_FAILED\n4. getReTriggerStatus: Gives the status of retriggered rejected transactions for the given retrigger Id",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "getRejectedTransactions: Fetches all the rejected transactions for the org, based on the input query params.retriggerTransactionAdd: Checks and updates the status of rejected Transaction. Retriggers the transaction add for  the rejected transaction  which are completely fixed.markFailed: Updates the rejected transaction status to PERMANENT_FAILEDgetReTriggerStatus: Gives the status of retriggered rejected transactions for the given retrigger Id",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "**API links will be available here:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "API links will be available here:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "<https://docs.capillarytech.com/reference/getrejectedtransactions>",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "https://docs.capillarytech.com/reference/getrejectedtransactions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/getrejectedtransactions>",
+          "line": 58
+        }
+      ]
+    }
+  ]
+}

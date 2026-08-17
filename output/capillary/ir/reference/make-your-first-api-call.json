@@ -1,0 +1,1926 @@
+{
+  "slug": "reference/make-your-first-api-call",
+  "source": "https://docs.capillarytech.com/reference/make-your-first-api-call.md",
+  "url": "https://docs.capillarytech.com/reference/make-your-first-api-call",
+  "title": "Make Your First Api Call",
+  "description": "",
+  "section": "Getting Started",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-03T06:55:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 12,
+    "paragraph": 11,
+    "list": 23,
+    "thematicBreak": 2,
+    "Image": 28,
+    "Callout": 3,
+    "CodeTabs": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Make Your First API Request",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Make Your First API Request",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "In this page, you will learn to make your first Capillary API call.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this page, you will learn to make your first Capillary API call.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Prerequisites:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        16
+      ],
+      "raw": "1. Authentication details - Till ID and password for [basic auth](https://docs.capillarytech.com/reference/oauth) and valid access token for [OAuth](https://docs.capillarytech.com/reference/basic-authentication).\n2. Appropriate [access group](https://docs.capillarytech.com/docs/access-group) access.\n3. API details\n4. Any API testing tool such as Postman, Swagger, etc.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication details - Till ID and password for basic auth and valid access token for OAuth.Appropriate access group access.API detailsAny API testing tool such as Postman, Swagger, etc.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "i": 5,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "# Step-by-step instructions:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Step-by-step instructions:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        40
+      ],
+      "raw": "1. Determine the necessary API for your first request.\n\n2. Select an API tool. Below are some suggested tools along with guidance on their usage:\n   1. [Postman](https://docs.capillarytech.com/reference/make-your-first-api-call#getting-started-with-postman)\n   2. <Anchor label=\"'Try it' from ReadMe\" target=\"_blank\" href=\"https://docs.capillarytech.com/reference/make-your-first-api-call#getting-started-with-try-it-on-readme\">'Try it' from ReadMe</Anchor>\n\n3. Build a URL for the API call. For more information, refer to the [API URL structure](https://docs.capillarytech.com/reference/servers#api-url-structure) documentation.\n\n4. Select the type of API call. For information on API call types, refer to the [API HTTP methods](https://docs.capillarytech.com/reference/overview-1) documentation.\n\n5. Enter the authentication details. You can use Basic auth or OAuth. For more information refer to the [Basic Auth](https://docs.capillarytech.com/reference/basic-authentication) and [OAuth](https://docs.capillarytech.com/reference/oauth) documentation.\n\n   <Callout icon=\"🚧\" theme=\"warn\">\n     Ensure that your till has the appropriate access group permissions. For example, if your till lacks write permissions for Customer resources, you will be unable to add a customer using those till credentials. For more information, refer to the [access group](https://docs.capillarytech.com/docs/access-group). documentation.\n   </Callout>\n\n6. Run the request.\n\n7. Evaluate the response.\n   * For information on API response codes, refer [API status codes](https://docs.capillarytech.com/reference/errors-and-warnings) documentation.\\\n     Once you have successfully made a request, make sure to check the response to ensure it is correct and as expected.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Determine the necessary API for your first request.Select an API tool. Below are some suggested tools along with guidance on their usage:Postman'Try it' from ReadMeBuild a URL for the API call. For more information, refer to the API URL structure documentation.Select the type of API call. For information on API call types, refer to the API HTTP methods documentation.Enter the authentication details. You can use Basic auth or OAuth. For more information refer to the Basic Auth and OAuth documentation.Ensure that your till has the appropriate access group permissions. For example, if your till lacks write permissions for Customer resources, you will be unable to add a customer using those till credentials. For more information, refer to the access group. documentation.Run the request.Evaluate the response.For information on API response codes, refer API status codes documentation.Once you have successfully made a request, make sure to check the response to ensure it is correct and as expected.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call#getting-started-with-try-it-on-readme",
+          "line": 24
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call#getting-started-with-postman",
+          "line": 23
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/make-your-first-api-call#getting-started-with-try-it-on-readme",
+          "line": 24
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/servers#api-url-structure",
+          "line": 26
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/overview-1",
+          "line": 28
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth",
+          "line": 30
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 33
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/errors-and-warnings",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "# Getting started with Postman",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Getting started with Postman",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "## Prerequisites:",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        48,
+        50
+      ],
+      "raw": "1. Authentication details - Till ID and password for [basic auth](https://docs.capillarytech.com/reference/oauth) and valid access token for [OAuth](https://docs.capillarytech.com/reference/basic-authentication).\n2. Appropriate [access group](https://docs.capillarytech.com/docs/access-group) access.\n3. API endpoint details.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Authentication details - Till ID and password for basic auth and valid access token for OAuth.Appropriate access group access.API endpoint details.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "## Step by step instructions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step by step instructions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        54,
+        54
+      ],
+      "raw": "1. Open Postman and from the home page, click  **New** .",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open Postman and from the home page, click  New .",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        56,
+        56
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"45% \" src=\"https://files.readme.io/6eac91c-NEW_IMPORT_POSTMAN.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "45% ",
+        "src": "https://files.readme.io/6eac91c-NEW_IMPORT_POSTMAN.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        58,
+        58
+      ],
+      "raw": "2. Select the **Authorization** tab and from the **Type** drop-down, select the authentication type. For basic authentication, select **Basic auth** and for authenticating using an access token, select **No Auth**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Select the Authorization tab and from the Type drop-down, select the authentication type. For basic authentication, select Basic auth and for authenticating using an access token, select No Auth.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"40% \" src=\"https://files.readme.io/98d3529-AUTH.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "40% ",
+        "src": "https://files.readme.io/98d3529-AUTH.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        62,
+        63
+      ],
+      "raw": "**Basic Auth**\\\nTo authenticate using basic auth, enter the Till ID in **Username** and in the Password field, enter the till password in MD5 format. For more information on these, refer [Basic authentication](https://docs.capillarytech.com/reference/basic-authentication) documentation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Basic AuthTo authenticate using basic auth, enter the Till ID in Username and in the Password field, enter the till password in MD5 format. For more information on these, refer Basic authentication documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "i": 17,
+      "lines": [
+        65,
+        65
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"65% \" src=\"https://files.readme.io/1bcc2d0-Basic_auth.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "65% ",
+        "src": "https://files.readme.io/1bcc2d0-Basic_auth.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        67,
+        68
+      ],
+      "raw": "**Authenticating using access token**\\\nTo authenticate using an access token, [generate the token](https://docs.capillarytech.com/reference/oauth#generating-access-token), select **Headers**, and enter the **Key** X-CAP-API-OAUTH-TOKEN, then input the token in the **Value** field. The **Content-Type** and **accept** key fields are auto-generated.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Authenticating using access tokenTo authenticate using an access token, generate the token, select Headers, and enter the Key X-CAP-API-OAUTH-TOKEN, then input the token in the Value field. The Content-Type and accept key fields are auto-generated.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/oauth#generating-access-token",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/052a6df-Access_token.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/052a6df-Access_token.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        72,
+        74
+      ],
+      "raw": "> 🚧 Warning\n>\n> Ensure that your till has the appropriate access group permissions. For example, if your till lacks write permissions for Customer resources, you will be unable to add a customer using those till credentials. For more information, refer to the [access group](https://docs.capillarytech.com/docs/access-group). documentation.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "WarningEnsure that your till has the appropriate access group permissions. For example, if your till lacks write permissions for Customer resources, you will be unable to add a customer using those till credentials. For more information, refer to the access group. documentation.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-group",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "i": 21,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "3. From the method drop-down, select the method type.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the method drop-down, select the method type.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"40% \" src=\"https://files.readme.io/96735bf-Type.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "40% ",
+        "src": "https://files.readme.io/96735bf-Type.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 23,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "4. In the URL text box, enter the API URL. Refer [API Index](https://dash.readme.com/project/capillary-documentation/v1.0/refs/api-index) for a list of our APIs and refer to the [API URL structure](https://docs.capillarytech.com/reference/servers#api-url-structure) documentation for information on building a URL.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the URL text box, enter the API URL. Refer API Index for a list of our APIs and refer to the API URL structure documentation for information on building a URL.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/servers#api-url-structure",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/6209f2f-API_URL_text_box.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/6209f2f-API_URL_text_box.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 25,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "5. (a) For **POST** and **PUT** methods, select **Body** tab >  **raw** and enter the body parameters.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "(a) For POST and PUT methods, select Body tab >  raw and enter the body parameters.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"50% \" src=\"https://files.readme.io/78b078f-Body.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "50% ",
+        "src": "https://files.readme.io/78b078f-Body.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 27,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "(b)For **GET** / **DELETE** methods, select the **Parameters** tab and enter the query parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "(b)For GET / DELETE methods, select the Parameters tab and enter the query parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"65% \" src=\"https://files.readme.io/076535e-GET.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "65% ",
+        "src": "https://files.readme.io/076535e-GET.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 29,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "5. Click **Send**. The response is displayed on the interface.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Send. The response is displayed on the interface.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        94,
+        94
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/c15b0f4-save.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/c15b0f4-save.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        96,
+        230
+      ],
+      "raw": "```json POST CUSTOMER\n{\n    \"loyaltyInfo\": {\n        \"loyaltyType\": \"loyalty\"\n    },\n    \"profiles\": [\n        {\n            \"firstName\": \"Brad\",\n            \"lastName\": \"Pitt\",\n            \"identifiers\": [\n                {\n                    \"type\": \"mobile\",\n                    \"value\": \"988001234\"\n                },\n                {\n                    \"type\" : \"email\",\n                    \"value\" : \"bradpitt@gmail.com\"\n                }\n            ],\n            \"source\": \"INSTORE\"\n        }\n    ]\n}\n\n```\n```json GET CUSTOMER ID\n//REQUEST\nhttps://{host}/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=9449489999\n\n//RESPONSE\n\n{\n  \"entity\": 552695692,\n  \"warnings\": []\n}\n\n```\n```json PUT\n// BODY\n\n{\n  \"profiles\": [\n    {\n      \"firstName\": \"Tom\",\n      \"lastName\": \"Hill\",\n      \"fields\": {\n        \"gender\": \"Male\",\n        \"city\": \"Bangalore\"\n      },\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": 919111111111\n        },\n        {\n          \"type\": \"email\",\n          \"value\": \"tomhill@gmail.com\"\n        },\n        {\n          \"type\": \"wechat\",\n          \"value\": \"wc_2\"\n        }\n      ],\n      \"commChannels\": [\n        {\n          \"type\": \"email\",\n          \"value\": \"tomhill@gmail.com\",\n          \"primary\": \"true\",\n          \"verified\": \"false\",\n          \"meta\": {\n            \"residence\": true\n          }\n        },\n        {\n          \"type\": \"wechat\",\n          \"value\": \"wc_2\",\n          \"primary\": \"true\",\n          \"verified\": \"true\",\n          \"meta\": {\n            \"residence\": true\n          }\n        },\n        {\n          \"type\": \"mobilePush\",\n          \"value\": \"abcd12343434\",\n          \"primary\": true,\n          \"verified\": true,\n          \"meta\": {\n            \"lastViewedDate\": \"2019-10-25\"\n          }\n        }\n      ],\n      \"source\": \"WECHAT\",\n      \"accountId\": \"1234\"\n    }\n  ],\n  \"loyaltyInfo\": {\n    \"loyaltyType\": \"loyalty\"\n  },\n  \"extendedFields\": {\n    \"gender\": \"MALE\",\n    \"city\": \"Bangalore\"\n  }\n}\n\n\n\n//RESPONSE\n\n{\n  \"createdId\": 162116213,\n  \"warnings\": [],\n  \"sideEffects\": [\n    {\n      \"awardedPoints\": 25,\n      \"type\": \"points\"\n    }\n  ]\n}\n\n```\n```json DELETE\n//REQUEST\n\nhttps://{host}/v2/userGroup2/1234/leave?source=INSTORE&accountId=321&identifierName=mobile&identifierValue=1234566789\n\n//RESPONSE\n\n{\n  \"warnings\": [],\n  \"errors\": [],\n  \"success\": true\n}\n\n```",
+      "kind": "codeTabs",
+      "syntax": "markdown",
+      "component": "CodeTabs",
+      "text": "POST CUSTOMER",
+      "target": {
+        "component": "CodeGroup",
+        "status": "transform",
+        "note": "tab name goes on BOTH the fence and tabs={[\"a\",\"b\"]}"
+      },
+      "inline": [],
+      "tabs": [
+        {
+          "lang": "json",
+          "title": "POST CUSTOMER",
+          "code": "{\n    \"loyaltyInfo\": {\n        \"loyaltyType\": \"loyalty\"\n    },\n    \"profiles\": [\n        {\n            \"firstName\": \"Brad\",\n            \"lastName\": \"Pitt\",\n            \"identifiers\": [\n                {\n                    \"type\": \"mobile\",\n                    \"value\": \"988001234\"\n                },\n                {\n                    \"type\" : \"email\",\n                    \"value\" : \"bradpitt@gmail.com\"\n                }\n            ],\n            \"source\": \"INSTORE\"\n        }\n    ]\n}\n"
+        },
+        {
+          "lang": "json",
+          "title": "GET CUSTOMER ID",
+          "code": "//REQUEST\nhttps://{host}/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=9449489999\n\n//RESPONSE\n\n{\n  \"entity\": 552695692,\n  \"warnings\": []\n}\n"
+        },
+        {
+          "lang": "json",
+          "title": "PUT",
+          "code": "// BODY\n\n{\n  \"profiles\": [\n    {\n      \"firstName\": \"Tom\",\n      \"lastName\": \"Hill\",\n      \"fields\": {\n        \"gender\": \"Male\",\n        \"city\": \"Bangalore\"\n      },\n      \"identifiers\": [\n        {\n          \"type\": \"mobile\",\n          \"value\": 919111111111\n        },\n        {\n          \"type\": \"email\",\n          \"value\": \"tomhill@gmail.com\"\n        },\n        {\n          \"type\": \"wechat\",\n          \"value\": \"wc_2\"\n        }\n      ],\n      \"commChannels\": [\n        {\n          \"type\": \"email\",\n          \"value\": \"tomhill@gmail.com\",\n          \"primary\": \"true\",\n          \"verified\": \"false\",\n          \"meta\": {\n            \"residence\": true\n          }\n        },\n        {\n          \"type\": \"wechat\",\n          \"value\": \"wc_2\",\n          \"primary\": \"true\",\n          \"verified\": \"true\",\n          \"meta\": {\n            \"residence\": true\n          }\n        },\n        {\n          \"type\": \"mobilePush\",\n          \"value\": \"abcd12343434\",\n          \"primary\": true,\n          \"verified\": true,\n          \"meta\": {\n            \"lastViewedDate\": \"2019-10-25\"\n          }\n        }\n      ],\n      \"source\": \"WECHAT\",\n      \"accountId\": \"1234\"\n    }\n  ],\n  \"loyaltyInfo\": {\n    \"loyaltyType\": \"loyalty\"\n  },\n  \"extendedFields\": {\n    \"gender\": \"MALE\",\n    \"city\": \"Bangalore\"\n  }\n}\n\n\n\n//RESPONSE\n\n{\n  \"createdId\": 162116213,\n  \"warnings\": [],\n  \"sideEffects\": [\n    {\n      \"awardedPoints\": 25,\n      \"type\": \"points\"\n    }\n  ]\n}\n"
+        },
+        {
+          "lang": "json",
+          "title": "DELETE",
+          "code": "//REQUEST\n\nhttps://{host}/v2/userGroup2/1234/leave?source=INSTORE&accountId=321&identifierName=mobile&identifierValue=1234566789\n\n//RESPONSE\n\n{\n  \"warnings\": [],\n  \"errors\": [],\n  \"success\": true\n}\n"
+        }
+      ]
+    },
+    {
+      "i": 32,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "You can click **Save as example** to save the response for future reference.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can click Save as example to save the response for future reference.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"40% \" src=\"https://files.readme.io/95dc9cb-save_as_ex.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "40% ",
+        "src": "https://files.readme.io/95dc9cb-save_as_ex.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "# Using Postman for Bulk API requests",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Using Postman for Bulk API requests",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "You can configure automation for repetitive API requests in Postman. This approach allows the automatic execution of numerous API requests and is useful when there is no specific BULK API available for your requirements.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can configure automation for repetitive API requests in Postman. This approach allows the automatic execution of numerous API requests and is useful when there is no specific BULK API available for your requirements.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        240,
+        242
+      ],
+      "raw": "> 👍 Note\n>\n> This method is primarily intended for cleanup activities during migrations or other rare circumstances. It is not recommended for all APIs and should not be considered a replacement for BULK APIs.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "NoteThis method is primarily intended for cleanup activities during migrations or other rare circumstances. It is not recommended for all APIs and should not be considered a replacement for BULK APIs.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "To create a Bulk API request using POSTMAN, perform the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To create a Bulk API request using POSTMAN, perform the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        246,
+        246
+      ],
+      "raw": "1. Click on the Add icon.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click on the Add icon.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        248,
+        248
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"55% \" src=\"https://files.readme.io/cc7178f-Add_Icon.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "55% ",
+        "src": "https://files.readme.io/cc7178f-Add_Icon.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        250,
+        250
+      ],
+      "raw": "2. Click **Blank collection**. A new collection is created.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click Blank collection. A new collection is created.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        252,
+        252
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"55% \" src=\"https://files.readme.io/e728889-blank_collection.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "55% ",
+        "src": "https://files.readme.io/e728889-blank_collection.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 42,
+      "lines": [
+        254,
+        254
+      ],
+      "raw": "3. Click the three-dot menu, and click **Add a request**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click the three-dot menu, and click Add a request.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        256,
+        256
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"45% \" src=\"https://files.readme.io/81ad138-Add_request.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "45% ",
+        "src": "https://files.readme.io/81ad138-Add_request.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 44,
+      "lines": [
+        258,
+        258
+      ],
+      "raw": "3. Enter the API information such as HTTP method, API endpoint, and authorization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter the API information such as HTTP method, API endpoint, and authorization.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        260,
+        260
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"50% \" src=\"https://files.readme.io/d408b15-Api_info.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "50% ",
+        "src": "https://files.readme.io/d408b15-Api_info.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        262,
+        262
+      ],
+      "raw": "3. In the **Body**, enter the body parameters. For the dynamic values, define the value using a variable. The variables should be defined in the format `{{variablename}}`. For example, see the below sample body of a transaction ADD API where \"mobilenumber\", \"billNumber\", and \"billAmount\" are the variables:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Body, enter the body parameters. For the dynamic values, define the value using a variable. The variables should be defined in the format {{variablename}}. For example, see the below sample body of a transaction ADD API where \"mobilenumber\", \"billNumber\", and \"billAmount\" are the variables:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "handlebars",
+          "value": "{{variablename}}",
+          "line": 262
+        }
+      ]
+    },
+    {
+      "i": 47,
+      "lines": [
+        264,
+        264
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"65% \" src=\"https://files.readme.io/238811a-Add_transaction.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "65% ",
+        "src": "https://files.readme.io/238811a-Add_transaction.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 48,
+      "lines": [
+        266,
+        266
+      ],
+      "raw": "6. Define the values for the variables in a CSV file and save it. Make sure that the names of the variables defined and those in the CSV files are the same. For example, if the variables are \"mobilenumber\", \"billNumber\", and \"billAmount\", define the values for those in the CSV file.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Define the values for the variables in a CSV file and save it. Make sure that the names of the variables defined and those in the CSV files are the same. For example, if the variables are \"mobilenumber\", \"billNumber\", and \"billAmount\", define the values for those in the CSV file.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        268,
+        268
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/8bb7517-Variable_file.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/8bb7517-Variable_file.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        270,
+        275
+      ],
+      "raw": "7. Save the request.\n8. Click the three-dot menu, and click **Run collection**.\n9. Click **Select File** and upload the  CSV file which contains the variables and the values for the dynamic parameters.\n10. Select the **Persist response for a session** checkbox to view the response in the results.\n11. Click **Run**.\n12. To view the responses, click on the Iterations.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Save the request.Click the three-dot menu, and click Run collection.Click Select File and upload the  CSV file which contains the variables and the values for the dynamic parameters.Select the Persist response for a session checkbox to view the response in the results.Click Run.To view the responses, click on the Iterations.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        277,
+        277
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"45% \" src=\"https://files.readme.io/f62a339-Response.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "45% ",
+        "src": "https://files.readme.io/f62a339-Response.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 52,
+      "lines": [
+        279,
+        279
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        281,
+        281
+      ],
+      "raw": "# Getting started wih 'Try it' on ReadMe",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Getting started wih 'Try it' on ReadMe",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        283,
+        283
+      ],
+      "raw": "This section will walk you through the steps to make your API request from the ReadMe portal.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This section will walk you through the steps to make your API request from the ReadMe portal.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        285,
+        285
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        287,
+        288
+      ],
+      "raw": "1. Basic Auth credentials -  till ID and MD5 encoded password. For more information refer to the [Basic authentication](https://docs.capillarytech.com/reference/basic-authentication) documentation.\n2. Host URL",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Basic Auth credentials -  till ID and MD5 encoded password. For more information refer to the Basic authentication documentation.Host URL",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/basic-authentication",
+          "line": 287
+        }
+      ]
+    },
+    {
+      "i": 57,
+      "lines": [
+        290,
+        290
+      ],
+      "raw": "## Step by step instructions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Step by step instructions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        292,
+        294
+      ],
+      "raw": "1. Navigate to the Capillary [developer documentation portal](https://docs.capillarytech.com/reference).\n2. Select the API you want to run. For example, [Add a user group](https://docs.capillarytech.com/reference/add-group).\n3. Enter the body parameters (for POST and PUT) or query parameters (for GET and DELETE) information.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to the Capillary developer documentation portal.Select the API you want to run. For example, Add a user group.Enter the body parameters (for POST and PUT) or query parameters (for GET and DELETE) information.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-group",
+          "line": 293
+        }
+      ]
+    },
+    {
+      "i": 59,
+      "lines": [
+        296,
+        296
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/77e6ae5-Readme_body_parameters.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/77e6ae5-Readme_body_parameters.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 60,
+      "lines": [
+        298,
+        299
+      ],
+      "raw": "**NOTE:** Parameters marked required are mandatory.\\\nFor POST or PUT calls, if the body parameters fields are not available, enter the API payload in the **RAW\\_BODY** in the appropriate JSON format.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "NOTE: Parameters marked required are mandatory.For POST or PUT calls, if the body parameters fields are not available, enter the API payload in the RAW_BODY in the appropriate JSON format.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        301,
+        301
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/77866e6-RAW_BODY.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/77866e6-RAW_BODY.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 62,
+      "lines": [
+        303,
+        303
+      ],
+      "raw": "4. From the **CURL** section, select **CURL** from the drop-down. To view available request CURL examples, click the **REQUEST** drop-down and select the CURLs.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the CURL section, select CURL from the drop-down. To view available request CURL examples, click the REQUEST drop-down and select the CURLs.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        305,
+        305
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/3e55a0a-CURL_examples.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/3e55a0a-CURL_examples.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        307,
+        307
+      ],
+      "raw": "To clear an example, select **Clear example**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To clear an example, select Clear example.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        309,
+        309
+      ],
+      "raw": "<Image align=\"center\" width=\"450px\" src=\"https://files.readme.io/fab22ce-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "width": "450px",
+        "src": "https://files.readme.io/fab22ce-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        311,
+        311
+      ],
+      "raw": "5. In the **URL**, enter the HOST URL.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the URL, enter the HOST URL.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        313,
+        313
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/9e19ada-Enter_HOST.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/9e19ada-Enter_HOST.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 68,
+      "lines": [
+        315,
+        315
+      ],
+      "raw": "6. If applicable, Enter the appropriate header values. The headers section is visible only if the API supports any additional headers.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If applicable, Enter the appropriate header values. The headers section is visible only if the API supports any additional headers.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        317,
+        317
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"45% \" src=\"https://files.readme.io/df557a2-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "45% ",
+        "src": "https://files.readme.io/df557a2-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 70,
+      "lines": [
+        319,
+        320
+      ],
+      "raw": "7. In the **Authorization** section, enter the till ID and password in MD5 format.\\\n   **NOTE:** This is not required if you have entered the access token in the `X-CAP-API-OAUTH-TOKEN` header.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Authorization section, enter the till ID and password in MD5 format.NOTE: This is not required if you have entered the access token in the X-CAP-API-OAUTH-TOKEN header.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        322,
+        322
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/d997854-Readme_Authentication.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/d997854-Readme_Authentication.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 72,
+      "lines": [
+        324,
+        324
+      ],
+      "raw": "8. Click  **Try it!** . The **Response** section displays the response.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Click  Try it! . The Response section displays the response.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        326,
+        326
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"450px\" src=\"https://files.readme.io/a6cbd1a-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "450px",
+        "src": "https://files.readme.io/a6cbd1a-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 74,
+      "lines": [
+        328,
+        328
+      ],
+      "raw": "To view other sample responses, click the **RESPONSE** drop-down. The drop-down displays the available example responses.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To view other sample responses, click the RESPONSE drop-down. The drop-down displays the available example responses.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        330,
+        330
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} width=\"45% \" src=\"https://files.readme.io/822414c-Response_example.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "width": "45% ",
+        "src": "https://files.readme.io/822414c-Response_example.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 76,
+      "lines": [
+        332,
+        332
+      ],
+      "raw": "## Testing API using ReadMe Try it",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Testing API using ReadMe Try it",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        334,
+        334
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/faa3d03-try_it-min.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/faa3d03-try_it-min.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 78,
+      "lines": [
+        336,
+        336
+      ],
+      "raw": "## Viewing example in ReadMe",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Viewing example in ReadMe",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        338,
+        338
+      ],
+      "raw": "<Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/2d7952f-Example.gif\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "className": "border",
+        "border": "{true}",
+        "src": "https://files.readme.io/2d7952f-Example.gif"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 80,
+      "lines": [
+        340,
+        340
+      ],
+      "raw": "> 👍 Congratulations! You have successfully sent your first Capillary API call!",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "👍"
+      },
+      "text": "Congratulations! You have successfully sent your first Capillary API call!",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "success"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

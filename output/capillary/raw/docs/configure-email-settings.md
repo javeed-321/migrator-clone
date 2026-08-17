@@ -1,0 +1,289 @@
+---
+updatedAt: 2026-03-06T04:13:01.000Z
+---
+
+Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.
+
+# Configure Email Settings
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/e807729fed0e1c4a33c6df6616e6be51b8d955ef01f382b5434408d79cf6e35c-Data_Flow_Diagram_Whiteboard_in_Dark_Yellow_Light_Yellow_Black_Monochromatic_Style_2.png" className="border" />
+
+Email campaigns help you to connect with the audience directly through email addresses. You can send two types of email:
+
+* Bulk messages – such as promotional offers, newsletters, or announcements.
+* Transactional messages – such as OTPs, confirmations, or updates.
+
+To ensure smooth delivery, you need to set up the required email configurations before sending an email broadcast campaign. Proper setup authenticates your emails and increases their chances of reaching the inbox successfully.
+
+# Configure an email campaign
+
+To configure an email campaign perform the steps:
+
+## Step 1: Create a ticket to the Gateway team to configure the following setups
+
+#### i. <Anchor label="Configure Communication and gateway settings" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configuring-communication-and-gateway-settings">Configure Communication and gateway settings</Anchor>
+
+#### ii. <Anchor label="Configure Domain settings" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configuring-the-domain-settings">Configure Domain settings</Anchor>
+
+#### iii. <Anchor label="Configure Email priority settings" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configuring-email-priority-settings">Configure Email priority settings</Anchor>
+
+#### iv. <Anchor label="Add Details in the setup wizard" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/adding-the-details-in-the-setup-wizard">Add Details in the setup wizard</Anchor>
+
+The above configurations are the email gateway settings that must be configured before configuring and sending an email template on the UI.
+
+## Step 2: <Anchor label="Configure email template & content" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-content#/">Configure email template & content</Anchor>
+
+## Step 3: <Anchor label="Configure Delivery settings" target="_blank" href="https://docs.capillarytech.com/docs/configure-communication-channel-settings#/">Configure Delivery settings</Anchor>
+
+***
+
+In addition to the mandatory settings, you can also configure the following settings as needed:
+
+* <Anchor label="Whitelist emails" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configure-email-whitelisting">Whitelist emails</Anchor> to resolve delivery issues caused by soft or hard bounces.
+* <Anchor label="Email notifications for Points of Contact (POCs)" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configure-email-notifications-for-pocs">Email notifications for Points of Contact (POCs)</Anchor> are set up to keep brand users informed about campaign messages.
+* <Anchor label="Subscription status" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/update-subscription-status">Subscription status</Anchor> allows customers to easily opt in or out of promotional emails in their preferred language
+
+## Configuring communication and gateway settings
+
+To send emails you need to connect Capillary with an email vendor, which is the service that delivers emails to customers. The vendor manages the delivery of both bulk campaigns and transactional messages (such as OTPs and order confirmations). It also ensures that your emails are authenticated through DNS records like <Anchor label="SPF" target="_blank" href="https://www.mimecast.com/content/sender-policy-framework/">SPF</Anchor>, <Anchor label="DKIM" target="_blank" href="https://www.proofpoint.com/us/threat-reference/dkim">DKIM</Anchor>, and <Anchor label="DMARC" target="_blank" href="https://www.fortinet.com/resources/cyberglossary/dmarc">DMARC</Anchor>, and provides delivery reports including statuses such as delivered, bounced, or failed.
+
+You can either use Capillary’s default vendor, <Anchor label="SendGrid" target="_blank" href="https://docs.capillarytech.com/docs/sendgrid#/">SendGrid</Anchor>, or <Anchor label="Integrate a new vendor to the capillary system" target="_blank" href="https://docs.capillarytech.com/docs/vendor-integration-other-than-sendgrid#/">Integrate a new vendor to the capillary system</Anchor> of your choice into the Capillary system and configure the required settings in the respective vendor’s portal. If you choose the default vendor SendGrid, no additional configuration is required in the SendGrid portal, as it is already pre-configured. You can directly proceed with the <Anchor label="domain configuration" target="_blank" href="https://docs.capillarytech.com/docs/configure-email-settings#/configuring-the-domain-settings">domain configuration</Anchor> for your brand.
+
+The supported vendors for emails are Falconide, Netcore, Octane, ValueFirst. To use any of these email vendors, create a ticket to the gateway team.
+
+To configure communication and gateway settings for a new vendor, create a ticket with the Capillary Gateway team. Provide the following information: The IP address used for sending emails can be either a Custom IP (dedicated to the brand) or Capillary's IP.
+
+<Table align={["left","left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Type
+      </th>
+
+      <th>
+        Usage
+      </th>
+
+      <th>
+        Advantage
+      </th>
+
+      <th>
+        Limitation
+      </th>
+
+      <th>
+        Cost
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Custom IP (Dedicated IP)
+      </td>
+
+      <td>
+        Recommended for established brands with high email volumes
+
+        <br />
+      </td>
+
+      <td>
+        * Independent IP reputation (emails are more likely to reach the inbox)
+        * Higher deliverability rates
+        * Can segment bulk and transactional emails
+        * Builds trust with consistent sending
+          <br />
+      </td>
+
+      <td>
+        * Requires proper IP warm-up
+        * Additional cost
+        * Needs separate IPs for bulk and OTP/transactional
+      </td>
+
+      <td>
+        30 USD per IP/month
+
+        <br />
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Capillary IP (Shared IP)
+      </td>
+
+      <td>
+        Suitable for brands with low email volumes
+
+        <br />
+      </td>
+
+      <td>
+        * No extra cost
+        * Easy onboarding
+        * Reduces spam risk in early stage
+      </td>
+
+      <td>
+        * Shared reputation across brands (emails may go to spam if other brands misuse the IP)
+        * Limited control over deliverability
+      </td>
+
+      <td>
+        Not needed
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### Best practices
+
+* Use separate IPs for bulk and transactional traffic.
+* Maintain consistent sending domains and IPs.
+* Avoid mixing marketing and OTP/transactional emails on the same IP.
+
+> 📘 Note
+>
+> If a brand opts for a custom IP, the Gateway team creates a ticket with the engineering team for API integration. The required API details are obtained from the vendor’s portal. This integration ensures a seamless flow of information between the vendor portal and Capillary.
+
+## Configuring the domain settings
+
+### Prerequisites
+
+* Obtain **Domain name**, **Sender ID**, **Sender name**, **Reply-to ID**, and **Reply-to name** from the brand.
+* The vendor portal must be configured for the brand (for example, the <Anchor label="SendGrid" target="_blank" href="https://docs.capillarytech.com/docs/sendgrid#/">SendGrid</Anchor> portal in case of SendGrid).
+* <Anchor label="CNAME" target="_blank" href="https://www.cloudflare.com/en-gb/learning/dns/dns-records/dns-cname-record/">CNAME</Anchor> records in the brand’s DNS portal should be added.
+
+Steps to configure the domain settings
+
+1. In the Brand organization, navigate to:
+   **Organization Settings** > **Communication & Gateway** > **Domains** > **Configure Domains**.
+
+   <Image align="center" border={true} width="75% " src="https://files.readme.io/b25677177f0eeecbb3d81a9d688f7e79ea7ed290ade2a793b6b035b8f1b234dd-Screenshot_2025-11-12_at_12.41.43_PM.png" className="border" />
+2. Select **Configure Domain** and enter the details provided by the brand:
+
+| Field              | Description                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| **Domain name**    | The domain from which emails will be sent. For example -  brandname.com.                          |
+| **Use this for**   | The Purpose for which the domain is configured. For example- Bulk or transactional.               |
+| **DMARC email ID** | The email ID used for receiving DMARC reports. For example - `dmarc-reports@brandname.com`.       |
+| **Sender ID**      | The email address used to send emails to customers. For example - `offers@brandname.com`.         |
+| **Sender name**    | The display name shown to recipients. For example - Brandname Offers.                             |
+| **Reply-to ID**    | The email address where customer replies will be received. For example - `support@brandname.com`. |
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/6950644a1dd5f888b21914989d89f7419162f40df15f9be725564abf4e474f72-Screenshot_2025-11-12_at_12.44.42_PM.png" className="border" />
+
+3. Select **Save**. The configured domain appears on the **Configure Domain** page.
+4. Navigate to **Domain Gateway Mapping**.
+5. Select **+Domain-Gateway Mapping**.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/64398c42f4d753183dc010cfcf1e2a5129f95877c6919f7e624b38e6809929aa-Screenshot_2025-11-12_at_2.17.57_PM.png" className="border" />
+
+6. In the mapping configuration:
+   * Select the **Type**.
+   * Choose the **Domain** from the drop down.
+   * Select **Use System Defaults**. The system automatically fetches the gateway account details.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/c22e6376dec4029d72f99bef813d57f44fba97bee1dc18cdf633bd2b572b4404-Screenshot_2025-11-12_at_2.20.26_PM.png" className="border" />
+
+7. Select **Save**. The new mapping appears on the **Gateway Mapping** page.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/d260b3ef5aaef314b468ceb7dd54ed1f65bab1de2061ebdfaf40cf1603afcfa2-Screenshot_2025-11-12_at_2.22.41_PM.png" className="border" />
+
+## Configuring email priority settings
+
+When multiple domains are available for a brand, setting a domain priority determines which domain is used to send communications. You can set the priority separately for Bulk emails and for Transactional (High) emails.
+
+Steps to configure domain priority
+
+1. In InTouch, select the brand for which you want to set the domain priority. Then navigate to Organization Settings > **Communication & Gateway** > **Domains** > **Domain Gateway Mapping**.
+2. On the Mapping page, under Email Domain - Gateway Mapping:
+   * To set the priority for Bulk emails, select **Update Bulk Priorities**.
+   * To set the priority for Transactional (High) emails, select **Update High Priorities**.
+3. In the priority table, navigate to the domain you want to send messages from.
+4. In the **Priority** section, select the + icon for the domain and drag it to the top.
+5. Select **Save**.
+
+The priority is now updated for the selected domain under the selected brand. When you send a communication, it will be sent from the domain that is set as the first priority, regardless of the other domains listed in the table.
+
+> 📘 Note
+>
+> Ensure that the sending domain you select is whitelisted at the gateway or vendor. If the domain is not whitelisted, emails may be sent from a fallback or default domain instead. Contact your gateway or vendor support to whitelist the required domain before using it in email campaigns.
+
+## Adding the details in the setup wizard
+
+The Capillary Database stores the list of organizations configured in the UI. After integrating the vendor and completing the domain settings for a brand, you must update the sender details in the database as a final step.
+
+To add the details in the setup wizard follow the given steps below:
+
+1. Navigate to the Capillary data base from the desired cluster. For example for EU cluster - <Anchor label="https://eu.intouch.capillarytech.com/orgadmin" target="_blank" href="https://eu.intouch.capillarytech.com/orgadmin"><https://eu.intouch.capillarytech.com/orgadmin></Anchor>
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/d178584b76fe029d124cce7313b6027c07709fbcbbd90a53b17da20b173feb8c-email-documentationv1-google-docs.png" className="border" />
+
+2. Navigate to the list of orgs. Select the organization name that you configured in the UI.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/aa26bf3f08091ac6165fb39bf678ee5f1036cfa86d6293dec3f2d3591a2dceab-email-documentationv1-google-docs_1.png" className="border" />
+
+3. Navigate to the Update Custom Sender and enter the following details - **Sender ID for GSM**, **Sender ID for CDMA**, **Sender label for EMAIL**, **Sender EMAIL** and **Reply-to ID for EMAIL**. This information is provided by the brand.
+
+<Image align="center" border={true} width="60% " src="https://files.readme.io/8d49042d97e488a39b53c13c0ca6c9da9962c6373e79fecfc06474139b51fb73-Screenshot_2025-11-12_at_2.51.18_PM.png" className="border" />
+
+4. Select **Submit**.
+
+The other fields - **Edit Details for the Organization**, **Administer 'Redtag SAUDI'**, **Credits HIstory**, **Modules** and **Microsite** are not required.  Any updates made on this page will not affect the configurations made on the brand’s organization.
+
+***
+
+# Configure email whitelisting
+
+When emails experience soft or hard bounces, they may stop receiving messages sent from Capillary. To address this, you can whitelist such email addresses.
+
+Whitelisting helps resolve specific delivery issues, but it should be used alongside broader email best practices. These include:
+
+* Regularly cleaning your customer database.
+* Removing invalid or blocked addresses.
+* Having a clear policy for handling bounced addresses.
+* Periodically removing inactive subscribers.
+
+Never reactivate addresses on your unsubscribe or suppression list. While whitelisting is a corrective step, maintaining overall database hygiene is the key to preventing delivery issues.
+
+The process for emails whitelisting on the Capillary Engage+ setting is as follows:
+
+1. On **Engage+** home page, select settings.
+
+<Image align="center" border={true} width="80% " src="https://files.readme.io/dd7d1cfebee2783912968dc98cf53b05da318c17a58aaa4236b438bf3867bd9a-email-documentationv1-google-docs_2.png" className="border" />
+
+2. Navigate to **Email Whitelisting**.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/1b86079f18aff8fca81461fbdec5add663b31ed80348623464d2bfbbf173db89-email-documentationv1-google-docs_3.png" className="border" />
+
+3. Upload the **CSV file** containing the emails to be whitelisted.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/88471674689f85b8a312f95191dc35dd63a8245820b977be84344e8079316217-email-documentationv1-google-docs_4.png" className="border" />
+
+4. Click **Done**.
+
+> 📘 Note
+>
+> Ensure that recipient email addresses are not marked as hardbounced. Addresses marked as hardbounced are blocked from receiving transactional emails. You can temporarily allow delivery by whitelisting the address, but if another hardbounce occurs, the address will be blocked again.
+
+# Configure Email notifications for POCs
+
+This allows you to send scheduled campaign messages to the brand’s Points of Contacts (POCs) as well who act as the designated user group.
+
+To create a POCs group, follow these steps.
+
+1. On the dashboard, click the settings icon.
+2. Select **Users groups**, and then select **Create user group**.
+3. In Name, enter a group name for POCs users.
+4. In the All contacts tab, select users by clicking **+Add** next to it, and then click **Done**.
+
+<Image align="center" border={true} width="75% " src="https://files.readme.io/c7fede0dcdcbe44a05bf60601d73ba33ae4ae13bcfcf3fabd7ead358c2d3ab5a-email-documentationv1-google-docs_5.png" className="border" />
+
+# Update subscription status
+
+You can configure email subscriptions to let customers opt in or opt out of promotional emails for each source. You can also customize the success or failure messages shown after a subscription update. For details, see <Anchor label="Subscription Message Language Configuration" target="_blank" href="https://docs.capillarytech.com/docs/subscription_management">Subscription Message Language Configuration</Anchor>.

@@ -1,0 +1,140 @@
+{
+  "slug": "docs/data-deletion-faq",
+  "source": "https://docs.capillarytech.com/docs/data-deletion-faq.md",
+  "url": "https://docs.capillarytech.com/docs/data-deletion-faq",
+  "title": "Data Deletion Faq",
+  "description": "",
+  "section": "Data Deletion",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-02-05T11:10:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "br": 1,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# FAQs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "FAQs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        85
+      ],
+      "raw": "1. Can we raise bulk PII data deletion requests?\n\n   For bulk PII deletion, use Connect+. See <Anchor label=\"PII data flow\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/pii_cleanup_template\">PII data flow</Anchor>.\n2. Is the PII deletion request approved by default?\n\n   This depends on the query parameter. PII deletions need to be approved.\n3. Are custom fields and extended fields part of PII data?\n\n   No. But, you can mark the desired custom fields and extended fields as PII data.\n4. Will PII details in the Auth engine be deleted for the users who raised the request?\n\n   Yes. After the PII deletion waiting period lapses.\n5. Will event data (behavioural events, transaction events, etc.)be deleted?\n\n   No. Data attributed to the user id is not deleted as the user id is not categorized as PII data.\n6. What happens if the waiting period is set as 0 days?\n\n   If the waiting period is set to 0 days, the system deletes the data on the same day.\n7. My brand's transaction custom fields/extended fields also have PII data. Can those be marked for deletion?\n\n   Yes. You can mark that data as PII data. See <Anchor label=\"Custom field and extended field PII data\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi\">Custom field and extended field PII data</Anchor>.\n8. Can I view a deleted customer's events on Member Care?\n\n   Yes.\n9. Will the profile be visible if I go to the profile using user\\_id in the Member Care URL?\n\n   No.\n10. Are payment mode attributes deleted by default?\n\n    No. But you can configure payment attributes as PII data. See <Anchor label=\"payment attributes\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii\">payment attributes</Anchor>.\n11. My brand's payment mode attributes have sensitive PII data. Can I delete that?\n\n    You can configure payment attributes as PII data. See <Anchor label=\"payment attributes\" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii\">payment attributes</Anchor>.\n12. I want to delete event data (transactions, behavioural events and so on) of customers. Is this possible?\n\n    No.\n13. Will communications sent to a customer be deleted?\n\n    No.\n14. What happens to active coupons that are not redeemed?\n\n    You cannot redeem the active coupons associated with the deleted customer ID.\n15. Will OTP messages get sent to customers?\n\n    After the PII deletion, the customer will not get any message.\n16. How can a customer track the status of a deletion request?\n\n    Brands can use the GET APIs and the event notifications to update the status of the customers.\n17. Is there a UI to view all deletion requests raised in an org?\n\n    Yes.\n18. How can a CSR raise a deletion request?\n\n    CSR can raise deletion requests through member care.\n19. Can any CSR raise a deletion request?\n\n    This depends on access rights. If you have access, you can raise deletion requests on behalf of a customer.\n20. How is PII deletion handled for connected orgs?\n\n    In connected orgs, PII deletion is based on the PII deletion policy configuration.\n21. Does the configured card status \"DELETED\" override the card's previous state?\n\n    Yes. The PII deletion process updates the status for all cards associated with the customer, regardless of their previous state (e.g., ACTIVE, ISSUED, SUSPENDED, or EXPIRED).\n22. Does NOT\\_ISSUED vs. DELETED have any operational difference beyond the status label?\n\n    If you want to reuse the cards after PII deletion, you can have the cards set to NOT\\_ISSUED. If you don't want to reuse the cards, you can configure them as DELETED. Only cards with the NOT\\_ISSUED status can be linked to a new customer.\n23. Does changing the configuration later affect past PII deletions?\n\n    No, the card status will take the label that was configured at the time of the PII deletion. The configuration can be changed only for the future deletions.\n24. Can the card status be updated manually after PII deletion has occurred?\n\n    No, you cannot update the `DELETED` label. You can, however, update the status of a `NOT_ISSUED` card. Once you link a `NOT_ISSUED` card to a customer, its status will change to ACTIVE, and you can then update its status as per requirement.\n25. Does this `CONF_PII_DELETION_CARD_UNLINK_STATE` config affect physical cards?\n\n    Yes, this feature affects all cards, both physical and digital.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Can we raise bulk PII data deletion requests?For bulk PII deletion, use Connect+. See PII data flow.Is the PII deletion request approved by default?This depends on the query parameter. PII deletions need to be approved.Are custom fields and extended fields part of PII data?No. But, you can mark the desired custom fields and extended fields as PII data.Will PII details in the Auth engine be deleted for the users who raised the request?Yes. After the PII deletion waiting period lapses.Will event data (behavioural events, transaction events, etc.)be deleted?No. Data attributed to the user id is not deleted as the user id is not categorized as PII data.What happens if the waiting period is set as 0 days?If the waiting period is set to 0 days, the system deletes the data on the same day.My brand's transaction custom fields/extended fields also have PII data. Can those be marked for deletion?Yes. You can mark that data as PII data. See Custom field and extended field PII data.Can I view a deleted customer's events on Member Care?Yes.Will the profile be visible if I go to the profile using user_id in the Member Care URL?No.Are payment mode attributes deleted by default?No. But you can configure payment attributes as PII data. See payment attributes.My brand's payment mode attributes have sensitive PII data. Can I delete that?You can configure payment attributes as PII data. See payment attributes.I want to delete event data (transactions, behavioural events and so on) of customers. Is this possible?No.Will communications sent to a customer be deleted?No.What happens to active coupons that are not redeemed?You cannot redeem the active coupons associated with the deleted customer ID.Will OTP messages get sent to customers?After the PII deletion, the customer will not get any message.How can a customer track the status of a deletion request?Brands can use the GET APIs and the event notifications to update the status of the customers.Is there a UI to view all deletion requests raised in an org?Yes.How can a CSR raise a deletion request?CSR can raise deletion requests through member care.Can any CSR raise a deletion request?This depends on access rights. If you have access, you can raise deletion requests on behalf of a customer.How is PII deletion handled for connected orgs?In connected orgs, PII deletion is based on the PII deletion policy configuration.Does the configured card status \"DELETED\" override the card's previous state?Yes. The PII deletion process updates the status for all cards associated with the customer, regardless of their previous state (e.g., ACTIVE, ISSUED, SUSPENDED, or EXPIRED).Does NOT_ISSUED vs. DELETED have any operational difference beyond the status label?If you want to reuse the cards after PII deletion, you can have the cards set to NOT_ISSUED. If you don't want to reuse the cards, you can configure them as DELETED. Only cards with the NOT_ISSUED status can be linked to a new customer.Does changing the configuration later affect past PII deletions?No, the card status will take the label that was configured at the time of the PII deletion. The configuration can be changed only for the future deletions.Can the card status be updated manually after PII deletion has occurred?No, you cannot update the DELETED label. You can, however, update the status of a NOT_ISSUED card. Once you link a NOT_ISSUED card to a customer, its status will change to ACTIVE, and you can then update its status as per requirement.Does this CONF_PII_DELETION_CARD_UNLINK_STATE config affect physical cards?Yes, this feature affects all cards, both physical and digital.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/pii_cleanup_template",
+          "line": 13
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 31
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii",
+          "line": 40
+        },
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii",
+          "line": 43
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/pii_cleanup_template",
+          "line": 13
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-custom--extended-fields-as-piipsi",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii",
+          "line": 40
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/marking-custom-fields-extended-fields-as-psi-and-pii#classifying-payment-attributes-as-pii",
+          "line": 43
+        }
+      ]
+    }
+  ]
+}

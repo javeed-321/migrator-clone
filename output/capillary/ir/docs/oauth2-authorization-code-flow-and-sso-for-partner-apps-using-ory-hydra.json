@@ -1,0 +1,298 @@
+{
+  "slug": "docs/oauth2-authorization-code-flow-and-sso-for-partner-apps-using-ory-hydra",
+  "source": "https://docs.capillarytech.com/docs/oauth2-authorization-code-flow-and-sso-for-partner-apps-using-ory-hydra.md",
+  "url": "https://docs.capillarytech.com/docs/oauth2-authorization-code-flow-and-sso-for-partner-apps-using-ory-hydra",
+  "title": "Oauth2 Authorization Code Flow And Sso For Partner Apps Using Ory Hydra",
+  "description": "",
+  "section": "Customer IAM (CIAM) for end customers",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2025-06-20T08:57:43.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 7,
+    "list": 4
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# oAuth2 Authorization Code Flow and SSO for Partner Apps - Using Ory Hydra",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "oAuth2 Authorization Code Flow and SSO for Partner Apps - Using Ory Hydra",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "OAuth 2.0 Authorization Code Flow using Ory Hydra as the authentication provider enables customers to authenticate once and seamlessly access partner applications. This Single Sign-On (SSO) setup allows users to log in via the brand’s customer-facing app and access authorised partner apps without re-entering credentials.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "OAuth 2.0 Authorization Code Flow using Ory Hydra as the authentication provider enables customers to authenticate once and seamlessly access partner applications. This Single Sign-On (SSO) setup allows users to log in via the brand’s customer-facing app and access authorised partner apps without re-entering credentials.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This flow is used to provide an SSO experience in partner apps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This flow is used to provide an SSO experience in partner apps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Example:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Urban Trend, a popular fashion retailer with an online platform, brick-and-mortar stores, and a loyalty program called Trendy Rewards, partners with:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Urban Trend, a popular fashion retailer with an online platform, brick-and-mortar stores, and a loyalty program called Trendy Rewards, partners with:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        18
+      ],
+      "raw": "1. ShopEase, a multi-brand e-commerce aggregator that sells various lifestyle products, including Urban Trend’s apparel.\n2. FashionBoard, a popular style and fashion discussion community that curates trends, style tips, and exclusive brand deals.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "ShopEase, a multi-brand e-commerce aggregator that sells various lifestyle products, including Urban Trend’s apparel.FashionBoard, a popular style and fashion discussion community that curates trends, style tips, and exclusive brand deals.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "Urban Trend wants to provide a frictionless and secure user experience, and opts for a Single-sign on (SSO) experience as follows:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Urban Trend wants to provide a frictionless and secure user experience, and opts for a Single-sign on (SSO) experience as follows:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "### **User Journey**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "User Journey",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        33
+      ],
+      "raw": "* A customer, Alice, has a Trendy Rewards account with Urban Trend.She has never used FashionBoard or ShopEase before, but both apps are partnered with Urban Trend.\n* Alice visits FashionBoard’s website to see the latest style tips. She notices an option: “Sign in with Urban Trend.” On clicking, she’s redirected to Urban Trend’s Login Page (e.g., `auth.urbantrend.com`).\n* Alice enters her Urban Trend mobile + OTP.\n* Alice sees a prompt asking to allow FashionBoard to view her Trendy Rewards status.\n* After successful login, Alice is redirected back to FashionBoard. She is now logged in on FashionBoard.\n* Later, Alice visits ShopEase to browse for deals. Again, there’s a “Sign in with Urban Trend” button.\n* When she clicks, ShopEase redirects her to the same Login Page (`auth.urbantrend.com`).\n* Because Alice already has an active session at Urban Trend (from the FashionBoard login), she may not need to re-enter credentials. She’s instantly recognized by Urban Trend’s SSO session.\n* She sees a consent screen (“Allow ShopEase to retrieve and redeem your loyalty points?”).\n* Alice is then redirected back to ShopEase, fully logged in, with her loyalty data available.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A customer, Alice, has a Trendy Rewards account with Urban Trend.She has never used FashionBoard or ShopEase before, but both apps are partnered with Urban Trend.Alice visits FashionBoard’s website to see the latest style tips. She notices an option: “Sign in with Urban Trend.” On clicking, she’s redirected to Urban Trend’s Login Page (e.g., auth.urbantrend.com).Alice enters her Urban Trend mobile + OTP.Alice sees a prompt asking to allow FashionBoard to view her Trendy Rewards status.After successful login, Alice is redirected back to FashionBoard. She is now logged in on FashionBoard.Later, Alice visits ShopEase to browse for deals. Again, there’s a “Sign in with Urban Trend” button.When she clicks, ShopEase redirects her to the same Login Page (auth.urbantrend.com).Because Alice already has an active session at Urban Trend (from the FashionBoard login), she may not need to re-enter credentials. She’s instantly recognized by Urban Trend’s SSO session.She sees a consent screen (“Allow ShopEase to retrieve and redeem your loyalty points?”).Alice is then redirected back to ShopEase, fully logged in, with her loyalty data available.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "This way, Urban Trend is able to provide a unified experience",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This way, Urban Trend is able to provide a unified experience",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "1. On FashionBoard, Alice sees her profile with a “Trendy Rewards VIP” badge.\n2. On ShopEase, she sees a personalized recommendation feed and her loyalty points balance that she could redeem for exclusive discounts on Urban Trend merchandise.\n3. No separate account creation was required for either FashionBoard or ShopEase; both leveraged Urban Trend as the central Identity Provider.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On FashionBoard, Alice sees her profile with a “Trendy Rewards VIP” badge.On ShopEase, she sees a personalized recommendation feed and her loyalty points balance that she could redeem for exclusive discounts on Urban Trend merchandise.No separate account creation was required for either FashionBoard or ShopEase; both leveraged Urban Trend as the central Identity Provider.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "### **What’s Happening Technically?**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "What’s Happening Technically?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        43,
+        49
+      ],
+      "raw": "3. Urban Trend acts as the Identity Provider (IdP) or Authorization Server, created using Capillary CIAM.\n4. ShopEase is the Service Provider (SP) or Relying Party, relying on Urban Trend for authentication.\n5. SSO Flow:\n   1. OAuth 2.0 Authorization Code: ShopEase redirects Alice to Urban Trend’s Authorization Server.\n   2. OIDC for Identity: Urban Trend issues an ID token alongside the access token, confirming Alice’s identity.\n   3. Consent): Urban Trend prompts Alice to grant permission so ShopEase can access certain profile or loyalty data.\n   4. ShopEase receives tokens and recognizes Alice’s session as “logged in.”",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Urban Trend acts as the Identity Provider (IdP) or Authorization Server, created using Capillary CIAM.ShopEase is the Service Provider (SP) or Relying Party, relying on Urban Trend for authentication.SSO Flow:OAuth 2.0 Authorization Code: ShopEase redirects Alice to Urban Trend’s Authorization Server.OIDC for Identity: Urban Trend issues an ID token alongside the access token, confirming Alice’s identity.Consent): Urban Trend prompts Alice to grant permission so ShopEase can access certain profile or loyalty data.ShopEase receives tokens and recognizes Alice’s session as “logged in.”",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "# Configuring oAuth2 Authorization Code Flow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring oAuth2 Authorization Code Flow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "To configure OAuth2 Authorization Code Flow, raise a JIRA ticket to the Capillary Product Solutions team.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure OAuth2 Authorization Code Flow, raise a JIRA ticket to the Capillary Product Solutions team.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

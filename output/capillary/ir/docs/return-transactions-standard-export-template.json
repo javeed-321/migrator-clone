@@ -1,0 +1,411 @@
+{
+  "slug": "docs/return-transactions-standard-export-template",
+  "source": "https://docs.capillarytech.com/docs/return-transactions-standard-export-template.md",
+  "url": "https://docs.capillarytech.com/docs/return-transactions-standard-export-template",
+  "title": "Return Transactions Standard Export Template",
+  "description": "",
+  "section": "Standard Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:01.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Return Transactions Standard Export Template",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Return Transactions Standard Export Template",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This template is based on the fact Return Bill Line Items",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This template is based on the fact Return Bill Line Items",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "It contains details of transaction returns of any type. For example, partial return, full return, exchange of items (mixed transaction). However, it is required to specify parent bill id when returning an item. The parent bill id is the bill id of the actual transaction of the item. If the parent bill id is left blank, you will see the column blank in the export file.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "It contains details of transaction returns of any type. For example, partial return, full return, exchange of items (mixed transaction). However, it is required to specify parent bill id when returning an item. The parent bill id is the bill id of the actual transaction of the item. If the parent bill id is left blank, you will see the column blank in the export file.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Measures",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Measures",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        35
+      ],
+      "raw": "| Measure                                 | Description                                                                                                                                         |\n| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |\n| auto\\_update\\_time\\_returned\\_bill      | Date and time (in Unix timestamp) when the return bill level information is updated.                                                                |\n| auto\\_update\\_time\\_returned\\_lineitem  | Date and time (in Unix timestamp) when the return bill line item information is updated.                                                            |\n| bill\\_amount                            | The net bill amount after returning a purchase - Bill amount - the cost of return item.                                                             |\n| bill\\_id                                | The unique id generated for a particular return bill internally in the capillary system.                                                            |\n| bill\\_number                            | The unique number of a particular return bill which is either generated at the POS machine or provided manually.                                    |\n| exchange\\_bill\\_id                      | The unique id generated internally in the Capillary system for the mixed transaction (item exchange).                                               |\n| issued\\_bill\\_id                        | Unique parent bill id of that particular transaction.                                                                                               |\n| issued\\_lineitem\\_id                    | Unique parent line-item id for that particular line-item of a transaction.                                                                          |\n| parent\\_bill\\_number                    | Actual transaction number of the return item used in case of exchange. This will be blank if the parent bill number is not mentioned during return. |\n| item\\_code                              | Unique item code of the returned line item.                                                                                                         |\n| line\\_item\\_amount                      | Net amount of the line item including discount and tax.                                                                                             |\n| line\\_item\\_discount                    | Discount given for that particular line item.                                                                                                       |\n| line\\_item\\_id                          | Unique internal reference id for the line item.                                                                                                     |\n| line\\_item\\_value                       | Price of the line item excluding discount and tax.                                                                                                  |\n| notes                                   | Any specific note mentioned for a transaction return.                                                                                               |\n| quantity                                | Quantity of a line-item returned.                                                                                                                   |\n| rate                                    | Purchase price of the return item - the actual cost after availing offers and discounts.                                                            |\n| parent\\_bill\\_outlier\\_status           | Outlier status of the parent bill id of the return bill.                                                                                            |\n| parent\\_bill\\_lineitem\\_outlier\\_status | Outlier status of the bill line item.                                                                                                               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Measure",
+          "Description"
+        ],
+        "rows": [
+          [
+            "auto_update_time_returned_bill",
+            "Date and time (in Unix timestamp) when the return bill level information is updated."
+          ],
+          [
+            "auto_update_time_returned_lineitem",
+            "Date and time (in Unix timestamp) when the return bill line item information is updated."
+          ],
+          [
+            "bill_amount",
+            "The net bill amount after returning a purchase - Bill amount - the cost of return item."
+          ],
+          [
+            "bill_id",
+            "The unique id generated for a particular return bill internally in the capillary system."
+          ],
+          [
+            "bill_number",
+            "The unique number of a particular return bill which is either generated at the POS machine or provided manually."
+          ],
+          [
+            "exchange_bill_id",
+            "The unique id generated internally in the Capillary system for the mixed transaction (item exchange)."
+          ],
+          [
+            "issued_bill_id",
+            "Unique parent bill id of that particular transaction."
+          ],
+          [
+            "issued_lineitem_id",
+            "Unique parent line-item id for that particular line-item of a transaction."
+          ],
+          [
+            "parent_bill_number",
+            "Actual transaction number of the return item used in case of exchange. This will be blank if the parent bill number is not mentioned during return."
+          ],
+          [
+            "item_code",
+            "Unique item code of the returned line item."
+          ],
+          [
+            "line_item_amount",
+            "Net amount of the line item including discount and tax."
+          ],
+          [
+            "line_item_discount",
+            "Discount given for that particular line item."
+          ],
+          [
+            "line_item_id",
+            "Unique internal reference id for the line item."
+          ],
+          [
+            "line_item_value",
+            "Price of the line item excluding discount and tax."
+          ],
+          [
+            "notes",
+            "Any specific note mentioned for a transaction return."
+          ],
+          [
+            "quantity",
+            "Quantity of a line-item returned."
+          ],
+          [
+            "rate",
+            "Purchase price of the return item - the actual cost after availing offers and discounts."
+          ],
+          [
+            "parent_bill_outlier_status",
+            "Outlier status of the parent bill id of the return bill."
+          ],
+          [
+            "parent_bill_lineitem_outlier_status",
+            "Outlier status of the bill line item."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "## Dimensions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Dimensions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        39,
+        57
+      ],
+      "raw": "| Dimension Name                                                                                             | Description                                                                                                           |\n| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |\n| [Store Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till) (zone till)              | Identifier for the store.                                                                                             |\n| [Concept Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                        | Identifier for the concept.                                                                                           |\n| [Ou Hierarchy](https://docs.capillarytech.com/docs/dimension-tables#zone-till)                             | Identifier for the organization unit.                                                                                 |\n| [Returned Type](https://docs.capillarytech.com/docs/dimension-tables#return-type)                          | Identifier for the return type.                                                                                       |\n| [Product](https://docs.capillarytech.com/docs/dimension-tables#item)                                       | Product details such as color, style, description, price, image url, item code, category, sub-category, item id, etc. |\n| [Product Attributes](https://docs.capillarytech.com/docs/dimension-tables#item)                            | Product attributes such as description, item Sku, and item Id.                                                        |\n| [Date](https://docs.capillarytech.com/docs/dimension-tables#date)                                          | Date attributes.                                                                                                      |\n| [Membership](https://docs.capillarytech.com/docs/dimension-tables#membership-type)                         | Details such as membership type, and Id.                                                                              |\n| [User](https://docs.capillarytech.com/docs/dimension-tables#users-users)                                   | User details such as user id, source, slab name, external id, fraud status, mobile, email, etc.                       |\n| [User Segments](https://docs.capillarytech.com/docs/dimension-tables#users-users)                          | Segment details of the customers such as valued customer, lapsed customer.                                            |\n| [User Attributes](https://docs.capillarytech.com/docs/dimension-tables#users-users)                        | User attributes such as total visits, recent view.                                                                    |\n| [Time](https://docs.capillarytech.com/docs/dimension-tables#time)                                          | Time attributes.                                                                                                      |\n| [Parent Bill Lineitem Outlier Status](https://docs.capillarytech.com/docs/dimension-tables#outlier-status) | Gives the outlier status of the parent bill line item.                                                                |\n| [Parent Bill Outlier Status](https://docs.capillarytech.com/docs/dimension-tables#outlier-status)          | Outlier status of the parent bill.                                                                                    |\n| [Bill Outlier](https://docs.capillarytech.com/docs/dimension-tables#outlier-status)                        | Outlier status of the bill.                                                                                           |\n| [Latest Updated Date](https://docs.capillarytech.com/docs/dimension-tables#date)                           | Last updated date details.                                                                                            |\n| [Latest Updated Time](https://docs.capillarytech.com/docs/dimension-tables#time)                           | Last updated time details.                                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Dimension Name",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Store Hierarchy (zone till)",
+            "Identifier for the store."
+          ],
+          [
+            "Concept Hierarchy",
+            "Identifier for the concept."
+          ],
+          [
+            "Ou Hierarchy",
+            "Identifier for the organization unit."
+          ],
+          [
+            "Returned Type",
+            "Identifier for the return type."
+          ],
+          [
+            "Product",
+            "Product details such as color, style, description, price, image url, item code, category, sub-category, item id, etc."
+          ],
+          [
+            "Product Attributes",
+            "Product attributes such as description, item Sku, and item Id."
+          ],
+          [
+            "Date",
+            "Date attributes."
+          ],
+          [
+            "Membership",
+            "Details such as membership type, and Id."
+          ],
+          [
+            "User",
+            "User details such as user id, source, slab name, external id, fraud status, mobile, email, etc."
+          ],
+          [
+            "User Segments",
+            "Segment details of the customers such as valued customer, lapsed customer."
+          ],
+          [
+            "User Attributes",
+            "User attributes such as total visits, recent view."
+          ],
+          [
+            "Time",
+            "Time attributes."
+          ],
+          [
+            "Parent Bill Lineitem Outlier Status",
+            "Gives the outlier status of the parent bill line item."
+          ],
+          [
+            "Parent Bill Outlier Status",
+            "Outlier status of the parent bill."
+          ],
+          [
+            "Bill Outlier",
+            "Outlier status of the bill."
+          ],
+          [
+            "Latest Updated Date",
+            "Last updated date details."
+          ],
+          [
+            "Latest Updated Time",
+            "Last updated time details."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 41
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 42
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#zone-till",
+          "line": 43
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#return-type",
+          "line": 44
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#item",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#item",
+          "line": 46
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 47
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#membership-type",
+          "line": 48
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 49
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 50
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#users-users",
+          "line": 51
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 52
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#outlier-status",
+          "line": 53
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#outlier-status",
+          "line": 54
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#outlier-status",
+          "line": 55
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#date",
+          "line": 56
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/dimension-tables#time",
+          "line": 57
+        }
+      ]
+    }
+  ]
+}

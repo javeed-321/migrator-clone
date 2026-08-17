@@ -1,0 +1,152 @@
+{
+  "slug": "reference/use-case-1",
+  "source": "https://docs.capillarytech.com/reference/use-case-1.md",
+  "url": "https://docs.capillarytech.com/reference/use-case-1",
+  "title": "Use Case 1",
+  "description": "",
+  "section": "Event Transformation for Cortex Search",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Use Case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Use Case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Requirement",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "By default, customer mobile numbers are stored and indexed with the international country code prefix (e.g., +91 for India), as defined in the global transformation. For Indian clients who often search using only the local mobile number (without +91), this leads to no search results because the stored data includes the prefix. To improve the search experience, there’s a need to strip the +91 prefix from the mobile number during the transformation phase, specifically for that organisation’s customer events.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, customer mobile numbers are stored and indexed with the international country code prefix (e.g., +91 for India), as defined in the global transformation. For Indian clients who often search using only the local mobile number (without +91), this leads to no search results because the stored data includes the prefix. To improve the search experience, there’s a need to strip the +91 prefix from the mobile number during the transformation phase, specifically for that organisation’s customer events.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# The Solution with Neo Transformation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "The Solution with Neo Transformation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Create a custom Neo transformation dataflow to modify the mobile number. If the number starts with +91, the script removes the first three characters. More advanced logic can also be added to handle multiple country codes or use a list of prefixes to remove.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create a custom Neo transformation dataflow to modify the mobile number. If the number starts with +91, the script removes the first three characters. More advanced logic can also be added to handle multiple country codes or use a list of prefixes to remove.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "This custom endpoint can then be configured using the [Configuration API](https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search). Once activated, you can create a [new customer search criteria](https://docs.capillarytech.com/docs/create-search-filter) for the organisation that allows searching by mobile number. This search criteria uses the custom event transformation enabled for the org, and the  [search API](https://docs.capillarytech.com/reference/perform-search)allows users to find customers without needing to enter the country code",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This custom endpoint can then be configured using the Configuration API. Once activated, you can create a new customer search criteria for the organisation that allows searching by mobile number. This search criteria uses the custom event transformation enabled for the org, and the  search APIallows users to find customers without needing to enter the country code",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/enable-custom-event-for-cortex-search",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/create-search-filter",
+          "line": 17
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/perform-search",
+          "line": 17
+        }
+      ]
+    }
+  ]
+}

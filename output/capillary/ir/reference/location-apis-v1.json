@@ -1,0 +1,262 @@
+{
+  "slug": "reference/location-apis-v1",
+  "source": "https://docs.capillarytech.com/reference/location-apis-v1.md",
+  "url": "https://docs.capillarytech.com/reference/location-apis-v1",
+  "title": "Location Apis V1",
+  "description": "",
+  "section": "Locations",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-06-29T09:23:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 1,
+    "Table": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Location APIs (v1)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Location APIs (v1)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The store entity holds information about all stores configured for an organization. This entity contain APIs to manage and fetch store details such   as retrieve store information, upload log files to the server, get store report, and fetch store tasks. Store details and configurations cannot be  updated using store APIs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The store entity holds information about all stores configured for an organization. This entity contain APIs to manage and fetch store details such   as retrieve store information, upload log files to the server, get store report, and fetch store tasks. Store details and configurations cannot be  updated using store APIs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "## Status Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Status Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "### Success Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Success Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        20
+      ],
+      "raw": "| Code | Description                          |\n| ---- | ------------------------------------ |\n| 900  | Store details retrieved successfully |\n| 900  | Report uploaded successfully         |\n| 900  | Store report retrieved successfully  |\n| 910  | Tasks retrieved successfully         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "900",
+            "Store details retrieved successfully"
+          ],
+          [
+            "900",
+            "Report uploaded successfully"
+          ],
+          [
+            "900",
+            "Store report retrieved successfully"
+          ],
+          [
+            "910",
+            "Tasks retrieved successfully"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "### Error Codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Error Codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        24,
+        41
+      ],
+      "raw": "| Code | Description                                                                |\n| ---- | -------------------------------------------------------------------------- |\n| 901  | Store information retrieval failed                                         |\n| 902  | Store identifier is invalid                                                |\n| 903  | Unable to fetch store details. No store id is passed                       |\n| 904  | Client log file size does not match with the file size uploaded on server  |\n| 905  | Client log file signature does not match with the file signature on server |\n| 906  | Uploading client log file to file service failed.                          |\n| 907  | Insert client log file metadata in database failed                         |\n| 908  | Tasks retrieval failed                                                     |\n| 909  | No tasks found                                                             |\n| 911  | Report type is invalid                                                     |\n| 912  | Report upload failed                                                       |\n| 913  | Unable to fetch store details. No identifier is passed                     |\n| 921  | Unable to insert one or more store server stats                            |\n| 922  | Unable to insert the entire store server stats                             |\n| 923  | Unable to insert one or more till diagnostic details                       |\n| 924  | Unable to insert all till diagnostics details                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Code",
+          "Description"
+        ],
+        "rows": [
+          [
+            "901",
+            "Store information retrieval failed"
+          ],
+          [
+            "902",
+            "Store identifier is invalid"
+          ],
+          [
+            "903",
+            "Unable to fetch store details. No store id is passed"
+          ],
+          [
+            "904",
+            "Client log file size does not match with the file size uploaded on server"
+          ],
+          [
+            "905",
+            "Client log file signature does not match with the file signature on server"
+          ],
+          [
+            "906",
+            "Uploading client log file to file service failed."
+          ],
+          [
+            "907",
+            "Insert client log file metadata in database failed"
+          ],
+          [
+            "908",
+            "Tasks retrieval failed"
+          ],
+          [
+            "909",
+            "No tasks found"
+          ],
+          [
+            "911",
+            "Report type is invalid"
+          ],
+          [
+            "912",
+            "Report upload failed"
+          ],
+          [
+            "913",
+            "Unable to fetch store details. No identifier is passed"
+          ],
+          [
+            "921",
+            "Unable to insert one or more store server stats"
+          ],
+          [
+            "922",
+            "Unable to insert the entire store server stats"
+          ],
+          [
+            "923",
+            "Unable to insert one or more till diagnostic details"
+          ],
+          [
+            "924",
+            "Unable to insert all till diagnostics details"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

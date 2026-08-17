@@ -1,0 +1,316 @@
+{
+  "slug": "reference/adding-revenue-metadata-against-a-reward",
+  "source": "https://docs.capillarytech.com/reference/adding-revenue-metadata-against-a-reward.md",
+  "url": "https://docs.capillarytech.com/reference/adding-revenue-metadata-against-a-reward",
+  "title": "Adding Revenue Metadata Against A Reward",
+  "description": "",
+  "section": "Reward Catalog Management",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:18:15.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 10,
+    "list": 1,
+    "code": 4
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Adding revenue metadata against a reward",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Adding revenue metadata against a reward",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Revenue Metadata feature allows reward configurators to add commission percentages for various entities involved in reward transactions, such as the brand, Capillary, affiliates, and end customers, for a fixed duration of the reward.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Revenue Metadata feature allows reward configurators to add commission percentages for various entities involved in reward transactions, such as the brand, Capillary, affiliates, and end customers, for a fixed duration of the reward.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "When a brand is configuring a reward, it can set the percentage of commission each entity makes from a reward. These entities are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a brand is configuring a reward, it can set the percentage of commission each entity makes from a reward. These entities are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        16
+      ],
+      "raw": "1. Brand commission\n2. Capillary commission\n3. Affiliate commission\n4. End customer commission",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Brand commissionCapillary commissionAffiliate commissionEnd customer commission",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "Consider a scenario,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a scenario,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "A brand configures a reward running from January 1st to March 31st and the brand configures the commission percentage for each participant for a fixed cycle during this period. Below are the two methods the brand can use to configure the rewards:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand configures a reward running from January 1st to March 31st and the brand configures the commission percentage for each participant for a fixed cycle during this period. Below are the two methods the brand can use to configure the rewards:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "Use case 1: The brand can configure a single fixed cycle.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case 1: The brand can configure a single fixed cycle.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "-**Duration**: January 1st to March 31st",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "-Duration: January 1st to March 31st",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        26,
+        34
+      ],
+      "raw": "```\nBrand commission: 1%\n\nCapillary's commission: 1%\n\nAffiliate commission: 1%\n\nEnd customer commission: 7%\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Brand commission: 1%\n\nCapillary's commission: 1%\n\nAffiliate commission: 1%\n\nEnd customer commission: 7%"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "Use case 2: The duration of the fixed cycle is broken down into multiple cycles. The cycles cannot overlap and default values are passed if the commission is missing for a certain period.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case 2: The duration of the fixed cycle is broken down into multiple cycles. The cycles cannot overlap and default values are passed if the commission is missing for a certain period.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "-**Duration**: January 1st to January 31st",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "-Duration: January 1st to January 31st",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        40,
+        48
+      ],
+      "raw": "```\nBrand commission: 1%\n\nCapillary's commission: 1%\n\nAffiliate commission: 1%\n\nEnd customer commission: 7%\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Brand commission: 1%\n\nCapillary's commission: 1%\n\nAffiliate commission: 1%\n\nEnd customer commission: 7%"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "-**Duration**: February 1st to February 29th",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "-Duration: February 1st to February 29th",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        52,
+        60
+      ],
+      "raw": "```\nBrand commission: 1%\n\nCapillary's commission: 0%\n\nAffiliate commission: 0.5%\n\nEnd customer commission: 9%\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Brand commission: 1%\n\nCapillary's commission: 0%\n\nAffiliate commission: 0.5%\n\nEnd customer commission: 9%"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "-**Duration**: March 1st to March 31st",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "-Duration: March 1st to March 31st",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        64,
+        72
+      ],
+      "raw": "```\n Brand commission: 1%\n\n Capillary's commission* 0%\n\n Affiliate commission: 0.5%\n\nEnd customer commission: 8%\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": " Brand commission: 1%\n\n Capillary's commission* 0%\n\n Affiliate commission: 0.5%\n\nEnd customer commission: 8%"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

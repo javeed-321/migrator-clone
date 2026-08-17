@@ -1,0 +1,3967 @@
+{
+  "slug": "docs/neo-dao-functions",
+  "source": "https://docs.capillarytech.com/docs/neo-dao-functions.md",
+  "url": "https://docs.capillarytech.com/docs/neo-dao-functions",
+  "title": "Neo Dao Functions",
+  "description": "",
+  "section": "Manage Dataflow",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-05T11:39:20.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 72,
+    "paragraph": 119,
+    "code": 27,
+    "list": 7,
+    "Table": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Neo DAO Functions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Neo DAO Functions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "This document provides an overview of the Data Access Object (DAO) functions available in the Neo application. These functions operate across various blocks such as Script, Schema, and Mongo blocks and play a key role in connecting the application's business logic with its data sources.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This document provides an overview of the Data Access Object (DAO) functions available in the Neo application. These functions operate across various blocks such as Script, Schema, and Mongo blocks and play a key role in connecting the application's business logic with its data sources.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "DAO functions handle the logic for accessing and manipulating data. They provide a simple and consistent way to interact with data from sources such as API requests and MongoDB blocks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "DAO functions handle the logic for accessing and manipulating data. They provide a simple and consistent way to interact with data from sources such as API requests and MongoDB blocks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# DAO Functions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "DAO Functions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "The following DAO functions are provided in Neo:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following DAO functions are provided in Neo:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## getApiRequest",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getApiRequest",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "The `getApiRequest `function retrieves the API request made to the application. It returns the complete input request object, including the HTTP method, the requested URL, headers, and the request body.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getApiRequest function retrieves the API request made to the application. It returns the complete input request object, including the HTTP method, the requested URL, headers, and the request body.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        26
+      ],
+      "raw": "**Scenario 1**: Consider that you need to customise the response based on specific headers in the incoming API request.\\\n**Usage**: Use `getApiRequest`() to access the request headers and determine how to customise the response.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider that you need to customise the response based on specific headers in the incoming API request.Usage: Use getApiRequest() to access the request headers and determine how to customise the response.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "**Syntax**:`const request = dao.getApiRequest();`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax:const request = dao.getApiRequest();",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "**Example Output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example Output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        32,
+        41
+      ],
+      "raw": "```javascript\n{ \n  method: \"GET\",\n  url: \"/api/data\", \n  headers: { \n    \"Authorization\": \"Bearer token\"\n  }, \n  body: {} \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  method: \"GET\",\n  url: \"/api/data\", \n  headers: { \n    \"Authorization\": \"Bearer token\"\n  }, \n  body: {} \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "## getIn",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getIn",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "The function `getIn`  returns the input properties of the current block. These are the data or parameters that were passed to the block when it was executed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getIn  returns the input properties of the current block. These are the data or parameters that were passed to the block when it was executed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        47,
+        47
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        49,
+        50
+      ],
+      "raw": "**Scenario 1**: Consider you need to transform or process data that is passed to a block.\\\n**Usage**:  Use `getIn()` to access the input properties, perform necessary transformations or calculations, and then use the results.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you need to transform or process data that is passed to a block.Usage:  Use getIn() to access the input properties, perform necessary transformations or calculations, and then use the results.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        52,
+        53
+      ],
+      "raw": "**Scenario 2** : Consider you need to implement conditional logic based on the input properties.\\\n**Usage**: Use `getIn()` to retrieve the input properties and apply conditional logic to execute different paths or actions depending on the values of parameters1 and parameter2.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2 : Consider you need to implement conditional logic based on the input properties.Usage: Use getIn() to retrieve the input properties and apply conditional logic to execute different paths or actions depending on the values of parameters1 and parameter2.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "**Input syntax**: `const input = dao.getIn();`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const input = dao.getIn();",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "**Output syntax**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        59,
+        65
+      ],
+      "raw": "```javascript\nExample Output: \n{ \n  param1: \"value1\", \n  param2: \"value2\" \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "Example Output: \n{ \n  param1: \"value1\", \n  param2: \"value2\" \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "## getOut",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getOut",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "The getOut() function retrieves output data from a specific block after it executes: pass the block’s name as a parameter to return that block’s output, or omit the name to return output from the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getOut() function retrieves output data from a specific block after it executes: pass the block’s name as a parameter to return that block’s output, or omit the name to return output from the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "You can retrieve the outputs of multiple API requests. The function returns results for all API requests, successful and failed. If any request fails, the block status is marked as \"failed\" while still maintaining the details of the failed requests.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can retrieve the outputs of multiple API requests. The function returns results for all API requests, successful and failed. If any request fails, the block status is marked as \"failed\" while still maintaining the details of the failed requests.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "### Use Cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use Cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        75,
+        76
+      ],
+      "raw": "**Scenario 1**: You need to use the output of a block executed earlier in the flow.\\\n**Usage**: Call `getOut()` with the block’s name to retrieve its output. If no name is provided, the function returns the output from the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: You need to use the output of a block executed earlier in the flow.Usage: Call getOut() with the block’s name to retrieve its output. If no name is provided, the function returns the output from the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        78,
+        79
+      ],
+      "raw": "**Scenario 2**:  Consider you want to chain multiple blocks together where each block depends on the result of the previous one.\\\n**Usage** : Use `getOut()` to access the output of the preceding block and feed this data into the next block for further processing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2:  Consider you want to chain multiple blocks together where each block depends on the result of the previous one.Usage : Use getOut() to access the output of the preceding block and feed this data into the next block for further processing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        81,
+        82
+      ],
+      "raw": "**Input syntax**: `const output = dao.getOut(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const output = dao.getOut(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "**Output syntax**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        86,
+        94
+      ],
+      "raw": "```javascript\n{ \n  status: 200, \n  body: \n  { \n    \"key\": \"value\" \n  } \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  status: 200, \n  body: \n  { \n    \"key\": \"value\" \n  } \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "## getBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        98,
+        98
+      ],
+      "raw": "The function `getBody()` retrieves the body of the output response from a specified block.  If the block name is not specified, it retrieves the body from the previous or parent block. If the output from that block is an array, the function returns `undefined`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getBody() retrieves the body of the output response from a specified block.  If the block name is not specified, it retrieves the body from the previous or parent block. If the output from that block is an array, the function returns undefined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        100,
+        100
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        102,
+        103
+      ],
+      "raw": "**Scenario 1**: You need to access specific data from the response body of a block.\\\n**Usage**: Use `getBody()` to retrieve the response body from a specified block. If you don’t provide a block name, the function returns the response body from the previous block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: You need to access specific data from the response body of a block.Usage: Use getBody() to retrieve the response body from a specified block. If you don’t provide a block name, the function returns the response body from the previous block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        105,
+        106
+      ],
+      "raw": "**Scenario 2**: Consider you need to debug or troubleshoot issues by examining the response body of a block.\\\n**Usage**:  Use `getBody()` to access and inspect the response body. This allows you to identify any discrepancies or issues in the output data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider you need to debug or troubleshoot issues by examining the response body of a block.Usage:  Use getBody() to access and inspect the response body. This allows you to identify any discrepancies or issues in the output data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        108,
+        109
+      ],
+      "raw": "**Input syntax**:` const responseBody = dao.getBody(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const responseBody = dao.getBody(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        111,
+        111
+      ],
+      "raw": "**Output syntax**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        113,
+        117
+      ],
+      "raw": "```javascript\n{ \n  \"key\": \"value\" \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  \"key\": \"value\" \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "## getMultiBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getMultiBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "The function `getMultiBody()` is used when a block returns an array of responses, each with its own body. This function retrieves all the individual bodies from these responses and returns them as an array. If the block name is not specified, it retrieves the body from the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getMultiBody() is used when a block returns an array of responses, each with its own body. This function retrieves all the individual bodies from these responses and returns them as an array. If the block name is not specified, it retrieves the body from the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        125,
+        126
+      ],
+      "raw": "**Scenario 1**: Consider you want to combine or analyse data from multiple response bodies returned by a block.\\\n**Usage**: Use `getMultiBody() `to get an array of response bodies, then aggregate or analyse the data across all the responses.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you want to combine or analyse data from multiple response bodies returned by a block.Usage: Use getMultiBody() to get an array of response bodies, then aggregate or analyse the data across all the responses.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        128,
+        129
+      ],
+      "raw": "**Scenario 2**: You need to validate each response body in a collection of responses to ensure it meets specific criteria.\\\n**Usage**: Use `getMultiBody()` to retrieve the array of response bodies, and then iterate through each one to apply validation checks.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: You need to validate each response body in a collection of responses to ensure it meets specific criteria.Usage: Use getMultiBody() to retrieve the array of response bodies, and then iterate through each one to apply validation checks.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        131,
+        132
+      ],
+      "raw": "**Input syntax**: `const responseBodies = dao.getMultiBody(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const responseBodies = dao.getMultiBody(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "**Output syntax**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        136,
+        144
+      ],
+      "raw": "```javascript\n[\n  { \n    \"data\": \"data1\" \n  }, \n  { \"data\": \"data2\" \n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "[\n  { \n    \"data\": \"data1\" \n  }, \n  { \"data\": \"data2\" \n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "## getHeaders",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getHeaders",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "The `getHeaders()` function is used to retrieve the headers from the output response of a specific block. Headers are key-value pairs that provide essential metadata about the response.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getHeaders() function is used to retrieve the headers from the output response of a specific block. Headers are key-value pairs that provide essential metadata about the response.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "When you call `getHeaders` with a block name, the function returns an object containing all the headers associated with the output response of the specified block. If you don't specify a block name, it returns the headers of the previous or parent block by default.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you call getHeaders with a block name, the function returns an object containing all the headers associated with the output response of the specified block. If you don't specify a block name, it returns the headers of the previous or parent block by default.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        154,
+        155
+      ],
+      "raw": "**Scenario 1**: Consider you need to determine the content type of a response to handle it appropriately, such as parsing JSON or XML data.\\\n**Usage**: Use `dao.getHeaders(\"blockName\")` to retrieve the `Content-Type` header from the response. This allows you to process the response data according to its type.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you need to determine the content type of a response to handle it appropriately, such as parsing JSON or XML data.Usage: Use dao.getHeaders(\"blockName\") to retrieve the Content-Type header from the response. This allows you to process the response data according to its type.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        157,
+        158
+      ],
+      "raw": "**Input syntax**: `const headers = dao.getHeaders(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const headers = dao.getHeaders(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "**Example output** :",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output :",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        162,
+        167
+      ],
+      "raw": "```javascript\n { \n   \"Content-Type\": \"application/json\", \n   \"Authorization\": \"Bearer token\" \n }\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": " { \n   \"Content-Type\": \"application/json\", \n   \"Authorization\": \"Bearer token\" \n }"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "## getStatus",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getStatus",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "The `getStatus `function retrieves the HTTP status code from the response generated by a specific block in your application. This status code reflects the result of the block's operation, such as success, error, or another outcome. If the block's output is an array, the function returns `undefined`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getStatus function retrieves the HTTP status code from the response generated by a specific block in your application. This status code reflects the result of the block's operation, such as success, error, or another outcome. If the block's output is an array, the function returns undefined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "When you call `getStatus `with a block name, the function returns the status code for that specific block. If you do not specify the block name, the function returns the status code from the previous or parent block's output.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you call getStatus with a block name, the function returns the status code for that specific block. If you do not specify the block name, the function returns the status code from the previous or parent block's output.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        177,
+        178
+      ],
+      "raw": "**Scenario 1**: Consider you want to implement custom error-handling logic based on the status code returned by a specific block.\\\n**Usage**: Use `getStatus()` to retrieve the status code from the block's output. This helps you determine the appropriate response or action based on the specific status code",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you want to implement custom error-handling logic based on the status code returned by a specific block.Usage: Use getStatus() to retrieve the status code from the block's output. This helps you determine the appropriate response or action based on the specific status code",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        180,
+        181
+      ],
+      "raw": "**Scenario 2**: Consider you are executing multiple blocks in sequence, and the execution of a subsequent block depends on the success or failure (status code) of the previous block.\\\n**Usage**: Use `getStatus()` to check the status code of the previous block. For example, if the status code is 200, whereas a different status code might trigger an alternative flow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider you are executing multiple blocks in sequence, and the execution of a subsequent block depends on the success or failure (status code) of the previous block.Usage: Use getStatus() to check the status code of the previous block. For example, if the status code is 200, whereas a different status code might trigger an alternative flow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        183,
+        184
+      ],
+      "raw": "**Input syntax**: `const statusCode = dao.getStatus(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const statusCode = dao.getStatus(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        186,
+        186
+      ],
+      "raw": "**Example Output**: 200",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example Output: 200",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        188,
+        188
+      ],
+      "raw": "## getMultiStatus",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getMultiStatus",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        190,
+        190
+      ],
+      "raw": "The `getMultiStatus `function retrieves multiple status codes when a block's output consists of an array of responses. Each response in the array has its status code, such as `200`, `404`, or `500`. The `getMultiStatus `function collects these status codes from each response and returns them as an array.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getMultiStatus function retrieves multiple status codes when a block's output consists of an array of responses. Each response in the array has its status code, such as 200, 404, or 500. The getMultiStatus function collects these status codes from each response and returns them as an array.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        192,
+        192
+      ],
+      "raw": "When you call `getMultiStatus`with a block name, the function returns the status code for that specific block. If you do not specify the block name, the function returns the status code from the previous or parent block's output.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you call getMultiStatuswith a block name, the function returns the status code for that specific block. If you do not specify the block name, the function returns the status code from the previous or parent block's output.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        194,
+        194
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        196,
+        197
+      ],
+      "raw": "**Scenario 1**: Consider you are processing a batch of requests where each request returns a response with its own status code. You need to handle or log the status codes for all responses.\\\n**Usage**: Use `getMultiStatus()` to retrieve the status codes for all responses in the batch.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you are processing a batch of requests where each request returns a response with its own status code. You need to handle or log the status codes for all responses.Usage: Use getMultiStatus() to retrieve the status codes for all responses in the batch.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        199,
+        200
+      ],
+      "raw": "**Scenario 2**: Consider you receive responses from multiple sources or services, and you need to make decisions based on the status codes from each response. For example, if any response indicates an error, you might want to trigger a specific action.\\\n**Usage**: Use `getMultiStatus() `to access all status codes from the array of responses. This allows you to implement conditional logic based on the status codes, such as taking corrective actions if any response contains an error status.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider you receive responses from multiple sources or services, and you need to make decisions based on the status codes from each response. For example, if any response indicates an error, you might want to trigger a specific action.Usage: Use getMultiStatus() to access all status codes from the array of responses. This allows you to implement conditional logic based on the status codes, such as taking corrective actions if any response contains an error status.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "**Input syntax**: `const statusCodes = dao.getMultiStatus(\"blockName\");`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const statusCodes = dao.getMultiStatus(\"blockName\");",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "**Example output**: \\[200, 404]",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output: [200, 404]",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "## getQueryParams",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getQueryParams",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "The `getQueryParams `function retrieves the query parameters from the output response of a specified block. Query parameters are key-value pairs included in the URL of a request. If the block's output is an array, the function returns `undefined`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getQueryParams function retrieves the query parameters from the output response of a specified block. Query parameters are key-value pairs included in the URL of a request. If the block's output is an array, the function returns undefined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "When you specify a block name, `getQueryParams `returns the query parameters from that particular block. If you don't provide a block name, the function defaults to returning the query parameters from the output of the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you specify a block name, getQueryParams returns the query parameters from that particular block. If you don't provide a block name, the function defaults to returning the query parameters from the output of the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        214,
+        215
+      ],
+      "raw": "**Scenario 1**: Consider that you need to analyse the query parameters used in a specific block to verify the correctness of the request.\\\n**Usage**: Use `getQueryParams()` to retrieve the query parameters from the specified block's output and verify the same.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider that you need to analyse the query parameters used in a specific block to verify the correctness of the request.Usage: Use getQueryParams() to retrieve the query parameters from the specified block's output and verify the same.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        217,
+        218
+      ],
+      "raw": "**Scenario 2**: Consider that you need to generate reports based on different search criteria or pagination settings specified in query parameters.\\\n**Usage**: Use **getQueryParams()** to extract query parameters such as search terms or page numbers from the block's output.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider that you need to generate reports based on different search criteria or pagination settings specified in query parameters.Usage: Use getQueryParams() to extract query parameters such as search terms or page numbers from the block's output.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        220,
+        221
+      ],
+      "raw": "**Input syntax**: `const queryParams = dao.getQueryParams(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const queryParams = dao.getQueryParams(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        223,
+        223
+      ],
+      "raw": "**Example output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        225,
+        230
+      ],
+      "raw": "```javascript\n{ \n  \"search\": \"query\", \n   \"page\": \"1\" \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  \"search\": \"query\", \n   \"page\": \"1\" \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "## getPathParams",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getPathParams",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "The `getPathParams `function retrieves the path parameters from a specified block's output. If the output is an array, the function returns `undefined`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getPathParams function retrieves the path parameters from a specified block's output. If the output is an array, the function returns undefined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "When you specify a block name, `getPathParams `fetches the path parameters from that block. If you don't specify a block name, it retrieves the path parameters from the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you specify a block name, getPathParams fetches the path parameters from that block. If you don't specify a block name, it retrieves the path parameters from the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        240,
+        241
+      ],
+      "raw": "**Scenario 1**: Consider you need to extract and validate a specific path parameter, such as an ID, from a block's output before continuing with the next steps in the logic.\\\n**Usage**:  Use `getPathParams()` to retrieve the `id` from the block's output, allowing you to validate or use it in subsequent operations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you need to extract and validate a specific path parameter, such as an ID, from a block's output before continuing with the next steps in the logic.Usage:  Use getPathParams() to retrieve the id from the block's output, allowing you to validate or use it in subsequent operations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        243,
+        244
+      ],
+      "raw": "**Scenario 2**:  Consider you are working with multiple API endpoints, and each requires different path parameters. You want to dynamically retrieve these parameters based on the current block's execution.\\\n**Usage**: Use `getPathParams()` to access the path parameters of the relevant block, enabling you to manage routing or processing logic based on the retrieved parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2:  Consider you are working with multiple API endpoints, and each requires different path parameters. You want to dynamically retrieve these parameters based on the current block's execution.Usage: Use getPathParams() to access the path parameters of the relevant block, enabling you to manage routing or processing logic based on the retrieved parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        246,
+        247
+      ],
+      "raw": "**Input syntax**: `const pathParams = dao.getPathParams(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const pathParams = dao.getPathParams(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 87,
+      "lines": [
+        249,
+        249
+      ],
+      "raw": "**Example Output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example Output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        251,
+        255
+      ],
+      "raw": "```javascript\n{ \n  \"id\": \"123\" \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  \"id\": \"123\" \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        257,
+        257
+      ],
+      "raw": "## getError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 90,
+      "lines": [
+        259,
+        259
+      ],
+      "raw": "The `getError `function is designed to retrieve the error object from the output of a specified block. This error object contains details such as an error message and an error code, which help identify and diagnose issues that occur during the execution of that block. When the block's output is an array of responses, the function returns `undefined`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getError function is designed to retrieve the error object from the output of a specified block. This error object contains details such as an error message and an error code, which help identify and diagnose issues that occur during the execution of that block. When the block's output is an array of responses, the function returns undefined.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        261,
+        261
+      ],
+      "raw": "When you specify a block name as an argument, the function `getError` fetches the error object from that specific block. If you do not specify a block name, the function returns the error object from the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you specify a block name as an argument, the function getError fetches the error object from that specific block. If you do not specify a block name, the function returns the error object from the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        263,
+        263
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        265,
+        266
+      ],
+      "raw": "**Scenario 1**: Consider you need to debug a specific block that fails during execution.\\\n**Usage**: Use `getError()` to retrieve the error object from that block. This allows you to see the error message and code, helping diagnose and fix the issue.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you need to debug a specific block that fails during execution.Usage: Use getError() to retrieve the error object from that block. This allows you to see the error message and code, helping diagnose and fix the issue.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        268,
+        269
+      ],
+      "raw": "**Scenario 2**: Consider you have a workflow where different actions depend on whether a block succeeds or fails.\\\n**Usage**: Use `getError()` to check if the specified block encountered an error. If the function returns an error object, implement custom error handling or logging based on the error details.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider you have a workflow where different actions depend on whether a block succeeds or fails.Usage: Use getError() to check if the specified block encountered an error. If the function returns an error object, implement custom error handling or logging based on the error details.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        271,
+        272
+      ],
+      "raw": "**Input syntax**: `const error = dao.getError(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const error = dao.getError(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        274,
+        278
+      ],
+      "raw": "```javascript\n{ \n  \"message\": \"An error occurred\", \"code\": \"500\" \n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "{ \n  \"message\": \"An error occurred\", \"code\": \"500\" \n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 97,
+      "lines": [
+        280,
+        280
+      ],
+      "raw": "## getMultiError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getMultiError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        282,
+        282
+      ],
+      "raw": "The `getMultiError `function retrieves an array of error objects from the output response when a block's output consists of multiple responses. Each response in the array may have its error object. The function collects all these error objects and returns them as an array.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getMultiError function retrieves an array of error objects from the output response when a block's output consists of multiple responses. Each response in the array may have its error object. The function collects all these error objects and returns them as an array.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        284,
+        284
+      ],
+      "raw": "When you specify a block name, `getMultiError `fetches the array of errors from that specific block's output. If you don't provide a block name, the function defaults to retrieving the errors from the output of the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you specify a block name, getMultiError fetches the array of errors from that specific block's output. If you don't provide a block name, the function defaults to retrieving the errors from the output of the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        286,
+        286
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        288,
+        289
+      ],
+      "raw": "**Scenario 1**: Consider you are processing multiple API responses, each of which might contain its error object. You must collect and review all the errors to understand the issues across different responses.\\\n**Usage**: Use `getMultiError()` to gather all error objects from each response in the array. This helps in aggregating error information for comprehensive troubleshooting or reporting.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: Consider you are processing multiple API responses, each of which might contain its error object. You must collect and review all the errors to understand the issues across different responses.Usage: Use getMultiError() to gather all error objects from each response in the array. This helps in aggregating error information for comprehensive troubleshooting or reporting.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        291,
+        292
+      ],
+      "raw": "**Scenario 2**: Consider you are implementing a batch processing system where each response could have its error details. You need to handle errors for each item in the batch individually.\\\n**Usage**: Use `getMultiError()` to retrieve and manage error details from all responses. This allows you to process errors for each response separately, such as logging them or triggering specific error handling workflows.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: Consider you are implementing a batch processing system where each response could have its error details. You need to handle errors for each item in the batch individually.Usage: Use getMultiError() to retrieve and manage error details from all responses. This allows you to process errors for each response separately, such as logging them or triggering specific error handling workflows.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        294,
+        295
+      ],
+      "raw": "**Input syntax**: `const errors = dao.getMultiError(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const errors = dao.getMultiError(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        297,
+        297
+      ],
+      "raw": "**Example output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 105,
+      "lines": [
+        299,
+        304
+      ],
+      "raw": "```javascript\n[\n  { \"message\": \"Error 1\" }, \n  { \"message\": \"Error 2\" }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "[\n  { \"message\": \"Error 1\" }, \n  { \"message\": \"Error 2\" }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        306,
+        306
+      ],
+      "raw": "## hasError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "hasError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 107,
+      "lines": [
+        308,
+        308
+      ],
+      "raw": "The `hasError()` function checks whether an error message exists in the output response of a specified block. It helps determine if the block encountered an error during execution. It returns a boolean value: `true `if an error message is present and `false `otherwise.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The hasError() function checks whether an error message exists in the output response of a specified block. It helps determine if the block encountered an error during execution. It returns a boolean value: true if an error message is present and false otherwise.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 108,
+      "lines": [
+        310,
+        310
+      ],
+      "raw": "If you specify a block name, the function checks that specific block's output. If no block name is provided, it checks the output of the previous or parent block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you specify a block name, the function checks that specific block's output. If no block name is provided, it checks the output of the previous or parent block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 109,
+      "lines": [
+        312,
+        312
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 110,
+      "lines": [
+        314,
+        315
+      ],
+      "raw": "**Scenario**: Consider a conditional logic based on whether a block encounters an error during execution. For example, you may need to trigger error handling or execute alternative logic if an error occurs.\\\n**Usage**: Use `hasError()` to check if the specified block generated an error. This enables you to create your logic according to the presence of errors, such as initiating an error handling routine if true.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario: Consider a conditional logic based on whether a block encounters an error during execution. For example, you may need to trigger error handling or execute alternative logic if an error occurs.Usage: Use hasError() to check if the specified block generated an error. This enables you to create your logic according to the presence of errors, such as initiating an error handling routine if true.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 111,
+      "lines": [
+        317,
+        318
+      ],
+      "raw": "**Input syntax**: `const hasError = dao.hasError(\"blockName\");`\\\nThe block name is optional.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Input syntax: const hasError = dao.hasError(\"blockName\");The block name is optional.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 112,
+      "lines": [
+        320,
+        320
+      ],
+      "raw": "**Output**: True or False",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output: True or False",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 113,
+      "lines": [
+        322,
+        322
+      ],
+      "raw": "## isSuccess",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "isSuccess",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 114,
+      "lines": [
+        324,
+        324
+      ],
+      "raw": "The `isSuccess()` is a boolean function used to determine whether a previous operation or transaction was successful. It helps control the logic flow within a system, particularly in error handling and decision-making processes.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The isSuccess() is a boolean function used to determine whether a previous operation or transaction was successful. It helps control the logic flow within a system, particularly in error handling and decision-making processes.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 115,
+      "lines": [
+        326,
+        326
+      ],
+      "raw": "`isSuccess()`  checks if data retrieval or a transaction completes without errors. It returns `true `if successful, else it returns `false`. Using this function, you can implement conditional logic based on the success of previous operations and effectively handle errors. This function does not require any input parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "isSuccess()  checks if data retrieval or a transaction completes without errors. It returns true if successful, else it returns false. Using this function, you can implement conditional logic based on the success of previous operations and effectively handle errors. This function does not require any input parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 116,
+      "lines": [
+        328,
+        328
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 117,
+      "lines": [
+        330,
+        330
+      ],
+      "raw": "**Scenario**: Consider an airport check-in system, the application first verifies whether it successfully retrieved a passenger’s data without errors. It then checks specific passenger details, such as a valid ticket and ID.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario: Consider an airport check-in system, the application first verifies whether it successfully retrieved a passenger’s data without errors. It then checks specific passenger details, such as a valid ticket and ID.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 118,
+      "lines": [
+        332,
+        333
+      ],
+      "raw": "**Usage 1**: `isSuccess() && (getOut().body.validPassenger)`\\\nThis condition confirms that the operation succeeded and the passenger data is valid. If both are true, the system proceeds with the check-in process.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Usage 1: isSuccess() && (getOut().body.validPassenger)This condition confirms that the operation succeeded and the passenger data is valid. If both are true, the system proceeds with the check-in process.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 119,
+      "lines": [
+        335,
+        336
+      ],
+      "raw": "**Usage 2**: `isSuccess() && (!getOut().body.validPassenger)`\\\nThis condition confirms that the operation succeeded, but the passenger data is invalid. If true, the system can trigger error handling or route the flow to manage the invalid passenger case.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Usage 2: isSuccess() && (!getOut().body.validPassenger)This condition confirms that the operation succeeded, but the passenger data is invalid. If true, the system can trigger error handling or route the flow to manage the invalid passenger case.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 120,
+      "lines": [
+        338,
+        338
+      ],
+      "raw": "## hasBlockBeenVisited",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "hasBlockBeenVisited",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 121,
+      "lines": [
+        340,
+        340
+      ],
+      "raw": "The `hasBlockBeenVisited()` is a boolean function that checks whether a block has been visited during the dataflow execution.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The hasBlockBeenVisited() is a boolean function that checks whether a block has been visited during the dataflow execution.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 122,
+      "lines": [
+        342,
+        342
+      ],
+      "raw": "**Syntax**: `hasBlockBeenVisited(\"blockName\");`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: hasBlockBeenVisited(\"blockName\");",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 123,
+      "lines": [
+        344,
+        344
+      ],
+      "raw": "**Output**: True or False",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Output: True or False",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 124,
+      "lines": [
+        346,
+        346
+      ],
+      "raw": "## getValueByKey",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getValueByKey",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 125,
+      "lines": [
+        348,
+        348
+      ],
+      "raw": "The `getValueByKey()` function retrieves a configuration value from the [Configuration Manager](https://docs.capillarytech.com/docs/extension-configuration).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getValueByKey() function retrieves a configuration value from the Configuration Manager.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration",
+          "line": 348
+        }
+      ]
+    },
+    {
+      "i": 126,
+      "lines": [
+        350,
+        351
+      ],
+      "raw": "**Syntax**: `getValueByKey('config name')`\\\nThe `config name` parameter is required and specifies the name of the configuration you want to retrieve.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: getValueByKey('config name')The config name parameter is required and specifies the name of the configuration you want to retrieve.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 127,
+      "lines": [
+        353,
+        353
+      ],
+      "raw": "**Usage**: `const KeyLoyaltyId = getValueByKey('KeyLoyaltyId');`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Usage: const KeyLoyaltyId = getValueByKey('KeyLoyaltyId');",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 128,
+      "lines": [
+        355,
+        355
+      ],
+      "raw": "## getParentValueByKey",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getParentValueByKey",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 129,
+      "lines": [
+        357,
+        357
+      ],
+      "raw": "In a connected organization setup, the `getParentValueByKey()` function retrieves a configuration value stored in the [Configuration Manager](https://docs.capillarytech.com/docs/extension-configuration) at the parent organization level, from within a child organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In a connected organization setup, the getParentValueByKey() function retrieves a configuration value stored in the Configuration Manager at the parent organization level, from within a child organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration",
+          "line": 357
+        }
+      ]
+    },
+    {
+      "i": 130,
+      "lines": [
+        359,
+        360
+      ],
+      "raw": "**Syntax**: `getParentValueByKey('config name')`\\\nThe `config name` parameter is required and specifies the name of the configuration to retrieve.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Syntax: getParentValueByKey('config name')The config name parameter is required and specifies the name of the configuration to retrieve.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 131,
+      "lines": [
+        362,
+        362
+      ],
+      "raw": "**Usage**: `const parentConfig = getParentValueByKey('ParentKey');`",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Usage: const parentConfig = getParentValueByKey('ParentKey');",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 132,
+      "lines": [
+        364,
+        364
+      ],
+      "raw": "## executeBlock",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "executeBlock",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 133,
+      "lines": [
+        366,
+        366
+      ],
+      "raw": "The `executeBlock()` function runs a [helper function block](https://docs.capillarytech.com/docs/block-libraries#/reusing-logic-in-a-script-block) from the block library within the current dataflow. To use this function, make sure the correct [version of the block library](https://docs.capillarytech.com/docs/block-libraries#/block-library-versioning) is added to the dataflow. You can then pass dynamic arguments to the block at runtime. The block processes the input and returns a response object, whose structure depends on the logic defined in the block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The executeBlock() function runs a helper function block from the block library within the current dataflow. To use this function, make sure the correct version of the block library is added to the dataflow. You can then pass dynamic arguments to the block at runtime. The block processes the input and returns a response object, whose structure depends on the logic defined in the block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/reusing-logic-in-a-script-block",
+          "line": 366
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/block-library-versioning",
+          "line": 366
+        }
+      ]
+    },
+    {
+      "i": 134,
+      "lines": [
+        368,
+        368
+      ],
+      "raw": "### Use case",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 135,
+      "lines": [
+        370,
+        371
+      ],
+      "raw": "**Scenario**\\\nDuring a dataflow run, you need to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "ScenarioDuring a dataflow run, you need to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 136,
+      "lines": [
+        373,
+        374
+      ],
+      "raw": "* Validate a mobile number.\n* Calculate the final amount, including tax.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Validate a mobile number.Calculate the final amount, including tax.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 137,
+      "lines": [
+        376,
+        377
+      ],
+      "raw": "**Solution**\\\nCall the respective helper blocks using the `executeBlock()` function.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SolutionCall the respective helper blocks using the executeBlock() function.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 138,
+      "lines": [
+        379,
+        381
+      ],
+      "raw": "```js\nconst validationResult = await dao.executeBlock(\"validateMobileNumber\", \"+1234567890\");\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "js",
+        "title": null,
+        "code": "const validationResult = await dao.executeBlock(\"validateMobileNumber\", \"+1234567890\");"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 139,
+      "lines": [
+        383,
+        383
+      ],
+      "raw": "### Syntax",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 140,
+      "lines": [
+        385,
+        387
+      ],
+      "raw": "```js\nawait dao.executeBlock(\"blockName\", arg1, arg2, ...);\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "js",
+        "title": null,
+        "code": "await dao.executeBlock(\"blockName\", arg1, arg2, ...);"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 141,
+      "lines": [
+        389,
+        390
+      ],
+      "raw": "* `blockName` (required): Name of the block in the block library.\n* `arg1`, `arg2`, etc. (optional): Input values passed in the expected order.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "blockName (required): Name of the block in the block library.arg1, arg2, etc. (optional): Input values passed in the expected order.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 142,
+      "lines": [
+        392,
+        392
+      ],
+      "raw": "### Example output",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 143,
+      "lines": [
+        394,
+        394
+      ],
+      "raw": "The response object returned by `executeBlock()` varies based on the block’s implementation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The response object returned by executeBlock() varies based on the block’s implementation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 144,
+      "lines": [
+        396,
+        396
+      ],
+      "raw": "#### Example 1: Validation block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Example 1: Validation block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 145,
+      "lines": [
+        398,
+        403
+      ],
+      "raw": "```json\n{\n  \"isValid\": true,\n  \"message\": \"Valid mobile number\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"isValid\": true,\n  \"message\": \"Valid mobile number\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 146,
+      "lines": [
+        405,
+        405
+      ],
+      "raw": "#### Example 2: Calculation block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 4,
+      "text": "Example 2: Calculation block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 147,
+      "lines": [
+        407,
+        417
+      ],
+      "raw": "```json\n{\n  \"result\": 110,\n  \"currency\": \"USD\",\n  \"details\": {\n    \"amount\": 100,\n    \"taxRate\": 0.1,\n    \"tax\": 10\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"result\": 110,\n  \"currency\": \"USD\",\n  \"details\": {\n    \"amount\": 100,\n    \"taxRate\": 0.1,\n    \"tax\": 10\n  }\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 148,
+      "lines": [
+        419,
+        419
+      ],
+      "raw": "### Error handling",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Error handling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 149,
+      "lines": [
+        421,
+        428
+      ],
+      "raw": "* If the block name is missing:\\\n  `\"executeBlock requires a block name\"`\n\n* If the block is not included in the dataflow:\\\n  Execution fails.\n\n* If expected arguments are missing:\\\n  The block should handle missing inputs gracefully by using default values or returning a clear error response.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "If the block name is missing:\"executeBlock requires a block name\"If the block is not included in the dataflow:Execution fails.If expected arguments are missing:The block should handle missing inputs gracefully by using default values or returning a clear error response.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 150,
+      "lines": [
+        430,
+        430
+      ],
+      "raw": "## getFunctionArguments",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getFunctionArguments",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 151,
+      "lines": [
+        432,
+        432
+      ],
+      "raw": "The `getFunctionArguments()` function retrieves the list of arguments passed to a <Anchor label=\"helper function block \" target=\"_blank\" href=\"https://docs.capillarytech.com/docs/block-libraries#/reusing-logic-in-a-script-block\">helper function block </Anchor>during execution using `executeBlock()`. It returns an array of arguments in the order they were passed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getFunctionArguments() function retrieves the list of arguments passed to a helper function block during execution using executeBlock(). It returns an array of arguments in the order they were passed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/reusing-logic-in-a-script-block",
+          "line": 432
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/block-libraries#/reusing-logic-in-a-script-block",
+          "line": 432
+        }
+      ]
+    },
+    {
+      "i": 152,
+      "lines": [
+        434,
+        434
+      ],
+      "raw": "You can access each argument using its index:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can access each argument using its index:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 153,
+      "lines": [
+        436,
+        437
+      ],
+      "raw": "* `args[0]` for the first argument\n* `args[1]` for the second, and so on",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "args[0] for the first argumentargs[1] for the second, and so on",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 154,
+      "lines": [
+        439,
+        439
+      ],
+      "raw": "Use this function when you need to process or validate inputs passed to a reusable helper function block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this function when you need to process or validate inputs passed to a reusable helper function block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 155,
+      "lines": [
+        441,
+        441
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 156,
+      "lines": [
+        443,
+        444
+      ],
+      "raw": "**Scenario 1**: You need to access configuration parameters passed to a block in a specific order.\\\n**Solution**: Use `getFunctionArguments()` to retrieve the array and access parameters by index.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 1: You need to access configuration parameters passed to a block in a specific order.Solution: Use getFunctionArguments() to retrieve the array and access parameters by index.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 157,
+      "lines": [
+        446,
+        447
+      ],
+      "raw": "**Scenario 2**: You want to implement logic that changes based on input values.\\\n**Solution**: Use `getFunctionArguments()` to access and evaluate inputs dynamically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scenario 2: You want to implement logic that changes based on input values.Solution: Use getFunctionArguments() to access and evaluate inputs dynamically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 158,
+      "lines": [
+        449,
+        449
+      ],
+      "raw": "### Syntax",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 159,
+      "lines": [
+        451,
+        453
+      ],
+      "raw": "```javascript\nconst args = dao.getFunctionArguments();\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const args = dao.getFunctionArguments();"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 160,
+      "lines": [
+        455,
+        455
+      ],
+      "raw": "### Example output",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 161,
+      "lines": [
+        457,
+        463
+      ],
+      "raw": "```javascript\n[\n  \"value1\",  // args[0]\n  \"value2\",  // args[1]\n  \"value3\"   // args[2]\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "[\n  \"value1\",  // args[0]\n  \"value2\",  // args[1]\n  \"value3\"   // args[2]\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 162,
+      "lines": [
+        465,
+        465
+      ],
+      "raw": "### Example usage",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example usage",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 163,
+      "lines": [
+        467,
+        481
+      ],
+      "raw": "```javascript\nconst script = {\n  execute: () => {\n    const args = dao.getFunctionArguments();\n    const firstArg = args[0];\n    const secondArg = args[1];\n\n    return {\n      firstParam: firstArg,\n      secondParam: secondArg,\n      message: \"Arguments processed successfully\"\n    };\n  }\n};\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const script = {\n  execute: () => {\n    const args = dao.getFunctionArguments();\n    const firstArg = args[0];\n    const secondArg = args[1];\n\n    return {\n      firstParam: firstArg,\n      secondParam: secondArg,\n      message: \"Arguments processed successfully\"\n    };\n  }\n};"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 164,
+      "lines": [
+        483,
+        483
+      ],
+      "raw": "### Common patterns",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Common patterns",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 165,
+      "lines": [
+        485,
+        485
+      ],
+      "raw": "**Access the first argument**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Access the first argument",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 166,
+      "lines": [
+        487,
+        489
+      ],
+      "raw": "```javascript\nconst firstArg = dao.getFunctionArguments()[0];\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const firstArg = dao.getFunctionArguments()[0];"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 167,
+      "lines": [
+        491,
+        491
+      ],
+      "raw": "**Access the second argument**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Access the second argument",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 168,
+      "lines": [
+        493,
+        495
+      ],
+      "raw": "```javascript\nconst secondArg = dao.getFunctionArguments()[1];\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const secondArg = dao.getFunctionArguments()[1];"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 169,
+      "lines": [
+        497,
+        497
+      ],
+      "raw": "**Check if arguments are passed**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Check if arguments are passed",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 170,
+      "lines": [
+        499,
+        504
+      ],
+      "raw": "```javascript\nconst args = dao.getFunctionArguments();\nif (args.length > 0) {\n  const firstArg = args[0];\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const args = dao.getFunctionArguments();\nif (args.length > 0) {\n  const firstArg = args[0];\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 171,
+      "lines": [
+        506,
+        506
+      ],
+      "raw": "### Best practices",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Best practices",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 172,
+      "lines": [
+        508,
+        512
+      ],
+      "raw": "* Check array length before accessing arguments.\n* Use descriptive variable names for clarity.\n* Document the expected argument order and purpose.\n* Handle missing or invalid arguments gracefully.\n* Use array destructuring when possible for cleaner code.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Check array length before accessing arguments.Use descriptive variable names for clarity.Document the expected argument order and purpose.Handle missing or invalid arguments gracefully.Use array destructuring when possible for cleaner code.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 173,
+      "lines": [
+        514,
+        514
+      ],
+      "raw": "### Limitations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Limitations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 174,
+      "lines": [
+        516,
+        519
+      ],
+      "raw": "* Arguments are immutable once passed.\n* You must access arguments by index.\n* The order of arguments is critical.\n* Arguments must be provided when the block is invoked using `executeBlock()`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Arguments are immutable once passed.You must access arguments by index.The order of arguments is critical.Arguments must be provided when the block is invoked using executeBlock().",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 175,
+      "lines": [
+        521,
+        521
+      ],
+      "raw": "## getBlockHeaders",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getBlockHeaders",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 176,
+      "lines": [
+        523,
+        523
+      ],
+      "raw": "The  `getBlockHeaders()`function returns the headers of the specified block.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The  getBlockHeaders()function returns the headers of the specified block.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 177,
+      "lines": [
+        525,
+        525
+      ],
+      "raw": "### Syntax",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 178,
+      "lines": [
+        527,
+        529
+      ],
+      "raw": "```javascript\nconst blockHeaders = getBlockHeaders('blockName');\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const blockHeaders = getBlockHeaders('blockName');"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 179,
+      "lines": [
+        531,
+        532
+      ],
+      "raw": "**Parameter**\\\nThe block name parameter is required and specifies the name of the block from which to retrieve headers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "ParameterThe block name parameter is required and specifies the name of the block from which to retrieve headers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 180,
+      "lines": [
+        534,
+        535
+      ],
+      "raw": "**Return value**\\\n`IHeaders` : An object representing the headers associated with the specified block. The `IHeaders` type is an object with string keys (header names) and string values (header values).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Return valueIHeaders : An object representing the headers associated with the specified block. The IHeaders type is an object with string keys (header names) and string values (header values).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 181,
+      "lines": [
+        537,
+        537
+      ],
+      "raw": "### Example usage",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example usage",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 182,
+      "lines": [
+        539,
+        541
+      ],
+      "raw": "```json Example usage\nconst blockHeaders = dao.getBlockHeaders(\"APICallGetCustomerDetails\")\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Example usage",
+        "code": "const blockHeaders = dao.getBlockHeaders(\"APICallGetCustomerDetails\")"
+      },
+      "text": "Example usage",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 183,
+      "lines": [
+        543,
+        543
+      ],
+      "raw": "### Example output",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 184,
+      "lines": [
+        545,
+        550
+      ],
+      "raw": "```json Example output\n{\n  \"Content-Type\": \"application/json\",\n    \"Authorization\": \"Bearer token\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Example output",
+        "code": "{\n  \"Content-Type\": \"application/json\",\n    \"Authorization\": \"Bearer token\"\n}"
+      },
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 185,
+      "lines": [
+        552,
+        552
+      ],
+      "raw": "## getApplicationName",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getApplicationName",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 186,
+      "lines": [
+        554,
+        554
+      ],
+      "raw": "The `getApplicationName` function returns the name of the application that contains the currently executing dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getApplicationName function returns the name of the application that contains the currently executing dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 187,
+      "lines": [
+        556,
+        556
+      ],
+      "raw": "When called from within a middleware (pre-matching or post-matching) dataflow, it returns the application name of the main dataflow that triggered execution and not the middleware's own application.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When called from within a middleware (pre-matching or post-matching) dataflow, it returns the application name of the main dataflow that triggered execution and not the middleware's own application.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 188,
+      "lines": [
+        558,
+        558
+      ],
+      "raw": "### Syntax",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Syntax",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 189,
+      "lines": [
+        560,
+        562
+      ],
+      "raw": "```javascript\nconst appName = dao.getApplicationName();\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "const appName = dao.getApplicationName();"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 190,
+      "lines": [
+        564,
+        564
+      ],
+      "raw": "### Parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 191,
+      "lines": [
+        566,
+        566
+      ],
+      "raw": "None.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "None.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 192,
+      "lines": [
+        568,
+        568
+      ],
+      "raw": "### Return value",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Return value",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 193,
+      "lines": [
+        570,
+        570
+      ],
+      "raw": "`string` — The name of the application containing the active dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "string — The name of the application containing the active dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 194,
+      "lines": [
+        572,
+        572
+      ],
+      "raw": "### Use cases",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Use cases",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 195,
+      "lines": [
+        574,
+        579
+      ],
+      "raw": "| Scenario                     | Description                                                                                                                                                                    |\n| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| Middleware filtering         | Restrict middleware execution to dataflows in specific applications.                                                                                                           |\n| Conditional routing          | Route execution to different logic branches based on the calling application.                                                                                                  |\n| Logging and auditing         | Include the application name in the log output for better traceability.                                                                                                        |\n| Multi-application middleware | Use one middleware dataflow to serve multiple applications, applying different logic for each based on the application name, instead of creating separate middleware for each. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Scenario",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Middleware filtering",
+            "Restrict middleware execution to dataflows in specific applications."
+          ],
+          [
+            "Conditional routing",
+            "Route execution to different logic branches based on the calling application."
+          ],
+          [
+            "Logging and auditing",
+            "Include the application name in the log output for better traceability."
+          ],
+          [
+            "Multi-application middleware",
+            "Use one middleware dataflow to serve multiple applications, applying different logic for each based on the application name, instead of creating separate middleware for each."
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 196,
+      "lines": [
+        581,
+        581
+      ],
+      "raw": "### Example: Retrieve the application name in a Script block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example: Retrieve the application name in a Script block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 197,
+      "lines": [
+        583,
+        596
+      ],
+      "raw": "```javascript\nimport dao from \"neo/dao\";\n\nconst script = {\n  execute: async () => {\n    const currentApp = dao.getApplicationName();\n    return {\n      currentApplication: currentApp\n    };\n  }\n};\n\nexport { script as default };\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "import dao from \"neo/dao\";\n\nconst script = {\n  execute: async () => {\n    const currentApp = dao.getApplicationName();\n    return {\n      currentApplication: currentApp\n    };\n  }\n};\n\nexport { script as default };"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 198,
+      "lines": [
+        598,
+        598
+      ],
+      "raw": "**Example output**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example output",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 199,
+      "lines": [
+        600,
+        604
+      ],
+      "raw": "```json\n{\n  \"currentApplication\": \"CustomerManagement\"\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"currentApplication\": \"CustomerManagement\"\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 200,
+      "lines": [
+        606,
+        606
+      ],
+      "raw": "### Example: Use in a relation condition",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example: Use in a relation condition",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 201,
+      "lines": [
+        608,
+        610
+      ],
+      "raw": "```javascript\ndao.getApplicationName() === \"CustomerManagement\"\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "javascript",
+        "title": null,
+        "code": "dao.getApplicationName() === \"CustomerManagement\""
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 202,
+      "lines": [
+        612,
+        612
+      ],
+      "raw": "**Key behaviors**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Key behaviors",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 203,
+      "lines": [
+        614,
+        615
+      ],
+      "raw": "* When called inside a middleware dataflow, returns the application name of the calling main dataflow.\n* When called inside a main dataflow, returns the application name of that dataflow.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "When called inside a middleware dataflow, returns the application name of the calling main dataflow.When called inside a main dataflow, returns the application name of that dataflow.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 204,
+      "lines": [
+        617,
+        617
+      ],
+      "raw": "# DAO Methods Specific to Filters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "DAO Methods Specific to Filters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 205,
+      "lines": [
+        619,
+        619
+      ],
+      "raw": "## getDataFlowOut",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getDataFlowOut",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 206,
+      "lines": [
+        621,
+        621
+      ],
+      "raw": "The `getDataFlowOut()` function retrieves the output from a specified dataflow using the `dagType` parameter. `dagType` indicates the type of dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getDataFlowOut() function retrieves the output from a specified dataflow using the dagType parameter. dagType indicates the type of dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 207,
+      "lines": [
+        623,
+        627
+      ],
+      "raw": "> 📘 dagType\n>\n> * The `dagType `is set to 'main' for the original or main data flow.\n> * The `dagType `is set to '@PreMatching-P1/2/3' for pre-matching data flows.\n> * The `dagType `is set to '@PostMatching-P1/2/3' for post-matching data flows.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "dagTypeThe dagType is set to 'main' for the original or main data flow.The dagType is set to '@PreMatching-P1/2/3' for pre-matching data flows.The dagType is set to '@PostMatching-P1/2/3' for post-matching data flows.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 208,
+      "lines": [
+        629,
+        629
+      ],
+      "raw": "## getLatestDataFlowOut",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getLatestDataFlowOut",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 209,
+      "lines": [
+        631,
+        631
+      ],
+      "raw": "The function `getLatestDataFlowOut()`  fetches the output from the latest execution of a dataflow without needing any parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getLatestDataFlowOut()  fetches the output from the latest execution of a dataflow without needing any parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 210,
+      "lines": [
+        633,
+        633
+      ],
+      "raw": "## doesDataFlowHasError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "doesDataFlowHasError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 211,
+      "lines": [
+        635,
+        635
+      ],
+      "raw": "The function `doesDataFlowHasError()` returns a boolean that indicates whether the specified dataflow encountered an error. Use the `dagType` parameter to specify the type of dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function doesDataFlowHasError() returns a boolean that indicates whether the specified dataflow encountered an error. Use the dagType parameter to specify the type of dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 212,
+      "lines": [
+        637,
+        637
+      ],
+      "raw": "## doesLatestDataFlowHasError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "doesLatestDataFlowHasError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 213,
+      "lines": [
+        639,
+        639
+      ],
+      "raw": "The function `doesLatestDataFlowHasError()` returns a boolean that indicates whether the latest dataflow encounters an error. No parameters are required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function doesLatestDataFlowHasError() returns a boolean that indicates whether the latest dataflow encounters an error. No parameters are required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 214,
+      "lines": [
+        641,
+        641
+      ],
+      "raw": "## getDataFlowError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getDataFlowError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 215,
+      "lines": [
+        643,
+        643
+      ],
+      "raw": "The function `getDataFlowError()` retrieves the error from a specific dataflow using the `dagType` parameter to identify the target DAG.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getDataFlowError() retrieves the error from a specific dataflow using the dagType parameter to identify the target DAG.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 216,
+      "lines": [
+        645,
+        645
+      ],
+      "raw": "## getLatestDataFlowError",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getLatestDataFlowError",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 217,
+      "lines": [
+        647,
+        647
+      ],
+      "raw": "The function `getLatestDataFlowError()` retrieves the error from the latest dataflow and does not require any parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getLatestDataFlowError() retrieves the error from the latest dataflow and does not require any parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 218,
+      "lines": [
+        649,
+        649
+      ],
+      "raw": "## getDataFlowBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getDataFlowBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 219,
+      "lines": [
+        651,
+        651
+      ],
+      "raw": "The function `getDataFlowBody()` retrieves the body of a specific dataflow using the `dagType` parameter to indicate which dataflow to access.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getDataFlowBody() retrieves the body of a specific dataflow using the dagType parameter to indicate which dataflow to access.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 220,
+      "lines": [
+        653,
+        653
+      ],
+      "raw": "## getLatestDataFlowBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getLatestDataFlowBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 221,
+      "lines": [
+        655,
+        655
+      ],
+      "raw": "The function `getLatestDataFlowBody()` retrieves the body from the latest dataflow execution without requiring any parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getLatestDataFlowBody() retrieves the body from the latest dataflow execution without requiring any parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 222,
+      "lines": [
+        657,
+        657
+      ],
+      "raw": "## getDataFlowMultiBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getDataFlowMultiBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 223,
+      "lines": [
+        659,
+        659
+      ],
+      "raw": "The function `getDataFlowMultiBody()` is similar to [getMultiBody](https://docs.capillarytech.com/docs/neo-dao-functions#getmultibody) , specify `dagType` in the parameters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getDataFlowMultiBody() is similar to getMultiBody , specify dagType in the parameters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions#getmultibody",
+          "line": 659
+        }
+      ]
+    },
+    {
+      "i": 224,
+      "lines": [
+        661,
+        661
+      ],
+      "raw": "## getLatestDataFlowMultiBody",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getLatestDataFlowMultiBody",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 225,
+      "lines": [
+        663,
+        663
+      ],
+      "raw": "The function `getLatestDataFlowMultiBody()` is similar to [getMultiBody](https://docs.capillarytech.com/docs/neo-dao-functions#getmultibody) .",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The function getLatestDataFlowMultiBody() is similar to getMultiBody .",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/neo-dao-functions#getmultibody",
+          "line": 663
+        }
+      ]
+    },
+    {
+      "i": 226,
+      "lines": [
+        665,
+        665
+      ],
+      "raw": "## getLatestDataFlowStatus",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "getLatestDataFlowStatus",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 227,
+      "lines": [
+        667,
+        667
+      ],
+      "raw": "The `getLatestDataFlowStatus()` function retrieves the status of the most recently executed dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The getLatestDataFlowStatus() function retrieves the status of the most recently executed dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

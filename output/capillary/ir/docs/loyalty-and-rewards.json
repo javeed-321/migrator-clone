@@ -1,0 +1,575 @@
+{
+  "slug": "docs/loyalty-and-rewards",
+  "source": "https://docs.capillarytech.com/docs/loyalty-and-rewards.md",
+  "url": "https://docs.capillarytech.com/docs/loyalty-and-rewards",
+  "title": "Loyalty And Rewards",
+  "description": "",
+  "section": "Explore Templates",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-21T09:37:06.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 8,
+    "Table": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Loyalty and Rewards",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Loyalty and Rewards",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Templates for creating and updating loyalty rewards in bulk in the Capillary platform.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Templates for creating and updating loyalty rewards in bulk in the Capillary platform.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Loyalty and rewards templates let you create and update rewards in bulk by ingesting reward data from an FTP or SFTP location on a schedule. Each template provides a pre-configured block sequence for a specific loyalty or rewards use case. You select a template, configure the block details for your environment, and deploy the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Loyalty and rewards templates let you create and update rewards in bulk by ingesting reward data from an FTP or SFTP location on a schedule. Each template provides a pre-configured block sequence for a specific loyalty or rewards use case. You select a template, configure the block details for your environment, and deploy the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following templates are available for loyalty and rewards.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following templates are available for loyalty and rewards.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "## Create rewards",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Create rewards",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Use this template to create or update rewards in bulk from a source file. The template reads reward records from a CSV file, maps each record to the reward schema, and calls the Capillary reward creation API for every record.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this template to create or update rewards in bulk from a source file. The template reads reward records from a CSV file, maps each record to the reward schema, and calls the Capillary reward creation API for every record.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "**Use case**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "A brand preparing a seasonal loyalty campaign needs to load hundreds of new rewards into its catalog before the campaign goes live. The reward details are exported from the brand's merchandising system to a CSV file. This template reads the file, transforms each row into the reward format, and creates every reward in a single scheduled run.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand preparing a seasonal loyalty campaign needs to load hundreds of new rewards into its catalog before the campaign goes live. The reward details are exported from the brand's merchandising system to a CSV file. This template reads the file, transforms each row into the reward format, and creates every reward in a single scheduled run.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "The template runs seven blocks in sequence: it reads the source file over SFTP, decrypts the content, converts the CSV rows to JSON, applies two transforms to map the data to the reward schema, filters out header or invalid rows, and posts each reward to the reward creation API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The template runs seven blocks in sequence: it reads the source file over SFTP, decrypts the content, converts the CSV rows to JSON, applies two transforms to map the data to the reward schema, filters out header or invalid rows, and posts each reward to the reward creation API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "### Block configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Block configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "The following table lists the blocks in the Create rewards template, describes what each block does, and provides the configured values for each field.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table lists the blocks in the Create rewards template, describes what each block does, and provides the configured values for each field.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        76
+      ],
+      "raw": "| Block Name                                                                                                                 | Configuration Field          | Configured Value                                                                                                                                                                                                                                                                      |\n| :------------------------------------------------------------------------------------------------------------------------- | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **[Connect-to-source](https://docs.capillarytech.com/docs/sftp-read-block)**<br />Type: `sftp_read`                        | Hostname                     | `data.capillarydata.com`                                                                                                                                                                                                                                                              |\n|                                                                                                                            | Username                     | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Source directory             | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Filename pattern             | `.*.csv`. Matches all CSV files.                                                                                                                                                                                                                                                      |\n|                                                                                                                            | Processed directory          | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Unzip files                  | `false`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | API error file path          | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Search directory recursively | `false`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | Port                         | `22`                                                                                                                                                                                                                                                                                  |\n|                                                                                                                            | File delimiter               | `,`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | Report status code           | `all`                                                                                                                                                                                                                                                                                 |\n| **[Decrypt-data](https://docs.capillarytech.com/docs/pgp-decrypt-block)**<br />Type: `decrypt_content`                     | Encryption algorithm         | `PGP`                                                                                                                                                                                                                                                                                 |\n|                                                                                                                            | Private key file             | Redacted                                                                                                                                                                                                                                                                              |\n|                                                                                                                            | Private passphrase           | Redacted                                                                                                                                                                                                                                                                              |\n|                                                                                                                            | Is enabled                   | `false`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | File extension               | `.zip`                                                                                                                                                                                                                                                                                |\n| **[Transform-data-csv](https://docs.capillarytech.com/docs/transform-csv-to-json-block)**<br />Type: `convert_csv_to_json` | File type                    | `5c5b9607-0173-1000-87ad-a0b9ca44885f`                                                                                                                                                                                                                                                |\n|                                                                                                                            | Alphabetical sort            | `false`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | Group size                   | `1`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | JSONPath expression          | `$.[*]`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | Split response               | `true`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Header value                 | `$['filter.condition.header']`                                                                                                                                                                                                                                                        |\n|                                                                                                                            | Line numbers                 | `$.[\"LINE_NO\"]`                                                                                                                                                                                                                                                                       |\n|                                                                                                                            | Brand ID                     | `$['rewards.standard.brandId']`                                                                                                                                                                                                                                                       |\n|                                                                                                                            | Reward ID                    | `$['standard.data.rewardId']`                                                                                                                                                                                                                                                         |\n| **[Transform-data-jslt](https://docs.capillarytech.com/docs/jslt-block)**<br />Type: `jslt_transform`                      | Transformation               | `if (is-array(.)) [ for (.) {} ] else {}`                                                                                                                                                                                                                                             |\n| **[Transform-data-jolt](https://docs.capillarytech.com/docs/jolt-block)**<br />Type: `jolt_transform`                      | JOLT transformation          | Maps the source fields to the reward schema. Shifts `rewards.standard.*`, language-specific info, reward-level and customer-level restrictions, payment configs, and custom fields into their target paths, then splits `categories` on commas and converts each value to an integer. |\n| **[Filter-Data](https://docs.capillarytech.com/docs/filter-hidden-block)**<br />Type: `filter_on_condition_hidden`         | Filter condition             | `${header_value:equals('true'):or(${header_value:isEmpty()})}`                                                                                                                                                                                                                        |\n| **[Connect-to-destination](https://docs.capillarytech.com/docs/api-request-http_write-block)**<br />Type: `http_write`     | Client key                   | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Client secret                | Redacted                                                                                                                                                                                                                                                                              |\n|                                                                                                                            | API endpoint                 | `/api_gateway/rewards/core/v1/reward/create`                                                                                                                                                                                                                                          |\n|                                                                                                                            | API base URL                 | `{intouch_url}`                                                                                                                                                                                                                                                                       |\n|                                                                                                                            | API method                   | `POST`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | OAuth base URL               | `{intouch_url}`                                                                                                                                                                                                                                                                       |\n|                                                                                                                            | Parse response               | `true`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Bulk support                 | `false`                                                                                                                                                                                                                                                                               |\n|                                                                                                                            | Request split path           | `$`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | Response split path          | `$`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | Recoverable error codes      | `502,504,520,521`                                                                                                                                                                                                                                                                     |\n|                                                                                                                            | Parse path map               | `{\"status_code\":\"$.['errors'].*.code\",\"error_message\":\"$.['errors'].*.message\"}`                                                                                                                                                                                                      |\n|                                                                                                                            | Yielding error codes         | `429`                                                                                                                                                                                                                                                                                 |\n|                                                                                                                            | Maximum retries              | `3`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | Additional headers           | `null`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Rate                         | `1000`                                                                                                                                                                                                                                                                                |\n|                                                                                                                            | Period                       | `1`                                                                                                                                                                                                                                                                                   |\n|                                                                                                                            | Time unit                    | `MINUTES`                                                                                                                                                                                                                                                                             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Block Name",
+          "Configuration Field",
+          "Configured Value"
+        ],
+        "rows": [
+          [
+            "Connect-to-sourceType: sftp_read",
+            "Hostname",
+            "data.capillarydata.com"
+          ],
+          [
+            "",
+            "Username",
+            "null"
+          ],
+          [
+            "",
+            "Source directory",
+            "null"
+          ],
+          [
+            "",
+            "Filename pattern",
+            ".*.csv. Matches all CSV files."
+          ],
+          [
+            "",
+            "Processed directory",
+            "null"
+          ],
+          [
+            "",
+            "Unzip files",
+            "false"
+          ],
+          [
+            "",
+            "API error file path",
+            "null"
+          ],
+          [
+            "",
+            "Search directory recursively",
+            "false"
+          ],
+          [
+            "",
+            "Port",
+            "22"
+          ],
+          [
+            "",
+            "File delimiter",
+            ","
+          ],
+          [
+            "",
+            "Report status code",
+            "all"
+          ],
+          [
+            "Decrypt-dataType: decrypt_content",
+            "Encryption algorithm",
+            "PGP"
+          ],
+          [
+            "",
+            "Private key file",
+            "Redacted"
+          ],
+          [
+            "",
+            "Private passphrase",
+            "Redacted"
+          ],
+          [
+            "",
+            "Is enabled",
+            "false"
+          ],
+          [
+            "",
+            "File extension",
+            ".zip"
+          ],
+          [
+            "Transform-data-csvType: convert_csv_to_json",
+            "File type",
+            "5c5b9607-0173-1000-87ad-a0b9ca44885f"
+          ],
+          [
+            "",
+            "Alphabetical sort",
+            "false"
+          ],
+          [
+            "",
+            "Group size",
+            "1"
+          ],
+          [
+            "",
+            "JSONPath expression",
+            "$.[*]"
+          ],
+          [
+            "",
+            "Split response",
+            "true"
+          ],
+          [
+            "",
+            "Header value",
+            "$['filter.condition.header']"
+          ],
+          [
+            "",
+            "Line numbers",
+            "$.[\"LINE_NO\"]"
+          ],
+          [
+            "",
+            "Brand ID",
+            "$['rewards.standard.brandId']"
+          ],
+          [
+            "",
+            "Reward ID",
+            "$['standard.data.rewardId']"
+          ],
+          [
+            "Transform-data-jsltType: jslt_transform",
+            "Transformation",
+            "if (is-array(.)) [ for (.) {} ] else {}"
+          ],
+          [
+            "Transform-data-joltType: jolt_transform",
+            "JOLT transformation",
+            "Maps the source fields to the reward schema. Shifts rewards.standard.*, language-specific info, reward-level and customer-level restrictions, payment configs, and custom fields into their target paths, then splits categories on commas and converts each value to an integer."
+          ],
+          [
+            "Filter-DataType: filter_on_condition_hidden",
+            "Filter condition",
+            "${header_value:equals('true'):or(${header_value:isEmpty()})}"
+          ],
+          [
+            "Connect-to-destinationType: http_write",
+            "Client key",
+            "null"
+          ],
+          [
+            "",
+            "Client secret",
+            "Redacted"
+          ],
+          [
+            "",
+            "API endpoint",
+            "/api_gateway/rewards/core/v1/reward/create"
+          ],
+          [
+            "",
+            "API base URL",
+            "{intouch_url}"
+          ],
+          [
+            "",
+            "API method",
+            "POST"
+          ],
+          [
+            "",
+            "OAuth base URL",
+            "{intouch_url}"
+          ],
+          [
+            "",
+            "Parse response",
+            "true"
+          ],
+          [
+            "",
+            "Bulk support",
+            "false"
+          ],
+          [
+            "",
+            "Request split path",
+            "$"
+          ],
+          [
+            "",
+            "Response split path",
+            "$"
+          ],
+          [
+            "",
+            "Recoverable error codes",
+            "502,504,520,521"
+          ],
+          [
+            "",
+            "Parse path map",
+            "{\"status_code\":\"$.['errors'].*.code\",\"error_message\":\"$.['errors'].*.message\"}"
+          ],
+          [
+            "",
+            "Yielding error codes",
+            "429"
+          ],
+          [
+            "",
+            "Maximum retries",
+            "3"
+          ],
+          [
+            "",
+            "Additional headers",
+            "null"
+          ],
+          [
+            "",
+            "Rate",
+            "1000"
+          ],
+          [
+            "",
+            "Period",
+            "1"
+          ],
+          [
+            "",
+            "Time unit",
+            "MINUTES"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 31
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 42
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 47
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 56
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 57
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 58
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sftp-read-block",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/pgp-decrypt-block",
+          "line": 42
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/transform-csv-to-json-block",
+          "line": 47
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/jslt-block",
+          "line": 56
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/jolt-block",
+          "line": 57
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/filter-hidden-block",
+          "line": 58
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-request-http_write-block",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 78
+        }
+      ]
+    }
+  ]
+}

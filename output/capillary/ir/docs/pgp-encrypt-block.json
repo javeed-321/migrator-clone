@@ -1,0 +1,370 @@
+{
+  "slug": "docs/pgp-encrypt-block",
+  "source": "https://docs.capillarytech.com/docs/pgp-encrypt-block.md",
+  "url": "https://docs.capillarytech.com/docs/pgp-encrypt-block",
+  "title": "Pgp Encrypt Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T09:04:47.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 5,
+    "paragraph": 6,
+    "list": 2,
+    "Table": 1,
+    "code": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# PGP Encrypt block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "PGP Encrypt block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Configuration reference for the Encrypt Data block — encrypts the output file before it is transferred to the destination.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration reference for the Encrypt Data block — encrypts the output file before it is transferred to the destination.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The `encrypt_content` block encrypts output files before they are delivered to the destination. It acts as an optional transformation block in a Connect+ dataflow, sitting between the transformation and destination blocks to secure outgoing data. The block supports PGP-based encryption using a public key and can be enabled or disabled without removing it from the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The encrypt_content block encrypts output files before they are delivered to the destination. It acts as an optional transformation block in a Connect+ dataflow, sitting between the transformation and destination blocks to secure outgoing data. The block supports PGP-based encryption using a public key and can be enabled or disabled without removing it from the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## When to use this block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Use this block when the destination server or system requires files to be PGP-encrypted before delivery.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when the destination server or system requires files to be PGP-encrypted before delivery.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Before configuring this block, make sure you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "* The recipient's PGP public key, in Base64-encoded format\n* The user ID associated with the public key",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The recipient's PGP public key, in Base64-encoded formatThe user ID associated with the public key",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        117
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        A name for the block instance. For example, `Encrypt_Block`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Encryption Algorithm**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The algorithm used to encrypt the output file. Select the algorithm from the dropdown. For example, `PGP`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Public Key File**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The public encryption key used to encrypt the output file. For example, the Base64-encoded content of your PGP public key.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Public Key User Id**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The user ID associated with the public key.  \n        For example, `john.doe@example.com`.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Is Enabled**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        Enables or disables the encryption block.  \n        Select `true` to activate encryption or `false` to skip it.  \n        Default value: `true`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. For example, Encrypt_Block."
+          ],
+          [
+            "Encryption Algorithm",
+            "Yes",
+            "The algorithm used to encrypt the output file. Select the algorithm from the dropdown. For example, PGP."
+          ],
+          [
+            "Public Key File",
+            "Yes",
+            "The public encryption key used to encrypt the output file. For example, the Base64-encoded content of your PGP public key."
+          ],
+          [
+            "Public Key User Id",
+            "Yes",
+            "The user ID associated with the public key.For example, john.doe@example.com."
+          ],
+          [
+            "Is Enabled",
+            "Yes",
+            "Enables or disables the encryption block.Select true to activate encryption or false to skip it.Default value: true."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        119,
+        119
+      ],
+      "raw": "# Creating PGP public & private key",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Creating PGP public & private key",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "PGP is an encryption method based on public-key cryptography. It uses a pair of keys — a public key for encrypting data and a private key for decrypting it. These keys can be created and managed using the GnuPG (GPG) tool, which implements the OpenPGP standard. Perform the following steps to create a PGP key pair using the command line interafce.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "PGP is an encryption method based on public-key cryptography. It uses a pair of keys — a public key for encrypting data and a private key for decrypting it. These keys can be created and managed using the GnuPG (GPG) tool, which implements the OpenPGP standard. Perform the following steps to create a PGP key pair using the command line interafce.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        123,
+        133
+      ],
+      "raw": "1. Install the GnuPG in your operating system.\n   1. macOS: `brew install gnupg `\n   2. Linux: `sudo apt install gnupg`\n   3. Windows PowerShell: `winget install GnuPG.GnuPG`\n2. Use the command` gpg --full-generate-key` and generate a PGP key-pair.\n3. Select the type of key you want to generate.\n4. Define the length of the keys.\n5. Specify the duration for which the keys should be valid.\n6. Enter the name and email ID for creating the User ID.\n7. Enter **Okay**.\n8. Enter a passphrase when prompted.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Install the GnuPG in your operating system.macOS: brew install gnupg Linux: sudo apt install gnupgWindows PowerShell: winget install GnuPG.GnuPGUse the command gpg --full-generate-key and generate a PGP key-pair.Select the type of key you want to generate.Define the length of the keys.Specify the duration for which the keys should be valid.Enter the name and email ID for creating the User ID.Enter Okay.Enter a passphrase when prompted.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "The system creates a public and private key.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system creates a public and private key.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        137,
+        182
+      ],
+      "raw": "```Text PGP public and private key creation\nbrew install gnupg\nbash\n\ngpg --full-generate-key\n\n\nPlease select what kind of key you want:\n  (1) RSA and RSA\n  (2) DSA and Elgamal\n  (3) DSA (sign only)\n  (4) RSA (sign only)\n  (9) ECC (sign and encrypt) *default*\n\nWhat keysize do you want? (2048) 1024\n\n\nKey is valid for? (0) 0\nKey does not expire at all\nIs this correct? (y/N) y\n\n\nGnuPG needs to construct a user ID to identify your key.\n\nReal name: <Your Name>\nEmail address: <your.email@example.com>\nComment: <optional>\n\n\nYou selected this USER-ID:\n  \"<Your Name> (<optional comment>) <your.email@example.com>\"\nChange (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o\n\n\nWe need to generate a lot of random bytes…\n(public key generation may take a moment)\n\n\npublic and secret key created and signed.\n\npub   dsa1024 YYYY-MM-DD [SC]\n      <Key Fingerprint>\nuid                      <Your Name> (<optional comment>) <your.email@example.com>\nsub   elg1024 YYYY-MM-DD [E]\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "Text",
+        "title": "PGP public and private key creation",
+        "code": "brew install gnupg\nbash\n\ngpg --full-generate-key\n\n\nPlease select what kind of key you want:\n  (1) RSA and RSA\n  (2) DSA and Elgamal\n  (3) DSA (sign only)\n  (4) RSA (sign only)\n  (9) ECC (sign and encrypt) *default*\n\nWhat keysize do you want? (2048) 1024\n\n\nKey is valid for? (0) 0\nKey does not expire at all\nIs this correct? (y/N) y\n\n\nGnuPG needs to construct a user ID to identify your key.\n\nReal name: <Your Name>\nEmail address: <your.email@example.com>\nComment: <optional>\n\n\nYou selected this USER-ID:\n  \"<Your Name> (<optional comment>) <your.email@example.com>\"\nChange (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o\n\n\nWe need to generate a lot of random bytes…\n(public key generation may take a moment)\n\n\npublic and secret key created and signed.\n\npub   dsa1024 YYYY-MM-DD [SC]\n      <Key Fingerprint>\nuid                      <Your Name> (<optional comment>) <your.email@example.com>\nsub   elg1024 YYYY-MM-DD [E]\n"
+      },
+      "text": "PGP public and private key creation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        184,
+        184
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/0b32316451e8193513f8b55a3805be56ed54230d55153bdeaf4f7bfb47b0182f-Screenshot_2026-04-15_at_3.15.21_PM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/0b32316451e8193513f8b55a3805be56ed54230d55153bdeaf4f7bfb47b0182f-Screenshot_2026-04-15_at_3.15.21_PM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

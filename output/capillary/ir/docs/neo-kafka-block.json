@@ -1,0 +1,346 @@
+{
+  "slug": "docs/neo-kafka-block",
+  "source": "https://docs.capillarytech.com/docs/neo-kafka-block.md",
+  "url": "https://docs.capillarytech.com/docs/neo-kafka-block",
+  "title": "Neo Kafka Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 10,
+    "list": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Kafka Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Kafka Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Kafka block in the Neo application sends events to specific Kafka topics based on your input.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Kafka block in the Neo application sends events to specific Kafka topics based on your input.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "A Kafka topic is a channel or category in Apache Kafka where messages are published and stored. Producers are applications or services that send messages to specific topics, while consumers are applications that read messages from those topics. Each topic has a unique name within a Kafka cluster and can be divided into partitions",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A Kafka topic is a channel or category in Apache Kafka where messages are published and stored. Producers are applications or services that send messages to specific topics, while consumers are applications that read messages from those topics. Each topic has a unique name within a Kafka cluster and can be divided into partitions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The Kafka block is generally configured after the JSON Schema validation block successfully validates the headers or input parameters, and the JavaScript block generates the payload.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Kafka block is generally configured after the JSON Schema validation block successfully validates the headers or input parameters, and the JavaScript block generates the payload.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Consider a scenario where post-flight booking details of up to 1,000 requests per minute are sent to the Capillary system every hour. This data is processed to allocate loyalty points to the airline’s loyalty customers. Processing these requests synchronously would introduce latency and degrade system performance.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Consider a scenario where post-flight booking details of up to 1,000 requests per minute are sent to the Capillary system every hour. This data is processed to allocate loyalty points to the airline’s loyalty customers. Processing these requests synchronously would introduce latency and degrade system performance.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "To solve this, use the Kafka block in the Neo dataflow to push messages into the Kafka system for asynchronous processing. Later, the system retrieves the messages from Kafka, processes the data, and allocates loyalty points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To solve this, use the Kafka block in the Neo dataflow to push messages into the Kafka system for asynchronous processing. Later, the system retrieves the messages from Kafka, processes the data, and allocates loyalty points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Refer to this example [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/c5e214c9-7b3c-4dbe-a7c4-49e4d02dc45e/version/8cd821ec-a2ef-4d87-9562-36261ecb0708?ruleType=org) to understand how it is configured for a use case. Make sure you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow to understand how it is configured for a use case. Make sure you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Configuring Kafka block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring Kafka block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "To configure the Kafka block,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Kafka block,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        55
+      ],
+      "raw": "1. From the dataflow canvas, click on the node and select the **Kafka** block.\n\n2. In the **Block name** field, enter the block name.\\\n   Note: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n\n3. In the **Topic Name** field, enter the Kafka topic to determine where to send the event.\\\n   Topic name formats:\n\n   * Draft/Approved Versions: `neo_${orgId}${topic}_uat`\\\n     Example: `neo_56123_Transaction_uat`\n   * Live Version: `neo_${orgId}_${topic}`\\\n     Example: `neo_56123_Transaction`\n\n   Kafka creates the topic automatically if it doesn’t exist.\n\n4. In the **Message Key** field, enter a user-defined key that identifies each event within a topic and helps partition related events. If the key is defined in earlier blocks, retrieve it using DAO functions. Otherwise, define it using a JavaScript expression or enter a value manually. The **Message Key** must be a string.\n\n5. In the **Message Value** field, enter the event’s data or payload.  If the value is defined in earlier blocks, retrieve it using DAO functions. Otherwise, define it using a JavaScript expression or enter a value manually. The **Message Value** must be a string.\n\n6. (Optional) In the **Headers** field, add the required headers. If any of the headers listed below are included in the incoming request to Neo (for example, when a dataflow is triggered as part of an event and data is sent to Neo), Neo automatically includes them in the Kafka request.\n   * `x-cap-neo-test-variant-id`\n   * `x-cap-request-id`\n   * `x-cap-api-attribution-entity-type`\n   * `x-cap-api-attribution-entity-code`\n   * `x-cap-api-auth-org-id`",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the node and select the Kafka block.In the Block name field, enter the block name.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Topic Name field, enter the Kafka topic to determine where to send the event.Topic name formats:Draft/Approved Versions: neo_${orgId}${topic}_uatExample: neo_56123_Transaction_uatLive Version: neo_${orgId}_${topic}Example: neo_56123_TransactionKafka creates the topic automatically if it doesn’t exist.In the Message Key field, enter a user-defined key that identifies each event within a topic and helps partition related events. If the key is defined in earlier blocks, retrieve it using DAO functions. Otherwise, define it using a JavaScript expression or enter a value manually. The Message Key must be a string.In the Message Value field, enter the event’s data or payload.  If the value is defined in earlier blocks, retrieve it using DAO functions. Otherwise, define it using a JavaScript expression or enter a value manually. The Message Value must be a string.(Optional) In the Headers field, add the required headers. If any of the headers listed below are included in the incoming request to Neo (for example, when a dataflow is triggered as part of an event and data is sent to Neo), Neo automatically includes them in the Kafka request.x-cap-neo-test-variant-idx-cap-request-idx-cap-api-attribution-entity-typex-cap-api-attribution-entity-codex-cap-api-auth-org-id",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "**Note**: For details on headers, refer to [Header Management in Neo](https://docs.capillarytech.com/docs/api-request-block#header-management-in-neo).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: For details on headers, refer to Header Management in Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/api-request-block#header-management-in-neo",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        59,
+        60
+      ],
+      "raw": "7. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n8. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "i": 16,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring the Kafka block\" border={true} caption=\"Configuring the Kafka block\" src=\"https://files.readme.io/60253691b555cc89b2e3e4a85ebf84401f59d3b6784e3839f098ccf99451c0b9-17.02.2025_11.20.25_REC_Configuring_Kafka.gif\" width=\"85% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring the Kafka block",
+        "border": "{true}",
+        "caption": "Configuring the Kafka block",
+        "src": "https://files.readme.io/60253691b555cc89b2e3e4a85ebf84401f59d3b6784e3839f098ccf99451c0b9-17.02.2025_11.20.25_REC_Configuring_Kafka.gif",
+        "width": "85% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    }
+  ]
+}

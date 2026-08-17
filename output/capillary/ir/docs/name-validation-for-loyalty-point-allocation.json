@@ -1,0 +1,383 @@
+{
+  "slug": "docs/name-validation-for-loyalty-point-allocation",
+  "source": "https://docs.capillarytech.com/docs/name-validation-for-loyalty-point-allocation.md",
+  "url": "https://docs.capillarytech.com/docs/name-validation-for-loyalty-point-allocation",
+  "title": "Name Validation For Loyalty Point Allocation",
+  "description": "",
+  "section": "Use Cases",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-08-17T09:31:17.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 10,
+    "list": 3
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Customer Name Validation for Loyalty Point Allocation",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Customer Name Validation for Loyalty Point Allocation",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Requirement",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "An airline brand needs a validation mechanism to ensure that the first name and last name provided during a flight booking match the customer profile stored on Capillary’s platform. This validation is essential to ensure that loyalty points are allocated to the correct customer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An airline brand needs a validation mechanism to ensure that the first name and last name provided during a flight booking match the customer profile stored on Capillary’s platform. This validation is essential to ensure that loyalty points are allocated to the correct customer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "If the provided names do not match either the primary names or any of the stored alternate names (aliases) in the customer profile, the system will not allocate loyalty points.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If the provided names do not match either the primary names or any of the stored alternate names (aliases) in the customer profile, the system will not allocate loyalty points.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Currently, Capillary’s platform does not offer built-in validation to compare the airline’s booking data with the stored customer records.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Currently, Capillary’s platform does not offer built-in validation to compare the airline’s booking data with the stored customer records.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "## Solution",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        20
+      ],
+      "raw": "To solve this, create [a Neo dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/daec5cfa-be66-4d5d-b021-c2f45c3aa322/version/9204edc5-0386-4326-9ef8-9988fe690b64?ruleType=org) that compares the passenger names from the airline record with those stored in the Capillary system.\\\n**Note**: To view the dataflow, make sure you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To solve this, create a Neo dataflow that compares the passenger names from the airline record with those stored in the Capillary system.Note: To view the dataflow, make sure you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        22,
+        22
+      ],
+      "raw": "### Step one: Use Schema block to validate input parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step one: Use Schema block to validate input parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "Perform schema validation to ensure that all mandatory parameters are present. If any parameter is missing, return an appropriate error response. The required input parameters are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Perform schema validation to ensure that all mandatory parameters are present. If any parameter is missing, return an appropriate error response. The required input parameters are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        28
+      ],
+      "raw": "* FFN (Frequent Flyer Number)\n* First Name (Fname)\n* Last Name (lname)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "FFN (Frequent Flyer Number)First Name (Fname)Last Name (lname)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        30
+      ],
+      "raw": "Handle validation failures with the appropriate error messages.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Handle validation failures with the appropriate error messages.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "### Step two: Use the Script block to create payload for the GET Customer API",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step two: Use the Script block to create payload for the GET Customer API",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "Use the Script block to construct valid headers and query parameters, transform data to create a request payload for the GET Customer API call by following these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the Script block to construct valid headers and query parameters, transform data to create a request payload for the GET Customer API call by following these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        36,
+        38
+      ],
+      "raw": "* Fetch the input query parameters.\n* Remove unnecessary or error-prone headers.\n* Build the query using the required values: `externalId`  (FFN) and `source`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Fetch the input query parameters.Remove unnecessary or error-prone headers.Build the query using the required values: externalId  (FFN) and source.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "### Step three: Use API Request block to invoke GET Customer API with the appropriate query parameters",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step three: Use API Request block to invoke GET Customer API with the appropriate query parameters",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "Use the API Request block to invoke the [https://\\{host}/v2/customers/lookup/customerDetails]().",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the API Request block to invoke the https://{host}/v2/customers/lookup/customerDetails.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "### Step four: Use the Script block to compare names",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step four: Use the Script block to compare names",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "Use the Script block to verify whether the combination of First Name and Last Name from the airline's booking data matches any of the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the Script block to verify whether the combination of First Name and Last Name from the airline's booking data matches any of the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        48,
+        49
+      ],
+      "raw": "* Primary name in the customer profile\n* Any of the alternate names (alias1, alias2, alias3)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Primary name in the customer profileAny of the alternate names (alias1, alias2, alias3)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "If there’s a match, return a success response. If not, return a failure response.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If there’s a match, return a success response. If not, return a failure response.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

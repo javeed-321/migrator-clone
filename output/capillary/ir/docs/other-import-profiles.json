@@ -1,0 +1,499 @@
+{
+  "slug": "docs/other-import-profiles",
+  "source": "https://docs.capillarytech.com/docs/other-import-profiles.md",
+  "url": "https://docs.capillarytech.com/docs/other-import-profiles",
+  "title": "Other Import Profiles",
+  "description": "",
+  "section": "Data Import (Old)",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-26T09:25:03.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 6,
+    "Table": 3,
+    "Callout": 1,
+    "list": 2,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Other import profiles",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Other import profiles",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## Trackers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Trackers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Use the profile to add tracker details to the existing transactions of customers or user groups. Only 'bill' and 'lineitem' tracker types are supported for import. If you attempt to import tracker data with any other tracker type, such as 'POINTS', the import will fail with an 'Invalid tracker type' error.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use the profile to add tracker details to the existing transactions of customers or user groups. Only 'bill' and 'lineitem' tracker types are supported for import. If you attempt to import tracker data with any other tracker type, such as 'POINTS', the import will fail with an 'Invalid tracker type' error.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "The following table provides the list of fields supported for Trackers profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following table provides the list of fields supported for Trackers profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        23
+      ],
+      "raw": "| FIELD NAME                         | DATA TYPE | DESCRIPTION                                             | VALIDATIONS                                                                             | Updatable? | Mandatory?                                     |\n| :--------------------------------- | :-------- | :------------------------------------------------------ | :-------------------------------------------------------------------------------------- | :--------- | :--------------------------------------------- |\n| Mobile/Email/External ID/User ID\\* | STRING    | Customer’s unique identifiers                           | Valid registered identifiers of the customer or the unique user id generated in InTouch | NO         | At least one identifier is mandatory           |\n| Bill Number                        | STRING    | Bill Number for which tracker data needs to be imported | Valid transaction number of that customer                                               | NO         | If Identification of Bill is “Standard Fields” |\n| Transaction Date                   | DATETIME  | Transaction date                                        | Valid transaction date of the provided transaction number                               | NO         | If Identification of Bill is “Standard Fields” |\n| Store Code                         | STRING    | Store code on which the transaction is done             | Valid Store                                                                             | NO         | If Identification of Bill is “Standard Fields” |\n| Loyalty Log Id                     | INT       | Email of the existing admin user                        | Should be a valid email id available in InTouch as an active admin user.                | NO         | If Identification of Bill is “Loyalty Log Id”  |\n| Item Id                            | INT       | Lineitem Id                                             | Valid line-item id (should be tagged with the given transaction)                        | NO         | If tracker type is line-item                   |\n| Tracked Value\\*                    | DECIMAL   | Tracked Value                                           | No validation done for now                                                              | NO         | YES                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "FIELD NAME",
+          "DATA TYPE",
+          "DESCRIPTION",
+          "VALIDATIONS",
+          "Updatable?",
+          "Mandatory?"
+        ],
+        "rows": [
+          [
+            "Mobile/Email/External ID/User ID*",
+            "STRING",
+            "Customer’s unique identifiers",
+            "Valid registered identifiers of the customer or the unique user id generated in InTouch",
+            "NO",
+            "At least one identifier is mandatory"
+          ],
+          [
+            "Bill Number",
+            "STRING",
+            "Bill Number for which tracker data needs to be imported",
+            "Valid transaction number of that customer",
+            "NO",
+            "If Identification of Bill is “Standard Fields”"
+          ],
+          [
+            "Transaction Date",
+            "DATETIME",
+            "Transaction date",
+            "Valid transaction date of the provided transaction number",
+            "NO",
+            "If Identification of Bill is “Standard Fields”"
+          ],
+          [
+            "Store Code",
+            "STRING",
+            "Store code on which the transaction is done",
+            "Valid Store",
+            "NO",
+            "If Identification of Bill is “Standard Fields”"
+          ],
+          [
+            "Loyalty Log Id",
+            "INT",
+            "Email of the existing admin user",
+            "Should be a valid email id available in InTouch as an active admin user.",
+            "NO",
+            "If Identification of Bill is “Loyalty Log Id”"
+          ],
+          [
+            "Item Id",
+            "INT",
+            "Lineitem Id",
+            "Valid line-item id (should be tagged with the given transaction)",
+            "NO",
+            "If tracker type is line-item"
+          ],
+          [
+            "Tracked Value*",
+            "DECIMAL",
+            "Tracked Value",
+            "No validation done for now",
+            "NO",
+            "YES"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "Configuration Dependencies for Tracker Import",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configuration Dependencies for Tracker Import",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        126
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Denote stores by external ids\n      </th>\n\n      <th>\n        Indicates if the value provided in “store code” field has the external id of the store\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Replaces invalid stores provided in “store code” field with the store selected in this config\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Append country code to the mobile number automatically\n      </td>\n\n      <td>\n        Appends country code to the mobile numbers (Mobile) field automatically\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Identification of Bill(Transaction)\n      </td>\n\n      <td>\n        Possible values “LOYALTY_LOG_ID” and “STANDARD_FIELDS”.\n\n        * *LOYALTY_LOG_ID**: If this value is selected, then “Loyalty Log Id” will be mandatory, and the transaction is identified based on the loyalty log id\n        * *STANDARD_FIELDS**: if this value is selected, then “bill number”, “store code” and “transaction date” will be mandatory, and the transaction is identified based on all these three fields\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Choose customers' unique identifier\n      </td>\n\n      <td>\n        Set the unique identifier used for customers - MOBILE, EXTERNAL_ID, EMAIL, USER_ID.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Tracker\n      </td>\n\n      <td>\n        Choose the tracker for which you want to import data.  \n        This config lists all the trackers created for that organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User Group2 Enabled\n      </td>\n\n      <td>\n        Check this option to import tracker details for group transactions.\n\n        You will see an option to choose the identifier type to recognize the group - User Group2 Identifier Type.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User Group2 Identifier Type\n      </td>\n\n      <td>\n        Select the identifier for the group used in the CSV file. You can pass any of the following identifiers of the group.\n\n        * GROUP_ID\n        * EXTERNAL_ID\n        * PRIMARY_USER_ID\n        * PRIMARY_USER_MOBILE\n        * PRIMARY_USER_EMAIL\n        * PRIMARY_USER_EXTERNAL_ID\n        * PRIMARY_USER_CARD_NO  \n          You need to have the field that you select here in the CSV file and map it to the respective field.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Denote stores by external ids",
+          "Indicates if the value provided in “store code” field has the external id of the store"
+        ],
+        "rows": [
+          [
+            "Replace invalid store names with",
+            "Replaces invalid stores provided in “store code” field with the store selected in this config"
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Appends country code to the mobile numbers (Mobile) field automatically"
+          ],
+          [
+            "Identification of Bill(Transaction)",
+            "Possible values “LOYALTY_LOG_ID” and “STANDARD_FIELDS”.LOYALTY_LOG_ID*: If this value is selected, then “Loyalty Log Id” will be mandatory, and the transaction is identified based on the loyalty log idSTANDARD_FIELDS*: if this value is selected, then “bill number”, “store code” and “transaction date” will be mandatory, and the transaction is identified based on all these three fields"
+          ],
+          [
+            "Choose customers' unique identifier",
+            "Set the unique identifier used for customers - MOBILE, EXTERNAL_ID, EMAIL, USER_ID."
+          ],
+          [
+            "Tracker",
+            "Choose the tracker for which you want to import data.This config lists all the trackers created for that organization."
+          ],
+          [
+            "User Group2 Enabled",
+            "Check this option to import tracker details for group transactions.You will see an option to choose the identifier type to recognize the group - User Group2 Identifier Type."
+          ],
+          [
+            "User Group2 Identifier Type",
+            "Select the identifier for the group used in the CSV file. You can pass any of the following identifiers of the group.GROUP_IDEXTERNAL_IDPRIMARY_USER_IDPRIMARY_USER_MOBILEPRIMARY_USER_EMAILPRIMARY_USER_EXTERNAL_IDPRIMARY_USER_CARD_NOYou need to have the field that you select here in the CSV file and map it to the respective field."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        128,
+        130
+      ],
+      "raw": "> 📘 Notes\n>\n> When importing customer transactions, trackers will not reflect transactions that are imported outside the tracker window. For example, if the tracker duration is between 1st January 2025 - 31st December 2025, imported transactions made before 1st January 2025 will be added to the tracker.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotesWhen importing customer transactions, trackers will not reflect transactions that are imported outside the tracker window. For example, if the tracker duration is between 1st January 2025 - 31st December 2025, imported transactions made before 1st January 2025 will be added to the tracker.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "## Promotional Rewards",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Promotional Rewards",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "**Customer Promotion**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customer Promotion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "This profile lets you import customer level promotion programs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This profile lets you import customer level promotion programs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        138,
+        141
+      ],
+      "raw": "* Mobile/Email/External ID/User ID/Card Number/Card External ID\\*\n* Till IUN Or Store Ext Id(Store Code)\\*: Till or Store from which points are issued\n* Points\\* (to be issued)\n* User Group2 Identifier (Fleet Group Identifier) : Identifier selected for the user group. Required for group import.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Mobile/Email/External ID/User ID/Card Number/Card External ID*Till IUN Or Store Ext Id(Store Code)*: Till or Store from which points are issuedPoints* (to be issued)User Group2 Identifier (Fleet Group Identifier) : Identifier selected for the user group. Required for group import.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        143,
+        144
+      ],
+      "raw": "**Template Configuration**\\\nIf you import multiple files using a specific template, all will have the same promotion identifier assigned to them.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Template ConfigurationIf you import multiple files using a specific template, all will have the same promotion identifier assigned to them.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        146,
+        147
+      ],
+      "raw": "* The identifier is retained as long as no changes are made to the template.\n* When you make a change in the template and save, a new identifier is generated.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The identifier is retained as long as no changes are made to the template.When you make a change in the template and save, a new identifier is generated.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        149,
+        149
+      ],
+      "raw": "<Image alt=\"904\" border={false} src=\"https://files.readme.io/1575112-AgYJY6CfA_HQizD-q9StoSU-BdS0B2d7lg.png\" title=\"AgYJY6CfA_HQizD-q9StoSU-BdS0B2d7lg.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "alt": "904",
+        "border": "{false}",
+        "src": "https://files.readme.io/1575112-AgYJY6CfA_HQizD-q9StoSU-BdS0B2d7lg.png",
+        "title": "AgYJY6CfA_HQizD-q9StoSU-BdS0B2d7lg.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        151,
+        262
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        OPTION\n      </th>\n\n      <th>\n        DESCRIPTION\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        Choose customers' unique identifier\n      </td>\n\n      <td>\n        Choose the unique identifier of the customer used at the organization.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Append country code to the mobile number automatically\n      </td>\n\n      <td>\n        Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Denote stores by external IDs\n      </td>\n\n      <td>\n        Check if stores are denoted by store external ids.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Replace invalid store names with\n      </td>\n\n      <td>\n        Choose the store that you want to replace with in place of invalid stores identified in the import.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Promotion name\n      </td>\n\n      <td>\n        Enter the name of the promotion.\n\n        **NOTE**: _The name you specify will store in the backend directly. Hence, when you fetch details, the system no longer appends the timestamp to promotion name (as earlier), but retains the name that you specified._\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        All programs for the org\n      </td>\n\n      <td>\n\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Select the expiry strategy for points expiry\n      </td>\n\n      <td>\n        Choose the desired points expiry strategy for the points issued through the current template.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        User group2 enabled\n      </td>\n\n      <td>\n        Check this option if you want to issue points to user groups and not individual.  \n        You will see User Group2 Identifier Type. Choose the appropriate group identifier type that you used in the CSV.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        Set user defined promotion identifier\n      </td>\n\n      <td>\n        Check this if you want to use an external identifier for the promotion and enter the identifier in the text box that appears.\n\n        * When you provide a  new identifier, a new promotion is created with the given identifier and name.\n        * When you provide an existing identifier, points will be awarded under the existing promotion.  \n          **NOTE**: _Ensure you provide the same promotion name when using existing promotion identifier. If there is a mismatch, the system will throw an error._\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "OPTION",
+          "DESCRIPTION"
+        ],
+        "rows": [
+          [
+            "Choose customers' unique identifier",
+            "Choose the unique identifier of the customer used at the organization."
+          ],
+          [
+            "Append country code to the mobile number automatically",
+            "Check this box to prefix the base country code of the org's base country wherever mobile numbers without country code are identified."
+          ],
+          [
+            "Denote stores by external IDs",
+            "Check if stores are denoted by store external ids."
+          ],
+          [
+            "Replace invalid store names with",
+            "Choose the store that you want to replace with in place of invalid stores identified in the import."
+          ],
+          [
+            "Promotion name",
+            "Enter the name of the promotion.NOTE: The name you specify will store in the backend directly. Hence, when you fetch details, the system no longer appends the timestamp to promotion name (as earlier), but retains the name that you specified."
+          ],
+          [
+            "All programs for the org",
+            ""
+          ],
+          [
+            "Select the expiry strategy for points expiry",
+            "Choose the desired points expiry strategy for the points issued through the current template."
+          ],
+          [
+            "User group2 enabled",
+            "Check this option if you want to issue points to user groups and not individual.You will see User Group2 Identifier Type. Choose the appropriate group identifier type that you used in the CSV."
+          ],
+          [
+            "Set user defined promotion identifier",
+            "Check this if you want to use an external identifier for the promotion and enter the identifier in the text box that appears.When you provide a  new identifier, a new promotion is created with the given identifier and name.When you provide an existing identifier, points will be awarded under the existing promotion.NOTE: Ensure you provide the same promotion name when using existing promotion identifier. If there is a mismatch, the system will throw an error."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    }
+  ]
+}

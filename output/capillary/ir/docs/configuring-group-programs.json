@@ -1,0 +1,307 @@
+{
+  "slug": "docs/configuring-group-programs",
+  "source": "https://docs.capillarytech.com/docs/configuring-group-programs.md",
+  "url": "https://docs.capillarytech.com/docs/configuring-group-programs",
+  "title": "Configuring Group Programs",
+  "description": "",
+  "section": "User Group Loyalty",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:41:12.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 9,
+    "Callout": 1,
+    "list": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure Group Programs",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure Group Programs",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Enrol groups in loyalty programs, set up promotions, and configure group trackers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Enrol groups in loyalty programs, set up promotions, and configure group trackers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This page covers how to configure a loyalty program for user groups in the Loyalty+ UI. It includes enrolling groups in programs, setting up tier definitions and trackers, and configuring how points are earned, allocated, and redeemed. This page is intended for marketers and program administrators.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page covers how to configure a loyalty program for user groups in the Loyalty+ UI. It includes enrolling groups in programs, setting up tier definitions and trackers, and configuring how points are earned, allocated, and redeemed. This page is intended for marketers and program administrators.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Enrolling a group in a program",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Enrolling a group in a program",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Group enrolment to the loyalty program happens automatically through the API. When you create a user group using `POST /v2/userGroup2` and add a primary member using `POST /v2/userGroup2/join`, the group is associated with the default loyalty program for your organisation. No separate enrollment step is required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Group enrolment to the loyalty program happens automatically through the API. When you create a user group using POST /v2/userGroup2 and add a primary member using POST /v2/userGroup2/join, the group is associated with the default loyalty program for your organisation. No separate enrollment step is required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "The configurations required before a group can participate in a program are covered in the [Prerequisites](./prerequisites-and-limitations.md) section. Ensure the relevant flags are enabled before creating and enrolling groups.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The configurations required before a group can participate in a program are covered in the Prerequisites section. Ensure the relevant flags are enabled before creating and enrolling groups.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Writing conditions for user groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Writing conditions for user groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "To write workflow conditions based on the group entity on loyalty workflows, use the `currentUserGroup` profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To write workflow conditions based on the group entity on loyalty workflows, use the currentUserGroup profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "For the full list of available attributes and operators, refer to the [Profiles](https://docs.capillarytech.com/docs/profile-current-user-group) documentation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For the full list of available attributes and operators, refer to the Profiles documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/profile-current-user-group",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        27
+      ],
+      "raw": "> 📘 **Note on `currentCustomer.isGroupMember`:**\n>\n> `currentCustomer.isGroupMember` evaluates the customer's group membership status at the time the workflow processes the event, not at the time the transaction was submitted. The valid value is `==Yes` — using `==true` is not valid and will cause the condition to evaluate incorrectly. This attribute is supported for the `TransactionAdd` activity.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note on currentCustomer.isGroupMember:currentCustomer.isGroupMember evaluates the customer's group membership status at the time the workflow processes the event, not at the time the transaction was submitted. The valid value is ==Yes — using ==true is not valid and will cause the condition to evaluate incorrectly. This attribute is supported for the TransactionAdd activity.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "# Setting up promotions for user groups",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Setting up promotions for user groups",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "Promotions for user groups are configured in Loyalty+ using the same workflow as standard promotions, with group-specific qualifying conditions applied to scope eligibility correctly.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Promotions for user groups are configured in Loyalty+ using the same workflow as standard promotions, with group-specific qualifying conditions applied to scope eligibility correctly.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "Three sets of attributes are available for targeting group members:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Three sets of attributes are available for targeting group members:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        35,
+        37
+      ],
+      "raw": "* **Group primary member**:  Define eligibility based on the primary member's profile, such as their tier, lifetime purchases, or points balance. These are useful when you want to create a promotion based on the group owner's attributes.\n* **Current group primary** These attributes work similar to group primary member, but evaluate the primary member's data at the exact moment the event occurs, rather than at a fixed point.\n* **User group** These attributes let you define conditions based on the group entity itself, such as the group's current points balance, tier status, member count, or lifetime purchases.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Group primary member:  Define eligibility based on the primary member's profile, such as their tier, lifetime purchases, or points balance. These are useful when you want to create a promotion based on the group owner's attributes.Current group primary These attributes work similar to group primary member, but evaluate the primary member's data at the exact moment the event occurs, rather than at a fixed point.User group These attributes let you define conditions based on the group entity itself, such as the group's current points balance, tier status, member count, or lifetime purchases.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "For the full list of supported attributes and operators for each category, refer to the [Qualifying Conditions and Attributes](https://docs.capillarytech.com/docs/loyalty-promotions-qualifying-conditions) documentation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For the full list of supported attributes and operators for each category, refer to the Qualifying Conditions and Attributes documentation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/loyalty-promotions-qualifying-conditions",
+          "line": 39
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1665 @@
+{
+  "slug": "docs/understanding-timezone-management-in-the-ui",
+  "source": "https://docs.capillarytech.com/docs/understanding-timezone-management-in-the-ui.md",
+  "url": "https://docs.capillarytech.com/docs/understanding-timezone-management-in-the-ui",
+  "title": "Understanding Timezone Management In The Ui",
+  "description": "",
+  "section": "Timezone Management",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-25T09:46:26.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 19,
+    "paragraph": 52,
+    "list": 12,
+    "Callout": 2,
+    "thematicBreak": 6,
+    "Image": 2
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Understanding Timezone Management in the UI",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Understanding Timezone Management in the UI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Timezone handling in Capillary ensures that dates and times are displayed consistently, promotions and campaigns run at the correct local time, and support teams see predictable timestamps across all modules.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Timezone handling in Capillary ensures that dates and times are displayed consistently, promotions and campaigns run at the correct local time, and support teams see predictable timestamps across all modules.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "This page explains the key timezone concepts used across the platform, how date and time values behave during configuration and on listing pages, and which modules are currently on the standardized model.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This page explains the key timezone concepts used across the platform, how date and time values behave during configuration and on listing pages, and which modules are currently on the standardized model.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "# Timezone basics",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Timezone basics",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "A timezone provides the regional context for date and time values. The same moment in time can appear differently across locations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A timezone provides the regional context for date and time values. The same moment in time can appear differently across locations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "For example, a transaction that happens at a single instant may appear as:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, a transaction that happens at a single instant may appear as:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "* 16 December 2025, 14:30 in India\n* 16 December 2025, 17:00 in Singapore\n* 16 December 2025, 09:00 in London",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "16 December 2025, 14:30 in India16 December 2025, 17:00 in Singapore16 December 2025, 09:00 in London",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "Although the clock time differs, it represents the same event.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Although the clock time differs, it represents the same event.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        30
+      ],
+      "raw": "> 📘\n>\n> **Note**\n>\n> * For organizations created from **2026 onwards**, timezone handling is **enabled by default**. For organizations created earlier, contact the **Capillary Product Support team** to enable timezone support for your organization.\n> * Organizations with the CONF\\_ORG\\_DISABLE\\_MACHINE\\_TIME\\_CONV configuration enabled may experience billing time inconsistencies in the Membercare UI. This configuration is deprecated and should no longer be used.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteFor organizations created from 2026 onwards, timezone handling is enabled by default. For organizations created earlier, contact the Capillary Product Support team to enable timezone support for your organization.Organizations with the CONF_ORG_DISABLE_MACHINE_TIME_CONV configuration enabled may experience billing time inconsistencies in the Membercare UI. This configuration is deprecated and should no longer be used.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        32,
+        32
+      ],
+      "raw": "# Timezone concepts in Capillary",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Timezone concepts in Capillary",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        34,
+        34
+      ],
+      "raw": "## Organization timezone settings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Organization timezone settings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "Every Capillary organization has a **base timezone** that reflects where the business primarily operates. This is configured in the Capillary UI under **Organization Settings > Organization Profile > [Set Org TimeZone](https://docs.capillarytech.com/docs/org-management#set-org-timezone-tab)**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Every Capillary organization has a base timezone that reflects where the business primarily operates. This is configured in the Capillary UI under Organization Settings > Organization Profile > Set Org TimeZone.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/org-management#set-org-timezone-tab",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        38,
+        38
+      ],
+      "raw": "Capillary's timezone model extends beyond the organization level. Timezones can be configured at each level of the store hierarchy: zone, store, and till. This allows individual stores and checkout points to operate in their own local timezones, independent of the organization's base setting.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary's timezone model extends beyond the organization level. Timezones can be configured at each level of the store hierarchy: zone, store, and till. This allows individual stores and checkout points to operate in their own local timezones, independent of the organization's base setting.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "## IANA timezone convention",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "IANA timezone convention",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "Capillary uses the **IANA timezone format** (also called the tz database or Olson database) to represent timezones. Examples: `Asia/Kolkata`, `America/New_York`, `Europe/London`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary uses the IANA timezone format (also called the tz database or Olson database) to represent timezones. Examples: Asia/Kolkata, America/New_York, Europe/London.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "IANA names are preferred over fixed offsets (such as `+05:30`) because they carry **Daylight Saving Time (DST) rules** automatically. When you provide a timezone in IANA format, the system automatically applies the correct DST offset without any additional configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "IANA names are preferred over fixed offsets (such as +05:30) because they carry Daylight Saving Time (DST) rules automatically. When you provide a timezone in IANA format, the system automatically applies the correct DST offset without any additional configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "## Server timezone",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Server timezone",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        52,
+        52
+      ],
+      "raw": "The server timezone is Capillary's internal processing timezone. It is set at the platform level and cannot be changed by your organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The server timezone is Capillary's internal processing timezone. It is set at the platform level and cannot be changed by your organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        54,
+        55
+      ],
+      "raw": "* Insights reports will display timestamps in the server timezone (IST / Asia/Kolkata), regardless of where the brand is located.\n* API responses return date-time values in the server timezone. This is relevant for the technical teams and integrations.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Insights reports will display timestamps in the server timezone (IST / Asia/Kolkata), regardless of where the brand is located.API responses return date-time values in the server timezone. This is relevant for the technical teams and integrations.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        57,
+        57
+      ],
+      "raw": "## Daylight Saving Time (DST) handling",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Daylight Saving Time (DST) handling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        59,
+        59
+      ],
+      "raw": "Daylight Saving Time (DST) is a practice observed in many countries where clocks are moved forward by one hour in spring and moved back in autumn. The purpose is to make better use of daylight during the longer days of summer.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Daylight Saving Time (DST) is a practice observed in many countries where clocks are moved forward by one hour in spring and moved back in autumn. The purpose is to make better use of daylight during the longer days of summer.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        61,
+        61
+      ],
+      "raw": "For example, in the United States, clocks in the `America/New_York` timezone move:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, in the United States, clocks in the America/New_York timezone move:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        63,
+        64
+      ],
+      "raw": "* **Forward** by one hour on the second Sunday in March (spring forward)\n* **Backward** by one hour on the first Sunday in November (fall back)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Forward by one hour on the second Sunday in March (spring forward)Backward by one hour on the first Sunday in November (fall back)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "Not all countries observe DST. Countries near the equator, such as India, Singapore, and the UAE, do not adjust their clocks seasonally. Their UTC offset stays the same year-round.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Not all countries observe DST. Countries near the equator, such as India, Singapore, and the UAE, do not adjust their clocks seasonally. Their UTC offset stays the same year-round.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        68,
+        68
+      ],
+      "raw": "# Creation and scheduling page behavior",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Creation and scheduling page behavior",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        70,
+        70
+      ],
+      "raw": "In supported modules, you can select a timezone during configuration. The selected timezone defines the local time context for that configuration.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In supported modules, you can select a timezone during configuration. The selected timezone defines the local time context for that configuration.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        72,
+        72
+      ],
+      "raw": "**Promotions (New UI)** supports timezone selection at creation. A dropdown lists timezones in IANA format (for example, `Asia/Shanghai`, `Europe/London`). Available timezones are populated from the <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/org-management#create-or-modify-organization-profile-information\">supported timezones configured in your organization settings</Anchor>. The selected timezone defines the local time context in which the promotion is scheduled.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Promotions (New UI) supports timezone selection at creation. A dropdown lists timezones in IANA format (for example, Asia/Shanghai, Europe/London). Available timezones are populated from the supported timezones configured in your organization settings. The selected timezone defines the local time context in which the promotion is scheduled.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/org-management#create-or-modify-organization-profile-information",
+          "line": 72
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/org-management#create-or-modify-organization-profile-information",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        74,
+        74
+      ],
+      "raw": "<Image src=\"https://files.readme.io/35a9377195585f953ed9b8dd112059ab29961d27a2831966a277e30aa8246874-gif_16.gif\" align=\"center\" width=\"75%\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/35a9377195585f953ed9b8dd112059ab29961d27a2831966a277e30aa8246874-gif_16.gif",
+        "align": "center",
+        "width": "75%",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "All other supported modules — **Streaks**, **Milestones**, **Gift Vouchers**, **Cart Promotions**, and **Campaigns**  use the organization timezone during creation.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "All other supported modules — Streaks, Milestones, Gift Vouchers, Cart Promotions, and Campaigns  use the organization timezone during creation.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "## DST handling during scheduling",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "DST handling during scheduling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "Capillary supports timezone-aware scheduling and evaluation using IANA timezone identifiers (for example, `America/New_York`).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary supports timezone-aware scheduling and evaluation using IANA timezone identifiers (for example, America/New_York).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "When a date and time are configured with an IANA timezone, Daylight Saving Time (DST) transitions are handled automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When a date and time are configured with an IANA timezone, Daylight Saving Time (DST) transitions are handled automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        84,
+        84
+      ],
+      "raw": "### How DST is handled",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "How DST is handled",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        86,
+        86
+      ],
+      "raw": "Capillary stores:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Capillary stores:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        88,
+        89
+      ],
+      "raw": "* The configured date and time\n* The associated IANA timezone (for example, `America/New_York`)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The configured date and timeThe associated IANA timezone (for example, America/New_York)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "An IANA timezone represents a region, not a fixed offset. It includes:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "An IANA timezone represents a region, not a fixed offset. It includes:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        93,
+        95
+      ],
+      "raw": "* Historical timezone rules\n* Future DST transition rules\n* Exact dates when offsets change",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Historical timezone rulesFuture DST transition rulesExact dates when offsets change",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "During scheduling or evaluation, the system:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "During scheduling or evaluation, the system:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        99,
+        102
+      ],
+      "raw": "1. Reads the configured date and time.\n2. Reads the associated IANA timezone.\n3. Determines the correct UTC offset for that specific date.\n4. Applies the correct offset when processing the event.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Reads the configured date and time.Reads the associated IANA timezone.Determines the correct UTC offset for that specific date.Applies the correct offset when processing the event.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "This ensures that time-based entities (such as promotions, campaigns, journeys, and rewards) run at the intended local wall-clock time, even when DST changes occur.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This ensures that time-based entities (such as promotions, campaigns, journeys, and rewards) run at the intended local wall-clock time, even when DST changes occur.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "### Example: DST-aware scheduling",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Example: DST-aware scheduling",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "A campaign is scheduled to start at:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A campaign is scheduled to start at:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        112,
+        113
+      ],
+      "raw": "* 1 November 2026, 9:00 AM\n* Timezone: `America/New_York`",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "1 November 2026, 9:00 AMTimezone: America/New_York",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        115,
+        115
+      ],
+      "raw": "If DST ends earlier that morning:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If DST ends earlier that morning:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        117,
+        119
+      ],
+      "raw": "* The system applies the updated offset automatically.\n* The campaign still starts at 9:00 AM local time.\n* No manual adjustment is required.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "The system applies the updated offset automatically.The campaign still starts at 9:00 AM local time.No manual adjustment is required.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        121,
+        121
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        123,
+        123
+      ],
+      "raw": "### What happens during DST transition hours",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "What happens during DST transition hours",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "DST changes usually happen during early morning hours (for example, around 2:00 AM). During this time, one of two special cases can occur.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "DST changes usually happen during early morning hours (for example, around 2:00 AM). During this time, one of two special cases can occur.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "### Spring Forward (Hour Skipped)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Spring Forward (Hour Skipped)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        131,
+        131
+      ],
+      "raw": "When DST starts, clocks move forward by one hour.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When DST starts, clocks move forward by one hour.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        133,
+        133
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        135,
+        135
+      ],
+      "raw": "Timezone: `America/New_York` DST starts: 8 March 2026",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Timezone: America/New_York DST starts: 8 March 2026",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        137,
+        137
+      ],
+      "raw": "At **2:00 AM**, the clock jumps directly to **3:00 AM**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "At 2:00 AM, the clock jumps directly to 3:00 AM.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        139,
+        139
+      ],
+      "raw": "This means the time between **2:00 AM and 2:59 AM does not exist**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This means the time between 2:00 AM and 2:59 AM does not exist.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        141,
+        141
+      ],
+      "raw": "If you try to schedule something at:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you try to schedule something at:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        143,
+        144
+      ],
+      "raw": "* 8 March 2026, 2:30 AM\n* Timezone: `America/New_York`",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "8 March 2026, 2:30 AMTimezone: America/New_York",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "That time is not valid because it never occurs.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "That time is not valid because it never occurs.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "In such cases, the system may:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In such cases, the system may:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        150,
+        151
+      ],
+      "raw": "* Prevent the configuration, or\n* Automatically adjust it to the next valid time.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Prevent the configuration, orAutomatically adjust it to the next valid time.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        153,
+        153
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        155,
+        155
+      ],
+      "raw": "### Fall Back (Hour Repeated)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Fall Back (Hour Repeated)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 66,
+      "lines": [
+        157,
+        157
+      ],
+      "raw": "When DST ends, clocks move back by one hour.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When DST ends, clocks move back by one hour.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        159,
+        159
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        161,
+        161
+      ],
+      "raw": "Timezone: `America/New_York` DST ends: 1 November 2026",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Timezone: America/New_York DST ends: 1 November 2026",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        163,
+        163
+      ],
+      "raw": "At **2:00 AM**, the clock moves back to **1:00 AM**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "At 2:00 AM, the clock moves back to 1:00 AM.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        165,
+        165
+      ],
+      "raw": "This means the time between **1:00 AM and 1:59 AM occurs twice**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This means the time between 1:00 AM and 1:59 AM occurs twice.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        167,
+        167
+      ],
+      "raw": "Although both show the same clock time, they represent two different moments.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Although both show the same clock time, they represent two different moments.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 72,
+      "lines": [
+        169,
+        169
+      ],
+      "raw": "During this one-hour window, there may be minor timing differences depending on when the action occurred.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "During this one-hour window, there may be minor timing differences depending on when the action occurred.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        171,
+        181
+      ],
+      "raw": "> 📘\n>\n> Note\n>\n> These special cases affect only the exact hour when DST changes.\n>\n> Outside that one-hour transition window:\n>\n> * Scheduling works as expected.\n> * Time-based promotions and campaigns behave normally.\n> * No manual adjustments are required.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThese special cases affect only the exact hour when DST changes.Outside that one-hour transition window:Scheduling works as expected.Time-based promotions and campaigns behave normally.No manual adjustments are required.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 74,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "### Best Practice",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Best Practice",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "Avoid scheduling time-based configurations during the exact DST transition hour in regions that observe DST.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Avoid scheduling time-based configurations during the exact DST transition hour in regions that observe DST.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "Scheduling outside that window ensures predictable behaviour.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Scheduling outside that window ensures predictable behaviour.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        189,
+        189
+      ],
+      "raw": "# View and listing page behavior",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "View and listing page behavior",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 78,
+      "lines": [
+        191,
+        191
+      ],
+      "raw": "Listing pages across all supported modules display dates and times in the organization timezone, with the following variations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Listing pages across all supported modules display dates and times in the organization timezone, with the following variations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 79,
+      "lines": [
+        193,
+        193
+      ],
+      "raw": "**Promotions (New UI) listing page** uses split timezone references:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Promotions (New UI) listing page uses split timezone references:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        195,
+        196
+      ],
+      "raw": "* **Duration** is displayed in the timezone selected during creation.\n* **Updated at** is displayed in the organization timezone.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Duration is displayed in the timezone selected during creation.Updated at is displayed in the organization timezone.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "This preserves the original scheduling context while keeping audit timestamps consistent.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This preserves the original scheduling context while keeping audit timestamps consistent.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "**Audience listing page** Date range filters use server time rather than the organization timezone.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Audience listing page Date range filters use server time rather than the organization timezone.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 83,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "# Member Care",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Member Care",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "Member Care displays dates and times in the organization timezone by default. Unlike other modules, support agents can also select a different timezone using the timezone dropdown during a session. Available timezones are populated from the <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/org-management#set-org-timezone-tab\">supported timezones configured in your organization settings</Anchor>.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Member Care displays dates and times in the organization timezone by default. Unlike other modules, support agents can also select a different timezone using the timezone dropdown during a session. Available timezones are populated from the supported timezones configured in your organization settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/org-management#set-org-timezone-tab",
+          "line": 204
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/org-management#set-org-timezone-tab",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "i": 85,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "This allows support teams to view timestamps in the customer's local context when investigating a query.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This allows support teams to view timestamps in the customer's local context when investigating a query.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "<Image src=\"https://files.readme.io/e7fb622fc3b924582a5135ccde117a9d070affb57b902098c973a5d08db48e1f-gifyy_1.gif\" align=\"center\" width=\"75%\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/e7fb622fc3b924582a5135ccde117a9d070affb57b902098c973a5d08db48e1f-gifyy_1.gif",
+        "align": "center",
+        "width": "75%",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 87,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "**Exception note:** In case of the coupon redemption tab, the time displayed in the UI is in the local system time when the coupon redemption event was processed, not when the customer actually redeemed the coupon.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Exception note: In case of the coupon redemption tab, the time displayed in the UI is in the local system time when the coupon redemption event was processed, not when the customer actually redeemed the coupon.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        212,
+        212
+      ],
+      "raw": "# Insights table (Databricks)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Insights table (Databricks)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        214,
+        214
+      ],
+      "raw": "Timezone handling in Databricks is driven by the configuration `ENABLE_INSIGHTS_TIMEZONE_CONVERSION` . Once enabled, Insights stores all event timestamps in the **server timezone**, regardless of the store or region where the event originated. This applies consistently across all fact tables in Databricks, such as transactions, points awards, redemptions, slab upgrades, and more. For more information, refer to [https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling.](https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling \"https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling\")",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Timezone handling in Databricks is driven by the configuration ENABLE_INSIGHTS_TIMEZONE_CONVERSION . Once enabled, Insights stores all event timestamps in the server timezone, regardless of the store or region where the event originated. This applies consistently across all fact tables in Databricks, such as transactions, points awards, redemptions, slab upgrades, and more. For more information, refer to https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling.](https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling",
+          "line": 214
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-databricks#timezone-handling",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "i": 90,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "# Modules not yet on the standardized model",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Modules not yet on the standardized model",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "The following modules do not currently follow the standardized timezone model. Existing timezone behavior remains unchanged, and legacy display or processing logic may still apply.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following modules do not currently follow the standardized timezone model. Existing timezone behavior remains unchanged, and legacy display or processing logic may still apply.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 92,
+      "lines": [
+        220,
+        226
+      ],
+      "raw": "* Loyalty Programs\n* Rewards Catalog (also called Marvel Rewards)\n* Data Import\n* Connect+\n* Badges UI\n* Insights\n* Offers / Coupons UI",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Loyalty ProgramsRewards Catalog (also called Marvel Rewards)Data ImportConnect+Badges UIInsightsOffers / Coupons UI",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 93,
+      "lines": [
+        228,
+        228
+      ],
+      "raw": "For the deprecated modules, such as legacy Loyalty Promotion and legacy Connect+, the above standardisation does not apply.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For the deprecated modules, such as legacy Loyalty Promotion and legacy Connect+, the above standardisation does not apply.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

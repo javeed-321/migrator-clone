@@ -1,0 +1,236 @@
+{
+  "slug": "docs/trigger",
+  "source": "https://docs.capillarytech.com/docs/trigger.md",
+  "url": "https://docs.capillarytech.com/docs/trigger",
+  "title": "Trigger",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 5,
+    "list": 1,
+    "code": 1,
+    "Callout": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Trigger Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Trigger Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The **Trigger Block** is the starting point of the dataflow, where you can configure the dataflow with the API method type (e.g., POST, GET) and a custom API endpoint.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Trigger Block is the starting point of the dataflow, where you can configure the dataflow with the API method type (e.g., POST, GET) and a custom API endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "Once configured, the API cURL is created based on the configuration here. You can use either the API cURL or the endpoint to invoke the dataflow. The trigger block appears automatically after you create the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once configured, the API cURL is created based on the configuration here. You can use either the API cURL or the endpoint to invoke the dataflow. The trigger block appears automatically after you create the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## Configuring the Trigger block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuring the Trigger block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "To configure the block,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the block,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        23
+      ],
+      "raw": "1. From the dataflow canvas, hover on the Trigger Block and click on the edit icon.\n2. In the **API Method** field, select the HTTP method (GET, POST, or PUT).\n3. In the **API URL** field, enter the unique endpoint for the dataflow.\n4. *(optional)* To include a path parameter in the URL, prefix the variable name with a colon (`:`). For example, to include `customerId` as a path parameter, write it as `:customerId` in the URL. Use path parameters when you work with APIs that support dynamic values in the URL. This is helpful when making multiple API calls that have different values, such as different customer IDs. Instead of creating a separate cURL command for each value, you can reuse the same endpoint by replacing the path parameter.\n5. Click **Done.**\n\n   <Image align=\"center\" src=\"https://files.readme.io/d2517d21e9db693b6fff924188c6c78bbdb02dbd80e536210597197b295bd637-Screen_Recording_Jul_1_2025_from_ezgif.gif\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, hover on the Trigger Block and click on the edit icon.In the API Method field, select the HTTP method (GET, POST, or PUT).In the API URL field, enter the unique endpoint for the dataflow.(optional) To include a path parameter in the URL, prefix the variable name with a colon (:). For example, to include customerId as a path parameter, write it as :customerId in the URL. Use path parameters when you work with APIs that support dynamic values in the URL. This is helpful when making multiple API calls that have different values, such as different customer IDs. Instead of creating a separate cURL command for each value, you can reuse the same endpoint by replacing the path parameter.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "For example, the below API cURL is created based on the configuration provided in the above image (API method-  `POST`, path parameter - `:customerId` and the API url - `tierForceUpgrade)`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For example, the below API cURL is created based on the configuration provided in the above image (API method-  POST, path parameter - :customerId and the API url - tierForceUpgrade).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        27,
+        37
+      ],
+      "raw": "```json Trigger cURL\n\n        curl --location --request POST 'https://eu.api.capillarytech.com/x/neo/:customerId/tierUpgrade' \\\n        --header 'Content-Type: application/json' \\\n        --header 'x-cap-api-oauth-token: {token}' \\\n        --header 'x-cap-neo-test-variant-id: b48ddaab-a9d1-4419-b6cf-0a98d2596315' \\\n        --header 'x-cap-neo-dag-scope: org'\n--data-raw '{\n      \"data\": \"add your json object here\"\n      }'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Trigger cURL",
+        "code": "\n        curl --location --request POST 'https://eu.api.capillarytech.com/x/neo/:customerId/tierUpgrade' \\\n        --header 'Content-Type: application/json' \\\n        --header 'x-cap-api-oauth-token: {token}' \\\n        --header 'x-cap-neo-test-variant-id: b48ddaab-a9d1-4419-b6cf-0a98d2596315' \\\n        --header 'x-cap-neo-dag-scope: org'\n--data-raw '{\n      \"data\": \"add your json object here\"\n      }'"
+      },
+      "text": "Trigger cURL",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "## Exposing a Neo API for B2C access",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Exposing a Neo API for B2C access",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        41,
+        41
+      ],
+      "raw": "By default, a Neo API endpoint is accessible only via Intouch server-to-server authentication. To expose a Neo API for end-customer (B2C) access using an external CIAM token (such as AWS Cognito, Okta, or any OIDC-compliant provider), the endpoint must first be whitelisted in `api_gateway_extensions`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, a Neo API endpoint is accessible only via Intouch server-to-server authentication. To expose a Neo API for end-customer (B2C) access using an external CIAM token (such as AWS Cognito, Okta, or any OIDC-compliant provider), the endpoint must first be whitelisted in api_gateway_extensions.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        43,
+        45
+      ],
+      "raw": "> 🚧 **Whitelisting required for B2C access**\n>\n> Calling a Neo endpoint without this whitelisting returns a `401 Unauthorized` error at the API gateway, even if a valid CIAM token is provided. To whitelist a Neo endpoint for B2C access, raise a request with the Capillary product support team.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "Whitelisting required for B2C accessCalling a Neo endpoint without this whitelisting returns a 401 Unauthorized error at the API gateway, even if a valid CIAM token is provided. To whitelist a Neo endpoint for B2C access, raise a request with the Capillary product support team.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

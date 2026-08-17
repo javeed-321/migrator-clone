@@ -1,0 +1,1277 @@
+{
+  "slug": "reference/location-apis-v2",
+  "source": "https://docs.capillarytech.com/reference/location-apis-v2.md",
+  "url": "https://docs.capillarytech.com/reference/location-apis-v2",
+  "title": "Location Apis V2",
+  "description": "",
+  "section": "Location APIs (v2)",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-11T13:09:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 32,
+    "list": 13,
+    "code": 6,
+    "thematicBreak": 2,
+    "Table": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Location APIs (v2)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Location APIs (v2)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Businesses with multiple physical or operational outlets need a way to organize their locations. A business may operate across multiple brands, business units, regions, cities, stores, and point-of-sale terminals. Managing these relationships consistently is essential for reporting, customer engagement, and day-to-day operations.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Businesses with multiple physical or operational outlets need a way to organize their locations. A business may operate across multiple brands, business units, regions, cities, stores, and point-of-sale terminals. Managing these relationships consistently is essential for reporting, customer engagement, and day-to-day operations.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The Location APIs let you create and manage this location structure in Capillary. They allow you to organize your business in two independent ways:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Location APIs let you create and manage this location structure in Capillary. They allow you to organize your business in two independent ways:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        14
+      ],
+      "raw": "* **By business structure**, such as brands, business units, or sales channels.\n* **By geographic or operational structure**, such as countries, regions, cities, or operational areas.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "By business structure, such as brands, business units, or sales channels.By geographic or operational structure, such as countries, regions, cities, or operational areas.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        16,
+        16
+      ],
+      "raw": "The Location APIs organize your locations using three parent relationship fields:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Location APIs organize your locations using three parent relationship fields:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        18,
+        24
+      ],
+      "raw": "* **Group parent code**\n\n  \\- Organizes locations by **business structure**, such as business units, brands, sales channels, or franchises. These business-unit groupings are represented as **Concepts** in the APIs. Each concept links to its parent using the`groupParentCode` parameter, the field that points to the concept directly above it in the business hierarchy. For example, suppose a parent business unit called acme-group contains a brand called acme-retail. When creating acme-retail, set `groupParentCode` parameter to acme-group.&#x20;\n\n  If `groupParentCode` is left blank, the grouping has no parent and becomes a **root concept**. A root is a concept with no grouping above it. It sits at the top of its own business hierarchy. You can create multiple root concepts, with each one starting an independent business hierarchy.\n\n  A root concept can also be marked as an [organizational unit](https://docs.capillarytech.com/docs/organisation-units-ou) by setting the `isOrgUnit` flag. This allows it to represent a business unit, such as a parent company. Additional business-unit groupings can then be created under it, and stores can be linked to those groupings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Group parent code- Organizes locations by business structure, such as business units, brands, sales channels, or franchises. These business-unit groupings are represented as Concepts in the APIs. Each concept links to its parent using thegroupParentCode parameter, the field that points to the concept directly above it in the business hierarchy. For example, suppose a parent business unit called acme-group contains a brand called acme-retail. When creating acme-retail, set groupParentCode parameter to acme-group. If groupParentCode is left blank, the grouping has no parent and becomes a root concept. A root is a concept with no grouping above it. It sits at the top of its own business hierarchy. You can create multiple root concepts, with each one starting an independent business hierarchy.A root concept can also be marked as an organizational unit by setting the isOrgUnit flag. This allows it to represent a business unit, such as a parent company. Additional business-unit groupings can then be created under it, and stores can be linked to those groupings.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/organisation-units-ou",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "i": 7,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        28,
+        38
+      ],
+      "raw": "```\nacme_group\n(root concept,\nisOrgUnit = true)\n\n└── acme_retail\n    (groupParentCode: acme_group)\n\n    └── store_01\n        (groupParentCode: acme_retail)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "acme_group\n(root concept,\nisOrgUnit = true)\n\n└── acme_retail\n    (groupParentCode: acme_group)\n\n    └── store_01\n        (groupParentCode: acme_retail)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        40,
+        40
+      ],
+      "raw": "In this example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        42,
+        42
+      ],
+      "raw": "\\- `acme_group` is created without a `groupParentCode`, making it the root concept.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "- acme_group is created without a groupParentCode, making it the root concept.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        44,
+        44
+      ],
+      "raw": "\\- `acme_group` is also marked as an organizational unit using `isOrgUnit`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "- acme_group is also marked as an organizational unit using isOrgUnit.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "\\- `acme_retail` is linked to `acme_group`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "- acme_retail is linked to acme_group.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "\\- `store_01` belongs to `acme_retail`.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "- store_01 belongs to acme_retail.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        50,
+        50
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        52,
+        61
+      ],
+      "raw": "* **Area parent code**\n\n  – Organizes locations by **geographic or operational structure**, such as countries, regions, cities, territories, or operational areas. These geographic or operational groupings are represented as **Zones** in the APIs. Each zone links to its parent using `areaParentCode` parameter, building a nested hierarchy, for example, a city zone sitting under a region zone, which sits under a country zone, so your zones reflect your business's real geographic structure.\n\n  Unlike business-unit groupings, every geographic or operational grouping must have a parent. You cannot leave `areaParentCode` parameter blank to create a new root grouping.\n\n  Each organization already contains a built-in root grouping with the code `root`. Every new geographic or operational grouping must reference either:\n\n  * `Root`\n  * another existing geographic or operational grouping",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Area parent code– Organizes locations by geographic or operational structure, such as countries, regions, cities, territories, or operational areas. These geographic or operational groupings are represented as Zones in the APIs. Each zone links to its parent using areaParentCode parameter, building a nested hierarchy, for example, a city zone sitting under a region zone, which sits under a country zone, so your zones reflect your business's real geographic structure.Unlike business-unit groupings, every geographic or operational grouping must have a parent. You cannot leave areaParentCode parameter blank to create a new root grouping.Each organization already contains a built-in root grouping with the code root. Every new geographic or operational grouping must reference either:Rootanother existing geographic or operational grouping",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        63,
+        63
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        65,
+        76
+      ],
+      "raw": "```\nroot\n\n└── India\n    (areaParentCode: root)\n\n    └── South India\n        (areaParentCode: India)\n\n        └── Bangalore\n            (areaParentCode: South India)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "root\n\n└── India\n    (areaParentCode: root)\n\n    └── South India\n        (areaParentCode: India)\n\n        └── Bangalore\n            (areaParentCode: South India)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "Each grouping references only its immediate parent. For example, **Bangalore** references **South India**. It does not directly reference **India** or **root**.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each grouping references only its immediate parent. For example, Bangalore references South India. It does not directly reference India or root.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "Unlike business-unit groupings, geographic or operational groupings cannot be marked as organizational units.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Unlike business-unit groupings, geographic or operational groupings cannot be marked as organizational units.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        84,
+        88
+      ],
+      "raw": "* **Store parent code & Tills** – Links a **point of transaction** to the physical or operational location where transactions take place. Points of transaction are represented as **Tills** in the APIs, while physical or operational locations are represented as **Stores** in the APIs.&#x20;\n\n  Every physical or operational location belongs to both a business-unit grouping using `groupParentCode` and a geographic or operational grouping using `areaParentCode`, thereby linking the business and geographic structures. Both parameters are required when creating or updating a physical or operational location.&#x20;\n\n  Each till links to its store using `storeParentCode` parameter, so that the till automatically inherits the store's settings and every transaction can be traced back to the exact location it happened in.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Store parent code & Tills – Links a point of transaction to the physical or operational location where transactions take place. Points of transaction are represented as Tills in the APIs, while physical or operational locations are represented as Stores in the APIs. Every physical or operational location belongs to both a business-unit grouping using groupParentCode and a geographic or operational grouping using areaParentCode, thereby linking the business and geographic structures. Both parameters are required when creating or updating a physical or operational location. Each till links to its store using storeParentCode parameter, so that the till automatically inherits the store's settings and every transaction can be traced back to the exact location it happened in.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        92,
+        92
+      ],
+      "raw": "Suppose you have:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose you have:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        94,
+        95
+      ],
+      "raw": "* A business unit grouping called **Retail**.\n* A geographic or operational grouping called **Bangalore**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A business unit grouping called Retail.A geographic or operational grouping called Bangalore.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "You then create a physical or operational location called **Store\\_01** with:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You then create a physical or operational location called Store_01 with:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        99,
+        102
+      ],
+      "raw": "```\ngroupParentCode: retail\nareaParentCode: bangalore\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "groupParentCode: retail\nareaParentCode: bangalore"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "Next, you create a point of transaction called **Till\\_01** with:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Next, you create a point of transaction called Till_01 with:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        106,
+        108
+      ],
+      "raw": "```\nstoreParentCode: store_01\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "storeParentCode: store_01"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "In this example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "The resulting relationships look like this:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The resulting relationships look like this:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        114,
+        125
+      ],
+      "raw": "```\n                 (Retail)\n                    │\n                    │ \n                    ▼\n               Store-01 ─────────────────────▶ Till-01\n                           \n                    ▲\n                    │ \n                    │\n               (Bangalore)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "                 (Retail)\n                    │\n                    │ \n                    ▼\n               Store-01 ─────────────────────▶ Till-01\n                           \n                    ▲\n                    │ \n                    │\n               (Bangalore)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        127,
+        130
+      ],
+      "raw": "* **Store\\_01** is linked to the **Retail** business-unit grouping using `groupParentCode`.\n* **Store\\_01** is linked to the **Bangalore** geographic or operational grouping using `areaParentCode`.\n* **Till\\_01** is linked to **Store\\_01** using `storeParentCode`.\n* **Till\\_01** automatically inherits the business-unit grouping, geographic or operational grouping, and locale settings from **Store\\_01**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Store_01 is linked to the Retail business-unit grouping using groupParentCode.Store_01 is linked to the Bangalore geographic or operational grouping using areaParentCode.Till_01 is linked to Store_01 using storeParentCode.Till_01 automatically inherits the business-unit grouping, geographic or operational grouping, and locale settings from Store_01.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        132,
+        132
+      ],
+      "raw": "## **Example: Setting up locations for an airline**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Example: Setting up locations for an airline",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "Suppose SkyJet operates flights across multiple cities in India. It wants to organize its business by airline brand, geographic regions, airport service locations, and check-in counters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Suppose SkyJet operates flights across multiple cities in India. It wants to organize its business by airline brand, geographic regions, airport service locations, and check-in counters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "So consider -&#x20;",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "So consider -",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        138,
+        142
+      ],
+      "raw": "* Parent company (Root concept): skyjet\\_group\n* Business-unit grouping (Concept): skyjet\\_airlines\n* Geographic or operational grouping (Zone): south\\_india&#x20;\n* Physical or operational location (Store): blr\\_airport\\_service&#x20;\n* Points of transaction (Tills): counter\\_01 and counter\\_02 (check-in counters)",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Parent company (Root concept): skyjet_groupBusiness-unit grouping (Concept): skyjet_airlinesGeographic or operational grouping (Zone): south_india Physical or operational location (Store): blr_airport_service Points of transaction (Tills): counter_01 and counter_02 (check-in counters)",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "The complete structure looks like this:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The complete structure looks like this:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        146,
+        160
+      ],
+      "raw": "```\nBusiness structure                          Geographic structure\n\nskyjet_group                                root\n  └── skyjet_airlines                         └── India\n                                                 └── South India\n                    \\                         /\n                     \\                       /\n                      \\                     /\n                       └── blr_airport_service\n                                │\n                 ┌──────────────┴──────────────┐\n                 │                             │\n            counter_01                    counter_02\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "Business structure                          Geographic structure\n\nskyjet_group                                root\n  └── skyjet_airlines                         └── India\n                                                 └── South India\n                    \\                         /\n                     \\                       /\n                      \\                     /\n                       └── blr_airport_service\n                                │\n                 ┌──────────────┴──────────────┐\n                 │                             │\n            counter_01                    counter_02"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "In this example:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In this example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        164,
+        169
+      ],
+      "raw": "* `skyjet_group` is the root business-unit grouping and is marked as an organizational unit.\n* `skyjet_airlines` belongs to `skyjet_group` using `groupParentCode`.\n* `India` and `South India` are organized using `areaParentCode`.\n* `blr_airport_service` belongs to both the `skyjet_airlines` business-unit grouping and the `South India` geographic grouping.\n* `counter_01` and `counter_02` belong to `blr_airport_service` using `storeParentCode`.\n* Both points of transaction automatically inherit the business-unit grouping, geographic grouping, language, currency, and timezone from their parent location.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "skyjet_group is the root business-unit grouping and is marked as an organizational unit.skyjet_airlines belongs to skyjet_group using groupParentCode.India and South India are organized using areaParentCode.blr_airport_service belongs to both the skyjet_airlines business-unit grouping and the South India geographic grouping.counter_01 and counter_02 belong to blr_airport_service using storeParentCode.Both points of transaction automatically inherit the business-unit grouping, geographic grouping, language, currency, and timezone from their parent location.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        171,
+        171
+      ],
+      "raw": "## API operations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "API operations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        173,
+        173
+      ],
+      "raw": "Each write operation processes items independently. If one item fails validation or processing, the remaining items in the same request continue to be processed.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each write operation processes items independently. If one item fails validation or processing, the remaining items in the same request continue to be processed.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        175,
+        175
+      ],
+      "raw": "The HTTP response status indicates the overall result.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The HTTP response status indicates the overall result.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        177,
+        181
+      ],
+      "raw": "| HTTP status          | Meaning                                                      |\n| :------------------- | :----------------------------------------------------------- |\n| **201 Created**      | All items were processed successfully.                       |\n| **207 Multi-Status** | Some items were processed successfully, while others failed. |\n| **400 Bad Request**  | All items failed validation or processing.                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "HTTP status",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "201 Created",
+            "All items were processed successfully."
+          ],
+          [
+            "207 Multi-Status",
+            "Some items were processed successfully, while others failed."
+          ],
+          [
+            "400 Bad Request",
+            "All items failed validation or processing."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        183,
+        183
+      ],
+      "raw": "The following endpoints are available for managing location data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following endpoints are available for managing location data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        185,
+        195
+      ],
+      "raw": "| Operation                                         | Method | Endpoint                 | Batch limit                |\n| :------------------------------------------------ | :----- | :----------------------- | :------------------------- |\n| Search locations                                  | GET    | `/v2/locations`          | Up to 100 results per page |\n| Create business-unit groupings (CONCEPT)          | POST   | `/v2/locations/concepts` | 100 per request            |\n| Update business-unit groupings (CoONCEPT)         | PUT    | `/v2/locations/concepts` | 100 per request            |\n| Create geographic or operational groupings (ZONE) | POST   | `/v2/locations/zones`    | 100 per request            |\n| Update geographic or operational groupings (ZONE) | PUT    | `/v2/locations/zones`    | 100 per request            |\n| Create physical or operational locations (STORE)  | POST   | `/v2/locations/stores`   | 100 per request            |\n| Update physical or operational locations (STORE)  | PUT    | `/v2/locations/stores`   | 100 per request            |\n| Create points of transaction (TILL)               | POST   | `/v2/locations/tills`    | 50 per request             |\n| Update points of transaction (TILL)               | PUT    | `/v2/locations/tills`    | 50 per request             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Operation",
+          "Method",
+          "Endpoint",
+          "Batch limit"
+        ],
+        "rows": [
+          [
+            "Search locations",
+            "GET",
+            "/v2/locations",
+            "Up to 100 results per page"
+          ],
+          [
+            "Create business-unit groupings (CONCEPT)",
+            "POST",
+            "/v2/locations/concepts",
+            "100 per request"
+          ],
+          [
+            "Update business-unit groupings (CoONCEPT)",
+            "PUT",
+            "/v2/locations/concepts",
+            "100 per request"
+          ],
+          [
+            "Create geographic or operational groupings (ZONE)",
+            "POST",
+            "/v2/locations/zones",
+            "100 per request"
+          ],
+          [
+            "Update geographic or operational groupings (ZONE)",
+            "PUT",
+            "/v2/locations/zones",
+            "100 per request"
+          ],
+          [
+            "Create physical or operational locations (STORE)",
+            "POST",
+            "/v2/locations/stores",
+            "100 per request"
+          ],
+          [
+            "Update physical or operational locations (STORE)",
+            "PUT",
+            "/v2/locations/stores",
+            "100 per request"
+          ],
+          [
+            "Create points of transaction (TILL)",
+            "POST",
+            "/v2/locations/tills",
+            "50 per request"
+          ],
+          [
+            "Update points of transaction (TILL)",
+            "PUT",
+            "/v2/locations/tills",
+            "50 per request"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "## Quick Start",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Quick Start",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        199,
+        199
+      ],
+      "raw": "Create your location structure in the following order. A child cannot be created until its parent exists.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create your location structure in the following order. A child cannot be created until its parent exists.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        201,
+        201
+      ],
+      "raw": "### Step 1 — Create business-unit groupings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 1 — Create business-unit groupings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "Create your top-level business-unit groupings, such as parent companies, brands, or sales channels.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create your top-level business-unit groupings, such as parent companies, brands, or sales channels.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        205,
+        206
+      ],
+      "raw": "* Call **Add concepts in bulk**.\n* Leave `groupParentCode` blank to create a root concept.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call Add concepts in bulk.Leave groupParentCode blank to create a root concept.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        208,
+        208
+      ],
+      "raw": "### Step 2 — Create geographic or operational groupings",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 2 — Create geographic or operational groupings",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        210,
+        210
+      ],
+      "raw": "Create the geographic or operational structure for your business, such as countries, regions, and cities.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create the geographic or operational structure for your business, such as countries, regions, and cities.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        212,
+        214
+      ],
+      "raw": "* Call **Add zones in bulk**.\n* Set `areaParentCode` to an existing parent grouping.\n* Use the built-in `root` grouping as the parent for top-level groupings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call Add zones in bulk.Set areaParentCode to an existing parent grouping.Use the built-in root grouping as the parent for top-level groupings.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        216,
+        216
+      ],
+      "raw": "### Step 3 — Create physical or operational locations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 3 — Create physical or operational locations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        218,
+        218
+      ],
+      "raw": "Create the physical or operational locations where your business operates.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create the physical or operational locations where your business operates.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        220,
+        222
+      ],
+      "raw": "* Call **Add stores in bulk**.\n* Set `groupParentCode` to the appropriate business-unit grouping.\n* Set `areaParentCode` to the appropriate geographic or operational grouping.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call Add stores in bulk.Set groupParentCode to the appropriate business-unit grouping.Set areaParentCode to the appropriate geographic or operational grouping.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        224,
+        224
+      ],
+      "raw": "### Step 4 — Create points of transaction",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 4 — Create points of transaction",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        226,
+        226
+      ],
+      "raw": "Create the individual points where transactions take place.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Create the individual points where transactions take place.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        228,
+        230
+      ],
+      "raw": "* Call **Add tills in bulk**.\n* Set `storeParentCode` to the parent physical or operational location.\n* Language, currency, and timezone are inherited automatically from the parent location.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call Add tills in bulk.Set storeParentCode to the parent physical or operational location.Language, currency, and timezone are inherited automatically from the parent location.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "### Step 5 — Verify the location structure",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 5 — Verify the location structure",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "Call **Get locations** to verify that your location structure has been created successfully.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Call Get locations to verify that your location structure has been created successfully.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 63,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "Useful query parameters include:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Useful query parameters include:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 64,
+      "lines": [
+        238,
+        240
+      ],
+      "raw": "* `includeChildren=true` to retrieve the immediate children of a location.\n* `entityCodes` to retrieve a specific location.\n* `type` to list all locations of a specific type.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "includeChildren=true to retrieve the immediate children of a location.entityCodes to retrieve a specific location.type to list all locations of a specific type.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 242
+        }
+      ]
+    }
+  ]
+}

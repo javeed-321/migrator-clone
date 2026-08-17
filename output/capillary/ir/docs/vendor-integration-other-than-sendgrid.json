@@ -1,0 +1,321 @@
+{
+  "slug": "docs/vendor-integration-other-than-sendgrid",
+  "source": "https://docs.capillarytech.com/docs/vendor-integration-other-than-sendgrid.md",
+  "url": "https://docs.capillarytech.com/docs/vendor-integration-other-than-sendgrid",
+  "title": "Vendor Integration Other Than Sendgrid",
+  "description": "",
+  "section": "Email",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-07T11:56:49.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 4,
+    "list": 3,
+    "Table": 1,
+    "Image": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Vendor Integration other than SendGrid",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Vendor Integration other than SendGrid",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "If you want to use a vendor other than the capillary’s vendor which is <Anchor target=\"_blank\" href=\"https://docs.capillarytech.com/docs/sendgrid#/\">sendgrid</Anchor> you have to integrate the new vendor to the system.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "If you want to use a vendor other than the capillary’s vendor which is sendgrid you have to integrate the new vendor to the system.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "anchorJsx",
+          "value": "https://docs.capillarytech.com/docs/sendgrid#/",
+          "line": 9
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/sendgrid#/",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**Prerequisites:**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Prerequisites:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        17
+      ],
+      "raw": "* Create a ticket with the PST team to add the new vendor in the backend.\n* Create a ticket to the PST team to get the Webhook URL and Service URL.\n* Obtain the API key from the vendor.\n* Obtain the username and password from either the Gateway team or the vendor.\n* A relay ticket is created with the Engineering team for establishing a connection between the Capillary system and the vendor",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create a ticket with the PST team to add the new vendor in the backend.Create a ticket to the PST team to get the Webhook URL and Service URL.Obtain the API key from the vendor.Obtain the username and password from either the Gateway team or the vendor.A relay ticket is created with the Engineering team for establishing a connection between the Capillary system and the vendor",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Steps to integrate a new vendor",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Steps to integrate a new vendor",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        21,
+        27
+      ],
+      "raw": "1. In the desired cluster (for example, the EU cluster), navigate to Organization Settings of the Capillary Technologies organization.\n\n2. Select **Communication & Gateway** >**Domains** > **Domain Gateway Mapping**.\n\n   <Image src=\"https://files.readme.io/b795cb3e7b5e20c8b72c1f6c88e252fa5e65f5807b4e6ef45b0514dabc252ff5-Screenshot_2025-11-12_at_4.58.19_PM.png\" align=\"center\" width=\"75% \" border={true} />\n\n3. Select **+Domain-Gateway Mapping**  and provide the following details:",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the desired cluster (for example, the EU cluster), navigate to Organization Settings of the Capillary Technologies organization.Select Communication & Gateway >Domains > Domain Gateway Mapping.Select +Domain-Gateway Mapping  and provide the following details:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        29,
+        156
+      ],
+      "raw": "<Table align={[\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Domain**\n      </td>\n\n      <td>\n        The default domain used in the system. For example, _capillary.co.in_, which is already configured in the _Configure Domains_ section..\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Mailed by/Subdomain**\n      </td>\n\n      <td>\n        A reference name to identify the domain. The naming format is `vendorname_cluster/brandname_Bulk` or `brandname_Transactional`. For example: _phalcon\\_adidas/eu\\_bulk_.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Gateway Vendor**\n      </td>\n\n      <td>\n        The third-party providers connected with Capillary for sending messages through channels such as email, SMS, and WhatsApp.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Hostname**\n      </td>\n\n      <td>\n        Not applicable.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Short Name**\n      </td>\n\n      <td>\n        A shortened label for the domain, usually the same as the _Subdomain_ value.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Username and Password**\n      </td>\n\n      <td>\n        The credentials required to establish a secure connection between Capillary and the vendor, provided by the Gateway team or the vendor.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Connection Properties**\n      </td>\n\n      <td>\n        The authentication and communication details used to connect with the vendor. It includes:\u000b\n\n        - **API key** – Obtained from the vendor. It is used to authenticate Capillary’s system with the vendor for secure email delivery.\u000b\u000b\n        - **Webhook URL** – Provided by the PST team. Used for communication between Capillary and the vendor (for example, to receive delivery status updates or callbacks).\u000b  **Example:** `{“url”:“https://spd6hzcltl.execute-api.eu-webhooks//solutionsbulk”, “apiKey”:“Aad7f6e74ad57cd98e331ec2fc1f0547f”}`\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Service Ip**\n      </td>\n\n      <td>\n        Null by default.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Service Url**\n      </td>\n\n      <td>\n        The endpoint used to connect Capillary with the vendor’s system to process messages. This is provided by the PST team.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **StatusCheck Url**\n      </td>\n\n      <td>\n        The endpoint used to retrieve or receive delivery status reports from the vendor.  This is provided by the PST team.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Channel Count**\n      </td>\n\n      <td>\n        The number of batches into which the email audience is split.  For example, if the audience size is 1,000 and the value is 5, then 200 emails are sent in each batch.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Domain",
+            "The default domain used in the system. For example, capillary.co.in, which is already configured in the Configure Domains section.."
+          ],
+          [
+            "Mailed by/Subdomain",
+            "A reference name to identify the domain. The naming format is vendorname_cluster/brandname_Bulk or brandname_Transactional. For example: phalcon_adidas/eu_bulk."
+          ],
+          [
+            "Gateway Vendor",
+            "The third-party providers connected with Capillary for sending messages through channels such as email, SMS, and WhatsApp."
+          ],
+          [
+            "Hostname",
+            "Not applicable."
+          ],
+          [
+            "Short Name",
+            "A shortened label for the domain, usually the same as the Subdomain value."
+          ],
+          [
+            "Username and Password",
+            "The credentials required to establish a secure connection between Capillary and the vendor, provided by the Gateway team or the vendor."
+          ],
+          [
+            "Connection Properties",
+            "The authentication and communication details used to connect with the vendor. It includes:\u000bAPI key – Obtained from the vendor. It is used to authenticate Capillary’s system with the vendor for secure email delivery.\u000b\u000bWebhook URL – Provided by the PST team. Used for communication between Capillary and the vendor (for example, to receive delivery status updates or callbacks).\u000b  Example: {“url”:“https://spd6hzcltl.execute-api.eu-webhooks//solutionsbulk”, “apiKey”:“Aad7f6e74ad57cd98e331ec2fc1f0547f”}"
+          ],
+          [
+            "Service Ip",
+            "Null by default."
+          ],
+          [
+            "Service Url",
+            "The endpoint used to connect Capillary with the vendor’s system to process messages. This is provided by the PST team."
+          ],
+          [
+            "StatusCheck Url",
+            "The endpoint used to retrieve or receive delivery status reports from the vendor.  This is provided by the PST team."
+          ],
+          [
+            "Channel Count",
+            "The number of batches into which the email audience is split.  For example, if the audience size is 1,000 and the value is 5, then 200 emails are sent in each batch."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "4. Save the configuration.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Save the configuration.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "<Image src=\"https://files.readme.io/4c6f56c2aa33dda1afcfa8c093b3e431fe236865629f9e814be60440b0865d49-Screenshot_2025-11-12_at_5.01.57_PM.png\" align=\"center\" width=\"75% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/4c6f56c2aa33dda1afcfa8c093b3e431fe236865629f9e814be60440b0865d49-Screenshot_2025-11-12_at_5.01.57_PM.png",
+        "align": "center",
+        "width": "75% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "The new vendor is now integrated into the Capillary system for the brand.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The new vendor is now integrated into the Capillary system for the brand.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 164
+        }
+      ]
+    }
+  ]
+}

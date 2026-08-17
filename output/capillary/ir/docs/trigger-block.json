@@ -1,0 +1,286 @@
+{
+  "slug": "docs/trigger-block",
+  "source": "https://docs.capillarytech.com/docs/trigger-block.md",
+  "url": "https://docs.capillarytech.com/docs/trigger-block",
+  "title": "Trigger Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-22T05:25:31.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 4,
+    "paragraph": 4,
+    "list": 2,
+    "Table": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Trigger block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Trigger block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Define how this dataflow will be triggered",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Define how this dataflow will be triggered",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "The **Trigger** block defines when and how a Connect+ dataflow runs. It allows you to configure the trigger type and set the schedule for the dataflow. It is the first block in your Connect+ dataflow and is available by default when the dataflow is created.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Trigger block defines when and how a Connect+ dataflow runs. It allows you to configure the trigger type and set the schedule for the dataflow. It is the first block in your Connect+ dataflow and is available by default when the dataflow is created.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "## When to use",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "When to use",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "Configure this block when you need to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Configure this block when you need to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        19
+      ],
+      "raw": "* Schedule a file-based dataflow to run at regular intervals, such as every X minutes, hours, or days.\n* Trigger a dataflow from a Kafka stream instead of a file.\n* Set a specific time or day-based schedule for dataflow execution.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Schedule a file-based dataflow to run at regular intervals, such as every X minutes, hours, or days.Trigger a dataflow from a Kafka stream instead of a file.Set a specific time or day-based schedule for dataflow execution.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "Before configuring this block, ensure the following:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, ensure the following:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        25,
+        26
+      ],
+      "raw": "* You know the trigger type required for your dataflow: `File based` or `Kafka stream`.\n* The schedule interval for the dataflow.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "You know the trigger type required for your dataflow: File based or Kafka stream.The schedule interval for the dataflow.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        28,
+        28
+      ],
+      "raw": "## Configuration fields",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Configuration fields",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        30,
+        34
+      ],
+      "raw": "| Field name                 | Required | Description                                                                                                                                                                                              |\n| -------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| **Trigger type**           | Yes      | The method used to trigger the dataflow. Select `File based` or `Kafka stream` from the dropdown. Default value: `File based`.                                                                           |\n| **Schedule**               | Yes      | The interval at which the dataflow is triggered. Select `Every X minutes`, `Every X hours`, `At specific time`, `Every X days`, or `Every week day` from the dropdown. Default value: `Every X minutes`. |\n| **Every \\_\\_\\_ minute(s)** | Yes      | The number of minutes between each trigger. Appears when **Schedule** is set to `Every X minutes`. Default value: `5`.                                                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Trigger type",
+            "Yes",
+            "The method used to trigger the dataflow. Select File based or Kafka stream from the dropdown. Default value: File based."
+          ],
+          [
+            "Schedule",
+            "Yes",
+            "The interval at which the dataflow is triggered. Select Every X minutes, Every X hours, At specific time, Every X days, or Every week day from the dropdown. Default value: Every X minutes."
+          ],
+          [
+            "Every ___ minute(s)",
+            "Yes",
+            "The number of minutes between each trigger. Appears when Schedule is set to Every X minutes. Default value: 5."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        36,
+        36
+      ],
+      "raw": "<Image align=\"center\" border={true} src=\"https://files.readme.io/2382865305d1a53ca33314fbe8fa0a3f1669b79bd360f0542f05d9da27a182f3-Screenshot_2026-04-15_at_11.13.32_AM.png\" className=\"border\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "border": "{true}",
+        "src": "https://files.readme.io/2382865305d1a53ca33314fbe8fa0a3f1669b79bd360f0542f05d9da27a182f3-Screenshot_2026-04-15_at_11.13.32_AM.png",
+        "className": "border"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "className=\"border\" is redundant with border={true}",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    }
+  ]
+}

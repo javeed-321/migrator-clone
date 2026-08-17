@@ -1,0 +1,743 @@
+{
+  "slug": "docs/configure-sftp-server-for-data-export",
+  "source": "https://docs.capillarytech.com/docs/configure-sftp-server-for-data-export.md",
+  "url": "https://docs.capillarytech.com/docs/configure-sftp-server-for-data-export",
+  "title": "Configure Sftp Server For Data Export",
+  "description": "",
+  "section": "Data export",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-05-25T13:39:15.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `/` (U+002F) before local name, expected a character that can start a name, such as a letter, `$`, or `_` (note: to create a link in MDX, use `[text](url)`)",
+  "components": {
+    "boilerplate": 1,
+    "heading": 9,
+    "paragraph": 10,
+    "Callout": 2,
+    "list": 9,
+    "Image": 3,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Configure SFTP server for data export",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configure SFTP server for data export",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "Brands are required to have their own Secure FTP (SFTP) infrastructure for exporting data. Currently, Capillary supports data exports only via SFTP.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Brands are required to have their own Secure FTP (SFTP) infrastructure for exporting data. Currently, Capillary supports data exports only via SFTP.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "You can configure up to five SFTP servers. After the data is exported to the SFTP server, you can download it to your local machine.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can configure up to five SFTP servers. After the data is exported to the SFTP server, you can download it to your local machine.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        15
+      ],
+      "raw": "> 📘 Note\n>\n> An SFTP once added you cannot be deleted or renamed. However, you can change server details and the path within that SFTP.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteAn SFTP once added you cannot be deleted or renamed. However, you can change server details and the path within that SFTP.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        25
+      ],
+      "raw": "* [ ] Destination SFTP server for data storage\n* [ ] Source Host server IP for data retrieval\n* [ ] FTP Configuration Details:\n  * [ ] Hostname\n  * [ ] Port number\n  * [ ] Username and Password\n  * [ ] Path to the folder",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Destination SFTP server for data storageSource Host server IP for data retrievalFTP Configuration Details:HostnamePort numberUsername and PasswordPath to the folder",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "# Configuring SFTP",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring SFTP",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "To configure the SFTP server, follow these steps.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the SFTP server, follow these steps.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        31,
+        41
+      ],
+      "raw": "1. Whitelist the below Capillary's IP addresses to allow connections to the brand's SFTP server.\n\n   | Cluster                      | IPs                               |\n   | :--------------------------- | :-------------------------------- |\n   | APAC1/INCRM (India)          | 54.235.251.85<br />3.227.110.70   |\n   | APAC2/AsiaCRM (Rest of Asia) | 13.126.188.129                    |\n   | EUCRM                        | 54.247.60.162<br />52.214.98.25   |\n   | USCRM                        | 18.224.36.121<br />18.189.151.155 |\n2. In the Insights+ UI, navigate to **Settings** > **FTP**, click **Add Ftp Server**.<br />The Add FTP modal appears.\n\n   <Image src=\"https://files.readme.io/88ad3ed004ef07ab80c4e94a0f8377cadaa1a16d75e4e83d5b082461675aa56e-Screenshot_2026-05-22_at_3.20.08_PM.png\" border={true} />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Whitelist the below Capillary's IP addresses to allow connections to the brand's SFTP server.ClusterIPsAPAC1/INCRM (India)54.235.251.85<br />3.227.110.70APAC2/AsiaCRM (Rest of Asia)13.126.188.129EUCRM54.247.60.162<br />52.214.98.25USCRM18.224.36.121<br />18.189.151.155In the Insights+ UI, navigate to Settings > FTP, click Add Ftp Server.<br />The Add FTP modal appears.<Image src=\"https://files.readme.io/88ad3ed004ef07ab80c4e94a0f8377cadaa1a16d75e4e83d5b082461675aa56e-Screenshot_2026-05-22_at_3.20.08_PM.png\" border={true} />",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 35
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 37
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 38
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        43,
+        58
+      ],
+      "raw": "4) Enter the following information:\n\n   <Image src=\"https://files.readme.io/21ec602522094ed095b81d43a2e76feef886b035813ce16d1258b6a3a7e085ea-Screenshot_2026-05-22_at_3.48.00_PM.png\" border={true} />\n\n   | Field                 | Required | Description                                                                                                                                                                                                                                                                                   |\n   | --------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n   | FTP name              | Yes      | A unique name to identify this FTP server configuration. The name will be displayed when configuring an export job in Select FTP.                                                                                                                                                             |\n   | Server address        | Yes      | The hostname or IP address of the FTP server. If the default port (22) is being used, then enter the URL of the client SFTP server. For example, `abc.def.com`.  If custom port 82 is used, then enter the URL with the port number of the client SFTP server.  For example, `abc.def.com:82` |\n   | Default target folder | Yes      | The folder path on the FTP server where exported files are saved. For example, '/export'. If the path is not specified, data will be saved in the root directory of the SFTP server.                                                                                                          |\n   | Username              | Yes      | The username used to authenticate with the FTP server.                                                                                                                                                                                                                                        |\n   | Authentication method | Yes      | The method used to authenticate with the FTP server. Select **Password** or **SSH key.**                                                                                                                                                                                                      |\n   | Password              | Yes      | The password for the FTP server account. This field appears when you select Password as the authentication method.                                                                                                                                                                            |\n   | SSH key               | Yes      | The private key used to authenticate the SFTP connection through SSH. This field appears when you select SSH key as the authentication method.                                                                                                                                                |\n   | Passphrase            | No       | The passphrase that protects the SSH key. This field appears when you select SSH key as the authentication method. Leave this field blank if the private key does not have a passphrase.                                                                                                      |\n\n5) Click **Submit**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Enter the following information:<Image src=\"https://files.readme.io/21ec602522094ed095b81d43a2e76feef886b035813ce16d1258b6a3a7e085ea-Screenshot_2026-05-22_at_3.48.00_PM.png\" border={true} />FieldRequiredDescriptionFTP nameYesA unique name to identify this FTP server configuration. The name will be displayed when configuring an export job in Select FTP.Server addressYesThe hostname or IP address of the FTP server. If the default port (22) is being used, then enter the URL of the client SFTP server. For example, abc.def.com.  If custom port 82 is used, then enter the URL with the port number of the client SFTP server.  For example, abc.def.com:82Default target folderYesThe folder path on the FTP server where exported files are saved. For example, '/export'. If the path is not specified, data will be saved in the root directory of the SFTP server.UsernameYesThe username used to authenticate with the FTP server.Authentication methodYesThe method used to authenticate with the FTP server. Select Password or SSH key.PasswordYesThe password for the FTP server account. This field appears when you select Password as the authentication method.SSH keyYesThe private key used to authenticate the SFTP connection through SSH. This field appears when you select SSH key as the authentication method.PassphraseNoThe passphrase that protects the SSH key. This field appears when you select SSH key as the authentication method. Leave this field blank if the private key does not have a passphrase.Click Submit.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        60,
+        65
+      ],
+      "raw": "> 🚧 Note\n>\n> * Connection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.\n> * If the specified folder is not identified in the Target Path of the SFTP server, the configuration fails.\n> * The file name of an exported file will have the following naming convention.\n>   * schedulename**templateName\\_timestamp. For example, DailySlabChange**SlabChangeLog**2019-10-29-12-30-02**1572356331802.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧"
+      },
+      "text": "NoteConnection to the SFTP/FTP server fails if your account has Multi-Factor Authentication (MFA) enabled.If the specified folder is not identified in the Target Path of the SFTP server, the configuration fails.The file name of an exported file will have the following naming convention.schedulenametemplateName_timestamp. For example, DailySlabChangeSlabChangeLog2019-10-29-12-30-021572356331802.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        67,
+        67
+      ],
+      "raw": "# Setting up the public key in the Capillary SFTP server",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Setting up the public key in the Capillary SFTP server",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        69,
+        69
+      ],
+      "raw": "Upload your SSH public key to the Capillary SFTP server before using SSH-based authentication. The SFTP server uses the public key to validate your connection when files are transferred.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Upload your SSH public key to the Capillary SFTP server before using SSH-based authentication. The SFTP server uses the public key to validate your connection when files are transferred.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "## Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        73,
+        74
+      ],
+      "raw": "* Access to the Capillary SFTP server\n* Permission to create folders",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Access to the Capillary SFTP serverPermission to create folders",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        76,
+        76
+      ],
+      "raw": "## Set up the public key",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Set up the public key",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        78,
+        78
+      ],
+      "raw": "To set up the public key,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To set up the public key,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        80,
+        102
+      ],
+      "raw": "1. Sign in to the Capillary SFTP portal at <https://data.capillarydata.com/newSession> using your username and password. The SFTP home page appears.\n\n2. Select the **Profile** icon and select **My account**. <br />The **My Account** page opens.\n\n   <Image src=\"https://files.readme.io/54556bc3c9ae9e7ccb36b4cddb7b547714aeb0728fdf7a03db11b871e316d008-divya-doc-drafts-google-docs.png\" border={true} />\n\n3. Select **Authentication > SFTP/SSH Keys**.\n\n   <Image src=\"https://files.readme.io/dbe33ad2e59460370db1968bd1137dd12ae705d63b913faa201a1e049dedf710-divya-doc-drafts-google-docs_1.png\" border={true} />\n\n4. Click **New SFTP/SSH Key**. <br />The **Create SFTP/SSH Key** page opens.\n\n   <Image src=\"https://files.readme.io/d8a28b7e045dd00c951a596571e30d5500dc2e594e82888d612f6dd1125603bd-divya-doc-drafts-google-docs_2.png\" width=\"70%\" border={true} />\n\n5. Under **Title**, enter a name for the SSH key.\n\n6. Under **Key pair**, choose one of the following options:<br />- [Use your own](https://docs.capillarytech.com/docs/configure-ftp-server-for-data-export#ssh-authentication)<br />- Generate in browser\n\n   For details on creating the key using the different options, refer <https://www.files.com/docs/services/sftp/sftp-ssh-keys/generating-sftp-ssh-keys>\n\n7. Under **Public key**, paste your SSH public key.\n\n8. Select **Save**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Sign in to the Capillary SFTP portal at https://data.capillarydata.com/newSession using your username and password. The SFTP home page appears.Select the Profile icon and select My account. <br />The My Account page opens.<Image src=\"https://files.readme.io/54556bc3c9ae9e7ccb36b4cddb7b547714aeb0728fdf7a03db11b871e316d008-divya-doc-drafts-google-docs.png\" border={true} />Select Authentication > SFTP/SSH Keys.<Image src=\"https://files.readme.io/dbe33ad2e59460370db1968bd1137dd12ae705d63b913faa201a1e049dedf710-divya-doc-drafts-google-docs_1.png\" border={true} />Click New SFTP/SSH Key. <br />The Create SFTP/SSH Key page opens.<Image src=\"https://files.readme.io/d8a28b7e045dd00c951a596571e30d5500dc2e594e82888d612f6dd1125603bd-divya-doc-drafts-google-docs_2.png\" width=\"70%\" border={true} />Under Title, enter a name for the SSH key.Under Key pair, choose one of the following options:<br />- Use your own<br />- Generate in browserFor details on creating the key using the different options, refer https://www.files.com/docs/services/sftp/sftp-ssh-keys/generating-sftp-ssh-keysUnder Public key, paste your SSH public key.Select Save.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 82
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 90
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 96
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 96
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configure-ftp-server-for-data-export#ssh-authentication",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "i": 19,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "# Testing SFTP configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Testing SFTP configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "You can either export a test file from Insights and test if the file is exported successfully or can also check the connection using Wetty.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can either export a test file from Insights and test if the file is exported successfully or can also check the connection using Wetty.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "To check the connection using Wetty,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To check the connection using Wetty,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "1. Run the command `nmap <hostname>` to check the open port for a host.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Run the command nmap <hostname> to check the open port for a host.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "<Image src=\"https://files.readme.io/bb8deed-check_port.png\" align=\"center\" width=\"50% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/bb8deed-check_port.png",
+        "align": "center",
+        "width": "50% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 24,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "2. Run the command `telnet <hostname> <port>`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Run the command telnet <hostname> <port>.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "<Image src=\"https://files.readme.io/827c7c6-check_whitelist.png\" align=\"center\" width=\"50% \" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/827c7c6-check_whitelist.png",
+        "align": "center",
+        "width": "50% ",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it",
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "## SSH authentication",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "SSH authentication",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "SSH (Secure Shell Protocol) is a secure method of connecting to your SFTP (SSH File Transfer Protocol) servers for data transfer. Instead of passwords, SSH authentication relies on a key pair: a public key and a private key.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "SSH (Secure Shell Protocol) is a secure method of connecting to your SFTP (SSH File Transfer Protocol) servers for data transfer. Instead of passwords, SSH authentication relies on a key pair: a public key and a private key.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        122,
+        123
+      ],
+      "raw": "* **Private key**: Stored on your device and used when you connect to the server.\n* **Public key**: Shared with the access team, who link it to your username on the SFTP server to enable SSH-based authentication.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Private key: Stored on your device and used when you connect to the server.Public key: Shared with the access team, who link it to your username on the SFTP server to enable SSH-based authentication.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        125,
+        125
+      ],
+      "raw": "Optionally, you can add a passphrase when creating your key for additional security.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Optionally, you can add a passphrase when creating your key for additional security.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        127,
+        127
+      ],
+      "raw": "### Steps to create SSH authentication for SFTP",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Steps to create SSH authentication for SFTP",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        129,
+        129
+      ],
+      "raw": "To use SSH for SFTP connections, complete the following steps to generate the SSH key pair:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To use SSH for SFTP connections, complete the following steps to generate the SSH key pair:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        131,
+        154
+      ],
+      "raw": "1. Open your terminal (macOS or Windows) and run the command:\n\n   ```text Bash\n   ssh-keygen -t rsa -b 4096 -m PEM -C \"tom.sawyer@capillarytech.com\"\n   ```\n\n   **Note**: Only PEM file formats are supported to store the keys.<br /><br />The command uses the following options:\n\n   * `-t`: Specifies the key algorithm. RSA is recommended.\n   * `-b`: Specifies the key length in bits. A higher value indicates stronger encryption.\n   * `-m`: Saves the private key in PEM format.\n   * `-C`: Adds a comment, typically your email address, for identification.\n\n2. When prompted, choose a location to save the keys. The default locations are:\n\n   * macOS: `/Users/user_name/.ssh/`\n   * Windows: `C:\\Users\\user_name\\.ssh\\`\n\n   Two files are generated:\n\n   * `id_rsa`: Private key. The private key is in OpenSSH format, including the header and footer lines (`-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`).\n   * `id_rsa.pub`: Public key.\n\n3. Optional: When prompted, add a passphrase to secure the key. Select **Enter** to skip if you do not want a passphrase.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open your terminal (macOS or Windows) and run the command:ssh-keygen -t rsa -b 4096 -m PEM -C \"tom.sawyer@capillarytech.com\"Note: Only PEM file formats are supported to store the keys.<br /><br />The command uses the following options:-t: Specifies the key algorithm. RSA is recommended.-b: Specifies the key length in bits. A higher value indicates stronger encryption.-m: Saves the private key in PEM format.-C: Adds a comment, typically your email address, for identification.When prompted, choose a location to save the keys. The default locations are:macOS: /Users/user_name/.ssh/Windows: C:\\Users\\user_name\\.ssh\\Two files are generated:id_rsa: Private key. The private key is in OpenSSH format, including the header and footer lines (-----BEGIN RSA PRIVATE KEY----- and -----END RSA PRIVATE KEY-----).id_rsa.pub: Public key.Optional: When prompted, add a passphrase to secure the key. Select Enter to skip if you do not want a passphrase.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 137
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "i": 33,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "<Image src=\"https://files.readme.io/044d777d4d734885a1dffc1a0a6e6e3f8ec8028e371cd4e4fae8d23119063695-Screenshot_2026-05-22_at_6.27.25_PM.png\" width=\"80%\" border={true} />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/044d777d4d734885a1dffc1a0a6e6e3f8ec8028e371cd4e4fae8d23119063695-Screenshot_2026-05-22_at_6.27.25_PM.png",
+        "width": "80%",
+        "border": "{true}"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 34,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 158
+        }
+      ]
+    }
+  ]
+}

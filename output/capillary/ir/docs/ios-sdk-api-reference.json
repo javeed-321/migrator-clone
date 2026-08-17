@@ -1,0 +1,1242 @@
+{
+  "slug": "docs/ios-sdk-api-reference",
+  "source": "https://docs.capillarytech.com/docs/ios-sdk-api-reference.md",
+  "url": "https://docs.capillarytech.com/docs/ios-sdk-api-reference",
+  "title": "Ios Sdk Api Reference",
+  "description": "",
+  "section": "iOS SDK",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 7,
+    "paragraph": 20,
+    "list": 4,
+    "code": 16,
+    "Table": 4,
+    "thematicBreak": 5,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# API Reference for Event Tracking and User Lifecycle Management",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "API Reference for Event Tracking and User Lifecycle Management",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Capillary iOS SDK APIs provide you with the capability to perform various actions, including customer registrations, customer logins, and more. These APIs can also be used for reporting to track events such as customer registrations, customer logins, and more.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Capillary iOS SDK APIs provide you with the capability to perform various actions, including customer registrations, customer logins, and more. These APIs can also be used for reporting to track events such as customer registrations, customer logins, and more.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "There are 2 types of events:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "There are 2 types of events:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        15
+      ],
+      "raw": "1. **Standard events** - These events are configured in the SDK and cannot be removed.  With Capillary SDK, you can record user-specific information such as their username, first name, last name, email, mobile number, and other custom information, along with system information, in the events. This information can then be used to run campaigns based on user segregation at different levels.\n2. **Behavioural events** - The events resource also allows you to create behavioural events to track any other important user interactions for your business. For example, events such as forgot password, cart abandonment, etc. These events can be further defined by event attributes such as price, quantity, and category. These events need to be configured in your org settings.\n   For behavioural events, you need to do configuration in the Hydraconfig and organisation settings.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Standard events - These events are configured in the SDK and cannot be removed.  With Capillary SDK, you can record user-specific information such as their username, first name, last name, email, mobile number, and other custom information, along with system information, in the events. This information can then be used to run campaigns based on user segregation at different levels.Behavioural events - The events resource also allows you to create behavioural events to track any other important user interactions for your business. For example, events such as forgot password, cart abandonment, etc. These events can be further defined by event attributes such as price, quantity, and category. These events need to be configured in your org settings.\nFor behavioural events, you need to do configuration in the Hydraconfig and organisation settings.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "# User Management and Account Configuration",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "User Management and Account Configuration",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Sign In",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Sign In",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "This API can be used to sign in a user to the platform and report when a user signs in.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to sign in a user to the platform and report when a user signs in.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        23,
+        25
+      ],
+      "raw": "```swift\npublic func reportUserSignIn(data: UserSignInGenerator, customData: Attributes)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func reportUserSignIn(data: UserSignInGenerator, customData: Attributes)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        27,
+        28
+      ],
+      "raw": "* `UserSignInGenerator`: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the `UserSignInGenerator` protocol.\n* `customData` (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of a`Dictionary<String, Any>`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "UserSignInGenerator: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the UserSignInGenerator protocol.customData (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of aDictionary<String, Any>.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        30,
+        37
+      ],
+      "raw": "| Parameters | Type       | Description                                                      | Mandatory/Optional |\n| :--------- | :--------- | :--------------------------------------------------------------- | :----------------- |\n| customerId | String     | Unique identifier of the user                                    | Mandatory          |\n| firstName  | String     | User first name                                                  | Mandatory          |\n| lastName   | String     | User last name                                                   | Mandatory          |\n| email      | String     | User email address                                               | Optional           |\n| phone      | String     | User mobile number                                               | Mandatory          |\n| customData | Dictionary | Additional information associated with the event being reported. | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameters",
+          "Type",
+          "Description",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "customerId",
+            "String",
+            "Unique identifier of the user",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "User first name",
+            "Mandatory"
+          ],
+          [
+            "lastName",
+            "String",
+            "User last name",
+            "Mandatory"
+          ],
+          [
+            "email",
+            "String",
+            "User email address",
+            "Optional"
+          ],
+          [
+            "phone",
+            "String",
+            "User mobile number",
+            "Mandatory"
+          ],
+          [
+            "customData",
+            "Dictionary",
+            "Additional information associated with the event being reported.",
+            "Optional"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        39,
+        39
+      ],
+      "raw": "**Example 1:** SignIn event with  empty`customData`parameter.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 1: SignIn event with  emptycustomDataparameter.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        41,
+        44
+      ],
+      "raw": "```swift\nlet userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [:])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [:])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        46,
+        46
+      ],
+      "raw": "**Example 2:** SignIn event with `customData`attributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 2: SignIn event with customDataattributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        48,
+        51
+      ],
+      "raw": "```swift\nlet userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: nil, phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [“Age”: “25”, “Gender”: “Male”])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: nil, phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [“Age”: “25”, “Gender”: “Male”])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "**Example 3:** SignIn event with `customData`attributes age, gender and email.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 3: SignIn event with customDataattributes age, gender and email.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        55,
+        58
+      ],
+      "raw": "```swift\nlet userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [“Age”: “25”, “Gender”: “Male”])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignInData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignIn(data: userSignInData, customData: [“Age”: “25”, “Gender”: “Male”])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "## Sign Up",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Sign Up",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "This API can be used to register a user to the platform and report when a user registers.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to register a user to the platform and report when a user registers.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        66,
+        68
+      ],
+      "raw": "```swift\npublic func reportUserSignUp(data: UserSignUpGenerator, customData: Attributes)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func reportUserSignUp(data: UserSignUpGenerator, customData: Attributes)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        70,
+        71
+      ],
+      "raw": "* `UserSignUpGenerator`: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the `UserSignUpGenerator` protocol.\n* `customData` (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of a`Dictionary<String, Any>`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "UserSignUpGenerator: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the UserSignUpGenerator protocol.customData (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of aDictionary<String, Any>.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        73,
+        80
+      ],
+      "raw": "| Parameters | Type       | Description                                                      | Mandatory/Optional |\n| :--------- | :--------- | :--------------------------------------------------------------- | :----------------- |\n| customerId | String     | Unique identifier of the user                                    | Mandatory          |\n| firstName  | String     | User first name                                                  | Mandatory          |\n| lastName   | String     | User last name                                                   | Mandatory          |\n| email      | String     | User email address                                               | Optional           |\n| phone      | String     | User mobile number                                               | Mandatory          |\n| customData | Dictionary | Additional information associated with the event being reported. | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameters",
+          "Type",
+          "Description",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "customerId",
+            "String",
+            "Unique identifier of the user",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "User first name",
+            "Mandatory"
+          ],
+          [
+            "lastName",
+            "String",
+            "User last name",
+            "Mandatory"
+          ],
+          [
+            "email",
+            "String",
+            "User email address",
+            "Optional"
+          ],
+          [
+            "phone",
+            "String",
+            "User mobile number",
+            "Mandatory"
+          ],
+          [
+            "customData",
+            "Dictionary",
+            "Additional information associated with the event being reported.",
+            "Optional"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        82,
+        82
+      ],
+      "raw": "**Example 1:** SignUp event with empty`customData`parameter.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 1: SignUp event with emptycustomDataparameter.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        84,
+        87
+      ],
+      "raw": "```swift\nlet userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [:])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [:])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "**Example 2:** SignUp event with  `customData`attributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 2: SignUp event with  customDataattributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 26,
+      "lines": [
+        91,
+        94
+      ],
+      "raw": "```swift\nlet userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: nil, phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [“Age”: “25”, “Gender”: “Male”])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: nil, phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [“Age”: “25”, “Gender”: “Male”])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        96,
+        96
+      ],
+      "raw": "**Example 3:** SignUp event with `customData`attributes age, gender and email.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 3: SignUp event with customDataattributes age, gender and email.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        98,
+        101
+      ],
+      "raw": "```swift\nlet userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [“Age”: “25”, “Gender”: “Male”])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userSignUpData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserSignUp(data: userSignUpData, customData: [“Age”: “25”, “Gender”: “Male”])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        103,
+        103
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        105,
+        105
+      ],
+      "raw": "## User profile update",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "User profile update",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        107,
+        107
+      ],
+      "raw": "This API can be used to update a user's profile and report when a user has updated their profile.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to update a user's profile and report when a user has updated their profile.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        109,
+        111
+      ],
+      "raw": "```swift\npublic func reportUserProfileUpdate(data: UserProfileUpdateGenerator, customData: Attributes, subscriptions: [Any]? = nil)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func reportUserProfileUpdate(data: UserProfileUpdateGenerator, customData: Attributes, subscriptions: [Any]? = nil)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        113,
+        114
+      ],
+      "raw": "* `UserProfileUpdateGenerator`: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the `UserProfileUpdateGenerator` protocol.\n* `customData` (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of a`Dictionary<String, Any>`.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "UserProfileUpdateGenerator: This object holds the necessary basic information. You can generate this object by organizing the required information into a suitable container or object that adheres to the UserProfileUpdateGenerator protocol.customData (Optional): This allows adding any extra information or custom data associated with the event being reported. The custom data should be added in the format of aDictionary<String, Any>.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        116,
+        124
+      ],
+      "raw": "| Parameters    | Type       | Description                                                      | **Mandatory/Optional** |\n| :------------ | :--------- | :--------------------------------------------------------------- | :--------------------- |\n| customerId    | String     | Unique identifier of the user                                    | Mandatory              |\n| firstName     | String     | User first name                                                  | Optional               |\n| lastName      | String     | User last name                                                   | Optional               |\n| email         | String     | User email address                                               | Optional               |\n| phone         | String     | User mobile number                                               | Optional               |\n| customData    | Dictionary | Additional information associated with the event being reported. | Optional               |\n| subscriptions | Array      | The subscriptions list for the logged in user.                   | Optional               |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameters",
+          "Type",
+          "Description",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "customerId",
+            "String",
+            "Unique identifier of the user",
+            "Mandatory"
+          ],
+          [
+            "firstName",
+            "String",
+            "User first name",
+            "Optional"
+          ],
+          [
+            "lastName",
+            "String",
+            "User last name",
+            "Optional"
+          ],
+          [
+            "email",
+            "String",
+            "User email address",
+            "Optional"
+          ],
+          [
+            "phone",
+            "String",
+            "User mobile number",
+            "Optional"
+          ],
+          [
+            "customData",
+            "Dictionary",
+            "Additional information associated with the event being reported.",
+            "Optional"
+          ],
+          [
+            "subscriptions",
+            "Array",
+            "The subscriptions list for the logged in user.",
+            "Optional"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        126,
+        126
+      ],
+      "raw": "**Example 1:** User profile update event with  empty`customData` parameter.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 1: User profile update event with  emptycustomData parameter.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        128,
+        131
+      ],
+      "raw": "```swift\nlet userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserProfileUpdate(data: userProfileUpdateData, customData: [:])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserProfileUpdate(data: userProfileUpdateData, customData: [:])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        133,
+        133
+      ],
+      "raw": "**Example 2:** User profile update with `customData`attributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 2: User profile update with customDataattributes age and gender. This allows for the logging of specific attributes related to the user's age and gender during the user sign-in report.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        135,
+        138
+      ],
+      "raw": "```swift\nlet userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserProfileUpdate(data: userProfileUpdateData, customData: [“Age”: “25”, “Gender”: “Male”])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "let userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCore.reportUserProfileUpdate(data: userProfileUpdateData, customData: [“Age”: “25”, “Gender”: “Male”])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "**Example 3:** User profile update event with `subscription` parameter.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example 3: User profile update event with subscription parameter.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        142,
+        150
+      ],
+      "raw": "```swift\nvar subscriptions: [HydraSubscription] = []\nvar subscription: HydraSubscription = HydraSubscription(channel: \"EMAIL\", priority: \"BULK\", type: \"OPTIN\")\n subscriptions.append(subscription)\n subscription = HydraSubscription(channel: \"PUSH\", priority: \"BULK\", type: \"OPTIN\")\n subscriptions.append(subscription)\nlet userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCoreSDK.reportUserProfileUpdate(data: userProfileUpdateData, customData: [:], subscriptions: subscriptions)\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "var subscriptions: [HydraSubscription] = []\nvar subscription: HydraSubscription = HydraSubscription(channel: \"EMAIL\", priority: \"BULK\", type: \"OPTIN\")\n subscriptions.append(subscription)\n subscription = HydraSubscription(channel: \"PUSH\", priority: \"BULK\", type: \"OPTIN\")\n subscriptions.append(subscription)\nlet userProfileUpdateData = UserDetails(customerId: \"customer-id\",firstName: \"first-name\", lastName: \"last-name\", email: \"email@goodemail.com\", phone: \"xxxxxxxx\")\nhydraCoreSDK.reportUserProfileUpdate(data: userProfileUpdateData, customData: [:], subscriptions: subscriptions)"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "## Sign Out",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Sign Out",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "This API can be used to sign out a user and report when a user has signed out.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This API can be used to sign out a user and report when a user has signed out.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        158,
+        160
+      ],
+      "raw": "```swift\npublic func reportUserSignOut(customData: [String: Any])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func reportUserSignOut(customData: [String: Any])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "To log sign-out events, you can call the API without providing any data. This action removes all the user-related basic information, such as first name and mobile number, that was previously provided in the session.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To log sign-out events, you can call the API without providing any data. This action removes all the user-related basic information, such as first name and mobile number, that was previously provided in the session.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "**Example**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        166,
+        168
+      ],
+      "raw": "```swift\nhydraCore.reportUserSignOut(customData: [:])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.reportUserSignOut(customData: [:])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        172,
+        172
+      ],
+      "raw": "# User Event Tracking",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "User Event Tracking",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        174,
+        174
+      ],
+      "raw": "These events can be used to track user actions throughout the application. These events are valid only if the SDK receives the `SignIn` or `SignUp `events. Events are Invalid if they are called after a `SignOut` event. In order to track these events, users have to pass event names (NotNull or NonEmpty) and attributes (optional).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "These events can be used to track user actions throughout the application. These events are valid only if the SDK receives the SignIn or SignUp events. Events are Invalid if they are called after a SignOut event. In order to track these events, users have to pass event names (NotNull or NonEmpty) and attributes (optional).",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        176,
+        176
+      ],
+      "raw": "The API below enables the application to send the custom events:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The API below enables the application to send the custom events:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        178,
+        180
+      ],
+      "raw": "```swift\npublic func reportBehavioralEvent(name: String, customAttributes attributes: Attributes) \n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "public func reportBehavioralEvent(name: String, customAttributes attributes: Attributes) "
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        182,
+        185
+      ],
+      "raw": "| Parameter   | Type       | Description                              | Mandatory/Optional |\n| :---------- | :--------- | :--------------------------------------- | :----------------- |\n| event\\_name | String     | Name of the event                        | Compulsory         |\n| attributes  | Dictionary | The custom attributes map for the events | Optional           |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Parameter",
+          "Type",
+          "Description",
+          "Mandatory/Optional"
+        ],
+        "rows": [
+          [
+            "event_name",
+            "String",
+            "Name of the event",
+            "Compulsory"
+          ],
+          [
+            "attributes",
+            "Dictionary",
+            "The custom attributes map for the events",
+            "Optional"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "**Example**:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        189,
+        193
+      ],
+      "raw": "```swift\nhydraCore.reportBehavioralEvent(name: \"event-name\",\n                                                        customAttributes: [\"additional-info\" : \"additional-details\",\n                                                                                      [\"additional-info\" : \"additional-details\"])\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "swift",
+        "title": null,
+        "code": "hydraCore.reportBehavioralEvent(name: \"event-name\",\n                                                        customAttributes: [\"additional-info\" : \"additional-details\",\n                                                                                      [\"additional-info\" : \"additional-details\"])"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        195,
+        195
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        197,
+        197
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 197
+        }
+      ]
+    }
+  ]
+}

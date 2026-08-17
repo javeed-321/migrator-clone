@@ -1,0 +1,510 @@
+{
+  "slug": "docs/attribute-transaction-points",
+  "source": "https://docs.capillarytech.com/docs/attribute-transaction-points.md",
+  "url": "https://docs.capillarytech.com/docs/attribute-transaction-points",
+  "title": "Attribute Transaction Points",
+  "description": "",
+  "section": "Profile : Current Transaction",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-04-23T10:59:55.000Z"
+  },
+  "parseMode": "markdown",
+  "parseError": "Unexpected character `,` (U+002C) before name, expected a character that can start a name, such as a letter, `$`, or `_`",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 2,
+    "Table": 12,
+    "thematicBreak": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Attribute - Reward Currency",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Attribute - Reward Currency",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "## **Points**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Points",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        17
+      ],
+      "raw": "**Profile** : currentTxn\\\n**Attributes** : points, promisedPoints\\\n**Sub-Attributes**: pointsForUser, pointsForUserGroup, promisedPointsForUser, promisedPointsForUserGroup\\\n**Operators:** <,>,<=,>=\\\n**Syntax**: currentTxn.points.\\[Operators]\\[Points]\\\n**Example**: currentTxn.points >= 10.\\\n**Meaning:** Total regular points earned for the transaction.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile : currentTxnAttributes : points, promisedPointsSub-Attributes: pointsForUser, pointsForUserGroup, promisedPointsForUser, promisedPointsForUserGroupOperators: <,>,<=,>=Syntax: currentTxn.points.[Operators][Points]Example: currentTxn.points >= 10.Meaning: Total regular points earned for the transaction.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        19,
+        21
+      ],
+      "raw": "| Example 1: Issue coupons if the total regular redeemable points for the current transaction exceed 100. |\n| :------------------------------------------------------------------------------------------------------ |\n| currentTxn.points > 100                                                                                 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 1: Issue coupons if the total regular redeemable points for the current transaction exceed 100."
+        ],
+        "rows": [
+          [
+            "currentTxn.points > 100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        23,
+        25
+      ],
+      "raw": "| Example 2: Issue a reward if the user specifically earned at least 50 points in this transaction. |\n| :------------------------------------------------------------------------------------------------ |\n| currentTxn.pointsForUser >= 50                                                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 2: Issue a reward if the user specifically earned at least 50 points in this transaction."
+        ],
+        "rows": [
+          [
+            "currentTxn.pointsForUser >= 50"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        27,
+        29
+      ],
+      "raw": "| Example 3: Trigger a benefit when the user’s group is allocated more than 200 points in the current transaction. |\n| :--------------------------------------------------------------------------------------------------------------- |\n| currentTxn.pointsForUserGroup > 200                                                                              |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 3: Trigger a benefit when the user’s group is allocated more than 200 points in the current transaction."
+        ],
+        "rows": [
+          [
+            "currentTxn.pointsForUserGroup > 200"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        31,
+        33
+      ],
+      "raw": "| Example 4: Trigger a message if the promised (non-redeemable) points for this transaction are at least 300. |\n| :---------------------------------------------------------------------------------------------------------- |\n| currentTxn.promisedPoints >= 300                                                                            |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 4: Trigger a message if the promised (non-redeemable) points for this transaction are at least 300."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedPoints >= 300"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        35,
+        37
+      ],
+      "raw": "| Example 5: Trigger a message if promised points allocated specifically to the user exceeds 100. |\n| :---------------------------------------------------------------------------------------------- |\n| currentTxn.promisedPointsForUser > 100                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 5: Trigger a message if promised points allocated specifically to the user exceeds 100."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedPointsForUser > 100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        39,
+        41
+      ],
+      "raw": "| Example 6: Trigger a message when a user’s group is promised exactly 500 points in a transaction. |\n| :------------------------------------------------------------------------------------------------ |\n| currentTxn.promisedPointsForUserGroup == 500                                                      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 6: Trigger a message when a user’s group is promised exactly 500 points in a transaction."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedPointsForUserGroup == 500"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        43,
+        43
+      ],
+      "raw": "***",
+      "kind": "thematicBreak",
+      "syntax": "markdown",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        45,
+        45
+      ],
+      "raw": "## **Alternate Currency**",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Alternate Currency",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        47,
+        53
+      ],
+      "raw": "**Profile**: currentTxn\\\n**Attributes**: currencyAwarded, promisedCurrencyAwarded\\\n**Sub-Attributes**: currencyAwardedForUser, currencyAwardedForUserGroup, promisedCurrencyAwardedForUser, promisedCurrencyAwardedForUserGroup\\\n**Operators:** <,>,<=,>=\\\n**Syntax**: currentTxn.currencyAwarded(\"currencyIdentifier\") \\[Operator] \\[Value]\\\n**Example**: currentTxn.currencyAwarded(\"miles\") >= 100.\\\n**Meaning:** Alternate currency awarded in the current transaction for the specified currency identifier.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Profile: currentTxnAttributes: currencyAwarded, promisedCurrencyAwardedSub-Attributes: currencyAwardedForUser, currencyAwardedForUserGroup, promisedCurrencyAwardedForUser, promisedCurrencyAwardedForUserGroupOperators: <,>,<=,>=Syntax: currentTxn.currencyAwarded(\"currencyIdentifier\") [Operator] [Value]Example: currentTxn.currencyAwarded(\"miles\") >= 100.Meaning: Alternate currency awarded in the current transaction for the specified currency identifier.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        55,
+        57
+      ],
+      "raw": "| Example 1: Issue a reward if the user earns more than 100 miles in the current transaction. |\n| :------------------------------------------------------------------------------------------ |\n| currentTxn.currencyAwarded(\"miles\") > 100                                                   |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 1: Issue a reward if the user earns more than 100 miles in the current transaction."
+        ],
+        "rows": [
+          [
+            "currentTxn.currencyAwarded(\"miles\") > 100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        59,
+        61
+      ],
+      "raw": "| Example 2: Trigger a benefit when the user individually earns at least 50 cashback coins. |\n| :---------------------------------------------------------------------------------------- |\n| currentTxn.currencyAwardedForUser(\"cashback\") >= 50                                       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 2: Trigger a benefit when the user individually earns at least 50 cashback coins."
+        ],
+        "rows": [
+          [
+            "currentTxn.currencyAwardedForUser(\"cashback\") >= 50"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        63,
+        65
+      ],
+      "raw": "| Example 3: Trigger a benefit when the user’s group earns more than 200 miles. |\n| :---------------------------------------------------------------------------- |\n| currentTxn.currencyAwardedForUserGroup(\"miles\") > 200                         |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 3: Trigger a benefit when the user’s group earns more than 200 miles."
+        ],
+        "rows": [
+          [
+            "currentTxn.currencyAwardedForUserGroup(\"miles\") > 200"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        67,
+        69
+      ],
+      "raw": "| Example 4: Trigger a message if promised miles for this transaction are at least 300. |\n| :------------------------------------------------------------------------------------ |\n| currentTxn.promisedCurrencyAwarded(\"miles\") >= 300                                    |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 4: Trigger a message if promised miles for this transaction are at least 300."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedCurrencyAwarded(\"miles\") >= 300"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        71,
+        73
+      ],
+      "raw": "| Example 5: Trigger a message if promised cashback points for the user exceed 100. |\n| :-------------------------------------------------------------------------------- |\n| currentTxn.promisedCurrencyAwardedForUser(\"cashback\") > 100                       |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 5: Trigger a message if promised cashback points for the user exceed 100."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedCurrencyAwardedForUser(\"cashback\") > 100"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        75,
+        77
+      ],
+      "raw": "| Example 6: Trigger a message when a user’s group is promised exactly 500 miles. |\n| :------------------------------------------------------------------------------ |\n| currentTxn.promisedCurrencyAwardedForUserGroup(\"miles\") == 500                  |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Example 6: Trigger a message when a user’s group is promised exactly 500 miles."
+        ],
+        "rows": [
+          [
+            "currentTxn.promisedCurrencyAwardedForUserGroup(\"miles\") == 500"
+          ]
+        ],
+        "align": [
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    }
+  ]
+}

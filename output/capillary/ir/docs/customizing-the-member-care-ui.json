@@ -1,0 +1,1074 @@
+{
+  "slug": "docs/customizing-the-member-care-ui",
+  "source": "https://docs.capillarytech.com/docs/customizing-the-member-care-ui.md",
+  "url": "https://docs.capillarytech.com/docs/customizing-the-member-care-ui",
+  "title": "Customizing The Member Care Ui",
+  "description": "",
+  "section": "Examples",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 10,
+    "paragraph": 18,
+    "list": 9,
+    "Callout": 8,
+    "Image": 2,
+    "code": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Customising the Member Care UI",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Customising the Member Care UI",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "# Overview",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Overview",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "A brand may need to customise Member Care to fit their specific requirements. Vulcan enables the building of UI customisations and enable these apps as Member Care overrides specific to the organization.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A brand may need to customise Member Care to fit their specific requirements. Vulcan enables the building of UI customisations and enable these apps as Member Care overrides specific to the organization.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Customising the UI allows brands to see their version instead of the standard Capillary application.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Customising the UI allows brands to see their version instead of the standard Capillary application.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "# Prerequisites",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "To get started ensure that you have the following prerequisites:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To get started ensure that you have the following prerequisites:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        27
+      ],
+      "raw": "* [ ] [VULCAN SUPERADMIN](https://docs.capillarytech.com/reference/vulcan-getting-started#access-roles) access\n* [ ] Node.js 14.21.3 (preferrably using [nvm](https://dev.to/csituma/install-nvm-on-mac-windows-and-linux-1aj9)).\\\n  You can install the specific node.js version using the following command:\n  ```\n  nvm install 14.21.3\n  ```\n* [ ] Member Care UI replica [template](https://github.com/Capillary/cap-member-care-vulcan-replica) . For access, raise a JIRA request to the Capillary UI team.\n* [ ] Pre-built Vulcan application\n* [ ] Application configuration file",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "VULCAN SUPERADMIN accessNode.js 14.21.3 (preferrably using nvm).You can install the specific node.js version using the following command:nvm install 14.21.3Member Care UI replica template . For access, raise a JIRA request to the Capillary UI team.Pre-built Vulcan applicationApplication configuration file",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/vulcan-getting-started#access-roles",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "i": 8,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "The following procedure outlines how to set up the Vulcan application and create a Member Care UI replica :",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following procedure outlines how to set up the Vulcan application and create a Member Care UI replica :",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        31,
+        91
+      ],
+      "raw": "1. ### [Set up the Vulcan application](https://docs.capillarytech.com/reference/vulcan-getting-started#application-setup).\n   1. Access the Vulcan UI.\n   2. Create the application on Vulcan UI.\n   3. Enter the [basic details ](https://docs.capillarytech.com/reference/vulcan-getting-started#basic-details)and [internationalization details ](https://docs.capillarytech.com/reference/vulcan-getting-started#internationalization-details)(if required) for the application.\\ <br />\n      > ❗️ Important:\n      >\n      > For customised member care overrides, create your app name in the given format:\\\n      > `member-care-ui-<orgID>`.\n      >\n      > Example:\\\n      > If your Organization ID is \"1231\", the application name should be in the following format:\\\n      > `member-care-ui-1231`\n2. ### Download the App Configuration\n\n   1. Navigate to the Vulcan UI and click the three dots under **Actions**.\n   2. Click **Download Configuration** to download the `app-config.js` file.\n\n   <Image align=\"center\" className=\"border\" border={true} src=\"https://files.readme.io/79272db-image.png\" />\n\n   <br />\n\n   3. Move the downloaded file to the downloaded template repository folder.\n\n      <Image align=\"left\" className=\"border\" width=\"40% \" border={true} src=\"https://files.readme.io/f9c1d6f0f10c3aa48130ceba4104b8557ca66c9e0ea9d25df28945d0a8abd046-image.png\" />\n3. ### [Initialize the project on the local machine](https://docs.capillarytech.com/reference/vulcan-getting-started#local-project-initialization).\n   1. Run [`create-vulcan-app`](https://storage.crm.n.content-cdn.io/create-vulcan-app.sh) on a new terminal.\n   2. Provide the required details as prompted by the system.\n   3. Open the generated folder on your code editor.\\ <br />\n4. ### [Begin the React app development using a code editor](https://docs.capillarytech.com/reference/application-development-process).\n   1. Run the command following command to update your project's `index.html` and `global-styles.js` files with the app-specific details. This command fetches app info from `app-config` and updates the index files for your React app.\n      ```\n      npm run init\n      ```\n   2. Build the application following the React app development process. Use the Member Care UI replica [template](https://github.com/Capillary/cap-member-care-vulcan-replica) as the base code to begin customising.\n5. ### [Generate the `build.zip` file](https://docs.capillarytech.com/reference/application-development-process#starting-and-building-your-application).\n   1. Navigate to your project directory and open a terminal interface.\n   2. Run the following command to build the application for deployment and hosting:\n      ```\n      npm run build\n      ```\n   3. Identify the `build.zip` file under your project folder.\\ <br />\n6. ### [Host your application on the InTouch platform](https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app).\n   1. Access the [Vulcan UI](https://docs.capillarytech.com/docs/getting-started-4#accessing-vulcan-ui) and open the application.\n   2. Click **Deployments** and **Upload Build**.\n   3. Enter the build description for your application.\n   4. Click **Select Zip** and choose the `build.zip` file from your device.\n   5. Click **Confirm upload** to upload the build and save changes.\n   6. Enable UAT or Prod mode for your build.\n   7. Identify the UAT/Prod URL generated and displayed in the Application Details section. This URL can be used for testing or accessing your application.\n7. ### Override the Member Care UI\n\n   1. Access the [Vulcan UI](https://docs.capillarytech.com/docs/getting-started-4#accessing-vulcan-ui) and open the application.\n   2. Click on **Override with UAT version** or **Override with Prod version** depending on your development stage. The custom Member Care UI is now active.\n\n      <Image align=\"center\" src=\"https://files.readme.io/7e1271a-image.png\" />\n\n      > 📘 Note:\n      >\n      > If another app is already overriding Member Care for your organization, the following message will appear:\n      >\n      > <Image align=\"center\" src=\"https://files.readme.io/55c46cb-image.png\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Set up the Vulcan application.Access the Vulcan UI.Create the application on Vulcan UI.Enter the basic details and internationalization details (if required) for the application.\\ ❗️ Important:For customised member care overrides, create your app name in the given format:member-care-ui-<orgID>.Example:If your Organization ID is \"1231\", the application name should be in the following format:member-care-ui-1231Download the App ConfigurationNavigate to the Vulcan UI and click the three dots under Actions.Click Download Configuration to download the app-config.js file.Move the downloaded file to the downloaded template repository folder.Initialize the project on the local machine.Run create-vulcan-app on a new terminal.Provide the required details as prompted by the system.Open the generated folder on your code editor.\\ Begin the React app development using a code editor.Run the command following command to update your project's index.html and global-styles.js files with the app-specific details. This command fetches app info from app-config and updates the index files for your React app.npm run initBuild the application following the React app development process. Use the Member Care UI replica template as the base code to begin customising.Generate the build.zip file.Navigate to your project directory and open a terminal interface.Run the following command to build the application for deployment and hosting:npm run buildIdentify the build.zip file under your project folder.\\ Host your application on the InTouch platform.Access the Vulcan UI and open the application.Click Deployments and Upload Build.Enter the build description for your application.Click Select Zip and choose the build.zip file from your device.Click Confirm upload to upload the build and save changes.Enable UAT or Prod mode for your build.Identify the UAT/Prod URL generated and displayed in the Application Details section. This URL can be used for testing or accessing your application.Override the Member Care UIAccess the Vulcan UI and open the application.Click on Override with UAT version or Override with Prod version depending on your development stage. The custom Member Care UI is now active.📘 Note:If another app is already overriding Member Care for your organization, the following message will appear:",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 34
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 50
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 58
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 71
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/vulcan-getting-started#application-setup",
+          "line": 31
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/vulcan-getting-started#basic-details",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/vulcan-getting-started#internationalization-details",
+          "line": 34
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/vulcan-getting-started#local-project-initialization",
+          "line": 55
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/application-development-process",
+          "line": 59
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/application-development-process#starting-and-building-your-application",
+          "line": 65
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app",
+          "line": 72
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-4#accessing-vulcan-ui",
+          "line": 73
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/getting-started-4#accessing-vulcan-ui",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "i": 10,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "# Updating the project",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Updating the project",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "Updates to the Member Care UI replica [template](https://github.com/Capillary/cap-member-care-vulcan-replica)are notified on the Slack group for Vulcan users.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Updates to the Member Care UI replica templateare notified on the Slack group for Vulcan users.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        97,
+        97
+      ],
+      "raw": "To pull the latest changes to your project, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To pull the latest changes to your project, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        99,
+        110
+      ],
+      "raw": "1. Run the following command on a terminal, in the directory your repository is stored at to add the template to your repo as [remote](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories):\n   ```\n   git remote add template https://github.com/Capillary/cap-member-care-vulcan-replica\n   ```\n2. Run the following command to fetch all branches from the remote repository:\n   ```\n   git fetch --all\n   ```\n3. Run the following command to merge:\n   ```\n   git merge template/<branch to merge> --allow-unrelated-histories\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Run the following command on a terminal, in the directory your repository is stored at to add the template to your repo as remote:git remote add template https://github.com/Capillary/cap-member-care-vulcan-replicaRun the following command to fetch all branches from the remote repository:git fetch --allRun the following command to merge:git merge template/<branch to merge> --allow-unrelated-histories",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        112,
+        114
+      ],
+      "raw": "> ❗️ Note:\n>\n> Carefully resolve conflicts and merge code to ensure proper updating.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "❗️"
+      },
+      "text": "Note:Carefully resolve conflicts and merge code to ensure proper updating.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "danger"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "# Sharing Member Care Replica Apps Across Organizations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Sharing Member Care Replica Apps Across Organizations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "Member Care replica apps can be shared across multiple organisations. Once shared the organisation must enable the Member Care override from the Vulcan UI.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Member Care replica apps can be shared across multiple organisations. Once shared the organisation must enable the Member Care override from the Vulcan UI.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "To share a Member Care replica app across multiple organizations, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To share a Member Care replica app across multiple organizations, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        122,
+        127
+      ],
+      "raw": "1. In the Vulcan UI, go to the Vulcan application you want to share.\n2. In edit mode, navigate to the basic details section and select the organizations to share to.\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/92e7bab010bfec78a787c6f8995788e5732947c1b5a44b7ca7809ff1f600cf50-image.png\" />\n3. Select **Update application** to apply the changes. The application is shared in view-only mode with the recipient organisation.\n4. Override the Member Care UI with the shared application in the recipient organisation.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "In the Vulcan UI, go to the Vulcan application you want to share.In edit mode, navigate to the basic details section and select the organizations to share to.Select Update application to apply the changes. The application is shared in view-only mode with the recipient organisation.Override the Member Care UI with the shared application in the recipient organisation.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        129,
+        132
+      ],
+      "raw": "> 📘 Note\n>\n> * Shared Vulcan apps are view-only for recipient organisations and can’t be edited, deleted, or disabled. If Member Care override is enabled, recipient organisations cannot change which organizations have access to the original app.\n> * Vulcan applications can be shared with organisations that the user has access to.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteShared Vulcan apps are view-only for recipient organisations and can’t be edited, deleted, or disabled. If Member Care override is enabled, recipient organisations cannot change which organizations have access to the original app.Vulcan applications can be shared with organisations that the user has access to.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        134,
+        134
+      ],
+      "raw": "# Additional UI Customisations",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Additional UI Customisations",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        136,
+        136
+      ],
+      "raw": "## Adding a new route in the left navigation menu",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding a new route in the left navigation menu",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 22,
+      "lines": [
+        138,
+        138
+      ],
+      "raw": "The replica template comes preconfigured with the default Member Care navigation options. Using Vulcan, you can customise these options and add custom navigations links.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The replica template comes preconfigured with the default Member Care navigation options. Using Vulcan, you can customise these options and add custom navigations links.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        140,
+        140
+      ],
+      "raw": "To enable the collapsible left navigation, ensure that `useLatestLeftNavigation` is set to **false** is set in the `app-config` file on your project.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable the collapsible left navigation, ensure that useLatestLeftNavigation is set to false is set in the app-config file on your project.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        142,
+        142
+      ],
+      "raw": "The `navigation.js` file includes the customisation for the collapsible left navigation bar on Member Care.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The navigation.js file includes the customisation for the collapsible left navigation bar on Member Care.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/f7e5d74-image.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/f7e5d74-image.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "To add a new route in the left navigation menu, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To add a new route in the left navigation menu, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        148,
+        167
+      ],
+      "raw": "1. Navigate to your project directory and open a terminal interface.\n2. Generate a new page using the following command:\n   ```\n   npm run generate\n   ```\n3. Choose **pages** as the type of component when prompted.\n4. Give an appropriate name for the page when prompted.\n5. Follow the remaining setup procedure as prompted by the system.\n\n   <Image align=\"center\" src=\"https://files.readme.io/8378209-image2.png\" />\n6. Start the page development by following the [react development process](https://react.dev/learn).\n7. Add the following code to the `routes.js` file to test your changes as a page:\n   ```\n   {\n      exact: true,\n      path: `/loadWhateverYouWant`,\n      type: 'newRoute',\n      component: NewPage,\n    },\n   ```",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Navigate to your project directory and open a terminal interface.Generate a new page using the following command:npm run generateChoose pages as the type of component when prompted.Give an appropriate name for the page when prompted.Follow the remaining setup procedure as prompted by the system.Start the page development by following the react development process.Add the following code to the routes.js file to test your changes as a page:{\n   exact: true,\n   path: `/loadWhateverYouWant`,\n   type: 'newRoute',\n   component: NewPage,\n },",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        169,
+        176
+      ],
+      "raw": "> 📘 Note:\n>\n> The details of the fields are as follows:\n>\n> | Field     | Description                                              |\n> | :-------- | :------------------------------------------------------- |\n> | path      | The route path URL.                                      |\n> | component | Name of the component use during the generation process. |",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The details of the fields are as follows:FieldDescriptionpathThe route path URL.componentName of the component use during the generation process.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "8. Add the new route to the `navigation.js` file to view it as a left navigation link.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Add the new route to the navigation.js file to view it as a left navigation link.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 30,
+      "lines": [
+        180,
+        189
+      ],
+      "raw": "```\n {\n    label: 'Your OWN route',\n    value: 'newRoute',\n    route: '/loadWhateverYouWant',\n    icon: '',\n    defaultExpanded: false,\n    children: [],\n},\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": " {\n    label: 'Your OWN route',\n    value: 'newRoute',\n    route: '/loadWhateverYouWant',\n    icon: '',\n    defaultExpanded: false,\n    children: [],\n},"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 31,
+      "lines": [
+        191,
+        201
+      ],
+      "raw": "> 📘 Note:\n>\n> The details of the fields are as follows:\n>\n> | Field           | Description                                                |\n> | :-------------- | :--------------------------------------------------------- |\n> | label           | The name of the route path.                                |\n> | route           | The route path URL.                                        |\n> | icon            | Custom icon that is displayed on the left navigation menu. |\n> | defaultExpanded | The default state of the navigation menu.                  |\n> | children        | The properties related to child pages of the menu.         |",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The details of the fields are as follows:FieldDescriptionlabelThe name of the route path.routeThe route path URL.iconCustom icon that is displayed on the left navigation menu.defaultExpandedThe default state of the navigation menu.childrenThe properties related to child pages of the menu.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "## Adding a custom link in the left navigation menu",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Adding a custom link in the left navigation menu",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "To enable the collapsible left navigation, ensure that `useLatestLeftNavigation` is set to **false** is set in the `app-config` file on your project.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable the collapsible left navigation, ensure that useLatestLeftNavigation is set to false is set in the app-config file on your project.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "The `navigation.js` file includes the customisation for the collapsible left navigation bar on Member Care.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The navigation.js file includes the customisation for the collapsible left navigation bar on Member Care.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        209,
+        209
+      ],
+      "raw": "Add the following to the `navigation.js` file along with the custom URL:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Add the following to the navigation.js file along with the custom URL:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        211,
+        232
+      ],
+      "raw": "```\n{\n  label: ( // define custom markup and label for your left nav item here\n   <>\n     <CapTooltip\n       title={\n         <FormattedMessage\n           {...messages.requestTooltip}\n         />\n       }\n     >\n       Google Link\n       <CapImage src={OpenInIcon} alt=\"Open In Icon\" />\n     </CapTooltip>\n   </>\n ),\n value: 'google_customUrlLink', // this value should always be of pattern <sometext>_customUrlLink in order for this feature to work\n route: '', // this will be empty always\n url: 'https://www.google.com/' // specify the custom URL to open on click\n}\n\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": null,
+        "title": null,
+        "code": "{\n  label: ( // define custom markup and label for your left nav item here\n   <>\n     <CapTooltip\n       title={\n         <FormattedMessage\n           {...messages.requestTooltip}\n         />\n       }\n     >\n       Google Link\n       <CapImage src={OpenInIcon} alt=\"Open In Icon\" />\n     </CapTooltip>\n   </>\n ),\n value: 'google_customUrlLink', // this value should always be of pattern <sometext>_customUrlLink in order for this feature to work\n route: '', // this will be empty always\n url: 'https://www.google.com/' // specify the custom URL to open on click\n}\n"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        234,
+        236
+      ],
+      "raw": "> 📘 Note:\n>\n> Replace the `url` field with your custom URL.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Replace the url field with your custom URL.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        238,
+        238
+      ],
+      "raw": "<Image align=\"center\" src=\"https://files.readme.io/d78176c-image7.png\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "src": "https://files.readme.io/d78176c-image7.png"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 39,
+      "lines": [
+        240,
+        240
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 240
+        }
+      ]
+    },
+    {
+      "i": 40,
+      "lines": [
+        242,
+        242
+      ],
+      "raw": "## Embed a pre-developed Vulcan application component",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Embed a pre-developed Vulcan application component",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        244,
+        244
+      ],
+      "raw": "You can embed a pre-developed Vulcan application component from the Vulcan platform into another Vulcan application. This allows you to import and add multiple Vulcan application components to a new Vulcan application in development.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can embed a pre-developed Vulcan application component from the Vulcan platform into another Vulcan application. This allows you to import and add multiple Vulcan application components to a new Vulcan application in development.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        246,
+        246
+      ],
+      "raw": "To embed a  Vulcan application component onto another Vulcan application, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To embed a  Vulcan application component onto another Vulcan application, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        248,
+        264
+      ],
+      "raw": "1. On the Vulcan UI, navigate to the Vulcan application that contains the components to be embedded.\n2. [Host and enable UAT or Prod mode](https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app) for the application if it is not already done.\n3. Select the <img src=\"https://dev.intouch.capillarytech.com/vulcan/ui/c2c6d25f0e2c00ea2763.png\" alt=\"Flaticon Image\" width=\"2.5%\" height=\"2.5%\" /> icon next to the UAT or Prod URL. This action lists the exported components for the application for the particular build (UAT or PROD).\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/cb521ca5cc5665ae48364c23c7974777133455ad0df46527871f5b5b100eb704-image.png\" />\n4. Select the <img src=\"https://cdn-icons-png.flaticon.com/128/9428/9428873.png\" alt=\"Flaticon Image\" width=\"2.5%\" height=\"2.5%\" /> icon next to the component to copy the component configuration code to the clipboard.\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/3aaa646baedac58da0e0225dc1055e224552b2faa84d6d5458428aa933489f0c-image.png\" />\n5. Navigate to the local project folder of the Vulcan application in development, and paste the code into the required section. For example, if you want to import a component to customer search, paste the copied code under the respective `CustomerSearch.js` section.\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/8f2bfa4a7fac7a8d9a135c319c51a2335c4078ae6c838ce7382cd197138d6b87-image.png\" />\n6. Import the required components according to the instructions provided in the comments.\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/dccfd0c4e3fd73f9d15e7888ae55a51500a8ecd968cf0c0f9bb6dd9903a9fb5f-image.png\" />\n7. Navigate to` app.js` in the project directory and paste the **scope** under **`VulcanSDKSetup`>`importedScopes`** . This ensures that the required flags are set to the local storage during app load up on the browser.\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/72d8bafb7140f9d058bd0590b685ef9ea9d58c276c8574e778e74ddd8d391275-image6.png\" />",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "On the Vulcan UI, navigate to the Vulcan application that contains the components to be embedded.Host and enable UAT or Prod mode for the application if it is not already done.Select the  icon next to the UAT or Prod URL. This action lists the exported components for the application for the particular build (UAT or PROD).Select the  icon next to the component to copy the component configuration code to the clipboard.Navigate to the local project folder of the Vulcan application in development, and paste the code into the required section. For example, if you want to import a component to customer search, paste the copied code under the respective CustomerSearch.js section.Import the required components according to the instructions provided in the comments.Navigate to app.js in the project directory and paste the scope under VulcanSDKSetup>importedScopes . This ensures that the required flags are set to the local storage during app load up on the browser.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app",
+          "line": 249
+        }
+      ]
+    },
+    {
+      "i": 44,
+      "lines": [
+        266,
+        268
+      ],
+      "raw": "> 📘 Note:\n>\n> The copied code can be used for any React 18-based project using the Vulcan SDK (Vulcan application or product UI) provided by the Capillary tech team.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:The copied code can be used for any React 18-based project using the Vulcan SDK (Vulcan application or product UI) provided by the Capillary tech team.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        270,
+        270
+      ],
+      "raw": "8. [Host](https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app) the new application and enable UAT or Prod mode to view the changes.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Host the new application and enable UAT or Prod mode to view the changes.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/application-development-process#hosting-a-vulcan-app",
+          "line": 270
+        }
+      ]
+    },
+    {
+      "i": 46,
+      "lines": [
+        272,
+        274
+      ],
+      "raw": "> 📘 Note:\n>\n> Enabling UAT or Prod for the application is necessary to prevent errors and to view and copy modules that are exported from the components.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "Note:Enabling UAT or Prod for the application is necessary to prevent errors and to view and copy modules that are exported from the components.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        276,
+        276
+      ],
+      "raw": "# Enabling Sharingan functionality",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Enabling Sharingan functionality",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        278,
+        278
+      ],
+      "raw": "To enable Sharingan functionality on a Member Care replica, follow these steps:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To enable Sharingan functionality on a Member Care replica, follow these steps:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        280,
+        287
+      ],
+      "raw": "1. Open the project folder on your local machine.\n2. Navigate to the file **webapp/app/components/molecules/IdentifiersOptions/IdentifierOptions.js**.\n3. Find the section of the code that contains **\\{actionsContainerName}** and uncomment the line.\n\n   <br />\n\n   <Image align=\"center\" className=\"border\" width=\"80% \" border={true} src=\"https://files.readme.io/b6ff34597fcdd6c9a40db507c64720aa0555211f9e46cb0d2052e1da1a06d94f-image.png\" />\n4. Build and host the application on the Vulcan platform. Once hosted, the Sharingan app is visible on the UI if configured for the organization.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Open the project folder on your local machine.Navigate to the file webapp/app/components/molecules/IdentifiersOptions/IdentifierOptions.js.Find the section of the code that contains {actionsContainerName} and uncomment the line.Build and host the application on the Vulcan platform. Once hosted, the Sharingan app is visible on the UI if configured for the organization.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 284
+        }
+      ]
+    },
+    {
+      "i": 50,
+      "lines": [
+        289,
+        291
+      ],
+      "raw": "> 📘 Note\n>\n> The rendering of the Sharingan app in the UI is managed within the code.",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NoteThe rendering of the Sharingan app in the UI is managed within the code.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    }
+  ]
+}

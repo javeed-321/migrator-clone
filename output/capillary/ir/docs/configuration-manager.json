@@ -1,0 +1,167 @@
+{
+  "slug": "docs/configuration-manager",
+  "source": "https://docs.capillarytech.com/docs/configuration-manager.md",
+  "url": "https://docs.capillarytech.com/docs/configuration-manager",
+  "title": "Configuration Manager",
+  "description": "",
+  "section": "Advanced Features",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-04T06:05:34.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 1,
+    "paragraph": 4,
+    "list": 1,
+    "code": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Access Sensitive Data in Neo Dataflows Using Configuration Manager",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Access Sensitive Data in Neo Dataflows Using Configuration Manager",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "You can store the organization-specific configurations and sensitive data, such as API keys, passwords, in the [Configuration Manager](https://docs.capillarytech.com/docs/extension-configuration) and use it in the Neo dataflow. This prevents hardcoding sensitive data in the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can store the organization-specific configurations and sensitive data, such as API keys, passwords, in the Configuration Manager and use it in the Neo dataflow. This prevents hardcoding sensitive data in the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/extension-configuration",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "In a Neo dataflow, you can use Data Access Objects (DAOs) to retrieve these stored values dynamically. The two DAO functions for this purpose are:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In a Neo dataflow, you can use Data Access Objects (DAOs) to retrieve these stored values dynamically. The two DAO functions for this purpose are:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        16
+      ],
+      "raw": "* `getValueByKey('config name')`– Retrieves a configuration value stored in the Configuration Manager.\\\n  **Example**: `const KeyLoyaltyId = getValueByKey('KeyLoyaltyId');`\n* `getParentValueByKey('config name')` – Retrieves a configuration stored at the parent organization level from a child organization.\\\n  **Example**: `const parentConfig = getParentValueByKey('ParentKey');`",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "getValueByKey('config name')– Retrieves a configuration value stored in the Configuration Manager.Example: const KeyLoyaltyId = getValueByKey('KeyLoyaltyId');getParentValueByKey('config name') – Retrieves a configuration stored at the parent organization level from a child organization.Example: const parentConfig = getParentValueByKey('ParentKey');",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        18,
+        18
+      ],
+      "raw": "You can use the DAO functions in the block fields to retrieve data from the Configuration Manager. The retrieved data can be used within the same block or passed to other blocks in the dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the DAO functions in the block fields to retrieve data from the Configuration Manager. The retrieved data can be used within the same block or passed to other blocks in the dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        20,
+        20
+      ],
+      "raw": "The following code snippet from the Script field of a Script block demonstrates how to access and use configurations from the Configuration Manager in a Neo dataflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The following code snippet from the Script field of a Script block demonstrates how to access and use configurations from the Configuration Manager in a Neo dataflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        22,
+        40
+      ],
+      "raw": "```json Accessing Configuration Manager\nconst script = {\n\n    execute: async () => {\n        const loyaltyID = getApiRequest().queryParams.loyaltyID;\n        const timestamp = Date.now();\n        const uniqueKey = loyaltyID + \"|\" + timestamp;\n        const KeyLoyaltyId = await getValueByKey('KeyLoyaltyId');\n        return {\n            uniqueKey: uniqueKey,\n            KeyLoyaltyId: KeyLoyaltyId,\n        };\n    }\n}\n\nexport {\n    script as default\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Accessing Configuration Manager",
+        "code": "const script = {\n\n    execute: async () => {\n        const loyaltyID = getApiRequest().queryParams.loyaltyID;\n        const timestamp = Date.now();\n        const uniqueKey = loyaltyID + \"|\" + timestamp;\n        const KeyLoyaltyId = await getValueByKey('KeyLoyaltyId');\n        return {\n            uniqueKey: uniqueKey,\n            KeyLoyaltyId: KeyLoyaltyId,\n        };\n    }\n}\n\nexport {\n    script as default\n}"
+      },
+      "text": "Accessing Configuration Manager",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

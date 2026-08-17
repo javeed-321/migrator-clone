@@ -1,0 +1,317 @@
+{
+  "slug": "docs/bulk-upsert-mongo",
+  "source": "https://docs.capillarytech.com/docs/bulk-upsert-mongo.md",
+  "url": "https://docs.capillarytech.com/docs/bulk-upsert-mongo",
+  "title": "Bulk Upsert Mongo",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 7,
+    "list": 2,
+    "Callout": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Bulk Upsert Mongo Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Bulk Upsert Mongo Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Bulk Upsert Mongo block enables bulk upsert operations in MongoDB. Upsert is a database operation that combines update and insert actions, allowing new data to be inserted while updating existing records in bulk. Use this block when handling more than ten queries simultaneously.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Bulk Upsert Mongo block enables bulk upsert operations in MongoDB. Upsert is a database operation that combines update and insert actions, allowing new data to be inserted while updating existing records in bulk. Use this block when handling more than ten queries simultaneously.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "A retail company tracks customers who achieve a specific target within a given timeframe. These customers qualify for rewards as part of the company's loyalty management program, which Capillary handles. The data is exported from the company's database as a CSV file and sent to the Capillary system. If a record exists, Capillary must update the record available in the Capillary database; otherwise, the system should create a new record.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A retail company tracks customers who achieve a specific target within a given timeframe. These customers qualify for rewards as part of the company's loyalty management program, which Capillary handles. The data is exported from the company's database as a CSV file and sent to the Capillary system. If a record exists, Capillary must update the record available in the Capillary database; otherwise, the system should create a new record.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "To insert and update a large amount of data in MongoDB, create a dataflow using the Bulk Upsert Mongo block. This block updates existing data and inserts new data if it is missing in the specified collection.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To insert and update a large amount of data in MongoDB, create a dataflow using the Bulk Upsert Mongo block. This block updates existing data and inserts new data if it is missing in the specified collection.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        22
+      ],
+      "raw": "Refer to this example [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/ee1d88a8-6a2f-4392-b320-7097b82de6b6/version/78c97c99-98e4-48e6-b6f4-ed15fa7e5397?ruleType=org) to understand how it is configured for a use case.\\\nMake sure you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow to understand how it is configured for a use case.Make sure you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        24,
+        24
+      ],
+      "raw": "# Configuring the Bulk Upsert Mongo block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the Bulk Upsert Mongo block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        26,
+        26
+      ],
+      "raw": "To configure the Bulk Upsert Mongo block,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the Bulk Upsert Mongo block,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        28,
+        33
+      ],
+      "raw": "1. From the dataflow canvas, click on the node and select the **Bulk Upsert Mongo** block.\n2. In the **Block Name**, enter the name of the block.\\\n   **Note**: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n3. In the **Collection Name** field, enter the collection name to be updated.\n4. In the **Mode** field, choose the mode of the update as `bulkupsert`.\n5. In the **Query** field, enter the data to ingest into MongoDB.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the node and select the Bulk Upsert Mongo block.In the Block Name, enter the name of the block.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Collection Name field, enter the collection name to be updated.In the Mode field, choose the mode of the update as bulkupsert.In the Query field, enter the data to ingest into MongoDB.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        35,
+        73
+      ],
+      "raw": "> 📘 Notes\n>\n> * Both a filter and a query are mandatory in each object.\n> * Each object contains:\n>   * Selection filter – Finds specific records in the database.\n>   * Query – Defines how the record should be updated.\n> * DAO methods interact with the database and execute queries.\n> * Expression handling enables dynamic query generation, allowing logic or conditions to modify queries before execution.\n> * If the filter or query is missing, the operation fails due to an invalid input query.\\\n>   Below is the code from the Script block\n>\n> ```json Code in the Script block\n> const requestBodyArray = getApiRequest().body;\n>\n>         const bulkOps = [];\n>\n>         for (const record of requestBodyArray) {\n>             const { userGroupId, targetGroupId, targetRuleId, progressSumAmt, progressAvgAmt } = record;\n>\n>             // Create the filter using the composite primary key\n>             const filter = {\n>                 userGroupId,\n>                 targetGroupId,\n>                 targetRuleId\n>             };\n>\n>             const upsertData = {\n>                 filter: JSON.stringify(filter),\n>                 query: JSON.stringify({ $set: { progressSumAmt, progressAvgAmt } }),\n>                 upsert: true\n>             };\n>             bulkOps.push(upsertData);\n>         }\n>\n>\n>         return {\n>             data: bulkOps\n>         };\n> ```",
+      "kind": "callout",
+      "syntax": "markdown",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘"
+      },
+      "text": "NotesBoth a filter and a query are mandatory in each object.Each object contains:Selection filter – Finds specific records in the database.Query – Defines how the record should be updated.DAO methods interact with the database and execute queries.Expression handling enables dynamic query generation, allowing logic or conditions to modify queries before execution.If the filter or query is missing, the operation fails due to an invalid input query.Below is the code from the Script blockconst requestBodyArray = getApiRequest().body;\n\n        const bulkOps = [];\n\n        for (const record of requestBodyArray) {\n            const { userGroupId, targetGroupId, targetRuleId, progressSumAmt, progressAvgAmt } = record;\n\n            // Create the filter using the composite primary key\n            const filter = {\n                userGroupId,\n                targetGroupId,\n                targetRuleId\n            };\n\n            const upsertData = {\n                filter: JSON.stringify(filter),\n                query: JSON.stringify({ $set: { progressSumAmt, progressAvgAmt } }),\n                upsert: true\n            };\n            bulkOps.push(upsertData);\n        }\n\n\n        return {\n            data: bulkOps\n        };",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        75,
+        78
+      ],
+      "raw": "6. (Optional) In the **Options** field, specify any additional options for the query. These options modify query behavior and how results are returned.\\\n   **Note**: Refer to [MongoDB documentation on options](https://www.mongodb.com/docs/manual/reference/method/db.collection.update/) for information on **Options**.\n7. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n8. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "(Optional) In the Options field, specify any additional options for the query. These options modify query behavior and how results are returned.Note: Refer to MongoDB documentation on options for information on Options.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 77
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 77
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "i": 14,
+      "lines": [
+        80,
+        80
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring the Bulk Upsert Mongo block\" border={true} caption=\"Configuring the Bulk Upsert Mongo block\" src=\"https://files.readme.io/0c39889ef39e83f5086261b9a4cbcf4b66a2c0e4816725b7aa369c0bbccfacf6-21.02.2025_12.22.32_REC_configuring_bulk_mongo.gif\" width=\"% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring the Bulk Upsert Mongo block",
+        "border": "{true}",
+        "caption": "Configuring the Bulk Upsert Mongo block",
+        "src": "https://files.readme.io/0c39889ef39e83f5086261b9a4cbcf4b66a2c0e4816725b7aa369c0bbccfacf6-21.02.2025_12.22.32_REC_configuring_bulk_mongo.gif",
+        "width": "% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    }
+  ]
+}

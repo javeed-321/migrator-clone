@@ -1,0 +1,368 @@
+{
+  "slug": "docs/hmac-block",
+  "source": "https://docs.capillarytech.com/docs/hmac-block.md",
+  "url": "https://docs.capillarytech.com/docs/hmac-block",
+  "title": "Hmac Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-03-26T05:47:21.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 13,
+    "list": 1,
+    "Image": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# HMAC Block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "HMAC Block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The HMAC block generates a cryptographic hash of a message (payload) using a secret key and a specified hash algorithm. The hash algorithms supported are SHA256, SHA1, SHA512, MD5, and MD5-SHA1.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The HMAC block generates a cryptographic hash of a message (payload) using a secret key and a specified hash algorithm. The hash algorithms supported are SHA256, SHA1, SHA512, MD5, and MD5-SHA1.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "HMAC is highly secure because it uses a secret key with a hashing algorithm, whereas standard hashing algorithms generate only a hash of the input data.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "HMAC is highly secure because it uses a secret key with a hashing algorithm, whereas standard hashing algorithms generate only a hash of the input data.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "**How the HMAC block works**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "How the HMAC block works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "The payload is first hashed using a hashing algorithm and then encoded in Base64. Base64 encoding converts binary data into a text format using a set of 64 characters.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The payload is first hashed using a hashing algorithm and then encoded in Base64. Base64 encoding converts binary data into a text format using a set of 64 characters.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Next, a message string is created by combining the API Key, timestamp, and hashed payload, with each part separated by a colon (:). The API Key and payload are taken from the request body, while the timestamp is generated during the dataflow execution.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Next, a message string is created by combining the API Key, timestamp, and hashed payload, with each part separated by a colon (:). The API Key and payload are taken from the request body, while the timestamp is generated during the dataflow execution.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "Finally, the hashing algorithm is applied to this message using the Secret Key, which is retrieved from configuration management during dataflow execution. This process generates an HMAC, which is then encoded in Base64.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Finally, the hashing algorithm is applied to this message using the Secret Key, which is retrieved from configuration management during dataflow execution. This process generates an HMAC, which is then encoded in Base64.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        21
+      ],
+      "raw": "# Example scenario",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Example scenario",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "**Requirement**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Requirement",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        25,
+        25
+      ],
+      "raw": "A gas company provides a mobile application that allows customers to locate nearby gas stations, check available facilities, view fueling details, track transactions, and access receipts. Capillary manages the company’s loyalty program.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "A gas company provides a mobile application that allows customers to locate nearby gas stations, check available facilities, view fueling details, track transactions, and access receipts. Capillary manages the company’s loyalty program.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        27,
+        27
+      ],
+      "raw": "For secure transaction processing, all transactions between Capillary and the gas company must be routed through a financial services provider. Accessing the provider’s APIs requires HMAC authentication, which Capillary must generate using the SHA-256 hash algorithm.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For secure transaction processing, all transactions between Capillary and the gas company must be routed through a financial services provider. Accessing the provider’s APIs requires HMAC authentication, which Capillary must generate using the SHA-256 hash algorithm.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        29,
+        29
+      ],
+      "raw": "**Solution**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Solution",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        31,
+        31
+      ],
+      "raw": "To overcome this issue, create a dataflow with an HMAC block that generates an HMAC.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To overcome this issue, create a dataflow with an HMAC block that generates an HMAC.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "Refer to this example [dataflow](https://eu.intouch.capillarytech.com/extensions/neo/ui/rule/f9522329-05ac-4a2c-9c4e-55355ae449a0/version/a15a544a-ddf0-45ad-bdf0-f916b7adeb06?ruleType=org) to understand how it is configured for a use case. Make sure you have access to DocDemo org (100737) and [access to Neo](https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Refer to this example dataflow to understand how it is configured for a use case. Make sure you have access to DocDemo org (100737) and access to Neo.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/access-management-neo#enabling-neo-extension-access--user-roles",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "i": 15,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "# Configuring the HMAC block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Configuring the HMAC block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        37,
+        37
+      ],
+      "raw": "To configure the HMAC block,",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To configure the HMAC block,",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        39,
+        46
+      ],
+      "raw": "1. From the dataflow canvas, click on the node and select the **Hmac** block.\n2. In the **Block Name**, enter the name of the block.\\\n   Note: Block names cannot contain spaces or special characters, except for underscores (\\_). Use camelCase or snake\\_case formatting.\n3. In the **Hash Algorithm,** choose the hash algorithm to compute the HMAC. The supported values are SHA256, SHA1, SHA512, MD5, MD5-SHA1\n4. In the **Secret Key,** enter the client secret key retrieved in the previous blocks using the DAO function `getValueByKey`.\n5. In the **Body,**  retrieved the `body` from the previous blocks using the DAO function `getBody`.\n6. Configure the [input execution logic](https://docs.capillarytech.com/docs/configuring-conditions), [cachable feature](https://docs.capillarytech.com/docs/configuring-caching), and [define the execution path](https://docs.capillarytech.com/docs/configuring-relations) as per the requirement.\n7. Click **Done**.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "From the dataflow canvas, click on the node and select the Hmac block.In the Block Name, enter the name of the block.Note: Block names cannot contain spaces or special characters, except for underscores (_). Use camelCase or snake_case formatting.In the Hash Algorithm, choose the hash algorithm to compute the HMAC. The supported values are SHA256, SHA1, SHA512, MD5, MD5-SHA1In the Secret Key, enter the client secret key retrieved in the previous blocks using the DAO function getValueByKey.In the Body,  retrieved the body from the previous blocks using the DAO function getBody.Configure the input execution logic, cachable feature, and define the execution path as per the requirement.Click Done.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-conditions",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-caching",
+          "line": 45
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-relations",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "i": 18,
+      "lines": [
+        48,
+        48
+      ],
+      "raw": "<Image align=\"center\" alt=\"Configuring the HMAC block\" border={true} caption=\"Configuring the HMAC block\" src=\"https://files.readme.io/e255c0355c9f7652066030f248a608c1f32e01cff6d7b6a6358985a1fb94f7c3-18.02.2025_11.18.19_REC_Configuring_hmac.gif\" width=\"85% \" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "align": "center",
+        "alt": "Configuring the HMAC block",
+        "border": "{true}",
+        "caption": "Configuring the HMAC block",
+        "src": "https://files.readme.io/e255c0355c9f7652066030f248a608c1f32e01cff6d7b6a6358985a1fb94f7c3-18.02.2025_11.18.19_REC_Configuring_hmac.gif",
+        "width": "85% "
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "width has a trailing space — trim it"
+      ]
+    }
+  ]
+}

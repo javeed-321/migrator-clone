@@ -1,0 +1,470 @@
+{
+  "slug": "docs/jslt-block",
+  "source": "https://docs.capillarytech.com/docs/jslt-block.md",
+  "url": "https://docs.capillarytech.com/docs/jslt-block",
+  "title": "Jslt Block",
+  "description": "",
+  "section": "Building Block Configuration",
+  "kind": "guide",
+  "frontmatter": {
+    "updatedAt": "2026-07-03T11:20:14.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 3,
+    "paragraph": 13,
+    "Table": 2,
+    "code": 2,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# JSLT block",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "JSLT block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The `jslt_transform` block applies a JSLT transformation to JSON data as a transformation block in a Connect+ dataflow. JSLT is an open-source query and transformation language for JSON. The block accepts a JSLT expression that defines how the input JSON is restructured or mapped before being passed to downstream blocks. The block name must be alphanumeric.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The jslt_transform block applies a JSLT transformation to JSON data as a transformation block in a Connect+ dataflow. JSLT is an open-source query and transformation language for JSON. The block accepts a JSLT expression that defines how the input JSON is restructured or mapped before being passed to downstream blocks. The block name must be alphanumeric.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "**When to use this block**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When to use this block",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "Use this block when your dataflow needs to restructure, filter, or remap a JSON payload before it is passed to the destination, for example, renaming fields, extracting nested values, or reshaping the payload structure.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use this block when your dataflow needs to restructure, filter, or remap a JSON payload before it is passed to the destination, for example, renaming fields, extracting nested values, or reshaping the payload structure.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        15
+      ],
+      "raw": "**Prerequisites**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Prerequisites",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        17,
+        17
+      ],
+      "raw": "Before configuring this block, make sure you have a JSLT transformation expression prepared for your use case",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before configuring this block, make sure you have a JSLT transformation expression prepared for your use case",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        19,
+        19
+      ],
+      "raw": "## Standard properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Standard properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        21,
+        86
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Block name**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        A name for the block instance. The name must be alphanumeric. There is no character limit.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **JSLT Transformation**\n      </td>\n\n      <td>\n        Yes\n      </td>\n\n      <td>\n        The JSLT expression used to transform the input JSON data. Enter the transformation template in the code editor.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Send each record separately**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Determines whether each record is sent as a separate API request.\n\n        - Select `true` to send one API request per record. The JSLT expression processes one record at a time. This value must remain `true` even if the **Grouping Limit** in [**Transform (CSV to JSON)**](https://docs.capillarytech.com/docs/transform-csv-to-json-block) is set to more than `1`.\n        - Select `false` to send multiple records in a single bulk API request. In this mode, the JSLT expression must include a `for` loop to process multiple records.\n\n        Default value: `true`.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Block name",
+            "No",
+            "A name for the block instance. The name must be alphanumeric. There is no character limit."
+          ],
+          [
+            "JSLT Transformation",
+            "Yes",
+            "The JSLT expression used to transform the input JSON data. Enter the transformation template in the code editor."
+          ],
+          [
+            "Send each record separately",
+            "No",
+            "Determines whether each record is sent as a separate API request.Select true to send one API request per record. The JSLT expression processes one record at a time. This value must remain true even if the Grouping Limit in Transform (CSV to JSON) is set to more than 1.Select false to send multiple records in a single bulk API request. In this mode, the JSLT expression must include a for loop to process multiple records.Default value: true."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/transform-csv-to-json-block",
+          "line": 79
+        }
+      ]
+    },
+    {
+      "i": 9,
+      "lines": [
+        88,
+        88
+      ],
+      "raw": "## Advanced properties",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Advanced properties",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        90,
+        90
+      ],
+      "raw": "⚠️ Advanced properties for JSLT JSON Transform. Make changes only if you know what you are doing.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "⚠️ Advanced properties for JSLT JSON Transform. Make changes only if you know what you are doing.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        92,
+        152
+      ],
+      "raw": "<Table align={[\"left\",\"left\",\"left\"]}>\n  <thead>\n    <tr>\n      <th>\n        Field name\n      </th>\n\n      <th>\n        Required\n      </th>\n\n      <th>\n        Description\n      </th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr>\n      <td>\n        **Query parameters**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Defines the key-value pairs that are appended to the API URL when making the request.\n\n        For each query parameter value:\n\n        - If the value matches a header name in the source file, Connect+ automatically replaces it with the corresponding value from that record.\n        - If the value does not match any header in the source file, Connect+ treats it as a constant value and sends it as entered.\n\n        You do not need to manually append query parameters to the API URL. Connect+ automatically adds the configured query parameters when sending the request.\n      </td>\n    </tr>\n\n    <tr>\n      <td>\n        **Attributes**\n      </td>\n\n      <td>\n        No\n      </td>\n\n      <td>\n        Defines the values that can be referenced later in the dataflow for downstream processing, such as API path parameters or additional headers.\n\n        For each attribute value:\n\n        - If the value matches a header name in the source file, Connect+ replaces it with the corresponding value from that record at runtime.\n        - If the value does not match any header in the source file, Connect+ treats it as a constant value and uses it as entered.\n\n        **Example:** If your source file contains a column named `externalId`, but the destination API expects the value as `userId` in the endpoint `v2/customers/{userId}/labels`, create an attribute with `userId` as the **key** and `externalId` as the **value**. During execution, Connect+ reads the value of `externalId` from each record and replaces `{userId}` in the API request with that value.\n      </td>\n    </tr>\n  </tbody>\n</Table>",
+      "kind": "table",
+      "syntax": "jsx",
+      "component": "Table",
+      "attrs": {
+        "align": "{[\"left\",\"left\",\"left\"]}"
+      },
+      "table": {
+        "header": [
+          "Field name",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Query parameters",
+            "No",
+            "Defines the key-value pairs that are appended to the API URL when making the request.For each query parameter value:If the value matches a header name in the source file, Connect+ automatically replaces it with the corresponding value from that record.If the value does not match any header in the source file, Connect+ treats it as a constant value and sends it as entered.You do not need to manually append query parameters to the API URL. Connect+ automatically adds the configured query parameters when sending the request."
+          ],
+          [
+            "Attributes",
+            "No",
+            "Defines the values that can be referenced later in the dataflow for downstream processing, such as API path parameters or additional headers.For each attribute value:If the value matches a header name in the source file, Connect+ replaces it with the corresponding value from that record at runtime.If the value does not match any header in the source file, Connect+ treats it as a constant value and uses it as entered.Example: If your source file contains a column named externalId, but the destination API expects the value as userId in the endpoint v2/customers/{userId}/labels, create an attribute with userId as the key and externalId as the value. During execution, Connect+ reads the value of externalId from each record and replaces {userId} in the API request with that value."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "rebuild as a markdown table; only cells with block content need HTML"
+      },
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "For details on writing the JSLT expression for different use cases, refer to the [Use cases](https://docs.capillarytech.com/docs/connectplus-use-cases).",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For details on writing the JSLT expression for different use cases, refer to the Use cases.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/connectplus-use-cases",
+          "line": 154
+        }
+      ]
+    },
+    {
+      "i": 13,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "**When the API expects a single object**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When the API expects a single object",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "Write a direct mapping. The expression maps one flat JSON input to the required nested structure and produces a single output object. Use this for endpoints like `/v2/customers`, which accept one record per request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Write a direct mapping. The expression maps one flat JSON input to the required nested structure and produces a single output object. Use this for endpoints like /v2/customers, which accept one record per request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        160,
+        176
+      ],
+      "raw": "```json\n{\n  \"profiles\": [\n    {\n      \"firstName\": .firstname,\n      \"lastName\": .lastname,\n      \"source\": .source,\n      \"identifiers\": [\n        {\n          \"type\": .identifierType,\n          \"value\": .value\n        }\n      ]\n    }\n  ]\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "{\n  \"profiles\": [\n    {\n      \"firstName\": .firstname,\n      \"lastName\": .lastname,\n      \"source\": .source,\n      \"identifiers\": [\n        {\n          \"type\": .identifierType,\n          \"value\": .value\n        }\n      ]\n    }\n  ]\n}"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        178,
+        178
+      ],
+      "raw": "**When the API expects an array of objects**",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When the API expects an array of objects",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        180,
+        180
+      ],
+      "raw": "Use `for (.)` at the beginning of the expression. The loop iterates over every row in the input batch and produces one output object per row, wrapping all results into an array. Use this for endpoints like `/v2/customers/bulk`, which accept multiple records in a single request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use for (.) at the beginning of the expression. The loop iterates over every row in the input batch and produces one output object per row, wrapping all results into an array. Use this for endpoints like /v2/customers/bulk, which accept multiple records in a single request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        182,
+        201
+      ],
+      "raw": "```json\n[\n  for (.)\n  {\n    \"profiles\": [\n      {\n        \"firstName\": .firstname,\n        \"lastName\": .lastname,\n        \"source\": .source,\n        \"identifiers\": [\n          {\n            \"type\": .identifierType,\n            \"value\": .value\n          }\n        ]\n      }\n    ]\n  }\n]\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": null,
+        "code": "[\n  for (.)\n  {\n    \"profiles\": [\n      {\n        \"firstName\": .firstname,\n        \"lastName\": .lastname,\n        \"source\": .source,\n        \"identifiers\": [\n          {\n            \"type\": .identifierType,\n            \"value\": .value\n          }\n        ]\n      }\n    ]\n  }\n]"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        203,
+        203
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 203
+        }
+      ]
+    },
+    {
+      "i": 20,
+      "lines": [
+        205,
+        205
+      ],
+      "raw": "**Note:** When writing JSLT transformations, handle both `null` and empty-string values explicitly. If these cases are not handled, Connect+ can omit fields from the API payload, which can cause downstream API validation failures.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Note: When writing JSLT transformations, handle both null and empty-string values explicitly. If these cases are not handled, Connect+ can omit fields from the API payload, which can cause downstream API validation failures.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        207,
+        207
+      ],
+      "raw": "For fallback values, use conditions such as `is-null(field)` along with `field == \"\"` when required.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For fallback values, use conditions such as is-null(field) along with field == \"\" when required.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    }
+  ]
+}

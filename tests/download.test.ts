@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { buildBlocks, splitFrontmatter } from "../src/harvest/blocks";
-import { parseLlmsTxt, slugFromUrl, toMarkdownUrl } from "../src/harvest/fetch";
-import { buildInventory } from "../src/harvest/inventory";
-import type { Block, PageIR } from "../src/harvest/types";
+import { buildBlocks, splitFrontmatter } from "../src/download/blocks";
+import { parseLlmsTxt, slugFromUrl, toMarkdownUrl } from "../src/download/fetch";
+import { buildInventory } from "../src/download/inventory";
+import type { Block, PageIR } from "../src/download/types";
 
 /** A page shaped like the ones ReadMe actually serves at `<url>.md`. */
 const PAGE = `---

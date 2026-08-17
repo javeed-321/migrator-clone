@@ -1,0 +1,2344 @@
+{
+  "slug": "reference/loyalty-cart-promotions",
+  "source": "https://docs.capillarytech.com/reference/loyalty-cart-promotions.md",
+  "url": "https://docs.capillarytech.com/reference/loyalty-cart-promotions",
+  "title": "Loyalty Cart Promotions",
+  "description": "",
+  "section": "Cart Promotions",
+  "kind": "api",
+  "frontmatter": {
+    "updatedAt": "2026-08-14T05:42:27.000Z"
+  },
+  "parseMode": "mdx",
+  "components": {
+    "boilerplate": 1,
+    "heading": 30,
+    "paragraph": 54,
+    "list": 8,
+    "Table": 6,
+    "Callout": 4,
+    "code": 10,
+    "Image": 1,
+    "br": 1
+  },
+  "blocks": [
+    {
+      "i": 0,
+      "lines": [
+        5,
+        5
+      ],
+      "raw": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "kind": "boilerplate",
+      "syntax": "markdown",
+      "text": "Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt. Use this file to discover all available pages before exploring further.",
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "ReadMe's injected llms.txt preamble"
+      },
+      "inline": []
+    },
+    {
+      "i": 1,
+      "lines": [
+        7,
+        7
+      ],
+      "raw": "# Cart Promotions",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Cart Promotions",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 2,
+      "lines": [
+        9,
+        9
+      ],
+      "raw": "The Cart Promotion APIs let you create, manage, and evaluate promotions that scan customer carts at checkout. Use these APIs to automate rewards, including discounts, free items, or bundle pricing based on spend amount, item count, brands, and payment methods.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The Cart Promotion APIs let you create, manage, and evaluate promotions that scan customer carts at checkout. Use these APIs to automate rewards, including discounts, free items, or bundle pricing based on spend amount, item count, brands, and payment methods.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 3,
+      "lines": [
+        11,
+        11
+      ],
+      "raw": "# What can cart promotion do?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "What can cart promotion do?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 4,
+      "lines": [
+        13,
+        13
+      ],
+      "raw": "You can use the Cart Promotion APIs to:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You can use the Cart Promotion APIs to:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 5,
+      "lines": [
+        15,
+        21
+      ],
+      "raw": "* **Create various promotion types:** You can set up rewards based on how they are triggered, such as automatically for your customers, via manual code entry, or as earned rewards.\n* **Define trigger conditions:** You can add conditions based on the cart subtotal, the number of items, specific product categories, or the customer's payment method.\n* **Apply rewards:** You can set the promotion to issue benefits such as percentage or fixed discounts, combo offers, or free products.\n* **Set usage limits:** You can control how many times a promotion can be used by a single customer, within one cart, or across the entire promotion period.\n* **Manage how promotions stack:** You can decide which promotions can be used together and which one gets applied first when multiple rewards are available.\n* **Restrict where and when:** You can limit availability to specific stores or regions, and set specific days or hours when your promotion is active.\n* **Build up quantity across purchases:** You can let a customer's qualifying quantity accumulate across multiple transactions instead of resetting with every cart, and carry over any leftover quantity into the next redemption cycle. See [Accumulation-based offers](#accumulation-based-offers).",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Create various promotion types: You can set up rewards based on how they are triggered, such as automatically for your customers, via manual code entry, or as earned rewards.Define trigger conditions: You can add conditions based on the cart subtotal, the number of items, specific product categories, or the customer's payment method.Apply rewards: You can set the promotion to issue benefits such as percentage or fixed discounts, combo offers, or free products.Set usage limits: You can control how many times a promotion can be used by a single customer, within one cart, or across the entire promotion period.Manage how promotions stack: You can decide which promotions can be used together and which one gets applied first when multiple rewards are available.Restrict where and when: You can limit availability to specific stores or regions, and set specific days or hours when your promotion is active.Build up quantity across purchases: You can let a customer's qualifying quantity accumulate across multiple transactions instead of resetting with every cart, and carry over any leftover quantity into the next redemption cycle. See Accumulation-based offers.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 6,
+      "lines": [
+        23,
+        23
+      ],
+      "raw": "# What are the types of cart promotions?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "What are the types of cart promotions?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 7,
+      "lines": [
+        25,
+        31
+      ],
+      "raw": "| Promotion Type | How it Works                                                                                                                             |\n| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |\n| **POS**        | Applied automatically at checkout for eligible customers. You don't need the customer to take any manual action.                         |\n| **CUSTOMER**   | You require the customer to actively opt in or join the offer before the promotion becomes active for them.                              |\n| **CODE**       | Your customer triggers the reward by manually entering a specific promo code during the checkout process.                                |\n| **EARNING**    | You set a goal that the customer must first complete to \"earn\" the promotion before they can redeem it.                                  |\n| **REWARD**     | You issue this directly to a specific customer or segment. It remains invisible at checkout until you have officially issued it to them. |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Promotion Type",
+          "How it Works"
+        ],
+        "rows": [
+          [
+            "POS",
+            "Applied automatically at checkout for eligible customers. You don't need the customer to take any manual action."
+          ],
+          [
+            "CUSTOMER",
+            "You require the customer to actively opt in or join the offer before the promotion becomes active for them."
+          ],
+          [
+            "CODE",
+            "Your customer triggers the reward by manually entering a specific promo code during the checkout process."
+          ],
+          [
+            "EARNING",
+            "You set a goal that the customer must first complete to \"earn\" the promotion before they can redeem it."
+          ],
+          [
+            "REWARD",
+            "You issue this directly to a specific customer or segment. It remains invisible at checkout until you have officially issued it to them."
+          ]
+        ],
+        "align": [
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 8,
+      "lines": [
+        33,
+        33
+      ],
+      "raw": "# How is the cart promotion structured?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "How is the cart promotion structured?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 9,
+      "lines": [
+        35,
+        35
+      ],
+      "raw": "Every cart promotion is built from three functional components:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Every cart promotion is built from three functional components:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 10,
+      "lines": [
+        37,
+        39
+      ],
+      "raw": "* **Type**: You can define the target and issuance of your cart promotion, such as identifying a loyalty member at checkout or requiring a customer to enter a specific code.\n* **Condition**: You can establish the cart context needed to trigger the cart promotion, such as requiring specific product combinations, such as buying a laptop and a mouse together or a particular payment mode like using a VISA card.\n* **Action**: You can specify the benefit the cart promotion provides, such as a monetary discount on the total cart value, a free product, or a fixed price for a bundle.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Type: You can define the target and issuance of your cart promotion, such as identifying a loyalty member at checkout or requiring a customer to enter a specific code.Condition: You can establish the cart context needed to trigger the cart promotion, such as requiring specific product combinations, such as buying a laptop and a mouse together or a particular payment mode like using a VISA card.Action: You can specify the benefit the cart promotion provides, such as a monetary discount on the total cart value, a free product, or a fixed price for a bundle.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 11,
+      "lines": [
+        41,
+        47
+      ],
+      "raw": "<Callout icon=\"🚧\" theme=\"warn\">\n  Notes\n\n  - **Tender logic:** A `TENDER` condition must always be paired with a `TENDER` action.\n  - **Action constraints:** `FIXED_PRICE` actions are only valid with `PRODUCT` or `COMBO_PRODUCT` conditions.\n  - **Cart locking:** Temporarily reserving a promotion is disabled by default. You can create a JIRA ticket to enable `isLockingEnabled`.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "🚧",
+        "theme": "warn"
+      },
+      "text": "NotesTender logic: A TENDER condition must always be paired with a TENDER action.Action constraints: FIXED_PRICE actions are only valid with PRODUCT or COMBO_PRODUCT conditions.Cart locking: Temporarily reserving a promotion is disabled by default. You can create a JIRA ticket to enable isLockingEnabled.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "alert"
+        }
+      },
+      "children": [
+        {
+          "i": 11,
+          "lines": [
+            42,
+            42
+          ],
+          "raw": "  Notes",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Notes",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 12,
+          "lines": [
+            44,
+            46
+          ],
+          "raw": "  - **Tender logic:** A `TENDER` condition must always be paired with a `TENDER` action.\n  - **Action constraints:** `FIXED_PRICE` actions are only valid with `PRODUCT` or `COMBO_PRODUCT` conditions.\n  - **Cart locking:** Temporarily reserving a promotion is disabled by default. You can create a JIRA ticket to enable `isLockingEnabled`.",
+          "kind": "list",
+          "syntax": "markdown",
+          "text": "Tender logic: A TENDER condition must always be paired with a TENDER action.Action constraints: FIXED_PRICE actions are only valid with PRODUCT or COMBO_PRODUCT conditions.Cart locking: Temporarily reserving a promotion is disabled by default. You can create a JIRA ticket to enable isLockingEnabled.",
+          "attrs": {
+            "ordered": "false"
+          },
+          "target": {
+            "component": null,
+            "status": "transform",
+            "note": "normalise `*`/`+` markers to `-`"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 12,
+      "lines": [
+        49,
+        49
+      ],
+      "raw": "# How does evaluating carts and redeeming cart promotions work?",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "How does evaluating carts and redeeming cart promotions work?",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 13,
+      "lines": [
+        51,
+        51
+      ],
+      "raw": "Before a promotion is applied, your system must check the cart's eligibility. Once the customer is ready to pay, you can finalise the promotion using one of two redemption strategies.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Before a promotion is applied, your system must check the cart's eligibility. Once the customer is ready to pay, you can finalise the promotion using one of two redemption strategies.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 14,
+      "lines": [
+        53,
+        53
+      ],
+      "raw": "## Identifying the transaction source",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Identifying the transaction source",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 15,
+      "lines": [
+        55,
+        55
+      ],
+      "raw": "To ensure the correct store gets credit for a sale, the system identifies the \"till\" using these methods:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To ensure the correct store gets credit for a sale, the system identifies the \"till\" using these methods:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 16,
+      "lines": [
+        57,
+        58
+      ],
+      "raw": "* You can specify a till code by including the `X-CAP-API-ATTRIBUTION-TILL-CODE` request header.\n* If no header is provided, the system identifies the till using the OAuth or basic Auth credentials provided.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "You can specify a till code by including the X-CAP-API-ATTRIBUTION-TILL-CODE request header.If no header is provided, the system identifies the till using the OAuth or basic Auth credentials provided.",
+      "attrs": {
+        "ordered": "false"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": []
+    },
+    {
+      "i": 17,
+      "lines": [
+        60,
+        60
+      ],
+      "raw": "## Choosing your redemption strategy",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Choosing your redemption strategy",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 18,
+      "lines": [
+        62,
+        62
+      ],
+      "raw": "Your organization's redemption behavior is set at the backend level. Contact your platform administrator to enable the strategy that best fits your technical workflow.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Your organization's redemption behavior is set at the backend level. Contact your platform administrator to enable the strategy that best fits your technical workflow.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 19,
+      "lines": [
+        64,
+        64
+      ],
+      "raw": "### Strategy 1: Real-time validation (During the sale)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Strategy 1: Real-time validation (During the sale)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 20,
+      "lines": [
+        66,
+        66
+      ],
+      "raw": "You validate the cart first and then submit the transaction with a unique ID. You should enable the strategy `REDEMPTION_WITH_CART_EVALUATION` within your org.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "You validate the cart first and then submit the transaction with a unique ID. You should enable the strategy REDEMPTION_WITH_CART_EVALUATION within your org.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 21,
+      "lines": [
+        68,
+        69
+      ],
+      "raw": "1. Call the [Evaluate API,](https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate) with the cart contents, including any promo codes or payment vouchers the customer wants to apply. The cart can be evaluated even if the customer is not yet identified. The system returns the eligible promotions along with a unique `evaluationId`.\n2. Pass the `evaluationId` into the [Transaction V2 API](https://docs.capillarytech.com/reference/add-transaction-single) to finalise the sale. The system validates that the promotions being redeemed match exactly what was evaluated before the transaction.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Call the Evaluate API, with the cart contents, including any promo codes or payment vouchers the customer wants to apply. The cart can be evaluated even if the customer is not yet identified. The system returns the eligible promotions along with a unique evaluationId.Pass the evaluationId into the Transaction V2 API to finalise the sale. The system validates that the promotions being redeemed match exactly what was evaluated before the transaction.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate",
+          "line": 68
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-transaction-single",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "i": 22,
+      "lines": [
+        71,
+        71
+      ],
+      "raw": "### Strategy 2: Post-transaction reporting (After the sale)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Strategy 2: Post-transaction reporting (After the sale)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 23,
+      "lines": [
+        73,
+        73
+      ],
+      "raw": "This lets you report applied promotions after the customer has already paid. Use it when the final quantity or amount is only known once the sale is complete (for example, fuel dispensers), and pricing is flat per unit. You should enable the strategy `REDEMPTION_WITHOUT_CART_EVALUATION` within your org.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This lets you report applied promotions after the customer has already paid. Use it when the final quantity or amount is only known once the sale is complete (for example, fuel dispensers), and pricing is flat per unit. You should enable the strategy REDEMPTION_WITHOUT_CART_EVALUATION within your org.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 24,
+      "lines": [
+        75,
+        75
+      ],
+      "raw": "**Evaluate**: You can still use the Evaluate API to check for active promotions, but the `evaluationId` is not required for the redemption step.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Evaluate: You can still use the Evaluate API to check for active promotions, but the evaluationId is not required for the redemption step.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 25,
+      "lines": [
+        77,
+        77
+      ],
+      "raw": "1. Redeem: Once the transaction is complete, report the applied promotions using the [Redemptions API](https://docs.capillarytech.com/reference/redeem-cart-promotion). You can identify the customer using either their InTouch ID or an external identifier such as a mobile number or email.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redeem: Once the transaction is complete, report the applied promotions using the Redemptions API. You can identify the customer using either their InTouch ID or an external identifier such as a mobile number or email.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/redeem-cart-promotion",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "i": 26,
+      "lines": [
+        79,
+        79
+      ],
+      "raw": "### Strategy 3: Capped evaluation (After the sale, with real-time accuracy)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Strategy 3: Capped evaluation (After the sale, with real-time accuracy)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 27,
+      "lines": [
+        81,
+        81
+      ],
+      "raw": "This strategy reports redemptions after the sale, like Strategy 2, but is for pricing that isn't flat per unit (tiered or bulk pricing). Enable `REDEMPTION_WITHOUT_CART_EVALUATION_CAPPED` within your org.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This strategy reports redemptions after the sale, like Strategy 2, but is for pricing that isn't flat per unit (tiered or bulk pricing). Enable REDEMPTION_WITHOUT_CART_EVALUATION_CAPPED within your org.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 28,
+      "lines": [
+        83,
+        83
+      ],
+      "raw": "**Evaluate**: Call the Evaluate API with the real cart quantity and amount, the same way as Strategy 1, so the discount is capped against the item's true value rather than a placeholder.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Evaluate: Call the Evaluate API with the real cart quantity and amount, the same way as Strategy 1, so the discount is capped against the item's true value rather than a placeholder.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 29,
+      "lines": [
+        85,
+        85
+      ],
+      "raw": "1. Redeem: Report the applied promotions using the [Redemptions API](https://docs.capillarytech.com/reference/redeem-cart-promotion), the same way as Strategy 2.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "Redeem: Report the applied promotions using the Redemptions API, the same way as Strategy 2.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/redeem-cart-promotion",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "i": 30,
+      "lines": [
+        87,
+        87
+      ],
+      "raw": "This strategy currently requires Cart Locking to be disabled for the org, and doesn't support Payment Voucher or Tender-based promotions. See [Configuring cart promotion evaluation strategy](https://docs.capillarytech.com/docs/configuring-cart-promotion-redemption) for the full comparison of all three strategies.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "This strategy currently requires Cart Locking to be disabled for the org, and doesn't support Payment Voucher or Tender-based promotions. See Configuring cart promotion evaluation strategy for the full comparison of all three strategies.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/configuring-cart-promotion-redemption",
+          "line": 87
+        }
+      ]
+    },
+    {
+      "i": 31,
+      "lines": [
+        89,
+        89
+      ],
+      "raw": "# Stacking and Ranking",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Stacking and Ranking",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 32,
+      "lines": [
+        91,
+        91
+      ],
+      "raw": "When multiple promotions are valid for a single transaction, stacking rules and priority settings determine which promotions are applied and in what order.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When multiple promotions are valid for a single transaction, stacking rules and priority settings determine which promotions are applied and in what order.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 33,
+      "lines": [
+        93,
+        93
+      ],
+      "raw": "## Stacking behaviour",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Stacking behaviour",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 34,
+      "lines": [
+        95,
+        95
+      ],
+      "raw": "Each promotion has a stacking setting that controls whether it can be applied with other promotions on the same cart.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Each promotion has a stacking setting that controls whether it can be applied with other promotions on the same cart.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 35,
+      "lines": [
+        97,
+        100
+      ],
+      "raw": "| Setting                           | How it works                                                                  | When to use                                                                                           |\n| --------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |\n| **Exclusive** (stacking disabled) | If this promotion is applied, no other promotions can be applied to the cart. | Use for high-value offers like \"Flat 50% Off Everything\" where additional discounts are not intended. |\n| **Stackable** (stacking enabled)  | Other applicable promotions can be applied alongside this one.                | Use for smaller incentives like \"Free Shipping\" that should combine with other discounts.             |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Setting",
+          "How it works",
+          "When to use"
+        ],
+        "rows": [
+          [
+            "Exclusive (stacking disabled)",
+            "If this promotion is applied, no other promotions can be applied to the cart.",
+            "Use for high-value offers like \"Flat 50% Off Everything\" where additional discounts are not intended."
+          ],
+          [
+            "Stackable (stacking enabled)",
+            "Other applicable promotions can be applied alongside this one.",
+            "Use for smaller incentives like \"Free Shipping\" that should combine with other discounts."
+          ]
+        ],
+        "align": [
+          null,
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 36,
+      "lines": [
+        102,
+        102
+      ],
+      "raw": "**When exclusive and stackable promotions qualify at the same time**, the exclusive promotion takes precedence and blocks all others from being applied, regardless of their individual stacking settings.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When exclusive and stackable promotions qualify at the same time, the exclusive promotion takes precedence and blocks all others from being applied, regardless of their individual stacking settings.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 37,
+      "lines": [
+        104,
+        104
+      ],
+      "raw": "**When multiple exclusive promotions qualify**, only one can be applied. The system uses the promotion ranking order below to determine which exclusive promotion wins.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When multiple exclusive promotions qualify, only one can be applied. The system uses the promotion ranking order below to determine which exclusive promotion wins.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 38,
+      "lines": [
+        106,
+        106
+      ],
+      "raw": "**When multiple stackable promotions qualify**, all of them are applied. The ranking order determines the sequence in which each discount is calculated — this matters because some discounts are applied to the original cart value, while others are applied to the already-discounted amount.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When multiple stackable promotions qualify, all of them are applied. The ranking order determines the sequence in which each discount is calculated — this matters because some discounts are applied to the original cart value, while others are applied to the already-discounted amount.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 39,
+      "lines": [
+        108,
+        108
+      ],
+      "raw": "## Promotion ranking order",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Promotion ranking order",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 40,
+      "lines": [
+        110,
+        110
+      ],
+      "raw": "When the system must choose between promotions — either because stacking is disabled or to determine the order of application — it evaluates them in the following priority order:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When the system must choose between promotions — either because stacking is disabled or to determine the order of application — it evaluates them in the following priority order:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 41,
+      "lines": [
+        112,
+        112
+      ],
+      "raw": "**1. Segmented promotion** *(Highest priority)* Targets a specific, pre-defined customer group. Because this promotion was deliberately configured for a precise audience, it is treated as the most intentional and takes precedence over all other types.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "1. Segmented promotion (Highest priority) Targets a specific, pre-defined customer group. Because this promotion was deliberately configured for a precise audience, it is treated as the most intentional and takes precedence over all other types.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 42,
+      "lines": [
+        114,
+        114
+      ],
+      "raw": "**2. Reward** The customer spent loyalty points or currency to acquire this promotion. Because the customer has already given up something of value to hold it, the system honours it before considering promotions they received passively.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "2. Reward The customer spent loyalty points or currency to acquire this promotion. Because the customer has already given up something of value to hold it, the system honours it before considering promotions they received passively.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 43,
+      "lines": [
+        116,
+        116
+      ],
+      "raw": "**3. Code-linked** The customer actively typed in a promo code at checkout, signalling deliberate intent to use that specific offer. This explicit action gives it higher priority than promotions applied automatically.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "3. Code-linked The customer actively typed in a promo code at checkout, signalling deliberate intent to use that specific offer. This explicit action gives it higher priority than promotions applied automatically.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 44,
+      "lines": [
+        118,
+        118
+      ],
+      "raw": "**4. Earliest expiry** Among promotions that are otherwise equal in priority, the one expiring soonest is applied first. This prevents a customer from losing a nearly-expired offer because a longer-lived one was picked instead.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "4. Earliest expiry Among promotions that are otherwise equal in priority, the one expiring soonest is applied first. This prevents a customer from losing a nearly-expired offer because a longer-lived one was picked instead.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 45,
+      "lines": [
+        120,
+        120
+      ],
+      "raw": "**5. Maximum discount** *(Lowest priority)* If no other differentiator applies, the promotion that gives the customer the greatest monetary saving is chosen. This acts as the final tiebreaker and ensures the customer always gets the best available value when all else is equal.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "5. Maximum discount (Lowest priority) If no other differentiator applies, the promotion that gives the customer the greatest monetary saving is chosen. This acts as the final tiebreaker and ensures the customer always gets the best available value when all else is equal.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 46,
+      "lines": [
+        122,
+        126
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  **Note:**\n\n  The ranking order determines which promotion is applied when multiple promotions qualify and only one can be applied. When stacking is enabled, multiple promotions can be applied together and ranking controls the order in which they are evaluated, not which ones are excluded.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Note:The ranking order determines which promotion is applied when multiple promotions qualify and only one can be applied. When stacking is enabled, multiple promotions can be applied together and ranking controls the order in which they are evaluated, not which ones are excluded.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 48,
+          "lines": [
+            123,
+            123
+          ],
+          "raw": "  **Note:**",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Note:",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        },
+        {
+          "i": 49,
+          "lines": [
+            125,
+            125
+          ],
+          "raw": "  The ranking order determines which promotion is applied when multiple promotions qualify and only one can be applied. When stacking is enabled, multiple promotions can be applied together and ranking controls the order in which they are evaluated, not which ones are excluded.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "The ranking order determines which promotion is applied when multiple promotions qualify and only one can be applied. When stacking is enabled, multiple promotions can be applied together and ranking controls the order in which they are evaluated, not which ones are excluded.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 47,
+      "lines": [
+        128,
+        128
+      ],
+      "raw": "## How to create a cart promotion: API workflow",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How to create a cart promotion: API workflow",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 48,
+      "lines": [
+        130,
+        130
+      ],
+      "raw": "The sequence of calls depends on the promotion `type`. Use the table below to determine the correct flow for your use case.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The sequence of calls depends on the promotion type. Use the table below to determine the correct flow for your use case.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 49,
+      "lines": [
+        132,
+        138
+      ],
+      "raw": "| Promotion Type | API Call Sequence                                                           |\n| -------------- | --------------------------------------------------------------------------- |\n| **POS**        | Create → Evaluate → Redeem                                                  |\n| **CUSTOMER**   | Create → Issue → Evaluate → Redeem                                          |\n| **CODE**       | Create → Issue codes → Link code to customer (optional) → Evaluate → Redeem |\n| **EARNING**    | Create → Earn → Evaluate → Redeem                                           |\n| **REWARD**     | Create → Issue → Evaluate → Redeem                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Promotion Type",
+          "API Call Sequence"
+        ],
+        "rows": [
+          [
+            "POS",
+            "Create → Evaluate → Redeem"
+          ],
+          [
+            "CUSTOMER",
+            "Create → Issue → Evaluate → Redeem"
+          ],
+          [
+            "CODE",
+            "Create → Issue codes → Link code to customer (optional) → Evaluate → Redeem"
+          ],
+          [
+            "EARNING",
+            "Create → Earn → Evaluate → Redeem"
+          ],
+          [
+            "REWARD",
+            "Create → Issue → Evaluate → Redeem"
+          ]
+        ],
+        "align": [
+          null,
+          null
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 50,
+      "lines": [
+        140,
+        142
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  A `CUSTOMER`-type promotion always requires the Issue step — it never applies automatically, regardless of other settings.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "A CUSTOMER-type promotion always requires the Issue step — it never applies automatically, regardless of other settings.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 54,
+          "lines": [
+            141,
+            141
+          ],
+          "raw": "  A `CUSTOMER`-type promotion always requires the Issue step — it never applies automatically, regardless of other settings.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "A CUSTOMER-type promotion always requires the Issue step — it never applies automatically, regardless of other settings.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    },
+    {
+      "i": 51,
+      "lines": [
+        144,
+        144
+      ],
+      "raw": "### Step 1: Create (Required for all)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 1: Create (Required for all)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 52,
+      "lines": [
+        146,
+        146
+      ],
+      "raw": "Define the promotion's core logic. A single `POST /api_gateway/v1/promotions` call sets the conditions, actions, and limits.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Define the promotion's core logic. A single POST /api_gateway/v1/promotions call sets the conditions, actions, and limits.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 53,
+      "lines": [
+        148,
+        148
+      ],
+      "raw": "### Step 2: Issue (CODE, REWARD, and Opt-in CUSTOMER)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 2: Issue (CODE, REWARD, and Opt-in CUSTOMER)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 54,
+      "lines": [
+        150,
+        150
+      ],
+      "raw": "For `CODE` types, you must generate codes via the Issue API before they can be used. For `REWARD` types, the promotion remains invisible at checkout until it is issued to the customer or segment.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For CODE types, you must generate codes via the Issue API before they can be used. For REWARD types, the promotion remains invisible at checkout until it is issued to the customer or segment.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 55,
+      "lines": [
+        152,
+        152
+      ],
+      "raw": "### Step 3: Earn (EARNING only)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 3: Earn (EARNING only)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 56,
+      "lines": [
+        154,
+        154
+      ],
+      "raw": "Use `POST /api_gateway/v1/promotions/{promotionId}/earn` to grant the promotion to customer. For bulk operations, use the `/earn/bulk` endpoint.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Use POST /api_gateway/v1/promotions/{promotionId}/earn to grant the promotion to customer. For bulk operations, use the /earn/bulk endpoint.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 57,
+      "lines": [
+        156,
+        156
+      ],
+      "raw": "### Step 4: Evaluate (Required for all)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 4: Evaluate (Required for all)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 58,
+      "lines": [
+        158,
+        158
+      ],
+      "raw": "Call `POST /api_gateway/v1/promotions/evaluate` with cart contents. The API returns the applicable discounts and a unique **Base64 identifier string** per promotion.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Call POST /api_gateway/v1/promotions/evaluate with cart contents. The API returns the applicable discounts and a unique Base64 identifier string per promotion.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 59,
+      "lines": [
+        160,
+        160
+      ],
+      "raw": "### Step 5: Redeem (Required for all)",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "Step 5: Redeem (Required for all)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 60,
+      "lines": [
+        162,
+        162
+      ],
+      "raw": "Submit the redemption via the Transaction V2 API or redemption API endpoint based on your configured strategy.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Submit the redemption via the Transaction V2 API or redemption API endpoint based on your configured strategy.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 61,
+      "lines": [
+        164,
+        164
+      ],
+      "raw": "# Accumulation-based offers",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Accumulation-based offers",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 62,
+      "lines": [
+        166,
+        166
+      ],
+      "raw": "By default, a `FREE_PRODUCT` reward is evaluated against a single cart: a customer must meet the qualifying condition in one transaction, or the reward doesn't apply. <br /><br />Setting `accumulationConfig.enabled` to `true` on a promotion instead lets the qualifying quantity build up across a customer's purchases over time, so a customer who buys a few units on one visit and a few more on a later visit still earns the reward once their combined purchases cross the threshold.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "By default, a FREE_PRODUCT reward is evaluated against a single cart: a customer must meet the qualifying condition in one transaction, or the reward doesn't apply. Setting accumulationConfig.enabled to true on a promotion instead lets the qualifying quantity build up across a customer's purchases over time, so a customer who buys a few units on one visit and a few more on a later visit still earns the reward once their combined purchases cross the threshold.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        },
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 166
+        }
+      ]
+    },
+    {
+      "i": 63,
+      "lines": [
+        168,
+        168
+      ],
+      "raw": "For a more business-level understanding of this behavior, refer to [Accumulation-based offers](https://docs.capillarytech.com/docs/core-concepts-1#accumulation-based-offers) in Core Concepts.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "For a more business-level understanding of this behavior, refer to Accumulation-based offers in Core Concepts.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/core-concepts-1#accumulation-based-offers",
+          "line": 168
+        }
+      ]
+    },
+    {
+      "i": 64,
+      "lines": [
+        170,
+        170
+      ],
+      "raw": "## How it works",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How it works",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 65,
+      "lines": [
+        172,
+        175
+      ],
+      "raw": "1. A customer makes a purchase via [Transaction V2](https://docs.capillarytech.com/reference/add-transaction-single). The system adds the qualifying quantity to a running total kept for that customer and promotion.\n2. On every subsequent call to [Evaluate](https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate), the system checks the current cart's quantity against the customer's running total and the promotion's condition.\n3. The moment the combined total crosses the condition's threshold, the reward is returned in the Evaluate response, even if the current cart alone doesn't meet the condition.\n4. Once the reward is redeemed, the quantity that was used to earn it is deducted from the running total.",
+      "kind": "list",
+      "syntax": "markdown",
+      "text": "A customer makes a purchase via Transaction V2. The system adds the qualifying quantity to a running total kept for that customer and promotion.On every subsequent call to Evaluate, the system checks the current cart's quantity against the customer's running total and the promotion's condition.The moment the combined total crosses the condition's threshold, the reward is returned in the Evaluate response, even if the current cart alone doesn't meet the condition.Once the reward is redeemed, the quantity that was used to earn it is deducted from the running total.",
+      "attrs": {
+        "ordered": "true"
+      },
+      "target": {
+        "component": null,
+        "status": "transform",
+        "note": "normalise `*`/`+` markers to `-`"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-transaction-single",
+          "line": 172
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "i": 66,
+      "lines": [
+        177,
+        177
+      ],
+      "raw": "**Example:** a promotion with `accumulationConfig.enabled: true` requiring `qty >= 10` of a SKU to reward one free unit:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Example: a promotion with accumulationConfig.enabled: true requiring qty >= 10 of a SKU to reward one free unit:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 67,
+      "lines": [
+        179,
+        183
+      ],
+      "raw": "| Transaction | Qty purchased | Running total            | Reward returned on Evaluate?                      |\n| :---------- | :------------ | :----------------------- | :------------------------------------------------ |\n| 1           | 4             | 4                        | No                                                |\n| 2           | 4             | 8                        | No                                                |\n| 3           | 3             | 11 (10 needed + 1 extra) | Yes, on the Evaluate call following transaction 3 |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "Transaction",
+          "Qty purchased",
+          "Running total",
+          "Reward returned on Evaluate?"
+        ],
+        "rows": [
+          [
+            "1",
+            "4",
+            "4",
+            "No"
+          ],
+          [
+            "2",
+            "4",
+            "8",
+            "No"
+          ],
+          [
+            "3",
+            "3",
+            "11 (10 needed + 1 extra)",
+            "Yes, on the Evaluate call following transaction 3"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 68,
+      "lines": [
+        185,
+        185
+      ],
+      "raw": "## Over-achievement: what happens to leftover quantity",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Over-achievement: what happens to leftover quantity",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 69,
+      "lines": [
+        187,
+        187
+      ],
+      "raw": "In the example above, 1 unit is left over after the reward is redeemed. What happens to it depends on `overAchievementEnabled`, and only matters when the promotion has a recurring `promotionRestrictions` window (daily, weekly, or calendar month) configured. Without one, there's only a single ongoing cycle for the promotion's full duration, so there's nothing to carry into, and `overAchievementEnabled` has no effect.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "In the example above, 1 unit is left over after the reward is redeemed. What happens to it depends on overAchievementEnabled, and only matters when the promotion has a recurring promotionRestrictions window (daily, weekly, or calendar month) configured. Without one, there's only a single ongoing cycle for the promotion's full duration, so there's nothing to carry into, and overAchievementEnabled has no effect.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 70,
+      "lines": [
+        189,
+        192
+      ],
+      "raw": "| `overAchievementEnabled` | Behavior at the end of a cycle                                                  | Example                                                                                                         |\n| :----------------------- | :------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------- |\n| `false` (default)        | Any quantity beyond what the reward needed is dropped when the cycle resets.    | Cycle resets monthly. Customer accumulates 11 units and redeems the reward. Next cycle starts back at 0, not 1. |\n| `true`                   | Leftover quantity carries forward into the next cycle instead of being dropped. | Cycle resets monthly. Customer accumulates 11 units and redeems the reward. Next cycle starts at 1, not 0.      |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "overAchievementEnabled",
+          "Behavior at the end of a cycle",
+          "Example"
+        ],
+        "rows": [
+          [
+            "false (default)",
+            "Any quantity beyond what the reward needed is dropped when the cycle resets.",
+            "Cycle resets monthly. Customer accumulates 11 units and redeems the reward. Next cycle starts back at 0, not 1."
+          ],
+          [
+            "true",
+            "Leftover quantity carries forward into the next cycle instead of being dropped.",
+            "Cycle resets monthly. Customer accumulates 11 units and redeems the reward. Next cycle starts at 1, not 0."
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": []
+    },
+    {
+      "i": 71,
+      "lines": [
+        194,
+        194
+      ],
+      "raw": "See the [Create Cart Promotion API](https://docs.capillarytech.com/reference/create-cart-promotion) reference for the full field-level configuration, and [Core Concepts](https://docs.capillarytech.com/docs/core-concepts-1#cross-transaction-accumulation) for how it works in business terms.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "See the Create Cart Promotion API reference for the full field-level configuration, and Core Concepts for how it works in business terms.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/create-cart-promotion",
+          "line": 194
+        },
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/core-concepts-1#cross-transaction-accumulation",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "i": 72,
+      "lines": [
+        196,
+        196
+      ],
+      "raw": "## How to test an accumulation promotion",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "How to test an accumulation promotion",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 73,
+      "lines": [
+        198,
+        198
+      ],
+      "raw": "Accumulation depends on how a purchase is recorded and on customer-level history, so a request that looks correct can still fail to fire if it's tested the wrong way. The steps below walk through testing a promotion requiring `qty >= 10` of `COFFEE-REG` (Regular Coffee) to reward one free unit of the same SKU, the \"buy 10 coffees, get the 11th free\" promotion example. Refer to [How it works](https://docs.capillarytech.com/docs/core-concepts-1#how-it-works) in Core Concepts for a detailed walkthrough of this example.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Accumulation depends on how a purchase is recorded and on customer-level history, so a request that looks correct can still fail to fire if it's tested the wrong way. The steps below walk through testing a promotion requiring qty >= 10 of COFFEE-REG (Regular Coffee) to reward one free unit of the same SKU, the \"buy 10 coffees, get the 11th free\" promotion example. Refer to How it works in Core Concepts for a detailed walkthrough of this example.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/core-concepts-1#how-it-works",
+          "line": 198
+        }
+      ]
+    },
+    {
+      "i": 74,
+      "lines": [
+        200,
+        200
+      ],
+      "raw": "### 1. Use a customer ID that has never been tested before",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "1. Use a customer ID that has never been tested before",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 75,
+      "lines": [
+        202,
+        202
+      ],
+      "raw": "Reusing a customer across repeated test attempts leaves behind purchase history from earlier tests, which can make a promotion fire when it shouldn't, or return an error that has nothing to do with your request.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Reusing a customer across repeated test attempts leaves behind purchase history from earlier tests, which can make a promotion fire when it shouldn't, or return an error that has nothing to do with your request.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 76,
+      "lines": [
+        204,
+        204
+      ],
+      "raw": "### 2. Record purchases via Transaction V2",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "2. Record purchases via Transaction V2",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 77,
+      "lines": [
+        206,
+        206
+      ],
+      "raw": "Only purchases recorded through [Transaction V2](https://docs.capillarytech.com/reference/add-transaction-single) count toward accumulation, not the v1.1 Transaction API.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Only purchases recorded through Transaction V2 count toward accumulation, not the v1.1 Transaction API.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/add-transaction-single",
+          "line": 206
+        }
+      ]
+    },
+    {
+      "i": 78,
+      "lines": [
+        208,
+        230
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v2/transactions' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-08-1042\",\n    \"billAmount\": \"1000.00\",\n    \"grossAmount\": \"1000.00\",\n    \"discount\": \"0\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 4,\n            \"rate\": 250,\n            \"amount\": 1000\n        }\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v2/transactions' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-08-1042\",\n    \"billAmount\": \"1000.00\",\n    \"grossAmount\": \"1000.00\",\n    \"discount\": \"0\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 4,\n            \"rate\": 250,\n            \"amount\": 1000\n        }\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 79,
+      "lines": [
+        232,
+        232
+      ],
+      "raw": "The response confirms the transaction was recorded, but not whether it contributed to accumulation; confirm that with Evaluate in the next step.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The response confirms the transaction was recorded, but not whether it contributed to accumulation; confirm that with Evaluate in the next step.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 80,
+      "lines": [
+        234,
+        234
+      ],
+      "raw": "### 3. Split the quantity across multiple purchases, then confirm with Evaluate",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "3. Split the quantity across multiple purchases, then confirm with Evaluate",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 81,
+      "lines": [
+        236,
+        236
+      ],
+      "raw": "Testing with the full quantity in a single call only proves the base condition works, not that accumulation works. Repeat the Transaction V2 call above with a second visit, also buying 4 coffees (running total: 8). Then call Evaluate with a cart containing the remaining 3 coffees needed to cross the threshold:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Testing with the full quantity in a single call only proves the base condition works, not that accumulation works. Repeat the Transaction V2 call above with a second visit, also buying 4 coffees (running total: 8). Then call Evaluate with a cart containing the remaining 3 coffees needed to cross the threshold:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 82,
+      "lines": [
+        238,
+        255
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v1/promotions/evaluate' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"amount\": \"750.00\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n        {\n            \"sku\": \"COFFEE-REG\",\n            \"amount\": \"750.00\",\n            \"qty\": \"3.000000\",\n            \"discount\": null\n        }\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v1/promotions/evaluate' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"amount\": \"750.00\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n        {\n            \"sku\": \"COFFEE-REG\",\n            \"amount\": \"750.00\",\n            \"qty\": \"3.000000\",\n            \"discount\": null\n        }\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 83,
+      "lines": [
+        257,
+        286
+      ],
+      "raw": "```json Response\n{\n  \"data\": {\n    \"amount\": \"750.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"750.000000\",\n        \"qty\": \"3.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": [\n          {\n            \"promotionId\": \"<PROMOTION_ID>\",\n            \"name\": \"Buy 10 Coffees, Get the 11th Free\",\n            \"promotionMode\": \"DISCOUNT\",\n            \"redemptionCount\": 1,\n            \"discount\": \"250.000000\",\n            \"discountAppliedOnQuantity\": \"1.000000\",\n            \"promotionAppliedOnQuantity\": \"3.000000\",\n            \"identifier\": \"<PROMOTION_IDENTIFIER>\"\n          }\n        ]\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Response",
+        "code": "{\n  \"data\": {\n    \"amount\": \"750.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"750.000000\",\n        \"qty\": \"3.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": [\n          {\n            \"promotionId\": \"<PROMOTION_ID>\",\n            \"name\": \"Buy 10 Coffees, Get the 11th Free\",\n            \"promotionMode\": \"DISCOUNT\",\n            \"redemptionCount\": 1,\n            \"discount\": \"250.000000\",\n            \"discountAppliedOnQuantity\": \"1.000000\",\n            \"promotionAppliedOnQuantity\": \"3.000000\",\n            \"identifier\": \"<PROMOTION_IDENTIFIER>\"\n          }\n        ]\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}"
+      },
+      "text": "Response",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 84,
+      "lines": [
+        288,
+        288
+      ],
+      "raw": "The line item shows `discount: \"250.000000\"` on 1 of the 3 coffees, even though this cart alone only carries 3, below the condition's threshold of 10. The remaining 8 came from the two prior Transaction V2 purchases. A cart calling Evaluate with only 1 or 2 coffees (short of the remaining 2 needed) would return `discount: \"0\"` instead, confirming the reward genuinely depends on accumulated history rather than firing regardless.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The line item shows discount: \"250.000000\" on 1 of the 3 coffees, even though this cart alone only carries 3, below the condition's threshold of 10. The remaining 8 came from the two prior Transaction V2 purchases. A cart calling Evaluate with only 1 or 2 coffees (short of the remaining 2 needed) would return discount: \"0\" instead, confirming the reward genuinely depends on accumulated history rather than firing regardless.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 85,
+      "lines": [
+        290,
+        290
+      ],
+      "raw": "To actually complete the sale, pass `evaluationId` as `promotionEvaluationId` and `identifier` as an entry in `appliedPromotionIdentifiers` on a final Transaction V2 call:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "To actually complete the sale, pass evaluationId as promotionEvaluationId and identifier as an entry in appliedPromotionIdentifiers on a final Transaction V2 call:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 86,
+      "lines": [
+        292,
+        316
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v2/transactions?identifierName=id&identifierValue=<CUSTOMER_ID>&source=INSTORE' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-08-1043\",\n    \"billAmount\": \"500.00\",\n    \"grossAmount\": \"750.00\",\n    \"discount\": \"250.00\",\n    \"promotionEvaluationId\": \"<EVALUATION_ID>\",\n    \"appliedPromotionIdentifiers\": [\"<PROMOTION_IDENTIFIER>\"],\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 3,\n            \"rate\": 250,\n            \"amount\": 750,\n            \"discount\": 250\n        }\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v2/transactions?identifierName=id&identifierValue=<CUSTOMER_ID>&source=INSTORE' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-08-1043\",\n    \"billAmount\": \"500.00\",\n    \"grossAmount\": \"750.00\",\n    \"discount\": \"250.00\",\n    \"promotionEvaluationId\": \"<EVALUATION_ID>\",\n    \"appliedPromotionIdentifiers\": [\"<PROMOTION_IDENTIFIER>\"],\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 3,\n            \"rate\": 250,\n            \"amount\": 750,\n            \"discount\": 250\n        }\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 87,
+      "lines": [
+        318,
+        318
+      ],
+      "raw": "The system validates that `<PROMOTION_IDENTIFIER>` matches what `<EVALUATION_ID>` actually evaluated before accepting the discount, then deducts the 10 coffees this redemption consumed from the customer's running total.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "The system validates that <PROMOTION_IDENTIFIER> matches what <EVALUATION_ID> actually evaluated before accepting the discount, then deducts the 10 coffees this redemption consumed from the customer's running total.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 88,
+      "lines": [
+        320,
+        320
+      ],
+      "raw": "### 4. Test over-achievement across a cycle reset",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 3,
+      "text": "4. Test over-achievement across a cycle reset",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 89,
+      "lines": [
+        322,
+        322
+      ],
+      "raw": "Redeeming the reward above used 10 of the 11 coffees accumulated so far (4 + 4 + 3, matching the example in [Core Concepts](https://docs.capillarytech.com/docs/core-concepts-1#accumulation-based-offers)), leaving 1 unit over-achieved. Test this with a recurring `promotionRestrictions` window configured (daily, weekly, or calendar month), not an overall limit — over-achievement has no effect without one.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Redeeming the reward above used 10 of the 11 coffees accumulated so far (4 + 4 + 3, matching the example in Core Concepts), leaving 1 unit over-achieved. Test this with a recurring promotionRestrictions window configured (daily, weekly, or calendar month), not an overall limit — over-achievement has no effect without one.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/docs/core-concepts-1#accumulation-based-offers",
+          "line": 322
+        }
+      ]
+    },
+    {
+      "i": 90,
+      "lines": [
+        324,
+        324
+      ],
+      "raw": "Once the redemption limit's cycle resets (for example, at the start of the next calendar month), record 8 more coffees via Transaction V2:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Once the redemption limit's cycle resets (for example, at the start of the next calendar month), record 8 more coffees via Transaction V2:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 91,
+      "lines": [
+        326,
+        347
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v2/transactions?identifierName=id&identifierValue=<CUSTOMER_ID>&source=INSTORE' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-09-2001\",\n    \"billAmount\": \"2000.00\",\n    \"grossAmount\": \"2000.00\",\n    \"discount\": \"0\",\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 8,\n            \"rate\": 250,\n            \"amount\": 2000\n        }\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v2/transactions?identifierName=id&identifierValue=<CUSTOMER_ID>&source=INSTORE' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"type\": \"REGULAR\",\n    \"billNumber\": \"BILL-2026-09-2001\",\n    \"billAmount\": \"2000.00\",\n    \"grossAmount\": \"2000.00\",\n    \"discount\": \"0\",\n    \"lineItemsV2\": [\n        {\n            \"type\": \"REGULAR\",\n            \"itemCode\": \"COFFEE-REG\",\n            \"qty\": 8,\n            \"rate\": 250,\n            \"amount\": 2000\n        }\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 92,
+      "lines": [
+        349,
+        349
+      ],
+      "raw": "`overAchievementEnabled` is set on the promotion itself, via [Update Cart Promotion](https://docs.capillarytech.com/reference/put_api-gateway-v1-promotions-promotionid), not on the Evaluate request. Toggle it between test runs:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "overAchievementEnabled is set on the promotion itself, via Update Cart Promotion, not on the Evaluate request. Toggle it between test runs:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/put_api-gateway-v1-promotions-promotionid",
+          "line": 349
+        }
+      ]
+    },
+    {
+      "i": 93,
+      "lines": [
+        351,
+        358
+      ],
+      "raw": "```json Request (overAchievementEnabled true)\n{\n    \"accumulationConfig\": {\n        \"enabled\": true,\n        \"overAchievementEnabled\": true\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Request (overAchievementEnabled true)",
+        "code": "{\n    \"accumulationConfig\": {\n        \"enabled\": true,\n        \"overAchievementEnabled\": true\n    }\n}"
+      },
+      "text": "Request (overAchievementEnabled true)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 94,
+      "lines": [
+        360,
+        367
+      ],
+      "raw": "```json Request (overAchievementEnabled false)\n{\n    \"accumulationConfig\": {\n        \"enabled\": true,\n        \"overAchievementEnabled\": false\n    }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Request (overAchievementEnabled false)",
+        "code": "{\n    \"accumulationConfig\": {\n        \"enabled\": true,\n        \"overAchievementEnabled\": false\n    }\n}"
+      },
+      "text": "Request (overAchievementEnabled false)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 95,
+      "lines": [
+        369,
+        369
+      ],
+      "raw": "Then call Evaluate with a cart containing just 1 more coffee:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "Then call Evaluate with a cart containing just 1 more coffee:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 96,
+      "lines": [
+        371,
+        388
+      ],
+      "raw": "```curl\ncurl --location 'https://eu.api.capillarytech.com/v1/promotions/evaluate' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"amount\": \"250.00\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n        {\n            \"sku\": \"COFFEE-REG\",\n            \"amount\": \"250.00\",\n            \"qty\": \"1.000000\",\n            \"discount\": null\n        }\n    ]\n}'\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "curl",
+        "title": null,
+        "code": "curl --location 'https://eu.api.capillarytech.com/v1/promotions/evaluate' \\\n--header 'Content-Type: application/json' \\\n--header 'X-CAP-API-AUTH-ORG-ID: <ORG_ID>' \\\n--header 'Authorization: Basic <CREDENTIALS>' \\\n--data '{\n    \"amount\": \"250.00\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n        {\n            \"sku\": \"COFFEE-REG\",\n            \"amount\": \"250.00\",\n            \"qty\": \"1.000000\",\n            \"discount\": null\n        }\n    ]\n}'"
+      },
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": [],
+      "notes": [
+        "`curl` is not a highlighter language — use bash"
+      ]
+    },
+    {
+      "i": 97,
+      "lines": [
+        390,
+        390
+      ],
+      "raw": "With `overAchievementEnabled: true`, the running total is 1 (carried over) + 8 + 1 (this cart) = 10, and the discount applies:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With overAchievementEnabled: true, the running total is 1 (carried over) + 8 + 1 (this cart) = 10, and the discount applies:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 98,
+      "lines": [
+        392,
+        421
+      ],
+      "raw": "```json Response (overAchievementEnabled true)\n{\n  \"data\": {\n    \"amount\": \"250.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"250.000000\",\n        \"qty\": \"1.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": [\n          {\n            \"promotionId\": \"<PROMOTION_ID>\",\n            \"name\": \"Buy 10 Coffees, Get the 11th Free\",\n            \"promotionMode\": \"DISCOUNT\",\n            \"redemptionCount\": 1,\n            \"discount\": \"250.000000\",\n            \"discountAppliedOnQuantity\": \"1.000000\",\n            \"promotionAppliedOnQuantity\": \"1.000000\",\n            \"identifier\": \"<PROMOTION_IDENTIFIER>\"\n          }\n        ]\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Response (overAchievementEnabled true)",
+        "code": "{\n  \"data\": {\n    \"amount\": \"250.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"250.000000\",\n        \"qty\": \"1.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": [\n          {\n            \"promotionId\": \"<PROMOTION_ID>\",\n            \"name\": \"Buy 10 Coffees, Get the 11th Free\",\n            \"promotionMode\": \"DISCOUNT\",\n            \"redemptionCount\": 1,\n            \"discount\": \"250.000000\",\n            \"discountAppliedOnQuantity\": \"1.000000\",\n            \"promotionAppliedOnQuantity\": \"1.000000\",\n            \"identifier\": \"<PROMOTION_IDENTIFIER>\"\n          }\n        ]\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}"
+      },
+      "text": "Response (overAchievementEnabled true)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 99,
+      "lines": [
+        423,
+        423
+      ],
+      "raw": "With `overAchievementEnabled: false`, the running total is 0 (dropped at reset) + 8 + 1 (this cart) = 9, and the discount doesn't apply:",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "With overAchievementEnabled: false, the running total is 0 (dropped at reset) + 8 + 1 (this cart) = 9, and the discount doesn't apply:",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 100,
+      "lines": [
+        425,
+        443
+      ],
+      "raw": "```json Response (overAchievementEnabled false)\n{\n  \"data\": {\n    \"amount\": \"250.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"250.000000\",\n        \"qty\": \"1.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": []\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}\n```",
+      "kind": "code",
+      "syntax": "markdown",
+      "code": {
+        "lang": "json",
+        "title": "Response (overAchievementEnabled false)",
+        "code": "{\n  \"data\": {\n    \"amount\": \"250.000000\",\n    \"customerId\": <CUSTOMER_ID>,\n    \"cartItems\": [\n      {\n        \"referenceId\": \"<REFERENCE_ID>\",\n        \"sku\": \"COFFEE-REG\",\n        \"amount\": \"250.000000\",\n        \"qty\": \"1.000000\",\n        \"discount\": \"0\",\n        \"appliedPromotions\": []\n      }\n    ],\n    \"evaluationId\": \"<EVALUATION_ID>\"\n  }\n}"
+      },
+      "text": "Response (overAchievementEnabled false)",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 101,
+      "lines": [
+        445,
+        445
+      ],
+      "raw": "# Code-linked promotions: linked vs unlinked codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 1,
+      "text": "Code-linked promotions: linked vs unlinked codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 102,
+      "lines": [
+        447,
+        447
+      ],
+      "raw": "When you create a CODE promotion and issue codes, every code starts as **unlinked** — its `customerId` is null and any customer can use it by passing it at checkout. You can optionally **link** a code to a specific customer, which locks it to that customer permanently.",
+      "kind": "paragraph",
+      "syntax": "markdown",
+      "text": "When you create a CODE promotion and issue codes, every code starts as unlinked — its customerId is null and any customer can use it by passing it at checkout. You can optionally link a code to a specific customer, which locks it to that customer permanently.",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 103,
+      "lines": [
+        449,
+        449
+      ],
+      "raw": "## Linked vs unlinked codes",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "Linked vs unlinked codes",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 104,
+      "lines": [
+        451,
+        457
+      ],
+      "raw": "|                    | Unlinked code                                                                                                                                    | Linked code                                                                                                               |\n| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |\n| **customerId**     | null                                                                                                                                             | Set to the linked customer's ID                                                                                           |\n| **Who can use it** | Any customer who provides the code at checkout                                                                                                   | Only the customer is linked to                                                                                            |\n| **At evaluation**  | Must be passed in `promoCodes[]` in the [Evaluate API](https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate) request | Automatically included by cart promotions using `customerId` — no need to pass in `promoCodes[]` in Evaluate API request. |\n| **Linking**        | Any customer can claim it until it is linked                                                                                                     | Once linked, it cannot be transferred to another customer                                                                 |\n| **Use case**       | Influencer or mass campaign codes (for example, HOLIMAN100 shared publicly)                                                                      | Personalised codes issued to a specific customer                                                                          |",
+      "kind": "table",
+      "syntax": "markdown",
+      "component": "Table",
+      "table": {
+        "header": [
+          "",
+          "Unlinked code",
+          "Linked code"
+        ],
+        "rows": [
+          [
+            "customerId",
+            "null",
+            "Set to the linked customer's ID"
+          ],
+          [
+            "Who can use it",
+            "Any customer who provides the code at checkout",
+            "Only the customer is linked to"
+          ],
+          [
+            "At evaluation",
+            "Must be passed in promoCodes[] in the Evaluate API request",
+            "Automatically included by cart promotions using customerId — no need to pass in promoCodes[] in Evaluate API request."
+          ],
+          [
+            "Linking",
+            "Any customer can claim it until it is linked",
+            "Once linked, it cannot be transferred to another customer"
+          ],
+          [
+            "Use case",
+            "Influencer or mass campaign codes (for example, HOLIMAN100 shared publicly)",
+            "Personalised codes issued to a specific customer"
+          ]
+        ],
+        "align": [
+          "left",
+          "left",
+          "left"
+        ],
+        "emptyHeader": false
+      },
+      "target": {
+        "component": null,
+        "status": "direct",
+        "note": "GFM table; watch for an empty `| |` header row"
+      },
+      "inline": [
+        {
+          "kind": "absoluteInternalLink",
+          "value": "https://docs.capillarytech.com/reference/post_api-gateway-v1-promotions-evaluate",
+          "line": 455
+        }
+      ]
+    },
+    {
+      "i": 105,
+      "lines": [
+        459,
+        459
+      ],
+      "raw": "## End-to-end flow diagram",
+      "kind": "heading",
+      "syntax": "markdown",
+      "depth": 2,
+      "text": "End-to-end flow diagram",
+      "target": {
+        "component": null,
+        "status": "direct"
+      },
+      "inline": []
+    },
+    {
+      "i": 106,
+      "lines": [
+        461,
+        461
+      ],
+      "raw": "<Image src=\"https://files.readme.io/8a9d3c036176eb0dfe099b969904a1dd4cb4513d84f16705fa15860357fc26bf-popo-Photoroom.png\" align=\"center\" />",
+      "kind": "image",
+      "syntax": "jsx",
+      "component": "Image",
+      "attrs": {
+        "src": "https://files.readme.io/8a9d3c036176eb0dfe099b969904a1dd4cb4513d84f16705fa15860357fc26bf-popo-Photoroom.png",
+        "align": "center"
+      },
+      "target": {
+        "component": "Image",
+        "status": "transform",
+        "note": "keep src/alt (+ width/height when real); drop align, border, className, and width=\"smart\""
+      },
+      "inline": [],
+      "notes": [
+        "no alt text — Documentation.AI pages need one"
+      ]
+    },
+    {
+      "i": 107,
+      "lines": [
+        463,
+        463
+      ],
+      "raw": "<br />",
+      "kind": "html",
+      "syntax": "html",
+      "component": "br",
+      "attrs": {},
+      "target": {
+        "component": null,
+        "status": "drop",
+        "note": "<br /> is not needed — blocks are spaced by the parser"
+      },
+      "inline": [
+        {
+          "kind": "breakTag",
+          "value": "<br />",
+          "line": 463
+        }
+      ]
+    },
+    {
+      "i": 108,
+      "lines": [
+        465,
+        467
+      ],
+      "raw": "<Callout icon=\"📘\" theme=\"info\">\n  Linking is permanent. Once a code is linked to a customer, it cannot be linked to a different customer. Attempting to link an already-linked code to a different customer returns error `1005: Code linked to another customer`.\n</Callout>",
+      "kind": "callout",
+      "syntax": "jsx",
+      "component": "Callout",
+      "attrs": {
+        "icon": "📘",
+        "theme": "info"
+      },
+      "text": "Linking is permanent. Once a code is linked to a customer, it cannot be linked to a different customer. Attempting to link an already-linked code to a different customer returns error 1005: Code linked to another customer.",
+      "target": {
+        "component": "Callout",
+        "status": "direct",
+        "note": "theme/icon -> kind; drop the emoji, Documentation.AI draws its own",
+        "attrs": {
+          "kind": "info"
+        }
+      },
+      "children": [
+        {
+          "i": 113,
+          "lines": [
+            466,
+            466
+          ],
+          "raw": "  Linking is permanent. Once a code is linked to a customer, it cannot be linked to a different customer. Attempting to link an already-linked code to a different customer returns error `1005: Code linked to another customer`.",
+          "kind": "paragraph",
+          "syntax": "markdown",
+          "text": "Linking is permanent. Once a code is linked to a customer, it cannot be linked to a different customer. Attempting to link an already-linked code to a different customer returns error 1005: Code linked to another customer.",
+          "target": {
+            "component": null,
+            "status": "direct"
+          },
+          "inline": []
+        }
+      ],
+      "inline": []
+    }
+  ]
+}
