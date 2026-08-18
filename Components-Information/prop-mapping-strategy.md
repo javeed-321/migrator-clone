@@ -121,9 +121,9 @@ Verify each rewritten link lands on the *same* page `[PIT Phase 4]`.
 | Input | Action | Citation |
 |---|---|---|
 | Trailing space in a value (`width="80% "`) | Trim | `[RM §10.2, §12 gotcha 4]` |
-| `<br>` unclosed | → `<br />` | `[RM §12 gotcha 2]` |
-| `\<br>` escaped | → `<br>` in cells, strip elsewhere | `[RM §12 gotcha 1]` |
-| Trailing `\` hard break in a table cell | → `<br>` | `[RM §4.3]` `[TBL trap 4]` |
+| `<br>` unclosed | **strip** — an unclosed tag is an MDX parse error, and `<br>` is banned anyway | `[RM §12 gotcha 2]` |
+| `\<br>` escaped | **strip** — it renders as literal text today | `[RM §12 gotcha 1]` |
+| Trailing `\` hard break in a table cell | → one space, or split the row. **Never `<br>`** | `[RM §4.3]` (see TableConversion.md §3) |
 | Bare `{{token}}` in prose or a cell | Escape `\{\{…}}` or wrap in backticks | `[RM §12 gotcha 15]` `[PIT Phase 5]` |
 | Tag-shaped placeholder (`<String>`) | Backticks or `\<` | `[RM §11.1]` `[PIT Phase 5]` |
 | String `style="…"` | → `style={{…}}`, or drop | `[RM §2]` `[PIT Phase 5, 6]` |
@@ -294,8 +294,8 @@ Route first: YouTube / Vimeo / Loom → `Video`; everything else → `Iframe`.
 | `<thead>` / `<tbody>` / `<tr>` | TRANSFORM | header row + delimiter + body rows |
 | `<th>` / `<td>` | TRANSFORM | cells |
 | cell `style={{textAlign}}` | DROP | — (per-cell styling is impossible in GFM) |
-| `colspan` / `rowspan` | **BLOCK** | Keep raw `<table>` — GFM cannot merge cells |
-| cell with block content | **BLOCK or flatten** | `<br>`-separated `•` items / inline code; else raw `<table>` |
+| `colspan` / `rowspan` | **BLOCK** | GFM cannot merge cells, and raw `<table>` is not allowed — repeat the spanned value per cell, or split into two tables (plan §3.4) |
+| cell with block content | **BLOCK or flatten** | a `•`-separated line / inline code, or lift the content into prose below the table. No raw `<table>` fallback (plan §3.4) |
 
 `null` is a legal `align` entry meaning "no explicit alignment" — do not coerce it to left
 `[RM §10.5]`.
@@ -342,6 +342,11 @@ Target props with no source signal. Emitting a guessed value is inventing conten
 `scripts`, `sandbox` · `ParamField`: `examples-b64`, `enum` (unless the source lists values
 verbatim) · `Board`, `Update`, `CollectionList`, `CollectionContent`, `BodyParams`, `AuthParams`
 — no ReadMe source component exists for any of them.
+
+**`Steps` is on this list too.** An ordered list converts to an ordered list. Promote it to
+`<Steps>` / `<Step>` only when **each step has explanatory content beneath it** — a paragraph,
+a fence, an image, a callout, a table. A converter should leave every ordered list alone and
+flag candidates for a human (plan §2.8).
 
 ---
 
@@ -450,7 +455,17 @@ export const PROP_MAP: Record<string, {
     derived: { cols: "child count, clamped 1..5" },
   },
 
-  Column: { target: "div", props: {} },
+  // No raw HTML: a Column becomes a Card, never a <div>. Both target props are required,
+  // so a column with no heading or no link is a BLOCK, not a guess. (plan §2.3)
+  Column: {
+    target: "Card",
+    props: {},
+    derived: {
+      title: "leading heading or bold lead-in of the column",
+      href: "the link the column already carries",
+    },
+    required: ["title", "href", "children"],
+  },
 
   Embed: {
     target: "Video|Iframe",

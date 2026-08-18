@@ -34,8 +34,10 @@ Three global rules that apply to every section:
     content (§3.4).
   - `<span style>`, `<div style>`, `<p>` spacers, `<style>`, `<script>`, `<img>` → dropped or
     replaced by the equivalent component (§3.3, §3.6).
-  - **The one exception:** the in-cell line break in a table, where `[TBL trap 4]` requires
-    `<br>` (or the `&#xA;` entity) because a literal newline breaks the row. Nothing else.
+  - `<br />` → dropped **everywhere, including inside table cells**. There is no exception.
+    See `TableConversion.md` §3: a table cell renders at `white-space: normal`, so the `&#xA;`
+    entity `[TBL trap 4]` offers as an alternative collapses to a space and is not a line break
+    either. Multi-value cells become a `•`-separated line or separate rows.
   
   This is stricter than the platform requires — Documentation.AI does accept custom HTML
   `[LIVE-DAI /write-and-publish/web-editor]` and ships an HTML Block component. The reason to
@@ -91,7 +93,7 @@ the section named in the last column.
 | 20 | `<Image src align border width className>` | `<Image src alt />` | strip presentation | §3.5 |
 | 21 | `![alt](url "title")` | `<Image src alt />` | promote | §3.5 |
 | 22 | `<br />` between blocks | *(nothing)* | strip | §3.6 |
-| 23 | `<br />` inside a table cell | `<br>` | **keep** | §3.6 |
+| 23 | `<br />` inside a table cell | *(nothing)* | **strip** — `•` separator or split rows | §3.6 |
 | 24 | `<details>` / `<details open>` | `<Expandable default-open>` | rebuild | §3.3 |
 | 25 | `<span style={{…}}>` | plain text | strip | §3.3 |
 | 26 | `<HTMLBlock>{\`…\`}</HTMLBlock>` | split by content — `<Iframe>`, `<Video>`, `<Columns>`+`<Card>`, pipe table; site CSS / Custom Scripts for `<style>` / `<script>` | route | §4.3 |
@@ -715,9 +717,11 @@ Non-negotiable rules from `[PIT Phase 3]` and `[TBL]`:
 - **Reconstruct structurally, never by visual position.**
 - **Never empty a first-column parameter name.** Source `**\`name\`**` must keep its
   identifier — the Capillary defect shipped 40 nameless parameter rows across 4 pages.
-- **Never put a literal newline in a cell** — use `<br>` or `&#xA;` `[TBL trap 4]`.
-- **A ReadMe trailing backslash is a hard line break** inside a cell `[RM §4.3]` → convert to
-  `<br>`.
+- **Never put a literal newline in a cell.** And neither `<br>` nor `&#xA;` is the fix here:
+  the project bans `<br>`, and the entity collapses to a space (`TableConversion.md` §3). Use a
+  `•` separator or split the row.
+- **A ReadMe trailing backslash is a hard line break** inside a cell `[RM §4.3]` → convert to a
+  single space, or split the row.
 - **Keep `\{\{orgId}}` escaped or wrap it in backticks** — bare `{{…}}` is an MDX expression
   and will be evaluated `[RM §4.3, §12 gotcha 15]` `[PIT Phase 5]`.
 - **Escape pipes in cell content** as `\|` `[RM §4.3]`.
@@ -729,7 +733,7 @@ Non-negotiable rules from `[PIT Phase 3]` and `[TBL]`:
 
 **When a cell truly needs block content** (a real list, a fenced block, a heading), a pipe
 table cannot carry it. Options, in order of preference: flatten to inline equivalents
-(`<br>`-separated `•` items, inline code); or lift the content out of the table into prose
+(a `•`-separated line, inline code); or lift the content out of the table into prose
 beneath it. Falling back to a raw HTML `<table>` is **not** available here — see §3.4.
 
 ### 2.6 Glossary → plain text (lossy)
@@ -890,7 +894,7 @@ require, and everything else is marked unverified.
 
 | Construct | Renders as-is? | Evidence |
 |---|---|---|
-| `<br>` inside a table cell | **Yes** — it is the prescribed in-cell line break | `[TBL trap 4]` |
+| `<br>` inside a table cell | Platform: `<br />` compiles as JSX. **This project: no** — stripped everywhere (`TableConversion.md` §3) | `[APP MDXRemoteServer.tsx:123-127]` |
 | Raw `<table><tbody>` | Platform: **yes**, offered as the fix for a header-less table. **This project: no** — see §3.4 | `[PIT Phase 3]` |
 | Raw HTML generally | Platform: **yes** — "add custom HTML when needed for advanced layouts" `[LIVE-DAI /write-and-publish/web-editor]`, plus an HTML Block component `[LIVE-DAI /docs/changelog]`. **This project: no** — components only, per the global rule | `[PIT Phase 5]` |
 | Block-level JSX | Yes, but it **must stay on one line** or it is re-parsed as markdown | `[PIT Phase 5]` |
@@ -910,7 +914,7 @@ require, and everything else is marked unverified.
 | `<style>` / `<script>` / `<HTMLBlock>` | see §4.3 | No target equivalent |
 | `<iframe>` (raw, or inside `HTMLBlock`) | `<Iframe src=… />` `[DAI §18]` | Documented component; gets sandboxing and lazy loading for free |
 | `<img>` | `<Image src alt />` `[DAI §16]` | See §3.5 |
-| `<ul>` inside a table cell | `<br>`-separated `•` items | GFM cells cannot hold a list `[RM §4.3]` `[PIT Phase 3]` |
+| `<ul>` inside a table cell | one line of `•`-separated items | GFM cells cannot hold a list `[RM §4.3]` `[PIT Phase 3]` |
 
 **Tag-shaped prose is not HTML at all.** `<String>`, `<YOUR_ACCOUNT_ID>`, `<Map>`,
 `<HydraNotification>` in prose or table cells are placeholders `[RM §11.1]`. Unescaped they
@@ -928,13 +932,13 @@ different answer:
 |---|---|---|
 | **Empty header row** (`\| \| \|`) | Header-less `<table><tbody>`, or promote row 1 | **Promote row 1 to the header** — GFM styles row 1 as the header regardless `[PIT Phase 3]`. If row 1 is real data that must not be styled as a header, escalate to the user; do not emit HTML |
 | **`colspan` / `rowspan`** | Raw `<table>` | Flatten: repeat the spanned value in each cell it covers, or split into two tables under separate headings. Never drop a spanned cell |
-| **A cell needing block content** | Raw `<table>`, or flatten | Flatten to inline equivalents — `<br>`-separated `•` items, inline code — or lift the content out of the table into prose beneath it `[RM §4.3]` |
+| **A cell needing block content** | Raw `<table>`, or flatten | Flatten to one line — `•`-separated items, inline code — or lift the content out of the table into prose beneath it `[RM §4.3]` |
 
 A table that resists all three of those is a **stop condition**, not a licence to emit HTML.
 Record it and ask.
 
-The one HTML token that survives inside a table is the in-cell line break, `<br>` — a literal
-newline breaks the row `[TBL trap 4]`.
+**No HTML token survives inside a table, including `<br>`.** A literal newline still breaks the
+row, so multi-value cells become a `•`-separated line or separate rows (`TableConversion.md` §7.1).
 
 ### 3.5 The rule for images
 
@@ -1017,27 +1021,38 @@ Two more image facts worth carrying into the converter:
   to `<Image>` blocks.
 - **Block-level images must be emitted as blocks**, not inline `[PIT Phase 4]`.
 
-### 3.6 Where `<br />` and spacing hacks are stripped
+### 3.6 `<br />` is stripped everywhere
 
-`<br />` has exactly one legitimate use on the target and several illegitimate ones.
+**No `<br>` in the output, in any position, inside tables or out.** Every form goes: `<br>`,
+`<br/>`, `<br />`, and the escaped `\<br>`.
 
-| Position | Action | Why |
+| Position | Action | What replaces it |
 |---|---|---|
-| **Inside a table cell** | **KEEP** as `<br>` | It is the prescribed in-cell line break — a literal newline breaks the row `[TBL trap 4]` |
-| Between two block elements (paragraphs, lists, headings, images) | **STRIP** | Pure spacing hack; the renderer already spaces blocks |
-| Runs of two or more consecutive `<br />` | **STRIP** all | Vertical-space padding |
-| Trailing `<br />` at the end of a paragraph or cell | **STRIP** | |
-| Inside a paragraph, as a deliberate line break in an address/verse | **KEEP** | Genuine semantic break |
+| Between block elements (paragraphs, lists, headings, images) | **STRIP** | Nothing — the renderer spaces blocks |
+| Runs of two or more consecutive | **STRIP** all | Nothing — it is vertical padding |
+| Trailing, at the end of a paragraph or cell | **STRIP** | Nothing |
+| **Inside a table cell** | **STRIP** | A `•`-separated line, or split into rows (`TableConversion.md` §7.1) |
+| Inside a paragraph, as a deliberate break | **STRIP** | A new paragraph, or a list if it is really a list |
 
-Do **not** blanket-strip. Of the 2,263 `<br/>`+`<br />` occurrences, 305 are inside `<Table>`
-cells `[RM §10.5]` and removing those merges lines into one run-on cell.
+Why the table-cell case has no exception, verified in the platform source:
+
+- **`&#xA;` / `&#10;` is not an alternative.** Cells carry no `white-space` override
+  `[APP editor.css:150-157]`, so a decoded newline collapses to a single space. The entity
+  `[TBL trap 4]` offers renders as a space, not a break.
+- **Cells wrap by themselves** — `max-width: 250px; word-break: break-word`
+  `[APP editor.css:150-157]`. A manual break was never needed for readability, only for meaning,
+  and meaning is better carried by a `•` separator or a separate row.
+- **An unclosed `<br>` is a build failure.** The pipeline has no `rehypeRaw`
+  `[APP MDXRemoteServer.tsx:123-127]`, so HTML is parsed as JSX and `<br>` fails to close.
+
+**[CORPUS]** in the downloaded Capillary pages: 1,943 `<br>` total, **922 of them inside tables**
+(660 across 337 GFM rows, 262 across 37 `<Table>` blocks), and **95 unclosed**. All 1,943 go.
 
 Repairs to make while you are there:
 
-- `<br>` unclosed (~15) → `<br />` `[RM §12 gotcha 2]`.
-- `\<br>` escaped (~75) → it currently renders as visible literal text `[RM §12 gotcha 1]`;
-  emit `<br>` inside cells, strip elsewhere.
-- ReadMe's **trailing backslash** hard-break inside table cells `[RM §4.3]` → `<br>`.
+- `\<br>` escaped renders as visible literal text `[RM §12 gotcha 1]` → strip it too.
+- ReadMe's **trailing backslash** hard-break inside a cell `[RM §4.3]` → a single space, or split
+  the row.
 
 Other manual spacing hacks to strip:
 
@@ -1121,7 +1136,7 @@ platform's escape hatch, not this migration's.
 > recording the page as incomplete. This is exactly the class of gap `[PIT Phase 0]` says to
 > treat as a **blocker, not a note**.
 
-**Marketplace components**, if a source project has them installed `[RM §9]`, map like this —
+**Marketplace cominponents**, if a source project has them installed `[RM §9]`, map like this —
 the first five are the ones with real equivalents:
 
 | Marketplace | Documentation.AI |
@@ -1536,8 +1551,9 @@ One pass per page, in this order. Each line names the failure it prevents.
    statement of a precondition `[PIT Phase 2]`.
 9. **Copy facts exactly.** Never truncate, reorder, tidy, edit or invent a value — not in prose,
    not in a cell, not in a code sample `[PIT Phase 2]`.
-10. **Strip `<br />` used as block spacing; keep it inside table cells** (§3.6) `[TBL trap 4]`.
-    Close `<br>` → `<br />`, and repair escaped `\<br>` `[RM §12 gotchas 1–2]`.
+10. **Strip every `<br />`, including inside table cells** (§3.6). Escaped `\<br>` and unclosed
+    `<br>` go too — an unclosed one is an MDX parse error on the target `[RM §12 gotchas 1–2]`
+    `[APP MDXRemoteServer.tsx:123-127]`.
 
 ### Tables
 
@@ -1549,8 +1565,9 @@ One pass per page, in this order. Each line names the failure it prevents.
     only.** ASCII spaces are stripped by GFM and the indentation vanishes `[TBL]`.
 14. **In a cell:** `\*` stays literal (keep the backslash); a leading `* child` is a nesting
     marker → `•`, not `-`; escape pipes as `\|`; no literal newline `[TBL]` `[PIT Phase 3]`.
-15. **An empty header row (`| | |`) is a user decision** — promote row 1 or use header-less
-    `<table><tbody>` `[PIT Phase 3]`.
+15. **An empty header row (`| | |`) means promoting row 1** — the header-less `<table><tbody>`
+    route `[PIT Phase 3]` is closed by the no-HTML rule. If row 1 is data that must not be
+    styled as a header, escalate (§3.4).
 16. **Tables inside numbered steps stay tables** `[PIT Phase 3]`.
 
 ### Links and images
@@ -1571,7 +1588,7 @@ One pass per page, in this order. Each line names the failure it prevents.
 21. **Block JSX on one line** — verify with the loader, not by eye `[PIT Phase 5]` `[RM §2]`.
 21a. **No raw HTML in the output.** Grep the finished page for `<div`, `<span`, `<table`,
     `<details`, `<summary`, `<p>`, `<img`, `<style`, `<script`, `<ul` — every hit is a defect.
-    The only permitted tag is `<br>` inside a table cell `[TBL trap 4]`. Confirm `<Columns>`
+    `<br` is a defect too, inside tables and out. Confirm `<Columns>`
     contains `<Card>` children and nothing else (§2.3).
 21b. **Confirm ordered lists were left alone.** `<Steps>` is correct only where each step has a
     body beneath it (§2.8); a one-line-per-step list that became `<Steps>` is a defect.

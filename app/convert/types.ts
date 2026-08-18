@@ -1,32 +1,44 @@
+import type { ConversionNote } from "@/src/convert/mdast";
 import type { ConvertPage, SkippedPage } from "@/src/convert/pages";
 
-/** What `/api/convert` accepts. */
-export type ConvertRequest = {
-  /** The docs site. Only its origin is used. */
-  url: string;
-  /**
-   * The config to read. An object or a JSON string. Omit it to use the
-   * `documentation.json` in the project root.
-   */
-  documentationJson?: unknown;
-  /** Keep only slugs under this prefix, e.g. `docs/loyalty`. */
-  filter?: string;
-  limit?: number;
+/** What `/api/convert-markdown` accepts — one pasted ReadMe page. */
+export type ConvertMarkdownRequest = {
+  markdown: string;
+  /** Frontmatter title, so a duplicate body `# Title` can be dropped. */
+  title?: string;
+  /** Source site origin, so absolute self-links become site-relative. */
+  site?: string;
 };
 
 /**
  * What it answers with.
  *
- * `ok` says which half of this is filled in: `message` on a failure, everything
- * else on success. One flat shape, so the client parses one thing either way.
+ * `ok` says which half is filled in: `message` on a failure, everything else on
+ * success. One flat shape, so the client parses one thing either way.
  */
+export type ConvertMarkdownResponse = {
+  ok: boolean;
+  message?: string;
+  mdx?: string;
+  notes?: ConversionNote[];
+  parseMode?: "mdx" | "markdown";
+  parseError?: string;
+  ms?: number;
+};
+
+/** What `/api/convert` accepts — a whole `documentation.json`. Unrelated to the paste box. */
+export type ConvertRequest = {
+  url: string;
+  documentationJson?: unknown;
+  filter?: string;
+  limit?: number;
+};
+
 export type ConvertResponse = {
   ok: boolean;
-  /** Present when `ok` is false. */
   message?: string;
   site?: string;
   name?: string;
-  /** Where the config came from. */
   source?: string;
   total?: number;
   pages?: ConvertPage[];

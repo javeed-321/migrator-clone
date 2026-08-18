@@ -12,6 +12,7 @@ and is the one you act on.
 |---|---:|---|---|
 | **[component-conversion-plan.md](component-conversion-plan.md)** | 1,372 | **The plan.** Every ReadMe construct → its Documentation.AI target, with source and target snippets, and what breaks if converted naively | Converting a page, or deciding *which* component to emit |
 | **[prop-mapping-strategy.md](prop-mapping-strategy.md)** | 555 | **The prop spec.** Every attribute, with one of six actions (keep / rename / transform / derive / drop / block), the shared value transforms, the order they run in, and a machine-readable `PROP_MAP` | Writing converter code, or deciding what happens to *one attribute* |
+| **[TableConversion.md](TableConversion.md)** | 556 | **Tables, end to end.** The 9-step procedure, verified against the platform renderer's own source: what whitespace survives a cell, why `<br>` and `&#xA;` are out, and how depth is encoded | Converting any table — 1,853 of them in the corpus |
 | [readme-components-info.md](readme-components-info.md) | 1,546 | **Source format.** Every ReadMe component, its real attributes, and usage counts from a 1,376-file corpus | You need to know what a ReadMe attribute actually does |
 | [documentationai-components-information.md](documentationai-components-information.md) | 1,264 | **Target format.** Every Documentation.AI component, attributes, defaults, required fields | You need the exact target syntax |
 | [migration-pitfalls.md](migration-pitfalls.md) | 201 | **What goes wrong.** A failure catalogue turned into preventive rules, earned on real migrations | Before starting, and during review |
@@ -24,7 +25,7 @@ and is the one you act on.
 2. Read the section of **component-conversion-plan.md** covering the components on your page.
 3. For each attribute, look it up in **prop-mapping-strategy.md** §4 — every source prop gets
    exactly one of six actions, so nothing is left to judgement.
-4. Follow the **32-step checklist** in the plan's Section 6, per page.
+4. Follow the **35-step checklist** in the plan's Section 6, per page.
 5. Reach for the two platform references only when the plan says `NEEDS VERIFICATION`, or when
    you hit an attribute neither file covers.
 
@@ -39,10 +40,10 @@ and is the one you act on.
 | — | **Master conversion table** — all 37 ReadMe constructs → their target, one row each, at the top of the plan |
 | 1 | **One-to-one** — Callout, code fences, CodeTabs→CodeGroup, Tabs, tables, Mermaid, links, lists, headings |
 | 2 | **Near matches** — Accordion→Expandable, Cards→Columns+Card, Column→Card, Embed→Video/Iframe, `<Table>`→pipe table, Glossary, magic blocks, ordered lists (Steps only when a step has a body) |
-| 3 | **Raw HTML** — the no-HTML rule, what must become a component, the image rule, `<br />` stripping |
+| 3 | **Raw HTML** — the no-HTML rule, what must become a component, the image rule, `<br />` stripped everywhere |
 | 4 | **Custom components** — ReadMe's four extension surfaces, Marketplace mapping, `HTMLBlock`, the fallback strategy |
 | 5 | **API reference** — page structure, OpenAPI wiring, `ParamField`/`ResponseField`/`Request`/`Response` |
-| 6 | **Checklist** — 32 ordered steps, plus stop conditions |
+| 6 | **Checklist** — 35 ordered steps, plus stop conditions |
 
 ## Citation convention
 
@@ -65,9 +66,9 @@ split into resolved and still-open, alongside a table of the three places where 
 
 Pulled from the plan; each is cited there in full.
 
-0. **No raw HTML in the output — components only.** `<Columns>` takes `<Card>` children, never
-   `<div>`; `<details>` becomes `<Expandable>`; a raw `<table>` becomes a pipe table. The single
-   exception is `<br>` as a line break inside a table cell. This is a project rule and it
+0. **No raw HTML in the output — components only, no exceptions.** `<Columns>` takes `<Card>`
+   children, never `<div>`; `<details>` becomes `<Expandable>`; a raw `<table>` becomes a pipe
+   table; and `<br>` is stripped everywhere, **tables included**. This is a project rule and it
    overrides the HTML routes the reference files offer.
 0a. **A numbered list stays a numbered list.** Promote to `<Steps>` only when each step carries
    explanatory content beneath it.
@@ -75,12 +76,16 @@ Pulled from the plan; each is cited there in full.
    a whole table missing. "It builds" is not "it's complete" `[PIT Phase 2]`.
 2. **Never empty a first-column parameter name.** One migration shipped 40 nameless parameter
    rows across 4 pages `[PIT Phase 2]`.
-3. **ASCII spaces cannot indent a table cell** — GFM strips them. Use em-space (U+2003) + glyph,
-   first column only `[TBL]`.
+3. **ASCII spaces cannot indent a table cell** — GFM strips them, and the renderer collapses what
+   is left. Use em-space (U+2003) + glyph, first column only `[TBL]`.
+3a. **No `<br>` in tables, and `&#xA;` is not a substitute** — cells render at
+   `white-space: normal`, so a newline entity collapses to a space. Use a `•` separator or split
+   into rows. Verified in the platform source; see TableConversion.md §3.
 4. **`theme` beats `icon`** when resolving a Callout's kind. Reversing it recolours callouts
    `[RM §4.1]`.
-5. **Strip `<br />` between blocks, keep it inside table cells.** 305 of the corpus's `<br/>`s
-   are in cells; blanket-stripping merges them into run-on text `[TBL trap 4]`.
+5. **Strip `<br />` everywhere, including table cells.** 922 of the corpus's `<br>`s sit inside
+   tables — they become a `•`-separated line or separate rows, never a line break
+   (TableConversion.md §3).
 6. **External images take `src` + `alt` only** — no width, no height, and percentage widths are
    invalid on the target `[DAI §16]`.
 7. **`<Card>` requires `title`, `href` *and* children** on Documentation.AI; all three are
