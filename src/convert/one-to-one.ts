@@ -68,6 +68,11 @@ export type ConvertOptions = {
    * decision, never a per-heading guess.
    */
   headingPolicy?: "preserve" | "demote";
+  /**
+   * Original image URL -> the local path to write instead. This is the `map` from
+   * `downloadImages`; a URL it does not contain keeps its original `src`.
+   */
+  imageSrc?: (url: string) => string | undefined;
 };
 
 export type ConvertResult = { tree: Root; notes: ConversionNote[] };

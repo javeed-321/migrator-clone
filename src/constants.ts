@@ -30,3 +30,10 @@ export const SPACES = " ".repeat(13);
 export const NAV_FAILURE_MSG = `failed to retrieve nav items from HTML.
 ${SPACES}Could not find the sidebar element. This build only implements ReadMe selectors (nav.rm-Sidebar).`;
 
+
+/**
+ * Where downloaded page images are written, relative to the project root, and the
+ * path the MDX points at. One constant so the folder on disk and the `src` in the
+ * page can never drift apart.
+ */
+export const IMAGE_DIR = "images";

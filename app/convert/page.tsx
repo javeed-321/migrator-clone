@@ -11,6 +11,10 @@ import type { ConvertMarkdownResponse } from "./types";
 /**
  * Paste ReadMe markdown on the left, read Documentation.AI MDX on the right.
  *
+ * Images are fetched into `images/` as part of the conversion, so the MDX shown on
+ * the right points at local files rather than at the source host. The checkbox in
+ * Options turns that off.
+ *
  * Deliberately plain: two boxes and a button. The notes list is the only other
  * thing on the page, because a conversion that shows output alone tells you
  * nothing about what it dropped. Options that most pastes do not need sit behind
@@ -75,18 +79,26 @@ export default function Convert() {
   const [notes, setNotes] = useState<ConversionNote[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [withImages, setWithImages] = useState(true);
+  const [images, setImages] = useState<ConvertMarkdownResponse["images"]>(undefined);
 
   async function convert() {
     setLoading(true);
     setError("");
     setMdx("");
     setNotes([]);
+    setImages(undefined);
 
     try {
       const res = await fetch("/api/convert-markdown", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ markdown, title: title || undefined, site: site || undefined }),
+        body: JSON.stringify({
+          markdown,
+          title: title || undefined,
+          site: site || undefined,
+          downloadImages: withImages,
+        }),
       });
       const data = (await res.json()) as ConvertMarkdownResponse;
 
@@ -96,6 +108,7 @@ export default function Convert() {
       }
 
       setMdx(data.mdx ?? "");
+      setImages(data.images);
       setNotes([...(data.notes ?? [])].sort((a, b) => ORDER[a.level] - ORDER[b.level]));
       if (data.parseError) {
         setError(
@@ -130,6 +143,16 @@ export default function Convert() {
 
       {error && <p className={styles.error}>{error}</p>}
 
+      {images && (
+        <p className="sub">
+          {images.downloaded + images.fromCache === 0
+            ? "No images on this page."
+            : `${images.downloaded} image${images.downloaded === 1 ? "" : "s"} saved to images/` +
+              (images.fromCache > 0 ? `, ${images.fromCache} already there` : "") +
+              (images.failed > 0 ? `, ${images.failed} failed` : "")}
+        </p>
+      )}
+
       <div className={styles.panes}>
         <textarea
           className={styles.box}
@@ -157,6 +180,14 @@ export default function Convert() {
             onChange={(event) => setTitle(event.target.value)}
             placeholder="drops a duplicate body H1"
           />
+        </label>
+        <label className={styles.field}>
+          <input
+            type="checkbox"
+            checked={withImages}
+            onChange={(event) => setWithImages(event.target.checked)}
+          />
+          Download images into <code>images/</code> and point the page at them
         </label>
         <label className={styles.field}>
           Source site

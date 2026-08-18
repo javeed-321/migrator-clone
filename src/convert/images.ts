@@ -1,5 +1,6 @@
 import type { Image as MdImage, Parent, Root, RootContent } from "mdast";
 import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { toString as mdastToString } from "mdast-util-to-string";
 
 import { attr, liftInlineJsx, lineOf, readAttr, type ConversionNote } from "./mdast";
 
@@ -55,12 +56,18 @@ type Facts = {
   src: string;
   alt?: string;
   caption?: string;
+  /** The caption came from children rather than the attribute. */
+  captionFromChildren?: boolean;
   /** Dropped dimensions that were real pixels — a loss worth flagging. */
   sized?: string[];
   dropped: string[];
 };
 
-type State = { external: number };
+type State = {
+  external: number;
+  /** Original URL -> local path, when the images have been downloaded. */
+  resolve?: (url: string) => string | undefined;
+};
 
 function note(
   notes: ConversionNote[],
@@ -114,6 +121,13 @@ export function altFromSrc(src: string): string | undefined {
 }
 
 function factsFromJsx(node: MdxJsxFlowElement): Facts {
+  // ReadMe accepts the caption two ways, and **children win when both are
+  // present** `[RM §4.2]` — `<Image src="…">Owlbert!</Image>` is a captioned image,
+  // not an image with stray content. Reading only the attribute would drop it.
+  const fromChildren = mdastToString({ type: "root", children: node.children ?? [] })
+    .replace(/\s+/g, " ")
+    .trim();
+
   const sized = ["width", "height"]
     .map((name) => ({ name, raw: readAttr(node, name) }))
     .filter((entry): entry is { name: string; raw: string } => entry.raw !== undefined);
@@ -121,7 +135,8 @@ function factsFromJsx(node: MdxJsxFlowElement): Facts {
   return {
     src: readAttr(node, "src") ?? "",
     alt: readAttr(node, "alt"),
-    caption: readAttr(node, "caption"),
+    caption: fromChildren || readAttr(node, "caption"),
+    captionFromChildren: fromChildren.length > 0,
     // A pixel value is a real size the page will stop requesting, so it is called
     // out separately from the attributes that never meant anything.
     sized: sized.filter((entry) => isPixels(entry.raw)).map((entry) => `${entry.name}="${entry.raw.trim()}"`),
@@ -193,6 +208,12 @@ function toImage(
     return undefined;
   }
 
+  // A downloaded image points at the local copy. A URL the downloader could not
+  // fetch is absent from the map and keeps its original src — a broken local path
+  // would be worse than a working remote one.
+  const local = state.resolve?.(facts.src);
+  const src = local ?? facts.src;
+
   // A whitespace-only caption is this converter's own blank marker, not something
   // to promote into the alt text.
   const authored = facts.alt ?? (facts.caption?.trim() ? facts.caption : undefined);
@@ -203,12 +224,13 @@ function toImage(
   // image with no caption would otherwise publish its alt text as a visible one.
   // A blank caption is what keeps the figure silent.
   const attributes = [
-    attr("src", facts.src),
+    attr("src", src),
     ...(alt ? [attr("alt", alt)] : []),
     attr("caption", facts.caption?.trim() ? facts.caption : BLANK_CAPTION),
   ];
 
-  if (/^https?:\/\//i.test(facts.src)) state.external += 1;
+  if (/^https?:\/\//i.test(src)) state.external += 1;
+  if (local) note(notes, "change", `src now points at the downloaded copy, ${local}`, line);
 
   if (!same(from, attributes)) {
     const percentage = facts.dropped.some((text) => text.includes("%"))
@@ -216,6 +238,10 @@ function toImage(
       : "";
     const lost = facts.dropped.length > 0 ? `, dropping ${facts.dropped.join(", ")}` : "";
     note(notes, "change", `<${was}> -> <Image src alt />${lost}${percentage}`, line);
+  }
+
+  if (facts.captionFromChildren) {
+    note(notes, "change", `caption moved out of the element's children into caption="${facts.caption}" — the target has no children on <Image>`, line);
   }
 
   if (facts.sized?.length) {
@@ -322,9 +348,16 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
  *
  * Runs after the table pass, which has already turned an image inside a cell into
  * a link to it, so nothing here has to reason about cells.
+ *
+ * `resolve` is the map `downloadImages` returns. Supply it and every `src` that was
+ * fetched points at the local copy instead of the source host.
  */
-export function convertImages(root: Root | Parent, notes: ConversionNote[]): void {
-  const state: State = { external: 0 };
+export function convertImages(
+  root: Root | Parent,
+  notes: ConversionNote[],
+  resolve?: (url: string) => string | undefined,
+): void {
+  const state: State = { external: 0, ...(resolve ? { resolve } : {}) };
   walk(root, notes, state);
 
   if (state.external > 0) {

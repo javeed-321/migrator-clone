@@ -8,6 +8,12 @@ export type ConvertMarkdownRequest = {
   title?: string;
   /** Source site origin, so absolute self-links become site-relative. */
   site?: string;
+  /**
+   * Pull the page's images into `images/` and point the MDX at the local copies.
+   * Defaults to on — this runs on the author's own machine, where saving the
+   * assets is the point.
+   */
+  downloadImages?: boolean;
 };
 
 /**
@@ -23,6 +29,8 @@ export type ConvertMarkdownResponse = {
   notes?: ConversionNote[];
   parseMode?: "mdx" | "markdown";
   parseError?: string;
+  /** What the image download did, when it ran. */
+  images?: { downloaded: number; fromCache: number; failed: number };
   ms?: number;
 };
 

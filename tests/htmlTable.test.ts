@@ -33,7 +33,7 @@ const PLAIN = `<table>
 </table>`;
 
 describe("3.4 a raw table becomes a pipe table", () => {
-  it("converts it", () => {
+  it("converts it", async () => {
     const { mdx } = run(PLAIN);
 
     expect(mdx).not.toContain("<table");
@@ -41,7 +41,7 @@ describe("3.4 a raw table becomes a pipe table", () => {
     expect(mdx.split("\n")[0]?.trim().startsWith("|")).toBe(true);
   });
 
-  it("keeps the header and every row", () => {
+  it("keeps the header and every row", async () => {
     const { mdx } = run(PLAIN);
 
     expect(row(mdx, 0)).toEqual(["Field", "Type"]);
@@ -49,7 +49,7 @@ describe("3.4 a raw table becomes a pipe table", () => {
     expect(row(mdx, 3)).toEqual(["email", "string"]);
   });
 
-  it("finds cells that parsed as inline JSX inside a paragraph", () => {
+  it("finds cells that parsed as inline JSX inside a paragraph", async () => {
     // `<tr><th>A</th></tr>` on one line puts the cells in a paragraph, not in the
     // row — a child scan would report an empty table.
     const { mdx } = run("<table><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table>");
@@ -58,13 +58,13 @@ describe("3.4 a raw table becomes a pipe table", () => {
     expect(row(mdx, 2)).toEqual(["1", "2"]);
   });
 
-  it("reads a table with no thead, taking the leading all-th rows as the header", () => {
+  it("reads a table with no thead, taking the leading all-th rows as the header", async () => {
     const { mdx } = run("<table>\n  <tr><th>A</th><th>B</th></tr>\n  <tr><td>1</td><td>2</td></tr>\n</table>");
 
     expect(row(mdx, 0)).toEqual(["A", "B"]);
   });
 
-  it("drops the presentation attributes and says so", () => {
+  it("drops the presentation attributes and says so", async () => {
     const source = '<table border="1" cellpadding="10" cellspacing="0">\n  <tr><th>A</th></tr>\n  <tr><td>1</td></tr>\n</table>';
     const { mdx, notes } = run(source);
 
@@ -74,7 +74,7 @@ describe("3.4 a raw table becomes a pipe table", () => {
     );
   });
 
-  it("reports the conversion", () => {
+  it("reports the conversion", async () => {
     const { notes } = run(PLAIN);
 
     expect(notes.some((note) => note.rule === "html-table" && note.level === "change")).toBe(true);
@@ -99,7 +99,7 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
   </tbody>
 </table>`;
 
-  it("joins a stacked header into GFM's single row", () => {
+  it("joins a stacked header into GFM's single row", async () => {
     expect(row(run(SPANS).mdx, 0)).toEqual([
       "Employee",
       "Performance Q1",
@@ -108,11 +108,11 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
     ]);
   });
 
-  it("does not double a label that spanned the header rows itself", () => {
+  it("does not double a label that spanned the header rows itself", async () => {
     expect(row(run(SPANS).mdx, 0)[0]).toBe("Employee");
   });
 
-  it("repeats a colspan value across every column it covered", () => {
+  it("repeats a colspan value across every column it covered", async () => {
     expect(row(run(SPANS).mdx, 3)).toEqual([
       "John",
       "Overall: Excellent",
@@ -121,12 +121,12 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
     ]);
   });
 
-  it("carries a rowspan value down into the rows it covered", () => {
+  it("carries a rowspan value down into the rows it covered", async () => {
     expect(row(run(SPANS).mdx, 2)[0]).toBe("John");
     expect(row(run(SPANS).mdx, 3)[0]).toBe("John");
   });
 
-  it("makes every row the same width", () => {
+  it("makes every row the same width", async () => {
     const { mdx } = run(SPANS);
     const widths = new Set(
       mdx.split("\n").filter((line) => line.trim().startsWith("|")).map((line) => line.split("|").length),
@@ -135,7 +135,7 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
     expect(widths.size).toBe(1);
   });
 
-  it("flags the flatten, since splitting the table reads better and is a human call", () => {
+  it("flags the flatten, since splitting the table reads better and is a human call", async () => {
     const { notes } = run(SPANS);
 
     expect(
@@ -143,11 +143,11 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
     ).toBe(true);
   });
 
-  it("flags the joined header rows", () => {
+  it("flags the joined header rows", async () => {
     expect(run(SPANS).notes.some((note) => note.detail.includes("header rows joined"))).toBe(true);
   });
 
-  it("flags a <th> stranded in a body row", () => {
+  it("flags a <th> stranded in a body row", async () => {
     const source =
       "<table>\n  <tr><th>A</th><th>B</th></tr>\n  <tr><td>1</td><td>2</td></tr>\n  <tr><th>Total</th><td>3</td></tr>\n</table>";
 
@@ -156,20 +156,20 @@ describe("3.4 colspan and rowspan are flattened, never dropped", () => {
 });
 
 describe("3.4 what it refuses to guess at", () => {
-  it("leaves a table with no readable rows in place, and blocks", () => {
+  it("leaves a table with no readable rows in place, and blocks", async () => {
     const { mdx, notes } = run("<table>\n  <tbody></tbody>\n</table>");
 
     expect(mdx).toContain("<table");
     expect(notes.some((note) => note.level === "blocker")).toBe(true);
   });
 
-  it("leaves ReadMe's <Table> component to its own pass", () => {
+  it("leaves ReadMe's <Table> component to its own pass", async () => {
     const source = "<Table>\n  <thead>\n    <tr><th>A</th></tr>\n  </thead>\n</Table>";
 
     expect(run(source).mdx).toContain("<Table>");
   });
 
-  it("converts a table nested inside another component", () => {
+  it("converts a table nested inside another component", async () => {
     const source = `<Callout kind="info">\n\n${PLAIN}\n\n</Callout>`;
     const { mdx } = run(source);
 
@@ -178,19 +178,20 @@ describe("3.4 what it refuses to guess at", () => {
   });
 });
 
-describe("3.4 through the pipeline", () => {
-  const result = convertReadmeMarkdown(PLAIN);
+const result = await convertReadmeMarkdown(PLAIN);
 
-  it("hands the result to the table pass, which normalises it", () => {
+describe("3.4 through the pipeline", () => {
+
+  it("hands the result to the table pass, which normalises it", async () => {
     expect(result.mdx).not.toContain("<table");
     expect(result.mdx).toContain("| Field");
   });
 
-  it("is idempotent", () => {
-    expect(convertReadmeMarkdown(result.mdx).mdx).toBe(result.mdx);
+  it("is idempotent", async () => {
+    expect((await convertReadmeMarkdown(result.mdx)).mdx).toBe(result.mdx);
   });
 
-  it("emits no raw HTML", () => {
+  it("emits no raw HTML", async () => {
     expect(result.mdx).not.toMatch(/<(table|thead|tbody|tr|th|td)\b/);
   });
 });
