@@ -1,9 +1,13 @@
 import { parseMarkdown } from "../download/parse";
 import { convertAccordions } from "./accordion";
+import { convertBreaks } from "./breaks";
 import { convertCards } from "./cards";
 import { convertColumns } from "./columns";
+import { convertDetails } from "./details";
 import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
+import { convertHtmlTables } from "./html-table";
+import { convertImages } from "./images";
 import { expandMagicBlocks } from "./magic-blocks";
 import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
@@ -45,24 +49,37 @@ export type ConvertPageResult = {
  *    the page and the fallback parser returns the whole block as one paragraph of
  *    text — there is no node to match. It expands each block to its modern ReadMe
  *    form, which the passes below then convert normally.
- * 1. **`convertTables`** — rebuilds `<Table>` JSX and normalises every GFM table.
+ * 1. **`convertHtmlTables`** — a raw lowercase `<table>` -> a markdown table
+ *    (plan §3.4). Before the `<Table>` pass, so what it produces is normalised by
+ *    that pass like any other table.
+ * 2. **`convertTables`** — rebuilds `<Table>` JSX and normalises every GFM table.
  *    Early, because it flattens cells into inline nodes that later passes (and the
  *    link rewriter) then treat like any other content.
- * 2. **`convertEmbeds`** — consumes `[Title](url "@embed")` while it is still an
+ * 3. **`convertEmbeds`** — consumes `[Title](url "@embed")` while it is still an
  *    embed. After the link pass it would be an ordinary link and the shorthand
  *    would be lost.
- * 3. **`convertAccordions`** — collapses runs of adjacent siblings, so it must see
+ * 4. **`convertDetails`** — raw `<details>`/`<summary>` -> `<Expandable>`. Early,
+ *    because on a page that fell back to the plain-markdown parser the block
+ *    arrives as *stray `html` siblings* rather than a subtree; converting it first
+ *    means every pass below sees one component tree instead of loose HTML.
+ * 5. **`convertBreaks`** — strips every `<br>` (plan §3.6). After the details
+ *    pass, because that one re-parses a raw block's body and so *creates* fresh
+ *    `<br>` nodes for this pass to find.
+ * 6. **`convertImages`** — every image form -> `<Image src alt />` (plan §3.5).
+ *    After the table pass, which has already turned an image inside a cell into a
+ *    link, so nothing here has to reason about cells.
+ * 7. **`convertAccordions`** — collapses runs of adjacent siblings, so it must see
  *    the page before anything can split a run.
- * 4. **`convertCards`** — `<Cards>` -> `<Columns>` + `<Card>`.
- * 5. **`convertColumns`** — handles source `<Columns>`/`<Column>` and tolerates the
- *    output of step 4, which is why it runs after it rather than before.
- * 6. **`convertSteps`** — promotes an ordered list to `<Steps>` when every step
+ * 8. **`convertCards`** — `<Cards>` -> `<Columns>` + `<Card>`.
+ * 9. **`convertColumns`** — handles source `<Columns>`/`<Column>` and tolerates the
+ *    output of step 8, which is why it runs after it rather than before.
+ * 10. **`convertSteps`** — promotes an ordered list to `<Steps>` when every step
  *    has a body. After the container passes, so a procedure that was moved into a
  *    `<Card>` or an `<Expandable>` is still seen.
- * 7. **`convertGlossary`** — unwraps terms to plain text. Before the link pass,
+ * 11. **`convertGlossary`** — unwraps terms to plain text. Before the link pass,
  *    because the `<<glossary:x>>` shorthand parses as a `glossary:` *link* that
  *    the rewriter would otherwise treat as an ordinary URL.
- * 8. **`convertOneToOne`** — headings, callouts, fence titles, fence runs, tabs,
+ * 12. **`convertOneToOne`** — headings, callouts, fence titles, fence runs, tabs,
  *    and the link rewriting that has to come last. Running it here also means it
  *    sweeps the content the structural passes just moved: a callout inside a new
  *    `<Card>`, a fence run inside an `<Expandable>`.
@@ -78,8 +95,12 @@ export function convertReadmeMarkdown(
   const { tree, mode, error } = parseMarkdown(expanded.source);
   const notes: ConversionNote[] = [...expanded.notes];
 
+  convertHtmlTables(tree, notes);
   convertTables(tree, notes);
   convertEmbeds(tree, notes);
+  convertDetails(tree, notes);
+  convertBreaks(tree, notes);
+  convertImages(tree, notes);
   convertAccordions(tree, notes);
   convertCards(tree, notes);
   convertColumns(tree, notes);

@@ -143,3 +143,55 @@ describe("the pipeline", () => {
     expect(again.mdx).toBe(result.mdx);
   });
 });
+
+describe("raw <details> through the whole pipeline", () => {
+  /** The unclosed `<br>` is what forces the page onto the fallback parser. */
+  const PAGE = `## FAQ
+
+<details>
+<summary>What is a **loyalty program**?</summary>
+
+A program that rewards repeat customers. See [the guide](doc:loyalty-basics).
+
+</details>
+
+<details open>
+<summary>How do I join?</summary>
+
+> 📘 Before you begin
+>
+> You need an API key.
+
+</details>
+
+Signed up? <br> Then you are done.`;
+
+  const result = convertReadmeMarkdown(PAGE, { site: "https://docs.capillarytech.com" });
+
+  it("converts both blocks even though the page is not valid MDX", () => {
+    expect(result.parseMode).toBe("markdown");
+    expect(result.mdx).not.toContain("<details");
+    expect(result.mdx).toContain('<Expandable title="What is a loyalty program?"');
+    expect(result.mdx).toContain('default-open="true"');
+  });
+
+  it("groups them, and lets the later passes reach inside", () => {
+    expect(result.mdx).toContain("<ExpandableGroup>");
+    // The callout pass swept the body the details pass had just moved.
+    expect(result.mdx).toContain('<Callout kind="info">');
+    // And the link pass rewrote a `doc:` href that sits inside an Expandable.
+    expect(result.mdx).toContain("[the guide](/docs/loyalty-basics)");
+  });
+
+  it("is idempotent once the page is valid MDX", () => {
+    // The stray unclosed `<br>` is still in the output — stripping it is §3.6,
+    // which is not built yet — and it keeps the page on the fallback parser,
+    // where the nested indentation of a converted <ExpandableGroup> reads as an
+    // indented code block. Remove it and the conversion is a fixed point.
+    const valid = result.mdx.replace(" <br>", "");
+    const again = convertReadmeMarkdown(valid, { site: "https://docs.capillarytech.com" });
+
+    expect(again.parseMode).toBe("mdx");
+    expect(again.mdx).toBe(valid);
+  });
+});
