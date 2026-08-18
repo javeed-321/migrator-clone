@@ -184,6 +184,14 @@ describe("cells", () => {
     expect(cellOf("`api_key` and ERR\\_LOYALTY\\_BILL")).toBe("`api_key` and ERR_LOYALTY_BILL");
   });
 
+  it("keeps a <code> cell as inline code rather than flattening it to text", () => {
+    expect(cellOf("<code>limit</code>")).toBe("`limit`");
+  });
+
+  it("keeps <kbd> as itself, since backticks would say something different", () => {
+    expect(cellOf("<kbd>Ctrl+C</kbd>")).toBe("<kbd>Ctrl+C</kbd>");
+  });
+
   it("strips an escaped \\<br>, which arrives as literal text", () => {
     expect(cellOf("one \\<br>two")).toBe("• one • two");
   });

@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import { convertReadmeMarkdown } from "../src/convert/run";
-import { downloadImages, imageUrlsIn, nameImages } from "../src/download/images";
+import { downloadImages, nameImages } from "../src/download/images";
 
 let outDir = "";
 
@@ -39,26 +39,6 @@ const PAGE = `<Image src="https://files.readme.io/f1f2d3a-password_validate.jpg"
 
 Not an image: [a link](https://example.test/page).`;
 
-describe("finding the images on a page", () => {
-  it("finds every form, and nothing else", async () => {
-    expect(imageUrlsIn(PAGE)).toEqual([
-      "https://files.readme.io/f1f2d3a-password_validate.jpg",
-      "https://files.readme.io/logo.png",
-      "https://files.readme.io/abc-chart.png",
-    ]);
-  });
-
-  it("ignores an image that is already local", async () => {
-    expect(imageUrlsIn('<Image src="/images/a.png" alt="A" />')).toEqual([]);
-  });
-
-  it("lists a repeated image once", async () => {
-    const source = `![A](https://x.test/a.png)\n\n![A again](https://x.test/a.png)`;
-
-    expect(imageUrlsIn(source)).toHaveLength(1);
-  });
-});
-
 describe("naming the files", () => {
   it("keeps the readable name ReadMe already gave the file", async () => {
     const names = nameImages(["https://files.readme.io/f1f2d3a-password_validate.jpg"]);
@@ -88,7 +68,11 @@ describe("naming the files", () => {
 describe("downloading", () => {
   it("writes each image into the images folder", async () => {
     const { impl } = stubFetch();
-    const report = await downloadImages(imageUrlsIn(PAGE), { outDir, fetchImpl: impl, delayMs: 0 });
+    const report = await downloadImages([
+      "https://files.readme.io/f1f2d3a-password_validate.jpg",
+      "https://files.readme.io/abc-chart.png",
+      "https://files.readme.io/logo.png",
+    ], { outDir, fetchImpl: impl, delayMs: 0 });
 
     expect(report.downloaded).toBe(3);
     expect(existsSync(join(outDir, "images", "f1f2d3a-password_validate.jpg"))).toBe(true);
@@ -238,7 +222,11 @@ describe("the pipeline downloads as it converts", () => {
 describe("rewriting the page", () => {
   it("points every downloaded image at its local copy", async () => {
     const { impl } = stubFetch();
-    const { map } = await downloadImages(imageUrlsIn(PAGE), { outDir, fetchImpl: impl, delayMs: 0 });
+    const { map } = await downloadImages([
+      "https://files.readme.io/f1f2d3a-password_validate.jpg",
+      "https://files.readme.io/abc-chart.png",
+      "https://files.readme.io/logo.png",
+    ], { outDir, fetchImpl: impl, delayMs: 0 });
 
     const { mdx } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
 
@@ -251,7 +239,11 @@ describe("rewriting the page", () => {
   it("leaves a failed download pointing at the original host", async () => {
     const gone = "https://files.readme.io/logo.png";
     const { impl } = stubFetch([gone]);
-    const { map } = await downloadImages(imageUrlsIn(PAGE), { outDir, fetchImpl: impl, delayMs: 0 });
+    const { map } = await downloadImages([
+      "https://files.readme.io/f1f2d3a-password_validate.jpg",
+      "https://files.readme.io/abc-chart.png",
+      "https://files.readme.io/logo.png",
+    ], { outDir, fetchImpl: impl, delayMs: 0 });
 
     const { mdx } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
 
@@ -261,7 +253,11 @@ describe("rewriting the page", () => {
 
   it("stops warning about external hosts once everything is local", async () => {
     const { impl } = stubFetch();
-    const { map } = await downloadImages(imageUrlsIn(PAGE), { outDir, fetchImpl: impl, delayMs: 0 });
+    const { map } = await downloadImages([
+      "https://files.readme.io/f1f2d3a-password_validate.jpg",
+      "https://files.readme.io/abc-chart.png",
+      "https://files.readme.io/logo.png",
+    ], { outDir, fetchImpl: impl, delayMs: 0 });
 
     const { notes } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
 

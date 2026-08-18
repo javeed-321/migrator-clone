@@ -23,12 +23,41 @@ import { attr, liftInlineJsx, lineOf, readAttr, type ConversionNote } from "./md
 
 /** Hosts whose embeds are players — `<Video>` gives them the right chrome. */
 const VIDEO_HOSTS = [
+  // Major platforms
   "youtube.com",
   "youtu.be",
   "vimeo.com",
+  "dailymotion.com",
+  "twitch.tv",
+  "tiktok.com",
+
+  // Business/Sales
   "loom.com",
   "wistia.com",
   "wistia.net",
+  "vidyard.com",
+
+  // Enterprise
+  "brightcove.com",
+  "kaltura.com",
+  "jwplatform.com",
+  "jwplayer.com",
+  "sproutvideo.com",
+
+  // Infrastructure/CDN
+  "mux.com",
+  "stream.mux.com",
+  "cloudflarestream.com",
+  "videodelivery.net",
+  "bunny.net",
+
+  // Social embeds
+  "facebook.com",
+  "twitter.com",
+  "x.com",
+
+  // Misc
+  "streamable.com",
 ];
 
 /** Extensions Documentation.AI plays natively in `render-type="video"`. */
@@ -259,6 +288,136 @@ export function convertEmbedElement(node: MdxJsxFlowElement, notes: ConversionNo
 }
 
 /**
+ * Plan §3.3 — a **raw `<iframe>`** becomes `<Iframe>`, or `<Video>` when it points
+ * at a video host.
+ *
+ * It is the same decision `<Embed>` already makes, so it is made here rather than
+ * in a module of its own: an author who hand-wrote `<iframe src="youtube.com/…">`
+ * meant the same thing as one who wrote `<Embed url="youtube.com/…">`, and both
+ * should land on the player rather than on a bare frame.
+ *
+ * Raw HTML is not an option on the target regardless (global rule), and the
+ * component adds lazy loading and sandboxing that a hand-written frame does not
+ * get `[APP Iframe.tsx]`.
+ */
+
+/** HTML attribute -> the target's prop, which is kebab-case `[APP Iframe.tsx]`. */
+const IFRAME_PROPS: Record<string, string> = {
+  title: "title",
+  sandbox: "sandbox",
+  allowfullscreen: "allow-full-screen",
+  allowFullScreen: "allow-full-screen",
+  frameborder: "frame-border",
+  frameBorder: "frame-border",
+  loading: "loading",
+};
+
+/** Attributes with nowhere to go on the target. */
+const IFRAME_DROPPED = [
+  "allow", "referrerpolicy", "referrerPolicy", "scrolling", "marginwidth", "marginheight",
+  "name", "id", "class", "className", "style", "align", "srcdoc",
+];
+
+/**
+ * One raw `<iframe>` -> `<Iframe>` / `<Video>`.
+ *
+ * `loading="lazy"` is dropped rather than carried: it is already the component's
+ * default `[APP Iframe.tsx]`, so writing it down says nothing.
+ */
+export function convertRawIframe(node: MdxJsxFlowElement, notes: ConversionNote[]): RootContent {
+  const line = lineOf(node);
+  const url = readAttr(node, "src") ?? "";
+
+  if (!url) {
+    notes.push({
+      rule: "iframe",
+      level: "blocker",
+      line,
+      detail: "raw <iframe> has no src — left in place, since there is nothing to embed",
+    });
+    return node;
+  }
+
+  const target = routeEmbed(url, "iframe");
+  const src = embedSrc(url);
+  const name = target === "video" || target === "video-file" ? "Video" : "Iframe";
+
+  const carried =
+    name === "Iframe"
+      ? Object.entries(IFRAME_PROPS).flatMap(([from, to]) => {
+          const value = readAttr(node, from);
+          if (value === undefined) return [];
+          if (to === "loading" && value.toLowerCase() === "lazy") return [];
+          return [attr(to, value)];
+        })
+      : [];
+
+  const width = dimension(readAttr(node, "width"), target, "width", notes, line);
+  const height = dimension(readAttr(node, "height"), target, "height", notes, line);
+
+  const dropped = [
+    ...IFRAME_DROPPED,
+    // On a video player these have nowhere to go either — the provider's embed
+    // owns the frame.
+    ...(name === "Video" ? Object.keys(IFRAME_PROPS).filter((key) => key !== "title") : []),
+  ].filter((attribute) => readAttr(node, attribute) !== undefined);
+  if (dropped.length > 0) {
+    notes.push({
+      rule: "iframe",
+      level: "change",
+      line,
+      detail: `dropped ${dropped.join(", ")} — no equivalent on <${name}>`,
+    });
+  }
+
+  notes.push({
+    rule: "iframe",
+    level: "change",
+    line,
+    detail:
+      name === "Video"
+        ? `raw <iframe> -> <Video> on ${hostOf(src) || "the source URL"}, which is what the URL is`
+        : "raw <iframe> -> <Iframe>, which adds lazy loading and sandboxing",
+  });
+
+  return {
+    type: "mdxJsxFlowElement",
+    name,
+    attributes: [
+      attr("src", src),
+      ...(width === undefined ? [] : [attr("width", width)]),
+      ...(height === undefined ? [] : [attr("height", height)]),
+      ...carried,
+    ],
+    children: [],
+    ...(node.position ? { position: node.position } : {}),
+  };
+}
+
+/** `<iframe …>` written as raw HTML, with an optional closing tag and nothing else. */
+const RAW_IFRAME = /^<iframe\b([^>]*?)\/?>(?:\s*<\/iframe\s*>)?$/i;
+const RAW_ATTR = /([A-Za-z_][\w:-]*)\s*=\s*(?:"([^"]*)"|'([^']*)'|\{([^}]*)\})|([A-Za-z_][\w:-]*)/g;
+
+/**
+ * The same tag on a page the MDX parser rejected, where it is raw text.
+ *
+ * A hand-written `<iframe>` is a common reason a page *is* rejected — it is often
+ * written unclosed — so this is not a rare path.
+ */
+function iframeFromHtml(value: string): MdxJsxFlowElement | undefined {
+  const tag = RAW_IFRAME.exec(value.trim());
+  if (!tag) return undefined;
+
+  const attributes = [];
+  for (const match of (tag[1] ?? "").matchAll(RAW_ATTR)) {
+    const name = match[1] ?? match[5];
+    if (name) attributes.push(attr(name, (match[2] ?? match[3] ?? match[4] ?? "true").trim()));
+  }
+
+  return { type: "mdxJsxFlowElement", name: "iframe", attributes, children: [] };
+}
+
+/**
  * The markdown shorthand: `[Title](https://youtu.be/x "@embed")` `[RM §4.6]`.
  *
  * Only a paragraph that holds nothing but the link is converted — an `@embed`
@@ -280,9 +439,9 @@ function embedLinkOf(node: RootContent): Link | null {
 // The walk
 // ---------------------------------------------------------------------------
 
-/** Converts every `<Embed>` and every `"@embed"` link on a page. */
+/** Converts every `<Embed>`, every `"@embed"` link and every raw `<iframe>`. */
 export function convertEmbeds(root: Root | Parent, notes: ConversionNote[]): void {
-  liftInlineJsx(root, new Set(["Embed"]), notes);
+  liftInlineJsx(root, new Set(["Embed", "iframe"]), notes);
 
   const children = root.children as RootContent[];
 
@@ -293,6 +452,21 @@ export function convertEmbeds(root: Root | Parent, notes: ConversionNote[]): voi
     if (child.type === "mdxJsxFlowElement" && child.name === "Embed") {
       children[i] = convertEmbedElement(child, notes);
       continue;
+    }
+
+    if (child.type === "mdxJsxFlowElement" && child.name === "iframe") {
+      children[i] = convertRawIframe(child, notes);
+      continue;
+    }
+
+    // The same tag on a page the MDX parser rejected, where it is raw text.
+    if (child.type === "html") {
+      const raw = iframeFromHtml(child.value);
+      if (raw) {
+        if (child.position) raw.position = child.position;
+        children[i] = convertRawIframe(raw, notes);
+        continue;
+      }
     }
 
     const link = embedLinkOf(child);

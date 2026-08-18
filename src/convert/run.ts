@@ -7,13 +7,15 @@ import { convertDetails } from "./details";
 import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
 import { convertHtmlTables } from "./html-table";
-import { convertImages } from "./images";
+import { convertImages, type FoundImage } from "./images";
 import { expandMagicBlocks } from "./magic-blocks";
 import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
 import { convertOneToOne, toMdx, type ConvertOptions } from "./one-to-one";
+import { convertPlaceholders } from "./placeholders";
 import { convertTables } from "./table";
-import { downloadImages, imageUrlsIn, type ImageDownloadOptions, type ImageDownloadReport } from "../download/images";
+import { convertWrappers } from "./wrappers";
+import { downloadImages, type ImageDownloadOptions, type ImageDownloadReport } from "../download/images";
 
 /**
  * One page of ReadMe markdown -> Documentation.AI MDX.
@@ -85,21 +87,29 @@ export type ConvertPageResult = {
  * 6. **`convertBreaks`** — strips every `<br>` (plan §3.6). After the details
  *    pass, because that one re-parses a raw block's body and so *creates* fresh
  *    `<br>` nodes for this pass to find.
- * 7. **`convertImages`** — every image form -> `<Image src alt />` (plan §3.5).
+ * 7. **`convertWrappers`** — layout `<div>`/`<p>` and `&nbsp;` padding go, their
+ *    content stays (plan §3.6). After the table pass, so a cell's indentation is
+ *    already em-spaces rather than the non-breaking spaces it arrived as; before
+ *    the container passes, so anything a wrapper was hiding is visible to them.
+ * 8. **`convertImages`** — every image form -> `<Image src alt />` (plan §3.5).
  *    After the table pass, which has already turned an image inside a cell into a
  *    link, so nothing here has to reason about cells.
- * 8. **`convertAccordions`** — collapses runs of adjacent siblings, so it must see
+ * 9. **`convertAccordions`** — collapses runs of adjacent siblings, so it must see
  *    the page before anything can split a run.
- * 9. **`convertCards`** — `<Cards>` -> `<Columns>` + `<Card>`.
- * 10. **`convertColumns`** — handles source `<Columns>`/`<Column>` and tolerates the
- *    output of step 9, which is why it runs after it rather than before.
- * 11. **`convertSteps`** — promotes an ordered list to `<Steps>` when every step
+ * 10. **`convertCards`** — `<Cards>` -> `<Columns>` + `<Card>`.
+ * 11. **`convertColumns`** — handles source `<Columns>`/`<Column>` and tolerates the
+ *    output of step 10, which is why it runs after it rather than before.
+ * 12. **`convertSteps`** — promotes an ordered list to `<Steps>` when every step
  *    has a body. After the container passes, so a procedure that was moved into a
  *    `<Card>` or an `<Expandable>` is still seen.
- * 12. **`convertGlossary`** — unwraps terms to plain text. Before the link pass,
+ * 13. **`convertPlaceholders`** — tag-shaped prose -> inline code (plan §3.3).
+ *    Late, so it only ever sees text that no other pass claimed: anything that was
+ *    really a component has been converted by now, and what is left in a text or
+ *    `html` node genuinely is prose.
+ * 14. **`convertGlossary`** — unwraps terms to plain text. Before the link pass,
  *    because the `<<glossary:x>>` shorthand parses as a `glossary:` *link* that
  *    the rewriter would otherwise treat as an ordinary URL.
- * 13. **`convertOneToOne`** — headings, callouts, fence titles, fence runs, tabs,
+ * 15. **`convertOneToOne`** — headings, callouts, fence titles, fence runs, tabs,
  *    and the link rewriting that has to come last. Running it here also means it
  *    sweeps the content the structural passes just moved: a callout inside a new
  *    `<Card>`, a fence run inside an `<Expandable>`.
@@ -107,28 +117,57 @@ export type ConvertPageResult = {
  * If a nested case ever misbehaves, this order is the first thing to revisit — it
  * is a composition choice, not something the passes enforce.
  */
+/**
+ * Pulls down the images the conversion just found, and repoints them.
+ *
+ * The pass hands back a closure per image, so nothing has to look for them a
+ * second time — the parser found them, and this puts the answer back exactly
+ * where it came from. A URL the download could not fetch keeps its original src:
+ * a broken local path is worse than a working remote one.
+ */
+async function fetchImages(
+  found: FoundImage[],
+  options: ConvertPageOptions,
+  notes: ConversionNote[],
+): Promise<ImageDownloadReport | undefined> {
+  const resolve = options.imageSrc;
+  let report: ImageDownloadReport | undefined;
+
+  if (options.images) {
+    report = await downloadImages([...new Set(found.map((image) => image.url))], options.images);
+    notes.push({
+      rule: "image",
+      level: report.failed.length > 0 ? "flag" : "change",
+      detail: `downloaded ${report.downloaded} image${report.downloaded === 1 ? "" : "s"}${report.fromCache > 0 ? ` (${report.fromCache} already on disk)` : ""}${report.failed.length > 0 ? `, ${report.failed.length} failed and kept their original src` : ""}`,
+    });
+  }
+
+  const lookup = report ? (url: string) => report?.map[url] : resolve;
+  let remote = 0;
+
+  for (const image of found) {
+    const local = lookup?.(image.url);
+    if (local) image.use(local);
+    else remote += 1;
+  }
+
+  if (remote > 0) {
+    notes.push({
+      rule: "image",
+      level: "flag",
+      detail: `${remote} image${remote === 1 ? "" : "s"} still point at an external host — the CDN loader passes non-CDN URLs through unchanged [APP imgixLoader.ts], so these are served unoptimised and stay dependent on the platform being left behind. Re-host them, or convert with an images outDir`,
+    });
+  }
+
+  return report;
+}
+
 export async function convertReadmeMarkdown(
   source: string,
   options: ConvertPageOptions = {},
 ): Promise<ConvertPageResult> {
   const expanded = expandMagicBlocks(source);
   const notes: ConversionNote[] = [...expanded.notes];
-
-  // Step 0. The images come down before anything is parsed, so the image pass has
-  // somewhere local to point at. `map` holds only what actually downloaded — a
-  // failure keeps its original src rather than becoming a broken local path.
-  const images = options.images
-    ? await downloadImages(imageUrlsIn(expanded.source), options.images)
-    : undefined;
-
-  if (images) {
-    notes.push({
-      rule: "image",
-      level: images.failed.length > 0 ? "flag" : "change",
-      detail: `downloaded ${images.downloaded} image${images.downloaded === 1 ? "" : "s"}${images.fromCache > 0 ? ` (${images.fromCache} already on disk)` : ""}${images.failed.length > 0 ? `, ${images.failed.length} failed and kept their original src` : ""}`,
-    });
-  }
-
   const { tree, mode, error } = parseMarkdown(expanded.source);
 
   convertHtmlTables(tree, notes);
@@ -136,11 +175,15 @@ export async function convertReadmeMarkdown(
   convertEmbeds(tree, notes);
   convertDetails(tree, notes);
   convertBreaks(tree, notes);
-  convertImages(tree, notes, images ? (url) => images.map[url] : options.imageSrc);
+  convertWrappers(tree, notes);
+  const found = convertImages(tree, notes);
+  const images = await fetchImages(found, options, notes);
+  console.log(found )
   convertAccordions(tree, notes);
   convertCards(tree, notes);
   convertColumns(tree, notes);
   convertSteps(tree, notes);
+  convertPlaceholders(tree, notes);
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, options).notes);
 

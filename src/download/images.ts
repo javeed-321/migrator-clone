@@ -19,15 +19,12 @@ import { intoChunks } from "../utils/intoChunks";
  *    behind has not finished; the day the ReadMe project is closed, the docs lose
  *    their images.
  *
- * This module only fetches and names. The rewrite is the converter's job: pass the
- * `map` this returns to `convertImages`, which swaps each `src` for the local path
- * — and leaves a failed download pointing at the original, since a broken local
- * path is worse than a working remote one.
+ * This module only fetches and names. It is never the thing that *finds* an image:
+ * the conversion pass already walked the page and knows where every one of them
+ * is, so it hands the URLs over and puts the results back itself. Searching the
+ * page a second time — with a regex, over the raw text — would be a second answer
+ * to a question already answered, and the two would drift.
  */
-
-/** `<Image src="…">`, `<img src='…'>`, and the markdown `![](…)` form. */
-const IN_TAG = /<(?:Image|img)\b[^>]*?\bsrc\s*=\s*(?:"([^"]+)"|'([^']+)'|\{?["']?([^\s"'{}>]+))/gi;
-const IN_MARKDOWN = /!\[[^\]]*\]\(\s*([^)\s]+)/g;
 
 const CONCURRENCY = 6;
 const DELAY_MS = 300;
@@ -61,20 +58,6 @@ export type ImageDownloadReport = {
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-/** Every remote image URL in a page, in the order it appears, deduplicated. */
-export function imageUrlsIn(source: string): string[] {
-  const found = new Set<string>();
-
-  for (const pattern of [IN_TAG, IN_MARKDOWN]) {
-    for (const match of source.matchAll(pattern)) {
-      const url = (match[1] ?? match[2] ?? match[3] ?? "").trim();
-      if (/^https?:\/\//i.test(url)) found.add(url);
-    }
-  }
-
-  return [...found];
-}
 
 /** The file name part of a URL, reduced to characters every filesystem accepts. */
 function baseName(url: string): string {

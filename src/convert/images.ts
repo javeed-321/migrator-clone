@@ -63,11 +63,25 @@ type Facts = {
   dropped: string[];
 };
 
-type State = {
-  external: number;
-  /** Original URL -> local path, when the images have been downloaded. */
-  resolve?: (url: string) => string | undefined;
-};
+/**
+ * One image the walk found, and how to repoint it.
+ *
+ * The `use` closure is what connects the two halves: the walk knows *where* the
+ * URL lives — a `src` attribute, a markdown node's `url`, a link — and the
+ * download knows *what* to put there. Nothing has to search for the image twice.
+ */
+export type FoundImage = { url: string; use: (local: string) => void };
+
+type State = { found: FoundImage[] };
+
+/** File extensions that make a plain link a link to an image. */
+const IMAGE_FILE = /\.(?:png|jpe?g|gif|webp|avif|svg|bmp|ico)(?:[?#]|$)/i;
+
+function setSrc(node: MdxJsxFlowElement, value: string): void {
+  for (const attribute of node.attributes ?? []) {
+    if (attribute.type === "mdxJsxAttribute" && attribute.name === "src") attribute.value = value;
+  }
+}
 
 function note(
   notes: ConversionNote[],
@@ -208,11 +222,6 @@ function toImage(
     return undefined;
   }
 
-  // A downloaded image points at the local copy. A URL the downloader could not
-  // fetch is absent from the map and keeps its original src — a broken local path
-  // would be worse than a working remote one.
-  const local = state.resolve?.(facts.src);
-  const src = local ?? facts.src;
 
   // A whitespace-only caption is this converter's own blank marker, not something
   // to promote into the alt text.
@@ -224,13 +233,11 @@ function toImage(
   // image with no caption would otherwise publish its alt text as a visible one.
   // A blank caption is what keeps the figure silent.
   const attributes = [
-    attr("src", src),
+    attr("src", facts.src),
     ...(alt ? [attr("alt", alt)] : []),
     attr("caption", facts.caption?.trim() ? facts.caption : BLANK_CAPTION),
   ];
 
-  if (/^https?:\/\//i.test(src)) state.external += 1;
-  if (local) note(notes, "change", `src now points at the downloaded copy, ${local}`, line);
 
   if (!same(from, attributes)) {
     const percentage = facts.dropped.some((text) => text.includes("%"))
@@ -260,7 +267,18 @@ function toImage(
     note(notes, "blocker", "image has no alt and the file name carries no words to derive one from — alt is required, so write one", line);
   }
 
-  return { type: "mdxJsxFlowElement", name: "Image", attributes, children: [] };
+  const element: MdxJsxFlowElement = {
+    type: "mdxJsxFlowElement",
+    name: "Image",
+    attributes,
+    children: [],
+  };
+
+  if (/^https?:\/\//i.test(facts.src)) {
+    state.found.push({ url: facts.src, use: (local) => setSrc(element, local) });
+  }
+
+  return element;
 }
 
 /** The meaningful children of a node, ignoring whitespace. */
@@ -325,18 +343,33 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
     if (!("children" in child) || !Array.isArray((child as Parent).children)) continue;
     const parent = child as Parent;
 
-    // Anything still an image is staying put. Say so once, rather than leaving it
-    // to be noticed on the rendered page.
     for (const inner of parent.children as RootContent[]) {
-      if (inner.type !== "image") continue;
-      const where =
-        parent.type === "link" ? "inside a link" : parent.type === "tableCell" ? "inside a table cell" : "inside a paragraph";
-      note(
-        notes,
-        "flag",
-        `image left as markdown because it sits ${where} — <Image> renders a <figure>, which cannot be nested there. It will render as a plain <img>`,
-        lineOf(inner),
-      );
+      // An image staying put is still an image: it is collected so the download
+      // repoints it, and reported so its shape is not a surprise on the page.
+      if (inner.type === "image") {
+        const where =
+          parent.type === "link"
+            ? "inside a link"
+            : parent.type === "tableCell"
+              ? "inside a table cell"
+              : "inside a paragraph";
+        note(
+          notes,
+          "flag",
+          `image left as markdown because it sits ${where} — <Image> renders a <figure>, which cannot be nested there. It will render as a plain <img>`,
+          lineOf(inner),
+        );
+        if (/^https?:\/\//i.test(inner.url)) {
+          state.found.push({ url: inner.url, use: (local) => (inner.url = local) });
+        }
+        continue;
+      }
+
+      // The table pass turns an image inside a cell into a link to it, since a
+      // GFM cell cannot hold a figure. It is still the same file.
+      if (inner.type === "link" && IMAGE_FILE.test(inner.url) && /^https?:\/\//i.test(inner.url)) {
+        state.found.push({ url: inner.url, use: (local) => (inner.url = local) });
+      }
     }
 
     walk(parent, notes, state);
@@ -349,22 +382,13 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
  * Runs after the table pass, which has already turned an image inside a cell into
  * a link to it, so nothing here has to reason about cells.
  *
- * `resolve` is the map `downloadImages` returns. Supply it and every `src` that was
- * fetched points at the local copy instead of the source host.
+ * Returns every image it found, each paired with a closure that repoints it. The
+ * pipeline hands those URLs to `downloadImages` and calls the closures with what
+ * came back — so the images are found once, by the parser, and never searched for
+ * again.
  */
-export function convertImages(
-  root: Root | Parent,
-  notes: ConversionNote[],
-  resolve?: (url: string) => string | undefined,
-): void {
-  const state: State = { external: 0, ...(resolve ? { resolve } : {}) };
+export function convertImages(root: Root | Parent, notes: ConversionNote[]): FoundImage[] {
+  const state: State = { found: [] };
   walk(root, notes, state);
-
-  if (state.external > 0) {
-    note(
-      notes,
-      "flag",
-      `${state.external} image${state.external === 1 ? "" : "s"} still point at an external host — the CDN loader passes non-CDN URLs through unchanged [APP imgixLoader.ts], so these are served unoptimised and stay dependent on the platform being left behind. Re-host them through the editor`,
-    );
-  }
+  return state.found;
 }

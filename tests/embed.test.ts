@@ -236,3 +236,84 @@ describe("2.4 re-runs", () => {
     expect(parseMarkdown(mdx).mode).toBe("mdx");
   });
 });
+
+const mdxOf = (source: string) => run(source).mdx;
+const notesOf = (source: string) => run(source).notes;
+
+describe("3.3 raw <iframe>", () => {
+  it("becomes <Iframe>, which adds lazy loading and sandboxing", () => {
+    const out = mdxOf('<iframe src="https://example.com/demo" width="100%" height="600"></iframe>');
+
+    expect(out).toContain('<Iframe src="https://example.com/demo"');
+    expect(out).not.toContain("<iframe");
+  });
+
+  it("becomes <Video> when the URL is a video host, as <Embed> already does", () => {
+    const out = mdxOf('<iframe src="https://player.vimeo.com/video/1071296714" height="370"></iframe>');
+
+    expect(out).toContain("<Video ");
+  });
+
+  it("normalises a YouTube watch URL to its embed form", () => {
+    const out = mdxOf('<iframe src="https://www.youtube.com/watch?v=abc123" width="560"></iframe>');
+
+    expect(out).toContain('src="https://www.youtube.com/embed/abc123"');
+  });
+
+  it("renames the frame attributes to the target's kebab-case props", () => {
+    const out = mdxOf(
+      '<iframe src="https://example.com/x" frameborder="0" allowfullscreen sandbox="allow-scripts"></iframe>',
+    );
+
+    expect(out).toContain('frame-border="0"');
+    expect(out).toContain('allow-full-screen="true"');
+    expect(out).toContain('sandbox="allow-scripts"');
+  });
+
+  it('drops loading="lazy", which is already the default', () => {
+    const out = mdxOf('<iframe src="https://example.com/x" loading="lazy"></iframe>');
+
+    expect(out).not.toContain("loading");
+  });
+
+  it("keeps a percentage width, which <Iframe> accepts", () => {
+    expect(mdxOf('<iframe src="https://example.com/x" width="100%"></iframe>')).toContain(
+      'width="100%"',
+    );
+  });
+
+  it("drops a percentage width on a video, which takes pixels", () => {
+    const notes = notesOf('<iframe src="https://youtu.be/abc" width="100%"></iframe>');
+
+    expect(notes.some((note) => note.detail.includes("takes pixels"))).toBe(true);
+  });
+
+  it("reports the attributes it dropped", () => {
+    const notes = notesOf(
+      '<iframe src="https://example.com/x" allow="camera" referrerpolicy="no-referrer" style="border:0"></iframe>',
+    );
+
+    expect(notes.some((note) => note.detail.includes("dropped allow, referrerpolicy, style"))).toBe(
+      true,
+    );
+  });
+
+  it("converts one written unclosed, which is why the page fell back in the first place", () => {
+    const out = mdxOf('<iframe src="https://example.com/demo" width="100%" height="400">');
+
+    expect(out).toContain('<Iframe src="https://example.com/demo"');
+    expect(out).not.toContain("<iframe");
+  });
+
+  it("blocks on one with no src", () => {
+    const notes = notesOf('<iframe width="560" height="315"></iframe>');
+
+    expect(notes.some((note) => note.level === "blocker" && note.detail.includes("no src"))).toBe(true);
+  });
+
+  it("is idempotent", () => {
+    const once = mdxOf('<iframe src="https://example.com/x" width="100%"></iframe>');
+
+    expect(mdxOf(once)).toBe(once);
+  });
+});
