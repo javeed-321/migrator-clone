@@ -260,8 +260,12 @@ export function convertCards(root: Root | Parent, notes: ConversionNote[]): void
   for (const container of containers) convertCardsContainer(container, notes);
 
   const converted = new Set(containers.flatMap((container) => meaningfulChildren(container)));
-  visit(root as Root, "mdxJsxFlowElement", (node) => {
+  visit(root as Root, "mdxJsxFlowElement", (node, _index, parent) => {
     if (!isCard(node as RootContent) || converted.has(node as RootContent)) return;
+    // A card already inside a `<Columns>` belongs to the columns pass, which
+    // converts its children itself. Doing it here as well converts nothing extra
+    // and reports every finding twice.
+    if (parent && parent.type === "mdxJsxFlowElement" && parent.name === "Columns") return;
     convertCard(node, notes);
   });
 }

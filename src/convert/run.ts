@@ -50,6 +50,12 @@ export type ConvertPageResult = {
   parseError?: string;
   /** What the image download did, when `options.images` asked for one. */
   images?: ImageDownloadReport;
+  /**
+   * Whether the **output** compiles as MDX. `false` means a tag survived that the
+   * target cannot parse, and the page will fail to sync. The matching blocker note
+   * carries the parser's own message, with the line and column.
+   */
+  outputCompiles: boolean;
 };
 
 /**
@@ -178,7 +184,6 @@ export async function convertReadmeMarkdown(
   convertWrappers(tree, notes);
   const found = convertImages(tree, notes);
   const images = await fetchImages(found, options, notes);
-  console.log(found )
   convertAccordions(tree, notes);
   convertCards(tree, notes);
   convertColumns(tree, notes);
@@ -187,9 +192,25 @@ export async function convertReadmeMarkdown(
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, options).notes);
 
+  const mdx = toMdx(tree);
+
+  // The page has to compile where it is going. Re-parsing the output with the
+  // strict parser is the honest check: it is the same grammar Documentation.AI
+  // applies, so its error is the error the dashboard will show — and it names the
+  // tag and the line, which is the part a person needs.
+  const check = parseMarkdown(mdx);
+  if (check.mode !== "mdx") {
+    notes.push({
+      rule: "mdx",
+      level: "blocker",
+      detail: `the converted page will not compile as MDX — ${check.error}. Fix that tag in the source and convert again; everything else on the page is fine`,
+    });
+  }
+
   return {
-    mdx: toMdx(tree),
+    mdx,
     notes,
+    outputCompiles: check.mode === "mdx",
     parseMode: mode,
     ...(error ? { parseError: error } : {}),
     ...(images ? { images } : {}),

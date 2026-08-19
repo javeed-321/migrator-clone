@@ -1,8 +1,14 @@
 import type { Parent, Root, RootContent, Table } from "mdast";
 import type { MdxJsxFlowElement, MdxJsxTextElement } from "mdast-util-mdx-jsx";
 
+import rehypeParse from "rehype-parse";
+import { unified } from "unified";
+import { toHtml } from "hast-util-to-html";
+import { minifyWhitespace } from "hast-util-minify-whitespace";
+
 import { parseMarkdown } from "../download/parse";
-import { lineOf, readAttr, type ConversionNote } from "./mdast";
+import { MAX_COLS } from "./cards";
+import { attr, lineOf, readAttr, type ConversionNote } from "./mdast";
 import { buildTable, flattenCell } from "./table";
 
 /**
@@ -49,7 +55,14 @@ import { buildTable, flattenCell } from "./table";
 type JsxElement = MdxJsxFlowElement | MdxJsxTextElement;
 
 /** One cell as the source wrote it, before the grid is laid out. */
-type SourceCell = { text: string; colspan: number; rowspan: number; header: boolean };
+type SourceCell = {
+  text: string;
+  colspan: number;
+  rowspan: number;
+  header: boolean;
+  /** Kept so a layout table can be told from a data one — see `isLayout`. */
+  node: JsxElement;
+};
 type SourceRow = { cells: SourceCell[]; inHead: boolean };
 
 /** Presentation attributes a GFM table has nowhere to put. */
@@ -126,6 +139,7 @@ function readRows(node: JsxElement, inHead = false): SourceRow[] {
         colspan: span(cellNode, "colspan"),
         rowspan: span(cellNode, "rowspan"),
         header: cellNode.name === "th",
+        node: cellNode,
       }));
       if (cells.length > 0) rows.push({ cells, inHead });
       continue;
@@ -214,8 +228,89 @@ function headerDepth(rows: SourceRow[]): number {
   return depth;
 }
 
+/**
+ * Whether this is a **layout** rather than tabular data `[RM §11.3]`.
+ *
+ * The corpus has one: a stat strip on `api-reference-guide.md`, built as a
+ * one-row `<table>` whose cells each hold two `<div>`s — a big number and a label.
+ * Flattening it to a pipe table produces `| 40 API Sections |`, which is not a
+ * table and not readable.
+ *
+ * Three conditions together, so a genuine one-row table cannot be caught: no
+ * `<thead>`, exactly one row, and **every cell containing a `<div>`**. That last
+ * one is the real discriminator — a data cell holds text, not block elements.
+ */
+function isLayout(rows: SourceRow[]): boolean {
+  if (rows.length !== 1 || rows[0]?.inHead) return false;
+
+  const cells = rows[0]?.cells ?? [];
+  return cells.length > 1 && cells.every((cell) => divsIn(cell.node).length > 0);
+}
+
+/** The `<div>` elements directly inside a cell, in order. */
+function divsIn(node: JsxElement): JsxElement[] {
+  const found: JsxElement[] = [];
+
+  for (const child of (node.children ?? []) as RootContent[]) {
+    if (isElement(child, ["div"])) {
+      found.push(child);
+      continue;
+    }
+    if ("children" in child && Array.isArray((child as Parent).children)) {
+      found.push(...divsIn(child as unknown as JsxElement));
+    }
+  }
+
+  return found;
+}
+
+/**
+ * A stat strip -> `<Columns>` + `<Card>`.
+ *
+ * The first `<div>` in a cell is the headline — it is the one the source styles at
+ * `font-size:2em` — so it becomes the card's title, and the rest become its body.
+ * `href` is not invented: these cards go nowhere, and the target renders a card
+ * without one.
+ */
+function toColumns(rows: SourceRow[], line: number | undefined, notes: ConversionNote[]): MdxJsxFlowElement {
+  const cells = rows[0]?.cells ?? [];
+
+  const cards = cells.map((cell) => {
+    const [headline, ...rest] = divsIn(cell.node).map((div) =>
+      flattenCell(div.children as RootContent[]),
+    );
+    const body = rest.filter((text) => text.length > 0).join(" ");
+
+    return {
+      type: "mdxJsxFlowElement" as const,
+      name: "Card",
+      attributes: [attr("title", headline ?? flattenCell(cell.node.children as RootContent[]))],
+      children: body
+        ? ([{ type: "paragraph", children: [{ type: "text", value: body }] }] as never)
+        : [],
+    };
+  });
+
+  notes.push({
+    rule: "html-table",
+    level: "change",
+    line,
+    detail: `raw <table> holding ${cards.length} <div> cells is a layout, not tabular data — rebuilt as <Columns> + <Card> (plan §3.3). Check the titles read the way you meant`,
+  });
+
+  return {
+    type: "mdxJsxFlowElement",
+    name: "Columns",
+    attributes: [attr("cols", String(Math.min(cards.length, MAX_COLS)))],
+    children: cards,
+  };
+}
+
 /** Converts one raw `<table>` element into a markdown table node. */
-export function convertHtmlTable(node: JsxElement, notes: ConversionNote[]): Table | undefined {
+export function convertHtmlTable(
+  node: JsxElement,
+  notes: ConversionNote[],
+): Table | MdxJsxFlowElement | undefined {
   const line = lineOf(node);
   const rows = readRows(node);
 
@@ -228,6 +323,8 @@ export function convertHtmlTable(node: JsxElement, notes: ConversionNote[]): Tab
     });
     return undefined;
   }
+
+  if (isLayout(rows)) return toColumns(rows, line, notes);
 
   const depth = Math.max(headerDepth(rows), 1);
   const grid = expand(rows);
@@ -285,6 +382,34 @@ export function convertHtmlTable(node: JsxElement, notes: ConversionNote[]): Tab
   return table;
 }
 
+/** The first `<table>` element anywhere in a tree. */
+function findTable(node: Parent): JsxElement | undefined {
+  for (const child of node.children as RootContent[]) {
+    if (isElement(child, ["table"])) return child;
+    if ("children" in child && Array.isArray((child as Parent).children)) {
+      const found = findTable(child as Parent);
+      if (found) return found;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Re-serialises a fragment through an HTML5 parser, closing what the author left
+ * open.
+ *
+ * This is the difference between a browser and JSX: `<td>a<td>b` is valid HTML — a
+ * `<td>` implicitly closes the one before it — and a syntax error in JSX. These
+ * tables were written to be read by a browser, so one is used to read them.
+ */
+function repairHtml(value: string): string {
+  const tree = unified().use(rehypeParse, { fragment: true }).parse(value);
+  // Collapsed to one line as well: MDX reads a line break inside an element as
+  // markdown, which breaks tag matching again. A compact table has no such gaps.
+  minifyWhitespace(tree);
+  return toHtml(tree);
+}
+
 /**
  * A raw table on a page that fell back to the plain parser, where it arrives as an
  * `html` node instead of a subtree.
@@ -294,7 +419,11 @@ export function convertHtmlTable(node: JsxElement, notes: ConversionNote[]): Tab
  * case. A fragment that still will not parse — or a table split across several
  * nodes by the blank lines between its rows — is reported rather than guessed at.
  */
-function fromHtmlNode(value: string, line: number | undefined, notes: ConversionNote[]): Table | undefined {
+function fromHtmlNode(
+  value: string,
+  line: number | undefined,
+  notes: ConversionNote[],
+): Table | MdxJsxFlowElement | undefined {
   if (!/<table[\s>]/i.test(value)) return undefined;
 
   if (!/<\/table\s*>/i.test(value)) {
@@ -307,19 +436,30 @@ function fromHtmlNode(value: string, line: number | undefined, notes: Conversion
     return undefined;
   }
 
-  const { tree, mode } = parseMarkdown(value);
-  const [first] = tree.children;
-  if (mode !== "mdx" || !first || !isElement(first, ["table"])) {
+  const tableOf = (html: string) => {
+    const { tree, mode } = parseMarkdown(html);
+    // A compact table parses as *inline* JSX inside a paragraph, so the element is
+    // looked for at any depth rather than assumed to be the first root child.
+    return mode === "mdx" ? findTable(tree) : undefined;
+  };
+
+  // Hand-written HTML is rarely well-formed JSX — an unclosed `<td>` or `<tr>` is
+  // the norm, and JSX has no error recovery. A real HTML parser does: it applies
+  // the same tag-closing rules a browser would, and re-serialising its tree gives
+  // back the identical table with every tag closed.
+  const table = tableOf(value) ?? tableOf(repairHtml(value));
+
+  if (!table) {
     notes.push({
       rule: "html-table",
       level: "blocker",
       line,
-      detail: "raw <table> will not parse as JSX — left in place rather than rewritten on a guess",
+      detail: "raw <table> will not parse, even after repair — left in place rather than rewritten on a guess",
     });
     return undefined;
   }
 
-  return convertHtmlTable(first, notes);
+  return convertHtmlTable(table, notes);
 }
 
 /**
