@@ -127,11 +127,12 @@ describe("3.6 through the pipeline", () => {
   });
 
   it("keeps the indentation a table cell arrived with", async () => {
-    const source = "| Field | Type |\n| --- | --- |\n|     `email` | string |";
+    const source =
+      "| Field | Type |\n| --- | --- |\n| `customer` | object |\n| \u00a0\u00a0\u00a0\u00a0`email` | string |";
     const { mdx } = await convertReadmeMarkdown(source);
 
-    // A cell's leading NBSPs are its nesting, not padding — this pass collapses
-    // NBSP runs everywhere else, and must not reach into a cell to do it.
-    expect(mdx).toContain("    `email`");
-  });
-});
+    // A cell's leading NBSPs are its nesting, not padding. The table pass reads
+    // them as depth and re-spells them in em-spaces; this pass collapses NBSP runs
+    // everywhere else and must not reach into a cell to undo that.
+    expect(mdx).toContain("\u2003\u2003\u2022 `email`");
+  });});

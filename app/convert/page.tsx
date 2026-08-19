@@ -72,6 +72,33 @@ See <Anchor label="Super Admins" target="_blank" href="https://docs.capillarytec
 /** Blockers first — they are the only notes that need a decision. */
 const ORDER = { blocker: 0, flag: 1, change: 2 } as const;
 
+/**
+ * Copy-to-clipboard button that says so for a second afterwards.
+ *
+ * The confirmation matters more than it looks: both boxes are monospace walls of
+ * text, so nothing on screen changes when a copy succeeds and there is otherwise
+ * no way to tell it worked.
+ */
+function Copy({ text }: { text: string }) {
+  const [done, setDone] = useState(false);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(text);
+      setDone(true);
+      setTimeout(() => setDone(false), 1200);
+    } catch {
+      /* Clipboard access denied — the text is selectable either way. */
+    }
+  }
+
+  return (
+    <button className={styles.copy} onClick={copy} disabled={!text}>
+      {done ? "Copied" : "Copy"}
+    </button>
+  );
+}
+
 export default function Convert() {
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
@@ -155,20 +182,32 @@ export default function Convert() {
       )}
 
       <div className={styles.panes}>
-        <textarea
-          className={styles.box}
-          value={markdown}
-          onChange={(event) => setMarkdown(event.target.value)}
-          placeholder="Paste ReadMe markdown here…"
-          spellCheck={false}
-        />
-        <textarea
-          className={styles.box}
-          value={mdx}
-          readOnly
-          placeholder="Documentation.AI MDX appears here"
-          spellCheck={false}
-        />
+        <div className={styles.pane}>
+          <div className={styles.paneHead}>
+            <span>ReadMe markdown</span>
+            <Copy text={markdown} />
+          </div>
+          <textarea
+            className={styles.box}
+            value={markdown}
+            onChange={(event) => setMarkdown(event.target.value)}
+            placeholder="Paste ReadMe markdown here…"
+            spellCheck={false}
+          />
+        </div>
+        <div className={styles.pane}>
+          <div className={styles.paneHead}>
+            <span>Documentation.AI MDX</span>
+            <Copy text={mdx} />
+          </div>
+          <textarea
+            className={styles.box}
+            value={mdx}
+            readOnly
+            placeholder="Documentation.AI MDX appears here"
+            spellCheck={false}
+          />
+        </div>
       </div>
 
       <details className={styles.options}>

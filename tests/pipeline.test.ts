@@ -82,13 +82,11 @@ describe("the pipeline", () => {
     expect(result.mdx).toContain("**Before you begin**");
   });
 
-  it("rebuilds the JSX table as a pipe table", async () => {
+  it("rebuilds the JSX table as a pipe table, with the depth encoded", async () => {
     expect(result.mdx).toContain("| Field");
-    // The `*` the source used to mark a nested field is left exactly as authored:
-    // reading it as depth and re-spelling it as a glyph is a house style, not a
-    // conversion.
-    expect(result.mdx).toContain("`email`");
-    expect(result.mdx).not.toContain("\u2022 `email`");
+    // Two em-spaces (U+2003) + the depth glyph. Asserted as exact characters:
+    // `\s*` in a regex would swallow the em-spaces and never match them.
+    expect(result.mdx).toContain("\u2003\u2003\u2022 `email`");
   });
 
   it("groups the adjacent accordions", async () => {

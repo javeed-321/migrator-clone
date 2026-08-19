@@ -126,62 +126,119 @@ describe("depth: whitespace ladders snap to an inferred unit", () => {
   });
 });
 
-describe("indentation is kept, in a character the format keeps", () => {
-  const JSX = (first: string) =>
-    `<Table>\n<thead><tr><th>Field</th><th>Type</th></tr></thead>\n<tbody>\n<tr><td>customer</td><td>object</td></tr>\n<tr><td>${first}</td><td>string</td></tr>\n</tbody>\n</Table>`;
+describe("the depth marker becomes indentation, and the name is untouched", () => {
+  const table = (...first: string[]) =>
+    ["| Field | Type |", "| --- | --- |", ...first.map((f) => `| ${f} | String |`)].join("\n");
 
-  // The real shape, from get-promotion-by-id: an author alternates NBSP and space
-  // while eyeballing the indent. The NBSPs survive the format and the spaces do
-  // not, so a mixed run would lose half its width and land at an arbitrary depth.
-  const MIXED = `${NBSP} ${NBSP} email`;
+  it("puts the level in front of the name as em-spaces and a glyph, two per level", () => {
+    const { mdx } = run(table("data", ".id", "..code"));
 
-  it("re-spells the ASCII half of a run, which a GFM cell would otherwise drop", () => {
-    const { mdx } = run(JSX(MIXED));
-
-    expect(mdx).toContain(`${NBSP}${EM}${NBSP}${EM}email`);
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 id`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 code`);
   });
 
-  it("adds no glyph, since the source had none", () => {
-    expect(run(JSX(MIXED)).mdx).not.toContain("\u2022");
+  it("steps the glyph down a level at a time", () => {
+    const { mdx } = run(table("data", ".a", "..b", "...c"));
+
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 a`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 b`);
+    expect(mdx).toContain(`${EM.repeat(6)}\u25aa c`);
   });
 
-  it("keeps the width the writer used rather than snapping it to a level", () => {
-    const { mdx } = run(JSX(`${NBSP} ${NBSP} ${NBSP} email`));
+  it("clamps the glyph past level 3 while the indentation keeps widening", () => {
+    const { mdx } = run(table("data", ".a", "..b", "...c", "....d", ".....e"));
 
-    expect(mdx).toContain(`${NBSP}${EM}${NBSP}${EM}${NBSP}${EM}email`);
+    expect(mdx).toContain(`${EM.repeat(8)}\u25aa d`);
+    expect(mdx).toContain(`${EM.repeat(10)}\u25aa e`);
   });
 
-  it("says so, because swapping a character silently is how ladders go missing", () => {
-    expect(run(JSX(MIXED)).notes.some((note) => note.detail.includes("re-spaced"))).toBe(true);
+  it("does the same for the dash dialect, which ReadMe already rendered as a glyph", () => {
+    // The live create-promotion-for-ucc page shows `-- pointsPerCustomer` as an
+    // indented `◦`, so this reproduces the page rather than reinterpreting it.
+    const { mdx } = run(table("status", "-success", "--code"));
+
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 success`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 code`);
+    expect(mdx).not.toContain("-success");
   });
 
-  it("passes an NBSP run through untouched, which already survives both", () => {
-    const { mdx, notes } = run(JSX(`${NBSP.repeat(4)}email`));
+  it("never re-emits a bare `*`, which would open emphasis and eat the row", () => {
+    const { mdx } = run(table("data", "* id", "* code"));
 
-    expect(mdx).toContain(`${NBSP.repeat(4)}email`);
-    expect(notes.some((note) => note.detail.includes("re-spaced"))).toBe(false);
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 id`);
+    expect(mdx).not.toContain("* id");
   });
 
-  it("leaves a top-level name with no indentation alone", () => {
-    const { mdx } = run(JSX("email"));
+  it("leaves the name exactly as it was written, markup and all", () => {
+    const { mdx } = run(table("`cart`", "..**items**", "..`total*`"));
 
-    expect(mdx).toContain("| email");
-    expect(mdx).not.toContain(EM);
+    expect(mdx).toContain("**items**");
+    expect(mdx).toContain("`total*`");
+  });
+
+  it("keeps dots that sit inside a name, not just in front of it", () => {
+    const { mdx } = run(table("data", ".richContentRO..*", ".other"));
+
+    expect(mdx).toContain("richContentRO..");
+  });
+
+  it("ranks the levels rather than counting the marks, so a step of 2 is one level", () => {
+    const { mdx } = run(table("data", "..id", "....code"));
+
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 id`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 code`);
+  });
+
+  it("uses the raw count as the scale when a table mixes two markers", () => {
+    // create-promotion-for-ucc: `* limits` is level 1 and `-- pointsPerCustomer`
+    // level 2, so the dash ladder has to start at 2 rather than at 1.
+    const { mdx } = run(
+      table("promotion", "* limits", "-- pointsPerCustomer", "-- totalPoints", "* restrictions"),
+    );
+
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 limits`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 pointsPerCustomer`);
+    expect(mdx).toContain(`${EM.repeat(4)}\u25e6 totalPoints`);
+  });
+
+  it("keeps two markers on the same level together", () => {
+    // The other table on that page: `-code` and `* id` are both level 1, under
+    // different parents. Stacking the dialects would push the stars down a level.
+    const { mdx } = run(table("status", "-code", "-message", "data", "* id", "* name"));
+
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 code`);
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 id`);
+  });
+
+  it("reports the levels, since the marker the writer typed is gone from the output", () => {
+    const { notes } = run(table("data", ".id", "..code"));
+
+    expect(notes.some((note) => note.detail.includes("2 levels deep"))).toBe(true);
+  });
+
+  it("flags a row that drops more than one level, which has no parent above it", () => {
+    const { notes } = run(table("data", ".a", "..b", "other", "..d"));
+
+    expect(notes.some((note) => note.detail.includes("more than one level"))).toBe(true);
+  });
+
+  it("is idempotent", () => {
+    const once = run(table("data", ".id", "..code")).mdx;
+
+    expect(run(once).mdx).toBe(once);
   });
 });
 
-describe("depth: a marker is part of the name, not something to rewrite", () => {
-  it("keeps the dots", () => {
-    // The dots are characters the writer put in the name column. Re-spelling them
-    // as an indent glyph is a house style rather than a conversion — and stripping
-    // them without putting anything back, which is what used to happen whenever a
-    // page had too few dotted rows to look like a ladder, is just deleting text.
+describe("a marker below the threshold is part of the name", () => {
+  it("keeps the dots when one row is the only dotted row", () => {
+    // One dotted row is not a ladder — it is `.env`. Stripping the dots and putting
+    // no indentation in their place deletes characters and shows nothing in return.
     const { mdx } = run("| Field | Type |\n| --- | --- |\n| data | Array |\n| ..id | String |");
 
     expect(mdx).toContain("..id");
   });
 
-  it("keeps a leading dash for the same reason", () => {
+  it("keeps a lone leading dash for the same reason", () => {
     const { mdx } = run("| Field | Type |\n| --- | --- |\n| to | Object |\n| -programId | Number |");
 
     expect(mdx).toContain("-programId");
@@ -195,16 +252,19 @@ describe("depth: a marker is part of the name, not something to rewrite", () => 
     }
   });
 
-  it("leaves the marker alone however many rows use it", () => {
-    // A whole ladder of dots is still the writer's spelling of the names. What a
-    // reader saw as `..id` on the old page is `..id` on the new one.
+  it("flags it, since a table that mixes two markers looks exactly the same here", () => {
+    const { notes } = run("| Field | Type |\n| --- | --- |\n| data | Array |\n| ..id | String |");
+
+    expect(notes.some((note) => note.level === "flag" && note.detail.includes("as text"))).toBe(true);
+  });
+
+  it("converts the same marker once a second row proves it is a ladder", () => {
     const { mdx } = run(
       "| Field | Type |\n| --- | --- |\n| data | Array |\n| ..id | String |\n| ..orgId | Number |",
     );
 
-    expect(mdx).toContain("..id");
-    expect(mdx).toContain("..orgId");
-    expect(mdx).not.toContain("\u2022");
+    expect(mdx).toContain(`${EM.repeat(2)}\u2022 id`);
+    expect(mdx).not.toContain("..id");
   });
 });
 
@@ -440,36 +500,38 @@ describe("against the real corpus pages", () => {
     return widths;
   };
 
-  it("says nothing about a page whose tables are already GFM and need no change", () => {
-    const { notes } = run(fixture("create-cart-promotion-api"));
-
-    expect(notes).toHaveLength(0);
-  });
-
-  it("carries the deep dot ladder through exactly as authored", () => {
+  it("gives the deep dot ladder one level per distinct dot count", () => {
     const source = fixture("create-cart-promotion-api");
     const { mdx } = run(source);
 
-    // 11 distinct dot counts in the source, and the same 11 in the output — no
-    // level merged, none invented, and no name a character shorter than it was.
-    expect(ladder(mdx, ".")).toEqual(ladder(source, "."));
-    expect(ladder(mdx, ".").size).toBeGreaterThanOrEqual(8);
+    // 11 distinct dot counts in the source, across several tables. Depth is ranked
+    // per table, so two tables can share a level — what must hold is that no level
+    // is lost inside a table and that no dot survives into the output.
+    expect(ladder(mdx, EM).size).toBeGreaterThanOrEqual(8);
+    expect(ladder(source, ".").size).toBeGreaterThanOrEqual(ladder(mdx, EM).size);
+    expect(ladder(mdx, ".").size).toBe(0);
   });
 
-  it("keeps the NBSP ladder at every width the writer used", () => {
+  it("indents by exactly two em-spaces per level", () => {
+    const widths = [...ladder(run(fixture("create-cart-promotion-api")).mdx, EM)];
+
+    expect(widths.every((width) => width % 2 === 0)).toBe(true);
+    expect(Math.min(...widths)).toBe(2);
+  });
+
+  it("collapses the NBSP ladder to the levels it means, not the widths it used", () => {
     // This page indents by NBSP runs of 1, 3, 4, 5, 8, 12, 16, 20 and 24 inside
-    // <Table> JSX. Snapping those to six levels is a judgement about what the
-    // author meant; carrying all nine through unchanged is not.
+    // <Table> JSX. The 1/3/4/5 rows are one author eyeballing one level.
     const { mdx } = run(fixture("get-promotion-by-id"));
 
-    expect([...ladder(mdx, NBSP)].sort((a, b) => a - b)).toEqual([1, 3, 4, 5, 8, 12, 16, 20, 24]);
+    expect([...ladder(mdx, EM)].sort((a, b) => a - b)).toEqual([2, 4, 6, 8, 10, 12]);
+    expect(ladder(mdx, NBSP).size).toBe(0);
   });
 
-  it("carries NBSP indentation into the output, since a cell keeps it", () => {
-    const source = fixture("connectedorgs-get-associated-target-groups-of-a-user");
-    const { mdx } = run(source);
+  it("carries no NBSP into the output, since only em-space survives the renderer", () => {
+    const { mdx } = run(fixture("connectedorgs-get-associated-target-groups-of-a-user"));
 
-    expect(ladder(mdx, NBSP).size).toBeGreaterThan(0);
-    expect(ladder(mdx, NBSP)).toEqual(ladder(source, NBSP));
+    expect(ladder(mdx, EM).size).toBeGreaterThan(0);
+    expect(ladder(mdx, NBSP).size).toBe(0);
   });
 });
