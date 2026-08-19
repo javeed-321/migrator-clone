@@ -19,11 +19,34 @@ import { convertStrToTitle } from "../utils/strings";
  * nested groups, which maps straight onto our recursive `NavigationEntry`.
  */
 
+/**
+ * The five HTTP methods `[DAI §26]` lists for the sidebar badge, plus the two the
+ * OpenAPI spec allows. Uppercase is not a style choice — plan §5.2: a lowercase
+ * method does not match and **silently fails**.
+ */
+export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
+
+/**
+ * What a page-level `openapi` binding injects.
+ *
+ * `"auto"` writes the whole endpoint page — parameters, descriptions, playground.
+ * `"custom"` injects **only** the playground and the request/response examples and
+ * leaves the page's own content alone, which is why plan §5.2 makes it the right
+ * default for a ReadMe migration: the `.md` carries hand-written prose that must
+ * survive `[PIT Phase 2]`.
+ */
+export type OpenApiMode = "auto" | "custom";
+
 /** A leaf page. `path` is the slug, which doubles as the MDX file path. */
 export type DocPage = {
   title: string;
   path: string;
   icon?: string;
+  /** The HTTP badge on the sidebar link `[DAI §26]`. */
+  method?: HttpMethod;
+  /** Page-level binding, `"<spec path> METHOD /endpoint"` `[LIVE-DAI …/openapi-import]`. */
+  openapi?: string;
+  "openapi-mode"?: OpenApiMode;
 };
 
 /** A sidebar section. `pages` may hold pages and further groups. */
@@ -31,6 +54,14 @@ export type DocGroup = {
   group: string;
   icon?: string;
   expandable?: boolean;
+  /**
+   * Group-level binding: the path to an OpenAPI 3.0+ spec inside the project
+   * (`.json`, `.yaml` and `.yml` are all accepted). Every endpoint in it is
+   * generated as its own page `[DAI §26]` `[LIVE-DAI …/site-configuration]`.
+   */
+  openapi?: string;
+  /** Endpoints to exclude from that generation, each `"METHOD /path"`. */
+  "hidden-apis"?: string[];
   pages: (DocPage | DocGroup)[];
 };
 

@@ -1,5 +1,6 @@
 import { parseMarkdown } from "../download/parse";
 import { convertAccordions } from "./accordion";
+import { convertApiExamples, convertParamFields, stripApiArtefacts, type ApiReferenceOptions } from "./api-reference";
 import { convertBreaks } from "./breaks";
 import { convertCards } from "./cards";
 import { convertColumns } from "./columns";
@@ -27,6 +28,8 @@ import { downloadImages, type ImageDownloadOptions, type ImageDownloadReport } f
  */
 
 export type ConvertPageOptions = ConvertOptions & {
+  /** Plan §5 — how much of an API-reference page this conversion owns. */
+  api?: ApiReferenceOptions;
   /**
    * Pull every image onto disk as part of the conversion, and point the pages at
    * the local copies.
@@ -73,6 +76,11 @@ export type ConvertPageResult = {
  *    afterwards. Skipped entirely when no `images.outDir` is given, which is what
  *    keeps the in-memory path pure. It reads URLs out of the source text rather
  *    than the tree, so it can run before parsing.
+ * 0c. **`stripApiArtefacts`** — plan §5.6. The llms.txt preamble and the
+ *    `# OpenAPI definition` dump go before any pass reads the tree, because both
+ *    are export artefacts and the dump is a ~300-line JSON fence: every pass
+ *    below, up to and including the MDX compile check, would otherwise spend
+ *    itself on a block that is about to be deleted.
  * 1. **`expandMagicBlocks`** — the only pass that runs on the *source string*,
  *    because it has to. A `[block:…]` body starts with `{`, so strict MDX rejects
  *    the page and the fallback parser returns the whole block as one paragraph of
@@ -120,6 +128,17 @@ export type ConvertPageResult = {
  *    and the link rewriting that has to come last. Running it here also means it
  *    sweeps the content the structural passes just moved: a callout inside a new
  *    `<Card>`, a fence run inside an `<Expandable>`.
+ *
+ * 16. **`convertApiExamples`** — plan §5.5. Last, and after §1.3 rather than
+ *    before it: by then a fence's title is already `title="…"` and a run of
+ *    adjacent fences is already one `<CodeGroup>`, so `<Request>`/`<Response>`
+ *    reads one shape and reuses the tab labels §1.3 worked out. Running it first
+ *    would instead let `groupFenceRuns` build a `<CodeGroup>` *inside* the
+ *    `<Request>` it had just made — a switcher inside a switcher.
+ *
+ * 17. **`convertParamFields`** — plan §5.3/§5.4, and off by default (§5.6). After
+ *    the table pass, so it reads one normalised table shape with the depth already
+ *    written as em-space + glyph `[TBL]` rather than four source dialects.
  *
  * If a nested case ever misbehaves, this order is the first thing to revisit — it
  * is a composition choice, not something the passes enforce.
@@ -181,6 +200,7 @@ export async function convertReadmeMarkdown(
   const notes: ConversionNote[] = [...expanded.notes, ...repaired.notes];
   const { tree, mode, error } = parseMarkdown(repaired.source);
 
+  stripApiArtefacts(tree, notes);
   convertHtmlTables(tree, notes);
   convertTables(tree, notes);
   convertEmbeds(tree, notes);
@@ -196,6 +216,8 @@ export async function convertReadmeMarkdown(
   convertPlaceholders(tree, notes);
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, options).notes);
+  convertApiExamples(tree, notes);
+  convertParamFields(tree, notes, options.api ?? {});
 
   const mdx = toMdx(tree);
 
