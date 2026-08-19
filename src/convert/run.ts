@@ -13,6 +13,7 @@ import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
 import { convertOneToOne, toMdx, type ConvertOptions } from "./one-to-one";
 import { convertPlaceholders } from "./placeholders";
+import { repairSource } from "./repair";
 import { convertTables } from "./table";
 import { convertWrappers } from "./wrappers";
 import { downloadImages, type ImageDownloadOptions, type ImageDownloadReport } from "../download/images";
@@ -173,8 +174,12 @@ export async function convertReadmeMarkdown(
   options: ConvertPageOptions = {},
 ): Promise<ConvertPageResult> {
   const expanded = expandMagicBlocks(source);
-  const notes: ConversionNote[] = [...expanded.notes];
-  const { tree, mode, error } = parseMarkdown(expanded.source);
+  // Step 0b. Repair the source so the strict parser accepts it. Before parsing,
+  // because what it fixes is the reason there would be no tree to fix — and a page
+  // that falls back to plain markdown gets *no* component conversions at all.
+  const repaired = repairSource(expanded.source);
+  const notes: ConversionNote[] = [...expanded.notes, ...repaired.notes];
+  const { tree, mode, error } = parseMarkdown(repaired.source);
 
   convertHtmlTables(tree, notes);
   convertTables(tree, notes);
