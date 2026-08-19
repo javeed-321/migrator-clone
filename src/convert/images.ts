@@ -31,6 +31,15 @@ import { attr, liftInlineJsx, lineOf, readAttr, type ConversionNote } from "./md
  * **Why only a standalone image converts.** `<Image>` renders a `<figure>`
  * `[APP Image.tsx]`, which cannot legally sit inside a paragraph or a link. That
  * rule is also what keeps an inline logo inline `[PIT Phase 4]`.
+ *
+ * ## The `src` is never rewritten
+ *
+ * Whatever URL the page was authored with is the URL that ships. The target
+ * renders an external host directly — the CDN loader passes a non-CDN URL through
+ * unchanged `[APP imgixLoader.ts]` — so the authored URL works on day one, while a
+ * local path only works once those files are actually deployed. The pass still
+ * collects every URL, so the pipeline can save a copy of each file, but that is an
+ * archive of the old host, not a redirection of the page.
  */
 
 /**
@@ -64,24 +73,18 @@ type Facts = {
 };
 
 /**
- * One image the walk found, and how to repoint it.
+ * One image URL the walk found.
  *
- * The `use` closure is what connects the two halves: the walk knows *where* the
- * URL lives — a `src` attribute, a markdown node's `url`, a link — and the
- * download knows *what* to put there. Nothing has to search for the image twice.
+ * Collected so the pipeline can pull the file down alongside the page, and for
+ * nothing else — **`src` keeps the URL the page was authored with**. The download
+ * is an archive of what the old host is serving, not a redirection of the page.
  */
-export type FoundImage = { url: string; use: (local: string) => void };
+export type FoundImage = { url: string };
 
 type State = { found: FoundImage[] };
 
 /** File extensions that make a plain link a link to an image. */
 const IMAGE_FILE = /\.(?:png|jpe?g|gif|webp|avif|svg|bmp|ico)(?:[?#]|$)/i;
-
-function setSrc(node: MdxJsxFlowElement, value: string): void {
-  for (const attribute of node.attributes ?? []) {
-    if (attribute.type === "mdxJsxAttribute" && attribute.name === "src") attribute.value = value;
-  }
-}
 
 function note(
   notes: ConversionNote[],
@@ -274,9 +277,7 @@ function toImage(
     children: [],
   };
 
-  if (/^https?:\/\//i.test(facts.src)) {
-    state.found.push({ url: facts.src, use: (local) => setSrc(element, local) });
-  }
+  if (/^https?:\/\//i.test(facts.src)) state.found.push({ url: facts.src });
 
   return element;
 }
@@ -345,7 +346,7 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
 
     for (const inner of parent.children as RootContent[]) {
       // An image staying put is still an image: it is collected so the download
-      // repoints it, and reported so its shape is not a surprise on the page.
+      // pulls it too, and reported so its shape is not a surprise on the page.
       if (inner.type === "image") {
         const where =
           parent.type === "link"
@@ -359,16 +360,14 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
           `image left as markdown because it sits ${where} — <Image> renders a <figure>, which cannot be nested there. It will render as a plain <img>`,
           lineOf(inner),
         );
-        if (/^https?:\/\//i.test(inner.url)) {
-          state.found.push({ url: inner.url, use: (local) => (inner.url = local) });
-        }
+        if (/^https?:\/\//i.test(inner.url)) state.found.push({ url: inner.url });
         continue;
       }
 
       // The table pass turns an image inside a cell into a link to it, since a
       // GFM cell cannot hold a figure. It is still the same file.
       if (inner.type === "link" && IMAGE_FILE.test(inner.url) && /^https?:\/\//i.test(inner.url)) {
-        state.found.push({ url: inner.url, use: (local) => (inner.url = local) });
+        state.found.push({ url: inner.url });
       }
     }
 
@@ -382,10 +381,10 @@ function walk(root: Root | Parent, notes: ConversionNote[], state: State): void 
  * Runs after the table pass, which has already turned an image inside a cell into
  * a link to it, so nothing here has to reason about cells.
  *
- * Returns every image it found, each paired with a closure that repoints it. The
- * pipeline hands those URLs to `downloadImages` and calls the closures with what
- * came back — so the images are found once, by the parser, and never searched for
- * again.
+ * Returns every image URL it found, so the pipeline can hand them to
+ * `downloadImages` — the images are found once, by the parser, and never searched
+ * for a second time. **The URLs on the page are left exactly as authored**: the
+ * download archives the files, it does not repoint the page at them.
  */
 export function convertImages(root: Root | Parent, notes: ConversionNote[]): FoundImage[] {
   const state: State = { found: [] };

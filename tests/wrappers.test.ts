@@ -126,11 +126,12 @@ describe("3.6 through the pipeline", () => {
     expect(result.mdx).toContain("Some text. More text.");
   });
 
-  it("keeps the table indentation the table pass just created", async () => {
+  it("keeps the indentation a table cell arrived with", async () => {
     const source = "| Field | Type |\n| --- | --- |\n|     `email` | string |";
     const { mdx } = await convertReadmeMarkdown(source);
 
-    // The table pass encodes depth as em-spaces; nothing here may eat them.
-    expect(mdx).toContain(" ");
+    // A cell's leading NBSPs are its nesting, not padding — this pass collapses
+    // NBSP runs everywhere else, and must not reach into a cell to do it.
+    expect(mdx).toContain("    `email`");
   });
 });

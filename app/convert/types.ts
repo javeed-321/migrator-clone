@@ -9,7 +9,8 @@ export type ConvertMarkdownRequest = {
   /** Source site origin, so absolute self-links become site-relative. */
   site?: string;
   /**
-   * Pull the page's images into `images/` and point the MDX at the local copies.
+   * Save a copy of the page's images into `images/`. The MDX is unchanged either
+   * way — every `src` keeps the URL it was authored with.
    * Defaults to on — this runs on the author's own machine, where saving the
    * assets is the point.
    */

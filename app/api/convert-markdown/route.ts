@@ -22,7 +22,7 @@ function failure(message: string, status: number) {
 /**
  * ReadMe markdown in, Documentation.AI MDX out.
  *
- * One page at a time. The only thing written to disk is the page's images, into
+ * One page at a time. The only thing written to disk is a copy of the page's images, into
  * `images/` at the project root, which the caller can turn off. Link rewriting is limited here
  * on purpose: `doc:`/`ref:` resolution needs the site-wide slug map, which a
  * single pasted page does not have, so those links convert to their default

@@ -31,12 +31,15 @@ export type ConvertPageOptions = ConvertOptions & {
   /** Plan §5 — how much of an API-reference page this conversion owns. */
   api?: ApiReferenceOptions;
   /**
-   * Pull every image onto disk as part of the conversion, and point the pages at
-   * the local copies.
+   * Pull every image the page uses onto disk, alongside the conversion.
    *
-   * Omit it and the conversion runs entirely in memory with the source URLs left
-   * alone — the mode the paste box uses, since a browser request should not leave
-   * files behind. The shape mirrors `DownloadOptions.outDir` for the same reason.
+   * **The page is not repointed.** Every `src` keeps the URL it was authored with;
+   * this only saves a copy of what that URL is currently serving, so the files
+   * exist locally when someone decides to re-host them.
+   *
+   * Omit it and the conversion runs entirely in memory — the mode the paste box
+   * uses, since a browser request should not leave files behind. The shape mirrors
+   * `DownloadOptions.outDir` for the same reason.
    */
   images?: ImageDownloadOptions;
 };
@@ -71,11 +74,11 @@ export type ConvertPageResult = {
  * `<Column>` hands to its `<Card>`, or the plain link an unembeddable `<Embed>`
  * degrades to. So the pass that rewrites links runs at the end, not the start.
  *
- * 0. **`downloadImages`** — the one step that touches the network, and it runs
- *    first because the image pass needs the local paths *while* it rewrites, not
- *    afterwards. Skipped entirely when no `images.outDir` is given, which is what
- *    keeps the in-memory path pure. It reads URLs out of the source text rather
- *    than the tree, so it can run before parsing.
+ * 0. **`downloadImages`** — the one step that touches the network. It runs right
+ *    after the image pass, on the URLs that pass collected, and it changes nothing
+ *    on the page: it saves the files, and every `src` keeps the URL it was
+ *    authored with. Skipped entirely when no `images.outDir` is given, which is
+ *    what keeps the in-memory path pure.
  * 0c. **`stripApiArtefacts`** — plan §5.6. The llms.txt preamble and the
  *    `# OpenAPI definition` dump go before any pass reads the tree, because both
  *    are export artefacts and the dump is a ~300-line JSON fence: every pass
@@ -104,7 +107,7 @@ export type ConvertPageResult = {
  *    `<br>` nodes for this pass to find.
  * 7. **`convertWrappers`** — layout `<div>`/`<p>` and `&nbsp;` padding go, their
  *    content stays (plan §3.6). After the table pass, so a cell's indentation is
- *    already em-spaces rather than the non-breaking spaces it arrived as; before
+ *    untouched rather than collapsed into ordinary spaces; before
  *    the container passes, so anything a wrapper was hiding is visible to them.
  * 8. **`convertImages`** — every image form -> `<Image src alt />` (plan §3.5).
  *    After the table pass, which has already turned an image inside a cell into a
@@ -138,52 +141,42 @@ export type ConvertPageResult = {
  *
  * 17. **`convertParamFields`** — plan §5.3/§5.4, and off by default (§5.6). After
  *    the table pass, so it reads one normalised table shape with the depth already
- *    written as em-space + glyph `[TBL]` rather than four source dialects.
+ *    left exactly as the source wrote it `[TBL]`, so `readMarker` reads the depth
+ *    off one normalised cell shape rather than four.
  *
  * If a nested case ever misbehaves, this order is the first thing to revisit — it
  * is a composition choice, not something the passes enforce.
  */
 /**
- * Pulls down the images the conversion just found, and repoints them.
+ * Pulls down the images the conversion just found.
  *
- * The pass hands back a closure per image, so nothing has to look for them a
- * second time — the parser found them, and this puts the answer back exactly
- * where it came from. A URL the download could not fetch keeps its original src:
- * a broken local path is worse than a working remote one.
+ * **Nothing on the page changes.** Every `src` keeps the URL it was authored with
+ * — the target renders an external URL directly, and the CDN loader passes a
+ * non-CDN host through unchanged `[APP imgixLoader.ts]`, so a working remote URL
+ * publishes correctly on day one. This saves a copy of each file so that
+ * re-hosting later is a decision someone can make deliberately, rather than one
+ * the migrator makes for them by writing paths to files that may not ship.
+ *
+ * The pass hands back the URLs it found, so nothing has to look for them a second
+ * time — the parser found them, and this is the only consumer.
  */
 async function fetchImages(
   found: FoundImage[],
   options: ConvertPageOptions,
   notes: ConversionNote[],
 ): Promise<ImageDownloadReport | undefined> {
-  const resolve = options.imageSrc;
-  let report: ImageDownloadReport | undefined;
+  if (!options.images) return undefined;
 
-  if (options.images) {
-    report = await downloadImages([...new Set(found.map((image) => image.url))], options.images);
-    notes.push({
-      rule: "image",
-      level: report.failed.length > 0 ? "flag" : "change",
-      detail: `downloaded ${report.downloaded} image${report.downloaded === 1 ? "" : "s"}${report.fromCache > 0 ? ` (${report.fromCache} already on disk)` : ""}${report.failed.length > 0 ? `, ${report.failed.length} failed and kept their original src` : ""}`,
-    });
-  }
+  const report = await downloadImages(
+    [...new Set(found.map((image) => image.url))],
+    options.images,
+  );
 
-  const lookup = report ? (url: string) => report?.map[url] : resolve;
-  let remote = 0;
-
-  for (const image of found) {
-    const local = lookup?.(image.url);
-    if (local) image.use(local);
-    else remote += 1;
-  }
-
-  if (remote > 0) {
-    notes.push({
-      rule: "image",
-      level: "flag",
-      detail: `${remote} image${remote === 1 ? "" : "s"} still point at an external host — the CDN loader passes non-CDN URLs through unchanged [APP imgixLoader.ts], so these are served unoptimised and stay dependent on the platform being left behind. Re-host them, or convert with an images outDir`,
-    });
-  }
+  notes.push({
+    rule: "image",
+    level: report.failed.length > 0 ? "flag" : "change",
+    detail: `saved ${report.downloaded} image${report.downloaded === 1 ? "" : "s"} to disk${report.fromCache > 0 ? ` (${report.fromCache} already there)` : ""}${report.failed.length > 0 ? `, ${report.failed.length} could not be fetched` : ""} — the pages still point at the original URLs, which is what the target renders`,
+  });
 
   return report;
 }

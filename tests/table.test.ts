@@ -9,7 +9,6 @@ import {
   assignDepths,
   convertTables,
   flattenCell,
-  indentCell,
   inferIndentUnit,
   readMarker,
 } from "../src/convert/table";
@@ -127,27 +126,85 @@ describe("depth: whitespace ladders snap to an inferred unit", () => {
   });
 });
 
-describe("depth: rendering", () => {
-  it("emits two em-spaces per level, with a glyph", () => {
-    expect(indentCell("`email`", 1)).toBe(`${EM}${EM}• \`email\``);
-    expect(indentCell("`domain`", 2)).toBe(`${EM.repeat(4)}◦ \`domain\``);
-    expect(indentCell("`tld`", 3)).toBe(`${EM.repeat(6)}▪ \`tld\``);
+describe("indentation is kept, in a character the format keeps", () => {
+  const JSX = (first: string) =>
+    `<Table>\n<thead><tr><th>Field</th><th>Type</th></tr></thead>\n<tbody>\n<tr><td>customer</td><td>object</td></tr>\n<tr><td>${first}</td><td>string</td></tr>\n</tbody>\n</Table>`;
+
+  // The real shape, from get-promotion-by-id: an author alternates NBSP and space
+  // while eyeballing the indent. The NBSPs survive the format and the spaces do
+  // not, so a mixed run would lose half its width and land at an arbitrary depth.
+  const MIXED = `${NBSP} ${NBSP} email`;
+
+  it("re-spells the ASCII half of a run, which a GFM cell would otherwise drop", () => {
+    const { mdx } = run(JSX(MIXED));
+
+    expect(mdx).toContain(`${NBSP}${EM}${NBSP}${EM}email`);
   });
 
-  it("keeps widening past level 3 while clamping the glyph", () => {
-    expect(indentCell("x", 5)).toBe(`${EM.repeat(10)}▪ x`);
+  it("adds no glyph, since the source had none", () => {
+    expect(run(JSX(MIXED)).mdx).not.toContain("\u2022");
   });
 
-  it("leaves a top-level name untouched", () => {
-    expect(indentCell("`customerId`", 0)).toBe("`customerId`");
+  it("keeps the width the writer used rather than snapping it to a level", () => {
+    const { mdx } = run(JSX(`${NBSP} ${NBSP} ${NBSP} email`));
+
+    expect(mdx).toContain(`${NBSP}${EM}${NBSP}${EM}${NBSP}${EM}email`);
   });
 
-  it("uses em-space, never ASCII space or NBSP", () => {
-    const rendered = indentCell("x", 2);
+  it("says so, because swapping a character silently is how ladders go missing", () => {
+    expect(run(JSX(MIXED)).notes.some((note) => note.detail.includes("re-spaced"))).toBe(true);
+  });
 
-    expect(rendered.startsWith(EM)).toBe(true);
-    expect(rendered).not.toContain(NBSP);
-    expect(rendered.startsWith(" ")).toBe(false);
+  it("passes an NBSP run through untouched, which already survives both", () => {
+    const { mdx, notes } = run(JSX(`${NBSP.repeat(4)}email`));
+
+    expect(mdx).toContain(`${NBSP.repeat(4)}email`);
+    expect(notes.some((note) => note.detail.includes("re-spaced"))).toBe(false);
+  });
+
+  it("leaves a top-level name with no indentation alone", () => {
+    const { mdx } = run(JSX("email"));
+
+    expect(mdx).toContain("| email");
+    expect(mdx).not.toContain(EM);
+  });
+});
+
+describe("depth: a marker is part of the name, not something to rewrite", () => {
+  it("keeps the dots", () => {
+    // The dots are characters the writer put in the name column. Re-spelling them
+    // as an indent glyph is a house style rather than a conversion — and stripping
+    // them without putting anything back, which is what used to happen whenever a
+    // page had too few dotted rows to look like a ladder, is just deleting text.
+    const { mdx } = run("| Field | Type |\n| --- | --- |\n| data | Array |\n| ..id | String |");
+
+    expect(mdx).toContain("..id");
+  });
+
+  it("keeps a leading dash for the same reason", () => {
+    const { mdx } = run("| Field | Type |\n| --- | --- |\n| to | Object |\n| -programId | Number |");
+
+    expect(mdx).toContain("-programId");
+  });
+
+  it("never leaves a name shorter than the one that was authored", () => {
+    for (const cell of ["..id", "-programId", "`.env`"]) {
+      const { mdx } = run(`| Field |\n| --- |\n| plain |\n| ${cell} |\n| another |`);
+
+      expect(mdx).toContain(cell);
+    }
+  });
+
+  it("leaves the marker alone however many rows use it", () => {
+    // A whole ladder of dots is still the writer's spelling of the names. What a
+    // reader saw as `..id` on the old page is `..id` on the new one.
+    const { mdx } = run(
+      "| Field | Type |\n| --- | --- |\n| data | Array |\n| ..id | String |\n| ..orgId | Number |",
+    );
+
+    expect(mdx).toContain("..id");
+    expect(mdx).toContain("..orgId");
+    expect(mdx).not.toContain("\u2022");
   });
 });
 
@@ -362,49 +419,57 @@ describe("against the real corpus pages", () => {
         }
       });
 
-      it("reports what it did", () => {
-        expect(notes.length).toBeGreaterThan(0);
+      it("reports the rebuild when there was one", () => {
+        const rebuilt = notes.some((note) => note.detail.includes("-> pipe table"));
+
+        expect(rebuilt).toBe(fixture(name).includes("<Table"));
       });
     });
   }
 
-  it("encodes the deep dot ladder without losing a level", () => {
-    const { mdx } = run(fixture("create-cart-promotion-api"));
-    const depths = new Set<number>();
-
-    for (const line of mdx.split("\n")) {
-      if (!line.startsWith("|")) continue;
-      const first = line.split("|")[1] ?? "";
-      const run_ = /^( *)/.exec(first.replace(/^ /, ""))?.[1] ?? "";
-      if (run_.length > 0) depths.add(run_.length / 2);
-    }
-
-    // The source uses 11 distinct dot counts; every one keeps its own level.
-    expect(depths.size).toBeGreaterThanOrEqual(8);
-    expect(Math.min(...depths)).toBe(1);
-  });
-
-  it("collapses the NBSP ladder to six levels, not nine", () => {
-    const { mdx } = run(fixture("get-promotion-by-id"));
-    const depths = new Set<number>();
-
-    for (const line of mdx.split("\n")) {
-      if (!line.startsWith("|")) continue;
-      const first = line.split("|")[1] ?? "";
-      const run_ = /^( *)/.exec(first.replace(/^ /, ""))?.[1] ?? "";
-      if (run_.length > 0) depths.add(run_.length / 2);
-    }
-
-    expect([...depths].sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6]);
-  });
-
-  it("carries no NBSP indentation into the output", () => {
-    const { mdx } = run(fixture("connectedorgs-get-associated-target-groups-of-a-user"));
-
-    for (const line of mdx.split("\n")) {
+  /** Every distinct leading run of `char` in the first column, source or output. */
+  const ladder = (text: string, char: string): Set<number> => {
+    const widths = new Set<number>();
+    for (const line of text.split("\n")) {
       if (!line.startsWith("|")) continue;
       const first = (line.split("|")[1] ?? "").replace(/^ /, "");
-      expect(first.startsWith(NBSP)).toBe(false);
+      let width = 0;
+      while (first[width] === char) width += 1;
+      if (width > 0) widths.add(width);
     }
+    return widths;
+  };
+
+  it("says nothing about a page whose tables are already GFM and need no change", () => {
+    const { notes } = run(fixture("create-cart-promotion-api"));
+
+    expect(notes).toHaveLength(0);
+  });
+
+  it("carries the deep dot ladder through exactly as authored", () => {
+    const source = fixture("create-cart-promotion-api");
+    const { mdx } = run(source);
+
+    // 11 distinct dot counts in the source, and the same 11 in the output — no
+    // level merged, none invented, and no name a character shorter than it was.
+    expect(ladder(mdx, ".")).toEqual(ladder(source, "."));
+    expect(ladder(mdx, ".").size).toBeGreaterThanOrEqual(8);
+  });
+
+  it("keeps the NBSP ladder at every width the writer used", () => {
+    // This page indents by NBSP runs of 1, 3, 4, 5, 8, 12, 16, 20 and 24 inside
+    // <Table> JSX. Snapping those to six levels is a judgement about what the
+    // author meant; carrying all nine through unchanged is not.
+    const { mdx } = run(fixture("get-promotion-by-id"));
+
+    expect([...ladder(mdx, NBSP)].sort((a, b) => a - b)).toEqual([1, 3, 4, 5, 8, 12, 16, 20, 24]);
+  });
+
+  it("carries NBSP indentation into the output, since a cell keeps it", () => {
+    const source = fixture("connectedorgs-get-associated-target-groups-of-a-user");
+    const { mdx } = run(source);
+
+    expect(ladder(mdx, NBSP).size).toBeGreaterThan(0);
+    expect(ladder(mdx, NBSP)).toEqual(ladder(source, NBSP));
   });
 });

@@ -11,9 +11,10 @@ import type { ConvertMarkdownResponse } from "./types";
 /**
  * Paste ReadMe markdown on the left, read Documentation.AI MDX on the right.
  *
- * Images are fetched into `images/` as part of the conversion, so the MDX shown on
- * the right points at local files rather than at the source host. The checkbox in
- * Options turns that off.
+ * Images are saved into `images/` as part of the conversion, so the files exist
+ * locally when someone decides to re-host them. The MDX itself is unchanged
+ * either way — every `src` keeps the URL it was authored with, which is what the
+ * target renders. The checkbox in Options turns the saving off.
  *
  * Deliberately plain: two boxes and a button. The notes list is the only other
  * thing on the page, because a conversion that shows output alone tells you
@@ -187,7 +188,7 @@ export default function Convert() {
             checked={withImages}
             onChange={(event) => setWithImages(event.target.checked)}
           />
-          Download images into <code>images/</code> and point the page at them
+          Save a copy of the page&rsquo;s images into <code>images/</code>
         </label>
         <label className={styles.field}>
           Source site

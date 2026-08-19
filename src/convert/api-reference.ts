@@ -417,9 +417,9 @@ const COLUMN = {
 const AFFIRMATIVE = /^(y|yes|true|required|mandatory|✓|✔)\b/i;
 
 /**
- * The identifier, out of a first cell that may be bold, backticked, indented with
- * the em-space + glyph `[TBL]` writes, and suffixed with the `*` ReadMe uses to
- * mean required (`` `limit*` ``).
+ * The identifier, out of a first cell that may be bold, backticked, carrying any of
+ * the four depth markers `[TBL]` leaves in place, and suffixed with the `*` ReadMe
+ * uses to mean required (`` `limit*` ``).
  *
  * Everything stripped here is *markup around* the name. Nothing that could be
  * part of the name is touched — which is the whole point: `[PIT Phase 2]` records
@@ -455,7 +455,11 @@ function unwrap(value: string, pattern: RegExp): string {
 }
 
 function textCell(cell: TableCell | undefined): string {
-  return cell ? mdastToString(cell).trim() : "";
+  // Not `.trim()`. JS trims *every* Unicode space, em-space (U+2003) and NBSP
+  // included — and those are exactly what the table pass writes to carry a row's
+  // depth `[TBL]`. Trimming them here would flatten the ladder it just encoded and
+  // leave every nested field looking top-level. Only ASCII padding comes off.
+  return cell ? mdastToString(cell).replace(/^[\t\n\r ]+/, "").replace(/\s+$/, "") : "";
 }
 
 /** `metadata` -> `Metadata properties`, the title form plan §5.4 uses. */
@@ -709,7 +713,7 @@ function tableToFields(
         rule: "param-field",
         level: "flag",
         line: lineOf(table),
-        detail: `"${name}" is a nested parameter and <ParamField> has no nesting form — table kept as a table, where the em-space indentation carries the depth [TBL]`,
+        detail: `"${name}" is a nested parameter and <ParamField> has no nesting form — table kept as a table, where the first column still carries the depth exactly as the source wrote it [TBL]`,
       });
       return undefined;
     }

@@ -226,11 +226,12 @@ describe("3.5 through the pipeline", () => {
     expect(result.mdx).not.toContain("![");
   });
 
-  it("raises the re-hosting flag once, not once per image", async () => {
-    const rehost = result.notes.filter((note) => note.detail.includes("Re-host"));
-
-    expect(rehost).toHaveLength(1);
-    expect(rehost[0]?.detail).toContain("3 images");
+  it("leaves every src on the host the page was authored against", async () => {
+    // The target renders an external URL directly, so the working URL is the one
+    // to keep — repointing at a local path is a re-hosting decision, not a
+    // conversion one.
+    expect((result.mdx.match(/src="https:\/\/files\.readme\.io\//g) ?? []).length).toBe(3);
+    expect(result.mdx).not.toContain('src="/images/');
   });
 
   it("is idempotent", async () => {

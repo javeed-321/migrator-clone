@@ -113,8 +113,8 @@ function unwrapInline(children: PhrasingContent[], removed: string[]): PhrasingC
 /**
  * Removes every `<p>` tag and spacing hack on a page.
  *
- * Runs after the table pass, so a cell's indentation is already em-spaces rather
- * than the NBSPs it arrived as.
+ * Runs after the table pass, which has already settled what a cell's indentation
+ * is; nothing here reaches into one.
  */
 export function convertWrappers(root: Root | Parent, notes: ConversionNote[]): void {
   const removed: string[] = [];

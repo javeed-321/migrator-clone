@@ -153,17 +153,27 @@ describe("downloading", () => {
 });
 
 describe("the pipeline downloads as it converts", () => {
-  it("fetches every image and points the page at the local copies, in one call", async () => {
+  it("fetches every image in the same call that converts the page", async () => {
     const { impl } = stubFetch();
     const result = await convertReadmeMarkdown(PAGE, {
       images: { outDir, fetchImpl: impl, delayMs: 0 },
     });
 
+    expect(existsSync(join(outDir, "images", "f1f2d3a-password_validate.jpg"))).toBe(true);
+    expect(existsSync(join(outDir, "images", "abc-chart.png"))).toBe(true);
     expect(existsSync(join(outDir, "images", "logo.png"))).toBe(true);
-    expect(result.mdx).toContain('src="/images/f1f2d3a-password_validate.jpg"');
-    expect(result.mdx).toContain('src="/images/abc-chart.png"');
-    expect(result.mdx).toContain('src="/images/logo.png"');
-    expect(result.mdx).not.toContain("files.readme.io");
+  });
+
+  it("leaves every src pointing at the URL the page was authored with", async () => {
+    const { impl } = stubFetch();
+    const result = await convertReadmeMarkdown(PAGE, {
+      images: { outDir, fetchImpl: impl, delayMs: 0 },
+    });
+
+    expect(result.mdx).toContain('src="https://files.readme.io/f1f2d3a-password_validate.jpg"');
+    expect(result.mdx).toContain('src="https://files.readme.io/abc-chart.png"');
+    expect(result.mdx).toContain('src="https://files.readme.io/logo.png"');
+    expect(result.mdx).not.toContain("/images/");
   });
 
   it("reports what the download did", async () => {
@@ -173,28 +183,29 @@ describe("the pipeline downloads as it converts", () => {
     });
 
     expect(result.images?.downloaded).toBe(3);
-    expect(result.notes.some((note) => note.detail.includes("downloaded 3 images"))).toBe(true);
+    expect(result.notes.some((note) => note.detail.includes("saved 3 images to disk"))).toBe(true);
   });
 
-  it("leaves a failed download pointing at the original host", async () => {
+  it("says the pages were not repointed, so nobody goes looking for local paths", async () => {
+    const { impl } = stubFetch();
+    const { notes } = await convertReadmeMarkdown(PAGE, {
+      images: { outDir, fetchImpl: impl, delayMs: 0 },
+    });
+
+    expect(notes.some((note) => note.detail.includes("still point at the original URLs"))).toBe(true);
+  });
+
+  it("keeps the page working when a download fails", async () => {
     const gone = "https://files.readme.io/logo.png";
     const { impl } = stubFetch([gone]);
     const result = await convertReadmeMarkdown(PAGE, {
       images: { outDir, fetchImpl: impl, delayMs: 0 },
     });
 
+    // Nothing on the page depended on the download, so a 404 costs the archive a
+    // file and costs the page nothing.
     expect(result.mdx).toContain(`src="${gone}"`);
-    expect(result.mdx).toContain('src="/images/abc-chart.png"');
-    expect(result.notes.some((note) => note.detail.includes("1 failed"))).toBe(true);
-  });
-
-  it("stops warning about external hosts once everything is local", async () => {
-    const { impl } = stubFetch();
-    const result = await convertReadmeMarkdown(PAGE, {
-      images: { outDir, fetchImpl: impl, delayMs: 0 },
-    });
-
-    expect(result.notes.some((note) => note.detail.includes("Re-host"))).toBe(false);
+    expect(result.notes.some((note) => note.detail.includes("1 could not be fetched"))).toBe(true);
   });
 
   it("touches nothing and writes nothing when no outDir is given", async () => {
@@ -202,7 +213,6 @@ describe("the pipeline downloads as it converts", () => {
 
     expect(result.images).toBeUndefined();
     expect(result.mdx).toContain("files.readme.io");
-    expect(result.notes.some((note) => note.detail.includes("Re-host"))).toBe(true);
   });
 
   it("does not fetch again on a second conversion of the same page", async () => {
@@ -219,54 +229,33 @@ describe("the pipeline downloads as it converts", () => {
   });
 });
 
-describe("rewriting the page", () => {
-  it("points every downloaded image at its local copy", async () => {
+describe("what the download must never do", () => {
+  it("does not rewrite a markdown image that stayed markdown", async () => {
     const { impl } = stubFetch();
-    const { map } = await downloadImages([
-      "https://files.readme.io/f1f2d3a-password_validate.jpg",
-      "https://files.readme.io/abc-chart.png",
-      "https://files.readme.io/logo.png",
-    ], { outDir, fetchImpl: impl, delayMs: 0 });
+    const source = "Inline ![logo](https://files.readme.io/logo.png) in a sentence.";
+    const { mdx } = await convertReadmeMarkdown(source, {
+      images: { outDir, fetchImpl: impl, delayMs: 0 },
+    });
 
-    const { mdx } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
-
-    expect(mdx).toContain('src="/images/f1f2d3a-password_validate.jpg"');
-    expect(mdx).toContain('src="/images/abc-chart.png"');
-    expect(mdx).toContain('src="/images/logo.png"');
-    expect(mdx).not.toContain("files.readme.io");
+    expect(mdx).toContain("https://files.readme.io/logo.png");
+    expect(mdx).not.toContain("/images/");
   });
 
-  it("leaves a failed download pointing at the original host", async () => {
-    const gone = "https://files.readme.io/logo.png";
-    const { impl } = stubFetch([gone]);
-    const { map } = await downloadImages([
-      "https://files.readme.io/f1f2d3a-password_validate.jpg",
-      "https://files.readme.io/abc-chart.png",
-      "https://files.readme.io/logo.png",
-    ], { outDir, fetchImpl: impl, delayMs: 0 });
-
-    const { mdx } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
-
-    expect(mdx).toContain(`src="${gone}"`);
-    expect(mdx).toContain('src="/images/abc-chart.png"');
-  });
-
-  it("stops warning about external hosts once everything is local", async () => {
+  it("still archives the file behind an image it left as markdown", async () => {
     const { impl } = stubFetch();
-    const { map } = await downloadImages([
-      "https://files.readme.io/f1f2d3a-password_validate.jpg",
-      "https://files.readme.io/abc-chart.png",
-      "https://files.readme.io/logo.png",
-    ], { outDir, fetchImpl: impl, delayMs: 0 });
+    const source = "Inline ![logo](https://files.readme.io/logo.png) in a sentence.";
+    await convertReadmeMarkdown(source, { images: { outDir, fetchImpl: impl, delayMs: 0 } });
 
-    const { notes } = await convertReadmeMarkdown(PAGE, { imageSrc: (url) => map[url] });
-
-    expect(notes.some((note) => note.detail.includes("Re-host"))).toBe(false);
+    expect(existsSync(join(outDir, "images", "logo.png"))).toBe(true);
   });
 
-  it("still warns when the images were not downloaded", async () => {
-    const { notes } = await convertReadmeMarkdown(PAGE);
+  it("gives the same output whether or not the images were downloaded", async () => {
+    const { impl } = stubFetch();
+    const withDownload = await convertReadmeMarkdown(PAGE, {
+      images: { outDir, fetchImpl: impl, delayMs: 0 },
+    });
+    const without = await convertReadmeMarkdown(PAGE);
 
-    expect(notes.some((note) => note.detail.includes("Re-host"))).toBe(true);
+    expect(withDownload.mdx).toBe(without.mdx);
   });
 });
