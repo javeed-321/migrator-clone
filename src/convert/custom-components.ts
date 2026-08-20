@@ -58,6 +58,17 @@ export type DetectOptions = {
    */
   handled?: ReadonlySet<string>;
   /**
+   * Names `convertLocalComponents` already reported on.
+   *
+   * Separate from `handled`, and checked *before* `defined`, because these names
+   * are locally defined by construction. A `blocked` local component keeps both
+   * its `export const` and its usages, and has already been explained in one
+   * precise sentence naming what stopped it — adding "choose a Documentation.AI
+   * equivalent from that source" on top would be a second, vaguer note about the
+   * same tag.
+   */
+  localHandled?: ReadonlySet<string>;
+  /**
    * Which parser produced the tree. In `markdown` the strict parser rejected the
    * page, so JSX arrives as opaque `html` nodes instead of typed ones and the
    * detection below is necessarily coarser.
@@ -103,9 +114,11 @@ function classify(
   name: string,
   defined: Set<string>,
   handled: ReadonlySet<string>,
+  localHandled: ReadonlySet<string>,
 ): FoundCustom["kind"] | null {
   if (HTML_ELEMENTS.has(name)) return null;
   if (KNOWN_COMPONENTS.has(name)) return null;
+  if (localHandled.has(name)) return null;
   if (handled.has(name) && !defined.has(name)) return null;
   if (defined.has(name)) return "local";
   if (MARKETPLACE.has(name)) return "marketplace";
@@ -180,10 +193,19 @@ export function detectCustomComponents(
 ): FoundCustom[] {
   const defined = definedHere(root);
   const handled = options.handled ?? new Set<string>();
+  const localHandled = options.localHandled ?? new Set<string>();
   const found: FoundCustom[] = [];
 
   for (const node of root.children) {
     if (node.type !== "mdxjsEsm") continue;
+    // A definition the local pass could not convert is still here, but it has
+    // already been reported with the reason. Saying it again in weaker words
+    // makes the run harder to read, not safer.
+    const names = [...node.value.matchAll(/export\s+(?:const|let|var|function)\s+([A-Z][A-Za-z0-9_]*)/g)]
+      .map((match) => match[1])
+      .filter((name): name is string => name !== undefined);
+    if (names.length > 0 && names.every((name) => localHandled.has(name))) continue;
+
     notes.push({
       rule: "custom-component",
       level: "flag",
@@ -202,7 +224,7 @@ export function detectCustomComponents(
 
     for (const [name, line] of opened) {
       if (!closed.has(name) && !selfClosed.has(name)) continue;
-      const kind = classify(name, defined, handled);
+      const kind = classify(name, defined, handled, localHandled);
       if (kind === null) continue;
       found.push({ name, kind, line: line || undefined, props: [] });
     }
@@ -210,7 +232,7 @@ export function detectCustomComponents(
     const walk = (parent: Parent): void => {
       for (const child of parent.children as RootContent[]) {
         if (isJsxElement(child) && child.name !== null) {
-          const kind = classify(child.name, defined, handled);
+          const kind = classify(child.name, defined, handled, localHandled);
           if (kind !== null) {
             found.push({ name: child.name, kind, line: lineOf(child), props: propNames(child) });
           }

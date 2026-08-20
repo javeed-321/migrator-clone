@@ -1,7 +1,23 @@
 import { describe, expect, it } from "vitest";
 
+import { parseMarkdown } from "../src/download/parse";
+import { detectCustomComponents } from "../src/convert/custom-components";
 import type { ConversionNote } from "../src/convert/mdast";
 import { convertReadmeMarkdown } from "../src/convert/run";
+
+/**
+ * The detector on its own, with no pipeline in front of it.
+ *
+ * Needed for the `local` cases: `convertLocalComponents` now converts those and
+ * puts the name in `localHandled`, so nothing reaches the detector through
+ * `convertReadmeMarkdown`. What is being checked here is the classification, and
+ * that still has to be right — it is what decides the level of the note.
+ */
+const detect = (source: string) => {
+  const notes: ConversionNote[] = [];
+  const found = detectCustomComponents(parseMarkdown(source).tree, notes);
+  return { found, notes };
+};
 
 const convert = (source: string) => convertReadmeMarkdown(source);
 
@@ -22,7 +38,7 @@ describe("custom-component detection", () => {
     expect(customNotes(result.notes)[0]?.detail).toContain("Marketplace");
   });
 
-  it("flags a component defined on the page, and its export", async () => {
+  it("classifies a component defined on the page as local, and flags its export", () => {
     const source = [
       "export const Note = props => <div className=\"p-4\">{props.children}</div>",
       "",
@@ -30,14 +46,30 @@ describe("custom-component detection", () => {
       "",
     ].join("\n");
 
-    const result = await convert(source);
+    const { found, notes } = detect(source);
 
-    expect(result.custom).toEqual([{ name: "Note", kind: "local", line: 3, props: ["kind"] }]);
-
-    const notes = customNotes(result.notes);
+    expect(found).toEqual([{ name: "Note", kind: "local", line: 3, props: ["kind"] }]);
     expect(notes).toHaveLength(2);
     expect(notes[0]?.detail).toContain("export const");
     expect(notes[1]).toMatchObject({ level: "flag" });
+  });
+
+  // In the pipeline the same page is converted rather than reported, and the
+  // definition goes with it — a local component is only a finding when nothing
+  // could be done with it.
+  it("leaves nothing for the detector once the local pass has run", async () => {
+    const result = await convert(
+      [
+        "export const Note = props => <div className=\"bg-blue-50 p-4\">{props.children}</div>",
+        "",
+        "<Note>Body text here.</Note>",
+        "",
+      ].join("\n"),
+    );
+
+    expect(result.custom).toEqual([]);
+    expect(customNotes(result.notes)).toEqual([]);
+    expect(result.mdx).toContain('<Callout kind="info">');
   });
 
   it("blocks a custom component whose definition is not in the file", async () => {
@@ -86,9 +118,15 @@ describe("custom-component detection", () => {
       "",
     ].join("\n");
 
-    const result = await convert(source);
+    // Classified from the page, not from the table.
+    expect(detect(source).found.map((entry) => entry.kind)).toEqual(["local"]);
 
-    expect(result.custom.map((entry) => entry.kind)).toEqual(["local"]);
+    // And converted from the page too: this Spoiler is a bare `<div>`, so it
+    // unwraps. The Marketplace rule would have made it an `<Expandable>`, which
+    // is a component this site does not have.
+    const result = await convert(source);
+    expect(result.mdx.trim()).toBe("Hidden.");
+    expect(result.mdx).not.toContain("Expandable");
   });
 
   // The two ways this pass can be wrong.

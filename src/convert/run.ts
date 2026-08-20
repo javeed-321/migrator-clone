@@ -10,6 +10,7 @@ import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
 import { convertHtmlTables } from "./html-table";
 import { convertImages, type FoundImage } from "./images";
+import { convertLocalComponents } from "./local";
 import { convertMarketplace, fetchPostLists, MARKETPLACE_HANDLED, type PostListOptions } from "./marketplace";
 import { expandMagicBlocks } from "./magic-blocks";
 import { convertSteps } from "./steps";
@@ -235,10 +236,19 @@ export async function convertReadmeMarkdown(
   // reason image downloading is: the rules that build the tree stay synchronous,
   // and the one conversion that needs the network happens once, here.
   await fetchPostLists(postLists, options.data, notes);
+  // 18. `convertLocalComponents` — plan §4.4. Components the page defines itself
+  //     with an `export const`. After §1.3 rather than with the other component
+  //     passes: the callout pass bolds a callout's first paragraph on the ReadMe
+  //     convention that it is a heading, which is not a convention an arbitrary
+  //     local wrapper follows.
+  const localHandled = convertLocalComponents(tree, notes);
   // Last, and that is the whole design: every pass above consumes the constructs
   // it recognises, so what is still a JSX element here is what nothing handled.
-  const custom = detectCustomComponents(tree, notes, { mode, handled: MARKETPLACE_HANDLED });
-console.log(custom);
+  const custom = detectCustomComponents(tree, notes, {
+    mode,
+    handled: MARKETPLACE_HANDLED,
+    localHandled,
+  });
   const mdx = toMdx(tree);
 
   // The page has to compile where it is going. Re-parsing the output with the
