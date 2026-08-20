@@ -82,11 +82,14 @@ describe("the pipeline", () => {
     expect(result.mdx).toContain("**Before you begin**");
   });
 
-  it("rebuilds the JSX table as a pipe table, with the depth encoded", async () => {
+  it("rebuilds the JSX table as a pipe table", async () => {
     expect(result.mdx).toContain("| Field");
-    // Two em-spaces (U+2003) + the depth glyph. Asserted as exact characters:
-    // `\s*` in a regex would swallow the em-spaces and never match them.
-    expect(result.mdx).toContain("\u2003\u2003\u2022 `email`");
+    // The cell held a markdown list, which a GFM cell cannot, so the bullet is
+    // re-emitted as the `•` the reader already saw. No indentation is invented in
+    // front of it, and the name is untouched.
+    expect(result.mdx).toContain("\u2022 `email`");
+    expect(result.mdx).not.toContain("- `email`");
+    expect(result.mdx).not.toContain("\u2003");
   });
 
   it("groups the adjacent accordions", async () => {

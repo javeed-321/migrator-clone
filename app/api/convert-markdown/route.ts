@@ -10,10 +10,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * A paste box is not a migration: anything past this is somebody sending a whole
- * site through, which belongs in the CLI where it can cache to disk.
+ * A backstop, not a policy. This route runs on the author's machine, so the cap
+ * only exists to keep a runaway paste from parking the whole thing in memory —
+ * real ReadMe pages, tables and all, land far under it.
  */
-const MAX_BYTES = 500_000;
+const MAX_BYTES = 20_000_000;
 
 function failure(message: string, status: number) {
   return Response.json({ ok: false, message }, { status });
@@ -44,8 +45,8 @@ export async function POST(request: NextRequest) {
 
   if (markdown.length > MAX_BYTES) {
     return failure(
-      `Input is ${Math.round(markdown.length / 1000)} KB; the limit is ${MAX_BYTES / 1000} KB. ` +
-        `Use the CLI for whole pages.`,
+      `Input is ${Math.round(markdown.length / 1_000_000)} MB; the limit is ${MAX_BYTES / 1_000_000} MB. ` +
+        `Use the CLI for a whole site.`,
       413
     );
   }

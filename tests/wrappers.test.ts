@@ -134,5 +134,5 @@ describe("3.6 through the pipeline", () => {
     // A cell's leading NBSPs are its nesting, not padding. The table pass reads
     // them as depth and re-spells them in em-spaces; this pass collapses NBSP runs
     // everywhere else and must not reach into a cell to undo that.
-    expect(mdx).toContain("\u2003\u2003\u2022 `email`");
+    expect(mdx).toContain("\u00a0\u00a0\u00a0\u00a0`email`");
   });});
