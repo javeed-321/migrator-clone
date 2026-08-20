@@ -1,6 +1,7 @@
 import type { Parent, PhrasingContent, Root, RootContent } from "mdast";
 import { toString as mdastToString } from "mdast-util-to-string";
 
+import { HTML_ELEMENTS, KNOWN_COMPONENTS } from "./known-names";
 import { lineOf, type ConversionNote } from "./mdast";
 
 /**
@@ -93,43 +94,6 @@ function looksIntentional(name: string): boolean {
 const WHOLE_TAG = /^<\/?([A-Za-z_][A-Za-z0-9_.\-]*(?: [A-Za-z0-9_.\-]+){0,5})\s*\/?>$/;
 
 /**
- * Real HTML elements, which belong to the passes that own them — `<br>` to the
- * break pass, `<img>` to the image pass, `<table>` to the table pass — or which
- * render on their own.
- *
- * Compared case-sensitively and lowercase-only, on purpose: `<map>` is an HTML
- * element, `<Map>` is one of the corpus's placeholders `[RM §11.1]`.
- */
-const HTML_ELEMENTS = new Set(
-  ("a abbr address area article aside audio b base bdi bdo blockquote body br button canvas caption " +
-    "cite code col colgroup data datalist dd del details dfn dialog div dl dt em embed fieldset " +
-    "figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input " +
-    "ins kbd label legend li link main map mark menu meta meter nav noscript object ol optgroup " +
-    "option output p param picture pre progress q rp rt ruby s samp script section select slot small " +
-    "source span strong style sub summary sup svg table tbody td template textarea tfoot th thead " +
-    "time title tr track u ul var video wbr").split(" "),
-);
-
-/**
- * Component names that are really components, in either platform's vocabulary.
- *
- * Without this, a page that documents `<Callout>` in prose would have its own
- * examples turned into placeholders. Lowercase HTML element names are not here on
- * purpose: `<div>` in prose is not a placeholder either, but it is also not this
- * pass's problem, and `PLACEHOLDER` requires a capital anyway.
- */
-const COMPONENTS = new Set([
-  // Documentation.AI
-  "Callout", "Card", "Columns", "CodeGroup", "Expandable", "ExpandableGroup", "Iframe",
-  "Image", "MermaidDiagram", "ParamField", "Request", "Response", "ResponseField", "Script",
-  "Step", "Steps", "SVG", "Tab", "Tabs", "Update", "Video", "Board", "BoardColumn",
-  "BoardCard", "CollectionList", "CollectionContent", "AuthParams", "BodyParams", "Link",
-  // ReadMe
-  "Accordion", "Anchor", "Cards", "Column", "CodeTabs", "Embed", "Glossary", "HTMLBlock",
-  "Recipe", "Table", "TutorialTile", "Variable",
-]);
-
-/**
  * Whether a component name here is a real element rather than prose about one.
  *
  * The allowlist alone is not the answer. A page that says *"the `<Callout>`
@@ -146,7 +110,7 @@ const COMPONENTS = new Set([
 function isElement(name: string, closed: Set<string>): boolean {
   const trimmed = name.trim();
   if (HTML_ELEMENTS.has(trimmed)) return true;
-  return COMPONENTS.has(trimmed) && closed.has(trimmed);
+  return KNOWN_COMPONENTS.has(trimmed) && closed.has(trimmed);
 }
 
 /** Every `</Name>` on the page — the evidence that an opening tag was an element. */

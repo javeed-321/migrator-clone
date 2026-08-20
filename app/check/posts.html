@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Latest Posts</title>
+<style>@keyframes postlist-spin { to { transform: rotate(360deg); } }</style>
+</head>
+
+<body style="margin:0;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;">
+
+  <div style="min-height:100vh;background:#f3f4f6;padding:1.5rem;">
+    <h1 style="font-size:1.5rem;font-weight:700;margin:0 0 1.5rem;color:#111827;">Latest Posts</h1>
+
+    <div id="postlist" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem;"></div>
+  </div>
+
+<script>
+(function () {
+  var URL_ = 'https://jsonplaceholder.typicode.com/posts?_limit=10';
+  var root = document.getElementById('postlist');
+
+  function esc(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function renderLoading() {
+    root.innerHTML =
+      '<div role="status" aria-label="Loading" style="width:3rem;height:3rem;margin-bottom:1rem;border-radius:9999px;border:3px solid #d1d5db;border-top-color:#6b7280;animation:postlist-spin 0.8s linear infinite;"></div>' +
+      '<p style="color:#6b7280;margin:0;">Loading posts&hellip;</p>';
+  }
+
+  function renderError(message) {
+    root.innerHTML = '<p style="color:#ef4444;margin:0;">Error loading posts: ' + esc(message) + '</p>';
+  }
+
+  function renderEmpty() {
+    root.innerHTML = '<p style="color:#6b7280;margin:0;">No posts found.</p>';
+  }
+
+  function renderPosts(posts) {
+    var items = posts.map(function (post) {
+      return (
+        '<li style="padding:1rem;background:#ffffff;border-radius:0.25rem;box-shadow:0 1px 3px rgba(0,0,0,.1);">' +
+          '<h3 style="font-weight:600;font-size:1.125rem;margin:0 0 0.25rem;">' + esc(post.title) + '</h3>' +
+          '<p style="font-size:0.875rem;color:#4b5563;margin:0;">' + esc(post.body) + '</p>' +
+        '</li>'
+      );
+    }).join('');
+
+    root.innerHTML =
+      '<ul style="margin-top:1rem;width:100%;max-width:28rem;list-style:none;padding:0;display:grid;gap:0.5rem;">' +
+        items +
+      '</ul>';
+  }
+
+  function fetchPosts(url) {
+    renderLoading();
+
+    fetch(url)
+      .then(function (response) {
+        if (!response.ok) throw new Error('Request failed: ' + response.status);
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data || data.length === 0) renderEmpty();
+        else renderPosts(data);
+      })
+      .catch(function (err) {
+        renderError(err.message);
+      });
+  }
+
+  fetchPosts(URL_);
+})();
+</script>
+
+</body>
+</html>

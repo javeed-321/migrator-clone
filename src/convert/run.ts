@@ -3,12 +3,14 @@ import { convertAccordions } from "./accordion";
 import { convertApiExamples, convertParamFields, stripApiArtefacts, type ApiReferenceOptions } from "./api-reference";
 import { convertBreaks } from "./breaks";
 import { convertCards } from "./cards";
+import { detectCustomComponents, type FoundCustom } from "./custom-components";
 import { convertColumns } from "./columns";
 import { convertDetails } from "./details";
 import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
 import { convertHtmlTables } from "./html-table";
 import { convertImages, type FoundImage } from "./images";
+import { convertMarketplace } from "./marketplace";
 import { expandMagicBlocks } from "./magic-blocks";
 import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
@@ -57,6 +59,12 @@ export type ConvertPageResult = {
   parseError?: string;
   /** What the image download did, when `options.images` asked for one. */
   images?: ImageDownloadReport;
+  /**
+   * Components no pass converted (plan §4). Reported as notes too, but returned
+   * as data so a run can inventory them across the corpus rather than one page at
+   * a time — the queue `[PIT Phase 0]` asks for.
+   */
+  custom: FoundCustom[];
   /**
    * Whether the **output** compiles as MDX. `false` means a tag survived that the
    * target cannot parse, and the page will fail to sync. The matching blocker note
@@ -206,12 +214,18 @@ export async function convertReadmeMarkdown(
   convertCards(tree, notes);
   convertColumns(tree, notes);
   convertSteps(tree, notes);
+  // After the built-in passes, so this and `convertColumns` cannot both claim a
+  // `<Columns>`; before the detector, so anything without a rule is reported.
+  convertMarketplace(tree, notes);
   convertPlaceholders(tree, notes);
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, options).notes);
   convertApiExamples(tree, notes);
   convertParamFields(tree, notes, options.api ?? {});
-
+  // Last, and that is the whole design: every pass above consumes the constructs
+  // it recognises, so what is still a JSX element here is what nothing handled.
+  const custom = detectCustomComponents(tree, notes, { mode });
+console.log(custom);
   const mdx = toMdx(tree);
 
   // The page has to compile where it is going. Re-parsing the output with the
@@ -232,6 +246,7 @@ export async function convertReadmeMarkdown(
     notes,
     outputCompiles: check.mode === "mdx",
     parseMode: mode,
+    custom,
     ...(error ? { parseError: error } : {}),
     ...(images ? { images } : {}),
   };
