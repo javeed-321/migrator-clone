@@ -162,3 +162,40 @@ describe("repairing through the pipeline", () => {
     expect((await convertReadmeMarkdown(once)).mdx).toBe(once);
   });
 });
+
+describe("closing tag at the end of a line", () => {
+  // [CORPUS] this one shape cost 54 of the 62 pages that failed the strict parser.
+  it("moves a trailing closing tag onto its own line", () => {
+    const source = '<Callout icon="x" theme="info">\n  Note\n\nNegative values are ignored. </Callout>\n';
+
+    expect(repairSource(source).source).toBe(
+      '<Callout icon="x" theme="info">\n  Note\n\nNegative values are ignored.\n</Callout>\n',
+    );
+  });
+
+  // An element written entirely on one line is inline, valid, and must be left be —
+  // this is what separates the broken callouts from the 318 working <Anchor>s.
+  it("leaves a one-line element alone", () => {
+    const source = 'See the <Anchor href="/x">reference</Anchor> for details.\n';
+
+    expect(repairSource(source).source).toBe(source);
+  });
+
+  it("leaves a closing tag that is already on its own line", () => {
+    const source = "<Callout>\n  Text.\n</Callout>\n";
+
+    expect(repairSource(source).source).toBe(source);
+  });
+
+  it("peels off more than one trailing closing tag", () => {
+    const source = "text</Expandable></ExpandableGroup>\n";
+
+    expect(repairSource(source).source).toBe("text\n</Expandable>\n</ExpandableGroup>\n");
+  });
+
+  it("does not touch a closing tag inside a code fence", () => {
+    const source = "```mdx\nNote. </Callout>\n```\n";
+
+    expect(repairSource(source).source).toBe(source);
+  });
+});

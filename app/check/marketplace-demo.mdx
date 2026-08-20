@@ -1,0 +1,101 @@
+# Marketplace demo
+
+## Plan availability
+
+### Bulk export API
+
+Export up to 50,000 records per request.
+
+| Plan       | Available |
+| :--------- | :-------- |
+| Free       | —         |
+| Business   | ✅         |
+| Enterprise | ✅         |
+
+## Error codes
+
+| Code               | Status      | Message                                                      |
+| :----------------- | :---------- | :----------------------------------------------------------- |
+| CATEGORY\_NOTFOUND | Not Found   | The category with the slug '`{category}`' couldn't be found. |
+| CHANGELOG\_INVALID | Bad Request | We couldn't save this changelog (`{error}`).                 |
+
+## Installing
+
+<Steps>
+  <Step title="Install the CLI">
+    Run the install command.
+  </Step>
+
+  <Step title="Authenticate">
+    Paste your API key when prompted.
+  </Step>
+</Steps>
+
+```bash
+$ npm install -g doc-ai-cli
+added 1 package in 2s
+$ doc-ai login
+Logged in as accounts@documentation.ai
+```
+
+## The maths
+
+<div className="math">
+  {`
+    Throughput is $\\frac{r_{max}}{1 + e^{-k(t - t_0)}}$ requests per second.
+    `}
+</div>
+
+## Reference
+
+<Expandable title="Click to reveal" default-open="false">
+  The default rate limit is 60 requests per minute.
+</Expandable>
+
+<Expandable title="Press Ctrl+Alt+d" default-open="false">
+  Debug mode exposes the raw request payload.
+</Expandable>
+
+<ExpandableGroup>
+  <Expandable title="Connection issues" default-open="false">
+    Check your firewall allows outbound 443.
+  </Expandable>
+
+  <Expandable title="Auth failures" default-open="false">
+    Verify the key has not expired.
+  </Expandable>
+</ExpandableGroup>
+
+## Status and downloads
+
+<Card title="Service status" href="https://status.documentation.ai" icon="activity">
+  Check the current status of all services.
+</Card>
+
+<Card title="Download OpenAPI spec" href="https://demo.readme.io/openapi/openapi.json" icon="download">
+  Download `openapi.json`.
+</Card>
+
+<Image src="https://github.com/readmeio/marketplace/actions/workflows/ci.yml/badge.svg?branch=main" alt="ci.yml status" />
+
+<Callout kind="info">
+  Scheduled maintenance on Sunday 02:00 UTC.
+</Callout>
+
+## Gallery
+
+<div className="rm-slider">
+  <Image src="https://files.readme.io/dashboard.png" alt="Dashboard" caption=" " />
+
+  <Image src="https://files.readme.io/analytics.png" alt="Analytics" caption=" " />
+</div>
+
+<div className="rm-window">
+  <div className="rm-window-title">
+    README.TXT
+  </div>
+
+  <div className="rm-window-body">
+    This frame is decoration. The **text** inside is still markdown.
+  </div>
+</div>

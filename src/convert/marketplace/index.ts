@@ -6,15 +6,22 @@ import { advancedTable } from "./advanced-table";
 import { banner } from "./banner";
 import { compatibility } from "./compatibility";
 import { contentModal } from "./content-modal";
+import { downloadOasButton } from "./download-oas-button";
 import { gitHubBadge } from "./github-badge";
 import { grid } from "./grid";
 import { keyPress } from "./key-press";
+import { latex } from "./latex";
+import { postmanRunButton } from "./postman-run-button";
 import { quizGame } from "./quiz-game";
-import type { Rule } from "./rule";
+import { postList, type PostListOptions } from "./post-list";
+import type { FoundPostList, Rule, RuleContext } from "./rule";
 import { simpleStepper } from "./simple-stepper";
+import { snapSlider } from "./snap-slider";
 import { spoiler } from "./spoiler";
+import { statusPage } from "./status-page";
 import { terminal } from "./terminal";
 import { toggleList } from "./toggle-list";
+import { windows } from "./windows";
 
 /**
  * Plan §4.2 / marketplace-conversion.md §5 — ReadMe Marketplace components ->
@@ -27,15 +34,28 @@ import { toggleList } from "./toggle-list";
  * the passes that own those names already convert them. Adding rules here would
  * mean two passes racing for the same tag, so they are absent on purpose.
  *
- * Five more are Route 3 `[marketplace-conversion.md §5.3]`: their content is
- * fetched at runtime and is not in the page at all. `PostList`, `StatusPage`,
- * `PostmanRunButton` and `DownloadOASButton` have no faithful conversion, only a
- * link a person must choose — so they fall through to the detector and are
- * reported, rather than being silently turned into a card pointing somewhere this
- * code guessed.
+ * `PostmanRunButton` is the exception among those five, and it is handled here:
+ * unlike the other four, **no pass owns it**, so without a rule it would be
+ * reported as an unknown custom component — a blocker saying "the definition is
+ * not in this file" about a component that is fully documented `[RM §4.15]`.
  *
- * `Latex` is the same: it needs a CDN library the target will not load, and
- * neither an image nor a fence is a decision a converter should make alone.
+ * `SnapSlider` and `Windows` are Route 2 `[marketplace-conversion.md §5.2]`: pure
+ * decoration with no native equivalent, converted to a classed wrapper whose
+ * styling lives in `styles/marketplace.css`. They wrap rather than prerender, so
+ * their children stay real markdown nodes and stay searchable.
+ *
+ * `PostList` is here but is only half-converted by this pass: it needs the network,
+ * and rules are synchronous, so it records its node and `fetchPostLists` fills it
+ * in afterwards — the two-phase shape the image pass already uses.
+ *
+ * `Latex` converts, but only to a marker: the target has no math support at all, so
+ * `latex.ts` emits `<div className="math">` and the rendering is arranged at site
+ * level by `scripts/katex-render.js`.
+ *
+ * **Every one of the 24 is now claimed** — by a rule here, or by the pass that owns
+ * its built-in name. What still reaches the detector is a Marketplace *child*
+ * component found outside its parent (an orphaned `<ToggleListItem>`, say), which
+ * is a real authoring error worth reporting.
  *
  * ## Where it runs
  *
@@ -49,14 +69,21 @@ const RULES: Record<string, Rule> = {
   Banner: banner,
   Compatibility: compatibility,
   ContentModal: contentModal,
+  DownloadOASButton: downloadOasButton,
   GitHubBadge: gitHubBadge,
   Grid: grid,
   KeyPress: keyPress,
+  Latex: latex,
+  PostList: postList,
+  PostmanRunButton: postmanRunButton,
   QuizGame: quizGame,
   SimpleStepper: simpleStepper,
+  SnapSlider: snapSlider,
   Spoiler: spoiler,
+  StatusPage: statusPage,
   Terminal: terminal,
   ToggleList: toggleList,
+  Windows: windows,
 };
 
 /** The names this pass converts. */
@@ -72,7 +99,8 @@ export const MARKETPLACE_HANDLED = new Set(Object.keys(RULES));
  */
 const LIFT = new Set([...MARKETPLACE_HANDLED, "SimpleStep", "ToggleListItem"]);
 
-export function convertMarketplace(root: Root, notes: ConversionNote[]): void {
+export function convertMarketplace(root: Root, notes: ConversionNote[]): FoundPostList[] {
+  const ctx: RuleContext = { postLists: [] };
   // A Marketplace component is installed into a project as an *editable* custom
   // component `[RM §9]`, so a page carrying its own `export const Spoiler` has a
   // Spoiler that is no longer the one in the table. Applying the standard rule
@@ -95,7 +123,7 @@ export function convertMarketplace(root: Root, notes: ConversionNote[]): void {
         const rule = local.has(child.name) ? undefined : RULES[child.name];
 
         if (rule !== undefined) {
-          const replacement = rule(child, notes);
+          const replacement = rule(child, notes, ctx);
           // `null` means the rule could not convert this and has said why. Leave
           // the node exactly as it was; the detector reports it downstream.
           if (replacement !== null) {
@@ -111,4 +139,8 @@ export function convertMarketplace(root: Root, notes: ConversionNote[]): void {
   };
 
   walk(root);
+  return ctx.postLists;
 }
+
+export { fetchPostLists } from "./post-list";
+export type { PostListOptions } from "./post-list";

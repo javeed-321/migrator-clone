@@ -1,0 +1,139 @@
+/*
+ * Styles for the ReadMe Marketplace components that convert to a classed wrapper
+ * rather than to a native component — marketplace-conversion.md §5.2.
+ *
+ * Register in documentation.json:
+ *
+ *   { "css": [{ "src": "styles/marketplace.css" }] }
+ *
+ * Stylesheets load after the default theme, so these rules win without !important
+ * [LIVE-DAI /docs/customize/custom-css].
+ *
+ * The `rm-` prefix is deliberate: `dai-*` belongs to the platform, and reusing it
+ * would collide with its own layout hooks.
+ */
+
+/* --------------------------------------------------------------------------
+ * SnapSlider — a scroll-snapping gallery.
+ *
+ * The source is pure CSS (`snap-x snap-mandatory overflow-x-scroll`), so this is
+ * a faithful reproduction rather than an approximation.
+ * ------------------------------------------------------------------------ */
+
+.rm-slider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  max-width: 100%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: 1px solid var(--dai-border, #d4d4d4);
+  border-radius: 0.5rem;
+}
+
+.rm-slider > * {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  max-width: 100%;
+}
+
+/* Respect a reader who has asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .rm-slider {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Windows — a decorative retro window frame.
+ *
+ * These colours are intentionally fixed. The frame is a period reference, not
+ * themed chrome, so it does not follow light/dark the way real UI should — which
+ * is exactly why only decoration belongs in this file. The *text* inside inherits
+ * normally, so the readable part still themes.
+ * ------------------------------------------------------------------------ */
+
+.rm-window {
+  margin: 1rem 0;
+  border: 2px solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  background: #c0c0c0;
+  padding: 3px;
+  font-family: inherit;
+}
+
+.rm-window-title {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.rm-window-title p {
+  margin: 0;
+}
+
+.rm-window-body {
+  background: var(--dai-background, #ffffff);
+  color: var(--dai-text, #1a1a1a);
+  padding: 0.75rem;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.rm-window-body > :first-child {
+  margin-top: 0;
+}
+
+.rm-window-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+ * PostList — data fetched at conversion time and written into the page.
+ *
+ * The wrapper exists so a fetched table can be told apart from an authored one,
+ * both for styling and for finding them again later. The table inside is a real
+ * markdown table, so it inherits the platform's own table styling.
+ * ------------------------------------------------------------------------ */
+
+.rm-postlist {
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.rm-postlist table {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+ * Latex — the marker `latex.ts` emits.
+ *
+ * The formula is still LaTeX text at this point; `scripts/katex-render.js` draws
+ * it in the browser. These rules only handle the container, so a long equation
+ * scrolls instead of forcing the page sideways.
+ *
+ * Needs KaTeX's own stylesheet registered too:
+ *   { "css": [{ "src": "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" }] }
+ * ------------------------------------------------------------------------ */
+
+.math {
+  margin: 1rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Until KaTeX loads, the raw TeX is what a reader sees. Keep it legible rather
+   than letting it look like broken prose. */
+.math:not([data-katex-done]) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9375em;
+  opacity: 0.75;
+}
+
+.math .katex-display {
+  margin: 0.5rem 0;
+}

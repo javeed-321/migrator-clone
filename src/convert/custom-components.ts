@@ -49,6 +49,15 @@ export type FoundCustom = {
 
 export type DetectOptions = {
   /**
+   * Names a conversion rule already attempted.
+   *
+   * A rule that declines leaves its node in place and pushes a precise blocker of
+   * its own. Reporting it again here would be a duplicate — and a wrong one,
+   * since this pass would call a fully documented component "a custom component
+   * whose definition is not in this file".
+   */
+  handled?: ReadonlySet<string>;
+  /**
    * Which parser produced the tree. In `markdown` the strict parser rejected the
    * page, so JSX arrives as opaque `html` nodes instead of typed ones and the
    * detection below is necessarily coarser.
@@ -90,9 +99,14 @@ export function definedHere(root: Root): Set<string> {
  * name is a page whose author changed it, and the standard §4.2 mapping would
  * describe a component this site does not have. Local source always wins.
  */
-function classify(name: string, defined: Set<string>): FoundCustom["kind"] | null {
+function classify(
+  name: string,
+  defined: Set<string>,
+  handled: ReadonlySet<string>,
+): FoundCustom["kind"] | null {
   if (HTML_ELEMENTS.has(name)) return null;
   if (KNOWN_COMPONENTS.has(name)) return null;
+  if (handled.has(name) && !defined.has(name)) return null;
   if (defined.has(name)) return "local";
   if (MARKETPLACE.has(name)) return "marketplace";
   return "unknown";
@@ -165,6 +179,7 @@ export function detectCustomComponents(
   options: DetectOptions = {},
 ): FoundCustom[] {
   const defined = definedHere(root);
+  const handled = options.handled ?? new Set<string>();
   const found: FoundCustom[] = [];
 
   for (const node of root.children) {
@@ -187,7 +202,7 @@ export function detectCustomComponents(
 
     for (const [name, line] of opened) {
       if (!closed.has(name) && !selfClosed.has(name)) continue;
-      const kind = classify(name, defined);
+      const kind = classify(name, defined, handled);
       if (kind === null) continue;
       found.push({ name, kind, line: line || undefined, props: [] });
     }
@@ -195,7 +210,7 @@ export function detectCustomComponents(
     const walk = (parent: Parent): void => {
       for (const child of parent.children as RootContent[]) {
         if (isJsxElement(child) && child.name !== null) {
-          const kind = classify(child.name, defined);
+          const kind = classify(child.name, defined, handled);
           if (kind !== null) {
             found.push({ name: child.name, kind, line: lineOf(child), props: propNames(child) });
           }

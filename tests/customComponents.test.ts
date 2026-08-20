@@ -8,14 +8,15 @@ const convert = (source: string) => convertReadmeMarkdown(source);
 const customNotes = (notes: ConversionNote[]) => notes.filter((note) => note.rule === "custom-component");
 
 describe("custom-component detection", () => {
-  // `Windows` is Route 2 in marketplace-conversion.md — decoration with no rule,
-  // so it is still reported. A component that *does* have a rule (Spoiler,
-  // GitHubBadge, …) is converted before this pass runs and must not appear here.
-  it("flags a Marketplace component that has no conversion rule", async () => {
-    const result = await convert(`<Windows header="README">\nThe hidden answer is 42.\n</Windows>\n`);
+  // Every one of the 24 Marketplace components now has a rule, or is claimed by the
+  // pass that owns its built-in name. What still reaches this pass is a Marketplace
+  // *child* component found outside its parent — a real authoring error, since a
+  // `<ToggleListItem>` alone renders nothing and its parent consumes it otherwise.
+  it("flags a Marketplace child component orphaned from its parent", async () => {
+    const result = await convert(`<ToggleListItem title="Orphan">Body.</ToggleListItem>\n`);
 
     expect(result.custom).toEqual([
-      { name: "Windows", kind: "marketplace", line: 1, props: ["header"] },
+      { name: "ToggleListItem", kind: "marketplace", line: 1, props: ["title"] },
     ]);
     expect(customNotes(result.notes)[0]).toMatchObject({ level: "flag" });
     expect(customNotes(result.notes)[0]?.detail).toContain("Marketplace");
@@ -49,9 +50,19 @@ describe("custom-component detection", () => {
   });
 
   it("catches a self-closing component", async () => {
-    const result = await convert(`<StatusPage title="Status" url="https://status.example.com" />\n`);
+    const result = await convert(`<SimpleStep header="Orphan" />\n`);
 
-    expect(result.custom.map((entry) => entry.name)).toEqual(["StatusPage"]);
+    expect(result.custom.map((entry) => entry.name)).toEqual(["SimpleStep"]);
+  });
+
+  // A rule that declines leaves its node in place and pushes its own precise
+  // blocker. Reporting it again here would be a duplicate, and would call a
+  // documented component "a definition not in this file".
+  it("does not re-report a component whose rule declined", async () => {
+    const result = await convert(`<PostmanRunButton collectionId="1" />\n`);
+
+    expect(result.custom).toEqual([]);
+    expect(result.notes.filter((note) => note.level === "blocker")).toHaveLength(1);
   });
 
   it("says nothing about a Marketplace component the conversion pass already handled", async () => {

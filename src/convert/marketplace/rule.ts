@@ -16,7 +16,35 @@ import { attr, type ConversionNote } from "../mdast";
  * alternative is emitting a guess, which `[PIT Phase 2]` warns is invisible once
  * the page compiles.
  */
-export type Rule = (node: MdxJsxFlowElement, notes: ConversionNote[]) => RootContent[] | null;
+export type Rule = (
+  node: MdxJsxFlowElement,
+  notes: ConversionNote[],
+  ctx: RuleContext,
+) => RootContent[] | null;
+
+/**
+ * What a rule needs beyond its own node.
+ *
+ * Only `post-list.ts` uses this, and only because its conversion needs the
+ * network. Rules stay synchronous — a rule that returned a promise would make
+ * every rule's caller async for the sake of one — so instead the rule *records*
+ * the work and an async step afterwards does it, the same two-phase shape the
+ * image pass already uses (`convertImages` collects, `fetchImages` fetches).
+ *
+ * A rule written as `(node, notes) => …` still satisfies the type, so nothing
+ * else had to change.
+ */
+export type RuleContext = {
+  /** `<PostList>` nodes whose data has to be fetched before they can be rendered. */
+  postLists: FoundPostList[];
+};
+
+/** A `<PostList>` awaiting its data. The node is mutated in place once it arrives. */
+export type FoundPostList = {
+  url: string;
+  node: MdxJsxFlowElement;
+  line?: number;
+};
 
 /** A paragraph of plain text. */
 export function para(text: string): Paragraph {

@@ -10,7 +10,7 @@ import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
 import { convertHtmlTables } from "./html-table";
 import { convertImages, type FoundImage } from "./images";
-import { convertMarketplace } from "./marketplace";
+import { convertMarketplace, fetchPostLists, MARKETPLACE_HANDLED, type PostListOptions } from "./marketplace";
 import { expandMagicBlocks } from "./magic-blocks";
 import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
@@ -44,6 +44,15 @@ export type ConvertPageOptions = ConvertOptions & {
    * `DownloadOptions.outDir` for the same reason.
    */
   images?: ImageDownloadOptions;
+  /**
+   * Plan §5.3 — fetch each `<PostList>` endpoint and write its response into the
+   * page.
+   *
+   * Off unless asked for. This is the only pass that would request a URL taken
+   * from the page being converted, so it is opt-in for the same reason
+   * `images` is, and it refuses private and link-local addresses outright.
+   */
+  data?: PostListOptions;
 };
 
 export type ConvertPageResult = {
@@ -216,15 +225,19 @@ export async function convertReadmeMarkdown(
   convertSteps(tree, notes);
   // After the built-in passes, so this and `convertColumns` cannot both claim a
   // `<Columns>`; before the detector, so anything without a rule is reported.
-  convertMarketplace(tree, notes);
+  const postLists = convertMarketplace(tree, notes);
   convertPlaceholders(tree, notes);
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, options).notes);
   convertApiExamples(tree, notes);
   convertParamFields(tree, notes, options.api ?? {});
+  // Phase two of the `<PostList>` conversion. Separate and async for the same
+  // reason image downloading is: the rules that build the tree stay synchronous,
+  // and the one conversion that needs the network happens once, here.
+  await fetchPostLists(postLists, options.data, notes);
   // Last, and that is the whole design: every pass above consumes the constructs
   // it recognises, so what is still a JSX element here is what nothing handled.
-  const custom = detectCustomComponents(tree, notes, { mode });
+  const custom = detectCustomComponents(tree, notes, { mode, handled: MARKETPLACE_HANDLED });
 console.log(custom);
   const mdx = toMdx(tree);
 

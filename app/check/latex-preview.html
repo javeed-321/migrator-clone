@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LaTeX rendering check</title>
+
+<!-- 1. KaTeX's stylesheet — on a real site this goes in documentation.json under "css". -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
+
+<!-- 2. The .math rules from styles/marketplace.css, copied so this file opens standalone. -->
+<style>
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+         line-height: 1.6; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; margin-top: 2rem; }
+  .note { background: #f3f4f6; border-left: 3px solid #6b7280; padding: 0.75rem 1rem; font-size: 0.9rem; }
+  .pass { border-left-color: #16a34a; }
+
+  .math { margin: 1rem 0; overflow-x: auto; overflow-y: hidden; }
+  .math:not([data-katex-done]) {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9375em;
+    opacity: 0.75;
+  }
+  .math .katex-display { margin: 0.5rem 0; }
+</style>
+</head>
+<body>
+
+<h1>LaTeX rendering check</h1>
+
+<p class="note">
+  This page loads the real <code>scripts/katex-render.js</code>. If the formulas below are
+  drawn as maths, the script works. If they stay as grey monospace TeX, it did not load —
+  check the browser console.
+</p>
+
+<h2>1. Inline maths — what <code>latex.ts</code> emits</h2>
+
+<div class="math">
+  Sustained throughput follows $\frac{r_{max}}{1 + e^{-k(t - t_0)}}$ requests per second,
+  where $r_{max}$ is the ceiling and $t_0$ the midpoint.
+</div>
+
+<h2>2. Display maths</h2>
+
+<div class="math">
+  $$\int_{0}^{T} r(t)\,dt = \frac{r_{max}}{k}\ln\left(1 + e^{k(T - t_0)}\right)$$
+</div>
+
+<h2>3. The braces that would have broken MDX</h2>
+
+<div class="math">
+  $\frac{a}{b}$, $x_{n}^{2}$, $\sqrt{2}$, $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+</div>
+
+<h2>4. Dollar signs in ordinary prose — must NOT be touched</h2>
+
+<p class="note pass">
+  Plans start at $5 and scale to $50 per month. The Enterprise tier is $500.
+</p>
+
+<p>
+  That paragraph is outside <code>.math</code>, so the script leaves it alone. This is why
+  <code>katex-render.js</code> renders only inside <code>.math</code> and never scans the
+  whole page — auto-rendering the body would turn “$5 and $50” into a mangled equation.
+</p>
+
+<h2>5. HTML-encoded braces — what a platform may hand you</h2>
+
+<p>
+  A docs platform often encodes <code>{</code> as <code>&amp;#123;</code>, because a bare brace
+  is an MDX expression. KaTeX cannot parse the entity and prints the raw TeX in red. The block
+  below contains encoded braces and must still render:
+</p>
+
+<div class="math">
+  Sustained throughput follows $\frac{r_&amp;#123;max&amp;#125;}{1 + e^{-k(t - t_0)}}$ per second.
+</div>
+
+<h2>6. Content added after load — the SPA case</h2>
+
+<p>
+  A docs site is a single-page app, so opening a page from the sidebar fires no load event.
+  The script watches for new <code>.math</code> blocks. Click to simulate that:
+</p>
+
+<p><button id="add">Add a formula the way a route change would</button></p>
+
+<div id="target"></div>
+
+<script>
+  document.getElementById('add').addEventListener('click', function () {
+    var block = document.createElement('div');
+    block.className = 'math';
+    block.textContent = 'Added after load: $E = mc^2$ and $\\frac{\\partial f}{\\partial x}$';
+    document.getElementById('target').appendChild(block);
+  });
+</script>
+
+<!-- 3. The script under test — on a real site this goes in documentation.json under "scripts". -->
+<script src="../../scripts/katex-render.js"></script>
+
+</body>
+</html>

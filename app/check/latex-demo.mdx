@@ -1,0 +1,18 @@
+# Rate limiting
+
+Plans start at $5 and scale to $50 per month.
+
+<div className="math">
+  {`
+    Sustained throughput follows $\\frac{r_{max}}{1 + e^{-k(t - t_0)}}$ requests per second,
+    where $r_{max}$ is the ceiling and $t_0$ the midpoint.
+    `}
+</div>
+
+The total budget over a window is:
+
+<div className="math">
+  {`
+    $$\\int_{0}^{T} r(t)\\,dt = \\frac{r_{max}}{k}\\ln\\left(1 + e^{k(T - t_0)}\\right)$$
+    `}
+</div>

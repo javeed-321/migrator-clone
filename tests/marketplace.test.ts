@@ -140,10 +140,163 @@ describe("marketplace conversion", () => {
     expect(r.mdx).toContain("AdvancedTable");
   });
 
-  it("leaves Route 3 components to the detector instead of guessing a link", async () => {
-    const r = await convert(`<StatusPage title="Status" url="https://status.example.com" />\n`);
-    expect(mkNotes(r.notes)).toEqual([]);
-    expect(r.custom.map((entry) => entry.name)).toEqual(["StatusPage"]);
+  it("StatusPage -> a Card, never a frozen status", async () => {
+    const r = await convert(`<StatusPage title="Service status" url="https://status.example.com" />\n`);
+    expect(r.mdx).toContain('<Card title="Service status" href="https://status.example.com"');
+    expect(r.custom).toEqual([]);
+  });
+
+  it("DownloadOASButton -> a Card naming the file", async () => {
+    const r = await convert(`<DownloadOASButton url="https://demo.readme.io/openapi/openapi.json" />\n`);
+    expect(r.mdx).toContain('title="Download OpenAPI spec"');
+    expect(r.mdx).toContain("`openapi.json`");
+  });
+
+  it("PostmanRunButton -> a Card, and blocks when only an id is given", async () => {
+    const ok = await convert(`<PostmanRunButton collectionId="1" collectionUrl="https://www.postman.com/x/y" />\n`);
+    expect(ok.mdx).toContain('title="Run in Postman"');
+    expect(ok.mdx).toContain("https://www.postman.com/x/y");
+
+    // Reconstructing Postman's fork URL from an id would be a guess at another
+    // product's URL scheme.
+    const idOnly = await convert(`<PostmanRunButton collectionId="1" />\n`);
+    expect(mkNotes(idOnly.notes)[0]?.level).toBe("blocker");
+    expect(idOnly.custom).toEqual([]);
+  });
+
+  it("SnapSlider -> a classed wrapper whose children stay markdown", async () => {
+    const r = await convert(
+      `<SnapSlider>\n  ![One](https://x.io/1.png)\n\n  ![Two](https://x.io/2.png)\n</SnapSlider>\n`,
+    );
+    expect(r.mdx).toContain('<div className="rm-slider">');
+    // The images must still be components, not flattened into an HTML string.
+    expect(r.mdx).toContain("<Image");
+    expect(r.mdx).toContain("https://x.io/1.png");
+    expect(r.mdx).toContain("https://x.io/2.png");
+    expect(r.outputCompiles).toBe(true);
+  });
+
+  it("Windows lifts its header prop into a title bar", async () => {
+    const r = await convert(`<Windows header="README.TXT">\nSome **body** text.\n</Windows>\n`);
+    expect(r.mdx).toContain('<div className="rm-window">');
+    expect(r.mdx).toContain('<div className="rm-window-title">');
+    expect(r.mdx).toContain("README.TXT");
+    expect(r.mdx).toContain("**body**");
+    expect(r.outputCompiles).toBe(true);
+  });
+
+  it("Latex -> a .math marker with the formula untouched", async () => {
+    const r = await convert("<Latex>{`$e^+e^-$ and $x^2$`}</Latex>\n");
+
+    expect(r.mdx).toContain('<div className="math">');
+    expect(r.mdx).toContain("$e^+e^-$");
+    expect(r.custom).toEqual([]);
+    expect(r.outputCompiles).toBe(true);
+  });
+
+  // A multi-line template literal must reach the rule untouched. `repairSource`
+  // used to rewrite `${` to `$\{` inside one, because INLINE_CODE stops at a
+  // newline and so never masked it — which broke the interpolation and left a
+  // stray `$` for KaTeX to mis-pair against.
+  it("Latex survives a multi-line literal containing an interpolation", async () => {
+    const r = await convert(
+      "<Latex>{`\n  We give illustrations for the ${1 + 2} processes $e^+e^-$ and $\\\\gamma$.\n`}</Latex>\n",
+    );
+
+    expect(r.mdx).toContain("${1 + 2}");
+    expect(r.mdx).not.toContain("$\\{1 + 2}");
+    expect(mkNotes(r.notes).every((n) => n.level !== "blocker")).toBe(true);
+  });
+
+  it("Latex blocks when the $ delimiters cannot pair", async () => {
+    const r = await convert("<Latex>{`$a$ and $b`}</Latex>\n");
+
+    const blocker = mkNotes(r.notes).find((n) => n.level === "blocker");
+    expect(blocker?.detail).toContain("cannot pair");
+  });
+
+  // The reason the rule does not unwrap the template literal. A brace in MDX body
+  // text is an expression, so `\frac{a}{b}` unwrapped would break the page.
+  it("Latex keeps braces safe inside the template literal", async () => {
+    const r = await convert("<Latex>{`$\\frac{a}{b}$ and $x_{n}$`}</Latex>\n");
+
+    expect(r.mdx).toContain("\\frac{a}{b}");
+    expect(r.mdx).toContain("x_{n}");
+    expect(r.outputCompiles).toBe(true);
+  });
+});
+
+describe("PostList — data fetched at conversion time", () => {
+  const posts = [
+    { id: 1, title: "sunt aut facere", body: "quia et suscipit" },
+    { id: 2, title: "qui est esse", body: "est rerum tempore" },
+  ];
+
+  const stub = (body: unknown, ok = true): typeof fetch =>
+    (async () =>
+      ({ ok, status: ok ? 200 : 500, text: async () => JSON.stringify(body) }) as Response) as unknown as typeof fetch;
+
+  it("writes the response into the page as a table", async () => {
+    const r = await convertReadmeMarkdown(`<PostList url="https://api.example.com/posts" />\n`, {
+      data: { enabled: true, fetchImpl: stub(posts) },
+    });
+
+    expect(r.mdx).toContain('<div className="rm-postlist">');
+    expect(r.mdx).toMatch(/\| Id\s+\| Title\s+\| Body\s+\|/);
+    expect(r.mdx).toContain("sunt aut facere");
+    expect(r.mdx).toContain("est rerum tempore");
+    expect(r.outputCompiles).toBe(true);
+    expect(r.custom).toEqual([]);
+  });
+
+  it("says plainly that the data is frozen", async () => {
+    const r = await convertReadmeMarkdown(`<PostList url="https://api.example.com/posts" />\n`, {
+      data: { enabled: true, fetchImpl: stub(posts) },
+    });
+
+    expect(mkNotes(r.notes).some((n) => n.detail.includes("frozen at conversion time"))).toBe(true);
+  });
+
+  it("falls back to a json fence when the shape is not a flat record array", async () => {
+    const r = await convertReadmeMarkdown(`<PostList url="https://api.example.com/x" />\n`, {
+      data: { enabled: true, fetchImpl: stub({ nested: { a: [1, 2] } }) },
+    });
+
+    expect(r.mdx).toContain("```json");
+    expect(r.mdx).toContain('"nested"');
+  });
+
+  it("does nothing unless asked, and says how to ask", async () => {
+    const r = await convert(`<PostList url="https://api.example.com/posts" />\n`);
+
+    expect(r.mdx).toContain("PostList");
+    expect(mkNotes(r.notes)[0]?.detail).toContain("data.enabled");
+  });
+
+  it("refuses a private or link-local address", async () => {
+    let called = false;
+    const spy: typeof fetch = (async () => {
+      called = true;
+      return { ok: true, status: 200, text: async () => "[]" } as Response;
+    }) as unknown as typeof fetch;
+
+    const r = await convertReadmeMarkdown(
+      `<PostList url="http://169.254.169.254/latest/meta-data/" />\n`,
+      { data: { enabled: true, fetchImpl: spy } },
+    );
+
+    expect(called).toBe(false);
+    expect(mkNotes(r.notes)[0]?.level).toBe("blocker");
+    expect(mkNotes(r.notes)[0]?.detail).toContain("private or link-local");
+  });
+
+  it("blocks rather than emitting an empty table when the endpoint fails", async () => {
+    const r = await convertReadmeMarkdown(`<PostList url="https://api.example.com/posts" />\n`, {
+      data: { enabled: true, fetchImpl: stub([], false) },
+    });
+
+    expect(mkNotes(r.notes)[0]?.level).toBe("blocker");
+    expect(r.mdx).toContain("PostList");
   });
 
   it("does not touch names an earlier pass already owns", async () => {

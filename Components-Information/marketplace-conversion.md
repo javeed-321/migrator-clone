@@ -153,14 +153,24 @@ Three rules for either route:
 | `QuizGame` | **`question`, `options`** | text + list, answer in `<Expandable>` | scoring, interactivity |
 | `GitHubBadge` | `owner, repo, workflow, branch` | `<Image>` `[DAI §16]` | — **stays live**, see §5.4 |
 
-### 5.2 Route 2 — prerender to HTML + CSS (2)
+### 5.2 Route 2 — a classed wrapper + CSS (2)
 
 Both are pure decoration with no native equivalent, and neither needs JavaScript.
 
-| Marketplace | Why HTML is right | Note |
+| Marketplace | Why | Target |
 |---|---|---|
-| `SnapSlider` | Pure CSS scroll-snap `[MP SnapSlider]` — `snap-x snap-mandatory overflow-x-scroll`. Reproduces exactly with no JS | Wrap images in `<div class="rm-slider">` |
-| `Windows` | A decorative retro frame, no state, no effects `[MP Windows]` | Wrap in `<div class="rm-window">` |
+| `SnapSlider` | Pure CSS scroll-snap `[MP SnapSlider]` — `snap-x snap-mandatory overflow-x-scroll`. Reproduces exactly, nothing lost | `<div className="rm-slider">` — `snap-slider.ts` |
+| `Windows` | A decorative retro frame; no state, no effects `[MP Windows]` | `<div className="rm-window">` — `windows.ts` |
+
+**Wrap, do not prerender.** The obvious reading of "convert to HTML" is to render the
+component and paste the markup. That flattens the children — `<Image>` components and
+markdown alike — into an opaque HTML string, and everything inside stops being visible to
+search and to the AI assistant `[PLAN §4.2]`. Wrapping keeps every child a real node: the
+images still go through the image pass, the text is still indexed, and only the *layout*
+moves to CSS. The chrome is the part that had to leave markdown; the content never did.
+
+Styling ships in `styles/marketplace.css`, registered under `css` in `documentation.json`
+(§4). The `rm-` prefix avoids the platform's own `dai-*` hooks.
 
 `Terminal` and `Grid` may also take this route when the frame or the exact gap matters more
 than searchability — but the native target is the default for both.
@@ -170,13 +180,27 @@ than searchability — but the native target is the default for both.
 The content is not on the page, so there is nothing to convert. A frozen snapshot of live
 data is worse than a link: it will be wrong eventually and nothing will refresh it.
 
-| Marketplace | Target |
-|---|---|
-| `PostList` | `<Card href>` to the API, or a `json` fence showing an example response, clearly labelled as an example |
-| `StatusPage` | `<Card href="https://status.…">` — **never freeze a status** |
-| `PostmanRunButton` | `<Card title="Run in Postman" href={collectionUrl}>` `[RM §4.15]` |
-| `DownloadOASButton` | `<Card title="Download OpenAPI spec" href={url}>` |
-| `Banner` | **Split by mode** — see §5.4 |
+**Four of these convert automatically.** Three link out, because their destination is
+already in a prop — the link is data, not a judgement. `PostList` is the exception: its data
+is *illustrative*, not a live truth-claim, so it is fetched and frozen (§5.5).
+
+| Marketplace | Target | Automated |
+|---|---|---|
+| `StatusPage` | `<Card href={url}>` — **never freeze a status** | ✅ `status-page.ts` |
+| `PostmanRunButton` | `<Card title="Run in Postman" href={collectionUrl}>` `[RM §4.15]` | ✅ `postman-run-button.ts` |
+| `DownloadOASButton` | `<Card title="Download OpenAPI spec" href={url}>` | ✅ `download-oas-button.ts` |
+| `PostList` | The endpoint **fetched at conversion time** and written into the page as a table | ✅ `post-list.ts`, opt-in via `data.enabled` |
+| `Banner` | **Split by mode** — see §5.4 | partly — inline only |
+
+`PostmanRunButton` blocks when given only a `collectionId`: Postman's fork URL is assembled
+by their own script from the id, workspace and visibility, and reconstructing it here would
+be a guess at another product's URL scheme `[MP PostmanRunButton]`.
+
+> **`PostmanRunButton` is the one name-collision that needs a rule here.** It exists as both
+> a built-in `[RM §4.15]` and a Marketplace component `[RM §9]`, and — unlike `Accordion`,
+> `Cards`, `Columns` and `Tabs` — **no other pass owns it**. Without a rule it is reported as
+> an unknown custom component, i.e. a blocker claiming its definition is missing, about a
+> component that is fully documented.
 
 ### 5.4 Three components with a non-obvious answer
 
@@ -203,12 +227,64 @@ JavaScript at all:
   prepends a div to the **site header**. That is not page content at all. → site-level
   Custom Scripts + Custom CSS `[LIVE-DAI /docs/customize/custom-scripts]`, or drop it.
 
-**`Latex` has no answer (1).** It fetches `react-latex-next` from a CDN at page load
-`[RM §9]`, and Documentation.AI documents no math support. HTML + CSS cannot render LaTeX
-either — it needs JS. The options are an image of the rendered formula, or a code fence
-showing the source. **This is a user decision, not a mapping.**
+### 5.5 `PostList` — fetched, not linked
 
-That accounts for all 24: 16 native + 2 prerendered + 5 linked out + 1 undecided.
+The other Route 3 components link out because their value is *current*: a status page that
+says "operational" must never be frozen, because the frozen copy will eventually be a lie
+nothing can refresh.
+
+`PostList` is different. Its data **illustrates what an endpoint returns**, so a snapshot is
+an example rather than a stale claim — and its `url` is a JSON endpoint, not a page, so
+linking a reader to raw JSON is worse than showing them the shape.
+
+So the conversion fetches the URL and writes the response into the page:
+
+- an array of flat records becomes a **table**, the same shape `AdvancedTable` produces;
+- anything else becomes a **`json` fence**;
+- the result is wrapped in `<div className="rm-postlist">`.
+
+Every conversion carries a note saying **the data is frozen at conversion time** — re-run the
+conversion to refresh it.
+
+> **The fetch is opt-in, via `data.enabled`.** This is the only pass that requests a URL taken
+> from the page being converted. Left on by default, a page containing
+> `<PostList url="http://169.254.169.254/latest/meta-data/" />` would make the converter fetch
+> cloud-instance metadata on the operator's behalf. Private and link-local addresses are
+> refused outright, non-HTTP protocols are refused, and the response is size- and
+> time-limited. A failed fetch is a blocker — never an empty table.
+
+**`Latex` -> `<div className="math">`, rendered by KaTeX at site level.**
+Documentation.AI has **no math support at all** — no LaTeX, no KaTeX, no `$…$` syntax,
+confirmed against the live component index (2026-08-20). So the rendering is arranged once,
+for the whole site, the same way ReadMe's own component arranges it `[MP Latex]`:
+
+```json
+{
+  "css":     [{ "src": "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" }],
+  "scripts": [{ "src": "scripts/katex-render.js" }]
+}
+```
+
+Both arrays accept external URLs `[LIVE-DAI /docs/customize/custom-css]`
+`[LIVE-DAI /docs/customize/site-configuration]`. `latex.ts` only marks *where* the maths is;
+`scripts/katex-render.js` draws it.
+
+> **The rule must not unwrap the template literal.** LaTeX is full of braces —
+> `\frac{a}{b}`, `x_{n}`, `\sqrt{2}` — and **a brace in MDX body text is an expression**,
+> not a character `[RM §12 gotcha 15]` `[PIT Phase 5]`. Unwrapping `<Latex>` to bare text
+> breaks every formula containing one, which is most of them. ReadMe's component avoids this
+> by requiring `` {`…`} ``, where a brace is just a brace — so the conversion renames only the
+> element and leaves the expression node exactly where it is. Compare `terminal.ts`, which
+> deliberately does the opposite: a fence needs plain text and has no MDX hazards.
+
+The script renders **only inside `.math`**, never the whole page: auto-rendering the body
+would turn an ordinary "$5 and $10" in prose into a mangled equation. It also re-runs on
+client-side navigation, since a docs site is a single-page app and a sidebar click fires no
+load event.
+
+That accounts for all 24: 16 native + 2 wrapped + 5 Route 3 + `Latex`. **All 24 now
+convert.** Two of them need a one-time site-config entry to render — `Latex` needs KaTeX
+registered (§5.4), and the two wrapped components need `styles/marketplace.css` (§5.2).
 
 ---
 
