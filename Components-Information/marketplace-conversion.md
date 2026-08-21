@@ -445,7 +445,66 @@ answer three questions:
 2. **What does it draw?** That picks the target, or Route 2.
 3. **What behaviour does it add?** That is what is lost, and what the note must say.
 
-This is the step worth handing to a model, because the input is unbounded. Give it the
+### Tier 1 — the wrapper shapes, in code (built)
+
+Most custom components exist to draw a coloured box, and a box is readable straight from
+the source. `src/convert/local/` does that, with no model involved:
+
+| File | Does |
+|---|---|
+| `shapes.ts` | Reads one `export const`'s source and returns its shape |
+| `index.ts` | Rewrites every usage, deletes the definition, writes one note |
+
+`shapes.ts` reads **signals, not JSX** — it is a classifier, not a compiler:
+
+| Signal in the source | Shape | Target |
+|---|---|---|
+| `{children}` only, coloured box | `callout` | `<Callout kind>` |
+| `{children}` only, no styling at all | `unwrap` | its own content |
+| `{title}` + `{children}`, static | `titled` | `<Callout>` + bold first line |
+| `{title}` + `{children}` + `useState` | `expandable` | `<Expandable>` |
+| `fetch(` / `import(` | `blocked` | — prerender it by hand, like `<PostList>` |
+| `.map(` | `blocked` | — the row shape is inside the `.map` |
+| no `children` slot | `blocked` | — nothing to preserve |
+| `useState` with no title | `blocked` | — interactive some other way |
+| more than 4 elements | `blocked` | — not a box |
+
+The tone comes from **strong colour first, then the name**: a box named `Note` painted red
+is red on the page, and that is what the reader sees. Grey and blue carry no meaning — they
+are what an undecorated box looks like — so there the author's name is the better evidence.
+
+`index.ts` runs three passes, and they are three for a reason:
+
+```
+1. read every definition   -> Map<name, shape>       once, however many usages
+2. rewrite every usage     -> one output per call site
+3. delete the definitions  -> only where step 2 left nothing behind
+```
+
+Step 3 is separate because **a definition must not be deleted while a usage still points at
+it**. Delete early and a merely broken page becomes a silently empty one.
+
+Three things go wrong in practice, and each has a fixed answer:
+
+- **Used as a block *and* inline.** `liftInlineJsx` promotes the one-liners that are a whole
+  paragraph; whatever is still inline is genuinely mid-sentence, and a `<Callout>` cannot go
+  there. The box is dropped, the words stay.
+- **One usage the shape cannot serve** — an `<Expandable>` with no title. That call site
+  falls back to plain content; the component is not abandoned for the others.
+- **Nesting.** Rewritten depth-first, on the way back up the walk.
+
+Reporting is **one note per component, not one per call site** (`<Note> (defined on this
+page, 6 uses) -> <Callout kind="info">`). Six copies of the same sentence is how a real
+blocker gets buried.
+
+It runs **after `convertOneToOne`**, later than every other component pass: that pass bolds a
+callout's first paragraph on the ReadMe convention that it is a heading, which is not a
+convention an arbitrary local wrapper follows.
+
+### Tier 2 — the rest, with a model (not built)
+
+Everything above the `blocked` line needs judgement the classifier does not have. That is the
+step worth handing to a model, because the input is unbounded. Give it the
 `export const` source, every usage on the page, the Documentation.AI component list, and
 the ladder in `[PLAN §4.4]`. Constrain the output to a schema — the emitted MDX, the
 components used, whether it is lossy, and what was lost — then **validate in code before
