@@ -25,7 +25,8 @@ import { projectName } from "./migrate/run";
  *   download/raw/<slug>.md    the source, byte for byte — also the cache
  *   download/ir/<slug>.json   every block on that page, and what it becomes
  *   download/inventory.md     the site-wide census
- *   pages/<slug>.mdx          the converted page
+ *   <slug>.mdx                the converted page, at the root so its path
+ *                             matches `documentation.json` exactly
  *   images/                   a copy of every image (pages still point at the CDN)
  *   brand/                    the site's logo and favicon, saved the same way
  *   styles/brand.css          the brand palette as CSS variables
@@ -144,7 +145,7 @@ async function main(): Promise<void> {
   }
 
   const wrote = [
-    "pages/",
+    "<slug>.mdx",
     "download/",
     ...(report.brand ? ["brand/", "styles/brand.css", "brand.json"] : []),
     "documentation.json",

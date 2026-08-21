@@ -26,6 +26,20 @@ export const OUTPUT_DIR = "output";
 /** `output/projects/` — one folder per migrated site. */
 export const PROJECTS_DIR = "projects";
 
+/**
+ * The folder the converted `.mdx` files go in, inside a project.
+ *
+ * **A navigation `path` is the MDX file path with `.mdx` removed** `[DAI §26]`,
+ * so this is not just a folder name — it is half of every entry in
+ * `documentation.json`. Put the files in `pages/` and name them `docs/intro` and
+ * every link in the sidebar points at a file that is not there.
+ *
+ * Exported so the writer and the navigation builder read the same constant
+ * rather than each spelling it out. Two spellings is how they drift, and a
+ * drifted path is a page that 404s with nothing anywhere saying why.
+ */
+export const PAGES_DIR = "pages";
+
 export function outputRoot(cwd: string = process.cwd()): string {
   return join(cwd, OUTPUT_DIR);
 }

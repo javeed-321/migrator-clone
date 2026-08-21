@@ -1,4 +1,5 @@
 import type { Element, Root as HastRoot, RootContent as HastContent } from "hast";
+import { minifyWhitespace } from "hast-util-minify-whitespace";
 import { toHtml } from "hast-util-to-html";
 import type { Parent, Root, RootContent } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
@@ -47,8 +48,19 @@ import { inlineStyle, parseCss, type Stylesheet, type Target } from "./css";
  * unclosed `<img>` in an HTML file is fine and in an MDX file is a build error.
  */
 
-/** Elements that belong to a document, not to a fragment of one. */
-const SCAFFOLD = new Set(["html", "head", "body", "meta", "title", "link", "base"]);
+/**
+ * Document scaffolding, split by what happens to what is inside it.
+ *
+ * `<html>`/`<head>`/`<body>` are containers: the tag cannot appear inside a page
+ * but everything under it can, so the wrapper goes and the content stays.
+ *
+ * `<title>` is the one that has to be *deleted*. Unwrapped like the others it
+ * leaves its text behind, and a page then opens with the browser-tab title of an
+ * email template — content that was never on the page, now indistinguishable
+ * from content that was.
+ */
+const UNWRAP = new Set(["html", "head", "body"]);
+const DROP = new Set(["meta", "title", "link", "base", "style", "script"]);
 
 /** The backticks around the template literal, and nothing else. */
 function templateBody(value: string): string | null {
@@ -141,14 +153,13 @@ function takeStyles(nodes: HastContent[]): string {
         css += node.children.map((child) => (child.type === "text" ? child.value : "")).join("");
         return [];
       }
-      // Scripts cannot run on the target at all, and a dropped script is
-      // reported by the caller rather than silently removed here.
-      if (node.tagName === "script") return [];
+      // Everything in `DROP` goes whole, children included — `<script>` because
+      // the target runs none (the caller reports that), `<title>` because its
+      // text is not page content.
+      if (DROP.has(node.tagName)) return [];
 
       node.children = walk(node.children) as Element["children"];
-      // `<html>`, `<body>` and friends cannot appear inside a page. Their
-      // children can, so the wrapper goes and the content stays.
-      return SCAFFOLD.has(node.tagName) ? (node.children as HastContent[]) : [node];
+      return UNWRAP.has(node.tagName) ? (node.children as HastContent[]) : [node];
     });
 
   const kept = walk(nodes);
@@ -200,7 +211,29 @@ function applyStyles(nodes: HastContent[], sheet: Stylesheet): void {
  * in a paragraph of prose are left alone.
  */
 function toMdxHtml(nodes: HastContent[]): string {
-  const html = toHtml({ type: "root", children: nodes } as HastRoot, {
+  const tree = { type: "root", children: nodes } as HastRoot;
+
+  // **This is what makes the output compile, and it is not cosmetic.**
+  //
+  // `hast-util-to-html` adds no whitespace of its own — every newline in the
+  // result is a text node copied from the source's indentation. MDX parses the
+  // children of a JSX element as markdown, so a line that *starts with text*
+  // opens a paragraph, and any closing tag later on that line is then inside it:
+  //
+  //     <div style="…">
+  //   Date: <span>16 JANUARY 2023</span></div></div></div>
+  //
+  // A `</div>` cannot close a block element from inside a paragraph, so the page
+  // fails with "Expected the closing tag `</div>`…". Collapsing the whitespace
+  // puts the element on one line, which is the rule the plan states outright:
+  // **block JSX on one line** `[PLAN §6 step 21]` `[RM §2]`.
+  //
+  // Minifying rather than stripping, because the difference between `<b>a</b>
+  // <b>b</b>` and `<b>a</b><b>b</b>` is a real space between two words. This
+  // utility knows which elements are inline and keeps those.
+  minifyWhitespace(tree);
+
+  const html = toHtml(tree, {
     closeSelfClosing: true,
     allowDangerousHtml: true,
   });

@@ -151,3 +151,43 @@ describe("documentation.json builder", () => {
     expect(config.name).toBe("docs.capillarytech.com");
   });
 });
+
+/**
+ * The two halves of a working site: where the `.mdx` was written, and what the
+ * navigation says it is called. A `path` is the file path with `.mdx` removed
+ * `[DAI §26]`, so these are not two facts — they are one fact written twice, and
+ * a downloaded project with `pages/docs/intro.mdx` listed as `docs/intro` is a
+ * sidebar where every entry 404s.
+ */
+describe("nav paths name the file that was written", () => {
+  it("prefixes every path with the folder the pages went to", () => {
+    const config = buildDocumentationJson([tab("Docs", ["docs/introduction", "docs/quickstart"])], {
+      pathPrefix: "pages",
+    });
+
+    const [first] = config.navigation.tabs as unknown as [{ pages: { path: string }[] }];
+    expect(first.pages.map((page) => page.path)).toEqual([
+      "pages/docs/introduction",
+      "pages/docs/quickstart",
+    ]);
+  });
+
+  it("points initialRoute at the same prefixed file", () => {
+    // Derived from the built tree rather than the raw slug, so it cannot be the
+    // one entry that still names the old location.
+    const config = buildDocumentationJson([tab("Docs", ["docs/introduction"])], {
+      pathPrefix: "pages",
+    });
+    expect(config.initialRoute).toBe("pages/docs/introduction");
+  });
+
+  it("leaves paths alone when the pages sit beside documentation.json", () => {
+    const config = buildDocumentationJson([tab("Docs", ["docs/introduction"])]);
+    expect(config.initialRoute).toBe("docs/introduction");
+  });
+
+  it("tolerates a prefix written with slashes", () => {
+    const config = buildDocumentationJson([tab("Docs", ["docs/a"])], { pathPrefix: "/pages/" });
+    expect(config.initialRoute).toBe("pages/docs/a");
+  });
+});

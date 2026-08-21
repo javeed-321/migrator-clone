@@ -135,6 +135,13 @@ export type BuildOptions = {
    * lowercase letters at all, so `API` and `OAuth` survive untouched.
    */
   normalizeGroupCase?: boolean;
+  /**
+   * Folder the `.mdx` files were written to, prepended to every `path`.
+   *
+   * Omit it when the pages sit beside `documentation.json`. Pass `"pages"` when
+   * they are in `pages/` — the path has to name the real file either way.
+   */
+  pathPrefix?: string;
 };
 
 /** Documentation.AI's own defaults, chosen for contrast. Exported so the brand
@@ -190,7 +197,14 @@ function toPage(slug: string, ctx: Ctx): DocPage | undefined {
     if (ctx.seen.has(slug)) return undefined;
     ctx.seen.add(slug);
   }
-  return { title: lookupTitle(slug, ctx.opts.titles) ?? titleFromSlug(slug), path: slug };
+  // The prefix is where the `.mdx` actually is. A `path` names a file, so a page
+  // written to `pages/docs/intro.mdx` must be listed as `pages/docs/intro` —
+  // anything else is a sidebar entry pointing at nothing.
+  const prefix = ctx.opts.pathPrefix?.replace(/^\/+|\/+$/g, "");
+  return {
+    title: lookupTitle(slug, ctx.opts.titles) ?? titleFromSlug(slug),
+    path: prefix ? `${prefix}/${slug}` : slug,
+  };
 }
 
 function toGroup(entry: Exclude<NavigationEntry, string>, ctx: Ctx): DocGroup | undefined {

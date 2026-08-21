@@ -115,6 +115,53 @@ describe("converting an HTMLBlock", () => {
     expect(result.mdx).not.toContain("<meta");
   });
 
+  it("puts block JSX on one line, or the page will not compile", async () => {
+    // MDX parses a JSX element's children as markdown, so a line that *starts
+    // with text* opens a paragraph — and a closing tag later on that line is
+    // then inside it, where it cannot close a block element. Source indentation
+    // is what creates those lines, so it has to go. `[PLAN §6 step 21]`
+    const result = await convertReadmeMarkdown(
+      block(
+        `<div style="text-align: right;">\n    Date: <span style="font-weight: 500;">16 JAN</span></div>`,
+      ),
+    );
+
+    expect(result.outputCompiles).toBe(true);
+    expect(result.mdx).toContain("16 JAN");
+    expect(result.mdx.trim().split("\n")).toHaveLength(1);
+  });
+
+  it("survives a wall of unclosed divs, the way a browser would", async () => {
+    // Real email-template HTML leaves the outer wrappers open. The HTML parser
+    // closes them, so the output is balanced even though the source was not.
+    const result = await convertReadmeMarkdown(
+      block(`<div><div><div>Inner</div>\n<div>Second</div>`),
+    );
+
+    expect(result.outputCompiles).toBe(true);
+    expect(result.mdx).toContain("Inner");
+    expect(result.mdx).toContain("Second");
+    expect((result.mdx.match(/<div/g) ?? []).length).toBe((result.mdx.match(/<\/div>/g) ?? []).length);
+  });
+
+  it("deletes <title> instead of leaving its text on the page", async () => {
+    // Unwrapped like <html>/<body>, it would leave the browser-tab title of an
+    // email template sitting in the content, indistinguishable from real prose.
+    const result = await convertReadmeMarkdown(
+      block(`<title>Retention and engagement in 2023</title>\n<p>Real content.</p>`),
+    );
+
+    expect(result.mdx).not.toContain("Retention and engagement");
+    expect(result.mdx).toContain("Real content.");
+  });
+
+  it("keeps the space between two inline elements when collapsing whitespace", async () => {
+    // The difference between `<b>a</b> <b>b</b>` and `<b>a</b><b>b</b>` is a
+    // real space between two words, so this minifies rather than strips.
+    const result = await convertReadmeMarkdown(block(`<p><b>one</b> <b>two</b></p>`));
+    expect(result.mdx).toContain("</b> <b>");
+  });
+
   it("says what it could not carry over, per reason", async () => {
     const result = await convertReadmeMarkdown(
       block(

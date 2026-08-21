@@ -4,7 +4,7 @@ import { fetchBrand } from "../brand";
 import { convertReadmeMarkdown } from "../convert/run";
 import { download } from "../download/run";
 import { buildDocumentationJson } from "../output/documentationJson";
-import { imagesOptions, projectDir } from "../paths";
+import { imagesOptions, PAGES_DIR, projectDir } from "../paths";
 import { formatPageWithFrontmatter } from "../utils/file";
 import { getErrorMessage } from "../utils/errors";
 import { log } from "../utils/log";
@@ -213,7 +213,7 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
       // author wrote.
       const title = result.title || page.title;
       const description = result.description || page.description;
-      const path = join("pages", `${page.slug}.mdx`);
+      const path = join(PAGES_DIR, `${page.slug}.mdx`);
       sink?.write({ path, body: formatPageWithFrontmatter(title, description, result.mdx) });
 
       pages.push({
