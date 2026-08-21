@@ -1,3 +1,4 @@
+import { splitFrontmatter } from "../download/blocks";
 import { parseMarkdown } from "../download/parse";
 import { convertAccordions } from "./accordion";
 import { convertApiExamples, convertParamFields, stripApiArtefacts, type ApiReferenceOptions } from "./api-reference";
@@ -8,6 +9,7 @@ import { convertColumns } from "./columns";
 import { convertDetails } from "./details";
 import { convertEmbeds } from "./embed";
 import { convertGlossary } from "./glossary";
+import { convertHtmlBlocks } from "./html-block";
 import { convertHtmlTables } from "./html-table";
 import { convertImages, type FoundImage } from "./images";
 import { convertLocalComponents } from "./local";
@@ -17,6 +19,8 @@ import { convertSteps } from "./steps";
 import type { ConversionNote } from "./mdast";
 import { convertOneToOne, toMdx, type ConvertOptions } from "./one-to-one";
 import { convertPlaceholders } from "./placeholders";
+import { convertRecipes, fetchRecipes, type RecipeOptions } from "./recipe";
+import { quarantineCustomComponents, type Quarantined } from "./quarantine";
 import { repairSource } from "./repair";
 import { convertTables } from "./table";
 import { convertWrappers } from "./wrappers";
@@ -54,6 +58,14 @@ export type ConvertPageOptions = ConvertOptions & {
    * `images` is, and it refuses private and link-local addresses outright.
    */
   data?: PostListOptions;
+  /**
+   * Plan §4.2 row 27 — fetch each `<Recipe>` and rebuild it as `<Steps>`.
+   *
+   * Off unless asked for, like `data` and `images`, and for the same reason: the
+   * URL is derived from the page being converted. Needs `site`, since the tag
+   * carries only a slug.
+   */
+  recipes?: RecipeOptions;
 };
 
 export type ConvertPageResult = {
@@ -75,6 +87,20 @@ export type ConvertPageResult = {
    * a time — the queue `[PIT Phase 0]` asks for.
    */
   custom: FoundCustom[];
+  /**
+   * The page title, from `options.title` or the source's own frontmatter.
+   * Returned because the frontmatter it came from is dropped, and a caller
+   * writing the page needs somewhere to have got it from.
+   */
+  title?: string;
+  /** ReadMe's `excerpt`, which is what Documentation.AI calls `description`. */
+  description?: string;
+  /**
+   * The same components, now inside code fences, with the exact source of each
+   * (plan §4.4 rung 3). This is the queue of decisions the page still owes —
+   * `custom` says what was found, this says what is in the output and where.
+   */
+  quarantined: Quarantined[];
   /**
    * Whether the **output** compiles as MDX. `false` means a tag survived that the
    * target cannot parse, and the page will fail to sync. The matching blocker note
@@ -203,15 +229,51 @@ export async function convertReadmeMarkdown(
   source: string,
   options: ConvertPageOptions = {},
 ): Promise<ConvertPageResult> {
-  const expanded = expandMagicBlocks(source);
+  // Step 0a. Split ReadMe's frontmatter off the top, before anything parses.
+  //
+  // Without this, `---\nupdatedAt: …\n---` is not frontmatter to `remark-parse`
+  // — there is no frontmatter plugin in the chain — it is a thematic break
+  // followed by a setext H2, and both ship. Worse, they ship *above* the body
+  // H1, so the pass that drops an H1 duplicating the frontmatter title looks at
+  // the first node, finds a rule, and leaves the title printed twice.
+  //
+  // The download stage has always done this for the same reason (`splitFrontmatter`
+  // is its helper, reused here rather than reimplemented). Conversion escaped it
+  // only because the paste box is fed page *bodies*; anything reading a real
+  // `.md` file hits it immediately.
+  const front = splitFrontmatter(source);
+  const expanded = expandMagicBlocks(front.body);
   // Step 0b. Repair the source so the strict parser accepts it. Before parsing,
   // because what it fixes is the reason there would be no tree to fix — and a page
   // that falls back to plain markdown gets *no* component conversions at all.
   const repaired = repairSource(expanded.source);
   const notes: ConversionNote[] = [...expanded.notes, ...repaired.notes];
+
+  // ReadMe's keys are not Documentation.AI's — `updatedAt`, `excerpt` and
+  // `deprecated` have no counterpart — so the block is dropped rather than
+  // translated. `title` and `excerpt` are the two that carry content, and they
+  // are handed back on the result so the caller can write the frontmatter the
+  // target does want.
+  if (Object.keys(front.frontmatter).length > 0) {
+    notes.push({
+      rule: "frontmatter",
+      level: "change",
+      line: 1,
+      detail:
+        `dropped ReadMe's frontmatter (${Object.keys(front.frontmatter).join(", ")}) — ` +
+        "its keys have no Documentation.AI equivalent; `title` and `description` are returned " +
+        "separately so the page can be written with the frontmatter the target expects",
+    });
+  }
+
+  const title = options.title ?? front.frontmatter.title;
   const { tree, mode, error } = parseMarkdown(repaired.source);
 
   stripApiArtefacts(tree, notes);
+  // 1b. `convertHtmlBlocks` — plan §4.3. Before every other component pass,
+  //     because what it unwraps is markup those passes then treat like any other:
+  //     a table inside an <HTMLBlock> should reach the table pass as a table.
+  convertHtmlBlocks(tree, notes);
   convertHtmlTables(tree, notes);
   convertTables(tree, notes);
   convertEmbeds(tree, notes);
@@ -227,15 +289,22 @@ export async function convertReadmeMarkdown(
   // After the built-in passes, so this and `convertColumns` cannot both claim a
   // `<Columns>`; before the detector, so anything without a rule is reported.
   const postLists = convertMarketplace(tree, notes);
+  // Recorded here, filled in below. A `<Recipe>` holds a slug and nothing else —
+  // its steps are a separate page on the source site — so this is the same
+  // two-phase shape `<PostList>` uses.
+  const recipes = convertRecipes(tree);
   convertPlaceholders(tree, notes);
   convertGlossary(tree, notes);
-  notes.push(...convertOneToOne(tree, options).notes);
+  notes.push(...convertOneToOne(tree, { ...options, ...(title ? { title } : {}) }).notes);
   convertApiExamples(tree, notes);
   convertParamFields(tree, notes, options.api ?? {});
   // Phase two of the `<PostList>` conversion. Separate and async for the same
   // reason image downloading is: the rules that build the tree stay synchronous,
   // and the one conversion that needs the network happens once, here.
   await fetchPostLists(postLists, options.data, notes);
+  // Before the detector, so a recipe that was rebuilt is gone by the time it
+  // runs and one that could not be fetched is still there to be fenced.
+  await fetchRecipes(recipes, options.site, options.recipes, notes);
   // 18. `convertLocalComponents` — plan §4.4. Components the page defines itself
   //     with an `export const`. After §1.3 rather than with the other component
   //     passes: the callout pass bolds a callout's first paragraph on the ReadMe
@@ -245,6 +314,15 @@ export async function convertReadmeMarkdown(
   // Last, and that is the whole design: every pass above consumes the constructs
   // it recognises, so what is still a JSX element here is what nothing handled.
   const custom = detectCustomComponents(tree, notes, {
+    mode,
+    handled: MARKETPLACE_HANDLED,
+    localHandled,
+  });
+  // 20. `quarantineCustomComponents` — plan §4.4 rung 3. The detector has now said
+  //     what every leftover is; this puts each one in a fence so the page compiles
+  //     and none of it is lost. After the detector, because that pass reads "still
+  //     a JSX element" as "nothing handled this" and this pass makes that untrue.
+  const quarantined = quarantineCustomComponents(tree, notes, {
     mode,
     handled: MARKETPLACE_HANDLED,
     localHandled,
@@ -270,6 +348,9 @@ export async function convertReadmeMarkdown(
     outputCompiles: check.mode === "mdx",
     parseMode: mode,
     custom,
+    quarantined,
+    ...(title ? { title } : {}),
+    ...(front.frontmatter.excerpt ? { description: front.frontmatter.excerpt } : {}),
     ...(error ? { parseError: error } : {}),
     ...(images ? { images } : {}),
   };

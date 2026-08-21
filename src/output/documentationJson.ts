@@ -76,10 +76,26 @@ export type DocColors = {
   dark: { brand: string; heading: string; text: string };
 };
 
-export type DocumentationConfig = {
+/**
+ * The logo keys, all optional `[LIVE-DAI /docs/customize/branding]`. The
+ * `logo-small-*` pair is what the browser tab shows — a favicon by another name.
+ */
+export type DocLogos = {
+  "logo-light"?: string;
+  "logo-dark"?: string;
+  "logo-small-light"?: string;
+  "logo-small-dark"?: string;
+};
+
+/** One stylesheet. `src` is a project-relative path or an HTTPS URL. */
+export type DocStylesheet = { src: string };
+
+export type DocumentationConfig = DocLogos & {
   name: string;
   initialRoute: string;
   colors: DocColors;
+  /** Loaded after the theme, in order `[LIVE-DAI /docs/customize/custom-css]`. */
+  css?: DocStylesheet[];
   navigation: { tabs: DocTab[] };
 };
 
@@ -96,6 +112,10 @@ export type BuildOptions = {
   /** The entry URL, used only to derive a fallback name. */
   site?: string;
   colors?: DocColors;
+  /** Logo and favicon URLs, from the brand stage. */
+  logos?: DocLogos;
+  /** Stylesheets to register, e.g. `[{ src: "styles/brand.css" }]`. */
+  css?: DocStylesheet[];
   /**
    * Real page titles by slug, when the fetch stage produced them. Without this
    * the title is derived from the slug: `docs/get-started` -> `Get Started`.
@@ -117,7 +137,9 @@ export type BuildOptions = {
   normalizeGroupCase?: boolean;
 };
 
-const DEFAULT_COLORS: DocColors = {
+/** Documentation.AI's own defaults, chosen for contrast. Exported so the brand
+ * stage can override `brand` alone and leave `heading`/`text` untouched. */
+export const DEFAULT_COLORS: DocColors = {
   light: { brand: "#3143e3", heading: "#1a1a1a", text: "#374151" },
   dark: { brand: "#85a1ff", heading: "#f2f2f2", text: "#c1c1c1" },
 };
@@ -269,7 +291,11 @@ export function buildDocumentationJson(
   return {
     name: name || "Documentation",
     initialRoute: firstPath(built),
+    // Spread before `colors` so a logo key can never displace one of the fields
+    // below it, however the brand stage is extended later.
+    ...(opts.logos ?? {}),
     colors: opts.colors ?? DEFAULT_COLORS,
+    ...(opts.css && opts.css.length > 0 ? { css: opts.css } : {}),
     navigation: { tabs: built },
   };
 }

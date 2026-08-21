@@ -1,7 +1,7 @@
 import type { Parent, Root, RootContent } from "mdast";
 import type { MdxJsxFlowElement, MdxJsxTextElement } from "mdast-util-mdx-jsx";
 
-import { HTML_ELEMENTS, KNOWN_COMPONENTS, MARKETPLACE } from "./known-names";
+import { HTML_ELEMENTS, KNOWN_COMPONENTS, MARKETPLACE, UNCONVERTED } from "./known-names";
 import { lineOf, type ConversionNote } from "./mdast";
 
 /**
@@ -110,13 +110,17 @@ export function definedHere(root: Root): Set<string> {
  * name is a page whose author changed it, and the standard §4.2 mapping would
  * describe a component this site does not have. Local source always wins.
  */
-function classify(
+export function classify(
   name: string,
   defined: Set<string>,
   handled: ReadonlySet<string>,
   localHandled: ReadonlySet<string>,
 ): FoundCustom["kind"] | null {
   if (HTML_ELEMENTS.has(name)) return null;
+  // Before `KNOWN_COMPONENTS`, and that order is the whole point: these names are
+  // in that set too, for the placeholder pass, but nothing converts them. Checked
+  // the other way round they would be read as handled and ship as bare tags.
+  if (UNCONVERTED.has(name)) return "unknown";
   if (KNOWN_COMPONENTS.has(name)) return null;
   if (localHandled.has(name)) return null;
   if (handled.has(name) && !defined.has(name)) return null;
@@ -129,7 +133,7 @@ function isJsxElement(node: RootContent): node is MdxJsxFlowElement | MdxJsxText
   return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
 }
 
-function propNames(node: MdxJsxFlowElement | MdxJsxTextElement): string[] {
+export function propNames(node: MdxJsxFlowElement | MdxJsxTextElement): string[] {
   return (node.attributes ?? [])
     .map((attribute) => (attribute.type === "mdxJsxAttribute" ? attribute.name : "{...spread}"))
     .filter((name): name is string => typeof name === "string");

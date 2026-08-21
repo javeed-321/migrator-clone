@@ -151,3 +151,30 @@ describe("custom-component detection", () => {
     expect(result.custom).toEqual([]);
   });
 });
+
+/**
+ * The gap `<HTMLBlock>` exposed: a name can be in `KNOWN_COMPONENTS` for the
+ * placeholder pass's sake while nothing actually converts it. Read as "handled",
+ * it ships as a bare tag with no note and fails on the target as an undefined
+ * component — the quietest failure there is, because it looks fine in every report.
+ */
+describe("ReadMe components that no pass converts", () => {
+  const cases = ["Recipe", "TutorialTile", "CodeTabs", "Variable"] as const;
+
+  it.each(cases)("fences <%s> and reports it rather than shipping the tag", async (name) => {
+    const result = await convert(`<${name} slug="x" />\n`);
+    const outsideFences = result.mdx.replace(/```[\s\S]*?```/g, "");
+
+    expect(outsideFences).not.toContain(`<${name}`);
+    expect(result.mdx).toContain(`<${name} slug="x" />`);
+    expect(result.quarantined.map((entry) => entry.name)).toContain(name);
+    expect(result.notes.some((note) => note.level === "blocker")).toBe(true);
+  });
+
+  it("still treats them as components in prose, not placeholders", async () => {
+    // They stay in KNOWN_COMPONENTS for exactly this: a page documenting ReadMe
+    // must not have its own examples rewritten.
+    const result = await convert(`The <Recipe> tag is ReadMe's.\n`);
+    expect(result.mdx).toContain("`<Recipe>`");
+  });
+});

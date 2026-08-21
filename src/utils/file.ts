@@ -5,7 +5,8 @@ import { getErrorMessage } from "./errors";
 import { log } from "./log";
 import { removeLeadingSlash } from "./strings";
 
-export function write(filename: string, data: string): void {
+/** `Uint8Array` as well as text, because images and fonts are files too. */
+export function write(filename: string, data: string | Uint8Array): void {
   mkdirSync(dirname(filename), { recursive: true });
   writeFileSync(filename, data);
 }

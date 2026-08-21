@@ -203,3 +203,57 @@ describe("raw <details> through the whole pipeline", () => {
     expect(again.mdx).toBe(detailsResult.mdx);
   });
 });
+
+/**
+ * Anything reading a real `.md` file hits this; the paste box never did, because
+ * it is fed page bodies. `remark-parse` has no frontmatter plugin, so an unsplit
+ * block is a thematic break plus a setext H2 — and it lands *above* the body H1,
+ * which is what stops that H1 being recognised as a duplicate of the title.
+ */
+describe("ReadMe frontmatter", () => {
+  it("drops the block instead of rendering it as a rule and a heading", async () => {
+    const result = await convertReadmeMarkdown(
+      `---\nupdatedAt: 2026-08-11T06:18:16.000Z\n---\n\n# Introduction\n\nBody text.\n`,
+      { title: "Introduction" },
+    );
+
+    expect(result.mdx).not.toContain("updatedAt");
+    expect(result.mdx).not.toMatch(/^---/m);
+    expect(result.mdx).toContain("Body text.");
+  });
+
+  it("still drops the body H1 that duplicates the title", async () => {
+    const result = await convertReadmeMarkdown(
+      `---\nupdatedAt: 2026-08-11T06:18:16.000Z\n---\n\n# Introduction\n\nBody text.\n`,
+      { title: "Introduction" },
+    );
+
+    expect(result.mdx).not.toContain("# Introduction");
+  });
+
+  it("reads the title out of the frontmatter when the caller has none", async () => {
+    const result = await convertReadmeMarkdown(
+      `---\ntitle: Getting Started\nexcerpt: How to begin\n---\n\n# Getting Started\n\nBody.\n`,
+    );
+
+    expect(result.title).toBe("Getting Started");
+    expect(result.description).toBe("How to begin");
+    // Known from the frontmatter, so the duplicate H1 goes with no caller input.
+    expect(result.mdx).not.toContain("# Getting Started");
+  });
+
+  it("says what it dropped", async () => {
+    const result = await convertReadmeMarkdown(`---\nupdatedAt: 2026-01-01\n---\n\nBody.\n`);
+    const note = result.notes.find((entry) => entry.rule === "frontmatter");
+
+    expect(note).toMatchObject({ level: "change" });
+    expect(note?.detail).toContain("updatedAt");
+  });
+
+  it("leaves a page with no frontmatter exactly as it was", async () => {
+    const result = await convertReadmeMarkdown(`# Title\n\nBody.\n`);
+
+    expect(result.notes.find((entry) => entry.rule === "frontmatter")).toBeUndefined();
+    expect(result.mdx).toContain("# Title");
+  });
+});

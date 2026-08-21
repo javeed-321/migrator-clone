@@ -68,6 +68,10 @@ export async function POST(request: NextRequest) {
       ok: true,
       mdx: result.mdx,
       notes: result.notes,
+      // The components nothing converted, each now inside a fence in `mdx` with
+      // its own source and line. The caller renders this as the page's to-do
+      // list; without it the fences are the only sign anything is outstanding.
+      quarantined: result.quarantined,
       parseMode: result.parseMode,
       ...(result.parseError ? { parseError: result.parseError } : {}),
       ...(result.images

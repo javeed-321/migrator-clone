@@ -10,6 +10,11 @@ import Link from "next/link";
  */
 const TOOLS = [
   {
+    href: "/migrate",
+    title: "Migrate",
+    body: "One URL, end to end — discover, download, convert, and write a project with its report. The other three tools are its stages, kept for looking at one in isolation.",
+  },
+  {
     href: "/fetch-pages-links",
     title: "Fetch pages & links",
     body: "Read a ReadMe docs site and rebuild its sidebar — every tab, its groups and the pages inside them.",

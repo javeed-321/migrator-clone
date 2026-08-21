@@ -61,6 +61,44 @@ export const KNOWN_COMPONENTS = new Set([
  * first — and the tag alone cannot tell you which version a project installed.
  * That determination is per-site configuration, not per-file inference.
  */
+/**
+ * ReadMe names that are real components but that **no pass converts**.
+ *
+ * The distinction this set exists for is not "do we recognise the name" — every
+ * name here is in `KNOWN_COMPONENTS` above and has to stay there, or the
+ * placeholder pass would turn prose *about* `<Recipe>` into inline code. It is
+ * "does anything actually handle it".
+ *
+ * Without the split, the two questions had one answer, and being listed as known
+ * was read as being handled. `<HTMLBlock>` sat in `KNOWN_COMPONENTS` for the
+ * placeholder pass's sake and so the detector skipped it — it reached the output
+ * byte for byte, with no note of any kind, and failed on the target as an
+ * undefined component `[PIT Phase 5]`. That is the quietest failure there is: it
+ * looks handled in every report.
+ *
+ * So the detector checks this set *first*, and anything in it is reported and
+ * fenced like any other unconverted component. **Deleting a name from here is
+ * how you retire it** — write the conversion, then remove the name, and the
+ * safety net stops catching it.
+ */
+export const UNCONVERTED = new Set([
+  /**
+   * `recipe.ts` converts these — but only when the fetch is enabled *and*
+   * succeeds, and the tag is left in the tree whenever it is not. So they stay
+   * here: a name is retired from this set only once nothing can leave it
+   * unconverted, and "we usually convert it" is not that.
+   *
+   * A successfully rebuilt recipe never reaches the detector, so keeping them
+   * listed costs nothing and catches every case where the network did not answer.
+   */
+  "Recipe",
+  "TutorialTile",
+  /** The markdown form (consecutive fences) converts; this JSX wrapper does not. */
+  "CodeTabs",
+  /** `<Variable name="company" />` -> `{user.company}` `[PLAN §4.2 row 30]`. */
+  "Variable",
+]);
+
 export const MARKETPLACE = new Set([
   "AdvancedTable", "Banner", "Compatibility", "ContentModal", "DownloadOASButton",
   "GitHubBadge", "Grid", "KeyPress", "Latex", "PostList", "QuizGame",
