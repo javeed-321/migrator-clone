@@ -159,14 +159,41 @@ export function renderMigrationMarkdown(report: MigrationReport): string {
   }
 
   if (report.notInNavigation.length > 0) {
+    const placed = report.navPlacements ?? [];
+
     lines.push(
-      "### Pages the sidebar cannot reach",
+      "### Pages the sidebar could not reach",
       "",
-      `${plural(report.notInNavigation.length, "page")} converted but absent from the navigation, so ` +
-        "they would ship as orphans. On ReadMe this is normal for spec-generated API endpoints — " +
-        "the sidebar omits them on purpose. Decide whether they are in scope; if they are, they need " +
-        "navigation entries written for them.",
+      `${plural(report.notInNavigation.length, "page")} came from \`llms.txt\` but not the sidebar ` +
+        "walk. On ReadMe this is normal — the sidebar omits spec-generated API endpoints, and a tab " +
+        "that fails to load takes its whole subtree with it.",
       "",
+    );
+
+    if (placed.length > 0) {
+      lines.push(
+        "They have been given navigation entries, so nothing ships unreachable:",
+        "",
+        ...placed.map(
+          (row) =>
+            `- **${cell(row.section)}** — ${plural(row.count, "page")}, ` +
+            (row.placement === "merged" ? "added to the existing tab" : "in a new tab of that name"),
+        ),
+        "",
+        "**Check the grouping.** `llms.txt` is a flat list; its `##` heading is the only structure " +
+          "there was to go on, and it is not the sidebar the source site had.",
+        "",
+      );
+    } else {
+      lines.push(
+        "They have **no navigation entries**, so they would ship as orphans — files in `pages/` that " +
+          "nothing links to. Either give them entries, or filter them out at discovery so they are " +
+          "never fetched.",
+        "",
+      );
+    }
+
+    lines.push(
       ...report.notInNavigation.slice(0, 50).map((slug) => `- \`${slug}\``),
       ...(report.notInNavigation.length > 50
         ? [`- …and ${report.notInNavigation.length - 50} more (see \`report.json\`)`]

@@ -1,3 +1,7 @@
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import {
@@ -198,10 +202,10 @@ describe("brand -> documentation.json", () => {
   it("prefers a saved local copy when one was asked for", () => {
     const brand = extractBrand(ssrProps(FULL_APPEARANCE), SITE);
     const config = toBrandConfig(brand, {
-      "https://files.readme.io/bba3939-logo.png": "brand/bba3939-logo.png",
+      "https://files.readme.io/bba3939-logo.png": "/brand/bba3939-logo.png",
     });
 
-    expect(config["logo-light"]).toBe("brand/bba3939-logo.png");
+    expect(config["logo-light"]).toBe("/brand/bba3939-logo.png");
     // Not saved, so it keeps the URL that is serving it today.
     expect(config["logo-dark"]).toBe("https://files.readme.io/8dd20af-white-logo.png");
   });
@@ -298,6 +302,31 @@ describe("fetchBrand", () => {
 
     expect(result.report.assets).toEqual({});
     expect(result.config["logo-light"]).toBe("https://files.readme.io/bba3939-logo.png");
+  });
+
+  // A saved path without the leading slash is discarded by the app and the
+  // platform default stands, with nothing saying why — so the slash is the
+  // difference between a saved favicon and a silently ignored one.
+  it("saves assets under a rooted path, which is the only form the app accepts", async () => {
+    const outDir = mkdtempSync(join(tmpdir(), "brand-"));
+    const result = await fetchBrand(SITE, {
+      fetchHtml: async () => html,
+      outDir,
+      local: true,
+      fetchImpl: (async () => ({
+        ok: true,
+        status: 200,
+        statusText: "OK",
+        arrayBuffer: async () => new Uint8Array([1]).buffer,
+      })) as unknown as typeof fetch,
+    });
+    rmSync(outDir, { recursive: true, force: true });
+
+    for (const path of Object.values(result.report.assets)) {
+      expect(path.startsWith("/brand/")).toBe(true);
+    }
+    expect(result.config.favicon?.startsWith("/brand/")).toBe(true);
+    expect(result.config["logo-light"]?.startsWith("/brand/")).toBe(true);
   });
 
   it("writes a variables-only stylesheet", () => {

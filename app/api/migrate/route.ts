@@ -20,7 +20,7 @@ export const maxDuration = 300;
  * timeout. `npm run migrate` has no cap and resumes from the download cache,
  * which is the thing to point people at rather than raising this.
  */
-const MAX_PAGES = 100;
+const MAX_PAGES = 1000;
 const DEFAULT_PAGES = 25;
 
 /**

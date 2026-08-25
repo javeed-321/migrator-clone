@@ -103,9 +103,33 @@ describe("the migration report", () => {
     expect(markdown.match(/`<Widget>`/g)).toHaveLength(1);
   });
 
-  it("names the orphan pages the sidebar cannot reach", () => {
-    expect(markdown).toContain("Pages the sidebar cannot reach");
+  it("names the pages the sidebar could not reach", () => {
+    expect(markdown).toContain("Pages the sidebar could not reach");
     expect(markdown).toContain("`reference/get-thing`");
+  });
+
+  // With no `navPlacements` on the report, those pages really are orphans, and
+  // the report has to say so rather than describing a placement that never
+  // happened.
+  it("calls them orphans when nothing placed them", () => {
+    expect(markdown).toContain("no navigation entries");
+  });
+
+  it("says where each section went when they were placed", () => {
+    const placed = renderMigrationMarkdown({
+      ...base,
+      navPlacements: [
+        { section: "API Reference", count: 190, placement: "new-tab" },
+        { section: "Guides", count: 2, placement: "merged" },
+      ],
+    });
+
+    expect(placed).toContain("**API Reference** — 190 pages, in a new tab of that name");
+    expect(placed).toContain("**Guides** — 2 pages, added to the existing tab");
+    expect(placed).not.toContain("no navigation entries");
+    // The grouping is a guess off a flat list, and the report must not present
+    // it as the structure the source site had.
+    expect(placed).toContain("Check the grouping");
   });
 
   it("reports a tab that scraped empty rather than dropping it silently", () => {

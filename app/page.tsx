@@ -25,6 +25,11 @@ const TOOLS = [
     body: "Paste a ReadMe page and get Documentation.AI MDX back, with a note for every change.",
   },
   {
+    href: "/brand",
+    title: "Brand",
+    body: "Read a site's colours, logos and favicon out of the page it already serves, and see each value as the thing it becomes — with the rung of the ladder that found it.",
+  },
+  {
     href: "/download",
     title: "Download",
     body: "Read each page's authored markdown from `<slug>.md` and show the components found in it.",

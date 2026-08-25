@@ -33,6 +33,16 @@ export type DiscoveryResult = {
   refs: PageRef[];
   /** Slugs the sidebar can actually reach — the denominator for orphan checking. */
   navSlugs: Set<string>;
+  /**
+   * The entry page's HTML, as fetched here.
+   *
+   * Handed back because the brand stage reads its colours and logos out of this
+   * exact document, and asking for it a second time is a request that can fail on
+   * its own. On a rate-limited source it does: the second call comes back 429, the
+   * brand lookup is abandoned, and the site ships with the platform's default blue
+   * and no logo — over a page already in memory.
+   */
+  html: string;
 };
 
 function countNav(items: NavigationEntry[]): { groups: number; pages: number } {
@@ -209,5 +219,6 @@ export async function discoverSite(
     tabs: walked.map((entry) => entry.tab),
     refs,
     navSlugs,
+    html,
   };
 }

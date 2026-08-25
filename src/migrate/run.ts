@@ -9,6 +9,7 @@ import { formatPageWithFrontmatter } from "../utils/file";
 import { getErrorMessage } from "../utils/errors";
 import { log } from "../utils/log";
 import { discoverSite } from "./discover";
+import { placementsForUnreachable, tabsForUnreachable } from "./orphans";
 import { renderMigrationMarkdown } from "./report";
 import { DiskSink, type Sink } from "./sink";
 import type { BrandResult } from "../brand";
@@ -89,6 +90,17 @@ export type MigrateOptions = {
    * repoint: re-hosting is a decision, not a side effect.
    */
   brandLocal?: boolean;
+  /**
+   * Write navigation entries for pages `llms.txt` listed and the sidebar walk
+   * could not reach, grouped by their `llms.txt` section `[orphans.ts]`.
+   *
+   * On by default. Those pages are downloaded and converted either way, so
+   * turning this off does not make the migration smaller — it only makes the
+   * files it already wrote unreachable. `false` is for the case where the pages
+   * are genuinely out of scope and the grouping would be noise; the honest
+   * version of that is a `filter` at discovery, so nothing is fetched at all.
+   */
+  navUnreachable?: boolean;
 };
 
 /** `https://docs.capillarytech.com/docs` -> `docs-capillarytech-com`. */
@@ -147,13 +159,27 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   if (options.brand !== false) {
     try {
       brand = await fetchBrand(site, {
+        // The page discovery just fetched, rather than a second request for it.
+        // That request was the single likeliest way to lose the whole brand: a
+        // rate-limited source answers the *second* call 429, the catch below
+        // swallows it, and the site ships default-blue with no logo and no
+        // favicon — for a document already in memory.
+        fetchHtml: async () => discovery.html,
         ...(outDir ? { outDir } : {}),
         ...(options.brandLocal ? { local: true } : {}),
       });
       const found = brand.report.found.map((row) => row.field).join(", ") || "nothing";
       log(`brand: ${found}`, "info");
     } catch (error) {
-      log(`brand lookup failed, keeping the defaults${getErrorMessage(error)}`, "warn");
+      // Named in full, because the symptom is silence: `documentation.json` is
+      // still written, still valid, and simply has no colours, logo or favicon in
+      // it, which reads as "the tool does not do branding" rather than as a
+      // failure.
+      log(
+        `brand lookup failed${getErrorMessage(error)} — documentation.json keeps the default ` +
+          "colours and gets no logo or favicon. Re-run to pick them up",
+        "warn",
+      );
     }
   }
 
@@ -246,8 +272,32 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   const titles: Record<string, string> = {};
   for (const page of downloaded.pages) if (page.title) titles[page.slug] = page.title;
 
+  // Pages that converted but no tab can reach — `llms.txt` lists more than the
+  // sidebar walks. Built from `converted` rather than `discovery.refs` so a page
+  // that 404'd or failed to convert never gets an entry pointing at a file that
+  // was never written.
+  const converted = new Set(pages.map((page) => page.slug));
+  const unreachable = [...converted].filter((slug) => !discovery.navSlugs.has(slug)).sort();
+
+  const navTabs =
+    options.navUnreachable === false
+      ? discovery.tabs
+      : tabsForUnreachable(unreachable, discovery.refs, discovery.tabs);
+  const placements =
+    options.navUnreachable === false
+      ? []
+      : placementsForUnreachable(unreachable, discovery.refs, discovery.tabs);
+
+  if (placements.length > 0) {
+    log(
+      `navigation: placed ${unreachable.length} page(s) the sidebar could not reach — ` +
+        placements.map((row) => `${row.section} (${row.count})`).join(", "),
+      "info",
+    );
+  }
+
   const { name: brandName, colors, ...logos } = brand?.config ?? {};
-  const config = buildDocumentationJson(discovery.tabs, {
+  const config = buildDocumentationJson(navTabs, {
     // An explicit `--name` outranks the project's own name, which outranks the
     // hostname the builder falls back to.
     ...(options.name ? { name: options.name } : brandName ? { name: brandName } : {}),
@@ -261,7 +311,6 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     ...(brand && outDir ? { css: [{ src: BRAND_CSS }] } : {}),
   });
 
-  const converted = new Set(pages.map((page) => page.slug));
   const report: MigrationReport = {
     project,
     site: site.toString(),
@@ -284,7 +333,8 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     blockers,
     failed: downloaded.failed,
     ...(brand ? { brand: brand.report } : {}),
-    notInNavigation: [...converted].filter((slug) => !discovery.navSlugs.has(slug)).sort(),
+    notInNavigation: unreachable,
+    ...(placements.length > 0 ? { navPlacements: placements } : {}),
   };
 
   if (brand) {

@@ -1,5 +1,6 @@
 import type { BrandReport } from "../brand/types";
 import type { NavigationEntry } from "../types/nav";
+import type { UnreachablePlacement } from "./orphans";
 import type { FoundCustom } from "../convert/custom-components";
 
 /**
@@ -90,14 +91,24 @@ export type MigrationReport = {
   blockers: BlockerRow[];
   failed: { slug: string; message: string }[];
   /**
-   * Downloaded, converted, and **not reachable from the sidebar** — so it would
-   * ship as an orphan page nobody can navigate to.
+   * Downloaded, converted, and **not reachable from the sidebar walk**.
    *
    * `[PIT Phase 0]`: the nav is a lower bound, not the page list. ReadMe's
-   * sidebar deliberately omits spec-generated API endpoints, so this is normally
-   * non-empty on an API-heavy site and is a decision, not an error.
+   * sidebar omits spec-generated API endpoints, and a tab that fails to load
+   * takes its whole subtree with it, so this is normally non-empty on an
+   * API-heavy site.
+   *
+   * These are no longer orphans: `navUnreachable` gives each one an entry
+   * grouped by its `llms.txt` section, and `navPlacements` says where they went.
+   * The list stays because the grouping is a guess and this is the set to check
+   * it against.
    */
   notInNavigation: string[];
+  /**
+   * Where the `notInNavigation` pages were placed. Absent when there were none,
+   * or when `navUnreachable` was off — in which case they really are orphans.
+   */
+  navPlacements?: UnreachablePlacement[];
   /**
    * The colours, logos and favicon read off the source site, and which source
    * answered each one. Absent when the brand stage was skipped or failed.
