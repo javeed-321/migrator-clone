@@ -38,6 +38,15 @@ export type PageReport = {
   quarantined: { name: string; kind: FoundCustom["kind"]; line?: number }[];
   /** Where the `.mdx` was written, when the run had somewhere to write it. */
   path?: string;
+  /**
+   * The endpoint this page was bound to, when its source carried a spec.
+   *
+   * Recorded per page because the two facts a reviewer needs are *which* endpoint
+   * a page drives and *how much* of the page the spec writes — and `mode: "auto"`
+   * means the body is not what will be rendered, which nothing else on the row
+   * would say.
+   */
+  openapi?: { spec: string; method: string; route: string; mode: "auto" | "custom" };
 };
 
 /** One component across the whole corpus — the unit the queue is worked in. */
@@ -85,6 +94,8 @@ export type MigrationReport = {
     blockers: number;
     flags: number;
     quarantined: number;
+    /** Pages bound to an OpenAPI spec, so they render a playground. */
+    endpoints: number;
   };
   pages: PageReport[];
   customComponents: CustomComponentRow[];

@@ -27,19 +27,25 @@ export const OUTPUT_DIR = "output";
 export const PROJECTS_DIR = "projects";
 
 /**
- * The folder the converted `.mdx` files go in, inside a project.
+ * ## Where the converted `.mdx` files go, and why there is no constant for it
  *
  * **A navigation `path` is the MDX file path with `.mdx` removed** `[DAI §26]`,
- * so this is not just a folder name — it is half of every entry in
- * `documentation.json`. Put the files in `pages/` and name them `docs/intro` and
- * every link in the sidebar points at a file that is not there.
+ * so a folder name is not just a folder name — it is half of every entry in
+ * `documentation.json`.
  *
- * Exported so the writer and the navigation builder read the same constant
- * rather than each spelling it out. Two spellings is how they drift, and a
- * drifted path is a page that 404s with nothing anywhere saying why.
+ * There used to be a `PAGES_DIR = "pages"` here, and it caused exactly the
+ * failure this comment warned about. The source slug already carries its own
+ * section (`docs/introduction`, `reference/get-a-customer`), the navigation
+ * builder emits that slug verbatim, and the writer added `pages/` in front of it
+ * — so the config said `docs/introduction` and the file sat at
+ * `pages/docs/introduction.mdx`. Valid config, real pages, nothing resolving.
+ *
+ * So the slug is the path, at the project root: `docs/introduction.mdx`. One
+ * spelling, in one place (`migrate/run.ts`), which is the only arrangement the
+ * two halves cannot drift apart in. `buildDocumentationJson` still takes a
+ * `pathPrefix` for a caller that genuinely nests its pages — but then it must be
+ * given, not assumed.
  */
-export const PAGES_DIR = "pages";
-
 export function outputRoot(cwd: string = process.cwd()): string {
   return join(cwd, OUTPUT_DIR);
 }

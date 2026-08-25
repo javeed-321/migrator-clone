@@ -5,6 +5,7 @@ import { CONTINUE, EXIT, visit } from "unist-util-visit";
 
 import { attr, lineOf, type ConversionNote } from "./mdast";
 import { assignDepths, readMarker } from "./table";
+import type { HttpMethod } from "../output/documentationJson";
 
 /**
  * Plan §5 — the API reference.
@@ -63,21 +64,83 @@ const LLMS_PREAMBLE = /Fetch the complete documentation index at:\s*https?:\S+ll
  */
 const OPENAPI_HEADING = /^open\s*api\s+definition$/i;
 
+/** The seven methods a `paths` entry may hold, lowercase as OpenAPI spells them. */
+const HTTP_METHODS = new Set(["get", "post", "put", "patch", "delete", "head", "options"]);
+
+/** One operation in an embedded spec — half of a page-level `openapi` binding. */
+export type SpecOperation = {
+  /** Uppercase. A lowercase method does not match the binding and fails silently. */
+  method: HttpMethod;
+  /** The route as the spec spells it, `{param}` placeholders intact. */
+  route: string;
+};
+
 /**
- * Drops the two things plan §5.6 says must never reach a migrated API page.
+ * The spec ReadMe dumped into the page body, lifted out intact.
+ *
+ * ReadMe emits **one self-contained spec per endpoint page** — its own `paths`
+ * entry, its own `components`, `servers` and `security` — so this needs no
+ * splitting, merging or `$ref` resolution. It is already the file
+ * Documentation.AI wants; it is simply in the wrong place.
+ */
+export type EmbeddedSpec = {
+  /**
+   * The dump verbatim, to be written as the spec file byte for byte.
+   *
+   * Not re-serialised from the parsed object: a round trip through
+   * `JSON.parse`/`stringify` would reorder nothing but would silently drop any
+   * duplicate key and rewrite every number's formatting, and the spec is a
+   * contract we are moving, not one we are authoring.
+   */
+  json: string;
+  /** Every operation the dump declares. One, on every page in the corpus. */
+  operations: SpecOperation[];
+};
+
+/** Reads the `paths` map into a flat operation list, in document order. */
+function readOperations(spec: unknown): SpecOperation[] {
+  const paths = (spec as { paths?: unknown })?.paths;
+  if (!paths || typeof paths !== "object") return [];
+
+  const operations: SpecOperation[] = [];
+  for (const [route, item] of Object.entries(paths as Record<string, unknown>)) {
+    if (!item || typeof item !== "object") continue;
+    for (const key of Object.keys(item as Record<string, unknown>)) {
+      if (HTTP_METHODS.has(key.toLowerCase())) {
+        operations.push({ method: key.toUpperCase() as HttpMethod, route });
+      }
+    }
+  }
+  return operations;
+}
+
+/**
+ * Drops the two things plan §5.6 says must never reach a migrated API page — and
+ * hands the second one back rather than destroying it.
  *
  * Runs on the tree before any other pass. That ordering is not cosmetic: the spec
  * dump is a ~300-line JSON fence with links in it, and every pass below —
  * placeholders, the link rewriter, the MDX compile check — would otherwise spend
- * itself on a block that is about to be deleted.
+ * itself on a block that is about to be moved out of the body.
  *
  * The spec section is removed **to the next heading at the same depth or
  * shallower**, which is what makes it a section rather than a heading: on the
  * corpus pages the dump is last, but a page that continues after it keeps
  * everything that follows.
+ *
+ * ## Why it returns the spec instead of deleting it
+ *
+ * "The spec belongs in a wired-up file, not the body" is right, and for a long
+ * time only the first half of it was implemented: the dump was deleted and
+ * nothing was ever wired. On a site whose endpoint pages are pure spec — the
+ * whole body being a title, one description line and this block — that reduced
+ * 791 lines of source to six lines of frontmatter. Returning it is what lets the
+ * caller write `api-reference/<name>.json` and bind the page to it, which is the
+ * form the playground actually reads `[LIVE-DAI …/openapi-import]`.
  */
-export function stripApiArtefacts(tree: Root, notes: ConversionNote[]): void {
+export function stripApiArtefacts(tree: Root, notes: ConversionNote[]): EmbeddedSpec | undefined {
   const children = tree.children;
+  let spec: EmbeddedSpec | undefined;
 
   for (let i = 0; i < children.length; i += 1) {
     const child = children[i];
@@ -103,16 +166,75 @@ export function stripApiArtefacts(tree: Root, notes: ConversionNote[]): void {
         if (next?.type === "heading" && next.depth <= depth) break;
         end += 1;
       }
+
+      const fence = children
+        .slice(i + 1, end)
+        .find((node): node is Code => node.type === "code" && (node.lang ?? "").toLowerCase() === "json");
+
+      let parsed: unknown;
+      if (fence) {
+        try {
+          parsed = JSON.parse(fence.value);
+        } catch (error) {
+          // The section stays exactly where it is. Deleting the only copy of an
+          // endpoint's contract to tidy the page is the trade `[PIT Phase 2]`
+          // exists to refuse, and a blocker is the honest way to say a human has
+          // to look at this one.
+          notes.push({
+            rule: "openapi",
+            level: "blocker",
+            line: lineOf(fence),
+            detail:
+              `the "# OpenAPI definition" dump is not valid JSON (${error instanceof Error ? error.message : String(error)}), ` +
+              "so it was left in the page body rather than deleted — no spec file was written and " +
+              "this page has no playground until the JSON is repaired",
+          });
+          i = end - 1;
+          continue;
+        }
+      }
+
+      const operations = parsed === undefined ? [] : readOperations(parsed);
+      if (fence && operations.length === 0) {
+        // A spec with no operations binds to nothing, so there is no file worth
+        // writing — but the dump is still an artefact, so it still leaves the body.
+        notes.push({
+          rule: "openapi",
+          level: "flag",
+          line: lineOf(fence),
+          detail:
+            "the \"# OpenAPI definition\" dump declares no operations under `paths`, so this page " +
+            "cannot be bound to a spec and gets no playground",
+        });
+      }
+      if (operations.length > 1) {
+        notes.push({
+          rule: "openapi",
+          level: "flag",
+          line: lineOf(fence ?? child),
+          detail:
+            `the spec declares ${operations.length} operations (${operations.map((op) => `${op.method} ${op.route}`).join(", ")}); ` +
+            `the page is bound to the first — bind the group to the spec file instead if all of them belong here`,
+        });
+      }
+
+      if (fence && operations.length > 0) spec = { json: fence.value, operations };
+
       const removed = children.splice(i, end - i);
       notes.push({
         rule: "api-artefact",
         level: "change",
         line: lineOf(child),
-        detail: `dropped the "# OpenAPI definition" dump (${removed.length - 1} block${removed.length === 2 ? "" : "s"}) — the spec belongs in a wired-up YAML file, not the body [PIT Phase 2]`,
+        detail: spec
+          ? `moved the "# OpenAPI definition" dump (${removed.length - 1} block${removed.length === 2 ? "" : "s"}) out of the body into a spec file — ` +
+            `it drives the playground for ${spec.operations[0]?.method} ${spec.operations[0]?.route} instead of sitting in the page [PIT Phase 2]`
+          : `dropped the "# OpenAPI definition" dump (${removed.length - 1} block${removed.length === 2 ? "" : "s"}) — the spec belongs in a wired-up file, not the body [PIT Phase 2]`,
       });
       i -= 1;
     }
   }
+
+  return spec;
 }
 
 // ---------------------------------------------------------------------------

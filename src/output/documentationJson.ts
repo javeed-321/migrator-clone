@@ -37,6 +37,23 @@ export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | 
  */
 export type OpenApiMode = "auto" | "custom";
 
+/**
+ * One page bound to one endpoint in one spec file.
+ *
+ * The three parts are kept apart here and joined only when the entry is written,
+ * because the joined form — `"<spec> <METHOD> <route>"` — is a string the target
+ * parses, and building it by hand at a call site is how a lowercase method or a
+ * missing space gets shipped. Both fail silently `[PLAN §5.2]`.
+ */
+export type OpenApiBinding = {
+  /** Project-relative path to the spec file, e.g. `api-reference/cardenquiry.json`. */
+  spec: string;
+  method: HttpMethod;
+  /** The route as the spec spells it, `{param}` placeholders intact. */
+  route: string;
+  mode: OpenApiMode;
+};
+
 /** A leaf page. `path` is the slug, which doubles as the MDX file path. */
 export type DocPage = {
   title: string;
@@ -138,6 +155,15 @@ export type BuildOptions = {
    */
   titles?: Record<string, string> | Map<string, string>;
   /**
+   * Spec bindings by slug, for the pages that carried an OpenAPI definition.
+   *
+   * Keyed the same way `titles` is, so both are looked up off the one thing a
+   * navigation entry actually holds. A slug with no binding is an ordinary page
+   * and gets none of the three keys — which is what a guide sitting under
+   * `/reference/` needs.
+   */
+  openapi?: Record<string, OpenApiBinding> | Map<string, OpenApiBinding>;
+  /**
    * Drop a slug that already appeared in an earlier tab. On by default: ReadMe
    * sidebars carry `type: "link"` entries that point back at pages another tab
    * owns (14 of them on developers.miro.com), and a duplicate `path` means the
@@ -194,6 +220,34 @@ function lookupTitle(slug: string, titles: BuildOptions["titles"]): string | und
   return titles instanceof Map ? titles.get(slug) : titles[slug];
 }
 
+function lookupBinding(
+  slug: string,
+  bindings: BuildOptions["openapi"]
+): OpenApiBinding | undefined {
+  if (!bindings) return undefined;
+  return bindings instanceof Map ? bindings.get(slug) : bindings[slug];
+}
+
+/**
+ * The three keys that turn a page into an endpoint page.
+ *
+ * `method` is the sidebar badge; `openapi` is the binding the playground reads;
+ * `openapi-mode` decides whether the spec writes the whole page or only adds the
+ * playground to the one already there `[LIVE-DAI …/openapi-import]`.
+ *
+ * The method is uppercased once more on the way out. It is already uppercase by
+ * construction, and this costs nothing next to a binding that matches no
+ * operation and reports no error.
+ */
+function openApiKeys(binding: OpenApiBinding): Partial<DocPage> {
+  const method = binding.method.toUpperCase() as HttpMethod;
+  return {
+    method,
+    openapi: `${binding.spec} ${method} ${binding.route}`,
+    "openapi-mode": binding.mode,
+  };
+}
+
 /** Uppercase-only names get title-cased; anything with a lowercase letter is left alone. */
 function normalizeGroup(name: string, enabled: boolean): string {
   if (!enabled || /[a-z]/.test(name)) return name;
@@ -217,9 +271,11 @@ function toPage(slug: string, ctx: Ctx): DocPage | undefined {
   // written to `pages/docs/intro.mdx` must be listed as `pages/docs/intro` —
   // anything else is a sidebar entry pointing at nothing.
   const prefix = ctx.opts.pathPrefix?.replace(/^\/+|\/+$/g, "");
+  const binding = lookupBinding(slug, ctx.opts.openapi);
   return {
     title: lookupTitle(slug, ctx.opts.titles) ?? titleFromSlug(slug),
     path: prefix ? `${prefix}/${slug}` : slug,
+    ...(binding ? openApiKeys(binding) : {}),
   };
 }
 

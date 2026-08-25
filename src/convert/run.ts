@@ -1,7 +1,13 @@
 import { splitFrontmatter } from "../download/blocks";
 import { parseMarkdown } from "../download/parse";
 import { convertAccordions } from "./accordion";
-import { convertApiExamples, convertParamFields, stripApiArtefacts, type ApiReferenceOptions } from "./api-reference";
+import {
+  convertApiExamples,
+  convertParamFields,
+  stripApiArtefacts,
+  type ApiReferenceOptions,
+  type EmbeddedSpec,
+} from "./api-reference";
 import { convertBreaks } from "./breaks";
 import { convertCards } from "./cards";
 import { detectCustomComponents, type FoundCustom } from "./custom-components";
@@ -107,6 +113,15 @@ export type ConvertPageResult = {
    * carries the parser's own message, with the line and column.
    */
   outputCompiles: boolean;
+  /**
+   * The OpenAPI spec this page carried in its body, lifted out whole.
+   *
+   * Present only on an endpoint page whose source had a readable
+   * `# OpenAPI definition` dump. The caller writes it to `api-reference/` and
+   * binds the page to it; a caller with nowhere to write simply ignores it, and
+   * the page is still complete without it.
+   */
+  openapi?: EmbeddedSpec;
 };
 
 /**
@@ -269,7 +284,7 @@ export async function convertReadmeMarkdown(
   const title = options.title ?? front.frontmatter.title;
   const { tree, mode, error } = parseMarkdown(repaired.source);
 
-  stripApiArtefacts(tree, notes);
+  const openapi = stripApiArtefacts(tree, notes);
   // 1b. `convertHtmlBlocks` — plan §4.3. Before every other component pass,
   //     because what it unwraps is markup those passes then treat like any other:
   //     a table inside an <HTMLBlock> should reach the table pass as a table.
@@ -297,7 +312,19 @@ export async function convertReadmeMarkdown(
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, { ...options, ...(title ? { title } : {}) }).notes);
   convertApiExamples(tree, notes);
-  convertParamFields(tree, notes, options.api ?? {});
+  // §5.6, decided per page rather than per run.
+  //
+  // A page with a spec behind it gets `<ParamField>`/`<ResponseField>` from the
+  // importer, so converting its tables too would put a second, drifting copy in
+  // the body. A page *without* one has no playground to carry them, and its
+  // tables are the only parameter documentation it will ever have — which is the
+  // single case §5.6 names for hand-authoring these.
+  //
+  // An explicit `api.paramFields` still wins, in both directions.
+  convertParamFields(tree, notes, {
+    ...options.api,
+    paramFields: options.api?.paramFields ?? openapi === undefined,
+  });
   // Phase two of the `<PostList>` conversion. Separate and async for the same
   // reason image downloading is: the rules that build the tree stay synchronous,
   // and the one conversion that needs the network happens once, here.
@@ -353,5 +380,6 @@ export async function convertReadmeMarkdown(
     ...(front.frontmatter.excerpt ? { description: front.frontmatter.excerpt } : {}),
     ...(error ? { parseError: error } : {}),
     ...(images ? { images } : {}),
+    ...(openapi ? { openapi } : {}),
   };
 }

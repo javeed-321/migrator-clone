@@ -27,6 +27,7 @@ const base: MigrationReport = {
     blockers: 1,
     flags: 4,
     quarantined: 3,
+    endpoints: 0,
   },
   pages: [
     {

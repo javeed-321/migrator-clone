@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { buildDocumentationJson, type TabInput } from "../src/output/documentationJson";
+import { pagePath } from "../src/migrate/run";
 
 const tab = (name: string, navigation: TabInput["navigation"]): TabInput => ({
   name,
@@ -189,5 +190,24 @@ describe("nav paths name the file that was written", () => {
   it("tolerates a prefix written with slashes", () => {
     const config = buildDocumentationJson([tab("Docs", ["docs/a"])], { pathPrefix: "/pages/" });
     expect(config.initialRoute).toBe("pages/docs/a");
+  });
+
+  /*
+   * The one that would have caught the real bug. Both halves were individually
+   * correct — the writer prefixed `pages/`, the builder emitted the bare slug —
+   * and nothing anywhere held the two against each other, so a migration shipped
+   * a valid config in which every single entry named a file that was not there.
+   *
+   * `migrateSite` passes no `pathPrefix`, so this is the arrangement it actually
+   * produces: the slug, at the project root, with `.mdx` on the end.
+   */
+  it("agrees with the file the migration writes", () => {
+    const slugs = ["docs/introduction", "reference/get-a-customer", "page/changelog"];
+    const config = buildDocumentationJson([tab("Docs", slugs)]);
+
+    const [first] = config.navigation.tabs as unknown as [{ pages: { path: string }[] }];
+    for (const [index, entry] of first.pages.entries()) {
+      expect(pagePath(slugs[index] as string)).toBe(`${entry.path}.mdx`);
+    }
   });
 });

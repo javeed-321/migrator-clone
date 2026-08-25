@@ -14,9 +14,9 @@ describe("where files go", () => {
   it("writes a real folder, nested paths and all", () => {
     const root = tmp();
     const sink = new DiskSink(root);
-    sink.write({ path: join("pages", "docs", "intro.mdx"), body: "# Intro\n" });
+    sink.write({ path: "docs/guides/intro.mdx", body: "# Intro\n" });
 
-    expect(readFileSync(join(root, "pages", "docs", "intro.mdx"), "utf8")).toBe("# Intro\n");
+    expect(readFileSync(join(root, "docs", "guides", "intro.mdx"), "utf8")).toBe("# Intro\n");
   });
 
   it("answers `has` from the disk, which is what makes the cache work", () => {
@@ -57,7 +57,7 @@ describe("where files go", () => {
 describe("the zip", () => {
   const files = [
     { path: "documentation.json", body: '{"name":"Docs"}' },
-    { path: join("pages", "docs", "intro.mdx"), body: "# Intro\n" },
+    { path: "docs/intro.mdx", body: "# Intro\n" },
   ];
 
   it("puts everything under one folder named for the project", async () => {
@@ -65,21 +65,21 @@ describe("the zip", () => {
     const entries = unzipSync(await buildZip("docs-example-com", files));
 
     expect(Object.keys(entries).sort()).toEqual([
+      "docs-example-com/docs/intro.mdx",
       "docs-example-com/documentation.json",
-      "docs-example-com/pages/docs/intro.mdx",
     ]);
   });
 
   it("round-trips the content unchanged", async () => {
     const entries = unzipSync(await buildZip("p", files));
-    expect(new TextDecoder().decode(entries["p/pages/docs/intro.mdx"])).toBe("# Intro\n");
+    expect(new TextDecoder().decode(entries["p/docs/intro.mdx"])).toBe("# Intro\n");
   });
 
   it("normalises backslashes, which are separators inside a zip", async () => {
     // `node:path` on Windows produces them, and left alone they make phantom
     // folders rather than nested ones.
-    const entries = unzipSync(await buildZip("p", [{ path: "pages\\docs\\a.mdx", body: "x" }]));
-    expect(Object.keys(entries)).toEqual(["p/pages/docs/a.mdx"]);
+    const entries = unzipSync(await buildZip("p", [{ path: "docs\\guides\\a.mdx", body: "x" }]));
+    expect(Object.keys(entries)).toEqual(["p/docs/guides/a.mdx"]);
   });
 
   it("names the download after the project", () => {

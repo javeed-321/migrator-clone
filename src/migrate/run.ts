@@ -4,7 +4,8 @@ import { fetchBrand } from "../brand";
 import { convertReadmeMarkdown } from "../convert/run";
 import { download } from "../download/run";
 import { buildDocumentationJson } from "../output/documentationJson";
-import { imagesOptions, PAGES_DIR, projectDir } from "../paths";
+import type { OpenApiBinding, OpenApiMode } from "../output/documentationJson";
+import { imagesOptions, projectDir } from "../paths";
 import { formatPageWithFrontmatter } from "../utils/file";
 import { getErrorMessage } from "../utils/errors";
 import { log } from "../utils/log";
@@ -102,6 +103,89 @@ export type MigrateOptions = {
    */
   navUnreachable?: boolean;
 };
+
+/**
+ * The file one page is written to, inside the project.
+ *
+ * **The slug is the path.** `docs/introduction` -> `docs/introduction.mdx`, at
+ * the project root, because a navigation `path` is the MDX file path with `.mdx`
+ * removed `[DAI §26]` and `buildDocumentationJson` emits the slug verbatim.
+ *
+ * A function rather than a `join` at the call site so the rule has one spelling
+ * and a test can hold it against the navigation builder's. The two drifted once
+ * already — a `pages/` prefix here against a bare `docs/introduction` there — and
+ * the result was a valid config whose every entry pointed at a missing file.
+ *
+ * Plain `/`, never `node:path`: this is a path *inside the output*, which the
+ * sink joins onto its own root and the zip writer reads with `/` as the
+ * separator. `join` would spell it `\` on Windows and make phantom folders.
+ */
+export function pagePath(slug: string): string {
+  return `${slug.replace(/^\/+/, "")}.mdx`;
+}
+
+/**
+ * The folder every OpenAPI spec goes in.
+ *
+ * Not a preference: Documentation.AI reads specs from `api-reference/` at the
+ * documentation root `[LIVE-DAI …/openapi-import]`, and a spec anywhere else is
+ * a path the importer does not resolve — which shows up as a page with no
+ * playground and no error.
+ */
+export const API_SPEC_DIR = "api-reference";
+
+/**
+ * The spec file for one page: `api-reference/<name>.json`.
+ *
+ * **Named, not converted.** ReadMe dumps JSON and the importer accepts `.json`
+ * as readily as `.yaml` `[LIVE-DAI …/openapi-import]`, so the bytes are written
+ * through untouched — no YAML serialiser, no dependency, and no chance of a
+ * re-serialisation changing a contract on its way past.
+ *
+ * The last slug segment is the name, because `reference/cardenquiry` should
+ * produce `api-reference/cardenquiry.json` rather than a folder tree mirroring
+ * the site. `taken` guards the one case that breaks: two pages in different
+ * folders sharing a final segment, where the second would otherwise overwrite
+ * the first's spec and bind both pages to one endpoint. That collision falls
+ * back to the full slug, which is unique by construction.
+ */
+export function specPath(slug: string, taken: Set<string> = new Set()): string {
+  const clean = slug.replace(/^\/+/, "");
+  const name = clean.split("/").filter(Boolean).at(-1) ?? clean;
+  const short = `${API_SPEC_DIR}/${name}.json`;
+  if (!taken.has(short)) return short;
+  return `${API_SPEC_DIR}/${clean.replace(/\//g, "-")}.json`;
+}
+
+/** Whitespace-insensitive, because the body is reflowed markdown and the excerpt is one line. */
+function sameText(a: string, b: string): boolean {
+  return a.replace(/\s+/g, " ").trim() === b.replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Which half of the page the spec is allowed to write.
+ *
+ * `"custom"` injects only the playground and the request/response examples and
+ * leaves the body alone; `"auto"` writes the whole endpoint page from the spec
+ * `[LIVE-DAI …/openapi-import]`. So the question is simply *is there a body worth
+ * protecting?*
+ *
+ * On a spec-generated site there is not — ReadMe's endpoint pages are a title,
+ * one description line and the dump, so after the dump moves out the body is
+ * empty or repeats the description the playground is about to render anyway.
+ * Those pages want `"auto"`, and it is the difference between a six-line stub and
+ * a complete endpoint reference.
+ *
+ * A page carrying real prose — Prerequisites, Resource information, error codes —
+ * wants `"custom"`, because `"auto"` would render the spec *instead of* it and
+ * lose every hand-written section on the page `[PIT Phase 2]`.
+ */
+export function specMode(mdx: string, description?: string): OpenApiMode {
+  const body = mdx.trim();
+  if (!body) return "auto";
+  if (description && sameText(body, description)) return "auto";
+  return "custom";
+}
 
 /** `https://docs.capillarytech.com/docs` -> `docs-capillarytech-com`. */
 export function projectName(site: URL): string {
@@ -202,6 +286,11 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   //    unreadable.
   const pages: PageReport[] = [];
   const blockers: BlockerRow[] = [];
+  // Spec bindings by slug, handed to the navigation builder below. Filled only
+  // by pages that carried a readable `# OpenAPI definition`; every other page
+  // stays an ordinary entry, which is what a guide under `/reference/` needs.
+  const bindings: Record<string, OpenApiBinding> = {};
+  const specFiles = new Set<string>();
 
   for (const page of downloaded.pages) {
     const source = downloaded.raw?.[page.slug];
@@ -239,8 +328,22 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
       // author wrote.
       const title = result.title || page.title;
       const description = result.description || page.description;
-      const path = join(PAGES_DIR, `${page.slug}.mdx`);
+      const path = pagePath(page.slug);
       sink?.write({ path, body: formatPageWithFrontmatter(title, description, result.mdx) });
+
+      // 3b. The spec the page carried, written beside it and bound to it.
+      //
+      //     Only the first operation binds. ReadMe dumps one per endpoint page,
+      //     and the conversion has already flagged the page if it found more.
+      let binding: OpenApiBinding | undefined;
+      const operation = result.openapi?.operations[0];
+      if (result.openapi && operation) {
+        const spec = specPath(page.slug, specFiles);
+        specFiles.add(spec);
+        sink?.write({ path: spec, body: result.openapi.json });
+        binding = { spec, method: operation.method, route: operation.route, mode: specMode(result.mdx, description) };
+        bindings[page.slug] = binding;
+      }
 
       pages.push({
         slug: page.slug,
@@ -259,12 +362,32 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
           ...(entry.line !== undefined ? { line: entry.line } : {}),
         })),
         ...(sink ? { path } : {}),
+        ...(binding
+          ? {
+              openapi: {
+                spec: binding.spec,
+                method: binding.method,
+                route: binding.route,
+                mode: binding.mode,
+              },
+            }
+          : {}),
       });
     } catch (error) {
       // A page that throws is a page missing from the output. It belongs in
       // `failed` beside the ones that 404'd, not in a swallowed catch.
       downloaded.failed.push({ slug: page.slug, message: `conversion failed${getErrorMessage(error)}` });
     }
+  }
+
+  const bound = Object.values(bindings);
+  if (bound.length > 0) {
+    const auto = bound.filter((entry) => entry.mode === "auto").length;
+    log(
+      `openapi: wrote ${bound.length} spec file(s) to ${API_SPEC_DIR}/ and bound them — ` +
+        `${auto} page(s) generated from the spec, ${bound.length - auto} keeping their own body`,
+      "info",
+    );
   }
 
   // 4. Navigation. Real titles come from the download, so the sidebar reads the
@@ -303,6 +426,9 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     ...(options.name ? { name: options.name } : brandName ? { name: brandName } : {}),
     site: site.toString(),
     titles,
+    // Without this the spec files are written and nothing reads them: the
+    // playground is bound here or not at all.
+    ...(Object.keys(bindings).length > 0 ? { openapi: bindings } : {}),
     normalizeGroupCase: true,
     ...(colors ? { colors } : {}),
     ...(Object.keys(logos).length > 0 ? { logos } : {}),
@@ -327,6 +453,7 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
       blockers: blockers.length,
       flags: pages.reduce((sum, page) => sum + page.notes.flag, 0),
       quarantined: pages.reduce((sum, page) => sum + page.quarantined.length, 0),
+      endpoints: Object.keys(bindings).length,
     },
     pages,
     customComponents: rollUp(pages),
