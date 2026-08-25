@@ -71,9 +71,16 @@ export function describeParseError(error, offset = 0) {
  * Tree
  * ------------------------------------------------------------------ */
 
-/** Depth-first over every node, with its parent. */
+/**
+ * Depth-first over every node, with its parent.
+ *
+ * A visitor returning `false` prunes that subtree. Both checkers need it for the
+ * same reason: once a node is going to be swallowed whole — flattened into one
+ * htmlBlock, quoted into one fence — every descendant is part of that single
+ * fact, and reporting each of them turns one decision into forty rows.
+ */
 export function walk(node, visit, parent = null) {
-  visit(node, parent);
+  if (visit(node, parent) === false) return;
   if (Array.isArray(node.children)) for (const child of node.children) walk(child, visit, node);
 }
 
@@ -171,15 +178,26 @@ export function printReport({ title, findings, files, root, only }) {
  * CLI
  * ------------------------------------------------------------------ */
 
+/** Flags that take a value, so `--only blocker` works as well as `--only=blocker`. */
+const VALUE_FLAGS = new Set(['only']);
+
 export function parseArgs(argv) {
   const paths = [];
   const flags = {};
-  for (const arg of argv) {
-    if (arg.startsWith('--')) {
-      const [key, value] = arg.slice(2).split('=');
-      flags[key] = value ?? true;
-    } else {
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    if (!arg.startsWith('--')) {
       paths.push(arg);
+      continue;
+    }
+    const [key, value] = arg.slice(2).split('=');
+    if (value !== undefined) {
+      flags[key] = value;
+    } else if (VALUE_FLAGS.has(key) && argv[i + 1] && !argv[i + 1].startsWith('--')) {
+      flags[key] = argv[i + 1];
+      i += 1;
+    } else {
+      flags[key] = true;
     }
   }
   return { paths, flags };

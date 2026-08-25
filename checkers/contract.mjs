@@ -82,16 +82,16 @@ export const EDITOR_INLINE = new Set(['a', 'u', 'kbd', 'Image', 'Video']);
  *   none  -> an atom; children are discarded
  */
 export const CONTENT_MODEL = {
-  Steps: { kind: 'jsx', allow: ['Step'] },
-  Tabs: { kind: 'jsx', allow: ['Tab'] },
+  Steps: { kind: 'jsx', allow: ['Step'], placeholder: 'a step titled "New Step"' },
+  Tabs: { kind: 'jsx', allow: ['Tab'], placeholder: 'tabs titled "Tab 1" and "Tab 2"' },
   Columns: { kind: 'jsx', allow: ['Card'] },
   CardGroup: { kind: 'jsx', allow: ['Card'] },
-  ExpandableGroup: { kind: 'jsx', allow: ['Expandable'] },
+  ExpandableGroup: { kind: 'jsx', allow: ['Expandable'], placeholder: 'two expandables reading "Add your content here..."' },
   Board: { kind: 'jsx', allow: ['BoardColumn'] },
   BoardColumn: { kind: 'jsx', allow: ['BoardCard'] },
-  CodeGroup: { kind: 'code' },
-  Request: { kind: 'code' },
-  Response: { kind: 'code' },
+  CodeGroup: { kind: 'code', placeholder: 'example JavaScript and Python fences' },
+  Request: { kind: 'code', placeholder: 'an example request.js fence' },
+  Response: { kind: 'code', placeholder: 'an example response.json fence' },
   Callout: { kind: 'block' },
   Card: { kind: 'block' },
   Step: { kind: 'block' },
@@ -136,7 +136,10 @@ export const ATTRS = {
   Step: { known: ['title', 'icon', 'title-type', 'uid'], required: ['title'], enums: { 'title-type': ['p', 'h2', 'h3'] } },
   Tabs: { known: ['uid'] },
   Tab: { known: ['title', 'icon', 'uid'], required: ['title'] },
-  Image: { known: ['src', 'alt', 'width', 'height', 'caption', 'style', 'priority', 'fetch-priority', 'sizes', 'class-name', 'uid'], required: ['src', 'alt'] },
+  // `priority`, `fetchPriority`, `sizes` and `className` are camelCase on purpose:
+  // Image.tsx declares them that way, and the preprocessor itself injects
+  // `fetchPriority="high"` into the first two images on every page.
+  Image: { known: ['src', 'alt', 'width', 'height', 'caption', 'style', 'priority', 'fetchPriority', 'sizes', 'className', 'uid'], required: ['src', 'alt'] },
   Video: { known: ['src', 'width', 'height', 'uid'], required: ['src'] },
   Iframe: { known: ['src', 'title', 'width', 'height', 'allow-full-screen', 'frame-border', 'loading', 'sandbox', 'style', 'iframe-id', 'scripts', 'display-mode', 'uid'], required: ['src'] },
   ParamField: { known: ['path', 'body', 'query', 'header', 'param-type', 'required', 'deprecated', 'show-location', 'enum', 'uid'] },
@@ -150,6 +153,13 @@ export const ATTRS = {
   SVG: { known: ['src', 'uid'], required: ['src'] },
   MermaidDiagram: { known: ['chart'], required: ['chart'] },
 };
+
+/**
+ * The camelCase prop names the app really does destructure, so a checker does
+ * not report the platform's own spelling as a mistake. Everything else the app
+ * reads is kebab-case — `param-type`, `show-lines`, `default-open`, `field-type`.
+ */
+export const CAMEL_PROPS = new Set(['titleType', 'fetchPriority', 'className']);
 
 /** Attributes whose value is read as a Lucide icon name. */
 export const ICON_ATTRS = new Set(['icon']);

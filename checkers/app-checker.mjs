@@ -21,16 +21,13 @@
  */
 
 import {
-  ATTRS, CONDITIONAL_COMPONENTS, FENCE_META_PROPS, HTML_ELEMENTS, ICON_ATTRS,
+  ATTRS, CAMEL_PROPS, CONDITIONAL_COMPONENTS, FENCE_META_PROPS, HTML_ELEMENTS, ICON_ATTRS,
   JS_GLOBALS, LUCIDE_NAME, MDX_SCOPE, RENDER_COMPONENTS,
 } from './contract.mjs';
 import {
   attrsOf, describeParseError, isJsx, lineOf, makeReporter, parseMdx, runChecker, splitFrontmatter, walk,
 } from './lib.mjs';
 import { preprocess } from './preprocess.mjs';
-
-/** `title-type` is the only camelCase spelling any app component still accepts. */
-const CAMEL_ALIASES = new Set(['titleType']);
 
 function check(file, raw) {
   const { yaml, body, offset } = splitFrontmatter(raw);
@@ -104,14 +101,14 @@ function checkRendered(tree, report, offset) {
         checkExpression(attribute.expression, line, report, `<${name} ${attribute.name}={…}>`);
       }
 
-      if (/[A-Z]/.test(attribute.name) && !CAMEL_ALIASES.has(attribute.name)) {
+      if (/[A-Z]/.test(attribute.name) && !CAMEL_PROPS.has(attribute.name)) {
         const kebab = attribute.name.replace(/([A-Z])/g, '-$1').toLowerCase();
         if (schema?.known?.includes(kebab)) {
           report.flag('attribute-case', line, `<${name} ${attribute.name}=…> is read as \`${kebab}\` — the app destructures kebab-case only, so this value is dropped`);
         }
       }
 
-      if (schema?.known && !schema.known.includes(attribute.name) && !CAMEL_ALIASES.has(attribute.name)) {
+      if (schema?.known && !schema.known.includes(attribute.name) && !CAMEL_PROPS.has(attribute.name)) {
         report.flag('unknown-attribute', line, `<${name}> has no \`${attribute.name}\` prop — it is passed through and ignored`);
       }
 
@@ -127,8 +124,7 @@ function checkRendered(tree, report, offset) {
 
     for (const required of schema?.required ?? []) {
       if (!seen.has(required)) {
-        const level = required === 'alt' ? 'flag' : 'flag';
-        report[level]('missing-attribute', line, `<${name}> has no \`${required}\``);
+        report.flag('missing-attribute', line, `<${name}> has no \`${required}\``);
       }
     }
 
@@ -179,17 +175,20 @@ function checkAuthored(body, report, offset) {
   if (!tree) return; // The source alone failing to parse is the compile check's business.
 
   walk(tree, (node, parent) => {
+    // Rather than re-derive pass 2's whitelist rules — which are fiddly, and
+    // which put the *first* word forward as the title even when a later word
+    // looks more like a filename — put the header back through the preprocessor
+    // and read what comes out. The answer cannot drift from the port that way.
     if (node.type === 'code' && node.meta) {
-      const kept = new Set();
-      for (const prop of FENCE_META_PROPS) if (node.meta.includes(prop)) kept.add(prop);
-      const identifier = node.meta.trim().split(/\s+/)[0];
-      const isProp = identifier.includes('=') || FENCE_META_PROPS.has(identifier);
-      const words = node.meta.trim().split(/\s+/).filter((word) => {
-        if (!isProp && word === identifier) return false;
-        return ![...FENCE_META_PROPS].some((prop) => word.startsWith(prop));
-      });
-      if (words.length > 0) {
-        report.flag('fence-meta', lineOf(node, offset), `\`${words.join(' ')}\` in the fence header is deleted by the preprocessor — it keeps only a title and ${[...FENCE_META_PROPS].join('/')}`);
+      const before = node.meta.trim();
+      const probe = `\`\`\`${node.lang ?? ''} ${before}\n\n\`\`\`\n`;
+      const after = (/^```[\w-]*[ \t]?([^\n]*)/.exec(preprocess(probe).text)?.[1] ?? '').trim();
+      if (after !== before) {
+        report.flag(
+          'fence-meta',
+          lineOf(node, offset),
+          `the fence header \`${before}\` reaches the parser as \`${after || '(nothing)'}\` — only a title and ${[...FENCE_META_PROPS].join('/')} survive`
+        );
       }
     }
 
