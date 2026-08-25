@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import styles from "./page.module.css";
-import type { MigrationReport } from "@/src/migrate/types";
+import type { MigrateProgress, MigrationReport } from "@/src/migrate/types";
 
 /**
  * One URL in, a migrated project out.
@@ -39,10 +39,54 @@ type Summary = {
   ms: number;
 };
 
-/** The filename the server chose, so the download is named after the project. */
-function filenameOf(response: globalThis.Response): string {
-  const match = /filename="([^"]+)"/.exec(response.headers.get("content-disposition") ?? "");
-  return match?.[1] ?? "migration.zip";
+/**
+ * One line of the progress stream.
+ *
+ * A discriminated union rather than one shape with optional halves, because the
+ * three endings are genuinely different things — a report to render, an archive
+ * to save, a message to show — and only `progress` ever repeats.
+ */
+type Line =
+  | ({ type: "progress" } & MigrateProgress)
+  | ({ type: "done" } & Extract<Response, { ok: true }>)
+  | { type: "zip"; filename: string; summary: Summary; base64: string }
+  | { type: "error"; message: string };
+
+/**
+ * Reads NDJSON off a response body, a line at a time.
+ *
+ * A chunk boundary has nothing to do with a line boundary — one read can deliver
+ * three events, or half of one — so the tail is held back until its newline
+ * arrives. Parsing whatever a chunk happened to contain is how a progress reader
+ * throws on the one line that mattered.
+ */
+async function* readLines(body: ReadableStream<Uint8Array>): AsyncGenerator<Line> {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (value) buffer += decoder.decode(value, { stream: true });
+
+    const lines = buffer.split("\n");
+    // The last piece is either an incomplete line or the empty string after a
+    // trailing newline. Either way it is not ready.
+    buffer = lines.pop() ?? "";
+
+    for (const line of lines) {
+      if (line.trim().length > 0) yield JSON.parse(line) as Line;
+    }
+    if (done) return;
+  }
+}
+
+/** base64 -> the bytes the server zipped. */
+function toBlob(base64: string): Blob {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: "application/zip" });
 }
 
 /** Hands the archive to the browser. Revoked immediately — the click is synchronous. */
@@ -64,6 +108,60 @@ function Stat({ n, label, tone }: { n: number; label: string; tone?: "bad" | "wa
   );
 }
 
+/** The stages, in the order they run, so the list can show what is still to come. */
+const STAGES: { key: MigrateProgress["stage"]; label: string }[] = [
+  { key: "discover", label: "Discovering pages" },
+  { key: "brand", label: "Reading the brand" },
+  { key: "download", label: "Downloading pages" },
+  { key: "convert", label: "Converting pages" },
+  { key: "write", label: "Writing the project" },
+];
+
+/**
+ * What the run has said so far.
+ *
+ * The latest line per stage rather than every line: the download and convert
+ * stages emit one an item, and a scrolling log of 400 identical sentences says
+ * less than five rows with numbers on them.
+ */
+function Progress({ seen, done }: { seen: Map<string, MigrateProgress>; done: boolean }) {
+  const reached = STAGES.findIndex((stage) => stage.key === [...seen.keys()].at(-1));
+
+  return (
+    <ol className={styles.progress}>
+      {STAGES.map((stage, index) => {
+        const event = seen.get(stage.key);
+        const active = !done && index === reached;
+        const complete = done || index < reached;
+        const pct =
+          event?.total && event.total > 0 ? Math.round(((event.done ?? 0) / event.total) * 100) : undefined;
+
+        return (
+          <li
+            key={stage.key}
+            className={`${styles.step} ${active ? styles.stepOn : ""} ${complete ? styles.stepDone : ""}`}
+          >
+            <span className={styles.stepMark} aria-hidden="true">
+              {complete ? "✓" : active ? "•" : "○"}
+            </span>
+            <span className={styles.stepBody}>
+              <span className={styles.stepLabel}>{stage.label}</span>
+              {/* The server's own sentence, not a re-description of it — it is the
+                  only thing that knows which page is being converted right now. */}
+              {event ? <span className={styles.stepDetail}>{event.message}</span> : null}
+              {pct !== undefined && !complete ? (
+                <span className={styles.bar}>
+                  <span className={styles.barFill} style={{ width: `${pct}%` }} />
+                </span>
+              ) : null}
+            </span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 export default function MigratePage() {
   const [url, setUrl] = useState("");
   const [limit, setLimit] = useState(25);
@@ -71,6 +169,7 @@ export default function MigratePage() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<Extract<Response, { ok: true }> | null>(null);
   const [summary, setSummary] = useState<Summary | null>(null);
+  const [seen, setSeen] = useState<Map<string, MigrateProgress>>(new Map());
 
   async function run(event: React.FormEvent) {
     event.preventDefault();
@@ -80,27 +179,42 @@ export default function MigratePage() {
     setError("");
     setResult(null);
     setSummary(null);
+    setSeen(new Map());
 
     try {
       const response = await fetch("/api/migrate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          // Asks for the narrated form. Without it the route answers in one piece,
+          // exactly as it did before, which is what the `curl` contract expects.
+          Accept: "application/x-ndjson",
+        },
         body: JSON.stringify({ url: url.trim(), limit }),
       });
 
-      // A zip body means this is deployed and the files are coming back with the
-      // response rather than being written anywhere. Save it, and read the
-      // numbers off the header so the page can still report.
-      if (response.headers.get("content-type")?.startsWith("application/zip")) {
-        const raw = response.headers.get("x-migration-summary");
-        if (raw) setSummary(JSON.parse(decodeURIComponent(raw)) as Summary);
-        save(await response.blob(), filenameOf(response));
+      // A rejected request never reaches the stream — the body is one JSON error
+      // and the status says so.
+      if (!response.ok || !response.body) {
+        const data = (await response.json().catch(() => null)) as Response | null;
+        setError(data && !data.ok ? data.message : `The server answered ${response.status}`);
         return;
       }
 
-      const data = (await response.json()) as Response;
-      if (data.ok) setResult(data);
-      else setError(data.message);
+      for await (const line of readLines(response.body)) {
+        if (line.type === "progress") {
+          // A new Map each time: React compares by identity, and mutating this one
+          // would leave the list showing the first event forever.
+          setSeen((current) => new Map(current).set(line.stage, line));
+        } else if (line.type === "done") {
+          setResult(line);
+        } else if (line.type === "zip") {
+          setSummary(line.summary);
+          save(toBlob(line.base64), line.filename);
+        } else {
+          setError(line.message);
+        }
+      }
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause));
     } finally {
@@ -150,6 +264,10 @@ export default function MigratePage() {
       </p>
 
       {error ? <p className={styles.error}>{error}</p> : null}
+
+      {/* Shown while it runs and kept afterwards: "what did it actually do" is
+          still the question once the numbers appear. */}
+      {seen.size > 0 ? <Progress seen={seen} done={!busy} /> : null}
 
       {summary ? (
         <>

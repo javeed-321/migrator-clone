@@ -31,7 +31,8 @@ export function renderMigrationMarkdown(report: MigrationReport): string {
     `${report.site} · ${discovery.vendor} · page list from ${discovery.source}`,
     "",
     `${plural(totals.pages, "page")} · ${totals.converted} converted · ${totals.failed} failed · ` +
-      `${totals.blockers} blockers · ${totals.flags} flags`,
+      `${totals.blockers} blockers · ${totals.flags} flags` +
+      (totals.endpoints ? ` · ${totals.endpoints} endpoints wired` : ""),
     "",
     `Run finished ${report.finishedAt}.`,
     "",
@@ -253,6 +254,33 @@ export function renderMigrationMarkdown(report: MigrationReport): string {
       "| Page | Why |",
       "|---|---|",
       ...report.failed.map((row) => `| \`${cell(row.slug)}\` | ${cell(row.message)} |`),
+      "",
+    );
+  }
+
+  if (totals.endpoints > 0) {
+    const auto = report.pages.filter((page) => page.openapi?.mode === "auto");
+    lines.push(
+      "## API reference",
+      "",
+      `${plural(totals.endpoints, "page")} carried an OpenAPI definition. Each one was written to ` +
+        "`api-reference/` and bound to its page, which is what renders the playground " +
+        "`[LIVE-DAI …/openapi-import]`.",
+      "",
+      `Mode: **${auto.length} \`auto\`** — the spec writes the whole page, because once the definition ` +
+        "moved out the body said nothing the playground will not — and " +
+        `**${totals.endpoints - auto.length} \`custom\`**, where the page keeps its own body and gains ` +
+        "only the playground.",
+      "",
+      "| Page | Endpoint | Spec | Mode |",
+      "|---|---|---|---|",
+      ...report.pages
+        .filter((page) => page.openapi)
+        .map(
+          (page) =>
+            `| \`${cell(page.slug)}\` | \`${cell(`${page.openapi?.method} ${page.openapi?.route}`)}\` | ` +
+            `\`${cell(page.openapi?.spec ?? "")}\` | ${page.openapi?.mode} |`,
+        ),
       "",
     );
   }

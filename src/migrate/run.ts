@@ -2,6 +2,7 @@ import { join } from "node:path";
 
 import { fetchBrand } from "../brand";
 import { convertReadmeMarkdown } from "../convert/run";
+import { hasEmbeddedSpec } from "../convert/api-reference";
 import { download } from "../download/run";
 import { buildDocumentationJson } from "../output/documentationJson";
 import type { OpenApiBinding, OpenApiMode } from "../output/documentationJson";
@@ -14,7 +15,13 @@ import { placementsForUnreachable, tabsForUnreachable } from "./orphans";
 import { renderMigrationMarkdown } from "./report";
 import { DiskSink, type Sink } from "./sink";
 import type { BrandResult } from "../brand";
-import type { BlockerRow, CustomComponentRow, MigrationReport, PageReport } from "./types";
+import type {
+  BlockerRow,
+  CustomComponentRow,
+  MigrateProgress,
+  MigrationReport,
+  PageReport,
+} from "./types";
 
 /** Project-relative, no leading slash — the only form the target accepts. */
 const BRAND_CSS = "styles/brand.css";
@@ -102,6 +109,16 @@ export type MigrateOptions = {
    * version of that is a `filter` at discovery, so nothing is fetched at all.
    */
   navUnreachable?: boolean;
+  /**
+   * Called as each stage starts and advances, so a caller that is not watching
+   * stdout can say what is happening.
+   *
+   * Optional and fire-and-forget: the CLI passes nothing and keeps its `log()`
+   * output, the API route streams these to the browser. A run must never depend
+   * on anyone listening, so nothing here is awaited and a throwing listener is
+   * not this function's problem to survive.
+   */
+  onProgress?: (event: MigrateProgress) => void;
 };
 
 /**
@@ -171,19 +188,25 @@ function sameText(a: string, b: string): boolean {
  * protecting?*
  *
  * On a spec-generated site there is not — ReadMe's endpoint pages are a title,
- * one description line and the dump, so after the dump moves out the body is
- * empty or repeats the description the playground is about to render anyway.
+ * one description line and the dump, so once the dump moves out the body is
+ * either empty or a repeat of text the playground is about to render anyway.
  * Those pages want `"auto"`, and it is the difference between a six-line stub and
  * a complete endpoint reference.
  *
  * A page carrying real prose — Prerequisites, Resource information, error codes —
- * wants `"custom"`, because `"auto"` would render the spec *instead of* it and
- * lose every hand-written section on the page `[PIT Phase 2]`.
+ * wants `"custom"`, because `"auto"` renders the spec *instead of* the body and
+ * would lose every hand-written section on it `[PIT Phase 2]`.
+ *
+ * `alreadyShown` is every text the reader will see whether or not the body
+ * survives: the page description, and the endpoint's own `summary` and
+ * `description` from the spec. The spec's copies matter as much as the page's —
+ * a site without `llms.txt` has no page description to compare against, and
+ * whether a body is redundant is not a fact that should change because of that.
  */
-export function specMode(mdx: string, description?: string): OpenApiMode {
+export function specMode(mdx: string, alreadyShown: (string | undefined)[] = []): OpenApiMode {
   const body = mdx.trim();
   if (!body) return "auto";
-  if (description && sameText(body, description)) return "auto";
+  if (alreadyShown.some((text) => text && sameText(body, text))) return "auto";
   return "custom";
 }
 
@@ -231,16 +254,33 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   const outDir = options.outDir ? projectDir(project, options.outDir) : undefined;
   const withImages = options.images ?? options.outDir !== undefined;
 
+  /**
+   * One place that both narrates to stdout and reports to a listener, so the CLI
+   * and the browser can never be told different things about the same run.
+   */
+  const report_ = (event: MigrateProgress, level: "info" | "warn" = "info"): void => {
+    log(event.message, level);
+    options.onProgress?.(event);
+  };
+
   // 1. Discover. Throws when the site is not ReadMe or no tab has navigation —
   //    both mean there is nothing to migrate, which is a failure, not a report.
-  log(`discovering ${site.toString()}`, "info");
+  report_({ stage: "discover", message: `Discovering ${site.toString()}` });
   const discovery = await discoverSite(site, { filter: options.filter });
+  report_({
+    stage: "discover",
+    message:
+      `Found ${discovery.report.navPages} pages in the sidebar and ` +
+      `${discovery.report.listedPages} in total, across ` +
+      `${discovery.report.tabs.length} tab${discovery.report.tabs.length === 1 ? "" : "s"}`,
+  });
 
   // 1b. Brand. One request, for the colours and logos the site already publishes
   //     in the page ReadMe serves. Failing here must not fail the migration: a
   //     site with default colours is a cosmetic problem, an aborted run is not.
   let brand: BrandResult | undefined;
   if (options.brand !== false) {
+    options.onProgress?.({ stage: "brand", message: "Reading the site's colours, logo and favicon" });
     try {
       brand = await fetchBrand(site, {
         // The page discovery just fetched, rather than a second request for it.
@@ -253,15 +293,19 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
         ...(options.brandLocal ? { local: true } : {}),
       });
       const found = brand.report.found.map((row) => row.field).join(", ") || "nothing";
-      log(`brand: ${found}`, "info");
+      report_({ stage: "brand", message: `Brand: ${found}` });
     } catch (error) {
       // Named in full, because the symptom is silence: `documentation.json` is
       // still written, still valid, and simply has no colours, logo or favicon in
       // it, which reads as "the tool does not do branding" rather than as a
       // failure.
-      log(
-        `brand lookup failed${getErrorMessage(error)} — documentation.json keeps the default ` +
-          "colours and gets no logo or favicon. Re-run to pick them up",
+      report_(
+        {
+          stage: "brand",
+          message:
+            `Brand lookup failed${getErrorMessage(error)} — documentation.json keeps the default ` +
+            "colours and gets no logo or favicon. Re-run to pick them up",
+        },
         "warn",
       );
     }
@@ -270,7 +314,16 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   // 2. Download. `keepRaw` because stage 3 converts from the markdown this
   //    returns; without it every page would be read back off disk, and in memory
   //    mode there would be nothing to read.
-  log(`downloading ${discovery.refs.length} pages`, "info");
+  // The number the page should see is how many will actually be fetched, not how
+  // many exist — a `--limit 25` run against a 1,500-page site is 25/25, and a bar
+  // that crept to 2% and stopped would be reporting the cap as a failure.
+  const toDownload = Math.min(options.limit ?? Infinity, discovery.refs.length);
+  report_({
+    stage: "download",
+    message: `Downloading ${toDownload} pages`,
+    done: 0,
+    total: toDownload,
+  });
   const downloaded = await download(discovery.refs, {
     ...(outDir ? { outDir: join(outDir, "download") } : {}),
     ...(options.filter ? { filter: options.filter } : {}),
@@ -278,6 +331,17 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     ...(options.concurrency !== undefined ? { concurrency: options.concurrency } : {}),
     ...(options.refetch ? { refetch: true } : {}),
     keepRaw: true,
+    ...(options.onProgress
+      ? {
+          onProgress: (done: number, total: number) =>
+            options.onProgress?.({
+              stage: "download",
+              message: `Downloaded ${done} of ${total} pages`,
+              done,
+              total,
+            }),
+        }
+      : {}),
   });
 
   // 3. Convert, one page at a time and in order. Sequential on purpose: the
@@ -292,7 +356,24 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
   const bindings: Record<string, OpenApiBinding> = {};
   const specFiles = new Set<string>();
 
-  for (const page of downloaded.pages) {
+  report_({
+    stage: "convert",
+    message: `Converting ${downloaded.pages.length} pages`,
+    done: 0,
+    total: downloaded.pages.length,
+  });
+
+  for (const [index, page] of downloaded.pages.entries()) {
+    // Named per page rather than counted silently: conversion is the slow stage
+    // on a large page, and a slug moving is the difference between "working" and
+    // "wedged on a 3,000-line table".
+    options.onProgress?.({
+      stage: "convert",
+      message: `Converting ${page.slug}`,
+      done: index,
+      total: downloaded.pages.length,
+    });
+
     const source = downloaded.raw?.[page.slug];
     if (source === undefined) {
       // `keepRaw` is set above, so this is unreachable — but a missing page is
@@ -303,9 +384,23 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     }
 
     try {
+      // §5.6, decided per page from the source, before it is parsed.
+      //
+      // A page with a spec behind it gets `<ParamField>`/`<ResponseField>` from
+      // the importer, so converting its tables as well would put a second,
+      // drifting copy in the body. A page without one has no playground to carry
+      // them and its tables are the only parameter documentation it will ever
+      // have — the single case §5.6 names for hand-authoring these.
+      //
+      // Asked here rather than inside the conversion because only the *source*
+      // can answer it: the conversion lifts the dump out, so by the end every
+      // page looks spec-less.
+      const specBacked = hasEmbeddedSpec(source);
+
       const result = await convertReadmeMarkdown(source, {
         title: page.title,
         site: site.toString(),
+        api: { paramFields: !specBacked },
         // Straight to the shared folder, never through the sink: these are
         // content-addressed, shared between projects, and referenced by no page.
         ...(options.outDir && withImages ? { images: imagesOptions(options.outDir) } : {}),
@@ -341,7 +436,12 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
         const spec = specPath(page.slug, specFiles);
         specFiles.add(spec);
         sink?.write({ path: spec, body: result.openapi.json });
-        binding = { spec, method: operation.method, route: operation.route, mode: specMode(result.mdx, description) };
+        binding = {
+          spec,
+          method: operation.method,
+          route: operation.route,
+          mode: specMode(result.mdx, [description, operation.description, operation.summary]),
+        };
         bindings[page.slug] = binding;
       }
 
@@ -463,6 +563,11 @@ export async function migrateSite(url: string, options: MigrateOptions = {}): Pr
     notInNavigation: unreachable,
     ...(placements.length > 0 ? { navPlacements: placements } : {}),
   };
+
+  options.onProgress?.({
+    stage: "write",
+    message: "Writing documentation.json and the reports",
+  });
 
   if (brand) {
     sink?.write({ path: BRAND_CSS, body: brand.css });

@@ -312,19 +312,7 @@ export async function convertReadmeMarkdown(
   convertGlossary(tree, notes);
   notes.push(...convertOneToOne(tree, { ...options, ...(title ? { title } : {}) }).notes);
   convertApiExamples(tree, notes);
-  // §5.6, decided per page rather than per run.
-  //
-  // A page with a spec behind it gets `<ParamField>`/`<ResponseField>` from the
-  // importer, so converting its tables too would put a second, drifting copy in
-  // the body. A page *without* one has no playground to carry them, and its
-  // tables are the only parameter documentation it will ever have — which is the
-  // single case §5.6 names for hand-authoring these.
-  //
-  // An explicit `api.paramFields` still wins, in both directions.
-  convertParamFields(tree, notes, {
-    ...options.api,
-    paramFields: options.api?.paramFields ?? openapi === undefined,
-  });
+  convertParamFields(tree, notes, options.api ?? {});
   // Phase two of the `<PostList>` conversion. Separate and async for the same
   // reason image downloading is: the rules that build the tree stay synchronous,
   // and the one conversion that needs the network happens once, here.

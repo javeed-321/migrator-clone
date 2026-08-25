@@ -129,3 +129,27 @@ export type MigrationReport = {
 
 /** The navigation half, kept so `documentation.json` can be rebuilt without a refetch. */
 export type DiscoveredTab = { name: string; url: string; navigation: NavigationEntry[] };
+
+/**
+ * What a run is doing, while it is doing it.
+ *
+ * ## Why this exists as data rather than as more `log()` calls
+ *
+ * The CLI has always narrated itself — `discovering …`, `downloaded 24/371` — and
+ * a browser sees none of it, because those lines go to the server's stdout. So
+ * the web UI sat on a spinner for minutes with nothing to show, on the run whose
+ * *duration is the whole problem*: a 100-page migration is four network stages
+ * deep, and "is it stuck or is it working?" is the only question a person has.
+ *
+ * Reported as a typed event rather than a formatted string so the page can render
+ * a real progress bar off `done`/`total` instead of parsing English back out of a
+ * log line.
+ */
+export type MigrateProgress = {
+  stage: "discover" | "brand" | "download" | "convert" | "write";
+  /** One line, already written for a reader — the UI shows it verbatim. */
+  message: string;
+  /** How far through a counted stage. Absent on the stages that cannot count. */
+  done?: number;
+  total?: number;
+};

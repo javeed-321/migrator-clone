@@ -1,7 +1,8 @@
 import type { NextRequest } from "next/server";
 
-import { migrateSite, projectName } from "@/src/migrate/run";
-import { DiskSink, MemorySink } from "@/src/migrate/sink";
+import { migrateSite, projectName, type MigrateOptions } from "@/src/migrate/run";
+import { DiskSink, MemorySink, type Sink } from "@/src/migrate/sink";
+import type { MigrationReport } from "@/src/migrate/types";
 import { buildZip, zipFilename } from "@/src/migrate/zip";
 import { outputRoot, projectDir } from "@/src/paths";
 import { getErrorMessage } from "@/src/utils/errors";
@@ -41,6 +42,85 @@ function defaultDelivery(): "disk" | "zip" {
 
 function failure(message: string, status: number) {
   return Response.json({ ok: false, message }, { status });
+}
+
+/**
+ * The same migration, narrated line by line.
+ *
+ * ## Why NDJSON and not Server-Sent Events
+ *
+ * SSE is the usual answer and is the wrong one here. It is a `GET`-shaped
+ * protocol — `EventSource` cannot send a request body — so the URL would have to
+ * carry the site, the limit and the filter as query parameters, and the run could
+ * be started by anything that can make the browser follow a link. One JSON object
+ * per line over the existing `POST` keeps the request exactly as it was and needs
+ * nothing but `response.body.getReader()` to read.
+ *
+ * ## Why the zip comes back inside the stream
+ *
+ * A response has one body. Once it is carrying progress lines it cannot also be
+ * an archive, so on the zip path the archive rides in the final line as base64 —
+ * about a third larger than the bytes, on a payload that is markdown and JSON and
+ * capped at 100 pages. The alternative is holding the archive server-side behind
+ * a second request, which means state, a lifetime and a way to clean it up, for a
+ * file the caller is about to save anyway.
+ *
+ * A failure is a `line`, not a status code: the headers went out with the first
+ * progress event, long before anything could go wrong, so there is no status left
+ * to set. The reader distinguishes on `type`.
+ */
+function streamMigration(
+  url: string,
+  options: MigrateOptions,
+  ctx: {
+    project: string;
+    sink: Sink | undefined;
+    summaryOf: (report: MigrationReport) => unknown;
+    onReport: (report: MigrationReport) => unknown;
+  },
+): Response {
+  const encoder = new TextEncoder();
+
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (event: unknown): void => {
+        controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+      };
+
+      try {
+        const report = await migrateSite(url, {
+          ...options,
+          onProgress: (event) => send({ type: "progress", ...event }),
+        });
+
+        if (ctx.sink instanceof MemorySink) {
+          const archive = await buildZip(ctx.project, ctx.sink.files);
+          send({
+            type: "zip",
+            filename: zipFilename(ctx.project),
+            summary: ctx.summaryOf(report),
+            base64: Buffer.from(archive).toString("base64"),
+          });
+        } else {
+          send({ type: "done", ...(ctx.onReport(report) as object) });
+        }
+      } catch (error) {
+        send({ type: "error", message: `Migration failed${getErrorMessage(error)}` });
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      "content-type": "application/x-ndjson; charset=utf-8",
+      // Every layer between here and the browser will happily hold a response
+      // until it is complete, which is the one thing this must not do.
+      "cache-control": "no-cache, no-transform",
+      "x-accel-buffering": "no",
+    },
+  });
 }
 
 /**
@@ -108,19 +188,53 @@ export async function POST(request: NextRequest) {
   setLogsEnabled(true);
   const startedAt = Date.now();
 
-  try {
-    const report = await migrateSite(site.toString(), {
-      ...(sink ? { sink } : {}),
-      // Images go to the shared `output/images/` folder, and only when there is
-      // a real disk worth putting them on. A zip run skips downloading them at
-      // all rather than fetching megabytes it will then discard.
-      ...(delivery === "disk" && !body.dryRun ? { outDir: root } : {}),
-      ...(body.filter ? { filter: body.filter } : {}),
-      ...(body.name ? { name: body.name } : {}),
-      ...(body.refetch ? { refetch: true } : {}),
-      ...(body.images !== undefined ? { images: body.images } : {}),
-      limit,
+  const options = {
+    ...(sink ? { sink } : {}),
+    // Images go to the shared `output/images/` folder, and only when there is
+    // a real disk worth putting them on. A zip run skips downloading them at
+    // all rather than fetching megabytes it will then discard.
+    ...(delivery === "disk" && !body.dryRun ? { outDir: root } : {}),
+    ...(body.filter ? { filter: body.filter } : {}),
+    ...(body.name ? { name: body.name } : {}),
+    ...(body.refetch ? { refetch: true } : {}),
+    ...(body.images !== undefined ? { images: body.images } : {}),
+    limit,
+  };
+
+  const summaryOf = (report: MigrationReport) => ({
+    project,
+    totals: report.totals,
+    customComponents: report.customComponents.length,
+    truncated: report.discovery.listedPages > limit,
+    limit,
+    ms: Date.now() - startedAt,
+  });
+
+  // The streaming path, asked for by `Accept: application/x-ndjson`.
+  //
+  // Opt-in rather than the default because the plain JSON below is a documented
+  // contract — `curl -X POST /api/migrate` is in the README — and a migration is
+  // also perfectly usable as one request when nobody is watching it. The browser
+  // is the caller that cannot wait in silence, so the browser is the one that
+  // asks.
+  if (request.headers.get("accept")?.includes("application/x-ndjson")) {
+    return streamMigration(site.toString(), options, {
+      project,
+      sink,
+      summaryOf,
+      onReport: (report) => ({
+        ok: true,
+        report,
+        delivery,
+        truncated: report.discovery.listedPages > limit,
+        limit,
+        ms: Date.now() - startedAt,
+      }),
     });
+  }
+
+  try {
+    const report = await migrateSite(site.toString(), options);
 
     if (sink instanceof MemorySink) {
       const archive = await buildZip(project, sink.files);
@@ -132,16 +246,7 @@ export async function POST(request: NextRequest) {
           "content-type": "application/zip",
           "content-disposition": `attachment; filename="${zipFilename(project)}"`,
           "content-length": String(archive.byteLength),
-          "x-migration-summary": encodeURIComponent(
-            JSON.stringify({
-              project,
-              totals: report.totals,
-              customComponents: report.customComponents.length,
-              truncated: report.discovery.listedPages > limit,
-              limit,
-              ms: Date.now() - startedAt,
-            }),
-          ),
+          "x-migration-summary": encodeURIComponent(JSON.stringify(summaryOf(report))),
         },
       });
     }

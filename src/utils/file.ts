@@ -41,10 +41,53 @@ export function createFilename(
 }
 
 /**
+ * One value, as a YAML double-quoted scalar.
+ *
+ * ## Why this is not `"${value}"`
+ *
+ * It was, and the corpus broke it the moment a description quoted an API error:
+ *
+ * ```text
+ * …will return the response `403: Forbidden ("Unique/allowed nonce header not found")`
+ * ```
+ *
+ * Interpolated raw, the `("` closes the scalar 400 characters early; YAML then
+ * reads the rest of the line as a second mapping entry, trips over the `: ` in
+ * `403: Forbidden`, and runs on into the closing `---`. The parser reports it at
+ * the `---` — *"a multiline key may not be an implicit key"* — which is three
+ * lines below the character that actually caused it, and names neither the page
+ * nor the quote.
+ *
+ * The failure is total: frontmatter that will not parse is a page the site cannot
+ * render and the dashboard's sync gate refuses outright. And it needs no exotic
+ * input — a straight double quote in a sentence is enough.
+ *
+ * Escaping order matters. Backslash first, or the backslashes this adds are
+ * themselves escaped on the next pass.
+ */
+function yamlString(value: string): string {
+  const escaped = value
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\r\n|\r|\n/g, "\\n")
+    .replace(/\t/g, "\\t")
+    // Remaining C0 controls have no meaning in a title and cannot be written
+    // raw. `\xNN` is the double-quoted style's own escape, so this stays one
+    // parseable scalar rather than a mangled one.
+    .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/g, (character) =>
+      `\\x${character.charCodeAt(0).toString(16).padStart(2, "0")}`
+    );
+  return `"${escaped}"`;
+}
+
+/**
  * The YAML block every Documentation.AI page must open with.
  *
  * `title` and `description` were lifted out of the body by `scrapePage`, which
  * is why neither is repeated in the markdown below them.
+ *
+ * Both go through `yamlString`, because both are prose written by someone who had
+ * no reason to think about YAML.
  */
 export function formatPageWithFrontmatter(
   title: string,
@@ -52,8 +95,8 @@ export function formatPageWithFrontmatter(
   markdown: string
 ): string {
   const lines = ["---"];
-  if (title) lines.push(`title: "${title}"`);
-  if (description) lines.push(`description: "${description}"`);
+  if (title) lines.push(`title: ${yamlString(title)}`);
+  if (description) lines.push(`description: ${yamlString(description)}`);
   lines.push("---", "", markdown);
   return lines.join("\n");
 }

@@ -64,6 +64,30 @@ const LLMS_PREAMBLE = /Fetch the complete documentation index at:\s*https?:\S+ll
  */
 const OPENAPI_HEADING = /^open\s*api\s+definition$/i;
 
+/** The same heading as `OPENAPI_HEADING`, matched against raw source rather than heading text. */
+const OPENAPI_HEADING_LINE = /^#{1,6}[ \t]*open\s*api[ \t]+definition[ \t]*$/im;
+
+/**
+ * Does this source carry an `# OpenAPI definition` dump?
+ *
+ * A caller has to be able to ask **before converting**, because the answer decides
+ * whether the page's parameter tables should become `<ParamField>` — and by the
+ * time the conversion could answer it, the dump has already been lifted out.
+ *
+ * That asymmetry is the whole reason this exists rather than the conversion
+ * deciding for itself. "No dump in this text" and "no spec behind this page" look
+ * identical from inside, but they are opposites for an already-converted page:
+ * its spec was extracted on the previous run, so it *is* spec-backed, and a
+ * conversion that inferred otherwise would rewrite its tables on the second pass
+ * and never settle.
+ *
+ * A string test rather than a tree walk on purpose: it is asked once per page,
+ * before parsing, and it matches the same heading `stripApiArtefacts` does.
+ */
+export function hasEmbeddedSpec(source: string): boolean {
+  return OPENAPI_HEADING_LINE.test(source);
+}
+
 /** The seven methods a `paths` entry may hold, lowercase as OpenAPI spells them. */
 const HTTP_METHODS = new Set(["get", "post", "put", "patch", "delete", "head", "options"]);
 
@@ -73,6 +97,17 @@ export type SpecOperation = {
   method: HttpMethod;
   /** The route as the spec spells it, `{param}` placeholders intact. */
   route: string;
+  /**
+   * What the spec already says about this endpoint, if anything.
+   *
+   * Carried because the caller has to decide how much of the page the spec is
+   * allowed to write, and that turns on whether the body says anything the
+   * playground will not already be showing. Reading it off the spec keeps the
+   * decision self-contained: a site with no `llms.txt` has no page description to
+   * compare against, and the answer should not change because of that.
+   */
+  summary?: string;
+  description?: string;
 };
 
 /**
@@ -105,10 +140,15 @@ function readOperations(spec: unknown): SpecOperation[] {
   const operations: SpecOperation[] = [];
   for (const [route, item] of Object.entries(paths as Record<string, unknown>)) {
     if (!item || typeof item !== "object") continue;
-    for (const key of Object.keys(item as Record<string, unknown>)) {
-      if (HTTP_METHODS.has(key.toLowerCase())) {
-        operations.push({ method: key.toUpperCase() as HttpMethod, route });
-      }
+    for (const [key, value] of Object.entries(item as Record<string, unknown>)) {
+      if (!HTTP_METHODS.has(key.toLowerCase())) continue;
+      const operation = (value ?? {}) as { summary?: unknown; description?: unknown };
+      operations.push({
+        method: key.toUpperCase() as HttpMethod,
+        route,
+        ...(typeof operation.summary === "string" ? { summary: operation.summary } : {}),
+        ...(typeof operation.description === "string" ? { description: operation.description } : {}),
+      });
     }
   }
   return operations;

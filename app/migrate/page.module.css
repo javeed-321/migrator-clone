@@ -193,3 +193,98 @@
   font-size: 0.8rem;
   color: var(--muted);
 }
+
+/* ── live progress ───────────────────────────────────────────────── */
+
+/*
+ * Every stage is listed from the start, including the ones still to come, so the
+ * list says how far through the run is rather than only what it is doing now.
+ * A log that grows from empty cannot show you that.
+ */
+.progress {
+  margin: 1.25rem 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  /* Stages not yet reached are present but recede, so the eye lands on the
+     one that is running. */
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.stepOn,
+.stepDone {
+  opacity: 1;
+}
+
+.stepMark {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.stepDone .stepMark {
+  color: #16a34a;
+}
+
+.stepOn .stepMark {
+  color: var(--fg);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* The only sign of life during a stage that cannot count — discovery makes one
+   request and holds until the site answers. */
+@keyframes pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepOn .stepMark {
+    animation: none;
+  }
+}
+
+.stepBody {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.stepLabel {
+  font-size: 0.9rem;
+}
+
+.stepDetail {
+  font-size: 0.78rem;
+  color: var(--muted);
+  /* A slug can be long and a reflowing line reads as flicker while it updates. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar {
+  display: block;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(128, 128, 128, 0.25);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: currentColor;
+  transition: width 0.2s ease;
+}

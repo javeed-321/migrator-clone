@@ -28,6 +28,14 @@ export type DownloadOptions = {
   delayMs?: number;
   /** Return each page's raw markdown alongside its IR — the UI shows both. */
   keepRaw?: boolean;
+  /**
+   * Called after each chunk, with how many of the selected pages are done.
+   *
+   * A chunk, not a page: the fan-out resolves six at a time, so a per-page call
+   * would report six identical instants and then a pause. The chunk boundary is
+   * where the number actually changes.
+   */
+  onProgress?: (done: number, total: number) => void;
 };
 
 /**
@@ -189,6 +197,7 @@ export async function download(refs: PageRef[], opts: DownloadOptions): Promise<
 
     done += chunk.length;
     log(`downloaded ${done}/${selected.length}`, "info");
+    opts.onProgress?.(done, selected.length);
   }
 
   const site = host ? `https://${host}` : "";
