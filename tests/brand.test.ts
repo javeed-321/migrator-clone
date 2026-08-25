@@ -178,11 +178,21 @@ describe("brand -> documentation.json", () => {
     expect(config["logo-dark"]).toBe("https://cdn/logo.png");
   });
 
-  it("maps the favicon onto both logo-small keys", () => {
+  // The browser tab is `favicon` and nothing else: `layout.tsx` reads that key
+  // alone, and both navbars render `logo-small-*` as the logo on a narrow
+  // viewport. Writing the favicon there lost the tab icon *and* stretched a
+  // 16×16 `.ico` across the mobile header.
+  it("puts the favicon on the favicon key", () => {
     const config = toBrandConfig(extractBrand(ssrProps(FULL_APPEARANCE), SITE));
 
-    expect(config["logo-small-light"]).toBe("https://files.readme.io/4956d96-favicon.ico");
-    expect(config["logo-small-dark"]).toBe("https://files.readme.io/4956d96-favicon.ico");
+    expect(config.favicon).toBe("https://files.readme.io/4956d96-favicon.ico");
+  });
+
+  it("puts the logo, not the favicon, on the small-navbar keys", () => {
+    const config = toBrandConfig(extractBrand(ssrProps(FULL_APPEARANCE), SITE));
+
+    expect(config["logo-small-light"]).toBe("https://files.readme.io/bba3939-logo.png");
+    expect(config["logo-small-dark"]).toBe("https://files.readme.io/8dd20af-white-logo.png");
   });
 
   it("prefers a saved local copy when one was asked for", () => {

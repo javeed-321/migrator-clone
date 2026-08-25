@@ -77,14 +77,30 @@ export type DocColors = {
 };
 
 /**
- * The logo keys, all optional `[LIVE-DAI /docs/customize/branding]`. The
- * `logo-small-*` pair is what the browser tab shows — a favicon by another name.
+ * The branding keys, all optional. Read off the app's own config type
+ * `[APP src/types/documentations.ts:362-382]`.
+ *
+ * **`logo-small-*` is not the favicon.** Both navbars render it as the logo on a
+ * narrow viewport — `block lg:hidden` around an `<Image className="h-full w-auto">`
+ * `[APP NavbarClassic.tsx:129-178, NavbarAtlas.tsx:136-180]` — so a 16×16 `.ico`
+ * put here is stretched across the mobile header. The browser tab is `favicon`,
+ * a key of its own, and the only one `layout.tsx` looks at.
  */
 export type DocLogos = {
   "logo-light"?: string;
   "logo-dark"?: string;
+  /** The navbar logo below the `lg` breakpoint, per theme. */
   "logo-small-light"?: string;
   "logo-small-dark"?: string;
+  /**
+   * The browser-tab icon.
+   *
+   * Validated before use: anything that does not start with `http` or `/` is
+   * discarded and the platform default stands, silently
+   * `[APP src/app/site/[subdomain]/layout.tsx:45-54]`. So a project-relative
+   * path has to carry its leading slash — unlike `css`, which must not.
+   */
+  favicon?: string;
 };
 
 /** One stylesheet. `src` is a project-relative path or an HTTPS URL. */

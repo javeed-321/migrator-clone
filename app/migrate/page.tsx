@@ -134,7 +134,7 @@ export default function MigratePage() {
           className={styles.num}
           type="number"
           min={1}
-          max={100}
+          max={1000}
           value={limit}
           onChange={(event) => setLimit(Number(event.target.value))}
           title="Pages to migrate"

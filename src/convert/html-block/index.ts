@@ -210,33 +210,127 @@ function applyStyles(nodes: HastContent[], sheet: Stylesheet): void {
  * The `class` rewrite is scoped to tag openings, so the same characters sitting
  * in a paragraph of prose are left alone.
  */
-function toMdxHtml(nodes: HastContent[]): string {
-  const tree = { type: "root", children: nodes } as HastRoot;
+/**
+ * The elements whose meaning is structural. Anything not here is inline and
+ * belongs on the same line as the text around it, where a space between two
+ * `<b>`s is a real space between two words.
+ */
+const BLOCK = new Set([
+  "address", "article", "aside", "blockquote", "dd", "div", "dl", "dt", "fieldset",
+  "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6",
+  "header", "hr", "li", "main", "nav", "ol", "p", "pre", "section", "table",
+  "tbody", "td", "tfoot", "th", "thead", "tr", "ul",
+]);
 
-  // **This is what makes the output compile, and it is not cosmetic.**
-  //
-  // `hast-util-to-html` adds no whitespace of its own — every newline in the
-  // result is a text node copied from the source's indentation. MDX parses the
-  // children of a JSX element as markdown, so a line that *starts with text*
-  // opens a paragraph, and any closing tag later on that line is then inside it:
-  //
-  //     <div style="…">
-  //   Date: <span>16 JANUARY 2023</span></div></div></div>
-  //
-  // A `</div>` cannot close a block element from inside a paragraph, so the page
-  // fails with "Expected the closing tag `</div>`…". Collapsing the whitespace
-  // puts the element on one line, which is the rule the plan states outright:
-  // **block JSX on one line** `[PLAN §6 step 21]` `[RM §2]`.
-  //
-  // Minifying rather than stripping, because the difference between `<b>a</b>
-  // <b>b</b>` and `<b>a</b><b>b</b>` is a real space between two words. This
-  // utility knows which elements are inline and keeps those.
-  minifyWhitespace(tree);
+function isBlockElement(node: HastContent): node is Element {
+  return node.type === "element" && BLOCK.has(node.tagName);
+}
 
-  const html = toHtml(tree, {
+function serialize(nodes: HastContent[]): string {
+  return toHtml({ type: "root", children: nodes } as HastRoot, {
     closeSelfClosing: true,
     allowDangerousHtml: true,
   });
+}
+
+/** `<div class="x">` — the element's own opening tag, without its children. */
+function openTag(element: Element): string {
+  const empty = serialize([{ ...element, children: [] } as Element]);
+  const close = `</${element.tagName}>`;
+  return empty.endsWith(close) ? empty.slice(0, -close.length) : empty;
+}
+
+/**
+ * Lay the markup out so MDX reads it as the structure it is.
+ *
+ * ## The two failures this sits between
+ *
+ * MDX parses the children of a JSX element as markdown, and that produces two
+ * opposite disasters depending on where the newlines fall.
+ *
+ * **A line that starts with bare text** opens a markdown paragraph, and a closing
+ * tag later on that line is then inside it:
+ *
+ *     <div style="…">
+ *   Date: <span>16 JANUARY 2023</span></div></div></div>
+ *
+ * A `</div>` cannot close a block element from inside a paragraph — the page
+ * fails to compile.
+ *
+ * **The whole block on one line** compiles, and is worse. Verified against the
+ * MDX parser: every element in it comes back as an `mdxJsxTextElement` inside a
+ * single `paragraph`. The `<ul>` and its `<li>`s are then *inline elements inside
+ * a `<p>`*, which is invalid nesting, so the browser hoists them out and the list
+ * arrives as one unbroken run of text — every word present, every bullet, heading
+ * and paragraph break gone. That is what collapsing everything onto one line did
+ * to the Pipedrive page.
+ *
+ * ## The rule
+ *
+ * **An element that has block-level children is split across lines; anything else
+ * stays on one.**
+ *
+ * Split, and the outer elements parse as `mdxJsxFlowElement` — real structure.
+ * Kept whole, a leaf like `<p>Date: <span>x</span></p>` never puts bare text at
+ * the start of a line, so the first failure cannot happen either. Every text node
+ * in the output is inside a leaf element, on that leaf's own line.
+ */
+function layout(nodes: HastContent[], depth: number): string[] {
+  const pad = "  ".repeat(depth);
+  const lines: string[] = [];
+  let inline: HastContent[] = [];
+
+  const flush = (): void => {
+    if (inline.length === 0) return;
+    const html = serialize(inline).trim();
+    if (html.length > 0) lines.push(pad + html);
+    inline = [];
+  };
+
+  for (const node of nodes) {
+    if (!isBlockElement(node)) {
+      inline.push(node);
+      continue;
+    }
+
+    flush();
+
+    const children = node.children as HastContent[];
+    if (!children.some(isBlockElement)) {
+      // A leaf: text and inline elements only, so it is safe — and better — whole.
+      lines.push(pad + serialize([node]).trim());
+      continue;
+    }
+
+    lines.push(pad + openTag(node));
+    lines.push(...layout(children, depth + 1));
+    lines.push(`${pad}</${node.tagName}>`);
+  }
+
+  flush();
+  return lines;
+}
+
+/**
+ * Two rewrites, both mandatory rather than cosmetic. `class` is `className` on
+ * the target `[DAI §16–18]`. And `closeSelfClosing` turns `<img src=…>` into
+ * `<img src=… />` — an unclosed void element is valid HTML and a fatal MDX parse
+ * error, which is the difference between a page that renders and a page that
+ * fails the build.
+ *
+ * The `class` rewrite is scoped to tag openings, so the same characters sitting
+ * in a paragraph of prose are left alone.
+ */
+function toMdxHtml(nodes: HastContent[]): string {
+  const tree = { type: "root", children: nodes } as HastRoot;
+
+  // First, so the source's own indentation stops being content. `layout` then
+  // decides every newline in the output deliberately, rather than inheriting
+  // whatever the author's editor produced. Minifying rather than stripping,
+  // because the space between `<b>a</b>` and `<b>b</b>` is a real space.
+  minifyWhitespace(tree);
+
+  const html = layout(tree.children as HastContent[], 0).join("\n");
 
   return html.replace(/<[a-zA-Z][^>]*>/g, (tag) => tag.replace(/\sclass="/g, ' className="'));
 }

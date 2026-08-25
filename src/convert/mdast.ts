@@ -23,8 +23,41 @@ export type ConversionNote = {
   line?: number;
 };
 
+/**
+ * One JSX attribute, with the one character that cannot be written literally
+ * encoded on the way in.
+ *
+ * **A `>` inside an attribute value breaks the target's preprocessor**, not its
+ * MDX parser. Documentation.AI rewrites every image tag to add `priority` and
+ * `fetchPriority`, and that rewrite matches up to the first `>` in the tag — so
+ * an `alt` holding one gets the props injected into the middle of its own text:
+ *
+ * ```
+ * alt="Developer Hub > three-dot menu"
+ * -> alt="Developer Hub priority={true} fetchPriority="high"> three-dot menu"
+ * ```
+ *
+ * The page then fails with *"Unexpected character `"` in attribute name"*, at a
+ * column that does not correspond to anything in the file — because the file was
+ * fine and the text the compiler saw was not `[checkers/app-checker.mjs]`.
+ *
+ * `&gt;` is the encoding that survives, and the choice is not arbitrary: the
+ * preprocessor decodes a fixed list of numeric entities *before* it rewrites the
+ * images, and `&#x3E;` is on that list while `&gt;` is not. JSX decodes the named
+ * entity itself, so the reader still sees `>`. Verified against a port of the
+ * platform's own preprocessor:
+ *
+ * ```
+ * raw >   -> alt="Developer Hub priority={true} fetchPriority="high"> three-dot menu"
+ * &#x3E;  -> alt="Developer Hub priority={true} fetchPriority="high"> three-dot menu"
+ * &gt;    -> alt="Developer Hub &gt; three-dot menu" priority={true} fetchPriority="high"
+ * ```
+ *
+ * A `>` that is already part of an entity is left alone, so encoding twice is a
+ * no-op and this stays safe to apply on a re-run.
+ */
 export function attr(name: string, value: string): MdxJsxAttribute {
-  return { type: "mdxJsxAttribute", name, value };
+  return { type: "mdxJsxAttribute", name, value: value.replace(/>/g, "&gt;") };
 }
 
 /** Reads a JSX attribute as a string. `{true}` and a bare attribute both read `"true"`. */

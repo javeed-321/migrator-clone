@@ -646,7 +646,23 @@ export function convertOneToOne(tree: Root, options: ConvertOptions = {}): Conve
 export function toMdx(tree: Root): string {
   return unified()
     .use(remarkGfm)
-    .use(remarkMdx)
+    /*
+     * `quoteSmart` switches a JSX attribute to single quotes when its value
+     * contains double ones, instead of escaping them.
+     *
+     * Without it, `alt="a "quoted" word"` is written as
+     * `alt="a &#x22;quoted&#x22; word"` — valid MDX on its own, and rejected by
+     * Documentation.AI, because the app decodes HTML entities *before* it
+     * compiles: `&#x22;` becomes a literal `"` inside a double-quoted attribute
+     * and ends it early. The page then fails to compile with "Unexpected
+     * character `\"` in attribute name" `[checkers/app-checker.mjs]`.
+     *
+     * Not a ReadMe quirk to be cleaned at the source, either: the serializer
+     * produces that spelling for *any* value holding a quote, including one that
+     * arrived as a plain markdown `![alt](src)`. The other quote is the only form
+     * that survives the decode.
+     */
+    .use(remarkMdx, { quoteSmart: true })
     .use(remarkStringify, {
       bullet: "-",
       fences: true,

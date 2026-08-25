@@ -53,7 +53,7 @@ export type BrandResult = {
   css: string;
 };
 
-/** The branding half of `documentation.json` `[LIVE-DAI /docs/customize/branding]`. */
+/** The branding half of `documentation.json` `[APP src/types/documentations.ts:362-382]`. */
 export type BrandConfig = {
   name?: string;
   colors: DocColors;
@@ -61,6 +61,7 @@ export type BrandConfig = {
   "logo-dark"?: string;
   "logo-small-light"?: string;
   "logo-small-dark"?: string;
+  favicon?: string;
 };
 
 const FIELDS: BrandField[] = [
@@ -166,9 +167,22 @@ export function toBrandConfig(brand: Brand, assets: Record<string, string> = {})
     },
     ...(logoLight ? { "logo-light": logoLight } : {}),
     ...(logoDark ? { "logo-dark": logoDark } : {}),
-    // `logo-small-*` is what the target uses for the browser tab, which is what a
-    // favicon is. One file serves both themes unless the project had two.
-    ...(favicon ? { "logo-small-light": favicon, "logo-small-dark": favicon } : {}),
+    /*
+     * `logo-small-*` is the **navbar logo below the `lg` breakpoint**, not the
+     * favicon `[APP NavbarClassic.tsx:129-178]`. The favicon used to be written
+     * here, which cost both halves at once: the browser tab kept the platform
+     * default, and a 16×16 `.ico` was stretched across the mobile header where
+     * the brand mark belongs.
+     *
+     * ReadMe has no separate small logo, so the full one serves both widths —
+     * the same reasoning as the light/dark fallback above. Absent, the navbar
+     * falls back to printing the site name, which is worse than a logo that is
+     * merely wider than it needs to be.
+     */
+    ...(logoLight ? { "logo-small-light": logoLight } : {}),
+    ...(logoDark ? { "logo-small-dark": logoDark } : {}),
+    // The browser tab, and the one key `layout.tsx` reads for it.
+    ...(favicon ? { favicon } : {}),
   };
 }
 
@@ -222,9 +236,21 @@ export async function fetchBrand(site: URL, options: BrandOptions = {}): Promise
     const saved = await downloadImages([...new Set(urls)], {
       outDir: options.outDir,
       dir,
-      // Relative, with no leading slash: that is the only form Documentation.AI
-      // accepts for a project-relative path `[LIVE-DAI /docs/customize/custom-css]`.
-      publicPath: dir,
+      /*
+       * With the leading slash, and that is not a style choice — it is what makes
+       * the value usable at all.
+       *
+       * `layout.tsx` keeps a favicon only when it starts with `http` or `/`, and
+       * silently substitutes the platform default otherwise
+       * `[APP src/app/site/[subdomain]/layout.tsx:45-54]`; `next/image` refuses a
+       * relative `src` outright. So `brand/favicon.ico` is a value that looks
+       * saved, ships, and renders nothing.
+       *
+       * The bare form belongs to `css` `[LIVE-DAI /docs/customize/custom-css]`,
+       * which is a different consumer with the opposite rule — the two must not
+       * be spelled the same way.
+       */
+      publicPath: `/${dir}`,
       ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
     });
     assets = saved.map;

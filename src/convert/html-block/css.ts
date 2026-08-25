@@ -77,6 +77,19 @@ function parseDeclarations(body: string): Declaration[] {
  * a style, it is a *behaviour*, and there is no attribute that carries it.
  */
 function parseSimple(text: string): Simple | null {
+  /*
+   * `*` on its own is the one selector that is *trivially* inline-able, not
+   * impossible: it matches every element, so its declarations belong on every
+   * element. Dropping it was costing the commonest reset there is —
+   * `* { box-sizing: border-box }` — and without that a `width: 50%` column with
+   * padding measures more than 50%, so two of them no longer fit on a row and the
+   * second wraps underneath. The layout breaks over one missing declaration.
+   *
+   * A compound or descendant use (`.a *`, `* > p`) still has no inline form and
+   * still goes to `dropped`. Only the bare universal selector is served here, and
+   * it carries no specificity, so any real selector still wins.
+   */
+  if (text.trim() === "*") return { classes: [], attrs: [] };
   if (text.includes(":") || text.includes("*")) return null;
 
   const simple: Simple = { classes: [], attrs: [] };
@@ -117,6 +130,30 @@ function specificityOf(parts: Simple[]): number {
   }
 
   return ids * 10_000 + classes * 100 + tags;
+}
+
+/**
+ * The clearfix idiom, recognised and rewritten so it can be inlined.
+ *
+ * ```css
+ * .row::after { content: ""; clear: both; display: table; }
+ * ```
+ *
+ * That is not really a style on a pseudo-element — it is the pre-2018 way of
+ * saying *"this container should contain its floats"*. `display: flow-root` says
+ * the same thing in one declaration, on the element itself, so it survives the
+ * move to an inline `style` where the original cannot.
+ *
+ * Matched on `clear: both`, which is the part that makes it a clearfix rather
+ * than an ordinary `::after`. A pseudo-element rule that draws actual content
+ * still has no inline form and still goes to `dropped`.
+ */
+function asClearfix(selector: string, body: string): { selector: string; body: string } | null {
+  const pseudo = /^(.+?)::?(?:after|before)$/.exec(selector.trim());
+  if (!pseudo?.[1]) return null;
+  if (!/(^|;)\s*clear\s*:\s*both\s*(;|$)/i.test(body.replace(/\s+/g, " "))) return null;
+
+  return { selector: pseudo[1].trim(), body: "display: flow-root" };
 }
 
 /**
@@ -180,9 +217,18 @@ export function parseCss(css: string): Stylesheet {
         continue;
       }
 
+      // A clearfix is not a style on a pseudo-element, it is a request that the
+      // container contain its floats — and modern CSS says that in one
+      // declaration, on the element itself. Rewritten, it inlines like anything
+      // else. Left as `::after`, the row collapses to zero height and the floated
+      // columns escape it, which looks exactly like the layout not working.
+      const rewritten = asClearfix(trimmed, body);
+      const selectorText = rewritten?.selector ?? trimmed;
+      const declarationSource = rewritten?.body ?? body;
+
       const parts: Simple[] = [];
       let usable = true;
-      for (const chunk of trimmed.split(/\s+/)) {
+      for (const chunk of selectorText.split(/\s+/)) {
         const simple = parseSimple(chunk);
         if (simple === null) {
           usable = false;
@@ -201,11 +247,11 @@ export function parseCss(css: string): Stylesheet {
         continue;
       }
 
-      const declarations = parseDeclarations(body);
+      const declarations = parseDeclarations(declarationSource);
       if (declarations.length === 0) continue;
 
       order += 1;
-      rules.push({ selector: trimmed, parts, declarations, specificity: specificityOf(parts), order });
+      rules.push({ selector: selectorText, parts, declarations, specificity: specificityOf(parts), order });
     }
   }
 

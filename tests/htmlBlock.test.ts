@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { inlineStyle, parseCss, resolveVars } from "../src/convert/html-block/css";
 import { convertReadmeMarkdown } from "../src/convert/run";
+import { parseMarkdown } from "../src/download/parse";
 import type { ConversionNote } from "../src/convert/mdast";
 
 const block = (html: string) => `<HTMLBlock>{\`\n${html}\n\`}</HTMLBlock>\n`;
@@ -19,6 +20,90 @@ describe("the CSS engine", () => {
 
   it("falls back to the var's own default when :root never defined it", () => {
     expect(resolveVars("var(--missing, 12px)", new Map())).toBe("12px");
+  });
+
+  // The two rules a floated layout is actually built from. Both used to be
+  // dropped, and dropping either one is what makes the block look broken on the
+  // target while every tag is present and correct.
+  it("inlines the universal selector onto every element", () => {
+    const sheet = parseCss(`* { box-sizing: border-box; } .column { width: 50%; }`);
+
+    expect(sheet.dropped).toEqual([]);
+    // Without this, a 50% column with padding measures more than 50%, so the
+    // second column no longer fits beside the first and wraps underneath.
+    expect(inlineStyle({ tag: "div", classes: ["column"], attrs: new Map() }, [], sheet)).toBe(
+      "box-sizing: border-box; width: 50%",
+    );
+    expect(inlineStyle({ tag: "p", classes: [], attrs: new Map() }, [], sheet)).toBe(
+      "box-sizing: border-box",
+    );
+  });
+
+  it("keeps `*` at zero specificity, so a real selector still wins", () => {
+    const sheet = parseCss(`* { color: red; } .tile { color: blue; }`);
+
+    expect(inlineStyle({ tag: "div", classes: ["tile"], attrs: new Map() }, [], sheet)).toBe(
+      "color: blue",
+    );
+  });
+
+  it("rewrites a clearfix as display: flow-root on the element itself", () => {
+    const sheet = parseCss(`.row::after { content: ""; clear: both; display: table; }`);
+
+    expect(sheet.dropped).toEqual([]);
+    expect(inlineStyle({ tag: "div", classes: ["row"], attrs: new Map() }, [], sheet)).toBe(
+      "display: flow-root",
+    );
+  });
+
+  it("still drops a pseudo-element that draws real content", () => {
+    // Not a clearfix — no `clear: both` — so there is nothing to rewrite it to.
+    const sheet = parseCss(`.tile::after { content: "→"; color: red; }`);
+
+    expect(sheet.rules).toEqual([]);
+    expect(sheet.dropped[0]?.selector).toBe(".tile::after");
+  });
+
+  it("keeps block structure instead of collapsing the block onto one line", async () => {
+    // The regression this guards. Emitted on one line, MDX parses every element
+    // as an inline `mdxJsxTextElement` inside a single paragraph — a <ul> inside
+    // a <p>, which the browser hoists out, so the list arrives as one unbroken
+    // run of text with every bullet and paragraph break gone.
+    const result = await convertReadmeMarkdown(
+      block(`<div class="row"><p>Intro</p><ul><li>one</li><li>two</li></ul></div>`),
+    );
+
+    const { tree } = parseMarkdown(result.mdx);
+    const kinds: string[] = [];
+    const walk = (node: { type: string; children?: unknown[] }): void => {
+      kinds.push(node.type);
+      for (const child of (node.children ?? []) as { type: string; children?: unknown[] }[]) {
+        walk(child);
+      }
+    };
+    walk(tree);
+
+    expect(result.outputCompiles).toBe(true);
+    // The container and the list are real block elements, not inline ones.
+    expect(kinds.filter((kind) => kind === "mdxJsxFlowElement").length).toBeGreaterThan(1);
+    expect(result.mdx).toContain("\n  <p");
+    expect(result.mdx).toContain("\n  <ul");
+  });
+
+  it("keeps a leaf element whole, so no line ever starts with bare text", async () => {
+    // The opposite failure, and the reason the one-line form was chosen at first:
+    // a line starting with text opens a markdown paragraph, and a `</div>` later
+    // on that line cannot close a block element from inside one.
+    const result = await convertReadmeMarkdown(
+      block(`<div class="card"><p>Date: <span>16 JANUARY 2023</span></p></div>`),
+    );
+
+    expect(result.outputCompiles).toBe(true);
+    expect(result.mdx).toContain("<p>Date: <span>16 JANUARY 2023</span></p>");
+    for (const line of result.mdx.split("\n")) {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("</")) expect(trimmed).toMatch(/^<\/[a-z]+>$/);
+    }
   });
 
   it("matches a descendant selector against an ancestor, not just a parent", () => {

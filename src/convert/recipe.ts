@@ -174,6 +174,37 @@ function parseRecipe(markdown: string): Parsed {
   return parsed;
 }
 
+/**
+ * ReadMe's own "page not found" page, which it serves **with a 200**.
+ *
+ * `GET /recipes/<a-slug-that-does-not-exist>.md` answers `200` and 2.5 KB of
+ * ReadMe's 404 page — confirmed against `docs.readme.com`, 2026-08-25. So
+ * `response.ok` is true, and the emptiness check below it passes as well, because
+ * that page ends with a `# Sibling pages` heading and a list of links. Parsed as a
+ * recipe it is a title and one perfectly well-formed step.
+ *
+ * Without this, a mistyped or retired slug is rebuilt into a `<Steps>` block full
+ * of unrelated navigation links, reported as a successful conversion with no
+ * blocker — the recipe's real content silently replaced by someone else's menu.
+ * It is the worst shape a failure can take, because nothing in the output or the
+ * report says to look.
+ *
+ * Two signals, because either alone is wrong:
+ *
+ * - **the sentence** is specific enough to stand on its own, and is the signal
+ *   that keeps working if ReadMe restyles the page;
+ * - **the `404` title** is the more stable one, but a genuine recipe *about*
+ *   handling 404s would share it — so it only counts when there is no code block,
+ *   and a recipe is built around one.
+ */
+const NOT_FOUND_SENTENCE = /Sorry, we could?n.t find the page you.re looking for/i;
+const NOT_FOUND_TITLE = /^(404|page not found)$/i;
+
+function isNotFoundPage(parsed: Parsed, body: string): boolean {
+  if (NOT_FOUND_SENTENCE.test(body)) return true;
+  return parsed.code === undefined && NOT_FOUND_TITLE.test((parsed.title ?? "").trim());
+}
+
 function step(title: string, body: RootContent[]): MdxJsxFlowElement {
   return {
     type: "mdxJsxFlowElement",
@@ -295,6 +326,17 @@ export async function fetchRecipes(
       }
 
       const parsed = parseRecipe(body);
+
+      // Before anything is built from it: a 200 here does not mean the recipe
+      // exists, and this page parses into something that looks like one.
+      if (isNotFoundPage(parsed, body)) {
+        failed(
+          "the site answered 200 with its own \"page not found\" page, so there is no recipe at " +
+            "this slug — check it for a typo, or the recipe was retired",
+        );
+        continue;
+      }
+
       const built = build(parsed, entry.title);
 
       if (built.length === 0) {
