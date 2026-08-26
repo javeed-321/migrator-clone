@@ -1,3 +1,4 @@
+import { parseMarkdown } from "../download/parse";
 import type { ConversionNote } from "./mdast";
 
 /**
@@ -163,7 +164,136 @@ const TEMPLATE = /(?<![\\=])(\$\{|\{\{)/g;
  * `(.*\S)` is greedy, so on a line holding several closing tags this matches the
  * last one — the one actually at the end of the line.
  */
-const TRAILING_CLOSE = /^(.*\S)[ \t]*(<\/([A-Z][A-Za-z0-9]*)>)[ \t]*$/;
+/**
+ * An opening tag, split into its name, its attribute area, and its closing
+ * slash.
+ *
+ * The alternation keeps a quoted value whole, so a `>` inside one cannot end the
+ * match early. The three branches are mutually exclusive at any position —
+ * `[^<>"']` cannot start where a quote does — so there is nothing to backtrack
+ * between and the pattern stays linear.
+ */
+const OPEN_TAG = /<([A-Za-z][A-Za-z0-9.:-]*)((?:[^<>"']|"[^"]*"|'[^']*')*?)(\/?)>/g;
+
+/**
+ * One step through a tag's attribute area: a quoted value, or `name=value` with
+ * nothing quoting it.
+ *
+ * **The quoted branch comes first, and it is what makes this safe.** A URL in an
+ * `href` routinely carries its own `=`:
+ *
+ * ```
+ * <Anchor href="https://x/docs/customer?isFramePreview=true#step-5">
+ * ```
+ *
+ * Matching `name=value` alone finds `isFramePreview=true#step-5` *inside* that
+ * string and quotes it again, which ends the real attribute early and costs the
+ * page — `[CORPUS] modulr/docs/customer-verification-integration-guide` failed
+ * exactly this way. Consuming the quoted value whole means the scan never looks
+ * inside one.
+ *
+ * An unquoted value may itself hold `/`, since `src=https://x/a.png` is one
+ * attribute and not a URL cut off at its scheme — the tag's own closing slash is
+ * already split off by `OPEN_TAG`.
+ *
+ * `{` and `}` are excluded so a JSX expression (`cols={2}`) is left alone: it is
+ * already valid, and quoting it would turn a number into a string.
+ */
+const ATTRIBUTE = /("[^"]*"|'[^']*')|([A-Za-z_][A-Za-z0-9_.:-]*)=([^\s"'`{}<>]+)/g;
+
+/**
+ * Puts quotes around an attribute value that has none.
+ *
+ * **HTML allows it, MDX does not.** `<div align=center>` is valid HTML and has
+ * been since 1995, so authors write it and ReadMe renders it — but MDX reads the
+ * page as JSX, where an attribute value must be a string or an expression. It
+ * fails with *"Unexpected character `c` (U+0063) before attribute value"*, `c`
+ * being the first letter of `center`.
+ *
+ * `[CORPUS] 12 of 1,000 techdocs.akamai.com pages fail strict MDX, and all 12
+ * fail on this` — 20 occurrences, every one `<div align=center>` wrapping a
+ * screenshot. Two of them are also reported as broken `<table>`s, which is the
+ * same failure seen from the other end: the page parsed as plain markdown, so
+ * the table never became one element.
+ *
+ * The repair is the smallest one that exists — two characters — and it changes
+ * nothing about what the page says, because a quoted value is what the HTML
+ * parser was inferring anyway.
+ */
+function quoteAttributeValues(text: string): string {
+  return text.replace(
+    OPEN_TAG,
+    (_tag, name: string, attributes: string, selfClosing: string) =>
+      `<${name}${attributes.replace(
+        ATTRIBUTE,
+        (match, quoted: string | undefined, attribute: string, value: string) =>
+          quoted === undefined ? `${attribute}="${value}"` : match,
+      )}${selfClosing}>`,
+  );
+}
+
+/** The HTML elements that never take a closing tag `[HTML §13.1.2]`. */
+const VOID_ELEMENTS = "area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr";
+
+/**
+ * A void element, with the redundant closing tag some authors write after it
+ * captured too, so the two can be replaced together.
+ */
+const VOID_TAG = new RegExp(
+  `<(${VOID_ELEMENTS})\\b((?:[^<>"']|"[^"]*"|'[^']*')*)>(\\s*</\\1\\s*>)?`,
+  "gi",
+);
+
+/**
+ * Self-closes a void element that was written the HTML way.
+ *
+ * `<col>` and `<br>` need no closing tag in HTML, and JSX has no such category —
+ * every element there is either self-closed or closed. So JSX reads `<col>` as an
+ * element that is still open, and the failure surfaces on whatever closes next:
+ *
+ * ```
+ * <colgroup><col><col></colgroup>
+ * -> Unexpected closing tag `</colgroup>`, expected corresponding closing tag for `<col>`
+ * ```
+ *
+ * The reported line is the `</colgroup>`, which is not where the problem is —
+ * one of the several ways this class of error points somewhere innocent.
+ *
+ * Rare but fatal: `[CORPUS] 3 occurrences across 2 of 1,000 techdocs.akamai.com
+ * pages`, and each one costs its whole page.
+ */
+function selfCloseVoidElements(text: string): string {
+  return text.replace(
+    VOID_TAG,
+    (_match, name: string, attributes: string) =>
+      // The trailing `/` goes too, so an already-self-closed tag is not given a
+      // second one — and so `<img …></img>` loses the closing tag it should never
+      // have had rather than keeping it beside a newly self-closing element.
+      `<${name}${attributes.replace(/\s*\/?\s*$/, "")} />`,
+  );
+}
+
+/**
+ * HTML elements that hold flow content, longest name first so `</pre>` cannot be
+ * matched as `</p>` plus a stray `re`.
+ *
+ * Only these, never an inline element. A closing `</em>` lifted onto its own line
+ * is still a closing tag with no flow-level opener to attach to — the same error
+ * moved two characters, and a sentence split in half for nothing.
+ */
+const BLOCK_ELEMENTS =
+  "blockquote|figcaption|colgroup|fieldset|details|section|summary|address|article|caption|dialog|footer|header|hgroup|figure|tbody|thead|tfoot|table|aside|main|form|nav|h[1-6]|div|pre|dl|dt|dd|ol|ul|li|td|th|tr|p";
+
+/**
+ * A closing tag at the end of a line of prose.
+ *
+ * Matches a component (any capitalised name) or a block-level HTML element. The
+ * two fail identically — MDX has one rule for both — and `</td>` at the end of a
+ * cell is as common in a hand-written table as `</Callout>` is after a note.
+ */
+const TRAILING_CLOSE = new RegExp(
+  `^(.*\\S)[ \\t]*(<\\/([A-Z][A-Za-z0-9]*|${BLOCK_ELEMENTS})>)[ \\t]*$`,
+);
 
 /**
  * Moves a closing tag off the end of a sentence and onto its own line.
@@ -300,6 +430,75 @@ function splitOpenTagFromText(text: string): string {
   return out.join("\n");
 }
 
+/**
+ * An opening component tag alone on its line, and its matching closing tag.
+ *
+ * Alone on the line is the whole precondition: a tag sharing a line with prose is
+ * inline JSX and its indentation means nothing, so re-indenting it would be
+ * rewriting a sentence.
+ */
+const LONE_OPEN = /^([ \t]*)<([A-Z][A-Za-z0-9]*)\b([^>]*)>[ \t]*$/;
+const LONE_CLOSE = /^([ \t]*)<\/([A-Z][A-Za-z0-9]*)>[ \t]*$/;
+
+/**
+ * Pulls a closing tag back to its opening tag's column, when it has drifted out
+ * to a shallower one.
+ *
+ * ## The shape, and why two spaces cost a whole page
+ *
+ * ```markdown
+ * * When a contribution crosses the annual limit:
+ *   * If a deposit reaches the exact limit, the transaction is approved.
+ *     <Callout icon="📘" theme="info">     <- indent 4: inside the inner item
+ *     The API will always accept it.
+ *   </Callout>                            <- indent 2: the OUTER item's column
+ * ```
+ *
+ * Indent 4 is the nested list item's content column and indent 2 is its parent's,
+ * so the element opens inside one block and closes inside another. MDX cannot
+ * represent that — *"Expected a closing tag for `<Callout>` before the end of
+ * `listItem`"* — and the page drops to the lenient parser, where **no component
+ * on it is converted at all**. `[CORPUS]` on the page this was found on, that
+ * cost all three of its callouts, including the two that were written correctly.
+ *
+ * ## Only outward, and only when it helps
+ *
+ * A closing tag *deeper* than its opener is a different shape that parses on its
+ * own, so it is left alone. And the whole rule is gated on the page failing
+ * before and parsing after `[applyIfItHelps]` — re-indenting a closing tag moves
+ * it between blocks, which is a content decision, and the only evidence that the
+ * author meant it is that the alternative does not compile.
+ */
+function alignClosingTags(text: string): string {
+  const open: { name: string; indent: string }[] = [];
+
+  return text
+    .split("\n")
+    .map((line) => {
+      const opening = LONE_OPEN.exec(line);
+      // A self-closing tag opens nothing, so it must not go on the stack — one
+      // `<Image />` between an opener and its closer would pair with the wrong tag.
+      if (opening && !(opening[3] ?? "").trimEnd().endsWith("/")) {
+        open.push({ name: opening[2] as string, indent: opening[1] as string });
+        return line;
+      }
+
+      const closing = LONE_CLOSE.exec(line);
+      if (!closing) return line;
+
+      const owner = open[open.length - 1];
+      // Unbalanced, or closing something other than the innermost open element:
+      // the nesting is not what this rule assumes, so it is not this rule's to fix.
+      if (!owner || owner.name !== closing[2]) return line;
+      open.pop();
+
+      return (closing[1] as string).length < owner.indent.length
+        ? owner.indent + line.trim()
+        : line;
+    })
+    .join("\n");
+}
+
 type Repair = { name: string; apply: (text: string) => string; count: number };
 
 function repairs(): Repair[] {
@@ -338,6 +537,21 @@ function repairs(): Repair[] {
       // comment nobody renders is the one place that is free.
       apply: (text) =>
         text.replace(HTML_COMMENT, (_match, body: string) => `{/*${body.replace(/\*\//g, "*\\/")}*/}`),
+      count: 0,
+    },
+    {
+      // Before the two tag-shape rules below, so they see a tag whose attributes
+      // are already quoted — an unquoted value can hold a `/`, which is what
+      // decides whether a tag reads as self-closing.
+      name: "unquoted attribute value",
+      apply: quoteAttributeValues,
+      count: 0,
+    },
+    {
+      // After the quoting rule, so a value that ends in `/` has already been
+      // wrapped and cannot be mistaken for the tag's own closing slash.
+      name: "unclosed void element",
+      apply: selfCloseVoidElements,
       count: 0,
     },
     {
@@ -393,6 +607,55 @@ export function outsideCode(source: string, fn: (text: string) => string): strin
  * Runs **before parsing**, for the same reason `expandMagicBlocks` does: what it
  * fixes is the reason there is no tree to fix.
  */
+/** Whether the strict MDX parser accepts this text as it stands. */
+function parses(text: string): boolean {
+  return parseMarkdown(text).mode === "mdx";
+}
+
+/**
+ * Repairs that are applied **only when they demonstrably help.**
+ *
+ * ## Why a second tier exists at all
+ *
+ * Every rule above is safe to run on any page: escaping a bare `<`, turning an
+ * autolink into a link, translating a comment. None of them can change what a
+ * page says, so none of them needs permission.
+ *
+ * Re-indenting a closing tag is not like that. Indentation is what decides which
+ * block an element belongs to, so moving it *is* a content decision — and the
+ * only evidence that the author meant the other block is that the version they
+ * wrote does not compile. So the rule is allowed to act on exactly that evidence
+ * and nothing else: the page must fail before, and parse after. A page that was
+ * already fine is never touched, and a repair that does not fix the parse is
+ * thrown away rather than shipped on a hunch.
+ *
+ * That is also what makes the tier the right home for anything riskier later.
+ * `[CORPUS]` one page in 1,659 has the shape this exists for — too rare to be
+ * worth an unconditional rule, too expensive to leave alone, since a page that
+ * falls back loses every component conversion on it and not just the broken one.
+ */
+function applyIfItHelps(source: string): { source: string; notes: ConversionNote[] } {
+  // Already good. Nothing here may touch a page that compiles.
+  if (parses(source)) return { source, notes: [] };
+
+  const candidate = outsideCode(source, alignClosingTags);
+  if (candidate === source || !parses(candidate)) return { source, notes: [] };
+
+  return {
+    source: candidate,
+    notes: [
+      {
+        rule: "repair",
+        level: "flag",
+        detail:
+          "moved a closing tag back to its opening tag's column — it had drifted out to a " +
+          "shallower block, which MDX cannot represent. Checked rather than assumed: the page " +
+          "would not parse before and does after. Confirm the element wraps what the author meant",
+      },
+    ],
+  };
+}
+
 export function repairSource(source: string): { source: string; notes: ConversionNote[] } {
   const rules = repairs();
 
@@ -422,5 +685,10 @@ export function repairSource(source: string): { source: string; notes: Conversio
           },
         ];
 
-  return { source: repaired, notes };
+  // Last, and on the already-repaired text: the cheap rules may have fixed the
+  // page on their own, in which case the gate below sees a parsing page and does
+  // nothing — which is exactly right.
+  const conditional = applyIfItHelps(repaired);
+
+  return { source: conditional.source, notes: [...notes, ...conditional.notes] };
 }

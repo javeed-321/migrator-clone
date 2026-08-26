@@ -141,8 +141,10 @@ describe("3.6 through the pipeline", () => {
 
     expect(result.mdx).not.toMatch(/<br/i);
     expect(result.mdx).toContain("Requests are capped. Bursts are smoothed.");
-    // The unclosed <br> is what forced the page onto the fallback parser.
-    expect(result.parseMode).toBe("markdown");
+    // The unclosed `<br>` used to force the page onto the fallback parser, which
+    // cost it every component conversion. The repair pass self-closes void
+    // elements now, so the page reaches the strict parser intact.
+    expect(result.parseMode).toBe("mdx");
   });
 
   it("leaves the table pass to handle its own cells", async () => {

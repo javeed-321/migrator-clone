@@ -175,8 +175,10 @@ const detailsResult = await convertReadmeMarkdown(DETAILS_PAGE, {
 describe("raw <details> through the whole pipeline", () => {
 
 
-  it("converts both blocks even though the page is not valid MDX", async () => {
-    expect(detailsResult.parseMode).toBe("markdown");
+  it("converts both blocks, on the strict parser", async () => {
+    // The page arrives with an unclosed `<br>`, which used to drop it onto the
+    // lenient parser; the repair pass self-closes it first.
+    expect(detailsResult.parseMode).toBe("mdx");
     expect(detailsResult.mdx).not.toContain("<details");
     expect(detailsResult.mdx).toContain('<Expandable title="What is a loyalty program?"');
     expect(detailsResult.mdx).toContain('default-open="true"');

@@ -312,3 +312,198 @@ describe("HTML comments, which MDX does not have", () => {
     expect(repair(source)).toBe(source);
   });
 });
+
+/**
+ * `<div align=center>` is valid HTML and invalid JSX. MDX reads the page as JSX,
+ * so an unquoted value kills the whole page — and with it every component
+ * conversion on it.
+ *
+ * `[CORPUS] all 12 of the 1,000 techdocs.akamai.com pages that fail strict MDX
+ * fail on exactly this`, 20 occurrences, every one wrapping a screenshot.
+ */
+describe("unquoted attribute values", () => {
+  it("quotes the value HTML let the author leave bare", () => {
+    expect(repairSource("<div align=center>\ntext\n</div>").source).toContain('<div align="center">');
+  });
+
+  // The `/` in `https://` must not be read as the tag's own closing slash, which
+  // would cut the value down to `https:`.
+  it("keeps a URL whole rather than cutting it at the scheme", () => {
+    const { source } = repairSource("<img src=https://x.test/a.png>");
+    expect(source).toContain('src="https://x.test/a.png"');
+  });
+
+  // The tag's own slash is not part of the last attribute's value. `<img>` is a
+  // void element, so the spacing is then normalised by the rule below it.
+  it("leaves a self-closing tag self-closing", () => {
+    expect(repairSource("<img src=a.png/>").source).toContain('<img src="a.png" />');
+  });
+
+  it("leaves a value that is already quoted alone", () => {
+    const input = '<div align="center" data-x=\'y\'>';
+    expect(repairSource(input).source).toContain(input);
+  });
+
+  // `cols={2}` is already valid, and quoting it would make a number a string.
+  it("leaves a JSX expression alone", () => {
+    expect(repairSource("<Columns cols={2}>\n\n</Columns>").source).toContain("cols={2}");
+  });
+
+  /*
+   * `[CORPUS] modulr/docs/customer-verification-integration-guide` — an `href`
+   * whose URL carries its own `=`. Quoting that inner one ends the real
+   * attribute early and costs the whole page, which is a worse outcome than the
+   * unquoted attribute this rule exists to fix.
+   */
+  it("does not look inside a value that is already quoted", () => {
+    const input = '<Anchor href="https://x.test/docs/c?isFramePreview=true#step-5">Steps</Anchor>';
+    expect(repairSource(input).source).toContain(input);
+  });
+
+  it("quotes an unquoted value that holds its own equals sign", () => {
+    const { source } = repairSource("<a href=https://x.test/?a=b>link</a>");
+    expect(source).toContain('href="https://x.test/?a=b"');
+  });
+
+  it("quotes an unquoted attribute sitting beside a quoted one", () => {
+    const { source } = repairSource('<div class="wide" align=center>');
+    expect(source).toContain('<div class="wide" align="center">');
+  });
+
+  it("quotes every attribute on a tag, not just the first", () => {
+    const { source } = repairSource("<td align=center valign=top>");
+    expect(source).toContain('<td align="center" valign="top">');
+  });
+
+  it("does not touch an equals sign in prose", () => {
+    const prose = "Set the flag to align=center in your config.";
+    expect(repairSource(prose).source).toBe(prose);
+  });
+
+  it("does not touch code", () => {
+    const fenced = "```html\n<div align=center>\n```";
+    expect(repairSource(fenced).source).toBe(fenced);
+  });
+});
+
+/**
+ * HTML has void elements; JSX does not. `<col>` reads as still-open, and the
+ * error lands on whatever closes next — `</colgroup>`, several lines away from
+ * anything wrong.
+ */
+describe("unclosed void elements", () => {
+  it("self-closes a bare void tag", () => {
+    expect(repairSource("<colgroup>\n<col>\n<col>\n</colgroup>").source).toContain("<col />");
+  });
+
+  it("leaves one that is already self-closed alone", () => {
+    expect(repairSource('<img src="a.png" />').source).toContain('<img src="a.png" />');
+  });
+
+  it("keeps the attributes it found", () => {
+    const { source } = repairSource('<img src="a.png" alt="A cat">');
+    expect(source).toContain('<img src="a.png" alt="A cat" />');
+  });
+
+  it("quotes and self-closes in one pass", () => {
+    expect(repairSource("<img src=a.png>").source).toContain('<img src="a.png" />');
+  });
+
+  /*
+   * `[CORPUS] pipedrive/docs/marketplace-registering-a-private-app` writes
+   * `<img …></img>`. That parses as-is — the closing tag matches the open one —
+   * so self-closing without also dropping it strands a `</img>` and breaks a page
+   * that was fine.
+   */
+  it("drops the closing tag an author wrote after a void element", () => {
+    const { source } = repairSource('<td>\n<img src="a.png" alt="A"></img>\n</td>');
+    expect(source).toContain('<img src="a.png" alt="A" />');
+    expect(source).not.toContain("</img>");
+  });
+
+  it("does not self-close a normal element", () => {
+    expect(repairSource("<div>\n\ntext\n\n</div>").source).toContain("<div>");
+  });
+
+  it("does not touch code", () => {
+    const fenced = "```html\n<col>\n```";
+    expect(repairSource(fenced).source).toBe(fenced);
+  });
+});
+
+/*
+ * Indentation decides which block an element belongs to, so moving a closing tag
+ * is a content decision — not a syntax tidy-up. That is why this tier is gated on
+ * evidence: the page must fail before and parse after, and a page that already
+ * compiles is never touched.
+ */
+describe("a closing tag that drifted out of its block", () => {
+  const NESTED = [
+    "* When a contribution crosses the annual limit:",
+    "  * If a deposit reaches the exact limit, the transaction is approved.",
+    "    <Callout icon=\"\u{1F4D8}\" theme=\"info\">",
+    "    The API will always accept it.",
+    "  </Callout>",
+    "",
+  ].join("\n");
+
+  it("pulls it back to its opening tag's column", () => {
+    expect(compiles(NESTED)).toBe(false);
+
+    const repaired = repair(NESTED);
+    expect(compiles(repaired)).toBe(true);
+    expect(repaired).toContain("    </Callout>");
+  });
+
+  it("recovers every component on the page, not just the broken one", async () => {
+    // The whole cost of a fallback: the two well-formed callouts on this page were
+    // losing their conversion because of the third one's indentation.
+    const source = [
+      '<Callout icon="\u{1F6A7}" theme="warn">',
+      "Fine on its own.",
+      "</Callout>",
+      "",
+      NESTED,
+    ].join("\n");
+
+    const result = await convertReadmeMarkdown(source);
+    expect(result.parseMode).toBe("mdx");
+    expect(result.mdx.match(/<Callout[^>]*>/g)).toEqual([
+      '<Callout kind="alert">',
+      '<Callout kind="info">',
+    ]);
+  });
+
+  it("says it moved something, and asks for it to be checked", () => {
+    const notes = repairSource(NESTED).notes.filter((note) => note.rule === "repair");
+
+    expect(notes.some((note) => note.level === "flag" && /closing tag/.test(note.detail))).toBe(true);
+  });
+
+  it("leaves a page that already parses completely alone", () => {
+    // Deeper-than-its-opener is a different shape, and it compiles, so the gate
+    // never even runs the rule.
+    const source = "<Callout>\nBody.\n  </Callout>\n";
+
+    expect(compiles(source)).toBe(true);
+    expect(repair(source)).toBe(source);
+  });
+
+  it("does not touch a closing tag inside a code fence", () => {
+    const source = ["```mdx", "  <Callout>", "  x", "</Callout>", "```", "", "See <a<b for more."].join("\n");
+
+    // The page fails for an unrelated reason, so the gate does run — and the
+    // fence is still masked, so the example inside it survives byte for byte.
+    expect(repair(source)).toContain("```mdx\n  <Callout>\n  x\n</Callout>\n```");
+  });
+
+  it("keeps its hands off when re-indenting would not fix the page", () => {
+    // Broken beyond this rule: the closing tag drifted *and* there is a stray tag
+    // nothing can pair. Re-indenting alone does not make it parse, so it is
+    // discarded rather than shipped as a half-repair.
+    const source = ["  <Callout>", "  Body.", "</Callout>", "", "</Stray>", ""].join("\n");
+
+    expect(compiles(source)).toBe(false);
+    expect(repair(source)).toBe(source);
+  });
+});
